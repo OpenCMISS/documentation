@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="/">
+    <file>finite_element.png</file>
+    <file>cmiss_icon.ico</file>
+  </qresource>
+</RCC>
