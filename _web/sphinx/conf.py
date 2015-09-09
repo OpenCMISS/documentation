@@ -29,4 +29,4 @@ extensions = [
 
 html_theme = "ocmiss"
 html_theme_path = ["templates"]
-exclude_patterns = ["web/**", "doc/**"]
+exclude_patterns = ["_web/**"]
