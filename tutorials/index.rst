@@ -3,14 +3,21 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to OpenCMISS's documentation!
+Tutorials
 =====================================
 
 .. toctree::
-   :name: maintoc
+   :maxdepth: 2
+   :name: tutorialtoc
    :hidden:
 
-   tutorials/index
+   getting_started/getting-started
+   axis_viewer/tutorial
+   finite_element_creation/tutorial
+   image_reader/tutorial
+   selection/tutorial
+   materials/tutorial
+   read_mesh/tutorial
 
 Indices and tables
 ==================
