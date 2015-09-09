@@ -1,0 +1,179 @@
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+// Default rules for content
+.inner {
+	img {
+		max-width: 100%;
+		height: auto !important;
+	}
+
+}
+
+aside.extras, article.main {
+	position:relative;
+}
+
+aside.extras {
+	z-index: 1;
+}
+
+article.main {
+	width: 900px;
+	z-index:0;
+}
+
+.inner {
+	padding: 0 15px;
+
+	&.content {
+		border: 1px solid white;/*Prevent collapse of margin from content*/
+	}
+}
+
+#sidebar {
+	//width: 235px;
+	min-height: 400px;
+	background-color: white;
+
+	.content {
+		padding: 5px 10px;
+		padding-top: 10px;
+
+	}
+
+	ul {
+		line-height:1.2em;
+		list-style: none;
+		padding-left: 0px;
+	}
+
+	li {
+		margin-top:0px;
+		padding:10px;
+		font-size:1.15em;
+
+		a {
+			//color: #424242;
+		}
+
+		&.current {
+			background-color: rgb(111, 143, 240);
+
+			& > a {
+				color:white;
+			}
+		}
+
+		ul {
+			padding-top: 10px;
+			li {
+				padding-left: 20px;
+				border:none;
+				font-size:0.9em;
+				background-color: white;
+
+			}
+
+			a {
+				//color: #515151;
+			}
+		}
+	}
+
+	.title {
+		padding: 5px 10px;
+		color: white;
+		background: #3D63D6;
+	}
+	h1 {
+		font-size: 1.3em;
+		margin: 10px 0px;
+	}
+	&.affix {
+		width: 195px;
+	}
+}
+
+.extras {
+	padding-right: 20px;
+}
+
+.header .nav-bar, footer .footer-box,.header .search-box {
+	width: 900px;
+}
+
+
+@media all and (min-width: 1350px) {
+	.main-container {
+		width: 1350px;
+		@include make-row();
+		margin-left: auto;
+		margin-right: auto;
+		.inner {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		.extras {
+			@include make-sm-column(2);
+		}
+
+		& > .main {
+			@include make-sm-column(8);
+			padding: 0px;
+		}
+
+		.right-sidebar {
+			@include make-md-column(2);
+		}
+	}
+
+}
+
+@media all and (max-width:770px){
+	.extras {
+		display:none;
+	}
+
+	.main-container {
+		width: auto;
+
+		& > .main {
+			width: 100%;
+			max-width: 770px;
+			margin-left: 0px;
+			& > .inner {
+				width: 100%;
+				margin-left: 0px;
+			}
+		}
+	}
+}
+
+
+@media all and (min-width:770px) and (max-width:1349px) {
+	.right-sidebar {
+		display: none;
+	}
+
+	.extras {
+		float: left;
+		width: 190px;
+	}
+
+
+	.main-container {
+		width: auto;
+
+
+		& > .main  {
+			float: right;
+			width: 100%;
+			margin-left: -200px;
+			& > .inner {
+				margin-left: 200px;
+				max-width: 900px;
+			}
+		}
+	}
+}

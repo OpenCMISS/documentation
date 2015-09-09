@@ -1,0 +1,9 @@
+{
+  "name": "web2",
+  "private": true,
+  "dependencies": {
+      "bootstrap-sass-official": "~3.3.0",
+	  "threejs":"r67",
+	  "ace-builds":"~1.2.0"
+  }
+}

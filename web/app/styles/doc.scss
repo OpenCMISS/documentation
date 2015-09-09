@@ -1,0 +1,58 @@
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+
+.project-list {
+	text-align: center;
+	font-size:1.3em;
+	padding:10px 0px;
+}
+
+.doc-links {
+	margin:0px;
+	padding-top: 20px;
+	padding-bottom:20px;
+
+	li {
+		padding-top: 5px;
+		@include clearfix();
+	}
+
+	li.media-item {
+		padding-top:12px;
+	}
+
+	a {
+		font-size: 1.2em;
+	}
+
+}
+
+.media-item {
+
+	& > div {
+		display:table-cell;
+	}
+
+	.title {
+		font-size:1.2em;
+	}
+
+	.media {
+		width: 80px;
+		min-height: 50px;
+		float:left;
+		padding-right: 10px;
+		display: table-cell;
+		img {
+			max-width:70px;
+		}
+	}
+}
+
+.notice {
+	font-size:1.3em;
+}
+
+.links-wrapper {
+	@include clearfix();
+}

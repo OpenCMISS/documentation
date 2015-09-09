@@ -1,0 +1,132 @@
+{% extends 'partials/common_with_sidebar.jinja' %}
+{% block sidebar_title %} <h1>Documentation for...</h1> {% endblock %}
+{% block sidebar_content %}
+<ul>
+	<li><a href="#introduction">Introduction</a></li>
+	<li><a href="#tutorials">Tutorials</a></li>
+	<li><a href="#examples">Examples</a></li>
+	<li><a href="#technical">Technical Documentation</a></li>
+	<li><a href="#publications">Publications</a></li>
+	<li><a href="#developers">Developers Documentation</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<h1>Documentation</h1>
+<p>Documentation on using OpenCMISS software packages to model and visualise.</p>
+
+<section class="doc-links" id="introduction">
+	<h2>Introduction</h2>
+	<p>A C/C++ library providing a rich, dynamic model representation in its API, incorporating images and image processing, high quality 3-D visualisation, interactive tools and more.</p>
+	<div class="links-wrapper row">
+		<div class="col-sm-3">
+			<h3>For Users</h3>
+			<ul class="list-unstyled">
+				<li><a href="ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/Introduction%20to%20OpenCMISS-Zinc%20v3.0.pdf">Introduction (PDF) </a></li>
+				<li><a href="http://cmiss.sourceforge.net/" target="_blank">C++ API Reference</a></li>
+				<li><a href="#">Community Support</a></li>
+			</ul>
+			<h3>For Contributors</h3>
+			<ul class="list-unstyled">
+				<li><a href="#">Notes for Contributor </a></li>
+				<li><a href="#">Contact Maintainers</a></li>
+			</ul>
+
+		</div>
+		<div class="col-sm-9">
+			<h3>Tutorials</h3>
+			<p class="notice"><em>Coming soon.</em></p>
+		</div>
+	</div>
+</section>
+<section class="row doc-links" id="tutorials">
+	<h2>Tutorials</h2>
+	<p>Python binding for the OpenCMISS-Zinc library.</p>
+	<div class="links-wrapper">
+		<div class="col-sm-3">
+			<h3>User Reference</h3>
+			<ul class="list-unstyled">
+				<li><a href="/documentation/getting_started/getting-started.html">Getting Started Guide</a></li>
+				<li><a href="#">API Reference</a></li>
+				<li><a href="#">Community Support</a></li>
+			</ul>
+			<h3>Contributor Reference</h3>
+			<ul class="list-unstyled">
+				<li><a href="#">Notes for Contributors</a></li>
+				<li><a href="#">Find Other Contributors</a></li>
+			</ul>
+
+		</div>
+		<div class="col-sm-9">
+			<h3>Tutorials</h3>
+			<ol class="list-unstyled">
+				<li class="media-item">
+					<div class="media">
+						<img src="/assets/documentation/axis_viewer.png">
+					</div>
+					<div class="description">
+						<a href="/documentation/axis_viewer/tutorial.html">Axis Viewer</a>
+						<p> A very simple Zinc application.</p>
+					</div>
+				</li>
+				<li class="media-item"><div class="media"><img src="/assets/documentation/finite_element_creation.png"></div><div class="description"><a href="/documentation/finite_element_creation/tutorial.html">Finite Element Creation</a> <p>Covers how to create a 2D finite element and visualise it.</p></div></li>
+				<li class="media-item"><div class="media"><img src="/assets/documentation/drawing.png"></div><div class="description"><a href="/documentation/image_reader/tutorial.html">Image Reader</a><p>Covers how to read an image into an image field.</p></div></li>
+				<li class="media-item"><div class="media"></div><div class="description"><a href="/documentation/selection/tutorial.html">Selection</a> <p>Covers one way in which selection could be implemented for a Zinc application.</p></div></li>
+				<li class="media-item"><div class="media"><img src="/assets/documentation/materials.png"></div><div class="description"><a href="/documentation/materials/tutorial.html">Materials</a> <p>Covers how graphic materials can be used to add a bit of colour to our mesh.</p></div></li>
+				<li class="media-item"><div class="media"><img src="/assets/documentation/read_mesh.png"></div><div class="description"><a href="/documentation/read_mesh/tutorial.html">Read and View a Mesh</a> <p>Covers loading a deforming heart model and allows you to vary time with a slider to animate its deformation.</p></div></li>
+			</ol>
+		</div>
+	</div>
+</section>
+<section class="row doc-links" id="examples">
+	<h2>Examples</h2>
+	<p>A mathematical modelling environment that enables the application of finite element analysis techniques to a variety of complex bioengineering problems.
+	</p>
+				<h3>Examples</h3>
+			<ul class="list-unstyled">
+				<li class="media-item">
+					<div class="media">
+						<img src="/assets/documentation/cmgui-example.png">
+					</div>
+					<div class="description">
+						<a href="http://cmiss.bioeng.auckland.ac.nz/development/examples/a/index_thumbs.html">Cmgui Examples</a>
+						<p>A good way to learn OpenCMISS is to copy examples that perform a similar task to what is needed. These examples were created for Cmgui, a predecessor to OpenCMISS-Zinc.</p>
+					</div>
+				</li>
+
+				<li class="media-item">
+					<div class="media">
+						<img src="/assets/documentation/physiomemodeller.png">
+					</div>
+					<div>
+						<p><span class="title">Gallery</span> (<em>Coming soon</em>)</p>
+						<p>See applications created with OpenCMISS-Zinc.</p>
+
+					</div>
+				</li>
+			</ul>
+
+</section>
+<section class="row doc-links" id="technical">
+	<h2>Technical Documentation</h2>
+	<p>Python binding for the OpenCMISS-Iron environment.</p>
+	<p class="notice"><em>Documentation coming soon.</em></p>
+</section>
+
+<section class="row doc-links" id="publications">
+	<h2>Publications</h2>
+	<p class="notice"><em>Documentation coming soon.</em></p>
+</section>
+
+<section class="row doc-links" id="developers">
+	<h2>Developers Documentation</h2>
+	<p>Visit the <a href="/developers.html">developers documentation page</a>.</p>
+</section>
+
+
+{% endblock %}
+{% block styles %}
+{{ super() }}
+<!-- build:css(.tmp) /styles/doc.css -->
+<link rel="stylesheet" href="/styles/doc.css">
+<!-- endbuild -->
+{% endblock %}

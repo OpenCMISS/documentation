@@ -1,0 +1,50 @@
+!!ARBfp1.0
+TEMP lightVec, viewVec, reflVec, normal, attenuation, Len, finalCol, lightContrib, reverse, tex, tex2;
+PARAM two = {2.0, 2.0, 2.0, 2.0};
+PARAM m_one = {-1.0, -1.0, -1.0, -1.0};
+#Set up reverse vector based on secondary colour
+MAD      reverse, two, fragment.color.secondary.x, m_one;
+TEX		tex, fragment.texcoord[0], texture[0], 2D;
+#Normalize the normal.
+DP3		normal.w, fragment.texcoord[3], fragment.texcoord[3];
+RSQ		normal.w, normal.w;
+MUL		normal.xyz, fragment.texcoord[3], normal.w;
+#Reverse the normal if required
+MUL      normal, reverse, normal;
+#Normalize lightvec and viewvec.
+DP3		Len.w, fragment.texcoord[1], fragment.texcoord[1];
+RSQ		lightVec.w, Len.w;
+MUL		lightVec.xyz, fragment.texcoord[1], lightVec.w;
+DP3		viewVec.w, fragment.texcoord[2], fragment.texcoord[2];
+RSQ		viewVec.w, viewVec.w;
+MUL		viewVec.xyz, fragment.texcoord[2], viewVec.w;
+#Calculate attenuation.
+MAD		attenuation, state.light[0].attenuation.z, Len.w, state.light[0].attenuation.x;
+RCP		Len, lightVec.w;
+MAD		attenuation, Len.w, state.light[0].attenuation.y, attenuation.x;
+RCP		attenuation.x, attenuation.x;
+#Diffuse
+DP3_SAT	   lightContrib.x, normal, lightVec;
+
+#Specular
+# Phong:
+DP3		reflVec, lightVec, normal;
+MUL		reflVec, reflVec, two;
+MAD		reflVec, reflVec, normal, -lightVec;
+
+DP3_SAT	lightContrib.y, reflVec, viewVec;
+MOV		lightContrib.w, state.material.shininess.x;
+#Accelerates lighting computations
+LIT	lightContrib, lightContrib;
+MAD		finalCol, lightContrib.y, fragment.color, state.lightprod[0].ambient;
+MAD		finalCol, lightContrib.z, state.lightprod[0].specular, finalCol;
+MAD		finalCol, finalCol, attenuation.x, state.material.emission;
+#Ambient lighting contribution;
+MAD		finalCol, fragment.color, state.lightmodel.ambient, finalCol;
+#Alpha value;
+MOV		finalCol.w, state.material.diffuse.w;
+MUL		finalCol.xyz, finalCol, tex;
+#Swizzle the colours to show something different
+#MOV		result.color, finalCol;
+MOV		result.color, finalCol.yxzw;
+END

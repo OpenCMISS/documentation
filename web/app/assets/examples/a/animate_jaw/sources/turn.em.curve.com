@@ -1,0 +1,1 @@
+gfx define curve turn.em l.Lagrange number_of_components 26 extend_clamp file turn.em max_value 1 1 1 3.14 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 min_value 0 -200 -10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 parameter_grid 0.1 value_grid 0.1

@@ -1,0 +1,38 @@
+ Group name: texture_block2
+ #Fields=1
+ 1) coordinates, coordinate, rectangular cartesian, #Components=3
+  x.  Value index=1, #Derivatives=0, #Versions=1
+  y.  Value index=2, #Derivatives=0, #Versions=1
+  z.  Value index=3, #Derivatives=0, #Versions=1
+ Node: 100001
+  3.230000e+02
+  4.490000e+02
+ -1.750000e+02
+ Node: 100002
+  3.260000e+02
+  4.490000e+02
+ -1.750000e+02
+ Node: 100003
+  3.230000e+02
+  4.490000e+02
+ -1.780000e+02
+ Node: 100004
+  3.260000e+02
+  4.490000e+02
+ -1.780000e+02
+ Node: 100005
+  3.230000e+02
+  4.520000e+02
+ -1.750000e+02
+ Node: 100006
+  3.260000e+02
+  4.520000e+02
+ -1.750000e+02
+ Node: 100007
+  3.230000e+02
+  4.520000e+02
+ -1.780000e+02
+ Node: 100008
+  3.260000e+02
+  4.520000e+02
+ -1.780000e+02

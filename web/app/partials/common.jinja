@@ -1,0 +1,109 @@
+<!doctype html>
+<html class="no-js">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}OpenCMISS{% endblock %}</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+		<!-- build:css(.) /styles/vendor.css -->
+		<!-- endbuild -->
+		<!-- build:css(.tmp) /styles/main.css -->
+		<link rel="stylesheet" href="/styles/main.css">
+		<link rel="stylesheet" href="/styles/beta-notice.css">
+		<!-- endbuild -->
+		{% block styles %}
+		{% endblock %}
+	</head>
+	<body>
+		<!--[if lt IE 10]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+			<![endif]-->
+
+		<div class="header navbar-fixed-top">
+			<div id="beta-notice">
+				<div class="alert alert-success"><strong>Welcome to the new OpenCMISS site, currently being worked on.</strong> This site is still being developed. <a href="/status.html">Here is a list of pages ready for feedback</a>. Please send any suggestions or comments to <a href="mailto:noel.zeng@auckland.ac.nz">noel.zeng@auckland.ac.nz</a>. </div>
+			</div>
+			<div class="nav-wrapper">
+				<div class="nav-bar">
+					<ul class="list-inline pull-right">
+						<li><a href="/downloads.html">Download</a></li>
+						<li><a href="/developers.html">Developers</a></li>
+						<li><a href="/doc.html">Documentation</a></li>
+						<li><a href="/community.html">Community</a></li>
+						<li><a href="/about.html">About</a></li>
+						<li id="searchButton" class="hidden"><a href="#" class="nav-search-button"><span class="glyphicon glyphicon-search"></span></a></li>
+					</ul>
+					<a href="/index.html"><img height="60" src="/images/logo.png" alt="Logo for OpenCMISS."></a>
+				</div>
+			</div>
+			<div class="search-wrapper">
+				<div class="search-box form-group has-feedback">
+					<form id="search-form">
+						<input type="text" name="q" class="form-control" aria-describedby="searchBoxDescription" placeholder="Search all of OpenCMISS.org...">
+					</form>
+					<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+					<span id="searchBoxDescription" class="sr-only">Search box for documentation and more.</span>
+				</div>
+			</div>
+		</div>
+
+		{% block main_content %}
+		{% endblock %}
+
+
+		<footer>
+			<div class="row footer-box">
+				<div class="col-sm-6">
+					<p class="copyright">&copy; 2015 <a href="/about.html#contributors">OpenCMISS contributors</a>. </p>
+					<ul class="supporters list-inline">
+						<li><img src="/images/supporters/abi.png" alt="Auckland Bioengineering Institute"></li>
+						<li><img src="/images/supporters/kings.jpg" alt="King's College"></li>
+						<li><img src="/images/supporters/oxford.png" alt="University of Oxford"></li>
+					</ul>
+				</div>
+				<div class="col-sm-3 nav-section">
+					<h3>Website Tools</h3>
+					<ul class="list-unstyled">
+						<li><a href="#">Accessibility</a></li>
+						<li><a href="#">Site Map</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3 nav-section">
+					<h3>OpenCMISS</h3>
+					<ul class="list-unstyled">
+						<li><a href="/downloads.html">Download</a></li>
+						<li><a href="/developers.html">Developers</a></li>
+						<li><a href="/doc.html">Documentation</a></li>
+						<li><a href="/community.html">Community</a></li>
+						<li><a href="/about.html">About</a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<!-- build:js({.,app,.tmp}) /scripts/shared.js -->
+		<script src="/bower_components/jquery/dist/jquery.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
+		<script src="/scripts/common.js"></script>
+		<script src="/scripts/search.js"></script>
+		<!-- endbuild -->
+		<script type="text/javascript">
+			_setupScrollHideSearch();
+		</script>
+		{% block scripts %}
+		{% endblock %}
+	</body>
+</html>

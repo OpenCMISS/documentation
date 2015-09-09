@@ -1,0 +1,151 @@
+ Group name: texture_block3
+ Shape. Dimension=1, line
+ #Scale factor sets=0
+ #Nodes=0
+ #Fields=0
+ Element: 0 0 101
+ Element: 0 0 102
+ Element: 0 0 103
+ Element: 0 0 104
+ Element: 0 0 105
+ Element: 0 0 106
+ Element: 0 0 107
+ Element: 0 0 108
+ Element: 0 0 109
+ Element: 0 0 110
+ Element: 0 0 111
+ Element: 0 0 112
+ Shape. Dimension=2, line*line
+ Element: 0 100101 0
+ Faces:
+ 0 0 103
+ 0 0 107
+ 0 0 102
+ 0 0 110
+ Element: 0 100102 0
+ Faces:
+ 0 0 105
+ 0 0 108
+ 0 0 104
+ 0 0 111
+ Element: 0 100103 0
+ Faces:
+ 0 0 101
+ 0 0 109
+ 0 0 103
+ 0 0 105
+ Element: 0 100104 0
+ Faces:
+ 0 0 106
+ 0 0 112
+ 0 0 107
+ 0 0 108
+ Element: 0 100105 0
+ Faces:
+ 0 0 102
+ 0 0 104
+ 0 0 101
+ 0 0 106
+ Element: 0 100106 0
+ Faces:
+ 0 0 110
+ 0 0 111
+ 0 0 109
+ 0 0 112
+ Shape. Dimension=3, line*line*line
+ #Scale factor sets=1
+ l.Lagrange*l.Lagrange*l.Lagrange, #Scale factors=8
+ #Nodes=8
+ #Fields=1
+ 1) coordinates, coordinate, rectangular cartesian, #Components=3
+ x. l.Lagrange*l.Lagrange*l.Lagrange, no modify, standard node based.
+   #Nodes=8
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 1
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 2
+   3. #Values=1
+     Value indices: 1
+     Scale factor indices: 3
+   4. #Values=1
+     Value indices: 1
+     Scale factor indices: 4
+   5. #Values=1
+     Value indices: 1
+     Scale factor indices: 5
+   6. #Values=1
+     Value indices: 1
+     Scale factor indices: 6
+   7. #Values=1
+     Value indices: 1
+     Scale factor indices: 7
+   8. #Values=1
+     Value indices: 1
+     Scale factor indices: 8
+ y. l.Lagrange*l.Lagrange*l.Lagrange, no modify, standard node based.
+   #Nodes=8
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 1
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 2
+   3. #Values=1
+     Value indices: 1
+     Scale factor indices: 3
+   4. #Values=1
+     Value indices: 1
+     Scale factor indices: 4
+   5. #Values=1
+     Value indices: 1
+     Scale factor indices: 5
+   6. #Values=1
+     Value indices: 1
+     Scale factor indices: 6
+   7. #Values=1
+     Value indices: 1
+     Scale factor indices: 7
+   8. #Values=1
+     Value indices: 1
+     Scale factor indices: 8
+ z. l.Lagrange*l.Lagrange*l.Lagrange, no modify, standard node based.
+   #Nodes=8
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 1
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 2
+   3. #Values=1
+     Value indices: 1
+     Scale factor indices: 3
+   4. #Values=1
+     Value indices: 1
+     Scale factor indices: 4
+   5. #Values=1
+     Value indices: 1
+     Scale factor indices: 5
+   6. #Values=1
+     Value indices: 1
+     Scale factor indices: 6
+   7. #Values=1
+     Value indices: 1
+     Scale factor indices: 7
+   8. #Values=1
+     Value indices: 1
+     Scale factor indices: 8
+ Element: 100101 0 0
+ Faces:
+ 0 100101 0
+ 0 100102 0
+ 0 100103 0
+ 0 100104 0
+ 0 100105 0
+ 0 100106 0
+ Nodes:
+ 100101 100102 100103 100104 100105 100106 100107 100108
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+  1.000000e+00  1.000000e+00  1.000000e+00

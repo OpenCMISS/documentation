@@ -1,0 +1,34 @@
+ Group name: turn.em in master.em
+ Shape. Dimension=1, line
+ #Scale factor sets=1
+ c.Hermite, #Scale factors=2
+ #Nodes=2
+ #Fields=2
+ 1) parameter, field, rectangular cartesian, #Components=1
+ 1. l.Lagrange, no modify, standard node based.
+   #Nodes=2
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+ 2) value, coordinate, rectangular cartesian, #Components=1
+ 1. c.Hermite, no modify, standard node based.
+   #Nodes=2
+   1. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 0 1
+   2. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 0 2
+ Element: 1 0 0
+ Nodes:
+ 1 2
+ Scale factors:
+  0.000000e+00  3.529409e-02
+ Element: 2 0 0
+ Nodes:
+ 2 3
+ Scale factors:
+  3.443325e-02  8.048772e-02

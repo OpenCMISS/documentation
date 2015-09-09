@@ -1,0 +1,26 @@
+ Group name: y.em in master.em timebase
+ Shape. Dimension=1, line
+ #Scale factor sets=0
+ #Nodes=2
+ #Fields=2
+ 1) parameter, field, rectangular cartesian, #Components=1
+ 1. l.Lagrange, no modify, standard node based.
+   #Nodes=2
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+ 2) value, coordinate, rectangular cartesian, #Components=1
+ 1. l.Lagrange, no modify, standard node based.
+   #Nodes=2
+   1. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+   2. #Values=1
+     Value indices: 1
+     Scale factor indices: 0
+ Element: 1 0 0
+ Nodes:
+ 1 2

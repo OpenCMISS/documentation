@@ -1,0 +1,7 @@
+{% extends "partials/releases.jinja" %}
+{% set os_label = "Windows" %}
+{% set os_value = "windows" %}
+{% block main_release_buttons %}
+	<a href="#" class="btn btn-default main disabled"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>Installer 64-bit</a>
+	<a href="#" class="btn btn-default disabled"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>ZIP 64-bit</a>
+{% endblock %}

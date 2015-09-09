@@ -1,0 +1,1 @@
+gfx define curve z.em l.Lagrange number_of_components 26 extend_clamp file z.em max_value 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 min_value 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 parameter_grid 0.1 value_grid 0.1

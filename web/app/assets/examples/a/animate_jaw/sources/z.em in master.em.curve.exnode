@@ -1,0 +1,21 @@
+ Group name: z.em in master.em
+ #Fields=2
+ 1) parameter, field, rectangular cartesian, #Components=1
+  1.  Value index=1, #Derivatives=1 (d/ds1), #Versions=1
+ 2) value, coordinate, rectangular cartesian, #Components=1
+  1.  Value index=3, #Derivatives=1 (d/ds1), #Versions=1
+ Node: 1
+ -5.989800e-01  0.000000e+00
+ -1.829278e-01 -1.000000e+00
+ Node: 2
+  1.060290e+02  0.000000e+00
+ -2.030488e+01 -1.000000e+00
+ Node: 3
+  1.984203e+02  0.000000e+00
+ -1.829278e-01  1.000000e+00
+ Node: 4
+  3.409775e+02  0.000000e+00
+ -2.030488e+01  1.000000e+00
+ Node: 5
+  3.998816e+02  0.000000e+00
+  1.829258e-01  1.000000e+00

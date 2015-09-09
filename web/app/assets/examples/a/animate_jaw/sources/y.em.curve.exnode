@@ -1,0 +1,87 @@
+ Group name: y.em
+ #Fields=2
+ 1) parameter, field, rectangular cartesian, #Components=1
+  1.  Value index=1, #Derivatives=1 (d/ds1), #Versions=1
+ 2) value, coordinate, rectangular cartesian, #Components=26
+  1.  Value index=3, #Derivatives=0, #Versions=1
+  2.  Value index=4, #Derivatives=0, #Versions=1
+  3.  Value index=5, #Derivatives=0, #Versions=1
+  4.  Value index=6, #Derivatives=0, #Versions=1
+  5.  Value index=7, #Derivatives=0, #Versions=1
+  6.  Value index=8, #Derivatives=0, #Versions=1
+  7.  Value index=9, #Derivatives=0, #Versions=1
+  8.  Value index=10, #Derivatives=0, #Versions=1
+  9.  Value index=11, #Derivatives=0, #Versions=1
+  10.  Value index=12, #Derivatives=0, #Versions=1
+  11.  Value index=13, #Derivatives=0, #Versions=1
+  12.  Value index=14, #Derivatives=0, #Versions=1
+  13.  Value index=15, #Derivatives=0, #Versions=1
+  14.  Value index=16, #Derivatives=0, #Versions=1
+  15.  Value index=17, #Derivatives=0, #Versions=1
+  16.  Value index=18, #Derivatives=0, #Versions=1
+  17.  Value index=19, #Derivatives=0, #Versions=1
+  18.  Value index=20, #Derivatives=0, #Versions=1
+  19.  Value index=21, #Derivatives=0, #Versions=1
+  20.  Value index=22, #Derivatives=0, #Versions=1
+  21.  Value index=23, #Derivatives=0, #Versions=1
+  22.  Value index=24, #Derivatives=0, #Versions=1
+  23.  Value index=25, #Derivatives=0, #Versions=1
+  24.  Value index=26, #Derivatives=0, #Versions=1
+  25.  Value index=27, #Derivatives=0, #Versions=1
+  26.  Value index=28, #Derivatives=0, #Versions=1
+ Node: 1
+  1.000000e+00  0.000000e+00
+  1.000000e-01
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  1.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+ Node: 2
+  1.000000e+00  0.000000e+00
+  1.000000e-01
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  1.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00
+  0.000000e+00

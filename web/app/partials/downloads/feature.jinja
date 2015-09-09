@@ -1,0 +1,80 @@
+{% macro download_box(os,name,downloads) %}
+  <div class="download-box">
+    <h4 class="download-name">{{name}}, {{os}}</h4>
+    {% for download in downloads %}
+      <a href="{{download.url}}" class="btn btn-default {{ 'main' if loop.index == 1 }}"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>{{download.description}}</a>
+    {% endfor %}
+  </div>
+{%- endmacro %}
+
+{% macro dev_releases_box(sw_name,src_repo_info) %}
+  {% if src_repo_info is defined %}
+    <div class="infobox other-ver-options">
+      <div class="title-section acc-trigger"><a href="#">Development versions and source code</a></div>
+      <div class="items-section acc-container">
+	<div class="row">
+	  <div class="col-sm-8">
+	    <div class="dev-versions">
+	      <h4> Development Versions </h4>
+	      <div class="alert alert-warning"><strong>May contain traces of nuts!</strong> These development versions of {{sw_name}} include newer features but may be unstable or may not run. It may be necessary to try multiple versions to get a working version.</div>
+	    </div>
+	  </div>
+	  <div class="col-sm-4">
+	    <div class="source-code sidebar">
+	      <h4>Source Code</h4>
+	      <div class="download-box">
+		<h4 class="download-name">Browse source code</h4>
+		<a href="{{src_repo_info.repoUrl}}" target="_blank" class="btn btn-default main"><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> {{src_repo_info.repoType}}</a>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	{# dev versions here. #}
+      </div>
+    </div>
+  {% endif %}
+{%- endmacro %}
+
+<div class="row {{'striped' if is_striped}}  download-option">
+  <div class="col-sm-2">
+    {% if logo_url is defined %}
+      <img src="{{logo_url}}">
+    {% endif %}
+  </div>
+  <div class="col-sm-10">
+    <h3>{{sw_name}}</h3>
+    {% block description %}
+    {% endblock %}
+    {% if release is defined %}
+      {{ download_box(os_label,release.name,release.formats) }}
+    {% else %}
+      <em>Coming soon.</em>
+    {% endif %}
+    <div class="extras">
+      {% if release is defined %}
+	<div class="infobox install-help">
+	  <div class="title-section acc-trigger"><a href="#">Get Started</a></div>
+	  <div class="items-section acc-container">
+	    <div class="row">
+	      <div class="col-sm-8">
+		<div class="install">
+		  <h4>Installation Instructions</h4>
+		  {% block install_instructions %}
+		  {% endblock %}
+		</div>
+	      </div>
+	      <div class="col-sm-4">
+		<div class="helpful-links sidebar">
+		  <h4>Helpful Links</h4>
+		  {% block helpful_links %}
+		  {% endblock %}
+		</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+      {% endif %}
+      {{ dev_releases_box(sw_name,src_info) }}
+    </div>
+  </div>
+</div>

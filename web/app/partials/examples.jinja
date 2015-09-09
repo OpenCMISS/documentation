@@ -1,0 +1,77 @@
+{% extends 'partials/common_with_sidebar.jinja' %}
+{% block styles %}
+  {{ super() }}
+  <!-- build:css(.tmp) /styles/example.css -->
+  <link rel="stylesheet" href="/styles/example.css">
+  <link rel="stylesheet" href="/styles/zinc-scene.css">
+  <!-- endbuild -->
+{% endblock %}
+{% block sidebar_title %}
+  <h1>Examples</h1>
+{% endblock %}
+{% block sidebar_content %}
+  <ul class="list-unstyled">
+    <li><a href="/examples/a/per_pixel_lighting/index.html">Per Pixel Lighting</a></li>
+    <li><a href="/examples/a/eye/index.html">Eye Model</a></li>
+    <li><a href="/examples/a/animate_jaw/index.html">Animate Jaw</a></li>
+  </ul>
+{% endblock %}
+
+{% block content %}
+	<h1 >{{model_title}}</h1>
+  <div class="row model-info">
+    <div class="col-sm-5">
+      <div class="model-description">
+	<p>by {% block authors %}{% endblock %}</p>
+	<div class="download-box  model-download">
+	  <h4 class="download-name">Cmgui Model</h4>
+	  <a href="{{model_url}}" class="btn btn-default main"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>Download</a>
+	</div>
+	<h2 >Description</h2>
+	{% block model_description %}
+	{% endblock %}
+
+	<h2 >Use It</h2>
+	{# TODO Abstract out into a block when I know more about different model downloads.  #}
+	<p>Download the model and adapt the Cmgui model code for OpenCMISS-Zinc, if necessary. Most of the Cmgui examples can be translated into Zinc code (not all since there are a few features in Cmgui which are not exposed in, or part of the Zinc Library). With few exceptions the object names in Cmgui are the same as in Zinc.</p>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <div class="renders">
+	<div class="main-image">
+	  {% block main_image %} {% endblock %}
+	</div>
+
+	<div class="thumbs">
+	  {% block thumbs %} {% endblock %}
+	</div>
+      </div>
+    </div>
+  </div>
+  <h2 >Inputs Used</h2>
+  <h3>Comfile</h3>
+  <h4><a href="{{comfile_url}}">{{comfile_name}}</a></h4>
+  <div id="comfile"><pre>{% block source_code %} {% endblock %}</pre></div>
+  <h3>Other Inputs</h3>
+  {% block other_resources %}
+  {% endblock %}
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+  <!-- build:js({.,app,.tmp}) /scripts/examples.js -->
+  <script src="/bower_components/ace-builds/src-min/ace.js"></script>
+  <script src="/bower_components/ace-builds/src-min/theme-chrome.js"></script>
+  <script src="/scripts/examples.js"></script>
+  <script src="/scripts/zinc_3js_renderer.js"></script>
+  <script src="/scripts/zinc_threejs_control.js"></script>
+  <script src="/bower_components/modernizr/modernizr.js"></script>
+  <script src="/scripts/zinc-scene.js"></script>
+  <!-- endbuild -->
+    <!-- build:js(.) /scripts/three.min.js -->
+  <script src="/bower_components/threejs/build/three.min.js"></script>
+  <!-- endbuild -->
+  <script type="text/javascript">
+    setupSourceArea();
+  </script>
+
+{% endblock %}

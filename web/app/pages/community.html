@@ -1,0 +1,269 @@
+{% extends 'partials/common_with_sidebar.jinja' %}
+{% block sidebar_title %}<h1>Table of Contents</h1>{% endblock %}
+{% block sidebar_content %}
+<ul>
+	<li><a href="#mailinglist">Mailing List</a></li>
+	<li><a href="#bugtracker">Bug Tracker</a></li>
+	<li><a href="#contributors">Contributors</a></li>
+</ul>
+{% endblock %}
+{% block content %}
+<h1 >Community</h1>
+<!--<h2>Getting Support</h2>-->
+<p>Find out more about the people behind the OpenCMISS project. Learn how to participate, file a bug report or make feature request.</p>
+
+<h2  id="mailinglist">Mailing List</h2>
+<p>Two mailing lists are set up, one for user support queries and one for developers working on OpenCMISS.</p>
+<div class="row">
+	<div class="col-sm-12">
+		<h4>Users Support</h4>
+		<p class="accent"><a href="mailto:users@opencmiss.org">users@opencmiss.org</a> (<a class="title-link" href="https://list.opencmiss.org/sympa/arc/users">View Archive</a> |  <a class="title-link" href="https://list.opencmiss.org/sympa/subscribe/users">Subscribe</a>)</p>
+		<p>User issues and questions about any OpenCMISS software can be e-mailed to the above mailing list address for developers and other users to respond to.</p>
+		<p>We invite anyone to subscribe to the OpenCMISS users mailing list by clicking on ‘Subscribe’ link above. Once subscribed you will receive any future questions from users and announcements from the developers, and can respond to them as part of the OpenCMISS community.</p>
+		<p>Please help us by using a descriptive message subject which summarises the issue or question, and also states the software component (Iron, Zinc, Cmgui etc.) and operating system, if the issue is specific to one.</p>
+
+		<p>When the archive is more established we ask you to first look for your issue there.</p>
+	</div>
+	<div class="col-sm-12">
+		<h4>Developers</h4>
+		<p class="accent"><a href="mailto:developers@opencmiss.org">developers@opencmiss.org</a> (<a class="title-link" href="https://list.opencmiss.org/sympa/arc/developers">View Archive</a> |  <a class="title-link" href="https://list.opencmiss.org/sympa/subscribe/developers">Subscribe</a>)</p>
+		<p>If you intend to extend or contribute to the OpenCMISS codebase, you can subscribe to the OpenCMISS Developers mailing list using the above link. Once subscribed you will receive future developer notifications and exchanges and be able to take part by mailing the developer list at above address.</p>
+	</div>
+</div>
+<h2  id="bugtracker">Bug tracker</h2>
+<p> The bug tracker is where we track bugs, new features, design ideas and occasionally user queries. We only ever add code changes for items in the tracker.</p>
+<p class="accent"><a href="https://tracker.physiomeproject.org/buglist.cgi?query_format=advanced&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&product=Zinc%20library">OpenCMISS-Zinc Tracker (including PyZinc)</a></p>
+<p class="accent"><a href="https://tracker.physiomeproject.org/buglist.cgi?query_format=advanced&bug_status=NEW&bug_status=ASSIGNED&bug_status=REOPENED&product=OpenCMISS-Iron">OpenCMISS-Iron Tracker (including PyIron)</a></p>
+
+<p><em>Typically we ask users to first send issues and feature requests to the Users mailing list (see above)</em> from which the developers will raise tracker items. However, feel free to search the tracker for issues and features that might be relevant to you. By creating an account on the tracker you can add your feedback to an existing issue. We stongly encourage users to add their interest in getting a feature or bug fix completed by posting to and CCing to the item: this helps us to increase the priority with which they are looked into.</p>
+
+<h2  id="contributors">Contributors</h2>
+<p>If you cannot find the information you require from the documentation, bug tracker and other users, please contact the current developers.</p>
+<div class="row item-row">
+	<div class="col-sm-4">
+		<a href="http://www.abi.auckland.ac.nz/people/profile/alan-wu">
+			<img src="/images/community/awu.png" class="portrait" alt="Portrait photo for OpenCMISS contributor Alan Wu.">
+			<h4 class="name">Alan Wu</h4>
+			<p><em>Auckland Bioengineering Institute</em></p>
+			<p>Contributes to <strong>Zinc</strong>, <strong>PyZinc</strong>. </p>
+		</a>
+	</div>
+	<div class="col-sm-4">
+		<a href="http://www.abi.auckland.ac.nz/people/profile/h-sorby">
+
+			<img src="/images/community/hsorby.png" class="portrait" alt="Portrait photo for OpenCMISS contributor Chris Bradley.">
+			<h4 class="name">Hugh Sorby</h4>
+			<p><em>Auckland Bioengineering Institute</em></p>
+			<p>Contributes to <strong>Zinc</strong>, <strong>PyZinc</strong>. </p>
+		</a>
+	</div>
+	<div class="col-sm-4">
+		<a href="http://www.abi.auckland.ac.nz/people/profile/r-christie">
+
+			<img src="/images/community/rchristie.png" class="portrait" alt="Portrait photo for OpenCMISS contributor Richard Christie.">
+			<h4 class="name">Richard Christie</h4>
+			<p><em>Auckland Bioengineering Institute</em></p>
+			<p>Contributes to <strong>Zinc</strong>,<strong>PyZinc</strong>. </p>
+		</a>
+	</div>
+			<div class="col-sm-4">
+		<a href="http://www.abi.auckland.ac.nz/people/profile/c-bradley">
+
+			<img src="/images/community/cbradley.png" class="portrait" alt="Portrait photo for OpenCMISS contributor Chris Bradley.">
+			<h4 class="name">Chris Bradley</h4>
+			<p><em>Auckland Bioengineering Institute</em></p>
+			<p>Contributes to <strong>Iron</strong>. </p>
+		</a>
+	</div>
+
+</div>
+
+<h3>Other Contributors</h3>
+<p>This is intended to be an extensive list of developers who have contributed to CMISS. This list does not include the people who by using CMISS, or providing data or collaborating have also contributed to this development.</p>
+
+<table>
+    <tbody>
+        <tr>
+            <td><strong>Contributor</strong> </td>
+            <td><strong>Years</strong> </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=41">Dr Iain Anderson</a></span> </td>
+            <td> 1981-1983 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3196">Mr Kevin Augenstein</a></span> </td>
+            <td> 2001-2004 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=9591"> Joanne Bell</a></span> </td>
+            <td> 1996-1997 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=4430">Mr Peter Bier</a></span> </td>
+            <td> 2002-2004,2006- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3197">Mr Shane Blackett</a></span> </td>
+            <td> 1997- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3199">Mr Richard Boyes</a></span> </td>
+            <td> 1997-2001 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=10336">Dr Chris Bradley</a></span> </td>
+            <td> 1991-2003 </td>
+        </tr>
+        <tr><td><span class="link-external"><a href="http://www.abi.auckland.ac.nz/uoa/randall-britten" target="_self">Mr Randall Britten</a></span><br></td><td>2007-<br></td></tr><tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=282">Dr Martin Buist</a></span> </td>
+            <td> 1996-2004 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=302">Dr David Bullivant</a></span> </td>
+            <td> 1992- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3203">Miss Kelly Burrowes</a></span> </td>
+            <td> 2000- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=236">Dr Leo Cheng</a></span> </td>
+            <td> 1997- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3206">Dr Richard Christie</a></span> </td>
+            <td> 1997-2003, 2007- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=10294">Mr Jae-Hoon Chung</a></span> </td>
+            <td> 2004- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3208">Dr Justin Fernandez</a></span> </td>
+            <td> 2000-2004 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3212">Mr David Hall</a></span> </td>
+            <td> 2002-2003 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=231">Mr Glen Harris</a></span> </td>
+            <td> 1995-1997 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=1046">Mr Alistair Hookings</a></span> </td>
+            <td> 1986-1988 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=353">Professor Peter Hunter</a></span> </td>
+            <td> 1979- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=4432">Dr Kai Lay</a></span> </td>
+            <td> 1985-1989 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3217">Mr Duane Malcolm</a></span> </td>
+            <td> 2001- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=1680">Mr David Mawson</a></span> </td>
+            <td> 1989-1991 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=9024">Professor Andrew McCulloch</a></span> </td>
+            <td> 1980-1990 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=4307">Ms Fiona McPheat</a></span> </td>
+            <td> 1987-1989 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3218">Dr Kumar Mithraratne</a></span> </td>
+            <td> 2000-2002, 2005-</td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=226">Dr Martyn Nash</a></span> </td>
+            <td> 1990- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3219">Dr David Nickerson</a></span> </td>
+            <td> 1996- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=288">Dr Poul Nielsen</a></span> </td>
+            <td> 1980-1987 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3221">Dr Stuart Norris</a></span> </td>
+            <td> 2001-2003 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=215">Associate Professor Andrew Pullan</a></span> </td>
+            <td> 1989-2004 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=8371">Mr Vijay Rajagopal</a></span> </td>
+            <td> 2003- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=9466">Mr Glenn Ramsey</a></span> </td>
+            <td> 2004- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=1229">Dr Mark Sagar</a></span> </td>
+            <td> 1992-1996 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=227">Dr Gregory Sands</a></span> </td>
+            <td> 1990-1996,1999- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=8373">Mr Holger Schmid</a></span> </td>
+            <td> 2004- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=2635">Dr Nicolas Smith</a></span> </td>
+            <td> 1995-2004 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3224">Dr Carey Stevens</a></span> </td>
+            <td> 1996- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=2782">Dr Merryn Tawhai</a></span> </td>
+            <td> 1994- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=2839">Dr Karl Tomlinson</a></span> </td>
+            <td> 1997- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3228">Dr Mark Trew</a></span> </td>
+            <td> 1992,2001- </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3229">Mr Jim Williams</a></span> </td>
+            <td> 1999-2002 </td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=10482">Mr Alan Wu</a></span> </td>
+            <td> 2006-</td>
+        </tr>
+        <tr>
+            <td><span class="link-external"><a href="http://www.bioeng.auckland.ac.nz/inst_people/people_display.php?people_id=3235">Dr Alistair Young</a></span> </td>
+            <td> 1987-1992</td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+{% endblock %}
+{% block styles %}
+{{ super() }}
+<!-- build:css(.tmp) /styles/community.css -->
+<link rel="stylesheet" href="/styles/community.css">
+<!-- endbuild -->
+{% endblock %}

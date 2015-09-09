@@ -1,0 +1,42 @@
+{% extends 'partials/common_no_sidebar.jinja' %}
+{% block content %}
+<h1>Getting Started</h1>
+<p>A combined OpenCMISS distribution is still being developed. Please choose the right project for your purpose for you to get started with.</p>
+<div class="row projects">
+	<div class="col-sm-3">
+		<a href="ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/Introduction%20to%20OpenCMISS-Zinc%20v3.0.pdf">
+		<h2 class="default-style">OpenCMISS-Zinc</h2>
+		<div class="project-illustration"><img src="/images/getting-started/zinc.png" alt="Image of a visualisation created with OpenCMISS-Zinc."></div>
+		</a>
+		<p class="description">A library for building interactive modelling and 3-D visualisation applications.</p>
+
+	</div>
+	<div class="col-sm-3">
+		<a href="/documentation/getting_started/getting-started.html">
+		<h2 class="default-style">PyZinc</h2>
+		<div class="project-illustration">
+			<img src="/images/getting-started/pyzinc.png" alt="Image of a visualisation created with PyZinc.">
+		</div>
+		</a>
+		<p class="description">Python binding for the OpenCMISS-Zinc library.</p>
+	</div>
+
+	<div class="col-sm-3">
+		<h2 class="default-style">OpenCMISS-Iron</h2>
+		<div class="project-illustration"><img src="/images/getting-started/iron.png" alt="Image of a visualisation created with OpenCMISS-Iron."></div>
+		<p class="description">A distributed parallel mathematical modelling environment for complex bioengineering problems.</p>
+		<p class="notice"><em>Getting Started guide coming soon.</em></p>
+	</div>
+	<div class="col-sm-3">
+		<h2 class="default-style">PyIron</h2>
+		<div class="project-illustration"></div>
+		<p class="description">Python binding for the OpenCMISS-Iron environment.</p>
+		<p class="notice"><em>Getting Started guide coming soon.</em></p>
+	</div>
+</div>
+{% endblock %}
+{% block styles %}
+<!-- build:css(.tmp) /styles/getting-started.css -->
+<link rel="stylesheet" href="/styles/getting-started.css">
+<!-- endbuild -->
+{% endblock %}

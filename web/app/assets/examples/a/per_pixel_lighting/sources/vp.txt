@@ -1,0 +1,39 @@
+!!ARBvp1.0
+ATTRIB normal = vertex.normal;
+ATTRIB position = vertex.position;
+PARAM texture_scaling = program.env[0];
+PARAM c0[4] = { state.matrix.mvp };
+PARAM c1[4] = { state.matrix.modelview };
+PARAM eyeCameraPos = {0, 0, 0, 0};
+PARAM eyeLightPos = state.light[0].position;
+TEMP eyeVertex;
+TEMP viewVec;
+PARAM c2[4] = { state.matrix.modelview.invtrans };
+TEMP eyeNormal;
+#Vertex position in eyespace
+DP4 eyeVertex.x, c1[0], position;
+DP4 eyeVertex.y, c1[1], position;
+DP4 eyeVertex.z, c1[2], position;
+MUL result.texcoord[0], texture_scaling, vertex.texcoord[0];
+DP4 eyeNormal.x, c2[0], normal;
+DP4 eyeNormal.y, c2[1], normal;
+DP4 eyeNormal.z, c2[2], normal;
+DP3 eyeNormal.w, eyeNormal, eyeNormal;
+RSQ eyeNormal.w, eyeNormal.w;
+MUL eyeNormal.xyz, eyeNormal.w, eyeNormal;
+SUB viewVec, eyeCameraPos, eyeVertex;
+DP3 viewVec.w, viewVec, viewVec;
+RSQ viewVec.w, viewVec.w;
+MUL viewVec.xyz, viewVec.w, viewVec;
+SUB result.texcoord[1], eyeLightPos, eyeVertex;
+MOV result.texcoord[2], viewVec;
+MOV result.texcoord[3], eyeNormal;
+MOV result.color, vertex.color;
+MOV result.color.back, vertex.color;
+MOV result.color.secondary,  {1, 1, 1, 1};
+MOV result.color.back.secondary,  {0, 0, 0, 0};
+DP4 result.position.x, c0[0], position;
+DP4 result.position.y, c0[1], position;
+DP4 result.position.z, c0[2], position;
+DP4 result.position.w, c0[3], position;
+END

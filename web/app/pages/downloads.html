@@ -1,0 +1,47 @@
+{% extends "partials/common_no_sidebar.jinja" %}
+{% block title %}
+  Download OpenCMISS
+{% endblock %}
+{% block styles %}
+  <!-- build:css(.tmp) styles/downloads-frame.css -->
+  <link rel="stylesheet" href="styles/downloads.css">
+  <link rel="stylesheet" href="styles/accordion.css">
+  <!-- endbuild -->
+{% endblock %}
+
+{% block content %}
+  <form name="platformForm" class="platform-form">
+    <label for="platformType">Platform</label>
+    <select id="platformType" name="platformType">
+      {% for os in supportedOs %}
+	<option value="{{os.value}}">{{os.label}}</option>
+      {% endfor %}
+    </select>
+  </form>
+  {% with %}
+    {% set source_code = sources %}
+    {% with %}
+      {% set rel = releases["Linux"] %}
+      {% include "partials/downloads/linux.jinja" %}
+    {% endwith %}
+
+    {% with %}
+      {% set rel = releases["Windows"] %}
+      {% include "partials/downloads/windows.jinja" %}
+    {% endwith %}
+
+    {% with %}
+      {% set rel = releases["Mac OS X"] %}
+      {% include "partials/downloads/mac.jinja" %}
+    {% endwith %}
+  {% endwith %}
+{% endblock %}
+{% block scripts %}
+  <!-- build:js({app,.tmp}) scripts/downloads.js -->
+  <script src="scripts/downloads.js"></script>
+  <script src="scripts/accordion.js"></script>
+  <!-- endbuild -->
+  <script type="text/javascript">
+    setupDownloads();
+  </script>
+{% endblock %}

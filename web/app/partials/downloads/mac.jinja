@@ -1,0 +1,7 @@
+{% extends "partials/releases.jinja" %}
+{% set os_label = "Mac OS X" %}
+{% set os_value = "mac" %}
+{% block main_release_buttons %}
+	<a href="#" class="btn btn-default main disabled"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>Universal DMG</a>
+	<a href="#" class="btn btn-default disabled"><span class="glyphicon glyphicon-download" aria-hidden="true"></span>TAR.GZ 64-bit</a>
+{% endblock %}

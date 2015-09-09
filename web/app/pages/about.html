@@ -1,0 +1,44 @@
+{% extends 'partials/common_no_sidebar.jinja' %}
+{% block content %}
+<h1 >About OpenCMISS</h1>
+
+<!-- Content -->
+
+<h2 >OpenCMISS-Zinc - Visualisation</h2>
+<div class="thumbnail pull-right" style="margin:10px;"><img src="/images/about/physiomemodeller.png" alt="A Qt based application using WebKit and PyZinc."><div class="caption">A Qt based application using WebKit and PyZinc.</div></div>
+<p>OpenCMISS-Zinc (‘Zinc’) is a cross-platform software library for building complete modelling and visualisation applications, from rich model representation to high quality OpenGL graphics rendering.</p>
+
+<p>Models are represented in Zinc as mathematical fields defined over domains, including finite elements with support for high-order basis functions, complex parameter mappings and time variation, as well as image-based fields. Further fields can be defined by mathematical expressions and algorithms on existing fields, including image processing filters. Zinc’s model data structures are dynamic, supporting interactive applications which programmatically create, destroy and modify content.</p>
+
+<p>In Zinc, visualisations of models are created by graphics algorithms which assign fields to attributes, including 3-D coordinates, texture coordinates, data/colouring, and specific attributes such as iso-scalar field for contours, vector field for streamlines, and orientation, scale and label fields for points. Graphics are automatically updated following changes to attributes or the underlying model. The graphics approach combined with the general field expression capability means almost any derived result can be visualised.</p>
+
+<p>Zinc graphics are rendered using OpenGL into the client window or canvas, and built-in picking, selection groups and automatic highlighting support the easy development of interactive applications. The Zinc library is UI-independent requiring additional client code to set up and handle rendering and events, as described in the documentation. Zinc also includes utilities such as non-linear optimisation.</p>
+
+<p>Zinc was created from the core engine of the <a href="/software/opencmiss/cmgui">Cmgui visualisation application</a>, now a client of the library, and sharing more than 20 years development. Zinc v3.0 is the first release of the library with a full API for controlling its functionality without legacy Cmgui commands. Zinc and Cmgui are co-developed with the distributed parallel solver <a href="/software/opencmiss/iron">OpenCMISS-Iron</a> and used to interact with and visualise models and solutions from it.</p>
+
+<p>Zinc is available for Windows, Max OS X and Linux, with APIs offered in C, C++ and Python. Its source code is released under the Open Source Initiative approved <a href="http://www.mozilla.org/MPL/2.0/">Mozilla Public License v2.0</a>.</p>
+
+<p>To learn more, read the <a href="/doc.html#zinc">documentation</a> for OpenCMISS-Zinc.</p>
+
+
+<h2 >OpenCMISS-Iron - Modelling</h2>
+<div class="thumbnail pull-right" style="margin:10px;"><img src="/images/about/simulation-ali-pashaei.jpg" alt="Simulation created by Ali Pashaei."><div class="caption">Simulation created by Ali Pashaei.</div></div>
+<p>OpenCMISS (Open Continuum Mechanics, Imaging, Signal processing and System identification) is a mathematical modelling environment that enables the application of finite element analysis techniques to a variety of complex bioengineering problems.</p>
+
+<h3>Refactored from the ground up</h3>
+
+<p>The project represents a complete rewrite and overhaul of the existing CMISS computational modelling tool to take advantage of modern programming languages, data structures, and today’s range of available high performance hardware.</p>
+
+<h3>Optimised simulation performance</h3>
+
+<p>This significant re-engineering effort represents a complete upgrade in functionality and modelling capability, particularly in terms of increased ability to optimise simulation performance on high performance, and in particular distributed, architectures.</p>
+
+<h3>History</h3>
+
+<p>The original CMISS programme was started by <a href="http://www.abi.auckland.ac.nz/uoa/peter-hunter">Peter Hunter</a> in 1980 in the Department of Theoretical and Applied Mechanics (TAM) at The University of Auckland and had major early contributions from <a href="http://www.abi.auckland.ac.nz/uoa/poul-nielsen">Poul Nielsen</a> and <a href="http://cmrg.ucsd.edu/AndrewMcCulloch">Andrew McCulloch</a>.</p>
+
+<p>The development of OpenCMISS, begun in 2005 with funding from the Wellcome Trust, has been led by <a href="http://www.abi.auckland.ac.nz/uoa/chris-bradley">Chris Bradley</a> in Auckland and Oxford.</p>
+
+<p>Since 2008 this work has evolved into a major collaborative project between the groups based at King’s College London and Auckland with input from partners in Barcelona, Oslo, Oxford, Sheffield and Stuttgart, funded by both European and national level research funding agencies.</p>
+
+{% endblock %}

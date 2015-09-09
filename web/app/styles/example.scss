@@ -1,0 +1,34 @@
+.renders {
+	padding: 5px;
+	text-align:center;
+	.main-image {
+		margin-bottom: 10px;
+		img {
+			width: 400px;
+		}
+	}
+
+	.thumb {
+		margin: 5px;
+		width: 80px;
+	}
+}
+
+.model-description {
+	padding: 5px;
+	padding-bottom: 20px;
+}
+
+#comfile {
+	width: 100%;
+	height: 400px;
+
+}
+
+.download-box {
+	margin:20px 0px;
+}
+
+.files img {
+	width: 20px;
+}

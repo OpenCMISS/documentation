@@ -1,0 +1,46 @@
+{# releases.jinja - Download options template. This is reused for each OS we support.
+   To use, bind these variables:
+   rel - should be bound to a release object with the current release version of the software.
+   os_label - Friendly name for the OS this supports.
+   os_value - Value for the OS. This should match the value in the platform form, so that the right list is shown when a platform is chosen.
+   source_code - An object representing source code repository.
+
+   Examples of this in use can be seen in app/partials/download/ and app/pages/downloads.html.
+#}
+
+
+<div class="download-list {{os_value}}">
+  <h1>Download OpenCMISS for {{os_label}}</h1>
+  <div class="striped featured-download">
+    <img src="images/download/opencmiss-stable.png" alt="Logo for OpenCMISS.">
+    <h3>OpenCMISS</h3>
+    <p>Complete collection of applications, libraries and examples to get you started building and visualising models.</p>
+    <div class="download-box">
+      <h4 class="download-name">Coming soon. Please try OpenCMISS-Zinc instead.</h4>
+      {#
+	  Currently dummy buttons, because OpenCMISS doesn't exist yet. #}
+      {% block main_release_buttons %}
+      {% endblock %}
+    </div>
+    <div class="extras">
+    </div>
+  </div>
+  <h2>Other Downloads</h2>
+  {% with %}
+    {% set is_striped = True %}
+    {% set src_info = source_code.zinc %}
+    {% set release = rel.zinc %}
+    {% include "partials/downloads/zinc.jinja" %}
+  {% endwith %}
+
+  {% with %}
+    {% set src_info = source_code.pyzinc %}
+    {% set release = rel.pyzinc %}
+    {% include "partials/downloads/pyzinc.jinja" %}
+  {% endwith %}
+
+  {% with %}
+      {% set is_striped = True %}
+	 {% include "partials/downloads/iron.jinja" %}
+  {% endwith %}
+</div>

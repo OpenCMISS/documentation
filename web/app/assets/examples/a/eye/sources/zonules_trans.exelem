@@ -1,0 +1,3061 @@
+ Group name: zonules
+ Shape. Dimension=1, line
+ #Scale factor sets=1
+ c.Hermite, #Scale factors=4
+ #Nodes=2
+ #Fields=1
+ 1) coordinates, coordinate, rectangular cartesian, #Components=3
+ x. c.Hermite, no modify, standard node based.
+   #Nodes=2
+   1. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 1 2
+   2. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 3 4
+ y. c.Hermite, no modify, standard node based.
+   #Nodes=2
+   1. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 1 2
+   2. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 3 4
+ z. c.Hermite, no modify, standard node based.
+   #Nodes=2
+   1. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 1 2
+   2. #Values=2
+     Value indices: 1 2
+     Scale factor indices: 3 4
+ Element: 1 0 0
+ Nodes:
+ 1 2
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 2 0 0
+ Nodes:
+ 2 3
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 3 0 0
+ Nodes:
+ 3 4
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 4 0 0
+ Nodes:
+ 4 5
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 5 0 0
+ Nodes:
+ 5 6
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 6 0 0
+ Nodes:
+ 6 7
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 7 0 0
+ Nodes:
+ 8 9
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 8 0 0
+ Nodes:
+ 9 10
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 9 0 0
+ Nodes:
+ 10 11
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 10 0 0
+ Nodes:
+ 11 12
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 11 0 0
+ Nodes:
+ 12 13
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 12 0 0
+ Nodes:
+ 13 14
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 13 0 0
+ Nodes:
+ 15 16
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 14 0 0
+ Nodes:
+ 16 17
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 15 0 0
+ Nodes:
+ 17 18
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 16 0 0
+ Nodes:
+ 18 19
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 17 0 0
+ Nodes:
+ 19 20
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 18 0 0
+ Nodes:
+ 20 21
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 19 0 0
+ Nodes:
+ 22 23
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 20 0 0
+ Nodes:
+ 23 24
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 21 0 0
+ Nodes:
+ 24 25
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 22 0 0
+ Nodes:
+ 25 26
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 23 0 0
+ Nodes:
+ 26 27
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 24 0 0
+ Nodes:
+ 27 28
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 25 0 0
+ Nodes:
+ 29 30
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 26 0 0
+ Nodes:
+ 30 31
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 27 0 0
+ Nodes:
+ 31 32
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 28 0 0
+ Nodes:
+ 32 33
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 29 0 0
+ Nodes:
+ 33 34
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 30 0 0
+ Nodes:
+ 34 35
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 31 0 0
+ Nodes:
+ 36 37
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 32 0 0
+ Nodes:
+ 37 38
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 33 0 0
+ Nodes:
+ 38 39
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 34 0 0
+ Nodes:
+ 39 40
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 35 0 0
+ Nodes:
+ 40 41
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 36 0 0
+ Nodes:
+ 41 42
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 37 0 0
+ Nodes:
+ 43 44
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 38 0 0
+ Nodes:
+ 44 45
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 39 0 0
+ Nodes:
+ 45 46
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 40 0 0
+ Nodes:
+ 46 47
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 41 0 0
+ Nodes:
+ 47 48
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 42 0 0
+ Nodes:
+ 48 49
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 43 0 0
+ Nodes:
+ 50 51
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 44 0 0
+ Nodes:
+ 51 52
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 45 0 0
+ Nodes:
+ 52 53
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 46 0 0
+ Nodes:
+ 53 54
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 47 0 0
+ Nodes:
+ 54 55
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 48 0 0
+ Nodes:
+ 55 56
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 49 0 0
+ Nodes:
+ 57 58
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 50 0 0
+ Nodes:
+ 58 59
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 51 0 0
+ Nodes:
+ 59 60
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 52 0 0
+ Nodes:
+ 60 61
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 53 0 0
+ Nodes:
+ 61 62
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 54 0 0
+ Nodes:
+ 62 63
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 55 0 0
+ Nodes:
+ 64 65
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 56 0 0
+ Nodes:
+ 65 66
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 57 0 0
+ Nodes:
+ 66 67
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 58 0 0
+ Nodes:
+ 67 68
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 59 0 0
+ Nodes:
+ 68 69
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 60 0 0
+ Nodes:
+ 69 70
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 61 0 0
+ Nodes:
+ 71 72
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 62 0 0
+ Nodes:
+ 72 73
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 63 0 0
+ Nodes:
+ 73 74
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 64 0 0
+ Nodes:
+ 74 75
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 65 0 0
+ Nodes:
+ 75 76
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 66 0 0
+ Nodes:
+ 76 77
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 67 0 0
+ Nodes:
+ 78 79
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 68 0 0
+ Nodes:
+ 79 80
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 69 0 0
+ Nodes:
+ 80 81
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 70 0 0
+ Nodes:
+ 81 82
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 71 0 0
+ Nodes:
+ 82 83
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 72 0 0
+ Nodes:
+ 83 84
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 73 0 0
+ Nodes:
+ 85 86
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 74 0 0
+ Nodes:
+ 86 87
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 75 0 0
+ Nodes:
+ 87 88
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 76 0 0
+ Nodes:
+ 88 89
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 77 0 0
+ Nodes:
+ 89 90
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 78 0 0
+ Nodes:
+ 90 91
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 79 0 0
+ Nodes:
+ 92 93
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 80 0 0
+ Nodes:
+ 93 94
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 81 0 0
+ Nodes:
+ 94 95
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 82 0 0
+ Nodes:
+ 95 96
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 83 0 0
+ Nodes:
+ 96 97
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 84 0 0
+ Nodes:
+ 97 98
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 85 0 0
+ Nodes:
+ 99 100
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 86 0 0
+ Nodes:
+ 100 101
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 87 0 0
+ Nodes:
+ 101 102
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 88 0 0
+ Nodes:
+ 102 103
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 89 0 0
+ Nodes:
+ 103 104
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 90 0 0
+ Nodes:
+ 104 105
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 91 0 0
+ Nodes:
+ 106 107
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 92 0 0
+ Nodes:
+ 107 108
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 93 0 0
+ Nodes:
+ 108 109
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 94 0 0
+ Nodes:
+ 109 110
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 95 0 0
+ Nodes:
+ 110 111
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 96 0 0
+ Nodes:
+ 111 112
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 97 0 0
+ Nodes:
+ 113 114
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 98 0 0
+ Nodes:
+ 114 115
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 99 0 0
+ Nodes:
+ 115 116
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 100 0 0
+ Nodes:
+ 116 117
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 101 0 0
+ Nodes:
+ 117 118
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 102 0 0
+ Nodes:
+ 118 119
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 103 0 0
+ Nodes:
+ 120 121
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 104 0 0
+ Nodes:
+ 121 122
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 105 0 0
+ Nodes:
+ 122 123
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 106 0 0
+ Nodes:
+ 123 124
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 107 0 0
+ Nodes:
+ 124 125
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 108 0 0
+ Nodes:
+ 125 126
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 109 0 0
+ Nodes:
+ 127 128
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 110 0 0
+ Nodes:
+ 128 129
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 111 0 0
+ Nodes:
+ 129 130
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 112 0 0
+ Nodes:
+ 130 131
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 113 0 0
+ Nodes:
+ 131 132
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 114 0 0
+ Nodes:
+ 132 133
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 115 0 0
+ Nodes:
+ 134 135
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 116 0 0
+ Nodes:
+ 135 136
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 117 0 0
+ Nodes:
+ 136 137
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 118 0 0
+ Nodes:
+ 137 138
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 119 0 0
+ Nodes:
+ 138 139
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 120 0 0
+ Nodes:
+ 139 140
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 121 0 0
+ Nodes:
+ 141 142
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 122 0 0
+ Nodes:
+ 142 143
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 123 0 0
+ Nodes:
+ 143 144
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 124 0 0
+ Nodes:
+ 144 145
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 125 0 0
+ Nodes:
+ 145 146
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 126 0 0
+ Nodes:
+ 146 147
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 127 0 0
+ Nodes:
+ 148 149
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 128 0 0
+ Nodes:
+ 149 150
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 129 0 0
+ Nodes:
+ 150 151
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 130 0 0
+ Nodes:
+ 151 152
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 131 0 0
+ Nodes:
+ 152 153
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 132 0 0
+ Nodes:
+ 153 154
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 133 0 0
+ Nodes:
+ 155 156
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 134 0 0
+ Nodes:
+ 156 157
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 135 0 0
+ Nodes:
+ 157 158
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 136 0 0
+ Nodes:
+ 158 159
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 137 0 0
+ Nodes:
+ 159 160
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 138 0 0
+ Nodes:
+ 160 161
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 139 0 0
+ Nodes:
+ 162 163
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 140 0 0
+ Nodes:
+ 163 164
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 141 0 0
+ Nodes:
+ 164 165
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 142 0 0
+ Nodes:
+ 165 166
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 143 0 0
+ Nodes:
+ 166 167
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 144 0 0
+ Nodes:
+ 167 168
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 145 0 0
+ Nodes:
+ 169 170
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 146 0 0
+ Nodes:
+ 170 171
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 147 0 0
+ Nodes:
+ 171 172
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 148 0 0
+ Nodes:
+ 172 173
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 149 0 0
+ Nodes:
+ 173 174
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 150 0 0
+ Nodes:
+ 174 175
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 151 0 0
+ Nodes:
+ 176 177
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 152 0 0
+ Nodes:
+ 177 178
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 153 0 0
+ Nodes:
+ 178 179
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 154 0 0
+ Nodes:
+ 179 180
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 155 0 0
+ Nodes:
+ 180 181
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 156 0 0
+ Nodes:
+ 181 182
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 157 0 0
+ Nodes:
+ 183 184
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 158 0 0
+ Nodes:
+ 184 185
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 159 0 0
+ Nodes:
+ 185 186
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 160 0 0
+ Nodes:
+ 186 187
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 161 0 0
+ Nodes:
+ 187 188
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 162 0 0
+ Nodes:
+ 188 189
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 163 0 0
+ Nodes:
+ 190 191
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 164 0 0
+ Nodes:
+ 191 192
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 165 0 0
+ Nodes:
+ 192 193
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 166 0 0
+ Nodes:
+ 193 194
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 167 0 0
+ Nodes:
+ 194 195
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 168 0 0
+ Nodes:
+ 195 196
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 169 0 0
+ Nodes:
+ 197 198
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 170 0 0
+ Nodes:
+ 198 199
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 171 0 0
+ Nodes:
+ 199 200
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 172 0 0
+ Nodes:
+ 200 201
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 173 0 0
+ Nodes:
+ 201 202
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 174 0 0
+ Nodes:
+ 202 203
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 175 0 0
+ Nodes:
+ 204 205
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 176 0 0
+ Nodes:
+ 205 206
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 177 0 0
+ Nodes:
+ 206 207
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 178 0 0
+ Nodes:
+ 207 208
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 179 0 0
+ Nodes:
+ 208 209
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 180 0 0
+ Nodes:
+ 209 210
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 181 0 0
+ Nodes:
+ 211 212
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 182 0 0
+ Nodes:
+ 212 213
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 183 0 0
+ Nodes:
+ 213 214
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 184 0 0
+ Nodes:
+ 214 215
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 185 0 0
+ Nodes:
+ 215 216
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 186 0 0
+ Nodes:
+ 216 217
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 187 0 0
+ Nodes:
+ 218 219
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 188 0 0
+ Nodes:
+ 219 220
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 189 0 0
+ Nodes:
+ 220 221
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 190 0 0
+ Nodes:
+ 221 222
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 191 0 0
+ Nodes:
+ 222 223
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 192 0 0
+ Nodes:
+ 223 224
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 193 0 0
+ Nodes:
+ 225 226
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 194 0 0
+ Nodes:
+ 226 227
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 195 0 0
+ Nodes:
+ 227 228
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 196 0 0
+ Nodes:
+ 228 229
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 197 0 0
+ Nodes:
+ 229 230
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 198 0 0
+ Nodes:
+ 230 231
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 199 0 0
+ Nodes:
+ 232 233
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 200 0 0
+ Nodes:
+ 233 234
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 201 0 0
+ Nodes:
+ 234 235
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 202 0 0
+ Nodes:
+ 235 236
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 203 0 0
+ Nodes:
+ 236 237
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 204 0 0
+ Nodes:
+ 237 238
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 205 0 0
+ Nodes:
+ 239 240
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 206 0 0
+ Nodes:
+ 240 241
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 207 0 0
+ Nodes:
+ 241 242
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 208 0 0
+ Nodes:
+ 242 243
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 209 0 0
+ Nodes:
+ 243 244
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 210 0 0
+ Nodes:
+ 244 245
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 211 0 0
+ Nodes:
+ 246 247
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 212 0 0
+ Nodes:
+ 247 248
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 213 0 0
+ Nodes:
+ 248 249
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 214 0 0
+ Nodes:
+ 249 250
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 215 0 0
+ Nodes:
+ 250 251
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 216 0 0
+ Nodes:
+ 251 252
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 217 0 0
+ Nodes:
+ 253 254
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 218 0 0
+ Nodes:
+ 254 255
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 219 0 0
+ Nodes:
+ 255 256
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 220 0 0
+ Nodes:
+ 256 257
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 221 0 0
+ Nodes:
+ 257 258
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 222 0 0
+ Nodes:
+ 258 259
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 223 0 0
+ Nodes:
+ 260 261
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 224 0 0
+ Nodes:
+ 261 262
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 225 0 0
+ Nodes:
+ 262 263
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 226 0 0
+ Nodes:
+ 263 264
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 227 0 0
+ Nodes:
+ 264 265
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 228 0 0
+ Nodes:
+ 265 266
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 229 0 0
+ Nodes:
+ 267 268
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 230 0 0
+ Nodes:
+ 268 269
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 231 0 0
+ Nodes:
+ 269 270
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 232 0 0
+ Nodes:
+ 270 271
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 233 0 0
+ Nodes:
+ 271 272
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 234 0 0
+ Nodes:
+ 272 273
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 235 0 0
+ Nodes:
+ 274 275
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 236 0 0
+ Nodes:
+ 275 276
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 237 0 0
+ Nodes:
+ 276 277
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 238 0 0
+ Nodes:
+ 277 278
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 239 0 0
+ Nodes:
+ 278 279
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 240 0 0
+ Nodes:
+ 279 280
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 241 0 0
+ Nodes:
+ 281 282
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 242 0 0
+ Nodes:
+ 282 283
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 243 0 0
+ Nodes:
+ 283 284
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 244 0 0
+ Nodes:
+ 284 285
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 245 0 0
+ Nodes:
+ 285 286
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 246 0 0
+ Nodes:
+ 286 287
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 247 0 0
+ Nodes:
+ 288 289
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 248 0 0
+ Nodes:
+ 289 290
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 249 0 0
+ Nodes:
+ 290 291
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 250 0 0
+ Nodes:
+ 291 292
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 251 0 0
+ Nodes:
+ 292 293
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 252 0 0
+ Nodes:
+ 293 294
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 253 0 0
+ Nodes:
+ 295 296
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 254 0 0
+ Nodes:
+ 296 297
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 255 0 0
+ Nodes:
+ 297 298
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 256 0 0
+ Nodes:
+ 298 299
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 257 0 0
+ Nodes:
+ 299 300
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 258 0 0
+ Nodes:
+ 300 301
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 259 0 0
+ Nodes:
+ 302 303
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 260 0 0
+ Nodes:
+ 303 304
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 261 0 0
+ Nodes:
+ 304 305
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 262 0 0
+ Nodes:
+ 305 306
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 263 0 0
+ Nodes:
+ 306 307
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 264 0 0
+ Nodes:
+ 307 308
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 265 0 0
+ Nodes:
+ 309 310
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 266 0 0
+ Nodes:
+ 310 311
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 267 0 0
+ Nodes:
+ 311 312
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 268 0 0
+ Nodes:
+ 312 313
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 269 0 0
+ Nodes:
+ 313 314
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 270 0 0
+ Nodes:
+ 314 315
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 271 0 0
+ Nodes:
+ 316 317
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 272 0 0
+ Nodes:
+ 317 318
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 273 0 0
+ Nodes:
+ 318 319
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 274 0 0
+ Nodes:
+ 319 320
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 275 0 0
+ Nodes:
+ 320 321
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 276 0 0
+ Nodes:
+ 321 322
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 277 0 0
+ Nodes:
+ 323 324
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 278 0 0
+ Nodes:
+ 324 325
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 279 0 0
+ Nodes:
+ 325 326
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 280 0 0
+ Nodes:
+ 326 327
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 281 0 0
+ Nodes:
+ 327 328
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 282 0 0
+ Nodes:
+ 328 329
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 283 0 0
+ Nodes:
+ 330 331
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 284 0 0
+ Nodes:
+ 331 332
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 285 0 0
+ Nodes:
+ 332 333
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 286 0 0
+ Nodes:
+ 333 334
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 287 0 0
+ Nodes:
+ 334 335
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 288 0 0
+ Nodes:
+ 335 336
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 289 0 0
+ Nodes:
+ 337 338
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 290 0 0
+ Nodes:
+ 338 339
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 291 0 0
+ Nodes:
+ 339 340
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 292 0 0
+ Nodes:
+ 340 341
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 293 0 0
+ Nodes:
+ 341 342
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 294 0 0
+ Nodes:
+ 342 343
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 295 0 0
+ Nodes:
+ 344 345
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 296 0 0
+ Nodes:
+ 345 346
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 297 0 0
+ Nodes:
+ 346 347
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 298 0 0
+ Nodes:
+ 347 348
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 299 0 0
+ Nodes:
+ 348 349
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 300 0 0
+ Nodes:
+ 349 350
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 301 0 0
+ Nodes:
+ 351 352
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 302 0 0
+ Nodes:
+ 352 353
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 303 0 0
+ Nodes:
+ 353 354
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 304 0 0
+ Nodes:
+ 354 355
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 305 0 0
+ Nodes:
+ 355 356
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 306 0 0
+ Nodes:
+ 356 357
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 307 0 0
+ Nodes:
+ 358 359
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 308 0 0
+ Nodes:
+ 359 360
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 309 0 0
+ Nodes:
+ 360 361
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 310 0 0
+ Nodes:
+ 361 362
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 311 0 0
+ Nodes:
+ 362 363
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 312 0 0
+ Nodes:
+ 363 364
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 313 0 0
+ Nodes:
+ 365 366
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 314 0 0
+ Nodes:
+ 366 367
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 315 0 0
+ Nodes:
+ 367 368
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 316 0 0
+ Nodes:
+ 368 369
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 317 0 0
+ Nodes:
+ 369 370
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 318 0 0
+ Nodes:
+ 370 371
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 319 0 0
+ Nodes:
+ 372 373
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 320 0 0
+ Nodes:
+ 373 374
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 321 0 0
+ Nodes:
+ 374 375
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 322 0 0
+ Nodes:
+ 375 376
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 323 0 0
+ Nodes:
+ 376 377
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 324 0 0
+ Nodes:
+ 377 378
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 325 0 0
+ Nodes:
+ 379 380
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 326 0 0
+ Nodes:
+ 380 381
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 327 0 0
+ Nodes:
+ 381 382
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 328 0 0
+ Nodes:
+ 382 383
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 329 0 0
+ Nodes:
+ 383 384
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 330 0 0
+ Nodes:
+ 384 385
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 331 0 0
+ Nodes:
+ 386 387
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 332 0 0
+ Nodes:
+ 387 388
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 333 0 0
+ Nodes:
+ 388 389
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 334 0 0
+ Nodes:
+ 389 390
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 335 0 0
+ Nodes:
+ 390 391
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 336 0 0
+ Nodes:
+ 391 392
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 337 0 0
+ Nodes:
+ 393 394
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 338 0 0
+ Nodes:
+ 394 395
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 339 0 0
+ Nodes:
+ 395 396
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 340 0 0
+ Nodes:
+ 396 397
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 341 0 0
+ Nodes:
+ 397 398
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 342 0 0
+ Nodes:
+ 398 399
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 343 0 0
+ Nodes:
+ 400 401
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 344 0 0
+ Nodes:
+ 401 402
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 345 0 0
+ Nodes:
+ 402 403
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 346 0 0
+ Nodes:
+ 403 404
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 347 0 0
+ Nodes:
+ 404 405
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 348 0 0
+ Nodes:
+ 405 406
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 349 0 0
+ Nodes:
+ 407 408
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 350 0 0
+ Nodes:
+ 408 409
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 351 0 0
+ Nodes:
+ 409 410
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 352 0 0
+ Nodes:
+ 410 411
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 353 0 0
+ Nodes:
+ 411 412
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 354 0 0
+ Nodes:
+ 412 413
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 355 0 0
+ Nodes:
+ 414 415
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 356 0 0
+ Nodes:
+ 415 416
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 357 0 0
+ Nodes:
+ 416 417
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 358 0 0
+ Nodes:
+ 417 418
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 359 0 0
+ Nodes:
+ 418 419
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 360 0 0
+ Nodes:
+ 419 420
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 361 0 0
+ Nodes:
+ 421 422
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 362 0 0
+ Nodes:
+ 422 423
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 363 0 0
+ Nodes:
+ 423 424
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 364 0 0
+ Nodes:
+ 424 425
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 365 0 0
+ Nodes:
+ 425 426
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 366 0 0
+ Nodes:
+ 426 427
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 367 0 0
+ Nodes:
+ 428 429
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 368 0 0
+ Nodes:
+ 429 430
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 369 0 0
+ Nodes:
+ 430 431
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 370 0 0
+ Nodes:
+ 431 432
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 371 0 0
+ Nodes:
+ 432 433
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 372 0 0
+ Nodes:
+ 433 434
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 373 0 0
+ Nodes:
+ 435 436
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 374 0 0
+ Nodes:
+ 436 437
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 375 0 0
+ Nodes:
+ 437 438
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 376 0 0
+ Nodes:
+ 438 439
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 377 0 0
+ Nodes:
+ 439 440
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 378 0 0
+ Nodes:
+ 440 441
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 379 0 0
+ Nodes:
+ 442 443
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 380 0 0
+ Nodes:
+ 443 444
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 381 0 0
+ Nodes:
+ 444 445
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 382 0 0
+ Nodes:
+ 445 446
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 383 0 0
+ Nodes:
+ 446 447
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 384 0 0
+ Nodes:
+ 447 448
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 385 0 0
+ Nodes:
+ 449 450
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 386 0 0
+ Nodes:
+ 450 451
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 387 0 0
+ Nodes:
+ 451 452
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 388 0 0
+ Nodes:
+ 452 453
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 389 0 0
+ Nodes:
+ 453 454
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 390 0 0
+ Nodes:
+ 454 455
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 391 0 0
+ Nodes:
+ 456 457
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 392 0 0
+ Nodes:
+ 457 458
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 393 0 0
+ Nodes:
+ 458 459
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 394 0 0
+ Nodes:
+ 459 460
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 395 0 0
+ Nodes:
+ 460 461
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 396 0 0
+ Nodes:
+ 461 462
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 397 0 0
+ Nodes:
+ 463 464
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 398 0 0
+ Nodes:
+ 464 465
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 399 0 0
+ Nodes:
+ 465 466
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 400 0 0
+ Nodes:
+ 466 467
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 401 0 0
+ Nodes:
+ 467 468
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 402 0 0
+ Nodes:
+ 468 469
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 403 0 0
+ Nodes:
+ 470 471
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 404 0 0
+ Nodes:
+ 471 472
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 405 0 0
+ Nodes:
+ 472 473
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 406 0 0
+ Nodes:
+ 473 474
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 407 0 0
+ Nodes:
+ 474 475
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 408 0 0
+ Nodes:
+ 475 476
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 409 0 0
+ Nodes:
+ 477 478
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 410 0 0
+ Nodes:
+ 478 479
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 411 0 0
+ Nodes:
+ 479 480
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 412 0 0
+ Nodes:
+ 480 481
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 413 0 0
+ Nodes:
+ 481 482
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 414 0 0
+ Nodes:
+ 482 483
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 415 0 0
+ Nodes:
+ 484 485
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 416 0 0
+ Nodes:
+ 485 486
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 417 0 0
+ Nodes:
+ 486 487
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 418 0 0
+ Nodes:
+ 487 488
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 419 0 0
+ Nodes:
+ 488 489
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 420 0 0
+ Nodes:
+ 489 490
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 421 0 0
+ Nodes:
+ 491 492
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 422 0 0
+ Nodes:
+ 492 493
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 423 0 0
+ Nodes:
+ 493 494
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 424 0 0
+ Nodes:
+ 494 495
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 425 0 0
+ Nodes:
+ 495 496
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 426 0 0
+ Nodes:
+ 496 497
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 427 0 0
+ Nodes:
+ 498 499
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 428 0 0
+ Nodes:
+ 499 500
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 429 0 0
+ Nodes:
+ 500 501
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 430 0 0
+ Nodes:
+ 501 502
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 431 0 0
+ Nodes:
+ 502 503
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 432 0 0
+ Nodes:
+ 503 504
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 433 0 0
+ Nodes:
+ 505 506
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 434 0 0
+ Nodes:
+ 506 507
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 435 0 0
+ Nodes:
+ 507 508
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 436 0 0
+ Nodes:
+ 508 509
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 437 0 0
+ Nodes:
+ 509 510
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 438 0 0
+ Nodes:
+ 510 511
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 439 0 0
+ Nodes:
+ 512 513
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 440 0 0
+ Nodes:
+ 513 514
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 441 0 0
+ Nodes:
+ 514 515
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 442 0 0
+ Nodes:
+ 515 516
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 443 0 0
+ Nodes:
+ 516 517
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 444 0 0
+ Nodes:
+ 517 518
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 445 0 0
+ Nodes:
+ 519 520
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 446 0 0
+ Nodes:
+ 520 521
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 447 0 0
+ Nodes:
+ 521 522
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 448 0 0
+ Nodes:
+ 522 523
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 449 0 0
+ Nodes:
+ 523 524
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 450 0 0
+ Nodes:
+ 524 525
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 451 0 0
+ Nodes:
+ 526 527
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 452 0 0
+ Nodes:
+ 527 528
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 453 0 0
+ Nodes:
+ 528 529
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 454 0 0
+ Nodes:
+ 529 530
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 455 0 0
+ Nodes:
+ 530 531
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 456 0 0
+ Nodes:
+ 531 532
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 457 0 0
+ Nodes:
+ 533 534
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 458 0 0
+ Nodes:
+ 534 535
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 459 0 0
+ Nodes:
+ 535 536
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 460 0 0
+ Nodes:
+ 536 537
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 461 0 0
+ Nodes:
+ 537 538
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 462 0 0
+ Nodes:
+ 538 539
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 463 0 0
+ Nodes:
+ 540 541
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 464 0 0
+ Nodes:
+ 541 542
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 465 0 0
+ Nodes:
+ 542 543
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 466 0 0
+ Nodes:
+ 543 544
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 467 0 0
+ Nodes:
+ 544 545
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 468 0 0
+ Nodes:
+ 545 546
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 469 0 0
+ Nodes:
+ 547 548
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 470 0 0
+ Nodes:
+ 548 549
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 471 0 0
+ Nodes:
+ 549 550
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 472 0 0
+ Nodes:
+ 550 551
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 473 0 0
+ Nodes:
+ 551 552
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 474 0 0
+ Nodes:
+ 552 553
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 475 0 0
+ Nodes:
+ 554 555
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 476 0 0
+ Nodes:
+ 555 556
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 477 0 0
+ Nodes:
+ 556 557
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 478 0 0
+ Nodes:
+ 557 558
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 479 0 0
+ Nodes:
+ 558 559
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 480 0 0
+ Nodes:
+ 559 560
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 481 0 0
+ Nodes:
+ 561 562
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 482 0 0
+ Nodes:
+ 562 563
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 483 0 0
+ Nodes:
+ 563 564
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 484 0 0
+ Nodes:
+ 564 565
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 485 0 0
+ Nodes:
+ 565 566
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 486 0 0
+ Nodes:
+ 566 567
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 487 0 0
+ Nodes:
+ 568 569
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 488 0 0
+ Nodes:
+ 569 570
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 489 0 0
+ Nodes:
+ 570 571
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 490 0 0
+ Nodes:
+ 571 572
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 491 0 0
+ Nodes:
+ 572 573
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 492 0 0
+ Nodes:
+ 573 574
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 493 0 0
+ Nodes:
+ 575 576
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 494 0 0
+ Nodes:
+ 576 577
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 495 0 0
+ Nodes:
+ 577 578
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 496 0 0
+ Nodes:
+ 578 579
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 497 0 0
+ Nodes:
+ 579 580
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 498 0 0
+ Nodes:
+ 580 581
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 499 0 0
+ Nodes:
+ 582 583
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 500 0 0
+ Nodes:
+ 583 584
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 501 0 0
+ Nodes:
+ 584 585
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 502 0 0
+ Nodes:
+ 585 586
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 503 0 0
+ Nodes:
+ 586 587
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 504 0 0
+ Nodes:
+ 587 588
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 505 0 0
+ Nodes:
+ 589 590
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 506 0 0
+ Nodes:
+ 590 591
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 507 0 0
+ Nodes:
+ 591 592
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 508 0 0
+ Nodes:
+ 592 593
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 509 0 0
+ Nodes:
+ 593 594
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 510 0 0
+ Nodes:
+ 594 595
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 511 0 0
+ Nodes:
+ 596 597
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 512 0 0
+ Nodes:
+ 597 598
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 513 0 0
+ Nodes:
+ 598 599
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 514 0 0
+ Nodes:
+ 599 600
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 515 0 0
+ Nodes:
+ 600 601
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 516 0 0
+ Nodes:
+ 601 602
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 517 0 0
+ Nodes:
+ 603 604
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 518 0 0
+ Nodes:
+ 604 605
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 519 0 0
+ Nodes:
+ 605 606
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 520 0 0
+ Nodes:
+ 606 607
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 521 0 0
+ Nodes:
+ 607 608
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 522 0 0
+ Nodes:
+ 608 609
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 523 0 0
+ Nodes:
+ 610 611
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 524 0 0
+ Nodes:
+ 611 612
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 525 0 0
+ Nodes:
+ 612 613
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 526 0 0
+ Nodes:
+ 613 614
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 527 0 0
+ Nodes:
+ 614 615
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 528 0 0
+ Nodes:
+ 615 616
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 529 0 0
+ Nodes:
+ 617 618
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 530 0 0
+ Nodes:
+ 618 619
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 531 0 0
+ Nodes:
+ 619 620
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 532 0 0
+ Nodes:
+ 620 621
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 533 0 0
+ Nodes:
+ 621 622
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 534 0 0
+ Nodes:
+ 622 623
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 535 0 0
+ Nodes:
+ 624 625
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 536 0 0
+ Nodes:
+ 625 626
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 537 0 0
+ Nodes:
+ 626 627
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 538 0 0
+ Nodes:
+ 627 628
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 539 0 0
+ Nodes:
+ 628 629
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 540 0 0
+ Nodes:
+ 629 630
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 541 0 0
+ Nodes:
+ 631 632
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 542 0 0
+ Nodes:
+ 632 633
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 543 0 0
+ Nodes:
+ 633 634
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 544 0 0
+ Nodes:
+ 634 635
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 545 0 0
+ Nodes:
+ 635 636
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 546 0 0
+ Nodes:
+ 636 637
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 547 0 0
+ Nodes:
+ 638 639
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 548 0 0
+ Nodes:
+ 639 640
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 549 0 0
+ Nodes:
+ 640 641
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 550 0 0
+ Nodes:
+ 641 642
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 551 0 0
+ Nodes:
+ 642 643
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 552 0 0
+ Nodes:
+ 643 644
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 553 0 0
+ Nodes:
+ 645 646
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 554 0 0
+ Nodes:
+ 646 647
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 555 0 0
+ Nodes:
+ 647 648
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 556 0 0
+ Nodes:
+ 648 649
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 557 0 0
+ Nodes:
+ 649 650
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 558 0 0
+ Nodes:
+ 650 651
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 559 0 0
+ Nodes:
+ 652 653
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 560 0 0
+ Nodes:
+ 653 654
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 561 0 0
+ Nodes:
+ 654 655
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 562 0 0
+ Nodes:
+ 655 656
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 563 0 0
+ Nodes:
+ 656 657
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 564 0 0
+ Nodes:
+ 657 658
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 565 0 0
+ Nodes:
+ 659 660
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 566 0 0
+ Nodes:
+ 660 661
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 567 0 0
+ Nodes:
+ 661 662
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 568 0 0
+ Nodes:
+ 662 663
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 569 0 0
+ Nodes:
+ 663 664
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 570 0 0
+ Nodes:
+ 664 665
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 571 0 0
+ Nodes:
+ 666 667
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 572 0 0
+ Nodes:
+ 667 668
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 573 0 0
+ Nodes:
+ 668 669
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 574 0 0
+ Nodes:
+ 669 670
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 575 0 0
+ Nodes:
+ 670 671
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 576 0 0
+ Nodes:
+ 671 672
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 577 0 0
+ Nodes:
+ 673 674
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 578 0 0
+ Nodes:
+ 674 675
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 579 0 0
+ Nodes:
+ 675 676
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 580 0 0
+ Nodes:
+ 676 677
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 581 0 0
+ Nodes:
+ 677 678
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 582 0 0
+ Nodes:
+ 678 679
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 583 0 0
+ Nodes:
+ 680 681
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 584 0 0
+ Nodes:
+ 681 682
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 585 0 0
+ Nodes:
+ 682 683
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 586 0 0
+ Nodes:
+ 683 684
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 587 0 0
+ Nodes:
+ 684 685
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 588 0 0
+ Nodes:
+ 685 686
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 589 0 0
+ Nodes:
+ 687 688
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 590 0 0
+ Nodes:
+ 688 689
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 591 0 0
+ Nodes:
+ 689 690
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 592 0 0
+ Nodes:
+ 690 691
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 593 0 0
+ Nodes:
+ 691 692
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 594 0 0
+ Nodes:
+ 692 693
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 595 0 0
+ Nodes:
+ 694 695
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 596 0 0
+ Nodes:
+ 695 696
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 597 0 0
+ Nodes:
+ 696 697
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 598 0 0
+ Nodes:
+ 697 698
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 599 0 0
+ Nodes:
+ 698 699
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 600 0 0
+ Nodes:
+ 699 700
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 601 0 0
+ Nodes:
+ 701 702
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 602 0 0
+ Nodes:
+ 702 703
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 603 0 0
+ Nodes:
+ 703 704
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 604 0 0
+ Nodes:
+ 704 705
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 605 0 0
+ Nodes:
+ 705 706
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00
+ Element: 606 0 0
+ Nodes:
+ 706 707
+ Scale factors:
+  1.000000e+00  1.000000e+00  1.000000e+00  1.000000e+00

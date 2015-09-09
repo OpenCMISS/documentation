@@ -1,0 +1,26 @@
+# test alias, time_lookup and original time-varying coordinate fields work correctly
+# i.e. correctly update graphics when time changes 
+
+# simplify the sclera visualisation to make test files smaller
+gfx define tessellation fixed1 minimum_divisions 1 refinement_factors 1;
+gfx modify g_element sclera/sclera surfaces as "sclera_surfaces" coordinate length_time_coordinates tessellation fixed1;
+
+gfx define graphics_filter sclera_only_filter match_graphics_name "sclera_surfaces";
+# test length_time coming from a constant field in root region
+gfx define field length_time constant -1.0;
+gfx export vrml file sclera1.wrl filter sclera_only_filter;
+
+# test length_time being a time_value field
+gfx define field length_time time_value;
+gfx timekeeper default set_time 0.0;
+gfx export vrml file sclera2.wrl filter sclera_only_filter;
+
+# test time coming directly from timekeeper by using actual coordinate field with time variation
+gfx modify g_element sclera/sclera surfaces as "sclera_surfaces" coordinate coordinates tessellation fixed1;
+gfx timekeeper default set_time 1.0;
+gfx export vrml file sclera3.wrl filter sclera_only_filter;
+
+# restore state prior to testing
+
+gfx define field length_time constant 0.0;
+gfx modify g_element sclera/sclera surfaces as "sclera_surfaces" tessellation default;
