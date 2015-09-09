@@ -327,8 +327,8 @@ module.exports = function (grunt) {
 
 		exec: {
 			sphinxgen: {
-				cwd: '.tmp/sphinxgen',
-				command: 'sphinx-build -b html . _build'
+				cwd: '.tmp/sphinxenv',
+				command: 'sphinx-build -c . -b html ../../../ build' //The input directory is the documentation root directory.
 			}
 		},
 
@@ -338,15 +338,15 @@ module.exports = function (grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: 'doc',
-					dest: '.tmp/sphinxgen',
+					cwd: 'sphinx',
+					dest: '.tmp/sphinxenv',
 					src: '**/*.*'
 				},
 						{
 							expand: true,
 							dot: true,
 							cwd: '<%= config.app %>',
-							dest: '.tmp/sphinxgen/_templates/ocmiss',
+							dest: '.tmp/sphinxenv/templates/ocmiss',
 							src: 'partials/**/*.*'
 						}]
 			},
@@ -354,7 +354,7 @@ module.exports = function (grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: '.tmp/sphinxgen/_build',
+					cwd: '.tmp/sphinxenv/build',
 					dest: '<%= config.dist %>/documentation',
 					src: '**/*.*'
 				}]
@@ -363,7 +363,7 @@ module.exports = function (grunt) {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: '.tmp/sphinxgen/_build',
+					cwd: '.tmp/sphinxenv/build',
 					dest:'.tmp/generated-doc',
 					src: '**/*.*'
 				}]
