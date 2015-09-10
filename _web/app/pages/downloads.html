@@ -18,23 +18,23 @@
       {% endfor %}
     </select>
   </form>
-  {% with %}
+  {# {% with %} #}
     {% set source_code = sources %}
-    {% with %}
+    {# {% with %} #}
       {% set rel = releases["Linux"] %}
       {% include "partials/downloads/linux.jinja" %}
-    {% endwith %}
+    {# {% endwith %} #}
 
-    {% with %}
+    {# {% with %} #}
       {% set rel = releases["Windows"] %}
       {% include "partials/downloads/windows.jinja" %}
-    {% endwith %}
+    {# {% endwith %} #}
 
-    {% with %}
+    {# {% with %} #}
       {% set rel = releases["Mac OS X"] %}
       {% include "partials/downloads/mac.jinja" %}
-    {% endwith %}
-  {% endwith %}
+    {# {% endwith %} #}
+  {# {% endwith %} #}
 {% endblock %}
 {% block scripts %}
   <!-- build:js({app,.tmp}) scripts/downloads.js -->

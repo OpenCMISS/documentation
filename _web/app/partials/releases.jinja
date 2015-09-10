@@ -26,21 +26,21 @@
     </div>
   </div>
   <h2>Other Downloads</h2>
-  {% with %}
+  {# {% with %} #}
     {% set is_striped = True %}
     {% set src_info = source_code.zinc %}
     {% set release = rel.zinc %}
     {% include "partials/downloads/zinc.jinja" %}
-  {% endwith %}
+  {# {% endwith %} #}
 
-  {% with %}
+  {# {% with %} #}
     {% set src_info = source_code.pyzinc %}
     {% set release = rel.pyzinc %}
     {% include "partials/downloads/pyzinc.jinja" %}
-  {% endwith %}
+  {# {% endwith %} #}
 
-  {% with %}
+  {# {% with %} #}
       {% set is_striped = True %}
 	 {% include "partials/downloads/iron.jinja" %}
-  {% endwith %}
+  {# {% endwith %} #}
 </div>
