@@ -17,16 +17,41 @@
 		@include clearfix();
 	}
 
-	li.media-item {
-		padding-top:12px;
-	}
-
 	a {
 		font-size: 1.2em;
 	}
 
 }
 
+
+.see-more {
+	a {
+		float:right;
+		background-color:#7B7B7B;
+		color:white;
+		font-size: 1.3em;
+	}
+}
+
+.media-item {
+
+	& > div {
+		display:table-cell;
+	}
+
+	.title {
+		font-size:1.2em;
+	}
+
+	.description p {
+		font-size: 12px;
+		&.name {
+			font-size:inherit;
+		}
+	}
+}
+
+/*
 .media-item {
 
 	& > div {
@@ -48,6 +73,7 @@
 		}
 	}
 }
+*/
 
 .notice {
 	font-size:1.3em;
