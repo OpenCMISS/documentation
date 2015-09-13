@@ -7,7 +7,6 @@ Welcome to OpenCMISS's documentation!
 =====================================
 
 .. toctree::
-   :name: maintoc
    :hidden:
 
    tutorials/index

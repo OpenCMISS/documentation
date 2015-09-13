@@ -8,7 +8,6 @@ Tutorials
 
 .. toctree::
    :maxdepth: 2
-   :name: tutorialtoc
    :hidden:
 
    getting_started/getting-started
