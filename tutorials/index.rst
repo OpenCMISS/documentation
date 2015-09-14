@@ -6,9 +6,9 @@
 Tutorials
 =====================================
 
+
 .. toctree::
    :maxdepth: 2
-   :hidden:
 
    getting_started/getting-started
    axis_viewer/tutorial
