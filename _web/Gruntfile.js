@@ -19,7 +19,7 @@ module.exports = function (grunt) {
 	// Configurable paths
 	var config = {
 		app: 'app',
-		dist: 'dist'
+		dist: 'build/dist'
 	};
 
 	// Define the configuration for all the tasks
@@ -113,6 +113,7 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
+							connect().use('/other',connect.static('./other/')),
 							connect.static(config.app)
 						];
 					}
@@ -368,6 +369,15 @@ module.exports = function (grunt) {
 					src: '**/*.*'
 				}]
 			},
+			other: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: 'other',
+					src: '**/*.*',
+					dest: '<%= config.dist %>/other'
+				}]
+			},
 			dist: {
 				files: [{
 					expand: true,
@@ -399,7 +409,8 @@ module.exports = function (grunt) {
 							cwd: '.',
 							src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
 							dest: '<%= config.dist %>'
-						}]
+						}
+					   ]
 			},
 			styles: {
 				expand: true,
@@ -494,7 +505,8 @@ module.exports = function (grunt) {
 		'rev',
 		'usemin',
 		'relativeRoot:dist',
-		'htmlmin'
+		'htmlmin',
+		'copy:other'
 	]);
 
 	grunt.registerTask('default', [
