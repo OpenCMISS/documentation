@@ -50,4 +50,4 @@ Building the website
    ```
 
 
-3. The built website is now available in `_web/dist/`. Serve with your favourite web server.
+3. The built website is now available in `_web/build/dist/`. Serve with your favourite web server.
