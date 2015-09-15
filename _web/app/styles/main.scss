@@ -84,7 +84,7 @@ div.gsc-control-cse {
 	}
 
 	h2 {
-		font-size:20px;
+		font-size:23px;
 		padding-bottom:5px;
 		border-bottom: 3px solid #C1D0FF;
 
@@ -555,13 +555,18 @@ footer {
 }
 
 @mixin media-item(){
-		@include clearfix();
+	@include clearfix();
 	padding:5px;
 	//margin:20px 15px;
 	border-radius:5px;
 	&:hover {
 		background-color:#f6f6f6;
 	}
+
+	&.media-item-big {
+		font-size: 1.3em;
+	}
+
 	& > a {
 		display:block;
 	}
@@ -582,7 +587,7 @@ footer {
 	}
 
 	img {
-		width: 110px;
+		width: 80px;
 		float:left;
 		padding-right: 10px;
 	}

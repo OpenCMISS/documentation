@@ -2,7 +2,7 @@
 {% block title %}
   OpenCMISS Documentation
 {% endblock %}
-{% block sidebar_title %} <h1>Documentation for...</h1> {% endblock %}
+{% block sidebar_title %} <h1>Documentation Content</h1> {% endblock %}
 {% block sidebar_content %}
 <ul>
 	<li><a href="#introduction">Introduction</a></li>
@@ -10,36 +10,60 @@
 	<li><a href="#examples">Examples</a></li>
 	<li><a href="#technical">Technical Documentation</a></li>
 	<li><a href="#publications">Publications</a></li>
-	<li><a href="#developers">Developers Documentation</a></li>
+	<li><a href="#developers">Extending OpenCMISS</a></li>
 </ul>
 {% endblock %}
 {% block content %}
 <h1>Documentation</h1>
 <p>Documentation on using OpenCMISS software packages to model and visualise.</p>
 
-<section class="doc-links" id="introduction">
+<section class="row doc-links" id="introduction">
 	<h2>Introduction</h2>
 	<p>A C/C++ library providing a rich, dynamic model representation in its API, incorporating images and image processing, high quality 3-D visualisation, interactive tools and more.</p>
-	<div class="links-wrapper row">
-		<div class="col-sm-3">
-			<h3>For Users</h3>
-			<ul class="list-unstyled">
-				<li><a href="ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/Introduction%20to%20OpenCMISS-Zinc%20v3.0.pdf">Introduction (PDF) </a></li>
-				<li><a href="http://cmiss.sourceforge.net/" target="_blank">C++ API Reference</a></li>
-				<li><a href="#">Community Support</a></li>
-			</ul>
-			<h3>For Contributors</h3>
-			<ul class="list-unstyled">
-				<li><a href="#">Notes for Contributor </a></li>
-				<li><a href="#">Contact Maintainers</a></li>
-			</ul>
-
+	<div class="links-wrapper">
+		<div class="col-sm-6 media-item media-item-big">
+			<a href="#">
+				<div class="description">
+					<p class="name">Introductory overview</p>
+					<p>Sets out what OpenCMISS is.</p>
+				</div>
+			</a>
 		</div>
-		<div class="col-sm-9">
-			<h3>Tutorials</h3>
-			<p class="notice"><em>Coming soon.</em></p>
+
+		<div class="col-sm-6 media-item media-item-big">
+			<a href="/getting-started.html">
+				<div class="description">
+					<p class="name">Getting Started</p>
+					<p>Guide on installing, configuring and using OpenCMISS.</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 media-item">
+			<a href="#">
+				<div class="description">
+					<p class="name">Foundational knowledge</p>
+					<p>Recommended reading before you start using OpenCMISS.</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 media-item">
+			<a href="/downloads.html">
+				<div class="description">
+					<p class="name">Installing OpenCMISS</p>
+					<p>Links for downloading and installing OpenCMISS software.</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 media-item">
+			<a href="#">
+				<div class="description">
+					<p class="name">Citing OpenCMISS</p>
+					<p>The preferred format for citing OpenCMISS in your publication.</p>
+				</div>
+			</a>
 		</div>
 	</div>
+
 </section>
 <section class="row doc-links" id="tutorials">
 	<h2>Tutorials</h2>
@@ -120,26 +144,28 @@
 </section>
 <section class="row doc-links" id="examples">
 	<h2>Examples</h2>
-	<p>Scripts that solve a particular problem, contributed by developers and users of OpenCMISS.</p>
-
-			<ul class="list-unstyled">
-				<li class="media-item">
-					<a href="http://cmiss.bioeng.auckland.ac.nz/development/examples/a/index_thumbs.html">
-					<img src="/assets/documentation/cmgui-example.png">
-					<div class="description">
-						<p class="name">Cmgui Examples</p>
-						<p>A good way to learn OpenCMISS is to copy examples that perform a similar task to what is needed. These examples were created for Cmgui, a predecessor to OpenCMISS-Zinc.</p>
-					</div>
-					</a>
-				</li>
-				<li class="media-item">
-						<img src="/assets/documentation/physiomemodeller.png">
-					<div class="description">
-						<p><span class="title">Gallery</span> (<em>Coming soon</em>)</p>
-						<p>See applications created with OpenCMISS-Zinc.</p>
-					</div>
-				</li>
-			</ul>
+	<p>Scripts that solve a particular problem, contributed by developers and users of OpenCMISS. <a href="#">See all examples...</a></p>
+	<div class="links-wrapper">
+		<div class="col-sm-6 media-item">
+			<a href="http://cmiss.bioeng.auckland.ac.nz/development/examples/a/index_thumbs.html">
+				<img src="/assets/documentation/cmgui-example.png">
+				<div class="description">
+					<p class="name">Cmgui Examples</p>
+					<p>These examples were created for Cmgui, a predecessor to OpenCMISS-Zinc.</p>
+				</div>
+			</a>
+		</div>
+		<div class="col-sm-6 media-item">
+			<img src="/assets/documentation/physiomemodeller.png">
+			<div class="description">
+				<p><span class="title">Gallery</span> (<em>Coming soon</em>)</p>
+				<p>See applications created with OpenCMISS-Zinc.</p>
+			</div>
+		</div>
+	</div>
+	<div class="see-more">
+		<a class="btn btn-default" href="#"> See all examples... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+	</div>
 
 </section>
 <section class="row doc-links" id="technical">
@@ -213,12 +239,44 @@
 
 <section class="row doc-links" id="publications">
 	<h2>Publications</h2>
-	<p class="notice"><em>Documentation coming soon.</em></p>
+	<div class="links-wrapper">
+		<div class="col-sm-4">
+			<h3 class="styled">Presentations and Talks</h3>
+			<p class="notice"><em>A list of presentations and talks are coming soon.</em></p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="styled">Papers and Posters</h3>
+			<p class="notice"><em>A list of papers and posters are coming soon.</em></p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="styled">Resources for Publication</h3>
+			<ol class="list-unstyled">
+				<li class="media-item">
+					<a href="#">
+						<div class="description"><p class="name">Logos and Other Assets</p>
+							<p>Logos and assets for papers and posters.</p>
+						</div>
+					</a>
+				</li>
+				<li class="media-item">
+					<a href="#">
+						<div class="description"><p class="name">Citing OpenCMISS</p>
+							<p>The preferred format for citing OpenCMISS in your publication.</p>
+						</div>
+					</a>
+				</li>
+			</ol>
+		</div>
+	</div>
+	<div class="see-more">
+		<a class="btn btn-default" href="#"> See all publications... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+	</div>
+
 </section>
 
 <section class="row doc-links" id="developers">
-	<h2>Developers Documentation</h2>
-	<p>Visit the <a href="/developers.html">developers documentation page</a>.</p>
+	<h2>Extending OpenCMISS</h2>
+	<p>Want to contribute to OpenCMISS projects? Visit the <a href="/developers.html">developers documentation page</a>.</p>
 </section>
 
 
