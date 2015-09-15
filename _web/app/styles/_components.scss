@@ -1,0 +1,85 @@
+/*
+_components.scss - CSS styles and partials shared between pages.
+*/
+
+@import "variables";
+
+/*
+   media-item mixin - A link item which may or may not have a small thumbnail illustrating it.
+   To use, either add the media-link class or @include media-item() it into your custom class.
+   media-item looks like this:
+   <div class="media-item">
+    <img src="[url_of_illustration]">
+    <div class="description">
+     <p class="name">[Link title]</p>
+     <p>[Link description/label]</p>
+    </div>
+   </div>
+*/
+@mixin media-item(){
+	@include clearfix();
+	padding:5px;
+	//margin:20px 15px;
+	border-radius:5px;
+	&:hover {
+		background-color:#f6f6f6;
+	}
+
+	&.media-item-big {
+		.name {
+			font-size: 1.4em;
+		}
+	}
+
+	& > a {
+		display:block;
+	}
+	& a
+	{
+		color:inherit;
+		.name {
+			color: $cmiss-blue;
+			margin-top:0px;
+			font-size:1.2em;
+			margin-bottom:3px;
+		}
+		&:hover {
+			text-decoration:none;
+			.name {
+				text-decoration:$link-hover-decoration;
+				color: $darker-blue;
+			}
+		}
+	}
+
+	img {
+		width: 80px;
+		float:left;
+		padding-right: 10px;
+	}
+}
+
+/*
+   Mixin content-row - a simple mixin that cancels out Bootstrap's negative left and right margins in the row class.
+*/
+
+@mixin content-row() {
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.row-content {
+	@include content_row();
+}
+
+.item-row {
+	padding:15px 0px;
+	@include content-row();
+
+	& > div {
+		@include media-item();
+	}
+}
+.media-item {
+	@include media-item();
+}

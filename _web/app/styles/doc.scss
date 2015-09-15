@@ -1,5 +1,6 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+@import "components";
 
 .project-list {
 	text-align: center;
@@ -8,19 +9,18 @@
 }
 
 .doc-links {
-	margin:0px;
 	padding-top: 20px;
 	padding-bottom:20px;
-
+	@include content-row();
 	li {
 		padding-top: 5px;
 		@include clearfix();
 	}
-
+/*
 	a {
 		font-size: 1.2em;
 	}
-
+*/
 }
 
 
@@ -47,12 +47,6 @@
 		font-size:1.2em;
 	}
 
-	.description p {
-		font-size: 12px;
-		&.name {
-			font-size:inherit;
-		}
-	}
 }
 
 .notice {

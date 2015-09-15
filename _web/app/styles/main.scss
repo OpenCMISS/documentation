@@ -1,23 +1,6 @@
-$icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
-// Colours
-$physiome-red: #d11241;
-$cmiss-blue: #3366ff;
-$darker-blue: #103bb5;
-$main-blue: #3D63D5;
-$darker-red: #7a0b27;
-$border-grey: #e5e5e5;
-// Font size
-$font-size-base: 12px;
-
-// Widths
-$content-width: 900px;
-
-$header-height: 161px + 49px; // Adding 49px for beta notice, remove when out of beta!
-
-// bower:scss
+@import "variables";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
-// endbower
-
+@import "components";
 body {
     background-color:#f6f6f6;
 }
@@ -552,56 +535,4 @@ footer {
 	.btn span.glyphicon {
 		margin-right: 5px;
 	}
-}
-
-@mixin media-item(){
-	@include clearfix();
-	padding:5px;
-	//margin:20px 15px;
-	border-radius:5px;
-	&:hover {
-		background-color:#f6f6f6;
-	}
-
-	&.media-item-big {
-		font-size: 1.3em;
-	}
-
-	& > a {
-		display:block;
-	}
-	& a
-	{
-		color:inherit;
-		.name {
-			color: $cmiss-blue;
-			margin-top:0px;
-		}
-		&:hover {
-			text-decoration:none;
-			.name {
-				text-decoration:$link-hover-decoration;
-				color: $darker-blue;
-			}
-		}
-	}
-
-	img {
-		width: 80px;
-		float:left;
-		padding-right: 10px;
-	}
-}
-
-.item-row {
-	margin-left:0px;
-	margin-right:0px;
-	padding:15px 0px;
-
-	& > div {
-		@include media-item();
-	}
-}
-.media-item {
-	@include media-item();
 }
