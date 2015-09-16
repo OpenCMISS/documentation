@@ -4,7 +4,7 @@ Status of the New Website
 
 Updated on **16 September 2015**.
 
-Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_.
+Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_. This is currently in a personal GitHub account as the repository plan is still being decided.
 
 Please send any feedback and suggestions to `Noel Zeng, the developer working on the project <mailto:bioeng-webmaster@auckland.ac.nz>`_.
 
@@ -16,6 +16,7 @@ Here are a list of pages that are complete enough. Please take a look and give m
 * `Downloads </downloads.html>`_.
 * CMISS Example Model: `Per Pixel Lighting </examples/a/per_pixel_lighting/index.html>`_, `Eye Model </examples/a/eye/index.html>`_ , `Animate Jaw </examples/a/animate_jaw/index.html>`_.
   Note that this page has some Responsive features implemented. That is, sidebar is hidden and the content shrinks and grows in size depending on screen size.
+  **Updated August** `Animate Jaw </examples/a/animate_jaw/index.html>`_ has an interactive 3D model.
 * `Documentation </doc.html>`_ - **Updated 16 September** some pages have now been converted to the new template.
 * `Getting Started index </getting-started.html>`_ - A page linked from on the front page.
 * `Community </community.html>`_
