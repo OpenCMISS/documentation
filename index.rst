@@ -7,13 +7,11 @@ Welcome to OpenCMISS's documentation!
 =====================================
 
 .. toctree::
-   :hidden:
 
    tutorials/index
 
-Indices and tables
-==================
+.. Pages that don't need to be shown can be included under this toctree.
+.. toctree::
+   :hidden:
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   misc/status
