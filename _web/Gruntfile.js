@@ -329,7 +329,7 @@ module.exports = function (grunt) {
 		exec: {
 			sphinxgen: {
 				cwd: '.tmp/sphinxenv',
-				command: 'sphinx-build -c . -b html ../../../ build' //The input directory is the documentation root directory.
+				command: '../../.pythonenv/bin/sphinx-build -c . -b html ../../../ build' //The input is the documentation root directory.
 			}
 		},
 

@@ -11,18 +11,17 @@ Dependencies
 * npm
 * bower (installed through npm)
 * grunt-cli (installed through npm)
-* sphinx
-* python-jinja2
+* virtualenv
 * (Optional) make
 
-The project also depends on packages from npm and bower.
+The project also depends on packages from npm, bower and pip.
 
 Building the website
 --------------------
 1. Install the dependencies from your system's packaging manager. For example, in Debian jessie:
 
    ```
-   sudo apt-get install git python nodejs npm python-sphinx python-jinja2 make
+   sudo apt-get install git python nodejs npm virtualenv make
    sudo npm -g install bower
    sudo npm -g install grunt-cli
    ```
@@ -44,10 +43,12 @@ Building the website
 
    ```
    cd _web
+   virtualenv .pythonenv
+   .pythonenv/bin/pip install -r requirements.txt
    npm install
    bower install
    grunt
    ```
 
 
-3. The built website is now available in `_web/build/dist/`. Serve with your favourite web server.
+4. The built website is now available in `_web/build/dist/`. Serve with your favourite web server.

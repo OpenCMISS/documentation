@@ -1,0 +1,3 @@
+Sphinx
+Jinja2
+sphinxcontrib-newsfeed
