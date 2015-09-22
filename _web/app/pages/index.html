@@ -23,21 +23,8 @@
 			</div>
 			<div class="items-section">
 				<ul class="list-unstyled news-list">
-					<li>
-						<p><div class="date">26 June</div>
-							<a href="#" class="larger">Zinc 0.7.1.0 release</a>
-						<p>
-					</li>
-					<li>
-						<p><div class="date">16 April</div> <a href="#" class="larger">Zinc 0.7.0.0 release</a></p>
-					</li>
-					<li>
-						<p><div class="date">16 April</div>
-							<a href="#" class="larger">Cmgui 2.9.0 released</a>
-						<p>
-					</li>
 				</ul>
-				<a class="more-link pull-right" href="#">more news and updates</a>
+				<a class="more-link pull-right" href="/p/">more news and updates</a>
 			</div>
 		</div>
     </div>
@@ -140,9 +127,9 @@
 <script src="scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
+	loadNews();
 	var container = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
-
 	var banner = new FrontPageBanner(container,'data/fpmodel/coro');
 	banner.renderer.setClearColor(0x909090,1);
 </script>

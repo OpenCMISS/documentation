@@ -67,7 +67,7 @@ div.gsc-control-cse {
 	}
 
 	h2 {
-		font-size:23px;
+		font-size:20px;
 		padding-bottom:5px;
 		border-bottom: 3px solid #C1D0FF;
 
@@ -163,7 +163,7 @@ div.gsc-control-cse {
 }
 
 .secondary {
-	height:240px;
+	height:270px;
 	margin-left: 0px;
 	margin-right: 0px;
 
@@ -534,5 +534,16 @@ footer {
 
 	.btn span.glyphicon {
 		margin-right: 5px;
+	}
+}
+
+.news-list {
+	li {
+		padding:5px;
+	}
+
+	.date {
+		margin:0px;
+		display: block;
 	}
 }

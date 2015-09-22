@@ -1,0 +1,21 @@
+{% extends "partials/common_no_sidebar.jinja" %}
+{% block content %}
+{{page.content}}
+{% endblock %}
+{% block scripts %}
+<!-- build:js(.) scripts/three.min.js -->
+<script src="/bower_components/threejs/build/three.min.js"></script>
+<!-- endbuild -->
+<!-- build:js({app,.tmp}) scripts/index.js -->
+<script src="scripts/zinc_threejs_control.js"></script>
+<script src="scripts/zinc_3js_renderer.js"></script>
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+<script type="text/javascript">
+	var container = document.getElementById('main-message');
+	inpageScrollLink('#main-message .learn-more','.features');
+
+	var banner = new FrontPageBanner(container,'data/fpmodel/coro');
+	banner.renderer.setClearColor(0x909090,1);
+</script>
+{% endblock %}

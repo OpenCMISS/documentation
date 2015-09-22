@@ -68,6 +68,10 @@ module.exports = function (grunt) {
 				files: ['sphinx/**/*.html','sphinx/**/*.py','sphinx/**/*.conf','../**/*.rst','!../_web/**/*.*'],
 				tasks: ['sphinxgenDebug']
 			},
+			pelican: {
+				files: ['pelican/**/*.rst','pelican/**/*.html'],
+				tasks: ['exec:pelicangen']
+			},
 			styles: {
 				files: ['<%= config.app %>/styles/{,*/}*.css'],
 				tasks: ['newer:copy:styles', 'autoprefixer']
@@ -113,6 +117,7 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
+							connect().use('/p',connect.static('./.tmp/pelicangen')),
 							connect().use('/other',connect.static('./other/')),
 							connect.static(config.app)
 						];
@@ -330,6 +335,10 @@ module.exports = function (grunt) {
 			sphinxgen: {
 				cwd: '.tmp/sphinxenv',
 				command: '../../.pythonenv/bin/sphinx-build -c . -b html ../../../ build' //The input is the documentation root directory.
+			},
+			pelicangen: {
+				cwd: 'pelican',
+				command: '../.pythonenv/bin/pelican --debug content -o ../.tmp/pelicangen -s pelicanconf.py'
 			}
 		},
 
@@ -360,6 +369,16 @@ module.exports = function (grunt) {
 					src: '**/*.*'
 				}]
 			},
+			pelicanOutputToDist: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: '.tmp/pelicangen/',
+					dest: '<%= config.dist %>/p',
+					src: '**/*.*'
+				}]
+			},
+
 			sphinxOutputToDebug: {
 				files: [{
 					expand: true,
@@ -455,6 +474,7 @@ module.exports = function (grunt) {
 			'concurrent:server',
 			'autoprefixer',
 			'sphinxgenDebug',
+			'exec:pelicangen',
 			'connect:livereload',
 			'watch'
 		]);
@@ -485,6 +505,11 @@ module.exports = function (grunt) {
 		'exec:sphinxgen',
 		'copy:sphinxOutputToDist'
 	]);
+//
+	grunt.registerTask('pelicanDist',[
+		'exec:pelicangen',
+		'copy:pelicanOutputToDist'
+	]);
 
 	grunt.registerTask('sphinxgenDebug',[
 		'copy:sphinxPrep',
@@ -502,6 +527,7 @@ module.exports = function (grunt) {
 		'uglify',
 		'copy:dist',
 		'sphinxgenDist',
+		'pelicanDist',
 		'rev',
 		'usemin',
 		'relativeRoot:dist',
