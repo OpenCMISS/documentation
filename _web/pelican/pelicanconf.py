@@ -40,5 +40,9 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 3
 
+TEMPLATE_PAGES = {'custompages/index.html':'main.html'}
+
+READERS = {'html':None }
+
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True

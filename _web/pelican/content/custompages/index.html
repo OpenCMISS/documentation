@@ -23,6 +23,12 @@
 			</div>
 			<div class="items-section">
 				<ul class="list-unstyled news-list">
+				  {% for article in articles[:3] %}
+				    <li>
+				      <span class="date">{{article.date|strftime('%d/%b/%Y') }}</span>
+				      <a class="larger" href="{{ SITEURL }}/{{article.url}}">{{article.title}}</a>
+				    </li>
+				  {% endfor %}
 				</ul>
 				<a class="more-link pull-right" href="/p/">more news and updates</a>
 			</div>
@@ -127,7 +133,7 @@
 <script src="/scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
-	loadNews();
+	//loadNews();
 	var container = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
 	var banner = new FrontPageBanner(container,'/data/fpmodel/coro');
