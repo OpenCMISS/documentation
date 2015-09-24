@@ -23,7 +23,7 @@ Here are a list of pages that are complete enough. Please take a look and give m
 * `About page </about.html>`_
 * `API documentation </doc.html#technical>`_ **Added on 16 September** - a copy of latest Zinc and Iron API documentation.
 * `Developers page </developers.html>`_ **Added on 16 September** Currently just a list of links. Please send in suggestions on how you think they could be categorised.
-* `News</news/>`_ - **Updated 24 September** A list of news items, paginated.
+* `News </news/index.html>`_ - **Updated 24 September** A list of news items, paginated.
 
 
 In Progress
