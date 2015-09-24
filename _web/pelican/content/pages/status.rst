@@ -30,7 +30,8 @@ In Progress
 ===========
 A list of things currently being worked on.
 
-* Automated website build - **Updated 16 September** Automate building the website with Buildbot using the latest API reference, documentation and web source code.
+* Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
+  * **Updated 24 September** - specified server needs to IT.
 
 Planned
 =======
