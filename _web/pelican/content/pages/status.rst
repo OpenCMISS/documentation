@@ -1,6 +1,6 @@
-#########################
 Status of the New Website
 #########################
+:slug: status
 
 Updated on **16 September 2015**.
 

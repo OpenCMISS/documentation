@@ -1,45 +1,142 @@
 {% extends "partials/common_no_sidebar.jinja" %}
 {% block content %}
-  <h1>News and Updates</h1>
-  {% for article in articles_page.object_list %}
-    <section>
-      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><h2>{{ article.title }}</h2></a>
-      <p><em>{{ article.locale_date }}</em></p>
-      <p>{{ article.content|striptags|truncate(200) }}  <a href="{{ SITEURL }}/{{ article.url }}" class="button small">Read More</a></p>
-    </section>
-  {% endfor %}
-  <nav class="pagination">
-    <ul class="pager">
-      <li class='previous {{"disabled" if articles_page.has_previous() == False}}'>
-	{% if articles_page.has_previous() == True %}
-	  {% if articles_page.previous_page_number() == 1 %}
-            <a href="{{ SITEURL }}/{{ page_name }}.html">
-          {% else %}
-            <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.previous_page_number() }}.html">
-	  {% endif %}
-	{% else %}
-	  <a>
-	{% endif %}
-	<span aria-hidden="true">&larr;</span>&nbsp;Newer posts</a>
-      </li>
+<div id="main-message" class="main-message">
+	<div class="loading-icon">
+		<!--<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
+	</div>
+	<div class="container message">
+		<!--<h1 class="default-style">OpenCMISS: Computation and Visualisation.</h1>-->
+		<img class="main-logo" src="/images/main-page-logo.png" alt="Logo of OpenCMISS projects.">
+		<p class="lead"> <span class="cmiss-name">OpenCMISS</span> libraries and applications provide the foundation for developing computational modelling and visualisation software, particularly targeting bioengineering. <a class="learn-more" href="#features">Read more...</a></p>
+		<div class="actions">
+			<a class="btn btn-default btn-download  btn-lg" href="downloads.html"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Download</a>
+			<a class="btn btn-default btn-lg btn-get-started" href="/getting-started.html"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Get Started</a>
+		</div>
+	</div>
+	<small class="modelDesc">Coronary mesh model, made by Alan Wu with OpenCMISS-Zinc</small>
+</div>
+<div class="row secondary">
+    <div class="col-sm-6 news-wrapper">
+		<div class="news infobox">
+			<div class="title-section">
+				<h2>News &amp; Updates</h2>
+			</div>
+			<div class="items-section">
+				<ul class="list-unstyled news-list">
+				  {% for article in articles[:3] %}
+				    <li>
+				      <span class="date">{{article.date|strftime('%d/%b/%Y') }}</span>
+				      <a class="larger" href="{{ SITEURL }}/{{article.url}}">{{article.title}}</a>
+				    </li>
+				  {% endfor %}
+				</ul>
+				<a class="more-link pull-right" href="/news/">more news and updates</a>
+			</div>
+		</div>
+    </div>
+	<a name="features"></a>
+    <div class="col-sm-6 docs-wrapper">
+		<div class="docs infobox">
+			<div class="title-section">
+				<h2>Documentation &amp; Support</h2>
+			</div>
+			<div class="items-section">
+				<ul class="list-unstyled">
+					<li>
+						<a href="/getting-started.html" class="larger">Getting Started</a>
+						<p>Help with download, installation and configuration.</p>
+					</li>
+					<li>
+						<a href="/doc.html#technical" class="larger">API Reference</a>
+						<p>Documentation of the library interface.</p>
+					</li>
+					<li>
+						<a href="#" class="larger">Mailing List</a>
+						<p>Interact with other users and developers.</p>
+					</li>
+				</ul>
+				<a class="more-link pull-right" href="/doc.html">more documentation and support</a>
+			</div>
+		</div>
+    </div>
+</div>
+<hr>
+<section class="features" id="features">
+    <h2 class="default-style">Features</h2>
+    <p> OpenCMISS is a set of libraries and applications which provide modelling and visualisation capabilities for complex bioengineering problems.</p>
+    <div class="row">
+		<div class="col-sm-4">
+			<div class="feature">
+				<div class="feature-image">
+					<img src="/images/model.png" width="150">
+				</div>
+				<h3>Finite element analysis-based models</h3>
+				<p>Models are represented as mathematical fields defined over domains, including finite elements with support for high-order basis functions, complex parameter mappings and time variation, as well as image-based fields. Further fields can be defined by mathematical expressions and algorithms on existing fields, including image processing filters.</p>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="feature">
+				<div class="feature-image">
+					<img src="/images/image-slices.png" width="150">
+				</div>
+				<h3>Field-mapping Visualisation</h3>
+				<p>Visualisations of models are created by graphics algorithms which assign fields to attributes, including 3-D coordinates, texture coordinates, data/colouring, and specific attributes such as iso-scalar field for contours, vector field for streamlines, and orientation, scale and label fields for points.</p>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="feature">
+				<div class="feature-image">
+					<img src="/images/cellml-team.png" width="150">
+				</div>
+				<h3>Free and open source software</h3>
+				<p>OpenCMISS libraries and applications have been developed and deployed by teams in universities for over 30 years. Stable releases are made regularly.  It's developed as a free software project, and is available for Windows, Max OS X and Linux, with APIs offered in C, C++ and Python.</p>
+			</div>
+		</div>
+    </div>
+    <a class="btn btn-default read-more-about" href="/about.html"> Read more and download <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+</section>
+<hr>
+<section class="gallery" id="gallery">
+	<h2 class="default-style">Gallery</h2>
+	<p class="byline">See models created by others using OpenCMISS tools. Download, customise and produce your own. A good way to learn OpenCMISS is to copy examples that perform a similar task to what is needed. Most of the examples here use the same Mozilla Public License v2.0 as the codebase.</p>
+	<div class="gallery-items">
+		<a href="/examples/a/animate_jaw/index.html"><img src="/images/gallery/thumb_animate_jaw.png"></a>
+		<a href="/examples/a/eye/index.html"><img src="/images/gallery/thumb_eye.png"></a>
+		<a href="#"><img src="/images/gallery/thumb_seeded_streamlines.png"></a>
+		<a href="#"><img src="/images/gallery/thumb_melanoma.png"></a>
+		<a href="/examples/a/per_pixel_lighting/index.html"><img src="/images/gallery/thumb_per_pixel_lighting.png"></a>
+		<a href="#"><img src="/images/gallery/thumb_ad.png"></a>
+		<a href="#"><img src="/images/gallery/thumb_triangle_mixed_basis.png"></a>
+		<a href="#"><img src="/images/gallery/thumb_snake.png"></a>
+		<!--	<a href="#"><img src="/images/gallery/thumb_a3.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_triangle_mixed_basis.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_arbitrary_shaders.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_aj.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_a4.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_deforming_heart.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_endoscope_animation.png"></a>
+				<a href="#"><img src="/images/gallery/thumb_evaluate_grid.png"></a>
+				-->
+	</div>
+    <a class="btn btn-default more-models" href="#"> See more <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+</section>
 
-      <li> Page {{ articles_page.number }} / {{ articles_paginator.num_pages }} </li>
+{% endblock %}
 
-      <li class='next {{"disabled" if articles_page.has_next() == False}}'>
-	{% if articles_page.has_next() == True %}
-            <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">
-	{% else %}
-	  <a>
-	{% endif %}Older posts&nbsp;<span aria-hidden="true">&rarr;</span></a>
-      </li>
-
-      {#
-      <li class="next">
-	{% if articles_page.has_next() %}
-	  <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">Older posts&nbsp;&rarr;</a>
-	{% endif %}
-      </li> #}
-    </ul>
-</nav>
-
+{% block scripts %}
+<!-- build:js(.) scripts/three.min.js -->
+<script src="/bower_components/threejs/build/three.min.js"></script>
+<!-- endbuild -->
+<!-- build:js({app,.tmp}) scripts/index.js -->
+<script src="/scripts/zinc_threejs_control.js"></script>
+<script src="/scripts/zinc_3js_renderer.js"></script>
+<script src="/scripts/main.js"></script>
+<!-- endbuild -->
+<script type="text/javascript">
+	//loadNews();
+	var container = document.getElementById('main-message');
+	inpageScrollLink('#main-message .learn-more','.features');
+	var banner = new FrontPageBanner(container,'data/fpmodel/coro');
+	banner.renderer.setClearColor(0x909090,1);
+</script>
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "partials/common_no_sidebar.jinja" %}
+{% block content %}
+  <h1>{{category}}</h1>
+  {% for article in articles_page.object_list %}
+    <section>
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><h2>{{ article.title }}</h2></a>
+      <p><em>{{ article.locale_date }}</em></p>
+      <p>{{ article.content|striptags|truncate(200) }}  <a href="{{ SITEURL }}/{{ article.url }}" class="button small">Read More</a></p>
+    </section>
+  {% endfor %}
+  <nav class="pagination">
+    <ul class="pager">
+      <li class='previous {{"disabled" if articles_page.has_previous() == False}}'>
+	{% if articles_page.has_previous() == True %}
+	  {% if articles_page.previous_page_number() == 1 %}
+            <a href="{{ SITEURL }}/{{ page_name }}.html">
+          {% else %}
+            <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.previous_page_number() }}.html">
+	  {% endif %}
+	{% else %}
+	  <a>
+	{% endif %}
+	<span aria-hidden="true">&larr;</span>&nbsp;Newer posts</a>
+      </li>
+
+      <li> Page {{ articles_page.number }} / {{ articles_paginator.num_pages }} </li>
+
+      <li class='next {{"disabled" if articles_page.has_next() == False}}'>
+	{% if articles_page.has_next() == True %}
+            <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">
+	{% else %}
+	  <a>
+	{% endif %}Older posts&nbsp;<span aria-hidden="true">&rarr;</span></a>
+      </li>
+
+      {#
+      <li class="next">
+	{% if articles_page.has_next() %}
+	  <a href="{{ SITEURL }}/{{ page_name }}{{ articles_page.next_page_number() }}.html">Older posts&nbsp;&rarr;</a>
+	{% endif %}
+      </li> #}
+    </ul>
+</nav>
+
+{% endblock %}

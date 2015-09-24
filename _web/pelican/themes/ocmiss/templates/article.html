@@ -6,15 +6,15 @@
 {% block sidebar_content %}
 <ul>
 {% for cat,articles in categories %}
-{% for a in articles %}
-<li><a href="{{a.url}}">{{a.title}}</a></li>
+{% for a in articles[:10] %}
+<li><a href="{{ SITEURL }}/{{a.url}}">{{a.title}}</a></li>
 {% endfor %}
 	 {% endfor %}
 </ul>
 {% endblock %}
 
 {% block content %}
-<h1>News: {{article.title}}</h1>
+<h1>{{article.category}}: {{article.title}}</h1>
 <abbr class="published" title="{{article.date}}">{{article.locale_date}}</abbr>
 <address class="vcard author">By <em>{{article.author}}</em>.</address>
 {{article.content}}

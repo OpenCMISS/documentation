@@ -16,13 +16,6 @@ DEFAULT_LANG = u'en'
 THEME = "./themes/ocmiss"
 
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-
-CATEGORY_FEED_ATOM='feeds/%s.atom.xml'
-FEED_MAX_ITEMS=3
-SITEURL="http://localhost:9000/p"
-FEED_DOMAIN="http://localhost:9000/p"
-
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
@@ -40,9 +33,26 @@ SOCIAL = (('You can add links in your config file', '#'),
 
 DEFAULT_PAGINATION = 3
 
-TEMPLATE_PAGES = {'custompages/index.html':'main.html'}
+DIRECT_TEMPLATES = ["index","categories"]
+
+PAGINATED_DIRECT_TEMPLATES = ['News']
+
+TEMPLATE_PAGES = {}
 
 READERS = {'html':None }
 
 # Uncomment following line if you want document-relative URLs when developing
-RELATIVE_URLS = True
+RELATIVE_URLS = False
+
+ARTICLE_SAVE_AS = '{category}/{slug}.html'
+ARTICLE_URL = '{category}/{slug}.html'
+
+AUTHOR_SAVE_AS = ''
+
+ARCHIVE_SAVE_AS = ''
+
+CATEGORY_SAVE_AS = '{slug}/index.html'
+CATEGORY_URL = '{slug}/index.html'
+
+PAGE_SAVE_AS = '{slug}.html'
+PAGE_URL = 'slug.html'

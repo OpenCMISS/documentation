@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 				tasks: ['sphinxgenDebug']
 			},
 			pelican: {
-				files: ['pelican/**/*.rst','pelican/**/*.html'],
+				files: ['pelican/**/*.rst','pelican/**/*.html','pelican/**/*.py'],
 				tasks: ['exec:pelicangen']
 			},
 			styles: {
@@ -117,9 +117,10 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
-							connect().use('/p',connect.static('./.tmp/pelicangen')),
+							//connect().use('/p',connect.static('./.tmp/pelicangen')),
 							connect().use('/other',connect.static('./other/')),
-							connect.static(config.app)
+							connect.static(config.app),
+							connect.static('./.tmp/pelicangen')
 						];
 					}
 				}
@@ -234,12 +235,14 @@ module.exports = function (grunt) {
 		// Reads HTML for usemin blocks to enable smart builds that automatically
 		// concat, minify and revision files. Creates configurations in memory so
 		// additional tasks can operate on them
+
+		// This will include the templates used in sphinx and pelican.
 		useminPrepare: {
 			options: {
 				dest: '<%= config.dist %>'
 			},
 			app: {
-				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','doc/_templates/**/*.html']
+				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','sphinx/_templates/**/*.html','pelican/themes/**/*.html', 'pelican/content/custompages/**/*.html']
 			}
 		},
 
@@ -374,7 +377,7 @@ module.exports = function (grunt) {
 					expand: true,
 					dot: true,
 					cwd: '.tmp/pelicangen/',
-					dest: '<%= config.dist %>/p',
+					dest: '<%= config.dist %>',
 					src: '**/*.*'
 				}]
 			},
