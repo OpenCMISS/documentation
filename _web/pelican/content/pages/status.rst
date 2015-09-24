@@ -32,14 +32,14 @@ A list of things currently being worked on.
 
 * Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
   * **Updated 24 September** - specified server needs to IT.
+* **Updated 24 September** Started working on compatibility
+	* IE
+	* ipad/smaller screen sizes/lower spec devices - make sure the models load
 
 Planned
 =======
 List of things that will be worked on.
 
-* Compatibility
-	* IE
-	* ipad/smaller screen sizes/lower spec devices - make sure the models load
 * Downloads page - change to make source code download more prominent, as well as adding links to development versions.
 
 * Add section on pages with pending work in status page.

@@ -51,7 +51,7 @@
 						<p>Documentation of the library interface.</p>
 					</li>
 					<li>
-						<a href="#" class="larger">Mailing List</a>
+						<a href="/community.html#mailinglist" class="larger">Mailing List</a>
 						<p>Interact with other users and developers.</p>
 					</li>
 				</ul>
@@ -137,6 +137,7 @@
 	var container = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
 	var banner = new FrontPageBanner(container,'data/fpmodel/coro');
-	banner.renderer.setClearColor(0x909090,1);
+	banner.renderer.setClearColor(new THREE.Color("rgb(144,144,144)"),1);
+	//banner.renderer.setClearColor(0x100000,1);
 </script>
 {% endblock %}

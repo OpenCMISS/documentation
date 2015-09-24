@@ -94,44 +94,4 @@
 
 	};
 
-	function _buildNewsItem(item){
-
-		var newsItem = $('<li/>');
-
-		var date = $('<span/>', {
-			class:"date",
-			text: item.date.toLocaleDateString()
-		}).appendTo(newsItem);
-
-		var link = $('<a/>', {
-			href: item.link,
-			class: 'larger',
-			text: item.title
-		}).appendTo(newsItem);
-
-		return newsItem;
-	}
-
-	window.loadNews = function(){
-		$(document).ready(function(){
-			var newsList = $('.infobox .news-list')[0];
-			$.ajax('p/feeds/news.atom.xml',{
-				dataType:'xml',
-			}).done(function(news){
-				var entries = [];
-				$(news).find('entry')
-					.each(function(idx){
-						var $this = $(this);
-						var date = new Date($this.find('updated').text());
-						var entry = {title:$this.find('title').text(),
-									 date: date,
-									 link:$this.find('link').attr('href')};
-						entries.push(entry);
-					});
-				for (var idx in entries){
-					_buildNewsItem(entries[idx]).appendTo('.news-list');
-				}
-			});
-		});
-	}
 }());
