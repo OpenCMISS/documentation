@@ -2,7 +2,7 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **16 September 2015**.
+Updated on **24 September 2015**.
 
 Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_. This is currently in a personal GitHub account as the repository plan is still being decided.
 
@@ -23,13 +23,14 @@ Here are a list of pages that are complete enough. Please take a look and give m
 * `About page </about.html>`_
 * `API documentation </doc.html#technical>`_ **Added on 16 September** - a copy of latest Zinc and Iron API documentation.
 * `Developers page </developers.html>`_ **Added on 16 September** Currently just a list of links. Please send in suggestions on how you think they could be categorised.
+* `News</news/>`_ - **Updated 24 September** A list of news items, paginated.
+
 
 In Progress
 ===========
 A list of things currently being worked on.
 
 * Automated website build - **Updated 16 September** Automate building the website with Buildbot using the latest API reference, documentation and web source code.
-* News - **Updated 16 September**
 
 Planned
 =======
