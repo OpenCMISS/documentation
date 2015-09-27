@@ -2,7 +2,7 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **24 September 2015**.
+Updated on **25 September 2015**.
 
 Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_. This is currently in a personal GitHub account as the repository plan is still being decided.
 
@@ -32,6 +32,7 @@ A list of things currently being worked on.
 
 * Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
   * **Updated 24 September** - specified server needs to IT.
+  * Introduce documentation writers to the system and ask for feedback. 
 * **Updated 24 September** Started working on compatibility
 	* IE
 	* ipad/smaller screen sizes/lower spec devices - make sure the models load
@@ -50,3 +51,4 @@ List of things that will be worked on.
 * Add scrollspy for the sidebar/fix sidebar attachment.
 * Fix style for <pre> tags.
 * Remove KCL/Oxford logo
+* Send out for second round of feedback.
