@@ -2,11 +2,13 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **25 September 2015**.
+Updated on **29 September 2015**.
+
+This website is the new website for the OpenCMISS software. Content is still being migrated from `cmiss.org <http://www.cmiss.org>`_, `physiomeproject.org <http://opencmiss.physiomeproject.org>`_ and other sites.
 
 Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_. This is currently in a personal GitHub account as the repository plan is still being decided.
 
-Please send any feedback and suggestions to `Noel Zeng, the developer working on the project <mailto:bioeng-webmaster@auckland.ac.nz>`_.
+Please send any feedback and suggestions to `Noel Zeng, the developer working on the project <mailto:bioeng-webmaster@auckland.ac.nz>`_. Be sure to check the Planned section first to see if it's a known issue.
 
 Ready for Feedback
 ==================
@@ -24,31 +26,31 @@ Here are a list of pages that are complete enough. Please take a look and give m
 * `API documentation </doc.html#technical>`_ **Added on 16 September** - a copy of latest Zinc and Iron API documentation.
 * `Developers page </developers.html>`_ **Added on 16 September** Currently just a list of links. Please send in suggestions on how you think they could be categorised.
 * `News </news/index.html>`_ - **Updated 24 September** A list of news items, paginated.
-
+* Add section on pages with pending work in status page. **Updated 29 September** Done.
 
 In Progress
 ===========
 A list of things currently being worked on.
 
 * Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
-  * **Updated 24 September** - specified server needs to IT.
-  * Introduce documentation writers to the system and ask for feedback. 
+    * **Updated 24 September** - specified server needs to IT.
+	* Introduce documentation writers to the system and ask for feedback.
 * **Updated 24 September** Started working on compatibility
+	* Responsive template
 	* IE
 	* ipad/smaller screen sizes/lower spec devices - make sure the models load
+	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
 
 Planned
 =======
 List of things that will be worked on.
 
 * Downloads page - change to make source code download more prominent, as well as adding links to development versions.
-
-* Add section on pages with pending work in status page.
-
 * Check links that aren't working, send to a Under Construction page.
 * Navigation is complete - maybe breadcrumb. In the documentation pages, link back to root. See if it works across Sphinx, Doxygen, static pages.
-* Documentation around how the site works.
 * Add scrollspy for the sidebar/fix sidebar attachment.
 * Fix style for <pre> tags.
 * Remove KCL/Oxford logo
 * Send out for second round of feedback.
+
+* Documentation around how the site works.
