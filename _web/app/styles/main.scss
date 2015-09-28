@@ -113,13 +113,6 @@ div.gsc-control-cse {
 
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-	padding-left: 15px;
-	padding-right: 15px;
-}
 
 /* Custom page header */
 .header {
@@ -135,7 +128,6 @@ div.gsc-control-cse {
 	}
 
 	.search-wrapper {
-      	padding-bottom: 15px;
 		//background-color: $main-blue;
 		background-color:#077D32;
 		//background-image: url('../images/waves-neutral.png');
@@ -150,7 +142,7 @@ div.gsc-control-cse {
 	}
 
 	.nav-bar,.search-box {
-		width:$content-width;
+		max-width:$content-width;
 		margin:0 auto;
 	}
 
@@ -171,6 +163,7 @@ div.gsc-control-cse {
 	height:270px;
 	margin-left: 0px;
 	margin-right: 0px;
+	@include clearfix;
 
 	& > div {
 		height: 100%;
@@ -195,15 +188,14 @@ div.main-message {
 	position:relative;
 	height: 350px;
 	//background-color: #F7DA64;
-	margin: 0 -15px;
+	//margin: 0 -15px;
 	background-color: #909090;
 	background-image: url("../images/app-showcase/heart.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 	border-radius: 0px;
 	color: white;
-
-	margin-bottom:20px;
+	margin: 15px 0px;
 	//border-top: 1px solid $border-grey;
 	border-bottom: 1px solid $border-grey;
 	border-right: none;
@@ -341,8 +333,7 @@ li.box-link {
 
 	.search-box {
 		padding: 15px 0px;
-		padding-bottom:5px;
-		@include clearfix();
+		@include clearfix;
 		input {
 			height: 3em;
 		}
@@ -425,12 +416,8 @@ li.box-link {
 }
 
 .features {
-	//background-color:#F9F9F9;
-	//padding: 20px 0;
-	//margin: 0 -15px;
 	margin: 0 auto;
 	text-align:center;
-	width: 850px;
 	h2 {
 		margin-top: 0px;
 	}
@@ -503,7 +490,7 @@ footer {
 		font-size: 17px;
 	}
 	.footer-box {
-		width: $content-width;
+		max-width: $content-width;
 		margin: 0 auto;
 	}
 	.supporters {
@@ -555,5 +542,11 @@ footer {
 	.date {
 		margin:0px;
 		display: block;
+	}
+}
+
+@media all and (max-width:900px){
+	.main-container {
+		width: auto;
 	}
 }

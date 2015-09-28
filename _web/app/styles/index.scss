@@ -1,0 +1,17 @@
+@media all and (max-width: 767px){
+	.secondary .news-wrapper {
+		padding-right: 0px;
+	}
+
+	div.docs-wrapper {
+		padding-top:15px;
+	}
+
+	.secondary {
+		height: auto;
+	}
+
+	.features .row > div {
+		height: auto;
+	}
+}

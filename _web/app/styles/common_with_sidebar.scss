@@ -135,8 +135,14 @@ article.main {
 		display:none;
 	}
 
+	.header .nav-bar, footer .footer-box,.header .search-box {
+		width: auto;
+	}
+
 	.main-container {
 		width: auto;
+		margin-right: 10px;
+		margin-left: 10px;
 
 		& > .main {
 			width: 100%;
@@ -152,6 +158,11 @@ article.main {
 
 
 @media all and (min-width:770px) and (max-width:1349px) {
+
+	.header .nav-bar, footer .footer-box,.header .search-box {
+		width: auto;
+	}
+
 	.right-sidebar {
 		display: none;
 	}
@@ -164,8 +175,7 @@ article.main {
 
 	.main-container {
 		width: auto;
-
-
+		margin-right: 10px;
 		& > .main  {
 			float: right;
 			width: 100%;

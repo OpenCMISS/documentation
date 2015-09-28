@@ -1,0 +1,21 @@
+@media all and (max-width:900px){
+	.extras {
+		display:none;
+	}
+
+	.main-container {
+		width: auto;
+		margin-right: 10px;
+		margin-left: 10px;
+
+		& > .main {
+			width: 100%;
+			max-width: 770px;
+			margin-left: 0px;
+			& > .inner {
+				width: 100%;
+				margin-left: 0px;
+			}
+		}
+	}
+}

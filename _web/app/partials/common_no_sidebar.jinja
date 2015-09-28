@@ -1,4 +1,9 @@
 {% extends 'partials/common.jinja' %}
+{% block styles %}
+   <!-- build:css(.tmp) /styles/sidebar.css -->
+   <link rel="stylesheet" href="/styles/common_no_sidebar.css">
+   <!-- endbuild -->
+{% endblock %}
 {% block main_content %}
 <article class="main-container container content">
 	 {% block content %}

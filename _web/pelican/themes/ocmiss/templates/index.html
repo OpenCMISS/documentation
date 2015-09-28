@@ -1,4 +1,10 @@
 {% extends "partials/common_no_sidebar.jinja" %}
+{% block styles %}
+<!-- build:css(.tmp) /styles/index.css -->
+<link rel="stylesheet" href="/styles/index.css">
+<!-- endbuild -->
+{% endblock %}
+
 {% block content %}
 <div id="main-message" class="main-message">
 	<div class="loading-icon">
@@ -34,7 +40,6 @@
 			</div>
 		</div>
     </div>
-	<a name="features"></a>
     <div class="col-sm-6 docs-wrapper">
 		<div class="docs infobox">
 			<div class="title-section">
