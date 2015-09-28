@@ -3,6 +3,7 @@
 @import "components";
 body {
     background-color:#f6f6f6;
+	font-family: 'Lato', sans-serif;
 }
 
 .passthrough {
@@ -20,7 +21,6 @@ body {
 	cursor: -moz-grabbing;
 	cursor: -webkit-grabbing;
 }
-
 
 a {
     //color: $physiome-red;
@@ -52,7 +52,7 @@ div.gsc-control-cse {
 	background-color: white;
 	h1 {
 		font-size: 26px;
-		background-color: $main-blue;
+		background-color: $title-blue;
 		color:white;
 		margin:0px -15px 15px -15px;
 		padding: 15px;
@@ -136,8 +136,13 @@ div.gsc-control-cse {
 
 	.search-wrapper {
       	padding-bottom: 15px;
-		background-color: $main-blue;
-		background-image: url('../images/waves-neutral.png');
+		//background-color: $main-blue;
+		background-color:#077D32;
+		//background-image: url('../images/waves-neutral.png');
+		background-image: url('../assets/waves.svg');
+		background-repeat: no-repeat;
+		background-position: 105% 61%;
+		background-color: rgb(224, 224, 224);
 		a {
 			color: white;
 			text-decoration:underline;
@@ -176,6 +181,11 @@ div.gsc-control-cse {
 		padding-right:20px;
 	}
 
+	.more-link {
+		@include btn-link();
+		font-size: 1em;
+		float:right;
+	}
 }
 
 
@@ -375,7 +385,7 @@ li.box-link {
 
 	.items-section {
 		padding: 15px;
-		height:100%;
+		@include clearfix;
 	}
 
 	h2 {
@@ -454,10 +464,11 @@ li.box-link {
 			height:465px;
 		}
 	}
+}
 
-	.read-more-about {
-		font-size: 1.5em;
-	}
+.read-more-about {
+	@include btn-link();
+	font-size: 1.5em;
 }
 
 .gallery {
@@ -475,10 +486,6 @@ li.box-link {
 		height: 200px;
 		margin-bottom: 10px;
 		margin-left: 10px;
-	}
-
-	.more-models {
-		font-size: 1.5em;
 	}
 
 	h2 {

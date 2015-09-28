@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 			},
 			jinja: {
 				files: ['<%= config.app %>/pages/**/*.html','<%= config.app %>/partials/**/*.jinja','context/{,*/}*.json'],
-				tasks: ['jinja2:app','sphinxgenDebug']
+				tasks: ['jinja2:app','sphinxgenDebug','exec:pelicangen']
 			},
 			sphinxgen: {
 				files: ['sphinx/**/*.html','sphinx/**/*.py','sphinx/**/*.conf','../**/*.rst','!../_web/**/*.*'],

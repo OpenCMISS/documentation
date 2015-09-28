@@ -83,3 +83,15 @@ _components.scss - CSS styles and partials shared between pages.
 .media-item {
 	@include media-item();
 }
+
+@mixin btn-link() {
+	border-color: #C1D0FF;
+	background-color:white;
+	color: #3366ff;
+	font-size: 1.3em;
+	&:hover, &:focus,&:active,&:active:hover,&:active:focus {
+		background-color: #6f92fb;
+		border-color: #799aff;
+		color: white;
+	}
+}

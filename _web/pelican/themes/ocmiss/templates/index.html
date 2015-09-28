@@ -30,7 +30,7 @@
 				    </li>
 				  {% endfor %}
 				</ul>
-				<a class="more-link pull-right" href="/news/">more news and updates</a>
+				<a class="btn more-link" href="/news/">more news and updates <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 			</div>
 		</div>
     </div>
@@ -55,7 +55,7 @@
 						<p>Interact with other users and developers.</p>
 					</li>
 				</ul>
-				<a class="more-link pull-right" href="/doc.html">more documentation and support</a>
+				<a class="btn more-link" href="/doc.html">more documentation and support <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 			</div>
 		</div>
     </div>
@@ -93,7 +93,7 @@
 			</div>
 		</div>
     </div>
-    <a class="btn btn-default read-more-about" href="/about.html"> Read more and download <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    <a class="btn read-more-about" href="/about.html"> Read more and download <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 </section>
 <hr>
 <section class="gallery" id="gallery">
@@ -118,7 +118,7 @@
 				<a href="#"><img src="/images/gallery/thumb_evaluate_grid.png"></a>
 				-->
 	</div>
-    <a class="btn btn-default more-models" href="#"> See more <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
+    <a class="btn read-more-about" href="#"> See more <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 </section>
 
 {% endblock %}
@@ -133,7 +133,6 @@
 <script src="/scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
-	//loadNews();
 	var container = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
 	var banner = new FrontPageBanner(container,'data/fpmodel/coro');

@@ -30,10 +30,7 @@
 
 	a {
 		float:right;
-		border-color: #C1D0FF;
-		background-color:white;
-		color: #3366ff;
-		font-size: 1.3em;
+		@include btn-link;
 	}
 }
 
