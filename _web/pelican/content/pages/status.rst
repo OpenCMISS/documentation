@@ -2,7 +2,7 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **29 September 2015**.
+Updated on **1 October 2015**.
 
 This website is the new website for the OpenCMISS software. Content is still being migrated from `cmiss.org <http://www.cmiss.org>`_, `physiomeproject.org <http://opencmiss.physiomeproject.org>`_ and other sites.
 
@@ -13,7 +13,7 @@ Please send any feedback and suggestions to `Noel Zeng, the developer working on
 Ready for Feedback
 ==================
 
-Here are a list of pages that are complete enough. Please take a look and give me feedback on its aesthetics, functionality, structure, and so on.
+Here is a list of pages that are complete enough. Please take a look and give me feedback on its aesthetics, functionality, structure, and so on.
 
 * `Downloads </downloads.html>`_.
 * CMISS Example Model: `Per Pixel Lighting </examples/a/per_pixel_lighting/index.html>`_, `Eye Model </examples/a/eye/index.html>`_ , `Animate Jaw </examples/a/animate_jaw/index.html>`_.
@@ -33,8 +33,10 @@ In Progress
 A list of things currently being worked on.
 
 * Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
-    * **Updated 24 September** - specified server needs to IT.
+	* **Updated 24 September** - specified server needs to IT.
+	* **Updated 1 October** set up next.opencmiss.org and staging.opencmiss.org with automatically built versions of the site.
 	* Introduce documentation writers to the system and ask for feedback.
+	* Copy doxygen documentation output from zinc and opencmiss buildbot.
 * **Updated 24 September** Started working on compatibility
 	* Responsive template
 	* IE
