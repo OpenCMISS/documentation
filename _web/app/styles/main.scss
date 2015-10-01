@@ -104,6 +104,11 @@ div.gsc-control-cse {
 				color: black;
 			}
 		}
+		a.icon-link {
+			&:hover,&:active,&:active:hover {
+								 border-bottom: none;
+							 }
+		}
 
 	}
 
@@ -320,6 +325,23 @@ li.box-link {
 	width: $content-width;
 }
 
+.search-box {
+	padding: 15px 0px;
+	@include clearfix;
+	input {
+		height: 3em;
+	}
+
+	.form-control-feedback {
+		padding-top: 20px;
+	}
+
+	.browse-doc-links {
+		margin-top:5px;
+	}
+
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
 
@@ -332,20 +354,8 @@ li.box-link {
 	}
 
 	.search-box {
-		padding: 15px 0px;
-		@include clearfix;
-		input {
-			height: 3em;
-		}
-
-		.form-control-feedback {
-			padding-top: 20px;
-		}
-
-		.browse-doc-links {
-			margin-top:5px;
-		}
-
+		padding-left: 0px;
+		padding-right: 0px;
 	}
 
 
@@ -548,5 +558,36 @@ footer {
 @media all and (max-width:900px){
 	.main-container {
 		width: auto;
+	}
+}
+
+/* Break point for the menu and search bars to
+   reduce in width and add padding on sides to match
+   document padding.
+*/
+
+@media all and (max-width:930px){
+	.search-box {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+
+	.nav-bar {
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+}
+
+/* Break point for the horizontal menu to turn into
+a hamburger menu.
+ */
+
+@media all and (max-width:750px){
+	.nav-items {
+		display:none;
+	}
+
+	#hamburgerButton {
+		display:inline-block !important;
 	}
 }
