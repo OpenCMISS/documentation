@@ -242,7 +242,7 @@ module.exports = function (grunt) {
 				dest: '<%= config.dist %>'
 			},
 			app: {
-				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','sphinx/_templates/**/*.html','pelican/themes/**/*.html', 'pelican/content/custompages/**/*.html']
+				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','sphinx/_templates/**/*.html','pelican/themes/**/*.html', 'content/custompages/**/*.html']
 			}
 		},
 
@@ -341,7 +341,7 @@ module.exports = function (grunt) {
 			},
 			pelicangen: {
 				cwd: 'pelican',
-				command: '../.pythonenv/bin/pelican --debug content -o ../.tmp/pelicangen -s pelicanconf.py'
+				command: '../.pythonenv/bin/pelican --debug -o ../.tmp/pelicangen -s pelicanconf.py'
 			}
 		},
 

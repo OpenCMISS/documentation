@@ -6,7 +6,7 @@ AUTHOR = u'OpenCMISS Project'
 SITENAME = u'OpenCMISS Website'
 SITEURL = ''
 
-PATH = 'content'
+PATH = '../content'
 
 TIMEZONE = 'Pacific/Auckland'
 
@@ -37,7 +37,12 @@ DIRECT_TEMPLATES = ["index","categories"]
 
 PAGINATED_DIRECT_TEMPLATES = ['News']
 
-TEMPLATE_PAGES = {}
+TEMPLATE_PAGES = {'custompages/index.html':'index.html',
+				  'custompages/about.html':'about.html',
+				  'custompages/developers.html':'developers.html',
+				  'custompages/doc.html':'doc.html',
+				  'custompages/community.html':'community.html',
+				  'custompages/getting-started.html':'getting-started.html'}
 
 READERS = {'html':None }
 
@@ -50,6 +55,8 @@ ARTICLE_URL = '{category}/{slug}.html'
 AUTHOR_SAVE_AS = ''
 
 ARCHIVE_SAVE_AS = ''
+
+INDEX_SAVE_AS = ''
 
 CATEGORY_SAVE_AS = '{slug}/index.html'
 CATEGORY_URL = '{slug}/index.html'
