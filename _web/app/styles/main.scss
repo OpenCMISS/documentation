@@ -97,7 +97,7 @@ div.gsc-control-cse {
 	margin-top:15px;
 	display: inline-block;
 	a {
-		font-size: 1.4em;
+		font-size: 1.3em;
 		border: none;
 		text-decoration:none;
 		&:hover {
@@ -556,13 +556,13 @@ footer {
 /* Break point for the horizontal nav menu to collapse into vertical menu.
  */
 
-@media all and (max-width:$compact-width){
+@media all and (max-width:$compact-width - 1px){
 
 	.nav-items {
 		display:none;
 		position:absolute;
 		right:0px;
-		top: $beta-notice-height + 8px; // Nav menu will be slightly below the menu button.
+		top: $beta-notice-height + 7px; // Nav menu will be slightly below the menu button.
 		z-index: 101;
 		background-color: #e4e4e4;
 		width:50%;
@@ -575,6 +575,10 @@ footer {
 
 	.content-wrapper {
 		position:absolute;
+	}
+
+	.util-items > li {
+		float: left;
 	}
 
 	#main-message {
