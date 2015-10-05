@@ -96,21 +96,16 @@ div.gsc-control-cse {
 .nav-items,.util-items {
 	margin-top:15px;
 	display: inline-block;
-	a {
+	li a {
 		font-size: 1.3em;
 		border: none;
 		text-decoration:none;
-		&:hover {
-			border-bottom: 2px solid black;
-			color: black;
+		&:hover,&:active,&:active:hover,&:focus {
+							 border-bottom: none;
+							 color:white;
+							 background-color:$main-blue;
 		}
 	}
-	a.icon-link {
-		&:hover,&:active,&:active:hover {
-							 border-bottom: none;
-						 }
-	}
-
 }
 
 

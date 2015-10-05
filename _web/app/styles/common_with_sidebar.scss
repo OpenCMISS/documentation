@@ -84,7 +84,7 @@ article.main {
 	.title {
 		padding: 5px 10px;
 		color: white;
-		background: #3D63D6;
+		background: $main-blue;
 	}
 	h1 {
 		font-size: 1.3em;
@@ -130,7 +130,7 @@ article.main {
 
 }
 
-@media all and (max-width:$compact-width){
+@media all and (max-width:$compact-width - 1px){
 	.extras {
 		display:none;
 	}
@@ -157,7 +157,7 @@ article.main {
 }
 
 
-@media all and (min-width:$compact-width+1px) and (max-width:$compressed-width) {
+@media all and (min-width:$compact-width) and (max-width:$compressed-width) {
 
 	.header .nav-bar, footer .footer-box,.header .search-box {
 		width: auto;
