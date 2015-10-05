@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width">
 		<link rel="shortcut icon" href="/favicon.ico">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-				<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		<!-- build:css(.) /styles/vendor.css -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) /styles/main.css -->
@@ -21,73 +21,82 @@
 		<!--[if lt IE 10]>
 			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 			<![endif]-->
+<!--		<nav id="mobile-menu">
+			<div><a href="/downloads.html">Downloads</a></div>
+			<div><a href="/developers.html">Developers</a></div>
+			<div><a href="/doc.html">Documentation</a></div>
+			<div><a href="/community.html">Community</a></div>
+			<div><a href="/about.html">About</a></div>
+		</nav>
+-->		<div class="content-wrapper">
+			<div class="header navbar-fixed-top">
+				<div id="beta-notice">
+					<div class="alert alert-success"><strong>Welcome to the new OpenCMISS site, currently under development.</strong> <a href="/status.html">Here is a list of pages ready for feedback</a>. Email suggestions and comments to <a href="mailto:bioeng-webmaster@auckland.ac.nz">bioeng-webmaster@auckland.ac.nz</a>. </div>
+				</div>
+				<div class="nav-wrapper">
+					<div class="nav-bar navbar">
+						<ul class="util-items nav navbar-nav pull-right">
+							<li id="searchButton" class="hidden"><a href="#" class="nav-search-button icon-link"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Show search bar</span></a></li>
+							<li id="hamburgerButton" class="hidden"><a href="#" class="icon-link" data-toggle="collapse" data-target="#nav-items"><span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span><span class="sr-only">Show menu</span></a></li>
+						</ul>
 
-		<div class="header navbar-fixed-top">
-			<div id="beta-notice">
-				<div class="alert alert-success"><strong>Welcome to the new OpenCMISS site, currently under development.</strong> <a href="/status.html">Here is a list of pages ready for feedback</a>. Email suggestions and comments to <a href="mailto:bioeng-webmaster@auckland.ac.nz">bioeng-webmaster@auckland.ac.nz</a>. </div>
-			</div>
-			<div class="nav-wrapper">
-				<div class="nav-bar">
-					<ul class="util-items list-inline pull-right">
-						<li id="searchButton" class="hidden"><a href="#" class="nav-search-button icon-link"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><span class="sr-only">Show search bar</span></a></li>
-						<li id="hamburgerButton" class="hidden"><a href="#" class="icon-link"><span class="glyphicon glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span><span class="sr-only">Show menu</span></a></li>
-					</ul>
-
-					<ul class="nav-items list-inline pull-right">
-						<li><a href="/downloads.html">Download</a></li>
-						<li><a href="/developers.html">Developers</a></li>
-						<li><a href="/doc.html">Documentation</a></li>
-						<li><a href="/community.html">Community</a></li>
-						<li><a href="/about.html">About</a></li>
-					</ul>
-					<a href="/index.html"><img height="60" src="/images/logo.png" alt="Logo for OpenCMISS."></a>
+						<ul id="nav-items" class="nav navbar-nav nav-items pull-right">
+							<li><a href="/downloads.html">Download</a></li>
+							<li><a href="/developers.html">Developers</a></li>
+							<li><a href="/doc.html">Documentation</a></li>
+							<li><a href="/community.html">Community</a></li>
+							<li><a href="/about.html">About</a></li>
+						</ul>
+						<a href="/index.html"><img height="60" src="/images/logo.png" alt="Logo for OpenCMISS."></a>
+					</div>
+				</div>
+				<div class="search-wrapper">
+					<div class="search-box form-group has-feedback">
+						<form id="search-form">
+							<input type="text" name="q" class="form-control" aria-describedby="searchBoxDescription" placeholder="What would you like to find?">
+						</form>
+						<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
+						<span id="searchBoxDescription" class="sr-only">Search box for documentation and more.</span>
+					</div>
 				</div>
 			</div>
-			<div class="search-wrapper">
-				<div class="search-box form-group has-feedback">
-					<form id="search-form">
-						<input type="text" name="q" class="form-control" aria-describedby="searchBoxDescription" placeholder="What would you like to find?">
-					</form>
-					<span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
-					<span id="searchBoxDescription" class="sr-only">Search box for documentation and more.</span>
+
+
+
+			{% block main_content %}
+			{% endblock %}
+
+
+			<footer>
+				<div class="row footer-box">
+					<div class="col-sm-6">
+						<p class="copyright">&copy; 2015 <a href="/about.html#contributors">OpenCMISS contributors</a>. </p>
+						<ul class="supporters list-inline">
+							<li><img src="/images/supporters/abi.png" alt="Auckland Bioengineering Institute"></li>
+							<li><img src="/images/supporters/kings.jpg" alt="King's College"></li>
+							<li><img src="/images/supporters/oxford.png" alt="University of Oxford"></li>
+						</ul>
+					</div>
+					<div class="col-sm-3 nav-section">
+						<h3>Website Tools</h3>
+						<ul class="list-unstyled">
+							<li><a href="#">Accessibility</a></li>
+							<li><a href="#">Site Map</a></li>
+						</ul>
+					</div>
+					<div class="col-sm-3 nav-section">
+						<h3>OpenCMISS</h3>
+						<ul class="list-unstyled">
+							<li><a href="/downloads.html">Download</a></li>
+							<li><a href="/developers.html">Developers</a></li>
+							<li><a href="/doc.html">Documentation</a></li>
+							<li><a href="/community.html">Community</a></li>
+							<li><a href="/about.html">About</a></li>
+						</ul>
+					</div>
 				</div>
-			</div>
+			</footer>
 		</div>
-
-		{% block main_content %}
-		{% endblock %}
-
-
-		<footer>
-			<div class="row footer-box">
-				<div class="col-sm-6">
-					<p class="copyright">&copy; 2015 <a href="/about.html#contributors">OpenCMISS contributors</a>. </p>
-					<ul class="supporters list-inline">
-						<li><img src="/images/supporters/abi.png" alt="Auckland Bioengineering Institute"></li>
-						<li><img src="/images/supporters/kings.jpg" alt="King's College"></li>
-						<li><img src="/images/supporters/oxford.png" alt="University of Oxford"></li>
-					</ul>
-				</div>
-				<div class="col-sm-3 nav-section">
-					<h3>Website Tools</h3>
-					<ul class="list-unstyled">
-						<li><a href="#">Accessibility</a></li>
-						<li><a href="#">Site Map</a></li>
-					</ul>
-				</div>
-				<div class="col-sm-3 nav-section">
-					<h3>OpenCMISS</h3>
-					<ul class="list-unstyled">
-						<li><a href="/downloads.html">Download</a></li>
-						<li><a href="/developers.html">Developers</a></li>
-						<li><a href="/doc.html">Documentation</a></li>
-						<li><a href="/community.html">Community</a></li>
-						<li><a href="/about.html">About</a></li>
-					</ul>
-				</div>
-			</div>
-		</footer>
-
 		<!-- build:js({.,app,.tmp}) /scripts/shared.js -->
 		<script src="/bower_components/jquery/dist/jquery.js"></script>
 		<script src="/bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>

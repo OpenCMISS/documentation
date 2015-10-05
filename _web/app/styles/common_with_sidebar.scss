@@ -1,6 +1,6 @@
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
 @import "bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
-
+@import "variables";
 // Default rules for content
 .inner {
 	img {
@@ -130,7 +130,7 @@ article.main {
 
 }
 
-@media all and (max-width:770px){
+@media all and (max-width:$compact-width){
 	.extras {
 		display:none;
 	}
@@ -157,7 +157,7 @@ article.main {
 }
 
 
-@media all and (min-width:770px) and (max-width:1349px) {
+@media all and (min-width:$compact-width+1px) and (max-width:$compressed-width) {
 
 	.header .nav-bar, footer .footer-box,.header .search-box {
 		width: auto;

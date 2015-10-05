@@ -12,5 +12,9 @@ $font-size-base: 14px;
 
 // Widths
 $content-width: 900px;
-
-$header-height: 161px + 49px; // Adding 49px for beta notice, remove when out of beta!
+// Responsive width breakpoints
+$compact-width: 770px;
+$compressed-width: 1349px;
+$compressed-header-width: 930px;
+$beta-notice-height: 49px;
+$header-height: 161px + $beta-notice-height; // Adding 49px for beta notice, remove when out of beta!

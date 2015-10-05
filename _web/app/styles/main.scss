@@ -1,6 +1,7 @@
 @import "variables";
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "components";
+@import "hamburger.scss";
 body {
     background-color:#f6f6f6;
 	font-family: 'Lato', sans-serif;
@@ -92,28 +93,22 @@ div.gsc-control-cse {
 
 }
 
-.nav-bar {
-	ul {
-		margin-top:15px;
-
-		a {
-			font-size: 1.4em;
-			text-decoration:none;
-			&:hover {
-				border-bottom: 2px solid black;
-				color: black;
-			}
+.nav-items,.util-items {
+	margin-top:15px;
+	display: inline-block;
+	a {
+		font-size: 1.4em;
+		border: none;
+		text-decoration:none;
+		&:hover {
+			border-bottom: 2px solid black;
+			color: black;
 		}
-		a.icon-link {
-			&:hover,&:active,&:active:hover {
-								 border-bottom: none;
-							 }
-		}
-
 	}
-
-	li {
-		padding-left: 20px;
+	a.icon-link {
+		&:hover,&:active,&:active:hover {
+							 border-bottom: none;
+						 }
 	}
 
 }
@@ -204,6 +199,7 @@ div.main-message {
 	//border-top: 1px solid $border-grey;
 	border-bottom: 1px solid $border-grey;
 	border-right: none;
+	@include clearfix;
 
 	canvas {
 		cursor: hand;
@@ -250,8 +246,8 @@ div.main-message {
 	}
 
 	.actions {
-	    margin-top:15px;
-		margin-left: 110px;
+		margin-top:15px;
+		margin-left:110px;
 	}
 
 	.btn {
@@ -342,28 +338,6 @@ li.box-link {
 
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-
-	/* Remove the padding we set earlier */
-	.header,
-	.marketing,
-	.footer {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.search-box {
-		padding-left: 0px;
-		padding-right: 0px;
-	}
-
-
-	/* Remove the bottom border on the jumbotron for visual effect */
-	.jumbotron {
-		border-bottom: 0;
-	}
-}
 
 .links-section {
 	padding-left:20px;
@@ -566,7 +540,7 @@ footer {
    document padding.
 */
 
-@media all and (max-width:930px){
+@media all and (max-width:$compressed-header-width){
 	.search-box {
 		padding-left: 15px;
 		padding-right: 15px;
@@ -576,18 +550,54 @@ footer {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
+
 }
 
-/* Break point for the horizontal menu to turn into
-a hamburger menu.
+/* Break point for the horizontal nav menu to collapse into vertical menu.
  */
 
-@media all and (max-width:750px){
+@media all and (max-width:$compact-width){
+
 	.nav-items {
 		display:none;
+		position:absolute;
+		right:0px;
+		top: $beta-notice-height + 8px; // Nav menu will be slightly below the menu button.
+		z-index: 101;
+		background-color: #e4e4e4;
+		width:50%;
+		text-align: center;
+		margin-top:0px;
+		&.collapsing {
+			display:block;
+		}
+	}
+
+	.content-wrapper {
+		position:absolute;
+	}
+
+	#main-message {
+		height: auto;
+		background:none;
+
+		canvas {
+			display:none;
+		}
+		.message {
+			position:static;
+			width: 100%;
+			background-color: rgb(119,119,119);
+		}
+
+		.actions {
+			margin-left: 0px;
+			text-align: center;
+		}
 	}
 
 	#hamburgerButton {
 		display:inline-block !important;
 	}
+
 }
