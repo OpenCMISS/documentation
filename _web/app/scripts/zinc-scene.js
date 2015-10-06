@@ -35,10 +35,10 @@
 
 
 	function isWebGLCapable(){
-		if (Modernizr){
+		if (typeof Modernizr !== "undefined"){
 			return Modernizr.webgl;
 		} else {
-			console.log("Modernizr not included, could not detect whether webgl is enabled in browser.");
+			console.warn("Modernizr not included, could not detect whether webgl is enabled in browser.");
 			return true;
 		}
 	}

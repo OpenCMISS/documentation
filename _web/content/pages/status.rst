@@ -41,7 +41,7 @@ A list of things currently being worked on.
 	* Responsive template **Updated 6 October** Done.
 	* IE
 	* ipad/smaller screen sizes/lower spec devices - make sure the models load. **Updated 6 October** Mostly done, TODO stop front page model from loading if screen size starts out smaller than the compact dimension.
-  * **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
+	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
 
 
 Planned

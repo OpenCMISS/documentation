@@ -133,17 +133,19 @@
 <!-- build:js(.) scripts/three.min.js -->
 <script src="/bower_components/threejs/build/three.min.js"></script>
 <!-- endbuild -->
+<!-- build:js(.) scripts/modernizr.min.js -->
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<!-- endbuild -->
 <!-- build:js({app,.tmp}) scripts/index.js -->
 <script src="/scripts/zinc_threejs_control.js"></script>
 <script src="/scripts/zinc_3js_renderer.js"></script>
-<script src="/bower_components/modernizr/modernizr.js"></script>
 <script src="/scripts/zinc-scene.js"></script>
 <script src="/scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
 	var bannerContainer = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
-	var heartModel = new ZincScene(bannerContainer,'data/fpmodel/coro','images/app-showcase/heart.png');
+	var heartModel = new ZincScene(bannerContainer,'data/fpmodel/coro','assets/app-showcase/heart.png');
 	heartModel.startLoading();
 	var banner = new FrontPageBanner(bannerContainer,'data/fpmodel/coro');
 	banner.renderer.setClearColor(new THREE.Color("rgb(144,144,144)"),1);
