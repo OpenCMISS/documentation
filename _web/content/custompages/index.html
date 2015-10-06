@@ -2,6 +2,7 @@
 {% block styles %}
 <!-- build:css(.tmp) /styles/index.css -->
 <link rel="stylesheet" href="/styles/index.css">
+<link rel="stylesheet" href="/styles/zinc-scene.css">
 <!-- endbuild -->
 {% endblock %}
 
@@ -19,7 +20,7 @@
 			<a class="btn btn-default btn-lg btn-get-started" href="/getting-started.html"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Get Started</a>
 		</div>
 	</div>
-	<small class="modelDesc">Coronary mesh model, made by Alan Wu with OpenCMISS-Zinc</small>
+	<small class="modelDesc">Deformed coronary mesh model, made by with cmgui</small>
 </div>
 <div class="row secondary">
     <div class="col-sm-6 news-wrapper">
@@ -135,13 +136,16 @@
 <!-- build:js({app,.tmp}) scripts/index.js -->
 <script src="/scripts/zinc_threejs_control.js"></script>
 <script src="/scripts/zinc_3js_renderer.js"></script>
+<script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/scripts/zinc-scene.js"></script>
 <script src="/scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
-	var container = document.getElementById('main-message');
+	var bannerContainer = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
-	var banner = new FrontPageBanner(container,'data/fpmodel/coro');
+	var heartModel = new ZincScene(bannerContainer,'data/fpmodel/coro','images/app-showcase/heart.png');
+	heartModel.startLoading();
+	var banner = new FrontPageBanner(bannerContainer,'data/fpmodel/coro');
 	banner.renderer.setClearColor(new THREE.Color("rgb(144,144,144)"),1);
-	//banner.renderer.setClearColor(0x100000,1);
 </script>
 {% endblock %}

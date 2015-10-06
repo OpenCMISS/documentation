@@ -1,20 +1,5 @@
 "use strict";
 (function(){
-	function _loadModel(modelPrefix,container){
-		/*
-		  function processGetParameters(name)
-		  {
-		  if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-		  return decodeURIComponent(name[1]);
-		  }
-		  jsonFilePrefix = processGetParameters("inputprefix")
-		*/
-		window.zincRenderer = new Zinc.Renderer(container, window);
-		zincRenderer.initialiseVisualisation();
-		zincRenderer.loadFromViewURL(modelPrefix);
-		zincRenderer.animate();
-	}
-
 	window.inpageScrollLink = function(linkSel,linkToSel){
 		$(linkSel).click(function(e) {
 		e.preventDefault();
@@ -27,7 +12,6 @@
 	window.FrontPageBanner = function(container,modelPrefix){
 		this.messageElement = container.getElementsByClassName('message')[0];
 		this.modelDescElement = document.getElementsByClassName('modelDesc')[0];
-		_loadModel(modelPrefix,container);
 		this.renderer = renderer;
 		this.heartModelElement = renderer.domElement;
 

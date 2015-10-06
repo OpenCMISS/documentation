@@ -69,7 +69,7 @@ module.exports = function (grunt) {
 				tasks: ['sphinxgenDebug']
 			},
 			pelican: {
-				files: ['pelican/**/*.rst','pelican/**/*.html','pelican/**/*.py'],
+				files: ['pelican/**/*.rst','pelican/**/*.html','pelican/**/*.py','content/**/*.*'],
 				tasks: ['exec:pelicangen']
 			},
 			styles: {

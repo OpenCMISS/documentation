@@ -256,7 +256,6 @@ Zinc.Renderer = function (containerIn, window) {
 		        	var filename = filename_prefix + (i + 1) + ".json"
 		        	urls.push(filename)
 		        }
-				_this.loadModelsURL(urls, viewData.colour, viewData.opacity, viewData.timeEnabled, viewData.morphColour);
 		        var loaders = _this.loadModelsURL(urls, viewData.colour, viewData.opacity, viewData.timeEnabled, viewData.morphColour);
 				loaders.map(function(loader){
 					loader.onLoadComplete = notifyProgress;

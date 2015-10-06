@@ -1,31 +1,50 @@
-.scene-model-placeholder {
-	z-index: 2;
-}
-
-.scene-model-loading{
-	position:absolute;
-	width: 100%;
+.zinc-scene {
 	height: 100%;
-	text-align:center;
-	top: 0px;
-	z-index: 3;
-
-	background-color: rgba(0,0,0,0.7);
-
-
-	p {
-		position: absolute;
+	position: relative;
+	.loading {
+		position:absolute;
 		width: 100%;
-		color:white;
-		top: 50%;
+		height: 100%;
+		text-align:center;
+		top: 0px;
+		z-index: 3;
+
+		background-color: rgba(0,0,0,0.7);
+
+
+		p {
+			position: absolute;
+			width: 100%;
+			color:white;
+			top: 50%;
+		}
+
 	}
 
-}
+	.placeholder {
+		z-index: 2;
+	}
 
-.main-image canvas {
-	position:absolute;
-	top: 0px;
-	left: 0px;
-	z-index: 1;
-	display:none;
+	.reset {
+		display:none;
+		position: absolute;
+		bottom: 5px;
+		right: 20px;
+		z-index: 3;
+		color: black;
+		font-size: 12px;
+		cursor:pointer;
+
+		.icon {
+			margin-right:2px;
+		}
+	}
+
+	canvas {
+		position:absolute;
+		top: 0px;
+		left: 0px;
+		z-index: 1;
+		display:none;
+	}
 }

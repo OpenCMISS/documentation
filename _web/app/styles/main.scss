@@ -182,19 +182,24 @@ div.main-message {
 	user-select:none;
 	position:relative;
 	height: 350px;
-	//background-color: #F7DA64;
-	//margin: 0 -15px;
 	background-color: #909090;
-	background-image: url("../images/app-showcase/heart.png");
-	background-repeat: no-repeat;
-	background-position: right center;
 	border-radius: 0px;
 	color: white;
 	margin: 15px 0px;
-	//border-top: 1px solid $border-grey;
 	border-bottom: 1px solid $border-grey;
 	border-right: none;
 	@include clearfix;
+
+	.zinc-scene {
+		.loading p {
+		text-align: right;
+		right: 100px;
+		}
+
+		.placeholder {
+			float:right;
+		}
+	}
 
 	canvas {
 		cursor: hand;
@@ -212,6 +217,16 @@ div.main-message {
 		display:none;
 	}
 
+	.message {
+		position:absolute;
+		top: 80px;
+		padding:15px;
+		width: 550px;
+		background-color: rgba(119, 119, 119, 0.7);
+		z-index:4;
+	}
+
+
 	.loading-icon {
 		position: absolute;
 		font-size: 60px;
@@ -223,13 +238,6 @@ div.main-message {
 		margin-right: 10px;
 	}
 
-	.message {
-		position:absolute;
-		top: 80px;
-		padding:15px;
-		width: 550px;
-		background-color: rgba(119, 119, 119, 0.7);
-	}
 
 	.lead {
 		font-size:16px;
@@ -580,9 +588,10 @@ footer {
 		height: auto;
 		background:none;
 
-		canvas {
+		.zinc-scene {
 			display:none;
 		}
+
 		.message {
 			position:static;
 			width: 100%;
