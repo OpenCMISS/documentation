@@ -2,7 +2,7 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **1 October 2015**.
+Updated on **6 October 2015**.
 
 This website is the new website for the OpenCMISS software. Content is still being migrated from `cmiss.org <http://www.cmiss.org>`_, `physiomeproject.org <http://opencmiss.physiomeproject.org>`_ and other sites.
 
@@ -38,10 +38,11 @@ A list of things currently being worked on.
 	* Introduce documentation writers to the system and ask for feedback.
 	* Copy doxygen documentation output from zinc and opencmiss buildbot.
 * **Updated 24 September** Started working on compatibility
-	* Responsive template
+	* Responsive template **Updated 6 October** Done.
 	* IE
-	* ipad/smaller screen sizes/lower spec devices - make sure the models load
-	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
+	* ipad/smaller screen sizes/lower spec devices - make sure the models load. **Updated 6 October** Mostly done, TODO stop front page model from loading if screen size starts out smaller than the compact dimension.
+  * **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
+
 
 Planned
 =======
