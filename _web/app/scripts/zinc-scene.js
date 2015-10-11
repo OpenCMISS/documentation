@@ -52,12 +52,11 @@
 		this._loadingClassName = 'loading';
 		this._placeholderClassName = 'placeholder';
 		this.modelNs = modelNs;
-		this.isModelCapable = isWebGLCapable();
 		var placeholderImg = document.createElement('img');
 		placeholderImg.setAttribute('src',placeholderUrl);
 		placeholderImg.setAttribute('class',this._placeholderClassName);
 		this.root.appendChild(placeholderImg);
-		if (!this.isModelCapable) return this;
+		if (!isWebGLCapable()) return this;
 		this.loadingIndicator = this._buildLoadingIndicator();
 		this.root.appendChild(this.loadingIndicator);
 		this.root.appendChild(this._makeResetButton());
@@ -66,13 +65,17 @@
 	};
 
 	ZincScene.prototype.startLoading = function(){
-		this.renderer.loadFromViewURL(this.modelNs,this._onModelProgress.bind(this));
-		this.renderer.animate();
+		if (typeof this.renderer !== "undefined"){
+			this.renderer.loadFromViewURL(this.modelNs,this._onModelProgress.bind(this));
+			this.renderer.animate();
+		}
 	};
 
 	ZincScene.prototype.setDefaultColour = function(colour){
-		this.renderer.defaultColour = colour;
-		return this;
+		if (typeof this.renderer !== "undefined"){
+			this.renderer.defaultColour = colour;
+			return this;
+		}
 	};
 
 	ZincScene.prototype._buildLoadingIndicator = function(totalFiles){

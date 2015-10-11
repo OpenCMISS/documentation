@@ -9,7 +9,7 @@
 		});
 	}
 
-	window.FrontPageBanner = function(container,modelPrefix){
+	window.FrontPageBanner = function(container){
 		this.messageElement = container.getElementsByClassName('message')[0];
 		this.modelDescElement = document.getElementsByClassName('modelDesc')[0];
 		this.renderer = renderer;
