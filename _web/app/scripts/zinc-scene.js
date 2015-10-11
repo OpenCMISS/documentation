@@ -43,6 +43,37 @@
 		}
 	}
 
+	/*
+	  _setupGrabCursors - sets up listeners for setting appropriate classes for
+	  showing grab/hand cursors depending on mouse events.
+	 */
+	function _setupGrabCursors = function(root){
+		var self = this;
+		var overlayElements = root.getElementsByClassName('overlay');
+		var grabbableElement = root.getElementsByClassName('grabbable').item(0);
+		var listen = grabbableElement.addEventListener,
+			_startGrabbing = function(){
+				if (overlayElements.length > 0 && overlayElements.item(0).classList.contains('active')) return;
+				grabbableElement.classList.remove('grabbable');
+				grabbableElement.classList.add('grabbing');
+				for (var i=0;i<overlayElements.length;i++){
+					var element = overlayElements.item(i);
+					element.classList.add('grabbing');
+				}
+			},
+			_endGrabbing = function(){
+				for (var i=0;i<overlayElements.length;i++){
+					var element = overlayElements.item(i);
+					element.classList.remove('grabbing');
+				}
+				grabbableElement.classList.remove('grabbing');
+				grabbableElement.classList.add('grabbable');
+			};
+		listen('mousedown',_startGrabbing);
+		listen('mouseup',_endGrabbing);
+	}
+
+
 	window.ZincScene = function(container,modelNs,placeholderUrl){
 		var sceneEl = document.createElement('div');
 		sceneEl.setAttribute('class',"zinc-scene");
@@ -63,6 +94,12 @@
 		this.renderer = new Zinc.Renderer(this.root, window);
 		this.renderer.initialiseVisualisation();
 	};
+
+	ZincScene.prototype.setBackgroundColor = function(color,alpha){
+		if (typeof this.renderer !== "undefined"){
+			this.renderer._threejsRenderer.setClearColor(color,alpha);
+		}
+	}
 
 	ZincScene.prototype.startLoading = function(){
 		if (typeof this.renderer !== "undefined"){
@@ -102,12 +139,18 @@
 		return resetButton;
 	}
 
+	ZincScene.prototype._setupGrabUI = function(){
+		this.renderer._threejsRenderer.domElement.classList.add('grabbable');
+		_setupGrabCursors();
+	}
+
 
 	ZincScene.prototype._showScene = function(){
 		$(this.root).find('.'+this._placeholderClassName).fadeOut();
 		$(this.root).find('.'+this._loadingClassName).fadeOut();
 		$(this.root).find('canvas').fadeIn();
 		$(this.root).find('.reset').fadeIn();
+		this._setupGrabUI();
 	};
 
 	ZincScene.prototype._onModelProgress = function(progress,totalFiles){

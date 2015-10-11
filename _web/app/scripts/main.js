@@ -74,7 +74,7 @@
 
 
 		this._setupEventPassthrough();
-		this._setupGrabCursors();
+		//this._setupGrabCursors();
 
 	};
 

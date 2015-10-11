@@ -11,7 +11,7 @@
 	<div class="loading-icon">
 		<!--<span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>-->
 	</div>
-	<div class="container message">
+	<div class="container message overlay">
 		<!--<h1 class="default-style">OpenCMISS: Computation and Visualisation.</h1>-->
 		<img class="main-logo" src="/images/main-page-logo.png" alt="Logo of OpenCMISS projects.">
 		<p class="lead"> <span class="cmiss-name">OpenCMISS</span> libraries and applications provide the foundation for developing computational modelling and visualisation software, particularly targeting bioengineering. <a class="learn-more" href="#features">Read more...</a></p>
@@ -20,7 +20,7 @@
 			<a class="btn btn-default btn-lg btn-get-started" href="/getting-started.html"><span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span> Get Started</a>
 		</div>
 	</div>
-	<small class="modelDesc">Deformed coronary mesh model, made by with cmgui</small>
+	<small class="modelDesc overlay">Deformed coronary mesh model, made by with cmgui</small>
 </div>
 <div class="row secondary">
     <div class="col-sm-6 news-wrapper">
@@ -147,7 +147,7 @@
 	inpageScrollLink('#main-message .learn-more','.features');
 	var heartModel = new ZincScene(bannerContainer,'data/fpmodel/coro','assets/app-showcase/heart.png');
 	heartModel.startLoading();
+	heartModel.setBackgroundColor(new THREE.Color("rgb(144,144,144)"),1);
 	var banner = new FrontPageBanner(bannerContainer);
-	banner.renderer.setClearColor(new THREE.Color("rgb(144,144,144)"),1);
 </script>
 {% endblock %}

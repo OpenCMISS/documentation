@@ -133,7 +133,7 @@ Zinc.Renderer = function (containerIn, window) {
 
 	this.camera = undefined,
 	scene = undefined;
-	renderer = undefined;
+	this._threejsRenderer = renderer = undefined;
 
 	tumble_rate = 1.5;
 	//myGeometry contains a tuple of the threejs mesh, timeEnabled, morphColour flag, unique id and morph
@@ -324,7 +324,7 @@ Zinc.Renderer = function (containerIn, window) {
 		_this.directionalLight.position.set( eyePosition[0], eyePosition[1], eyePosition[2] );
 		scene.add( _this.directionalLight );
 
-		renderer = new THREE.WebGLRenderer();
+		renderer = this._threejsRenderer = new THREE.WebGLRenderer();
 		renderer.setSize( container.clientWidth, container.clientHeight );
 		container.appendChild( renderer.domElement );
 		renderer.setClearColor( 0xffffff, 1);
