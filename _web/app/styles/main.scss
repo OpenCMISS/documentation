@@ -12,13 +12,13 @@ body {
 }
 
 .grabbable {
-	cursor: url(../images/cursors/hand.png), move;
+	cursor: url(../images/cursors/openhand.cur), move;
 	cursor: -moz-grab;
 	cursor: -webkit-grab;
 }
 
 .grabbing {
-	cursor: url(../images/cursors/drag.png), move;
+	cursor: url(../images/cursors/closedhand.cur), move;
 	cursor: -moz-grabbing;
 	cursor: -webkit-grabbing;
 }
