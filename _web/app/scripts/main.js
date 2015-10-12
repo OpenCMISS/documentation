@@ -46,10 +46,10 @@
 				overlayElements.item(i).classList.remove('active');
 			}
 		};
-		grabbbableElement.addEventListener('mousedown',_enablePassthrough);
-		grabbbableElement.addEventListener('touchstart',_enablePassthrough);
-		grabbbableElement.addEventListener('mouseup',_disablePassthrough);
-		grabbbableElement.addEventListener('touchend',_disablePassthrough);
+		grabbableElement.addEventListener('mousedown',_enablePassthrough);
+		grabbableElement.addEventListener('touchstart',_enablePassthrough);
+		grabbableElement.addEventListener('mouseup',_disablePassthrough);
+		grabbableElement.addEventListener('touchend',_disablePassthrough);
 
 		document.body.addEventListener('mouseup',_disablePassthrough);
 	}

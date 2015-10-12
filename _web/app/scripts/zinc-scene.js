@@ -134,7 +134,7 @@
 	ZincScene.prototype._setupGrabCursors = function(root){
 		this.getSceneElement().classList.add('grabbable');
 		var self = this;
-		var grabbableElement = root.getElementsByClassName('grabbable').item(0);
+		var grabbableElement = root.getElementsByClassName('grabbable').item(0),
 			_startGrabbing = function(){
 				grabbableElement.classList.remove('grabbable');
 				grabbableElement.classList.add('grabbing');
