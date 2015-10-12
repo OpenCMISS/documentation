@@ -13,7 +13,7 @@
 	FrontPageBanner.prototype._setupEventPassthrough = function (overlayElements,grabbableElement){
 		var firstOverlay = overlayElements.item(0);
 		for (var i = 0; i<overlayElements.length;i++){
-			var listen = overlayElements.item(i).addEventListener;
+			var element = overlayElements.item(i);
 			var _markActive = function(event){
 				if (event.target === grabbableElement) return;
 				for (var i = 0; i<overlayElements.length;i++){
@@ -27,10 +27,10 @@
 				}
 			};
 
-			listen('mousedown',_markActive);
-			listen('touchstart',_markActive);
-			listen('mouseup',_unmarkActive);
-			listen('touchend',_unmarkActive);
+			element.addEventListener('mousedown',_markActive);
+			element.addEventListener('touchstart',_markActive);
+			element.addEventListener('mouseup',_unmarkActive);
+			element.addEventListener('touchend',_unmarkActive);
 
 		}
 		var _enablePassthrough = function(){
@@ -46,11 +46,10 @@
 				overlayElements.item(i).classList.remove('active');
 			}
 		};
-		var listenGrabEvent = grabbableElement.addEventListener;
-		listenGrabEvent('mousedown',_enablePassthrough);
-		listenGrabEvent('touchstart',_enablePassthrough);
-		listenGrabEvent('mouseup',_disablePassthrough);
-		listenGrabEvent('touchend',_disablePassthrough);
+		grabbbableElement.addEventListener('mousedown',_enablePassthrough);
+		grabbbableElement.addEventListener('touchstart',_enablePassthrough);
+		grabbbableElement.addEventListener('mouseup',_disablePassthrough);
+		grabbbableElement.addEventListener('touchend',_disablePassthrough);
 
 		document.body.addEventListener('mouseup',_disablePassthrough);
 	}

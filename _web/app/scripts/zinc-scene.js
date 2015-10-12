@@ -135,7 +135,6 @@
 		this.getSceneElement().classList.add('grabbable');
 		var self = this;
 		var grabbableElement = root.getElementsByClassName('grabbable').item(0);
-		var listen = grabbableElement.addEventListener,
 			_startGrabbing = function(){
 				grabbableElement.classList.remove('grabbable');
 				grabbableElement.classList.add('grabbing');
@@ -144,8 +143,8 @@
 				grabbableElement.classList.remove('grabbing');
 				grabbableElement.classList.add('grabbable');
 			};
-		listen('mousedown',_startGrabbing);
-		listen('mouseup',_endGrabbing);
+		grabbableElement.addEventListener('mousedown',_startGrabbing);
+		grabbableElement.addEventListener('mouseup',_endGrabbing);
 	}
 
 
