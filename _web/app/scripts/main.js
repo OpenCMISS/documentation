@@ -10,72 +10,57 @@
 	}
 
 	window.FrontPageBanner = function(container){
-		this.messageElement = container.getElementsByClassName('message')[0];
-		this.modelDescElement = document.getElementsByClassName('modelDesc')[0];
-		this.renderer = renderer;
-		this.heartModelElement = renderer.domElement;
-
-		this._setupGrabCursors = function(){
-			var self = this;
-			this.heartModelElement.classList.add('grabbable');
-			var listen = this.heartModelElement.addEventListener,
-				_startGrabbing = function(){
-					if (self.messageElement.classList.contains('active')) return;
-					self.messageElement.classList.add('grabbing');
-					self.heartModelElement.classList.remove('grabbable');
-					self.heartModelElement.classList.add('grabbing');
-					self.modelDescElement.classList.add('grabbing');
-				},
-				_endGrabbing = function(){
-					self.messageElement.classList.remove('grabbing');
-					self.modelDescElement.classList.remove('grabbing');
-					self.heartModelElement.classList.remove('grabbing');
-					self.heartModelElement.classList.add('grabbable');
-				};
-			listen('mousedown',_startGrabbing);
-			listen('mouseup',_endGrabbing);
+		this.heartModel = new ZincScene(container,'data/fpmodel/coro','assets/app-showcase/heart.png');
+		if (this.heartModel.willLoadModel){
+			var sceneElement = this.heartModel.getSceneElement();
+			this.heartModel.startLoading();
+			this.heartModel.setBackgroundColor(new THREE.Color("rgb(144,144,144)"),1);
+			this._setupEventPassthrough(container.getElementsByClassName('overlay'),sceneElement);
 		}
-
-		this._setupEventPassthrough = function(){
-			var self = this;
-			var messageListen = this.messageElement.addEventListener;
-			var _markActive = function(event){
-				if (event.target === self.heartModelElement) return;
-				self.messageElement.classList.add('active');
-			};
-			var _unmarkActive = function(event){
-				if (event.target === self.heartModelElement) return;
-				self.messageElement.classList.remove('active');
-			};
-			messageListen('mousedown',_markActive);
-			messageListen('touchstart',_markActive);
-			messageListen('mouseup',_unmarkActive);
-			messageListen('touchend',_unmarkActive);
-
-			var _enablePassthrough = function(){
-				if (self.messageElement.classList.contains('active')) return;
-				self.messageElement.classList.add('passthrough');
-				self.modelDescElement.classList.add('passthrough');
-			};
-
-			var _disablePassthrough = function(){
-				self.messageElement.classList.remove('passthrough');
-				self.modelDescElement.classList.remove('passthrough');
-				self.messageElement.classList.remove('active')
-			};
-			var listen = this.heartModelElement.addEventListener;
-			listen('mousedown',_enablePassthrough);
-			listen('touchstart',_enablePassthrough);
-			listen('mouseup',_disablePassthrough);
-			listen('touchend',_disablePassthrough);
-
-			document.body.addEventListener('mouseup',_disablePassthrough);
-		}
-
-
-		this._setupEventPassthrough();
-		//this._setupGrabCursors();
-
 	};
 
+	FrontPageBanner.prototype._setupEventPassthrough = function (overlayElements,grabbableElement){
+		var firstOverlay = overlayElements.item(0);
+		for (var i = 0; i<overlayElements.length;i++){
+			var listen = overlayElements.item(i).addEventListener;
+			var _markActive = function(event){
+				if (event.target === grabbableElement) return;
+				for (var i = 0; i<overlayElements.length;i++){
+					overlayElements.item(i).classList.add('active');
+				}
+			};
+			var _unmarkActive = function(event){
+				if (event.target === grabbableElement) return;
+				for (var i = 0; i<overlayElements.length;i++){
+					overlayElements.item(i).classList.remove('active');
+				}
+			};
+
+			listen('mousedown',_markActive);
+			listen('touchstart',_markActive);
+			listen('mouseup',_unmarkActive);
+			listen('touchend',_unmarkActive);
+
+		}
+		var _enablePassthrough = function(){
+			if (firstOverlay.classList.contains('active')) return;
+			for (var i = 0; i<overlayElements.length;i++){
+				overlayElements.item(i).classList.add('passthrough');
+			}
+		};
+
+		var _disablePassthrough = function(){
+			for (var i = 0; i<overlayElements.length;i++){
+				overlayElements.item(i).classList.remove('passthrough');
+				overlayElements.item(i).classList.remove('active');
+			}
+		};
+		var listenGrabEvent = grabbableElement.addEventListener;
+		listenGrabEvent('mousedown',_enablePassthrough);
+		listenGrabEvent('touchstart',_enablePassthrough);
+		listenGrabEvent('mouseup',_disablePassthrough);
+		listenGrabEvent('touchend',_disablePassthrough);
+
+		document.body.addEventListener('mouseup',_disablePassthrough);
+	}
 }());

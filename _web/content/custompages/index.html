@@ -136,6 +136,7 @@
 <!-- build:js(.) scripts/modernizr.min.js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
 <!-- endbuild -->
+
 <!-- build:js({app,.tmp}) scripts/index.js -->
 <script src="/scripts/zinc_threejs_control.js"></script>
 <script src="/scripts/zinc_3js_renderer.js"></script>
@@ -145,9 +146,6 @@
 <script type="text/javascript">
 	var bannerContainer = document.getElementById('main-message');
 	inpageScrollLink('#main-message .learn-more','.features');
-	var heartModel = new ZincScene(bannerContainer,'data/fpmodel/coro','assets/app-showcase/heart.png');
-	heartModel.startLoading();
-	heartModel.setBackgroundColor(new THREE.Color("rgb(144,144,144)"),1);
 	var banner = new FrontPageBanner(bannerContainer);
 </script>
 {% endblock %}

@@ -43,42 +43,12 @@
 		}
 	}
 
-	/*
-	  _setupGrabCursors - sets up listeners for setting appropriate classes for
-	  showing grab/hand cursors depending on mouse events.
-	 */
-	function _setupGrabCursors = function(root){
-		var self = this;
-		var overlayElements = root.getElementsByClassName('overlay');
-		var grabbableElement = root.getElementsByClassName('grabbable').item(0);
-		var listen = grabbableElement.addEventListener,
-			_startGrabbing = function(){
-				if (overlayElements.length > 0 && overlayElements.item(0).classList.contains('active')) return;
-				grabbableElement.classList.remove('grabbable');
-				grabbableElement.classList.add('grabbing');
-				for (var i=0;i<overlayElements.length;i++){
-					var element = overlayElements.item(i);
-					element.classList.add('grabbing');
-				}
-			},
-			_endGrabbing = function(){
-				for (var i=0;i<overlayElements.length;i++){
-					var element = overlayElements.item(i);
-					element.classList.remove('grabbing');
-				}
-				grabbableElement.classList.remove('grabbing');
-				grabbableElement.classList.add('grabbable');
-			};
-		listen('mousedown',_startGrabbing);
-		listen('mouseup',_endGrabbing);
-	}
-
-
 	window.ZincScene = function(container,modelNs,placeholderUrl){
 		var sceneEl = document.createElement('div');
 		sceneEl.setAttribute('class',"zinc-scene");
 		container.appendChild(sceneEl);
 		this.root = sceneEl;
+		this.willLoadModel = isWebGLCapable();
 		this.placeholderUrl = placeholderUrl;
 		this._loadingClassName = 'loading';
 		this._placeholderClassName = 'placeholder';
@@ -87,7 +57,7 @@
 		placeholderImg.setAttribute('src',placeholderUrl);
 		placeholderImg.setAttribute('class',this._placeholderClassName);
 		this.root.appendChild(placeholderImg);
-		if (!isWebGLCapable()) return this;
+		if (!this.willLoadModel) return this;
 		this.loadingIndicator = this._buildLoadingIndicator();
 		this.root.appendChild(this.loadingIndicator);
 		this.root.appendChild(this._makeResetButton());
@@ -108,11 +78,29 @@
 		}
 	};
 
+	ZincScene.prototype.getSceneElement = function(){
+		if (typeof this.renderer !== "undefined"){
+			return this.renderer._threejsRenderer.domElement;
+		} else {
+			return null;
+		}
+	};
+
 	ZincScene.prototype.setDefaultColour = function(colour){
 		if (typeof this.renderer !== "undefined"){
 			this.renderer.defaultColour = colour;
 			return this;
 		}
+	};
+
+	ZincScene.prototype.setDimension = function(height,width){
+		var $root = $(this.root);
+		$root.css({
+			'height':height+'px',
+			'width': width+'px',
+			'position': 'relative'});
+
+		return this;
 	};
 
 	ZincScene.prototype._buildLoadingIndicator = function(totalFiles){
@@ -139,9 +127,25 @@
 		return resetButton;
 	}
 
-	ZincScene.prototype._setupGrabUI = function(){
-		this.renderer._threejsRenderer.domElement.classList.add('grabbable');
-		_setupGrabCursors();
+	/*
+	  _setupGrabCursors - sets up listeners for setting appropriate classes for
+	  showing grab/hand cursors depending on mouse events.
+	*/
+	ZincScene.prototype._setupGrabCursors = function(root){
+		this.getSceneElement().classList.add('grabbable');
+		var self = this;
+		var grabbableElement = root.getElementsByClassName('grabbable').item(0);
+		var listen = grabbableElement.addEventListener,
+			_startGrabbing = function(){
+				grabbableElement.classList.remove('grabbable');
+				grabbableElement.classList.add('grabbing');
+			},
+			_endGrabbing = function(){
+				grabbableElement.classList.remove('grabbing');
+				grabbableElement.classList.add('grabbable');
+			};
+		listen('mousedown',_startGrabbing);
+		listen('mouseup',_endGrabbing);
 	}
 
 
@@ -150,7 +154,7 @@
 		$(this.root).find('.'+this._loadingClassName).fadeOut();
 		$(this.root).find('canvas').fadeIn();
 		$(this.root).find('.reset').fadeIn();
-		this._setupGrabUI();
+		this._setupGrabCursors(this.root);
 	};
 
 	ZincScene.prototype._onModelProgress = function(progress,totalFiles){
@@ -163,13 +167,4 @@
 		}
 	};
 
-	ZincScene.prototype.setDimension = function(height,width){
-		var $root = $(this.root);
-		$root.css({
-			'height':height+'px',
-			'width': width+'px',
-			'position': 'relative'});
-
-		return this;
-	};
 }());
