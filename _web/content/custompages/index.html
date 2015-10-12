@@ -136,7 +136,9 @@
 <!-- build:js(.) scripts/modernizr.min.js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
 <!-- endbuild -->
-
+<!-- build:js({app,.tmp}) /scripts/hash.js -->
+<script type="text/javascript" src="/scripts/hash.js"></script>
+<!-- endbuild -->
 <!-- build:js({app,.tmp}) scripts/index.js -->
 <script src="/scripts/zinc_threejs_control.js"></script>
 <script src="/scripts/zinc_3js_renderer.js"></script>
@@ -145,7 +147,7 @@
 <!-- endbuild -->
 <script type="text/javascript">
 	var bannerContainer = document.getElementById('main-message');
-	inpageScrollLink('#main-message .learn-more','.features');
+	//inpageScrollLink('#main-message .learn-more','.features');
 	var banner = new FrontPageBanner(bannerContainer);
 </script>
 {% endblock %}

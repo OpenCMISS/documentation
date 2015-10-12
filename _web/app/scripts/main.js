@@ -1,14 +1,5 @@
 "use strict";
 (function(){
-	window.inpageScrollLink = function(linkSel,linkToSel){
-		$(linkSel).click(function(e) {
-		e.preventDefault();
-		$('html, body').animate({
-			scrollTop: $(linkToSel).offset().top - 150
-		}, 500);
-		});
-	}
-
 	window.FrontPageBanner = function(container){
 		this.heartModel = new ZincScene(container,'data/fpmodel/coro','assets/app-showcase/heart.png');
 		if (this.heartModel.willLoadModel){
