@@ -30,3 +30,5 @@ Directory Structure
   * `/_web/content/custompages` - Custom pages that uses custom HTML, such as the front page.
   * `/_web/content/News` - News pages.
   * `/_web/content/pages` - Pages generated with Pelican using the RST format.
+  * `/_web/pelican/` - Pelican configuration.
+  * `/_web/sphinx/` - Sphinx configuration.
