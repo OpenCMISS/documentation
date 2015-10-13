@@ -49,10 +49,6 @@ module.exports = function (grunt) {
 					livereload: true
 				}
 			},
-			jstest: {
-				files: ['test/spec/{,*/}*.js'],
-				tasks: ['test:watch']
-			},
 			gruntfile: {
 				files: ['Gruntfile.js']
 			},
@@ -125,20 +121,6 @@ module.exports = function (grunt) {
 					}
 				}
 			},
-			test: {
-				options: {
-					open: false,
-					port: 9001,
-					middleware: function(connect) {
-						return [
-							connect.static('.tmp'),
-							connect.static('test'),
-							connect().use('/bower_components', connect.static('./bower_components')),
-							connect.static(config.app)
-						];
-					}
-				}
-			},
 			dist: {
 				options: {
 					base: '<%= config.dist %>',
@@ -172,7 +154,6 @@ module.exports = function (grunt) {
 				'Gruntfile.js',
 				'<%= config.app %>/scripts/{,*/}*.js',
 				'!<%= config.app %>/scripts/vendor/*',
-				'test/spec/{,*/}*.js'
 			]
 		},
 
@@ -450,9 +431,6 @@ module.exports = function (grunt) {
 				'copy:styles',
 				'jinja2:app'
 			],
-			test: [
-				'copy:styles'
-			],
 			dist: [
 				'sass',
 				'copy:styles',
@@ -488,27 +466,13 @@ module.exports = function (grunt) {
 		grunt.task.run([target ? ('serve:' + target) : 'serve']);
 	});
 
-	grunt.registerTask('test', function (target) {
-		if (target !== 'watch') {
-			grunt.task.run([
-				'clean:server',
-				'concurrent:test',
-				'autoprefixer'
-			]);
-		}
-
-		grunt.task.run([
-			'connect:test'
-		]);
-	});
-
 	// Generalise into a sphinxgen task.
 	grunt.registerTask('sphinxgenDist',[
 		'copy:sphinxPrep',
 		'exec:sphinxgen',
 		'copy:sphinxOutputToDist'
 	]);
-//
+
 	grunt.registerTask('pelicanDist',[
 		'exec:pelicangen',
 		'copy:pelicanOutputToDist'
@@ -539,8 +503,6 @@ module.exports = function (grunt) {
 	]);
 
 	grunt.registerTask('default', [
-		//'newer:jshint',
-		'test',
 		'build'
 	]);
 };
