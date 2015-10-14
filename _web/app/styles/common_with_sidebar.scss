@@ -16,6 +16,7 @@ aside.extras, article.main {
 
 aside.extras {
 	z-index: 1;
+	padding-right: 20px;
 }
 
 article.main {
@@ -95,9 +96,6 @@ article.main {
 	}
 }
 
-.extras {
-	padding-right: 20px;
-}
 
 .header .nav-bar, footer .footer-box,.header .search-box {
 	width: 900px;
@@ -170,6 +168,10 @@ article.main {
 	.extras {
 		float: left;
 		width: 190px;
+	}
+
+	#sidebar.affix {
+		width: 170px;
 	}
 
 
