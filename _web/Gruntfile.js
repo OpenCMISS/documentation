@@ -113,7 +113,6 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
-							//connect().use('/p',connect.static('./.tmp/pelicangen')),
 							connect().use('/other',connect.static('./other/')),
 							connect.static(config.app),
 							connect.static('./.tmp/pelicangen')
