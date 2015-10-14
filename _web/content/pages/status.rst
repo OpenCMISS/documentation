@@ -33,6 +33,8 @@ Here is a list of pages that are complete enough. Please take a look and give me
 	* ipad/smaller screen sizes/lower spec devices - make sure the models load. **Updated 6 October** Mostly done, TODO stop front page model from loading if screen size starts out smaller than the compact dimension.
 	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
 * Removed KCL/Oxford logo
+* Check links that aren't working, send to a Under Construction page.
+
 
 In Progress
 ===========
@@ -49,7 +51,6 @@ Planned
 List of things that will be worked on.
 
 * Downloads page - change to make source code download more prominent, as well as adding links to development versions.
-* Check links that aren't working, send to a Under Construction page.
 * Navigation is complete - maybe breadcrumb. In the documentation pages, link back to root. See if it works across Sphinx, Doxygen, static pages.
 * Fix style for <pre> tags.
 * Send out for second round of feedback.
