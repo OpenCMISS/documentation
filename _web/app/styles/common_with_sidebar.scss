@@ -91,8 +91,11 @@ article.main {
 		font-size: 1.3em;
 		margin: 10px 0px;
 	}
-	&.affix {
+	&.affix,&.affix-bottom {
 		width: 195px;
+	}
+	&.affix-bottom{
+		position:absolute;
 	}
 }
 
@@ -170,8 +173,10 @@ article.main {
 		width: 190px;
 	}
 
-	#sidebar.affix {
-		width: 170px;
+	#sidebar {
+		&.affix, &.affix-bottom {
+			width: 170px;
+		}
 	}
 
 
