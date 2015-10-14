@@ -6,7 +6,7 @@ Updated on **14 October 2015**.
 
 This website is the new website for the OpenCMISS software. Content is still being migrated from `cmiss.org <http://www.cmiss.org>`_, `physiomeproject.org <http://opencmiss.physiomeproject.org>`_ and other sites.
 
-Source files and instructions to build this website are now available on `GitHub <https://github.com/inkybutton/OpenCMISS-Documentation>`_. This is currently in a personal GitHub account as the repository plan is still being decided.
+Source files and instructions to build this website are now available on `GitHub <https://github.com/OpenCMISS/documentation>`_.
 
 Please send any feedback and suggestions to `Noel Zeng, the developer working on the project <mailto:bioeng-webmaster@auckland.ac.nz>`_. Be sure to check the Planned section first to see if it's a known issue.
 
