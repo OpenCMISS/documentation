@@ -8,7 +8,7 @@
 
   <div class="main-container clearfix">
       <aside class="extras">
-	<div id="sidebar" data-spy="affix" data-offset-top="0" data-offset-bottom="230">
+	<nav id="sidebar" data-spy="affix" data-offset-top="0" data-offset-bottom="230">
 	  <div class="title">
 	    {% block sidebar_title %}
 	    {% endblock %}
@@ -17,7 +17,7 @@
 	    {% block sidebar_content %}
 	    {% endblock %}
 	  </div>
-	</div>
+	</nav>
       </aside>
       <article class="main">
 	<div class="inner content">
@@ -34,4 +34,9 @@
 <!-- build:js({app,.tmp}) /scripts/hash.js -->
 <script type="text/javascript" src="/scripts/hash.js"></script>
 <!-- endbuild -->
+<!-- build:js({app,.tmp}) /scripts/sidebar.js -->
+<script type="text/javascript" src="/scripts/sidebar/throttle.js"></script>
+<script type="text/javascript" src="/scripts/sidebar/sidebar.js"></script>
+<!-- endbuild -->
+
 {% endblock %}

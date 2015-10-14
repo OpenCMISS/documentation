@@ -33,14 +33,16 @@ article.main {
 }
 
 #sidebar {
-	//width: 235px;
-	min-height: 400px;
-	background-color: white;
+
+	/* height is managed by the sidebar.js script. */
+
+	overflow-x: hide;
+	overflow-y: auto;
 
 	.content {
 		padding: 5px 10px;
 		padding-top: 10px;
-
+		background-color: white;
 	}
 
 	ul {
