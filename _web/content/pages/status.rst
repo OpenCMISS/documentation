@@ -2,7 +2,7 @@ Status of the New Website
 #########################
 :slug: status
 
-Updated on **6 October 2015**.
+Updated on **14 October 2015**.
 
 This website is the new website for the OpenCMISS software. Content is still being migrated from `cmiss.org <http://www.cmiss.org>`_, `physiomeproject.org <http://opencmiss.physiomeproject.org>`_ and other sites.
 
@@ -27,21 +27,21 @@ Here is a list of pages that are complete enough. Please take a look and give me
 * `Developers page </developers.html>`_ **Added on 16 September** Currently just a list of links. Please send in suggestions on how you think they could be categorised.
 * `News </news/index.html>`_ - **Updated 24 September** A list of news items, paginated.
 * Add section on pages with pending work in status page. **Updated 29 September** Done.
+* Compatibility
+	* Added Responsive template
+	* IE
+	* ipad/smaller screen sizes/lower spec devices - make sure the models load. **Updated 6 October** Mostly done, TODO stop front page model from loading if screen size starts out smaller than the compact dimension.
+	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
+* Removed KCL/Oxford logo
 
 In Progress
 ===========
 A list of things currently being worked on.
 
 * Automated website build -  Automate building the website with Buildbot using the latest API reference, documentation and web source code.
-	* **Updated 24 September** - specified server needs to IT.
-	* **Updated 1 October** set up next.opencmiss.org and staging.opencmiss.org with automatically built versions of the site.
-	* Introduce documentation writers to the system and ask for feedback.
+    * **Updated 14 October** Zinc API doc is now built nightly and available on this website.
 	* Copy doxygen documentation output from zinc and opencmiss buildbot.
-* **Updated 24 September** Started working on compatibility
-	* Responsive template **Updated 6 October** Done.
-	* IE
-	* ipad/smaller screen sizes/lower spec devices - make sure the models load. **Updated 6 October** Mostly done, TODO stop front page model from loading if screen size starts out smaller than the compact dimension.
-	* **Updated 29 September** Found iPad and search screen bug. Clicking on the search bar always scrolls the page up to the top, and trying to scroll through the results actually scrolls the underlying page instead, causing the results screen to go away.
+* Add scrollspy for the sidebar/fix sidebar attachment.
 
 
 Planned
@@ -51,9 +51,6 @@ List of things that will be worked on.
 * Downloads page - change to make source code download more prominent, as well as adding links to development versions.
 * Check links that aren't working, send to a Under Construction page.
 * Navigation is complete - maybe breadcrumb. In the documentation pages, link back to root. See if it works across Sphinx, Doxygen, static pages.
-* Add scrollspy for the sidebar/fix sidebar attachment.
 * Fix style for <pre> tags.
-* Remove KCL/Oxford logo
 * Send out for second round of feedback.
-
 * Documentation around how the site works.
