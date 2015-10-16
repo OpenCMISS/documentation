@@ -21,6 +21,9 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 EXTRA_TEMPLATES_PATHS = ['../app/']
 
+# Use filesystem date if not otherwise specified.
+DEFAULT_DATE = "fs"
+
 # Blogroll
 LINKS = (('Pelican', 'http://getpelican.com/'),
          ('Python.org', 'http://python.org/'),

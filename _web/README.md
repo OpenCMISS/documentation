@@ -32,11 +32,11 @@ Building the website
 
 3. Enter the `_web` directory, install npm and bower packages and do a build:
 
-   If you have make simply run:
+   If you have make simply run the following. Replace [URL] with the root of where this site will be hosted, e.g. "next.opencmiss.org". This is used for generating a sitemap for the website. 
 
    ```
    cd _web
-   make
+   export SITE_URL=[URL];make
    ```
 
    Otherwise, run:

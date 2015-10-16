@@ -437,6 +437,15 @@ module.exports = function (grunt) {
 				'imagemin',
 				'svgmin'
 			]
+		},
+
+		sitemap: {
+			dist: {
+				pattern: ['<%= config.dist %>/**/*.html','!<%= config.dist %>/underconstruction.html'],
+				siteRoot: '<%= config.dist %>',
+				homepage: grunt.option('siteurl') || 'http://next.opencmiss.org',
+				changefreq: 'monthly'
+			}
 		}
 	});
 
@@ -483,25 +492,34 @@ module.exports = function (grunt) {
 		'copy:sphinxOutputToDebug'
 	]);
 
-	grunt.registerTask('build', [
-		'clean:dist',
-		'concurrent:dist',
-		'useminPrepare',
-		'autoprefixer',
-		'concat',
-		'cssmin',
-		'uglify',
-		'copy:dist',
-		'sphinxgenDist',
-		'pelicanDist',
-		'rev',
-		'usemin',
-		'relativeRoot:dist',
-		'htmlmin',
-		'copy:other'
-	]);
+	grunt.registerTask('build',[
+					   'clean:dist',
+					   'concurrent:dist',
+					   'useminPrepare',
+					   'autoprefixer',
+					   'concat',
+					   'cssmin',
+					   'uglify',
+					   'copy:dist',
+					   'sphinxgenDist',
+					   'pelicanDist',
+					   'rev',
+					   'usemin',
+					   'relativeRoot:dist',
+					   'htmlmin',
+					   'copy:other',
+					   'sitemap:dist'
+					  ]);
+
+grunt.registerTask('dist', function(){
+	var url = grunt.option('siteurl');
+	if (typeof url === "undefined" || url === null || url === "" || url === 0){
+		grunt.fail.fatal("No siteurl set. Please set the siteurl root for the sitemap to be generated. grunt --siteurl=[URL]");
+	}
+	grunt.task.run('build');
+});
 
 	grunt.registerTask('default', [
-		'build'
+		'dist'
 	]);
 };

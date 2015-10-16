@@ -1,5 +1,5 @@
 prod : prep
-	grunt
+	grunt --siteurl=$(SITE_URL)
 
 debug: prep
 	grunt serve
