@@ -17,4 +17,4 @@ Tutorials
    selection/tutorial
    materials/tutorial
    read_mesh/tutorial
-
+   zinc_evaluate_field/index

@@ -1,0 +1,3 @@
+[submodule "tutorials/zinc_evaluate_field"]
+	path = tutorials/zinc_evaluate_field
+	url = https://github.com/OpenCMISS-Examples/zinc_evaluate_field
