@@ -1,0 +1,25 @@
+/*
+Remove bootstrap styling from download blocks.
+*/
+code.download {
+    background: inherit;
+    padding: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    border: inherit;
+    white-space: inherit;
+    span:first-child {
+      &:before {
+		  margin-right: 4px;
+	  }
+	}
+}
+
+/*
+Sphinx usage of blockquote is for indenting, different from Bootstrap's.
+*/
+blockquote {
+	border-left:none;
+	font-size: inherit;
+}
