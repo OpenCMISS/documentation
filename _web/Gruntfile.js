@@ -222,7 +222,7 @@ module.exports = function (grunt) {
 				dest: '<%= config.dist %>'
 			},
 			app: {
-				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','sphinx/_templates/**/*.html','pelican/themes/**/*.html', 'content/custompages/**/*.html']
+				src: ['<%= config.app %>/pages/**/*.html', '<%= config.app %>/partials/**/*.jinja','sphinx/templates/**/*.html','pelican/themes/**/*.html', 'content/custompages/**/*.html']
 			}
 		},
 

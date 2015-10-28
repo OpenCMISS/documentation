@@ -10,11 +10,5 @@ Tutorials
 .. toctree::
    :maxdepth: 2
 
-   getting_started/getting-started
-   axis_viewer/tutorial
-   finite_element_creation/tutorial
-   image_reader/tutorial
-   selection/tutorial
-   materials/tutorial
-   read_mesh/tutorial
-
+   zinc_evaluate_field/index
+   zinc_view_graphics/index
