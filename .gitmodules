@@ -1,3 +1,7 @@
 [submodule "tutorials/zinc_evaluate_field"]
 	path = tutorials/zinc_evaluate_field
 	url = https://github.com/OpenCMISS-Examples/zinc_evaluate_field
+
+[submodule "tutorials/zinc_view_graphics"]
+	path = tutorials/zinc_view_graphics
+	url = https://github.com/OpenCMISS-Examples/zinc_view_graphics
