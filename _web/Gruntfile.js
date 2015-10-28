@@ -26,7 +26,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
 		jinja2: {
 			app: {
-				options: {context_path: "context",template_path:"app"},
+				options: {context_path: ".tmp/context/",template_path:"app"},
 				files:[{
 					expand: true,
 					cwd: 'app/pages',
@@ -39,6 +39,14 @@ module.exports = function (grunt) {
 
 		// Project settings
 		config: config,
+
+		// Task for merging multiple download data into one file for grunt-jinja2 to build downloads with.
+		"merge-json":{
+			"downloads":{
+				dest:'.tmp/context/pages/downloads.json',
+				src: ['data/downloads/**/**.json']
+			}
+		},
 
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
@@ -460,6 +468,7 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
+			'merge-json:downloads',
 			'concurrent:server',
 			'autoprefixer',
 			'sphinxgenDebug',
@@ -492,24 +501,27 @@ module.exports = function (grunt) {
 		'copy:sphinxOutputToDebug'
 	]);
 
+
+
 	grunt.registerTask('build',[
-					   'clean:dist',
-					   'concurrent:dist',
-					   'useminPrepare',
-					   'autoprefixer',
-					   'concat',
-					   'cssmin',
-					   'uglify',
-					   'copy:dist',
-					   'sphinxgenDist',
-					   'pelicanDist',
-					   'rev',
-					   'usemin',
-					   'relativeRoot:dist',
-					   'htmlmin',
-					   'copy:other',
-					   'sitemap:dist'
-					  ]);
+		'clean:dist',
+		'merge-json:downloads',
+		'concurrent:dist',
+		'useminPrepare',
+		'autoprefixer',
+		'concat',
+		'cssmin',
+		'uglify',
+		'copy:dist',
+		'sphinxgenDist',
+		'pelicanDist',
+		'rev',
+		'usemin',
+		'relativeRoot:dist',
+		'htmlmin',
+		'copy:other',
+		'sitemap:dist'
+	]);
 
 grunt.registerTask('dist', function(){
 	var url = grunt.option('siteurl');
