@@ -20,17 +20,20 @@
   </form>
   {# {% with %} #}
     {% set source_code = sources %}
-    {# {% with %} #}
+  {# {% with %} #}
+      {% set dev_releases = development_versions["Ubuntu"] %}
       {% set rel = releases["Linux"] %}
       {% include "partials/downloads/linux.jinja" %}
     {# {% endwith %} #}
 
-    {# {% with %} #}
+  {# {% with %} #}
+      {% set dev_releases = development_versions["Windows"] %}
       {% set rel = releases["Windows"] %}
       {% include "partials/downloads/windows.jinja" %}
     {# {% endwith %} #}
 
-    {# {% with %} #}
+  {# {% with %} #}
+      {% set dev_releases = development_versions["OS-X"] %}
       {% set rel = releases["Mac OS X"] %}
       {% include "partials/downloads/mac.jinja" %}
     {# {% endwith %} #}
@@ -38,6 +41,8 @@
 {% endblock %}
 {% block scripts %}
   <!-- build:js({app,.tmp}) scripts/downloads.js -->
+  <script src="bower_components/sightglass/index.js"></script>
+  <script src="bower_components/rivets/dist/rivets.min.js"></script>
   <script src="scripts/downloads.js"></script>
   <script src="scripts/accordion.js"></script>
   <!-- endbuild -->
