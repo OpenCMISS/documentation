@@ -97,6 +97,12 @@ div.gsc-control-cse {
 .nav-items,.util-items {
 	margin-top:15px;
 	display: inline-block;
+	li.active {
+		background-color:$main-blue;
+		a {
+			color:white;
+		}
+	}
 	li a {
 		font-size: 1.3em;
 		border: none;
