@@ -9,7 +9,6 @@
 	<li><a href="#tutorials">Tutorials</a></li>
 	<li><a href="#examples">Examples</a></li>
 	<li><a href="#technical">Technical Documentation</a></li>
-	<li><a href="#publications">Publications</a></li>
 	<li><a href="#developers">Extending OpenCMISS</a></li>
 </ul>
 {% endblock %}
@@ -19,9 +18,8 @@
 
 <section class="row doc-links" id="introduction">
 	<h2>Introduction</h2>
-	<p>A C/C++ library providing a rich, dynamic model representation in its API, incorporating images and image processing, high quality 3-D visualisation, interactive tools and more.</p>
 	<div class="links-wrapper">
-		<div class="col-sm-6 media-item media-item-big">
+		<div class="col-sm-6 media-item">
 			<a href="/underconstruction.html">
 				<div class="description">
 					<p class="name">Introductory overview</p>
@@ -30,19 +28,11 @@
 			</a>
 		</div>
 
-		<div class="col-sm-6 media-item media-item-big">
+		<div class="col-sm-6 media-item">
 			<a href="/getting-started.html">
 				<div class="description">
 					<p class="name">Getting Started</p>
 					<p>Guide on installing, configuring and using OpenCMISS.</p>
-				</div>
-			</a>
-		</div>
-		<div class="col-sm-6 media-item">
-			<a href="/underconstruction.html">
-				<div class="description">
-					<p class="name">Foundational knowledge</p>
-					<p>Recommended reading before you start using OpenCMISS.</p>
 				</div>
 			</a>
 		</div>
@@ -54,62 +44,38 @@
 				</div>
 			</a>
 		</div>
-		<div class="col-sm-6 media-item">
-			<a href="/underconstruction.html">
-				<div class="description">
-					<p class="name">Citing OpenCMISS</p>
-					<p>The preferred format for citing OpenCMISS in your publication.</p>
-				</div>
-			</a>
-		</div>
 	</div>
 
 </section>
 <section class="row doc-links" id="tutorials">
-	<h2>Tutorials</h2>
-	<p>Tutorials that introduce OpenCMISS ideas and help you get things done. <a href="/documentation/tutorials/index.html">See all tutorials...</a>
+	<h2>Tutorials <a href="/documentation/tutorials/index.html" class="see-more">See all tutorials</a></h2>
 </p>
-<div class="links-wrapper">
-		<div class="col-sm-4">
-			<h3 class="styled">Beginners</h3>
-			<ol class="list-unstyled">
-				<li class="media-item">
-					<a href="/documentation/tutorials/zinc_evaluate_field/">
-						<div class="description">
-							<p class="name">Load A Model And Evaluate A Field</p>
-							<p>This example opens a model and evaluates and prints values of a field in each element of it.</p>
-						</div>
-					</a>
-				</li>
-				<li class="media-item">
-					<a href="/documentation/tutorials/zinc_view_graphics/">
-						<div class="description"><p class="name">Create and View Graphics</p>
+	<div class="links-wrapper">
+		<ol class="list-unstyled">
+			<li class="media-item col-sm-6">
+				<a href="/documentation/tutorials/zinc_evaluate_field/">
+					<div class="description">
+						<p class="name">Load A Model And Evaluate A Field</p>
+						<p>This example opens a model and evaluates and prints values of a field in each element of it.</p>
+					</div>
+				</a>
+			</li>
+			<li class="media-item col-sm-6">
+				<a href="/documentation/tutorials/zinc_view_graphics/">
+					<div class="description"><p class="name">Create and View Graphics</p>
 						<p>This example shows how to create basic graphics to visualise models, and how to view them interactively in a window.</p></div>
-					</a>
-				</li>
-			</ol>
-		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Moderate</h3>
-			<p class="notice"><em>Coming soon.</em></p>
-
-		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Advanced</h3>
-			<p class="notice"><em>Coming soon.</em></p>
-		</div>
-</div>
-<div class="see-more">
-	<a class="btn btn-default" href="/documentation/tutorials/index.html"> See all tutorials... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-</div>
+				</a>
+			</li>
+		</ol>
+	</div>
+	<p class="see-more-btm"><a class="btn btn-link" href="/documentation/tutorials/index.html"> See all tutorials...</a></p>
 </section>
 <section class="row doc-links" id="examples">
 	<h2>Examples</h2>
-	<p>Scripts that solve a particular problem, contributed by developers and users of OpenCMISS. <a href="/underconstruction.html">See all examples...</a></p>
+	<p>Scripts that solve a particular problem, contributed by developers and users of OpenCMISS.</p>
 	<div class="links-wrapper">
 		<div class="col-sm-6 media-item">
 			<a href="http://cmiss.bioeng.auckland.ac.nz/development/examples/a/index_thumbs.html">
-				<img src="/assets/documentation/cmgui-example.png">
 				<div class="description">
 					<p class="name">Cmgui Examples</p>
 					<p>These examples were created for Cmgui, a predecessor to OpenCMISS-Zinc.</p>
@@ -124,34 +90,31 @@
 			</div>
 		</div>
 	</div>
-	<div class="see-more">
-		<a class="btn btn-default" href="/underconstruction.html"> See all examples... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-	</div>
 
 </section>
 <section class="row doc-links" id="technical">
 	<h2>Technical Documentation</h2>
-	<p>Documentation about the technical aspects of OpenCMISS software and libraries. <a href="/documentation/tutorials/index.html">See all technical documentation...</a></p>
+	<p>Documentation about the technical aspects of OpenCMISS software and libraries.</p>
 	<div class="links-wrapper">
-		<div class="col-sm-4">
-			<h3 class="styled">API Reference</h3>
+		<div>
+			<h3>API Reference</h3>
 			<ol class="list-unstyled">
-				<li class="media-item">
+				<li class="media-item col-sm-6">
 					<a href="/other/zinc-apidoc/latest/index.html">
 						<div class="description"><p class="name">Zinc API Reference</p>
 							<p>User documentation of the Zinc library interface.</p>
 						</div>
 					</a>
 				</li>
-				<li class="media-item">
-					<a href="/underconstruction.html">
+				<li class="media-item col-sm-6">
+					<a href="http://cmiss.bioeng.auckland.ac.nz/OpenCMISS/doc/user/">
 						<div class="description"><p class="name">Iron API Reference</p>
 							<p>User documentation of the Iron library interface.</p>
 						</div>
 					</a>
 				</li>
-				<li class="media-item">
-					<a href="/underconstruction.html">
+				<li class="media-item col-sm-6">
+					<a href="http://cmiss.bioeng.auckland.ac.nz/OpenCMISS/doc/python/">
 						<div class="description"><p class="name">Iron Python Bindings API Reference</p>
 							<p>User documentation of the Iron Python bindings interface.</p>
 						</div>
@@ -159,80 +122,7 @@
 				</li>
 			</ol>
 		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Theory</h3>
-			<ol class="list-unstyled">
-				<li class="media-item">
-					<a href="/underconstruction.html">
-						<div class="description"><p class="name">Finite Element Mesh Notes</p>
-							<p>Theory notes on Finite Element Mesh (FEM.)</p>
-						</div>
-					</a>
-				</li>
-			</ol>
-		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Working with Other Programs</h3>
-			<ol class="list-unstyled">
-				<li class="media-item">
-					<a href="/underconstruction.html">
-						<div class="description"><p class="name">Interchange Formats</p>
-							<p>Formats that OpenCMISS reads and writes.</p>
-						</div>
-					</a>
-				</li>
-				<li class="media-item">
-					<a href="/underconstruction.html">
-						<div class="description"><p class="name">Porting from Another Language</p>
-							<p>Rewriting programs with OpenCMISS.</p>
-						</div>
-					</a>
-				</li>
-
-			</ol>
-		</div>
 	</div>
-	<div class="see-more">
-		<a class="btn btn-default" href="/underconstruction.html"> See all technical documentation... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-	</div>
-
-</section>
-
-<section class="row doc-links" id="publications">
-	<h2>Publications</h2>
-	<div class="links-wrapper">
-		<div class="col-sm-4">
-			<h3 class="styled">Presentations and Talks</h3>
-			<p class="notice"><em>A list of presentations and talks is coming soon.</em></p>
-		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Papers and Posters</h3>
-			<p class="notice"><em>A list of papers and posters is coming soon.</em></p>
-		</div>
-		<div class="col-sm-4">
-			<h3 class="styled">Resources for Publication</h3>
-			<ol class="list-unstyled">
-				<li class="media-item">
-					<a href="/underconstruction.html">
-						<div class="description"><p class="name">Logos and Other Assets</p>
-							<p>Logos and assets for papers and posters.</p>
-						</div>
-					</a>
-				</li>
-				<li class="media-item">
-					<a href="/underconstruction.html">
-						<div class="description"><p class="name">Citing OpenCMISS</p>
-							<p>The preferred format for citing OpenCMISS in your publication.</p>
-						</div>
-					</a>
-				</li>
-			</ol>
-		</div>
-	</div>
-	<div class="see-more">
-		<a class="btn btn-default" href="/underconstruction.html"> See all publications... <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
-	</div>
-
 </section>
 
 <section class="row doc-links" id="developers">

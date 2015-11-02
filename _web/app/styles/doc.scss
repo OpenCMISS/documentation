@@ -16,21 +16,21 @@
 		padding-top: 5px;
 		@include clearfix();
 	}
-/*
-	a {
-		font-size: 1.2em;
-	}
-*/
 }
 
 
 .see-more {
+	float:right;
+	font-size:0.7em;
+	font-weight:normal;
+}
 
-	padding-top:10px;
-
+.see-more-btm {
+	text-align: center;
+	margin-top: 5px;
 	a {
-		float:right;
 		@include btn-link;
+		font-size:1em;
 	}
 }
 
@@ -41,7 +41,7 @@
 	}
 
 	.title {
-		font-size:1.2em;
+		font-size:1.1em;
 	}
 
 }
