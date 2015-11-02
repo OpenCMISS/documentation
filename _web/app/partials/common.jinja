@@ -34,11 +34,11 @@
 						</ul>
 
 						<ul id="nav-items" class="nav navbar-nav nav-items pull-right">
-							<li><a href="/downloads.html">Download</a></li>
-							<li><a href="/developers.html">Developers</a></li>
-							<li><a href="/doc.html">Documentation</a></li>
-							<li><a href="/community.html">Community</a></li>
-							<li><a href="/about.html">About</a></li>
+							<li class="{{ 'active' if active_nav == 'download'}}"><a href="/downloads.html">Download</a></li>
+							<li class="{{ 'active' if active_nav == 'developers'}}"><a href="/developers.html">Developers</a></li>
+							<li class="{{ 'active' if active_nav == 'doc'}}"><a href="/doc.html">Documentation</a></li>
+							<li class="{{ 'active' if active_nav == 'community'}}"><a href="/community.html">Community</a></li>
+							<li class="{{ 'active' if active_nav == 'about'}}"><a href="/about.html">About</a></li>
 						</ul>
 						<a href="/index.html"><img height="60" src="/images/logo.png" alt="Logo for OpenCMISS."></a>
 					</div>

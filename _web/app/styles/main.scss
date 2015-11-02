@@ -71,6 +71,7 @@ div.gsc-control-cse {
 		font-size:20px;
 		padding-bottom:5px;
 		border-bottom: 3px solid #C1D0FF;
+		font-weight: bold;
 
 		&.default-style {
 			padding-bottom:0px;
@@ -96,6 +97,12 @@ div.gsc-control-cse {
 .nav-items,.util-items {
 	margin-top:15px;
 	display: inline-block;
+	li.active {
+		background-color:$main-blue;
+		a {
+			color:white;
+		}
+	}
 	li a {
 		font-size: 1.3em;
 		border: none;
