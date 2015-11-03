@@ -1,0 +1,22 @@
+{% extends "partials/common_no_sidebar.jinja" %}
+{% block title %}
+  Download OpenCMISS
+{% endblock %}
+{% block styles %}
+  <!-- build:css(.tmp) styles/downloads-frame.css -->
+  <link rel="stylesheet" href="styles/downloads.css">
+  <link rel="stylesheet" href="styles/accordion.css">
+  <!-- endbuild -->
+{% endblock %}
+
+  {% block content %}
+  <div id="downloads">
+  {% endblock %}
+{% block scripts %}
+  <!-- build:js({app,.tmp}) scripts/downloads.js -->
+  <script src="/bower_components/react/react.min.js"></script>
+  <script src="/bower_components/react/react-dom.min.js"></script>
+  <script src="scripts/downloads2.js"></script>
+  <script src="scripts/accordion.js"></script>
+  <!-- endbuild -->
+{% endblock %}

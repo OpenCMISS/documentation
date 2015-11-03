@@ -52,13 +52,10 @@ module.exports = function (grunt) {
 		watch: {
 			js: {
 				files: ['<%= config.app %>/scripts/{,*/}*.js'],
-				tasks: ['jshint'],
+				tasks: ['babel:dev'],
 				options: {
 					livereload: true
 				}
-			},
-			gruntfile: {
-				files: ['Gruntfile.js']
 			},
 			sass: {
 				files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
@@ -202,6 +199,28 @@ module.exports = function (grunt) {
 					src: '{,*/}*.css',
 					dest: '.tmp/styles/'
 				}]
+			}
+		},
+
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ['react']
+			},
+			dev: {
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				}]
+			},
+			dist: {
+				files: {
+					'<%= config.dist %>/scripts/{,*/}*.js':'<%= config.app %>/scripts/{,*/}*.js'
+				}
 			}
 		},
 
@@ -473,6 +492,7 @@ module.exports = function (grunt) {
 			'autoprefixer',
 			'sphinxgenDebug',
 			'exec:pelicangen',
+			'babel:dev',
 			'connect:livereload',
 			'watch'
 		]);
