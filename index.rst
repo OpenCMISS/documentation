@@ -9,6 +9,7 @@ Welcome to OpenCMISS's documentation!
 .. toctree::
    :maxdepth: 2
 
+   data_format/ex_file_format
    tutorials/index
    zinc/index
 

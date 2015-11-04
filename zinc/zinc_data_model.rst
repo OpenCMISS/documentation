@@ -31,7 +31,7 @@ A default/root Region can be obtained from the Context which may suit many users
 Model Input/Output
 """"""""""""""""""
 
-The Region offers simple APIs for reading and writing model files by name. The most full-featured file format supported by Zinc is the EX format (originally used by Cmgui; exported from OpenCMISS-Iron, CMISS-cm), described in the `Legacy Cmgui documentation <http://abi-software-book.readthedocs.org/en/latest/Cmgui/CMGUI-ex-file-format-guide.html>`_). Input and output using the FieldML format is also supported with some limitations.
+The Region offers simple APIs for reading and writing model files by name. The most full-featured file format supported by Zinc is the EX format, described in :ref:`ex-file-format`. Input and output using the FieldML format is also supported with some limitations.
 
 For more customised I/O, a *Streaminformation* object can be created from a Region. This allows multiple *Streamresources* including files and memory blocks to be specified with global or per-resource options, then read into the Region. This approach is more efficient when reading multiple files.
 
