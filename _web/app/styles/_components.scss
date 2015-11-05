@@ -95,3 +95,11 @@ _components.scss - CSS styles and partials shared between pages.
 		color: white;
 	}
 }
+
+/* Media item grids */
+
+.row-padded {
+	@include make-row;
+	margin-left:0px;
+	margin-right:0px;
+}
