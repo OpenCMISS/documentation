@@ -1,6 +1,6 @@
 (function(){
 
-	var TOP_MARGIN = 210;
+	var TOP_MARGIN = 135; // This is the size of the top bar, used to calculate the allowable height for the sidebar.
 
 	function resizeSidebarHeight(){
 		var viewportHeight = $(window).height();
