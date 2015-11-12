@@ -46,7 +46,12 @@
 		}
 	});
 
-	var DevReleasesComponent = React.createClass({
+	/**
+	   <DevReleasesComponent> - a presentational component for showing development releases and source code.
+
+	 */
+
+	var DevReleasesBox = React.createClass({
 		getInitialState: function(){
 			return {"showing": false};
 		},
@@ -63,10 +68,10 @@
 						<div className="col-sm-8">
 						<h3>Development Versions</h3>
 						<div className="alert alert-info"><strong>May contain traces of nuts!</strong> These development versions of OpenCMISS-Zinc include newer features but may be unstable or may not run. It may be necessary to try multiple versions to get a working version.</div>
-						<devversions.ZincDevVersionsList versions={this.props.development} />
+						{this.props.development}
 						</div>
 						<div className="col-sm-4 source-code sidebar">
-						<zinccomponents.SourceCodeBox />
+						{this.props.source}
 						</div>
 						</div>
 						</div>
@@ -85,7 +90,9 @@
 		},
 		render: function(){
 			var release = this.props.release;
-			var devVersions = this.props.developmentVersions;
+			var devVersionsList = (<devversions.ZincDevVersionsList versions={this.props.developmentVersions} />);
+			var sourceBox = (<zinccomponents.SourceCodeBox />);
+
 			return (
 					<div>
 					<h2>OpenCMISS-Zinc - Visualisation</h2>
@@ -93,7 +100,7 @@
 					<StableReleaseBox>
 					<commoncomps.DownloadBox name={this._nameForRelease(release.name)} downloads={release.formats} />
 					</StableReleaseBox>
-					<DevReleasesComponent development={devVersions} />
+					<DevReleasesBox development={devVersionsList} source={sourceBox} />
 					<commoncomps.InstallInstructions instructionsMap={zinccomponents.INSTRUCTIONS_MAP} currentPlatform={this.props.platform.value} />
 					</div>
 			);
@@ -103,12 +110,17 @@
 	var PyZincComponent = React.createClass({
 		render: function(){
 			var release = this.props.release;
-			var installInstructions = <commoncomps.InstallInstructions instructionsMap={pyzinccomponents.InstallInstructionsComponents} currentPlatform={this.props.platform.value} />
+			var devList = (<devversions.PyZincDevVersionsList versions={this.props.developmentVersions} />);
+			var installInstructions = (<commoncomps.InstallInstructions instructionsMap={pyzinccomponents.INSTALL_INSTRUCTIONS} currentPlatform={this.props.platform.value} />);
+			var source = (<pyzinccomponents.SourceCodeBox />);
 			return (
 					<div>
 					<h2>Python Bindings for OpenCMISS-Zinc</h2>
 					<p>Bindings for using OpenCMISS-Zinc in Python.</p>
+					<StableReleaseBox>
 					<commoncomps.DownloadBox name={release.name} downloads={release.formats} />
+					</StableReleaseBox>
+					<DevReleasesBox development={devList} source={source} />
 					{installInstructions}
 					</div>
 			);
@@ -224,7 +236,7 @@
 						<IntroComponent />
 						<IronComponent platform={this.state.currentPlatform} release={currReleases} />
 						<ZincComponent platform={this.state.currentPlatform} release={currReleases.zinc} developmentVersions={currDevReleases["OpenCMISS-Zinc"]} />
-						<PyZincComponent platform={this.state.currentPlatform} release={currReleases.pyzinc} />
+						<PyZincComponent platform={this.state.currentPlatform} release={currReleases.pyzinc} developmentVersions={currDevReleases["pyzinc"]} />
 						</div>
 				);
 			}

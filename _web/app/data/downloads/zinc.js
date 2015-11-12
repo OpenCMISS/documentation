@@ -32,7 +32,7 @@
 		    <h3>Source Code</h3>
 		    		<a href="#" target="_blank" className="btn btn-default main">
 		<span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>Install from Source</a>
-		<a href="https://svn.physiomeproject.org/svn/cmiss/zinc/bindings/" target="_blank" className="btn btn-default">
+		<a href="https://svn.physiomeproject.org/svn/cmiss/zinc/library/" target="_blank" className="btn btn-default">
 		<span className="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span> Browse Source</a>
 		</div>);
 	}
