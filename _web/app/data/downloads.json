@@ -3,7 +3,7 @@
 					{"label":"Mac OS X","value":"mac"},
 					{"label":"Linux","value":"linux"}],
 	"releases":{
-		"Windows":{
+		"windows":{
 			"zinc": {
 				"name":"3.0.0",
 				"formats":[
@@ -31,7 +31,7 @@
 				]
 			}
 		},
-		"Mac OS X": {
+		"mac": {
 			"zinc": {
 				"name":"3.0.0",
 				"formats":[
@@ -59,7 +59,7 @@
 				]
 			}
 		},
-		"Linux":{
+		"linux":{
 			"zinc": {
 				"name":"3.0.0",
 				"formats":[
@@ -89,7 +89,7 @@
 		}
 	},
 	"sources": {
-		"OpenCMISS-Zinc": {"repoType":"SVN Repository",
+		"zinc": {"repoType":"SVN Repository",
 						   "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/"},
 		"pyzinc":{"repoType":"SVN Repository",
 				  "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/bindings/"}

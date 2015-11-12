@@ -34,23 +34,6 @@ h1 {
 .download-list .row {
 	padding: 20px 0px;
 }
-
-.featured-download {
-	text-align: center;
-	padding: 20px 0px;
-	h3 {
-		font-size: 2em;
-	}
-
-	p {
-		font-size: 1.2em;
-	}
-
-	.download-box .btn {
-		font-size: 1.3em;
-	}
-}
-
 .platform-form {
 	float: right;
 	font-size: 16px;
@@ -88,4 +71,32 @@ h1 {
 
 .source-code .download-box {
 	margin-top: 10px;
+}
+
+.download-box {
+	.btn {
+		font-size:1em;
+	}
+}
+
+.versions-list .format-list {
+	.name {
+		margin-right: 10px;
+	}
+
+	a {
+		margin-right:10px;
+	}
+}
+
+.stable-release {
+	.release-box {
+		text-align:center;
+		padding:30px 0px;
+		background-color: #fafafa;
+	}
+}
+
+.dev-release {
+	margin-top:10px;
 }

@@ -51,7 +51,7 @@ module.exports = function (grunt) {
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
 			js: {
-				files: ['<%= config.app %>/scripts/{,*/}*.js'],
+				files: ['<%= config.app %>/scripts/{,*/}*.js','<%= config.app %>/data/{,*/}*.js'],
 				tasks: ['babel:dev'],
 				options: {
 					livereload: true
@@ -213,6 +213,13 @@ module.exports = function (grunt) {
 					"expand": true,
 					'cwd':'<%= config.app %>/scripts/',
 					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
 					'src': '**/*.js',
 					'ext': '.js'
 				}]
