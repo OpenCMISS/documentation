@@ -7,8 +7,11 @@ Welcome to OpenCMISS's documentation!
 =====================================
 
 .. toctree::
+   :maxdepth: 1
 
    tutorials/index
+   data_format/index
+   zinc/index
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
