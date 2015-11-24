@@ -154,9 +154,12 @@
 		render: function(){
 			return (<div className="package-box col-sm-6">
 					<div className="inner">
+					<img src={this.props.package.icon} alt={"Icon for "+this.props.package.name} className="icon" />
+					<div className="description">
 					<h3>{this.props.package.name}</h3>
 					<p>{this.props.package.description}</p>
 					<a href={"#/package/"+this.props.package.id} className="btn btn-default">Get {this.props.package.name}</a>
+					</div>
 					</div>
 					</div>);
 		}
@@ -231,7 +234,7 @@
 
 
     var DownloadsPage = React.createClass({
-
+		// Director router
 		router: null,
 	getPlatformForValue: function(platforms,value){
 	    return _.first(Util.filterKey(platforms,"value",value));
@@ -254,12 +257,12 @@
 	},
 
 		getInitialState: function(){
-			return {"isLoading":true, "currentPackage":null, packages: this._getSampleData() }
+			return {"isLoading":true, "currentPackage":null, packages: null }
 		},
 
-		_loadDownloads: function(){
+		_loadInitialState: function(){
 			var self = this;
-			$.ajax('/data/downloads.json').then(function(downloadsData){
+			return $.ajax('/data/downloads.json').then(function(downloadsData){
 				return $.ajax('/data/development_binaries.json').then(function(devBinaries){
 					var data = $.extend(downloadsData, devBinaries);
 					console.log(data);
@@ -273,25 +276,9 @@
 				var hostPlatform = self._detectPlatform() || "linux",
 					defaultPlatform = self.getPlatformForValue(downloadsData.supportedOs,hostPlatform);
 
-				var initialState = $.extend(downloadsData,{"isLoading": false,
+				return $.extend(downloadsData,{"isLoading": false,
 														   "currentPlatform":defaultPlatform});
-				self.setState(initialState);
 			});
-		},
-
-		_getSampleData: function(){
-			return [
-				{id: "opencmiss",
-				 name: "OpenCMISS",
-				 description:"Complete collection of applications and libraries to get you started."},
-				{id: "zinc",
-				 name: "OpenCMISS-Zinc",
-				 description:"Complete collection of applications and libraries to get you started."},
-				{id: "iron",
-				 name: "OpenCMISS-Iron",
-				 description:"Complete collection of applications and libraries to get you started."}
-			];
-
 		},
 
 		_packageForId: function(id){
@@ -319,7 +306,7 @@
 			router.path("/package/",function(){
 				this.on('/:pkgId/',function(pkgId){
 					// TODO need to also redirect :pkgId/!
-					//this.setRoute("/package/"+pkgId+"/home");
+
 					self.setState({
 						currentPackage:self._packageForId(pkgId)
 					});
@@ -327,7 +314,6 @@
 
 				this.on('/:pkgId/:tab', function(pkgId, tab){
 				});
-				router.init();
 			});
 		},
 
@@ -336,7 +322,11 @@
 		},
 
 		componentDidMount: function(){
-			this._loadDownloads();
+			var self = this;
+			this._loadInitialState().then(function(initialState){
+				self.setState(initialState);
+				self.router.init();
+			});
 			this._initialiseRoutes();
 		},
 
@@ -345,13 +335,11 @@
 				return (<p>Loading...</p>);
 			} else {
 				var currPlatform = this.state.currentPlatform.value;
-				var currReleases = this.state.releases[currPlatform];
-				var currDevReleases = this.state.development_versions[devversions.PLATFORM_NAMES[currPlatform]];
 				return (
 						<div>
 						<h1>Get OpenCMISS</h1>
 						<p>Choose the right package for your use.</p>
-						<PackageGrid packages={this._getSampleData()} />
+						<PackageGrid packages={this.state.packages} />
 						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} />
 						</div>
 				);

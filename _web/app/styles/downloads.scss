@@ -103,6 +103,10 @@ h1 {
 
 .package-box {
 	padding:10px;
+	.icon {
+		float:left;
+		max-width: 85px;
+	}
 	.inner {
 		padding:10px;
 		background: #fafafa;
