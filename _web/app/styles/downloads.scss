@@ -100,3 +100,15 @@ h1 {
 .dev-release {
 	margin-top:10px;
 }
+
+.package-box {
+	padding:10px;
+	.inner {
+		padding:10px;
+		background: #fafafa;
+
+		h3 {
+			margin-top:10px;
+		}
+	}
+}

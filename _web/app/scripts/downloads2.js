@@ -1,16 +1,16 @@
 "use strict";
 (function(){
     var Util = { filterKey: function(array,key,val) {
-	return array.filter(function(element){
-	    return element[key] === val;
-	});
+		return array.filter(function(element){
+			return element[key] === val;
+		});
     },
-	first: function(array){
-	    if (array.length > 0){
-		return array[0];
-	    }
-	    return null;
-	}
+				 partition: function(items, size) {
+					 var result = _.groupBy(items, function(item, i) {
+						 return Math.floor(i/size);
+					 });
+					 return _.values(result);
+				 }
 			   };
 
 	var VersionsList = React.createClass({
@@ -127,52 +127,114 @@
 		}
 	});
 
+	var PlatformPicker = React.createClass({
 
-    var IntroComponent = React.createClass({
-	render: function(){
-	    return (
-				<div className="row alert striped">
-				<div className="col-sm-10">
-				<h2 className="default-style">Choose the right OpenCMISS package for you.</h2>
-				<p><strong>OpenCMISS is currently split into two packages.</strong> Please choose the package most suited for your purpose.</p>
-				</div>
-				<div className="col-sm-2">
-				<img src="images/download/opencmiss-stable.png" alt="Logo for OpenCMISS." />
-				</div>
-				</div>
-	    );
-	}
-    });
+		_onPlatformSelectChange: function(event){
+			this.props.onPlatformChange(event.target.value);
+		},
+
+		render: function(){
+			var platforms = this.props.platforms;
+			var selectedPlatform = this.props.currentPlatform;
+			return (
+					<form name="platformForm" className="platform-form">
+					<label htmlFor="platformType">Platform</label>
+					<select id="platformType" name="platformType" defaultValue={selectedPlatform.value} onChange={this._onPlatformSelectChange}>
+					{platforms.map(function(platform,i){
+						return <option value={platform.value} key={i}>{platform.label}</option>;
+					})}
+				</select>
+					</form>
+			);
+		}
+
+	});
+
+	var PackageBox = React.createClass({
+		render: function(){
+			return (<div className="package-box col-sm-6">
+					<div className="inner">
+					<h3>{this.props.package.name}</h3>
+					<p>{this.props.package.description}</p>
+					<a href={"#/package/"+this.props.package.id} className="btn btn-default">Get {this.props.package.name}</a>
+					</div>
+					</div>);
+		}
+	});
+
+	var PackageGrid = React.createClass({
+		_splitPackages: function(packages){
+			var packages = this.props.packages, splitPackages;
+			if (packages == undefined || packages == null || !packages.length){
+				return [];
+			}
+			return Util.partition(packages,2);
+		},
+		render: function(){
+			var packages = this._splitPackages(this.props.packages);
+			var packageComponents = packages.map(function(row){
+				var rowPackages = row.map(function(pkg){
+					return <PackageBox package={pkg} />;
+				});
+				return (<div className="row row-content">
+						{rowPackages}
+						</div>);
+			});
+			return (<div className="package-grid">
+					{packageComponents}
+					</div>);
+		}
+	});
 
 
-    var DownloadsHeader = React.createClass({
+	var PackageDetailsDialogue = React.createClass({
+		componentDidMount: function(){
+			var self = this;
+			var props = this.props;
+			var $dialog = $(this.refs.dialog);
+			$dialog.on('hidden.bs.modal', function(){
+				props.cancel();
+			});
+			if (this.props.pkg != undefined && this.props.pkg != null){
+				$dialog.modal('show');
+			}
+		},
 
-	_onPlatformSelectChange: function(event){
-	    this.props.onPlatformChange(event.target.value);
-	},
+		componentDidUpdate: function(){
+			if (this.props.pkg == undefined || this.props.pkg == null) {
+				$(this.refs.dialog).modal('hide');
+				return;
+			}
+			$(this.refs.dialog).modal('show');
+		},
 
-	render: function(){
-	    var platforms = this.props.platforms;
-	    var selectedPlatform = this.props.currentPlatform;
-	    return (
-		<div>
-		<h1>Download OpenCMISS for {selectedPlatform.label}
-		<form name="platformForm" className="platform-form">
-		<label htmlFor="platformType">Platform</label>
-		<select id="platformType" name="platformType" defaultValue={selectedPlatform.value} onChange={this._onPlatformSelectChange}>
-		{platforms.map(function(platform,i){
-		    return <option value={platform.value} key={i}>{platform.label}</option>;
-		})}
-		 </select>
-		</form>
-		</h1>
-		</div>
-	    );
-	}});
+		render: function(){
+			var modalContent = null;
+			if (this.props.pkg != undefined && this.props.pkg != null) {
+				modalContent = (<div className="modal-content">
+								<div className="modal-header">
+								<h2 className="default-style">{this.props.pkg.name}</h2>
+								<span>{this.props.pkg.description}</span>
+								</div>
+								<div className="modal-body">
+								</div>
+								</div>)
+			}
+
+			return (<div className="modal fade" ref="dialog">
+					<div className="modal-dialog">
+					{modalContent}
+					</div>
+					</div>);
+		}
+	});
+
 
     var DownloadsPage = React.createClass({
+
+		router: null,
 	getPlatformForValue: function(platforms,value){
-	    return Util.first(Util.filterKey(platforms,"value",value));
+	    return _.first(Util.filterKey(platforms,"value",value));
 
 	},
 	_detectPlatform: function(){
@@ -192,7 +254,7 @@
 	},
 
 		getInitialState: function(){
-			return {"isLoading":true }
+			return {"isLoading":true, "currentPackage":null, packages: this._getSampleData() }
 		},
 
 		_loadDownloads: function(){
@@ -217,8 +279,65 @@
 			});
 		},
 
+		_getSampleData: function(){
+			return [
+				{id: "opencmiss",
+				 name: "OpenCMISS",
+				 description:"Complete collection of applications and libraries to get you started."},
+				{id: "zinc",
+				 name: "OpenCMISS-Zinc",
+				 description:"Complete collection of applications and libraries to get you started."},
+				{id: "iron",
+				 name: "OpenCMISS-Iron",
+				 description:"Complete collection of applications and libraries to get you started."}
+			];
+
+		},
+
+		_packageForId: function(id){
+			var matchedPackages = this.state.packages.filter(function(pkg){
+				return pkg.id === id;
+			});
+			if (matchedPackages.length == 0){
+				return null;
+			}
+			return matchedPackages[0];
+		},
+
+		_initialiseRoutes: function(){
+			var self = this;
+			var router = this.router = new Router().configure({
+				notfound: function(){
+					router.setRoute('/');
+				}
+			});
+			router.on('/',function(){
+				self.setState({
+					currentPackage:null
+				});
+			});
+			router.path("/package/",function(){
+				this.on('/:pkgId/',function(pkgId){
+					// TODO need to also redirect :pkgId/!
+					//this.setRoute("/package/"+pkgId+"/home");
+					self.setState({
+						currentPackage:self._packageForId(pkgId)
+					});
+				});
+
+				this.on('/:pkgId/:tab', function(pkgId, tab){
+				});
+				router.init();
+			});
+		},
+
+		_onDialogueExit: function(){
+			this.router.setRoute('/');
+		},
+
 		componentDidMount: function(){
 			this._loadDownloads();
+			this._initialiseRoutes();
 		},
 
 		render: function(){
@@ -230,13 +349,10 @@
 				var currDevReleases = this.state.development_versions[devversions.PLATFORM_NAMES[currPlatform]];
 				return (
 						<div>
-						<DownloadsHeader currentPlatform={this.state.currentPlatform}
-					platforms={this.state.supportedOs}
-					onPlatformChange={this.changePlatform} />
-						<IntroComponent />
-						<IronComponent platform={this.state.currentPlatform} release={currReleases} />
-						<ZincComponent platform={this.state.currentPlatform} release={currReleases.zinc} developmentVersions={currDevReleases["OpenCMISS-Zinc"]} />
-						<PyZincComponent platform={this.state.currentPlatform} release={currReleases.pyzinc} developmentVersions={currDevReleases["pyzinc"]} />
+						<h1>Get OpenCMISS</h1>
+						<p>Choose the right package for your use.</p>
+						<PackageGrid packages={this._getSampleData()} />
+						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} />
 						</div>
 				);
 			}
