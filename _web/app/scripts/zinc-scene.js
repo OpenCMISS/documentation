@@ -67,20 +67,28 @@
 
 	ZincScene.prototype.setBackgroundColor = function(color,alpha){
 		if (typeof this.renderer !== "undefined"){
-			this.renderer._threejsRenderer.setClearColor(color,alpha);
+			this.renderer.threejsRenderer.setClearColor(color,alpha);
 		}
 	}
 
 	ZincScene.prototype.startLoading = function(){
 		if (typeof this.renderer !== "undefined"){
-			this.renderer.loadFromViewURL(this.modelNs,this._onModelProgress.bind(this));
-			this.renderer.animate();
+			var renderer = this.renderer;
+			var showObjectControlsFn = function(geom){
+				renderer.zincObjectControls.attachMesh(geom.morph);
+				renderer.zincObjectControls.enable();
+				renderer.zincObjectControls.control.setMode( "rotate" );
+				renderer.zincObjectControls.showControl();
+			}
+			renderer.zincCameraControls.disable();
+			renderer.loadFromViewURL(this.modelNs,showObjectControlsFn,this._onModelProgress.bind(this));
+			renderer.animate();
 		}
 	};
 
 	ZincScene.prototype.getSceneElement = function(){
 		if (typeof this.renderer !== "undefined"){
-			return this.renderer._threejsRenderer.domElement;
+			return this.renderer.threejsRenderer.domElement;
 		} else {
 			return null;
 		}
