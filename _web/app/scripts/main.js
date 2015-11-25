@@ -5,7 +5,7 @@
 		if (this.heartModel.willLoadModel){
 			var sceneElement = this.heartModel.getSceneElement();
 			this.heartModel.startLoading();
-			this.heartModel.setBackgroundColor(new THREE.Color("rgb(144,144,144)"),1);
+			this.heartModel.setBackgroundColor(new THREE.Color("rgb(238,242,255)"),1);
 			this._setupEventPassthrough(container.getElementsByClassName('overlay'),sceneElement);
 		}
 	};

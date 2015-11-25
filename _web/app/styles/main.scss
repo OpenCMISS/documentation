@@ -121,7 +121,7 @@ div.gsc-control-cse {
 	width:100%;
 	z-index:100;
 	.nav-wrapper,.search-wrapper {
-		border-bottom: 2px solid #84A2FE;
+		border-bottom: 2px solid #eef2ff;
 	}
 
 	.nav-wrapper {
@@ -188,9 +188,9 @@ div.main-message {
 	user-select:none;
 	position:relative;
 	height: 350px;
-	background-color: #909090;
+	background-color: rgb(238,242,255);
 	border-radius: 0px;
-	color: white;
+	color: black;
 	margin: 15px 0px;
 	border-bottom: 1px solid $border-grey;
 	border-right: none;
@@ -228,7 +228,7 @@ div.main-message {
 		top: 80px;
 		padding:15px;
 		width: 550px;
-		background-color: rgba(119, 119, 119, 0.7);
+		background-color: rgba(250,251,255, 0.7);
 		z-index:4;
 	}
 
@@ -270,7 +270,6 @@ div.main-message {
 }
 
 .learn-more {
-    color: white;
     text-decoration: underline;
 }
 
@@ -384,7 +383,7 @@ li.box-link {
 	    padding-top:10px;
 	    padding-left: 15px;
 	    padding-bottom: 5px;
-		background-color: #626262;
+		background-color: $title-blue;
 	}
 }
 
