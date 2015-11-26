@@ -12,7 +12,8 @@ Dependencies
 * bower (installed through npm)
 * grunt-cli (installed through npm)
 * virtualenv
-* (Optional) make
+* SVN (for building the API documentation)
+* make
 
 The project also depends on packages from npm, bower and pip.
 
@@ -32,23 +33,27 @@ Building the website
 
 3. Enter the `_web` directory, install npm and bower packages and do a build:
 
-   If you have make simply run the following. Replace [URL] with the root of where this site will be hosted, e.g. "next.opencmiss.org". This is used for generating a sitemap for the website. 
+   Run the following. Replace [URL] with the root of where this site will be hosted, e.g. "next.opencmiss.org". This is used for generating a sitemap for the website. 
 
    ```
    cd _web
    export SITE_URL=[URL];make
    ```
-
-   Otherwise, run:
-
+   NOTE - The first time the script is run, you may run into this prompt:
+   
    ```
-   cd _web
-   virtualenv .pythonenv
-   .pythonenv/bin/pip install -r requirements.txt
-   npm install
-   bower install
-   grunt
+   Error validating server certificate for 'https://...':
+    - The certificate is not issued by a trusted authority. Use the
+      fingerprint to validate the certificate manually!
+   Certificate information:
+    - Hostname: ...
+    - Valid: from ... until ...
+    - Issuer: ...
+    - Fingerprint: ...
+   (R)eject, accept (t)emporarily or accept (p)ermanently? 
    ```
+
+   This is because during the API documentation build, we need to fetch the Zinc library source from Physiome Project's SVN server. The SVN server uses an SSL certificate that isn't recognised. Please verify the certificate, and if it's correct, accept it Permanently to store it.
 
 
 4. The built website is now available in `_web/build/dist/`. Serve with your favourite web server.

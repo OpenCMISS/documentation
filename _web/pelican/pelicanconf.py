@@ -5,7 +5,6 @@ from __future__ import unicode_literals
 AUTHOR = u'OpenCMISS Project'
 SITENAME = u'OpenCMISS Website'
 SITEURL = ''
-
 PATH = '../content'
 
 TIMEZONE = 'Pacific/Auckland'
@@ -23,16 +22,6 @@ EXTRA_TEMPLATES_PATHS = ['../app/']
 
 # Use filesystem date if not otherwise specified.
 DEFAULT_DATE = "fs"
-
-# Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),
-         ('Python.org', 'http://python.org/'),
-         ('Jinja2', 'http://jinja.pocoo.org/'),
-         ('You can modify those links in your config file', '#'),)
-
-# Social widget
-SOCIAL = (('You can add links in your config file', '#'),
-          ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 3
 
@@ -66,3 +55,8 @@ CATEGORY_URL = '{slug}/index.html'
 
 PAGE_SAVE_AS = '{slug}.html'
 PAGE_URL = 'slug.html'
+
+# Metadata for template
+NAV_HEADINGS_FOR_CATEGORY = {
+	"News": "community"
+}
