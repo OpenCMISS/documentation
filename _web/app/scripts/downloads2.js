@@ -152,9 +152,13 @@
 
 	var PackageBox = React.createClass({
 		render: function(){
+			var iconField = null, icon = this.props.package.icon;
+			if (icon !== undefined || icon !== null){
+				iconField = (<img src={this.props.package.icon} alt={"Icon for "+this.props.package.name} className="icon" />);
+			}
 			return (<div className="package-box col-sm-6">
 					<div className="inner">
-					<img src={this.props.package.icon} alt={"Icon for "+this.props.package.name} className="icon" />
+					{iconField}
 					<div className="description">
 					<h3>{this.props.package.name}</h3>
 					<p>{this.props.package.description}</p>
