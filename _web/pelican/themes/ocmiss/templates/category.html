@@ -1,6 +1,7 @@
 {% extends "partials/common_no_sidebar.jinja" %}
+{% set active_nav = NAV_HEADINGS_FOR_CATEGORY[category.name] %}
 {% block content %}
-  <h1>{{category}}</h1>
+<h1>{{category}}</h1>
   {% for article in articles_page.object_list %}
     <section>
       <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"><h2>{{ article.title }}</h2></a>
