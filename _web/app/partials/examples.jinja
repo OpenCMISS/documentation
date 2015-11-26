@@ -1,4 +1,5 @@
 {% extends 'partials/common_with_sidebar.jinja' %}
+{% set active_nav = doc %}
 {% block styles %}
   {{ super() }}
   <!-- build:css(.tmp) /styles/example.css -->
@@ -61,7 +62,9 @@
 <!-- build:js(.) scripts/modernizr.min.js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
 <!-- endbuild -->
-
+    <!-- build:js(.) /scripts/three.min.js -->
+  <script src="/bower_components/threejs/build/three.min.js"></script>
+  <!-- endbuild -->
   <!-- build:js({.,app,.tmp}) /scripts/examples.js -->
   <script src="/bower_components/ace-builds/src-min/ace.js"></script>
   <script src="/bower_components/ace-builds/src-min/theme-chrome.js"></script>
@@ -70,9 +73,6 @@
   <script src="/scripts/zinc_3js_renderer.js"></script>
   <script src="/scripts/zinc_threejs_control.js"></script>
   <script src="/scripts/zinc-scene.js"></script>
-  <!-- endbuild -->
-    <!-- build:js(.) /scripts/three.min.js -->
-  <script src="/bower_components/threejs/build/three.min.js"></script>
   <!-- endbuild -->
   <script type="text/javascript">
     setupSourceArea();
