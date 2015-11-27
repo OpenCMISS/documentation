@@ -12,3 +12,4 @@ It also makes use of various artworks,  here is a list:
 * `Grab hand icon <http://findicons.com/icon/552705/cursor_hand_icon?id=553125>`_ - gentleface.com (Creative Commons attribution non-commercial)
 * `File icon <https://thenounproject.com/search/?q=file&i=116616>`_ - By mantisshrimpdesign, IN (Creative Commons attribution)
 * Glyphicons Halfings - by `Glyphicons <http://glyphicons.com/>`_.
+* `Lato font <http://www.latofonts.com/lato-free-fonts/>`_ -  by Łukasz Dziedzic (SIL Open Font License 1.1)
