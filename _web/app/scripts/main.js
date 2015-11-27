@@ -4,8 +4,9 @@
 		this.heartModel = new ZincScene(container,'data/fpmodel/coro','assets/app-showcase/heart.png');
 		if (this.heartModel.willLoadModel){
 			var sceneElement = this.heartModel.getSceneElement();
+			this.heartModel.setControls({DEFAULT_CAMERA: false,DEFAULT_OBJECT: true});
 			this.heartModel.startLoading();
-			this.heartModel.setBackgroundColor(new THREE.Color("rgb(144,144,144)"),1);
+			this.heartModel.setBackgroundColor(new THREE.Color("rgb(238,242,255)"),1);
 			this._setupEventPassthrough(container.getElementsByClassName('overlay'),sceneElement);
 		}
 	};

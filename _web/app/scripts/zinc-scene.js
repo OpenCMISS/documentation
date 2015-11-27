@@ -17,6 +17,19 @@
 		tick();
 	}
 
+	function mergeOptionWithDefaults(defaultConfig, config){
+		// Merge default configuration with configuration that's changed.
+		if (config === undefined || config === null || typeof config !== "object"){
+			config = {};
+		}
+		for (var attr in defaultConfig) {
+			if (config[attr] === undefined || config[attr] === null) {
+				config[attr] = defaultConfig[attr];
+			}
+		}
+		return config;
+	};
+
 	function fadeOut(el) {
 		el.style.opacity = 1;
 
@@ -62,25 +75,62 @@
 		this.root.appendChild(this.loadingIndicator);
 		this.root.appendChild(this._makeResetButton());
 		this.renderer = new Zinc.Renderer(this.root, window);
+		this.setControls(this.DEFAULT_CONTROLS); // Sets default control mode
 		this.renderer.initialiseVisualisation();
 	};
 
 	ZincScene.prototype.setBackgroundColor = function(color,alpha){
 		if (typeof this.renderer !== "undefined"){
-			this.renderer._threejsRenderer.setClearColor(color,alpha);
+			this.renderer.threejsRenderer.setClearColor(color,alpha);
 		}
+	}
+
+	ZincScene.prototype.DEFAULT_CONTROLS = { DEFAULT_CAMERA: true,
+											 DEFAULT_OBJECT: false };
+
+	ZincScene.prototype._controls = null;
+
+	/*
+	  setControls configures which UI controls to enable.
+	  Expects an object which map control IDs to a boolean value of whether to enable them.
+	  There are currently two recognised IDs: DEFAULT_CAMERA and DEFAULT_OBJECT.
+	  DEFAULT_CAMERA corresponds to the Camera controls in zinc_3js_renderer.
+	  DEFAULT_OBJECT corresponds to the object controls/TransformControls.
+	  TODO Currently, this function should be called before .startLoading(). In the future
+	  it should be callable whenever is necessary.
+	*/
+
+	ZincScene.prototype.setControls = function(controls){
+		this._controls = mergeOptionWithDefaults({DEFAULT_CAMERA:false,DEFAULT_OBJECT:false},controls);
+		return this;
 	}
 
 	ZincScene.prototype.startLoading = function(){
 		if (typeof this.renderer !== "undefined"){
-			this.renderer.loadFromViewURL(this.modelNs,this._onModelProgress.bind(this));
-			this.renderer.animate();
+			var renderer = this.renderer;
+			var shouldEnableObjectControls = this._controls.DEFAULT_OBJECT;
+			var shouldEnableCameraControls = this._controls.DEFAULT_CAMERA;
+			var configObjectControlsFn = function(geom){
+				if (shouldEnableObjectControls){
+					renderer.zincObjectControls.attachMesh(geom.morph);
+					renderer.zincObjectControls.enable();
+					renderer.zincObjectControls.control.setMode( "rotate" );
+					renderer.zincObjectControls.showControl();
+				}
+			}
+			if (!shouldEnableCameraControls){
+				renderer.zincCameraControls.disable();
+			} else {
+				renderer.zincCameraControls.enable();
+			}
+			renderer.loadFromViewURL(this.modelNs,configObjectControlsFn,this._onModelProgress.bind(this));
+			renderer.animate();
 		}
 	};
 
 	ZincScene.prototype.getSceneElement = function(){
 		if (typeof this.renderer !== "undefined"){
-			return this.renderer._threejsRenderer.domElement;
+			return this.renderer.threejsRenderer.domElement;
 		} else {
 			return null;
 		}

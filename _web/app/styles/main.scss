@@ -2,6 +2,13 @@
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 @import "components";
 @import "hamburger.scss";
+
+// Site font
+@font-face {
+	font-family: 'Lato';
+	src: url(fonts/lato/lato-regular.ttf);
+}
+
 body {
     background-color:#f6f6f6;
 	font-family: 'Lato', sans-serif;
@@ -121,7 +128,7 @@ div.gsc-control-cse {
 	width:100%;
 	z-index:100;
 	.nav-wrapper,.search-wrapper {
-		border-bottom: 2px solid #84A2FE;
+		border-bottom: 2px solid #eef2ff;
 	}
 
 	.nav-wrapper {
@@ -188,9 +195,9 @@ div.main-message {
 	user-select:none;
 	position:relative;
 	height: 350px;
-	background-color: #909090;
+	background-color: rgb(238,242,255);
 	border-radius: 0px;
-	color: white;
+	color: black;
 	margin: 15px 0px;
 	border-bottom: 1px solid $border-grey;
 	border-right: none;
@@ -228,7 +235,7 @@ div.main-message {
 		top: 80px;
 		padding:15px;
 		width: 550px;
-		background-color: rgba(119, 119, 119, 0.7);
+		background-color: rgba(250,251,255, 0.7);
 		z-index:4;
 	}
 
@@ -270,7 +277,6 @@ div.main-message {
 }
 
 .learn-more {
-    color: white;
     text-decoration: underline;
 }
 
@@ -384,7 +390,7 @@ li.box-link {
 	    padding-top:10px;
 	    padding-left: 15px;
 	    padding-bottom: 5px;
-		background-color: #626262;
+		background-color: $title-blue;
 	}
 }
 
@@ -571,7 +577,7 @@ footer {
 		display:none;
 		position:absolute;
 		right:0px;
-		top: $beta-notice-height + 7px; // Nav menu will be slightly below the menu button.
+		top: 7px; // Nav menu will be slightly below the menu button.
 		z-index: 101;
 		background-color: #e4e4e4;
 		width:50%;
@@ -601,7 +607,7 @@ footer {
 		.message {
 			position:static;
 			width: 100%;
-			background-color: rgb(119,119,119);
+			background-color: rgb(238,242,255);
 		}
 
 		.actions {

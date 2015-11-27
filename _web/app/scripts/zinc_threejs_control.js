@@ -1,13 +1,13 @@
 
-ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
+ZincCameraControls = function ( cameraObject, domElement, renderer, scene ) {
 
 	var _this = this;
 	var STATE = { NONE: -1, ROTATE: 0, ZOOM: 1, PAN: 2, TOUCH_ROTATE: 3, TOUCH_ZOOM: 4, TOUCH_PAN: 5 };
-	this.cameraObject = object;
+	this.cameraObject = cameraObject;
 	this.domElement = ( domElement !== undefined ) ? domElement : document;
 	this.renderer = renderer
-	this.scene = scene
-
+	this.scene = scene 
+	
 	this.pointer_x = 0;
 	this.pointer_y = 0;
 	this.previous_pointer_x = 0;
@@ -16,29 +16,22 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 	this.touchZoomDistanceStart = 0;
 	this.touchZoomDistanceEnd = 0;
 	this.directionalLight = 0;
-	this.isDebug = isDebug || false;
-
+	enabled = false;
+	
 	this._state = STATE.NONE;
 	this.targetTouchId = -1;
-
-	this._log = function(message){
-		if (_this.isDebug && document.getElementById('myText')){
-			var text2 = document.getElementById('myText');
-			text2.innerHTML = message;
-		}
-	}
-
+	
 	function onDocumentMouseDown( event ) {
-		if (event.which == 1) {
+		if (event.which == 1) { 
 	 		_this._state = STATE.ROTATE
 		} else if (event.which == 2) {
 			event.preventDefault();
 			_this._state = STATE.PAN
-	    }
+	    } 
 	   	else if (event.which == 3) {
 	    	_this._state = STATE.ZOOM
 	    }
-		_this.pointer_x = event.clientX
+		_this.pointer_x = event.clientX 
 		_this.pointer_y = event.clientY
 		_this.previous_pointer_x = _this.pointer_x
 		_this.previous_pointer_y= _this.pointer_y
@@ -48,16 +41,16 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 		_this.pointer_x = event.clientX
 		_this.pointer_y = event.clientY;
 	}
-
+	
 	function onDocumentMouseUp( event ) {
 		_this._state = STATE.NONE;
 	}
-
+	
 	function onDocumentTouchStart( event ) {
 		var len = event.touches.length
 		if (len == 1) {
 			_this._state = STATE.TOUCH_ROTATE;
-			_this.pointer_x = event.touches[0].clientX
+			_this.pointer_x = event.touches[0].clientX 
 			_this.pointer_y = event.touches[0].clientY
 			_this.previous_pointer_x = _this.pointer_x
 			_this.previous_pointer_y= _this.pointer_y
@@ -66,17 +59,16 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 			var dx = event.touches[ 0 ].clientX - event.touches[ 1 ].clientX;
 			var dy = event.touches[ 0 ].clientY - event.touches[ 1 ].clientY;
 			_this.touchZoomDistanceEnd = _this.touchZoomDistanceStart = Math.sqrt( dx * dx + dy * dy );
-			_this._log('pinchstart ' + _this.touchZoomDistanceStart);
 		} else if (len == 3) {
 			_this._state = STATE.TOUCH_PAN;
 			_this.targetTouchId = event.touches[0].identifier
 			_this.pointer_x = event.touches[0].clientX
 			_this.pointer_y = event.touches[0].clientY
 			_this.previous_pointer_x = _this.pointer_x
-			_this.previous_pointer_y= _this.pointer_y
+			_this.previous_pointer_y= _this.pointer_y				
 		}
 	}
-
+	
 	function onDocumentTouchMove( event ) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -89,7 +81,6 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 				var dx = event.touches[ 0 ].clientX - event.touches[ 1 ].clientX;
 				var dy = event.touches[ 0 ].clientY - event.touches[ 1 ].clientY;
 				_this.touchZoomDistanceEnd = Math.sqrt( dx * dx + dy * dy )
-				_this._log('pinchmove ' + _this.touchZoomDistanceEnd);
 				flyZoom()
 				_this.renderer.render( _this.scene, _this.cameraObject );
 			}
@@ -97,23 +88,22 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 			if (_this._state === STATE.TOUCH_PAN) {
 				for (var i = 0; i < 3; i++) {
 					if (event.touches[i].identifier == _this.targetTouchId) {
-						_this.pointer_x = event.touches[0].clientX
+						_this.pointer_x = event.touches[0].clientX 
 						_this.pointer_y = event.touches[0].clientY
-						_this._log( 'translate ' + _this.pointer_x + ' ' + _this.pointer_y);
 						translate()
 						_this.renderer.render( scene, _this.cameraObject );
 					}
 				}
-			}
+			}				
 		}
 	}
-
+	
 	function onDocumentTouchEnd( event ) {
 		var len = event.touches.length
 		_this.touchZoomDistanceStart = _this.touchZoomDistanceEnd = 0;
 		_this.targetTouchId = -1;
 		_this._state = STATE.NONE;
-	}
+	}		
 
 
 	function translate()
@@ -149,7 +139,7 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 		_this.previous_pointer_x = _this.pointer_x
 		_this.previous_pointer_y = _this.pointer_y
 	}
-
+	
 	function rotateAboutLookAtpoint(a, angle)
 	{
 		a.normalize()
@@ -176,7 +166,7 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 									cos_angle*b.z+sin_angle*c.z);
 		var new_c = new THREE.Vector3(cos_angle*c.x-sin_angle*b.x,
 									cos_angle*c.y-sin_angle*b.y,
-									cos_angle*c.z-sin_angle*b.z);
+									cos_angle*c.z-sin_angle*b.z);								
 		var eye_position = _this.cameraObject.target.clone()
 		eye_position.x = eye_position.x + a.x*rel_eyea + new_b.x*rel_eyeb+new_c.x*rel_eyec
 		eye_position.y = eye_position.y + a.y*rel_eyea + new_b.y*rel_eyeb+new_c.y*rel_eyec
@@ -219,10 +209,10 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 					var a = _this.cameraObject.position.clone();
 					a.sub(_this.cameraObject.target);
 					a.normalize();
-
+					
 					var b = _this.cameraObject.up.clone();
 					b.normalize();
-
+					
 					var c = b.clone();
 					c.cross(a);
 					c.normalize();
@@ -239,7 +229,7 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 		_this.previous_pointer_x = _this.pointer_x
 		_this.previous_pointer_y = _this.pointer_y
 	}
-
+	
 	function calculateZoomDelta()
 	{
 		var delta = 0;
@@ -252,11 +242,11 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 			delta = -1.0 * (_this.touchZoomDistanceEnd - _this.touchZoomDistanceStart);
 			_this.touchZoomDistanceStart = _this.touchZoomDistanceEnd;
 		}
-		_this._log('Delta: ' + delta);
 
+	
 		return delta;
 	}
-
+	
 	function flyZoom() {
 		if (typeof _this.cameraObject !== "undefined")
 		{
@@ -264,10 +254,10 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 			var height = window.innerHeight;
 			var a = _this.cameraObject.position.clone();
 			a.sub(_this.cameraObject.target);
-
+			
 			var delta_y=calculateZoomDelta();
 
-			var dist = a.length()
+			var dist = a.length()				
 			var dy = 1.5 * delta_y/height;
 			if ((dist + dy*dist) > 0.01) {
 				a.normalize()
@@ -292,7 +282,7 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 							_this.cameraObject.near += dy*dist;
 							_this.cameraObject.far += dy*dist;
 						}
-					}
+					}			
 				}
 				else {
 					if (_this.near_plane_fly_debt == 0.0) {
@@ -303,7 +293,7 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 					}
 					_this.near_plane_fly_debt += dy*dist;
 				}
-
+				
 			}
 		}
 		if (_this._state === STATE.ZOOM) {
@@ -311,37 +301,122 @@ ZincCameraControls = function ( object, domElement, renderer, scene , isDebug) {
 			_this.previous_pointer_y = _this.pointer_y
 		}
 	}
-
+	
 	this.setDirectionalLight = function (directionalLightIn) {
 		_this.directionalLight = directionalLightIn;
 	};
-
+	
 	this.updateDirectionalLight = function() {
 		if (_this.directionalLight != 0)
 			_this.directionalLight.position = _this.cameraObject.position.clone();
 	}
-
+	
 	this.update = function () {
-
-		if ((_this._state === STATE.ROTATE) || (_this._state === STATE.TOUCH_ROTATE)){
-			tumble()
-		} else if (_this._state === STATE.PAN){
-			translate()
-		} else if (_this._state === STATE.ZOOM){
-			flyZoom()
+		if (enabled)
+		{
+			if ((_this._state === STATE.ROTATE) || (_this._state === STATE.TOUCH_ROTATE)){
+				tumble()
+			} else if (_this._state === STATE.PAN){
+				translate()
+			} else if (_this._state === STATE.ZOOM){
+				flyZoom()
+			}
+			_this.cameraObject.lookAt( _this.cameraObject.target );
 		}
-		_this.cameraObject.lookAt( _this.cameraObject.target );
 	};
-
-
-	if (this.domElement.addEventListener) {
-		this.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
-		this.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
-		this.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
-		this.domElement.addEventListener( 'touchstart', onDocumentTouchStart, false);
-		this.domElement.addEventListener( 'touchmove', onDocumentTouchMove, false);
-		this.domElement.addEventListener( 'touchend', onDocumentTouchEnd, false);
-		this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
-    }
+	
+	this.enable = function () {
+		enabled = true;
+		if (this.domElement.addEventListener) {
+			this.domElement.addEventListener( 'mousedown', onDocumentMouseDown, false );
+			this.domElement.addEventListener( 'mousemove', onDocumentMouseMove, false );
+			this.domElement.addEventListener( 'mouseup', onDocumentMouseUp, false );
+			this.domElement.addEventListener( 'touchstart', onDocumentTouchStart, false);
+			this.domElement.addEventListener( 'touchmove', onDocumentTouchMove, false);
+			this.domElement.addEventListener( 'touchend', onDocumentTouchEnd, false);
+			this.domElement.addEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+	    }
+	}
+	
+	this.disable = function () {
+		enabled = false;
+		if (this.domElement.removeEventListener) {
+			this.domElement.removeEventListener( 'mousedown', onDocumentMouseDown, false );
+			this.domElement.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+			this.domElement.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+			this.domElement.removeEventListener( 'touchstart', onDocumentTouchStart, false);
+			this.domElement.removeEventListener( 'touchmove', onDocumentTouchMove, false);
+			this.domElement.removeEventListener( 'touchend', onDocumentTouchEnd, false);
+			this.domElement.removeEventListener( 'contextmenu', function ( event ) { event.preventDefault(); }, false );
+	    }
+	}
+	
+	this.enable();
 
 };
+
+ZincObjectControls = function ( cameraObject, domElement, scene ) {
+	var _this = this;
+	this.domElement = ( domElement !== undefined ) ? domElement : document;
+	this.scene = scene
+	this.cameraObject = cameraObject;
+	enabled = false;
+	this.control = new THREE.TransformControls( _this.cameraObject, _this.domElement);
+	
+	objectControlCallback = function ( event ) {
+        //console.log(event.which);
+        switch ( event.keyCode ) {
+          case 81: // Q
+            control.setSpace( control.space == "local" ? "world" : "local" );
+            break;
+          case 87: // W
+            control.setMode( "translate" );
+            break;
+          case 69: // E
+            control.setMode( "rotate" );
+            break;
+          case 82: // R
+            control.setMode( "scale" );
+            break;
+		case 187:
+		case 107: // +,=,num+
+			control.setSize( control.size + 0.1 );
+			break;
+		case 189:
+		case 10: // -,_,num-
+			control.setSize( Math.max(control.size - 0.1, 0.1 ) );
+			break;
+        }
+	}
+	
+	this.enable = function () {
+		enabled = true;
+		_this.domElement.addEventListener( 'keydown', objectControlCallback);
+	}
+	
+	this.disable = function () {
+		enabled = false;
+		_this.domElement.removeEventListener( 'keydown', objectControlCallback);
+	}
+	
+	this.attachMesh = function (mesh) {
+		console.log(mesh)
+		_this.control.attach(mesh);
+	}
+	
+	this.showControl = function () {
+		_this.scene.add(_this.control);
+	}
+	
+	this.hideControl = function () {
+		_this.scene.remove(_this.control);
+	}
+	
+	this.update = function () {
+		if (enabled)
+		{
+			_this.control.update();
+		}
+	}
+};
+

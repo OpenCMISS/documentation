@@ -7,12 +7,10 @@
 		<meta name="viewport" content="width=device-width">
 		<link rel="shortcut icon" href="/favicon.ico">
 		<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 		<!-- build:css(.) /styles/vendor.css -->
 		<!-- endbuild -->
 		<!-- build:css(.tmp) /styles/main.css -->
 		<link rel="stylesheet" href="/styles/main.css">
-		<link rel="stylesheet" href="/styles/beta-notice.css">
 		<!-- endbuild -->
 		{% block styles %}
 		{% endblock %}
@@ -23,9 +21,6 @@
 			<![endif]-->
 		<div class="content-wrapper">
 			<div class="header navbar-fixed-top">
-				<div id="beta-notice">
-					<div class="alert alert-success"><strong>Welcome to the new OpenCMISS site, currently under development.</strong> <a href="/status.html">Here is a list of pages ready for feedback</a>. Email suggestions and comments to <a href="mailto:bioeng-webmaster@auckland.ac.nz">bioeng-webmaster@auckland.ac.nz</a>. </div>
-				</div>
 				<div class="nav-wrapper">
 					<div class="nav-bar navbar">
 						<ul class="util-items nav navbar-nav pull-right">
@@ -59,11 +54,10 @@
 			{% block main_content %}
 			{% endblock %}
 
-
 			<footer>
 				<div class="row footer-box">
 					<div class="col-sm-6">
-						<p class="copyright">&copy; 2015 <a href="/community.html#contributors">OpenCMISS contributors</a>. </p>
+						<p class="copyright">&copy; 2015 <a href="/about.html#contributors">OpenCMISS contributors</a>. </p>
 						<ul class="supporters list-inline">
 							<li><a href="http://abi.auckland.ac.nz"><img src="/images/supporters/abi.png" alt="Auckland Bioengineering Institute"></a></li>
 						</ul>
@@ -71,18 +65,18 @@
 					<div class="col-sm-3 nav-section">
 						<h3>Website Tools</h3>
 						<ul class="list-unstyled">
-							<li><a href="/underconstruction.html">Accessibility</a></li>
 							<li><a href="/sitemap.xml">Site Map</a></li>
+							<li><a href="/website-credit.html">Website Credit</a></li>
 						</ul>
 					</div>
 					<div class="col-sm-3 nav-section">
 						<h3>OpenCMISS</h3>
 						<ul class="list-unstyled">
 							<li><a href="/downloads.html">Download</a></li>
-							<li><a href="/developers.html">Developers</a></li>
 							<li><a href="/doc.html">Documentation</a></li>
 							<li><a href="/community.html">Community</a></li>
 							<li><a href="/about.html">About</a></li>
+							<li><a href="/developers.html">For Developers</a></li>
 						</ul>
 					</div>
 				</div>
