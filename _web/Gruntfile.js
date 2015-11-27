@@ -301,6 +301,7 @@ module.exports = function (grunt) {
 			options: {
 				//beautify: true,
 				//mangleProperties: false,
+				preserveComments:'some'
 			},
 			dist: {
 				files: {
