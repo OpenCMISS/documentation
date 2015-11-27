@@ -23,7 +23,7 @@ EXTRA_TEMPLATES_PATHS = ['../app/']
 # Use filesystem date if not otherwise specified.
 DEFAULT_DATE = "fs"
 
-DEFAULT_PAGINATION = 3
+DEFAULT_PAGINATION = 10
 
 DIRECT_TEMPLATES = ["index","categories"]
 
