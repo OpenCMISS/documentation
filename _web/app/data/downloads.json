@@ -10,7 +10,7 @@
 			"icon":"assets/downloads/opencmiss.png",
 			"description": "Complete collection of applications, libraries and examples to get you started building and visualising models.",
 			"source": {
-				"description":"You can install OpenCMISS from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Zinc on HPC or want to customise the build.",
+				"description":"You can install OpenCMISS from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS on HPC or want to customise the build.",
 				"formats": [
 					{
 						"description":"Install OpenCMISS from Source",
@@ -25,9 +25,18 @@
 		},
 
 		{
-     "id":"zinc",
-     "name":"OpenCMISS-Zinc",
-     "description": "OpenCMISS-Zinc is the visualisation component of the OpenCMISS software package.",
+			"id":"zinc",
+			"name":"OpenCMISS-Zinc",
+			"description": "OpenCMISS-Zinc is the visualisation component of the OpenCMISS software package.",
+			"source": {
+				"description":"You can install OpenCMISS-Zinc from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Zinc on HPC or want to customise the build.",
+				"formats": [
+					{
+						"description":"Browse source code",
+						"url":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/trunk/"
+					}
+				]
+			},
      "releases": {
   "windows":{
       "name":"3.0.0",
@@ -77,12 +86,30 @@
 	{
 	    "id":"iron",
 	    "name":"OpenCMISS-Iron",
-	    "description": "OpenCMISS-Iron is the modelling component of the OpenCMISS software package."
+	    "description": "OpenCMISS-Iron is the modelling component of the OpenCMISS software package.",
+					"source": {
+				"description":"You can install OpenCMISS-Iron from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Iron on HPC or want to customise the build.",
+				"formats": [
+					{
+						"description":"Browse source code",
+						"url":"https://github.com/OpenCMISS/cm"
+					}
+				]
+			}
 	},
 	{
 	    "id":"pyzinc",
 	    "name":"Python Bindings for OpenCMISS-Zinc",
 	    "description": "PyZinc provides a python interface to the Zinc visualisation library.",
+							"source": {
+				"description":"You can install Python bindings for OpenCMISS-Zinc from source using our guide.",
+				"formats": [
+					{
+						"description":"Browse source code",
+						"url":"https://svn.physiomeproject.org/svn/cmiss/zinc/bindings/"
+					}
+				]
+							},
      "releases": {
   "windows":{
       "name":"Bindings for OpenCMISS-Zinc 3.0.0 64-bit",
