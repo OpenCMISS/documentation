@@ -40,11 +40,19 @@ module.exports = function (grunt) {
 		// Project settings
 		config: config,
 
+		// Task for merging multiple download data into one file for grunt-jinja2 to build downloads with.
+		"merge-json":{
+			"downloads":{
+				dest:'.tmp/context/pages/downloads.json',
+				src: ['data/downloads/**/**.json']
+			}
+		},
+
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
 			js: {
-				files: ['<%= config.app %>/scripts/{,*/}*.js'],
-				tasks: ['jshint'],
+				files: ['<%= config.app %>/scripts/{,*/}*.js','<%= config.app %>/data/{,*/}*.js'],
+				tasks: ['babel:dev'],
 				options: {
 					livereload: true
 				}
@@ -197,6 +205,47 @@ module.exports = function (grunt) {
 			}
 		},
 
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ['react']
+			},
+			dev: {
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
+					'src': '**/*.js',
+					'ext': '.js'
+				}]
+			},
+			dist: {
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
+					'src': '**/*.js',
+					'ext': '.js'
+				}]
+			}
+		},
+
 		// Renames files for browser caching purposes
 		rev: {
 			dist: {
@@ -311,10 +360,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		// concat: {
-		//   dist: {}
-		// },
-
 		exec: {
 			sphinxgen: {
 				cwd: '.tmp/sphinxenv',
@@ -461,10 +506,12 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
+			'merge-json:downloads',
 			'concurrent:server',
 			'autoprefixer',
 			'sphinxgenDebug',
 			'exec:pelicangen',
+			'babel:dev',
 			'connect:livereload',
 			'watch'
 		]);
@@ -493,24 +540,28 @@ module.exports = function (grunt) {
 		'copy:sphinxOutputToDebug'
 	]);
 
+
+
 	grunt.registerTask('build',[
-					   'clean:dist',
-					   'concurrent:dist',
-					   'useminPrepare',
-					   'autoprefixer',
-					   'concat',
-					   'cssmin',
-					   'uglify',
-					   'copy:dist',
-					   'sphinxgenDist',
-					   'pelicanDist',
-					   'rev',
-					   'usemin',
-					   'relativeRoot:dist',
-					   'htmlmin',
-					   'copy:other',
-					   'sitemap:dist'
-					  ]);
+		'clean:dist',
+		'merge-json:downloads',
+		'concurrent:dist',
+		'babel:dist',
+		'useminPrepare',
+		'autoprefixer',
+		'concat',
+		'cssmin',
+		'uglify',
+		'copy:dist',
+		'sphinxgenDist',
+		'pelicanDist',
+		'rev',
+		'usemin',
+		'relativeRoot:dist',
+		'htmlmin',
+		'copy:other',
+		'sitemap:dist'
+	]);
 
 grunt.registerTask('dist', function(){
 	var url = grunt.option('siteurl');

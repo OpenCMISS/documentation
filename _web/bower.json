@@ -2,9 +2,13 @@
   "name": "OpenCMISS-Website",
   "private": true,
   "dependencies": {
-      "bootstrap-sass-official": "~3.3.0",
-	  "threejs":"r67",
-	  "ace-builds":"~1.2.0",
-	  "modernizr":"~2.8.0"
+    "bootstrap-sass-official": "~3.3.0",
+    "threejs": "r67",
+    "ace-builds": "~1.2.0",
+    "modernizr": "~2.8.0",
+    "react": "~0.14",
+    "underscore": "~1.8.0",
+      "director": "~1.2.8",
+	  "react-bootstrap":"~0.28"
   }
 }
