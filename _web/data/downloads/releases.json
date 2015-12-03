@@ -1,0 +1,88 @@
+{
+	"releases":{
+		"Windows":{
+			"zinc": {
+				"name":"3.0.0",
+				"formats":[
+					{
+						"description":"Installer 64-bit",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-amd64-Windows.exe"
+					},
+					{
+						"description":"ZIP 64-bit",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-amd64-Windows.zip"
+					}
+				]
+			},
+			"pyzinc": {
+				"name":"Bindings for OpenCMISS-Zinc 3.0.0 64-bit",
+				"formats":[
+					{
+						"description":"for Python 2.7",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-amd64-Windows-Python-2.7.zip"
+					},
+					{
+						"description":"for Python 3.3",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-amd64-Windows-Python-3.3.zip"
+					}
+				]
+			}
+		},
+		"Mac OS X": {
+			"zinc": {
+				"name":"3.0.0",
+				"formats":[
+					{
+						"description":"Universal DMG",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-universal-Mac-OS-X-10.6.8.dmg"
+					},
+					{
+						"description":"TAR.GZ",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-universal-Mac-OS-X-10.6.8.tar.gz"
+					}
+				]
+			},
+			"pyzinc": {
+				"name":"Bindings for OpenCMISS-Zinc 3.0.0 Universal",
+				"formats":[
+					{
+						"description":"for Python 2.7",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-universal-Mac-OS-X-10.6.8-Python-2.7.tar.gz"
+					},
+					{
+						"description":"for Python 2.6",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-universal-Mac-OS-X-10.6.8-Python-2.6.tar.gz"
+					}
+				]
+			}
+		},
+		"Linux":{
+			"zinc": {
+				"name":"3.0.0",
+				"formats":[
+					{
+						"description":"Ubuntu DEB 64-bit",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-x86_64-Ubuntu-10.04.4-LTS.deb"
+					},
+					{
+						"description":"TAR.GZ 64-bit",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/OpenCMISS-Zinc-3.0.0-x86_64-Ubuntu-10.04.4-LTS.tar.gz"
+					}
+				]
+			},
+			"pyzinc": {
+				"name":"Bindings for OpenCMISS-Zinc 3.0.0 64-bit",
+				"formats":[
+					{
+						"description":"for Python 2.7",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-x86_64-Ubuntu-10.04.4-LTS-Python-2.7.tar.gz"
+					},
+					{
+						"description":"for Python 2.6",
+						"url":"ftp://ftp.bioeng.auckland.ac.nz/cmiss/zinclibrary/release/pyzinc-3.0.0-x86_64-Ubuntu-10.04.4-LTS-Python-2.6.tar.gz"
+					}
+				]
+			}
+		}
+	}
+}

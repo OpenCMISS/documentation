@@ -7,7 +7,7 @@
   </div>
 {%- endmacro %}
 
-{% macro dev_releases_box(sw_name,src_repo_info) %}
+{% macro dev_releases_box(sw_name,src_repo_info,os,dev_versions) %}
   {% if src_repo_info is defined %}
     <div class="infobox other-ver-options">
       <div class="title-section acc-trigger"><a href="#">Development versions and source code</a></div>
@@ -17,6 +17,15 @@
 	    <div class="dev-versions">
 	      <h4> Development Versions </h4>
 	      <div class="alert alert-warning"><strong>May contain traces of nuts!</strong> These development versions of {{sw_name}} include newer features but may be unstable or may not run. It may be necessary to try multiple versions to get a working version.</div>
+	      {# dev versions here. #}
+	      {% for format in formats %}
+		{% for arch in architectures %}
+		  {% for version in versions %}
+
+		  {% endfor %}
+		{% endfor %}
+	      {% endfor %}
+
 	    </div>
 	  </div>
 	  <div class="col-sm-4">
@@ -29,7 +38,6 @@
 	    </div>
 	  </div>
 	</div>
-	{# dev versions here. #}
       </div>
     </div>
   {% endif %}
