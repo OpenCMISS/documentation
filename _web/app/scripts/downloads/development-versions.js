@@ -75,7 +75,7 @@
 			return (
 					<div className="versions-list">
 					{downloads.map(function(version){
-						return (<div><p className="format-list"><commoncomps.DownloadBox name={version.name} downloads={version.downloads} /></p></div>)
+						return (<div><p className="format-list"><DownloadBox name={version.name} downloads={version.downloads} /></p></div>)
 					})}
 				</div>);
 
@@ -145,11 +145,12 @@
 			return (
 					<div className="versions-list">
 					{downloads.map(function(version){
-						return (<div><p className="format-list"><commoncomps.DownloadBox name={version.name} downloads={version.downloads} /></p></div>)
+						return (<div><p className="format-list"><DownloadBox name={version.name} downloads={version.downloads} /></p></div>)
 					})}
 				</div>);
 
 		}
 	});
+
 
 }());

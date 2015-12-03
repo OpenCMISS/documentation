@@ -35,17 +35,6 @@
 	}
     });
 
-	var StableReleaseBox = React.createClass({
-		render: function(){
-			return (<div className="stable-release">
-					<h3>Latest Release</h3>
-					<div className="release-box">
-					{this.props.children}
-					</div>
-					</div>);
-		}
-	});
-
 	/**
 	   <DevReleasesComponent> - a presentational component for showing development releases and source code.
 
@@ -127,36 +116,13 @@
 		}
 	});
 
-	var PlatformPicker = React.createClass({
-
-		_onPlatformSelectChange: function(event){
-			this.props.onPlatformChange(event.target.value);
-		},
-
-		render: function(){
-			var platforms = this.props.platforms;
-			var selectedPlatform = this.props.currentPlatform;
-			return (
-					<form name="platformForm" className="platform-form">
-					<label htmlFor="platformType">Platform</label>
-					<select id="platformType" name="platformType" defaultValue={selectedPlatform.value} onChange={this._onPlatformSelectChange}>
-					{platforms.map(function(platform,i){
-						return <option value={platform.value} key={i}>{platform.label}</option>;
-					})}
-				</select>
-					</form>
-			);
-		}
-
-	});
-
 	var PackageBox = React.createClass({
 		render: function(){
 			var iconField = null, icon = this.props.package.icon;
-			if (icon !== undefined || icon !== null){
+			if (icon !== undefined && icon !== null){
 				iconField = (<img src={this.props.package.icon} alt={"Icon for "+this.props.package.name} className="icon" />);
 			}
-			return (<div className="package-box col-sm-6">
+			return (<div className="package-box col-sm-6 media-item">
 					<div className="inner">
 					{iconField}
 					<div className="description">
@@ -194,48 +160,6 @@
 	});
 
 
-	var PackageDetailsDialogue = React.createClass({
-		componentDidMount: function(){
-			var self = this;
-			var props = this.props;
-			var $dialog = $(this.refs.dialog);
-			$dialog.on('hidden.bs.modal', function(){
-				props.cancel();
-			});
-			if (this.props.pkg != undefined && this.props.pkg != null){
-				$dialog.modal('show');
-			}
-		},
-
-		componentDidUpdate: function(){
-			if (this.props.pkg == undefined || this.props.pkg == null) {
-				$(this.refs.dialog).modal('hide');
-				return;
-			}
-			$(this.refs.dialog).modal('show');
-		},
-
-		render: function(){
-			var modalContent = null;
-			if (this.props.pkg != undefined && this.props.pkg != null) {
-				modalContent = (<div className="modal-content">
-								<div className="modal-header">
-								<h2 className="default-style">{this.props.pkg.name}</h2>
-								<span>{this.props.pkg.description}</span>
-								</div>
-								<div className="modal-body">
-								</div>
-								</div>)
-			}
-
-			return (<div className="modal fade" ref="dialog">
-					<div className="modal-dialog">
-					{modalContent}
-					</div>
-					</div>);
-		}
-	});
-
 
     var DownloadsPage = React.createClass({
 		// Director router
@@ -267,19 +191,18 @@
 		_loadInitialState: function(){
 			var self = this;
 			return $.ajax('/data/downloads.json').then(function(downloadsData){
-				return $.ajax('/data/development_binaries.json').then(function(devBinaries){
+				return $.ajax('/data/development_versions.json').then(function(devBinaries){
 					var data = $.extend(downloadsData, devBinaries);
 					console.log(data);
 					return data;
 				}, function(error){
-					console.log("Error occurred while getting development binaries. ",error);
+					console.error("Error occurred while getting development binaries. ",error);
 				});
 			},function(error){
-				console.log("Error occurred while getting downloads data. ",error);
+				console.error("Error occurred while getting downloads data. ",error);
 			}).then(function(downloadsData){
 				var hostPlatform = self._detectPlatform() || "linux",
 					defaultPlatform = self.getPlatformForValue(downloadsData.supportedOs,hostPlatform);
-
 				return $.extend(downloadsData,{"isLoading": false,
 														   "currentPlatform":defaultPlatform});
 			});
@@ -334,6 +257,20 @@
 			this._initialiseRoutes();
 		},
 
+		getChildContext: function(){
+			return { developmentVersions: this.state.development_versions || {},
+					 currentPlatform: this.state.currentPlatform || {},
+					 platforms: this.state.supportedOs || [],
+					 platformChangeHandler: this.changePlatform || function(){}};
+		},
+
+		childContextTypes: {
+			currentPlatform: React.PropTypes.object.isRequired,
+			platforms: React.PropTypes.array.isRequired,
+			platformChangeHandler: React.PropTypes.func.isRequired,
+			developmentVersions: React.PropTypes.object.isRequired
+		},
+
 		render: function(){
 			if (this.state.isLoading){
 				return (<p>Loading...</p>);
@@ -345,6 +282,7 @@
 						<p>Choose the right package for your use.</p>
 						<PackageGrid packages={this.state.packages} />
 						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} />
+
 						</div>
 				);
 			}

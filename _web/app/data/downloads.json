@@ -4,14 +4,27 @@
       {"label":"Mac OS X","value":"mac"},
       {"label":"Linux","value":"linux"}],
     "packages":[
- {
-     "id":"opencmiss",
-     "name":"OpenCMISS",
-     "icon":"assets/downloads/opencmiss.png",
-     "description": "Complete collection of applications, libraries and examples to get you started building and visualising models."
- },
+		{
+			"id":"opencmiss",
+			"name":"OpenCMISS",
+			"icon":"assets/downloads/opencmiss.png",
+			"description": "Complete collection of applications, libraries and examples to get you started building and visualising models.",
+			"source": {
+				"description":"You can install OpenCMISS from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Zinc on HPC or want to customise the build.",
+				"formats": [
+					{
+						"description":"Install OpenCMISS from Source",
+						"url":"https://github.com/OpenCMISS/manage/raw/v1.0/OpenCMISSBuildEnvironment.docx.pdf"
+					},
+					{
+						"description":"Browse source code",
+						"url":"https://github.com/OpenCMISS/manage"
+					}
+				]
+			}
+		},
 
- {
+		{
      "id":"zinc",
      "name":"OpenCMISS-Zinc",
      "description": "OpenCMISS-Zinc is the visualisation component of the OpenCMISS software package.",
@@ -111,13 +124,5 @@
       ]
   }
      }
- }
-
-    ],
-    "sources": {
- "zinc": {"repoType":"SVN Repository",
-   "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/"},
- "pyzinc":{"repoType":"SVN Repository",
-    "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/bindings/"}
-    }
+ }]
 }

@@ -3,9 +3,7 @@
 }
 
 .platform-form {
-	color: black;
 	label {
-		color: white;
 		padding-right:5px;
 	}
 }
@@ -35,8 +33,6 @@ h1 {
 	padding: 20px 0px;
 }
 .platform-form {
-	float: right;
-	font-size: 16px;
 }
 
 
@@ -103,8 +99,7 @@ h1 {
 
 .package-box {
 	padding:10px;
-	.icon {
-		float:left;
+	img {
 		max-width: 85px;
 	}
 	.inner {
@@ -114,5 +109,11 @@ h1 {
 		h3 {
 			margin-top:10px;
 		}
+	}
+}
+
+.pkg-dialog {
+	.tab-pane {
+		padding:10px;
 	}
 }

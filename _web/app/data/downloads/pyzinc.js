@@ -21,7 +21,7 @@
 		}
 	});
 
-	window.pyzinccomponents.INSTALL_INSTRUCTIONS = {"windows":WindowsInstall,
+	window.pyzinccomponents.INSTRUCTIONS_MAP = {"windows":WindowsInstall,
 															 "mac":MacInstall,
 													"linux":LinuxInstall};
 

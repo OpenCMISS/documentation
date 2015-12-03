@@ -8,6 +8,7 @@
     "modernizr": "~2.8.0",
     "react": "~0.14",
     "underscore": "~1.8.0",
-    "director": "~1.2.8"
+      "director": "~1.2.8",
+	  "react-bootstrap":"~0.28"
   }
 }
