@@ -395,7 +395,11 @@ li.box-link {
 	    padding-top:10px;
 	    padding-left: 15px;
 	    padding-bottom: 5px;
+<<<<<<< HEAD
 		background-color: $title-blue;
+=======
+		background-color: #eaeaea;
+>>>>>>> dev-versions
 	}
 }
 
@@ -519,15 +523,13 @@ footer {
 }
 
 .download-box {
-	margin-top: 30px;
 	margin-bottom:10px;
 	.download-name {
-		font-style:italic;
+		font-weight:bold;
 	}
 	.btn {
 		font-size:1.2em;
-		margin-right: 5px;
-		margin-bottom: 5px;
+		margin-right:5px;
 	}
 	.btn.main {
 		border-color: #27ae60;

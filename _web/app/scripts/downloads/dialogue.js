@@ -7,8 +7,11 @@
 
 	*/
 	window.DownloadBox = React.createClass({
+		getDefaultProps: function(){
+			return {highlightMain:  true};
+		},
 		render: function(){
-			var title;
+			var title, self = this;
 			if (this.props.name !== undefined && this.props.name !== null ){
 				title = (<p className="download-name">{this.props.name}</p>);
 			}
@@ -16,7 +19,8 @@
 					<div className="download-box">
 					{title}
 				{this.props.downloads.map(function(download,idx){
-					return (<a href={download.url} className={"btn btn-default" + (idx == 0 ? " main": "")}><span className="glyphicon glyphicon-download" aria-hidden="true"></span>{download.description}</a>);
+					var willHighlight = idx == 0 && self.props.highlightMain; // Checks if the main (first) button should have different styling than others
+					return (<a href={download.url} className={"btn btn-default" + (willHighlight ? " main": "")}><span className="glyphicon glyphicon-download" aria-hidden="true"></span>{download.description}</a>);
 				})}
 				</div>
 			)
