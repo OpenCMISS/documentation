@@ -13,12 +13,14 @@
   <div id="downloads"></div>
   {% endblock %}
 {% block scripts %}
-  <!-- build:js({app,.tmp}) scripts/downloads.js -->
+  <!-- build:js(.) scripts/downloads-vendor.js -->
   <script src="/bower_components/underscore/underscore-min.js"></script>
   <script src="/bower_components/react/react.js"></script>
   <script src="/bower_components/react/react-dom.js"></script>
   <script src="/bower_components/director/build/director.js"></script>
   <script src="/bower_components/react-bootstrap/react-bootstrap.min.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.tmp) scripts/downloads.js -->
   <script src="data/downloads/pyzinc.js"></script>
   <script src="data/downloads/zinc.js"></script>
   <script src="scripts/downloads/development-versions.js"></script>

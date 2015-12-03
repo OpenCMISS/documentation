@@ -225,9 +225,21 @@ module.exports = function (grunt) {
 				}]
 			},
 			dist: {
-				files: {
-					'<%= config.dist %>/scripts/{,*/}*.js':'<%= config.app %>/scripts/{,*/}*.js'
-				}
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
+					'src': '**/*.js',
+					'ext': '.js'
+				}]
 			}
 		},
 
@@ -332,10 +344,6 @@ module.exports = function (grunt) {
 		//   }
 		// },
 		uglify: {
-			options: {
-				//beautify: true,
-				//mangleProperties: false,
-			},
 			dist: {
 				files: {
 					'<%= config.dist %>/scripts/scripts.js': [
@@ -344,9 +352,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		// concat: {
-		//   dist: {}
-		// },
 
 		exec: {
 			sphinxgen: {
@@ -534,6 +539,7 @@ module.exports = function (grunt) {
 		'clean:dist',
 		'merge-json:downloads',
 		'concurrent:dist',
+		'babel:dist',
 		'useminPrepare',
 		'autoprefixer',
 		'concat',
