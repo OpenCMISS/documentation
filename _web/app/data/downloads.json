@@ -11,10 +11,10 @@
 			"icon":"assets/downloads/opencmiss.png",
 			"description": "Complete collection of applications, libraries and examples to get you started building and visualising models.",
 			"source": {
-				"description":"You can install OpenCMISS from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS on HPC or want to customise the build.",
+				"description":"Currently, we don't have binary releases for OpenCMISS yet. You can install OpenCMISS from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS on HPC or want to customise the build.",
 				"formats": [
 					{
-						"description":"Install OpenCMISS from Source",
+						"description":"Guide to Installing from Source (PDF)",
 						"url":"https://github.com/OpenCMISS/manage/raw/v1.0/OpenCMISSBuildEnvironment.docx.pdf"
 					},
 					{
