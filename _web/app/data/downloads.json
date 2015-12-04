@@ -19,7 +19,8 @@
 					},
 					{
 						"description":"Browse source code",
-						"url":"https://github.com/OpenCMISS/manage"
+						"url":"https://github.com/OpenCMISS/manage",
+						"type":"link"
 					}
 				]
 			}
@@ -34,8 +35,7 @@
 				"formats": [
 					{
 						"description":"Browse source code",
-						"url":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/trunk/"
-					}
+						"url":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/trunk/"					}
 				]
 			},
 			"releases": {

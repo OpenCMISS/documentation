@@ -10,6 +10,13 @@
 		getDefaultProps: function(){
 			return {highlightMain:  true};
 		},
+
+		renderTypeIcon: function(type){
+			var glyphiconClass = "glyphicon-download";
+			if (type == "link") glyphiconClass = "glyphicon-circle-arrow-right";
+			return (<span className={"glyphicon "+glyphiconClass} aria-hidden="true"></span>);
+		},
+
 		render: function(){
 			var title, self = this;
 			if (this.props.name !== undefined && this.props.name !== null ){
@@ -20,7 +27,7 @@
 					{title}
 				{this.props.downloads.map(function(download,idx){
 					var willHighlight = idx == 0 && self.props.highlightMain; // Checks if the main (first) button should have different styling than others
-					return (<a href={download.url} className={"btn btn-default" + (willHighlight ? " main": "")}><span className="glyphicon glyphicon-download" aria-hidden="true"></span>{download.description}</a>);
+					return (<a href={download.url} target="_blank" className={"btn btn-default" + (willHighlight ? " main": "")}>{self.renderTypeIcon(download.type)}{download.description}</a>);
 				})}
 				</div>
 			)
@@ -89,11 +96,15 @@
 			const pkg = this.props.pkg;
 			if (!pkg) return this.renderNoSource();
 			const source = pkg.source;
+			var formats = source.formats;
+			formats.forEach(function(format){
+				format.type = "link";
+			});
 			if (!source || !source.formats) return this.renderNoSource();
 			return (
 					<div role="tabpanel" className="tab-pane">
 					<p>{source.description}</p>
-					<DownloadBox downloads={source.formats} />
+					<DownloadBox downloads={formats} />
 					</div>
 
 			);
