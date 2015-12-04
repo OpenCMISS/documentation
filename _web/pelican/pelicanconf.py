@@ -33,6 +33,7 @@ TEMPLATE_PAGES = {'custompages/index.html':'index.html',
 				  'custompages/about.html':'about.html',
 				  'custompages/developers.html':'developers.html',
 				  'custompages/doc.html':'doc.html',
+				  'custompages/downloads.html':'downloads.html',
 				  'custompages/community.html':'community.html',
 				  'custompages/getting-started.html':'getting-started.html'}
 

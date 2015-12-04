@@ -40,11 +40,19 @@ module.exports = function (grunt) {
 		// Project settings
 		config: config,
 
+		// Task for merging multiple download data into one file for grunt-jinja2 to build downloads with.
+		"merge-json":{
+			"downloads":{
+				dest:'.tmp/context/pages/downloads.json',
+				src: ['data/downloads/**/**.json']
+			}
+		},
+
 		// Watches files for changes and runs tasks based on the changed files
 		watch: {
 			js: {
-				files: ['<%= config.app %>/scripts/{,*/}*.js'],
-				tasks: ['jshint'],
+				files: ['<%= config.app %>/scripts/{,*/}*.js','<%= config.app %>/data/{,*/}*.js'],
+				tasks: ['babel:dev'],
 				options: {
 					livereload: true
 				}
@@ -113,7 +121,7 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
-							connect().use('/other',connect.static('./other/')),
+							//connect().use('/other',connect.static('./other/')),
 							connect.static(config.app),
 							connect.static('./.tmp/pelicangen')
 						];
@@ -193,6 +201,47 @@ module.exports = function (grunt) {
 					cwd: '.tmp/styles/',
 					src: '{,*/}*.css',
 					dest: '.tmp/styles/'
+				}]
+			}
+		},
+
+		babel: {
+			options: {
+				sourceMap: true,
+				presets: ['react']
+			},
+			dev: {
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
+					'src': '**/*.js',
+					'ext': '.js'
+				}]
+			},
+			dist: {
+				files: [{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/scripts/',
+					'dest': '.tmp/scripts/',
+					'src': '**/*.js',
+					'ext': '.js'
+				},{
+					'dot': true,
+					"expand": true,
+					'cwd':'<%= config.app %>/data/',
+					'dest': '.tmp/data/',
+					'src': '**/*.js',
+					'ext': '.js'
 				}]
 			}
 		},
@@ -311,10 +360,6 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		// concat: {
-		//   dist: {}
-		// },
-
 		exec: {
 			sphinxgen: {
 				cwd: '.tmp/sphinxenv',
@@ -372,13 +417,22 @@ module.exports = function (grunt) {
 					src: '**/*.*'
 				}]
 			},
-			other: {
+			"static": {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: 'other',
+					cwd: 'static',
 					src: '**/*.*',
-					dest: '<%= config.dist %>/other'
+					dest: '<%= config.dist %>/'
+				}]
+			},
+			"staticDev": {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: 'static',
+					src: '**/*.*',
+					dest: '.tmp/'
 				}]
 			},
 			dist: {
@@ -461,10 +515,13 @@ module.exports = function (grunt) {
 
 		grunt.task.run([
 			'clean:server',
+			'merge-json:downloads',
 			'concurrent:server',
 			'autoprefixer',
 			'sphinxgenDebug',
 			'exec:pelicangen',
+			'babel:dev',
+			'copy:staticDev',
 			'connect:livereload',
 			'watch'
 		]);
@@ -493,24 +550,28 @@ module.exports = function (grunt) {
 		'copy:sphinxOutputToDebug'
 	]);
 
+
+
 	grunt.registerTask('build',[
-					   'clean:dist',
-					   'concurrent:dist',
-					   'useminPrepare',
-					   'autoprefixer',
-					   'concat',
-					   'cssmin',
-					   'uglify',
-					   'copy:dist',
-					   'sphinxgenDist',
-					   'pelicanDist',
-					   'rev',
-					   'usemin',
-					   'relativeRoot:dist',
-					   'htmlmin',
-					   'copy:other',
-					   'sitemap:dist'
-					  ]);
+		'clean:dist',
+		'merge-json:downloads',
+		'concurrent:dist',
+		'babel:dist',
+		'useminPrepare',
+		'autoprefixer',
+		'concat',
+		'cssmin',
+		'uglify',
+		'copy:dist',
+		'sphinxgenDist',
+		'pelicanDist',
+		'rev',
+		'usemin',
+		'relativeRoot:dist',
+		'htmlmin',
+		'copy:static',
+		'sitemap:dist'
+	]);
 
 grunt.registerTask('dist', function(){
 	var url = grunt.option('siteurl');
