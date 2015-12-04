@@ -518,26 +518,33 @@ footer {
 	width: 100%;
 }
 
+
+
+.btn.main {
+	border-color: #27ae60;
+	background-color:#2ecc71;
+	color:white;
+}
+
+
+.btn span.glyphicon {
+	margin-right: 5px;
+}
+
+
 .download-box {
 	margin-top: 30px;
 	margin-bottom:10px;
 	.download-name {
 		font-style:italic;
 	}
+
 	.btn {
 		font-size:1.2em;
 		margin-right: 5px;
 		margin-bottom: 5px;
 	}
-	.btn.main {
-		border-color: #27ae60;
-		background-color:#2ecc71;
-		color:white;
-	}
 
-	.btn span.glyphicon {
-		margin-right: 5px;
-	}
 }
 
 .news-list {

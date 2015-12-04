@@ -3,6 +3,7 @@
     "supportedOs": [{"label":"Windows","value":"windows"},
 					{"label":"Mac OS X","value":"mac"},
 					{"label":"Linux","value":"linux"}],
+	"featured":"opencmiss",
     "packages":[
 		{
 			"id":"opencmiss",

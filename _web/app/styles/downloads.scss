@@ -99,13 +99,14 @@ h1 {
 
 .package-box {
 	padding:10px;
-	img {
+	img.icon {
 		max-width: 85px;
+		float:left;
+		margin-right:20px;
 	}
 	.inner {
 		padding:10px;
 		background: #fafafa;
-
 		h3 {
 			margin-top:10px;
 		}
@@ -115,5 +116,11 @@ h1 {
 .pkg-dialog {
 	.tab-pane {
 		padding:10px;
+	}
+}
+
+.featured-pkg {
+	.inner {
+		padding: 35px 10px;
 	}
 }
