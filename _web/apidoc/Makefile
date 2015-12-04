@@ -4,8 +4,8 @@ html: init clean sync
 	cp -r LibZincDoxygen/libzinc_doxgen_script .working
 	cd .working; python api_2_api++_doc.py
 	cd .working/libzinc_doxgen_script; doxygen cpp_comments.doxygen
-	mkdir -p build/zinc-apidoc/latest/
-	cp -r .working/libzinc_doxgen_script/libzinc_dox_output/html/* build/zinc-apidoc/latest
+	mkdir -p build/apidoc/zinc/latest/
+	cp -r .working/libzinc_doxgen_script/libzinc_dox_output/html/* build/apidoc/zinc/latest
 
 sync:
 	svn up zinc --accept theirs-full # If any conflict arises, take the source repository.
