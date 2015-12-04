@@ -127,7 +127,6 @@ div.gsc-control-cse {
 }
 
 
-/* Custom page header */
 .header {
 	border-bottom: 1px solid $border-grey;
 	width:100%;
@@ -138,6 +137,7 @@ div.gsc-control-cse {
 
 	.nav-wrapper {
 		background-color:white;
+		height: $header-height-no-margin;
 	}
 
 	.search-wrapper {
@@ -591,7 +591,7 @@ footer {
 		display:none;
 		position:absolute;
 		right:0px;
-		top: 7px; // Nav menu will be slightly below the menu button.
+		top: $header-height-no-margin - 7.5px; // Nav menu will be slightly below the menu button.
 		z-index: 101;
 		background-color: #e4e4e4;
 		width:50%;
