@@ -7,7 +7,7 @@ debug: prep
 
 apidoc:
 	make -C apidoc
-	cp -r apidoc/build/zinc-apidoc other
+	cp -r apidoc/build/apidoc static
 
 prep :
 	virtualenv .pythonenv

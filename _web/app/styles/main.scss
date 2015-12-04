@@ -14,6 +14,11 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+code {
+	color:#121D3E;
+	background-color: #ECF1FF;
+}
+
 .passthrough {
 	pointer-events: none;
 }
@@ -122,7 +127,6 @@ div.gsc-control-cse {
 }
 
 
-/* Custom page header */
 .header {
 	border-bottom: 1px solid $border-grey;
 	width:100%;
@@ -133,6 +137,7 @@ div.gsc-control-cse {
 
 	.nav-wrapper {
 		background-color:white;
+		height: $header-height-no-margin;
 	}
 
 	.search-wrapper {
@@ -513,24 +518,33 @@ footer {
 	width: 100%;
 }
 
+
+
+.btn.main {
+	border-color: #27ae60;
+	background-color:#2ecc71;
+	color:white;
+}
+
+
+.btn span.glyphicon {
+	margin-right: 5px;
+}
+
+
 .download-box {
 	margin-top: 30px;
 	margin-bottom:10px;
 	.download-name {
 		font-style:italic;
 	}
+
 	.btn {
 		font-size:1.2em;
-	}
-	.btn.main {
-		border-color: #27ae60;
-		background-color:#2ecc71;
-		color:white;
+		margin-right: 5px;
+		margin-bottom: 5px;
 	}
 
-	.btn span.glyphicon {
-		margin-right: 5px;
-	}
 }
 
 .news-list {
@@ -577,7 +591,7 @@ footer {
 		display:none;
 		position:absolute;
 		right:0px;
-		top: 7px; // Nav menu will be slightly below the menu button.
+		top: $header-height-no-margin - 7.5px; // Nav menu will be slightly below the menu button.
 		z-index: 101;
 		background-color: #e4e4e4;
 		width:50%;

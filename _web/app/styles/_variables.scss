@@ -16,4 +16,7 @@ $content-width: 900px;
 $compact-width: 768px;
 $compressed-width: 1349px;
 $compressed-header-width: 930px;
-$header-height: 71px;
+
+
+$header-height-no-margin: 56px;
+$header-height: $header-height-no-margin + 15px;

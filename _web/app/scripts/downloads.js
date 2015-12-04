@@ -15,26 +15,39 @@
 
 
 	var PackageBox = React.createClass({
+		propTypes: {
+			classes: React.PropTypes.array.isRequired,
+
+		},
 		render: function(){
-			var iconField = null, icon = this.props.package.icon;
+		    this.props.classes.push("package-box");
+		    var isMain = !!this.props.isMain;
+			var iconField = null, icon = this.props.pkg.icon;
 			if (icon !== undefined && icon !== null){
-				iconField = (<img src={this.props.package.icon} alt={"Icon for "+this.props.package.name} className="icon" />);
+				iconField = (<img src={this.props.pkg.icon} alt={"Icon for "+this.props.pkg.name} className="icon" />);
 			}
-			return (<div className="package-box col-sm-6 media-item">
+			return (<div className={this.props.classes.join(' ')}>
 					<div className="inner">
 					{iconField}
 					<div className="description">
-					<h3>{this.props.package.name}</h3>
-					<p>{this.props.package.description}</p>
-					<a href={"#/package/"+this.props.package.id} className="btn btn-default">Get {this.props.package.name}</a>
+					<h3>{this.props.pkg.name}</h3>
+					<p>{this.props.pkg.description}</p>
+				<a href={"#/package/"+this.props.pkg.id} className={"btn btn-default " + (isMain ? "main" : "")}>Get {this.props.pkg.name}</a>
 					</div>
 					</div>
 					</div>);
 		}
 	});
 
+	var FeaturedPackageBox = React.createClass({
+		render: function(){
+		    return (<PackageBox pkg={this.props.pkg} classes={["featured-pkg"]} isMain={true} />);
+		}
+	});
+
 	var PackageGrid = React.createClass({
 		_splitPackages: function(packages){
+			// Splits packages into rows of two, for presenting on the page.
 			var packages = this.props.packages, splitPackages;
 			if (packages == undefined || packages == null || !packages.length){
 				return [];
@@ -43,9 +56,10 @@
 		},
 		render: function(){
 			var packages = this._splitPackages(this.props.packages);
+			var pkgBoxClasses = ["col-sm-6"];
 			var packageComponents = packages.map(function(row){
 				var rowPackages = row.map(function(pkg){
-					return <PackageBox package={pkg} />;
+					return <PackageBox pkg={pkg} classes={pkgBoxClasses} />;
 				});
 				return (<div className="row row-content">
 						{rowPackages}
@@ -169,6 +183,20 @@
 			developmentVersions: React.PropTypes.object.isRequired
 		},
 
+		getFeaturedPackage: function(){
+			var featuredPkgId = this.state.featured;
+			if (!featuredPkgId) return null;
+			return this._packageForId(featuredPkgId);
+		},
+
+		getOrdinaryPackages: function(){
+			var featuredPkgId = this.state.featured;
+			if (!featuredPkgId) return this.state.packages;
+			return this.state.packages.filter(function(pkg){
+				return pkg.id !== featuredPkgId;
+			});
+		},
+
 		render: function(){
 			if (this.state.isLoading){
 				return (<p>Loading...</p>);
@@ -178,7 +206,9 @@
 						<div>
 						<h1>Get OpenCMISS</h1>
 						<p>Choose the right package for your use.</p>
-						<PackageGrid packages={this.state.packages} />
+						<FeaturedPackageBox pkg={this.getFeaturedPackage()} />
+						<h2>Other Downloads</h2>
+						<PackageGrid packages={this.getOrdinaryPackages()} />
 						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} />
 
 						</div>
