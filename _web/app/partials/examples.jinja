@@ -58,16 +58,14 @@
   {% endblock %}
 {% endblock %}
 {% block scripts %}
-{{ super() }}
-<!-- build:js(.) scripts/modernizr.min.js -->
-<script src="/bower_components/modernizr/modernizr.js"></script>
-<!-- endbuild -->
-    <!-- build:js(.) /scripts/three.min.js -->
+  {{ super() }}
+  <!-- build:js(.) scripts/examples-vendor.min.js -->
+  <script src="/bower_components/modernizr/modernizr.js"></script>
   <script src="/bower_components/threejs/build/three.min.js"></script>
-  <!-- endbuild -->
-  <!-- build:js({.,app,.tmp}) /scripts/examples.js -->
   <script src="/bower_components/ace-builds/src-min/ace.js"></script>
   <script src="/bower_components/ace-builds/src-min/theme-chrome.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.tmp) /scripts/examples.js -->
   <script src="/scripts/examples.js"></script>
   <script src="/scripts/controls/TransformControls.js"></script>
   <script src="/scripts/zinc_3js_renderer.js"></script>
