@@ -59,18 +59,20 @@
 {% endblock %}
 {% block scripts %}
   {{ super() }}
-  <!-- build:js(.) scripts/examples-vendor.min.js -->
+  <!-- build:js({.,.tmp}) /scripts/zinc.bundle.js -->
   <script src="/bower_components/modernizr/modernizr.js"></script>
   <script src="/bower_components/threejs/build/three.min.js"></script>
+  <script src="/scripts/controls/TransformControls.js"></script>
+  <script src="/scripts/zinc_threejs_control.js"></script>
+  <script src="/scripts/zinc_3js_renderer.js"></script>
+  <script src="/scripts/zinc-scene.js"></script>
+  <!-- endbuild -->
+  <!-- build:js(.) /scripts/ace.min.js -->
   <script src="/bower_components/ace-builds/src-min/ace.js"></script>
   <script src="/bower_components/ace-builds/src-min/theme-chrome.js"></script>
   <!-- endbuild -->
   <!-- build:js(.tmp) /scripts/examples.js -->
   <script src="/scripts/examples.js"></script>
-  <script src="/scripts/controls/TransformControls.js"></script>
-  <script src="/scripts/zinc_3js_renderer.js"></script>
-  <script src="/scripts/zinc_threejs_control.js"></script>
-  <script src="/scripts/zinc-scene.js"></script>
   <!-- endbuild -->
   <script type="text/javascript">
     setupSourceArea();

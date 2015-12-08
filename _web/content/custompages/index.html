@@ -121,25 +121,22 @@
 {% endblock %}
 
 {% block scripts %}
-<!-- build:js(.) scripts/three.min.js -->
-<script src="/bower_components/threejs/build/three.min.js"></script>
-<!-- endbuild -->
-<!-- build:js(.) scripts/modernizr.min.js -->
+<!-- build:js({.,.tmp}) /scripts/zinc.bundle.js -->
 <script src="/bower_components/modernizr/modernizr.js"></script>
+<script src="/bower_components/threejs/build/three.min.js"></script>
+<script src="/scripts/controls/TransformControls.js"></script>
+<script src="/scripts/zinc_threejs_control.js"></script>
+<script src="/scripts/zinc_3js_renderer.js"></script>
+<script src="/scripts/zinc-scene.js"></script>
 <!-- endbuild -->
 <!-- build:js(.tmp) /scripts/hash.js -->
 <script type="text/javascript" src="/scripts/hash.js"></script>
 <!-- endbuild -->
 <!-- build:js(.tmp) scripts/index.js -->
-<script src="/scripts/controls/TransformControls.js"></script>
-<script src="/scripts/zinc_threejs_control.js"></script>
-<script src="/scripts/zinc_3js_renderer.js"></script>
-<script src="/scripts/zinc-scene.js"></script>
 <script src="/scripts/main.js"></script>
 <!-- endbuild -->
 <script type="text/javascript">
 	var bannerContainer = document.getElementById('main-message');
-	//inpageScrollLink('#main-message .learn-more','.features');
 	var banner = new FrontPageBanner(bannerContainer);
 </script>
 {% endblock %}
