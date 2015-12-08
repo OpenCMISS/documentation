@@ -30,5 +30,5 @@ deps :
 	bower install
 
 clean :
-	rm -r extgen
+	rm -rf extgen
 	mkdir extgen
