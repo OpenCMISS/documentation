@@ -72,9 +72,10 @@
 		render: function(){
 
 			var downloads = this.buildDownloadList();
+			// Show only the latest 5 downloads.
 			return (
 					<div className="versions-list">
-					{downloads.map(function(version){
+					{downloads.slice(0,5).map(function(version){
 						return (<div><p className="format-list"><DownloadBox name={version.name} downloads={version.downloads} highlightMain={false} /></p></div>)
 					})}
 				</div>);
@@ -144,7 +145,7 @@
 			var downloads = this.buildDownloadList();
 			return (
 					<div className="versions-list">
-					{downloads.map(function(version){
+					{downloads.slice(0,5).map(function(version){
 						return (<div><p className="format-list"><DownloadBox name={version.name} downloads={version.downloads} highlightMain={false} /></p></div>)
 					})}
 				</div>);
