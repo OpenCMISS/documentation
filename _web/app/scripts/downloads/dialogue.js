@@ -265,6 +265,13 @@
 			}
 		},
 
+		_dialogCloseHandler: function(closeButton){
+			var self = this;
+			$(closeButton).click(function(){
+				$(self.refs.dialog).modal('hide');
+			});
+		},
+
 		render: function(){
 			const Tabs = ReactBootstrap.Tabs;
 			const Tab = ReactBootstrap.Tab;
@@ -280,6 +287,7 @@
 
 				modalContent = (<div className="modal-content">
 								<div className="modal-header">
+								<button type="button" className="close" ref={this._dialogCloseHandler} aria-label="Close"><span aria-hidden="true">&times;</span></button>
 								<h2 className="default-style">{this.props.pkg.name}</h2>
 								<span>{this.props.pkg.description}</span>
 								</div>
