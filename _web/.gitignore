@@ -4,6 +4,6 @@ dist
 .sass-cache
 bower_components
 *~
-static/apidoc
+extgen/apidoc
 .pythonenv
 **/*.pyc
