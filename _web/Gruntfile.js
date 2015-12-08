@@ -121,7 +121,6 @@ module.exports = function (grunt) {
 							connect.static('.tmp'),
 							connect().use('/bower_components', connect.static('./bower_components')),
 							connect().use('/documentation', connect.static('./.tmp/generated-doc')),
-							//connect().use('/other',connect.static('./other/')),
 							connect.static(config.app),
 							connect.static('./.tmp/pelicangen')
 						];
@@ -417,20 +416,20 @@ module.exports = function (grunt) {
 					src: '**/*.*'
 				}]
 			},
-			"static": {
+			"extgen": {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: 'static',
+					cwd: 'extgen',
 					src: '**/*.*',
 					dest: '<%= config.dist %>/'
 				}]
 			},
-			"staticDev": {
+			"extgenDev": {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: 'static',
+					cwd: 'extgen',
 					src: '**/*.*',
 					dest: '.tmp/'
 				}]
@@ -521,7 +520,7 @@ module.exports = function (grunt) {
 			'sphinxgenDebug',
 			'exec:pelicangen',
 			'babel:dev',
-			'copy:staticDev',
+			'copy:extgenDev',
 			'connect:livereload',
 			'watch'
 		]);
@@ -569,7 +568,7 @@ module.exports = function (grunt) {
 		'usemin',
 		'relativeRoot:dist',
 		'htmlmin',
-		'copy:static',
+		'copy:extgen',
 		'sitemap:dist'
 	]);
 
