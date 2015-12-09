@@ -25,7 +25,7 @@ Directory Structure
 
 * `/` - Documentation generated with Sphinx. See current documentation for examples on how to have it included in the index.
 * `/_web/app/` - Scripts, images, stylesheets and other assets for the website. Also includes the Downloads page.
-* `/_web/context/` - JSON data for the downloads page.
+* `/_web/app/data/downloads.json` - JSON data for the downloads page.
 * `/_web/content/` - Content generated with Pelican.
   * `/_web/content/custompages` - Custom pages that uses custom HTML, such as the front page.
   * `/_web/content/News` - News pages.
