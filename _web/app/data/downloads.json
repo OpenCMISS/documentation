@@ -31,7 +31,7 @@
 			"name":"OpenCMISS-Zinc",
 			"description": "OpenCMISS-Zinc is the visualisation component of the OpenCMISS software package.",
 			"source": {
-				"description":"You can install OpenCMISS-Zinc from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Zinc on HPC or want to customise the build.",
+				"description":"You can install OpenCMISS-Zinc from source. It is more suitable to install from source if you are planning to set up OpenCMISS-Zinc on HPC or want to customise the build. If you run into any problems you can ask for help on the mailing list or bug tracker.",
 				"formats": [
 					{
 						"description":"Browse source code",
@@ -89,7 +89,7 @@
 			"name":"OpenCMISS-Iron",
 			"description": "OpenCMISS-Iron is the modelling component of the OpenCMISS software package.",
 			"source": {
-				"description":"You can install OpenCMISS-Iron from source using our guide. It is more suitable to install from source if you are planning to set up OpenCMISS-Iron on HPC or want to customise the build.",
+				"description":"You can install OpenCMISS-Iron from source. It is more suitable to install from source if you are planning to set up OpenCMISS-Iron on HPC or want to customise the build. If you run into any problems you can ask for help on the mailing list or bug tracker.",
 				"formats": [
 					{
 						"description":"Browse source code",
@@ -101,9 +101,9 @@
 		{
 			"id":"pyzinc",
 			"name":"Python Bindings for OpenCMISS-Zinc",
-			"description": "PyZinc provides a python interface to the Zinc visualisation library.",
+			"description": "A Python interface to the Zinc visualisation library.",
 			"source": {
-				"description":"You can install Python bindings for OpenCMISS-Zinc from source using our guide.",
+				"description":"You can browse the source code for Python Bindings for OpenCMISS-Zinc and try building it yourself. If you run into any problems you can ask for help on the mailing list or bug tracker.",
 				"formats": [
 					{
 						"description":"Browse source code",
