@@ -71,7 +71,21 @@
 		}
 	});
 
+	function DownloadRoutes(router) {
+			this.router = router;
+	}
 
+	DownloadRoutes.prototype.dismissDialog = function(){
+			this.router.setRoute('/');
+	};
+
+	DownloadRoutes.prototype.showDialog = function(pkgId,tab){
+			var routeUrl = '/package/'+pkgId;
+			if (tab) {
+				routeUrl += '/' + tab;
+			}
+			this.router.setRoute(routeUrl);
+	};
 
     var DownloadsPage = React.createClass({
 		// Director router
@@ -132,47 +146,53 @@
 
 		_initialiseRoutes: function(){
 			var self = this;
-			var router = this.router = new Router().configure({
+			var router = new Router().configure({
 				notfound: function(){
 					router.setRoute('/');
 				}
 			});
 			router.on('/',function(){
 				self.setState({
-					currentPackage:null
+					currentPackage:null,
+					currentTab: null
 				});
 			});
 			router.path("/package/",function(){
 				this.on('/:pkgId/',function(pkgId){
-					// TODO need to also redirect :pkgId/!
-
 					self.setState({
 						currentPackage:self._packageForId(pkgId)
 					});
 				});
 
 				this.on('/:pkgId/:tab', function(pkgId, tab){
+					self.setState({
+						currentPackage: self._packageForId(pkgId),
+						currentTab: tab
+					});
 				});
 			});
+			return new DownloadRoutes(router);
 		},
 
 		_onDialogueExit: function(){
-			this.router.setRoute('/');
+			this.state.routes.dismissDialog();
 		},
 
 		componentDidMount: function(){
 			var self = this;
 			this._loadInitialState().then(function(initialState){
 				self.setState(initialState);
-				self.router.init();
+				var downloadsRoutes = self._initialiseRoutes();
+				downloadsRoutes.router.init();
+				self.setState({routes: downloadsRoutes});
 			});
-			this._initialiseRoutes();
 		},
 
 		getChildContext: function(){
 			return { developmentVersions: this.state.development_versions || {},
 					 currentPlatform: this.state.currentPlatform || {},
 					 platforms: this.state.supportedOs || [],
+					 routes: this.state.routes || {},
 					 platformChangeHandler: this.changePlatform || function(){}};
 		},
 
@@ -180,7 +200,8 @@
 			currentPlatform: React.PropTypes.object.isRequired,
 			platforms: React.PropTypes.array.isRequired,
 			platformChangeHandler: React.PropTypes.func.isRequired,
-			developmentVersions: React.PropTypes.object.isRequired
+			developmentVersions: React.PropTypes.object.isRequired,
+			routes: React.PropTypes.object.isRequired
 		},
 
 		getFeaturedPackage: function(){
@@ -209,7 +230,7 @@
 						<FeaturedPackageBox pkg={this.getFeaturedPackage()} />
 						<h2>Other Downloads</h2>
 						<PackageGrid packages={this.getOrdinaryPackages()} />
-						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} />
+						<PackageDetailsDialogue pkg={this.state.currentPackage} cancel={this._onDialogueExit} currentTab={this.state.currentTab}/>
 
 						</div>
 				);

@@ -85,18 +85,6 @@ h1 {
 	}
 }
 
-.stable-release {
-	.release-box {
-		text-align:center;
-		padding:30px 0px;
-		background-color: #fafafa;
-	}
-}
-
-.dev-release {
-	margin-top:10px;
-}
-
 .package-box {
 	padding:10px;
 	img.icon {
@@ -111,6 +99,11 @@ h1 {
 			margin-top:10px;
 		}
 	}
+}
+
+.notice {
+	background: #fafafa;
+	padding: 20px;
 }
 
 .pkg-dialog {
