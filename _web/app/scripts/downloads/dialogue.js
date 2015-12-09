@@ -34,6 +34,12 @@
 	}
     });
 
+	var DetailsTabsEnum = {
+		"download":"download",
+		"devreleases":"devreleases",
+		"source":"source"
+	};
+
 
 	var PlatformPicker = React.createClass({
 
@@ -119,7 +125,8 @@
 		contextTypes: {
 			currentPlatform: React.PropTypes.object.isRequired,
 			platforms: React.PropTypes.array.isRequired,
-			platformChangeHandler: React.PropTypes.func.isRequired
+			platformChangeHandler: React.PropTypes.func.isRequired,
+			routes: React.PropTypes.object.isRequired
 		},
 
 		getStableDownload: function(){
@@ -149,7 +156,12 @@
 					</div>);
 		},
 
+		goToSourceBox: function(){
+			this.context.routes.showDialog(this.props.pkg.id,DetailsTabsEnum.source);
+		},
+
 		render: function(){
+			var Alert = ReactBootstrap.Alert;
 			var pkg = this.props.pkg;
 			if (!pkg) return this.renderNoRelease();
 			var release = pkg.releases;
@@ -162,6 +174,7 @@
 			return (<div className="tab-pane" role="tabpanel">
 					<PlatformPicker currentPlatform={currentPlatform} platforms={this.context.platforms} onPlatformChange={this.context.platformChangeHandler} />
 					{stableDownload}
+					<Alert><em>Want to use {pkg.name} on HPC platforms or set up a development environment?</em> Go to the <a role="button" onClick={this.goToSourceBox}>Source Code tab</a> for options to install or set up from source.</Alert>
 					{installInstructions}
 					</div>
 				   );
@@ -208,7 +221,8 @@
 			var devVersionsElement = React.createElement(devComponent,{versions: packageDevVersions});
 			return (<div role="tabpanel" className="tab-pane">
 					<h3>Development Versions</h3>
-					<Alert bsStyle="warning"><strong>Here be dragons!</strong> These development versions of {pkg.name} include newer features but may be unstable or may not run. It may be necessary to try multiple versions to get a working version.</Alert>
+					<Alert bsStyle="warning"><strong>Here be dragons!</strong> These development versions of {pkg.name} are automatically built from source nightly. They include newer features but may be unstable or may not run. It may be necessary to try multiple versions to get a working version.
+</Alert>
 					<PlatformPicker currentPlatform={currentPlatform} platforms={this.context.platforms} onPlatformChange={this.context.platformChangeHandler} />
 					{devVersionsElement}
 					</div>);
@@ -230,38 +244,51 @@
 		},
 
 		contextTypes:{
-			developmentVersions: React.PropTypes.object.isRequired
+			developmentVersions: React.PropTypes.object.isRequired,
+			routes: React.PropTypes.object.isRequired
 		},
 
 		componentDidMount: function(){
 			this.setupDialog();
+			if (!this.props.currentTab){
+				this.setDefaultTab();
+			}
 		},
-
+/*
+		componentWillMount: function(nextProps){
+			if (this.props.pkg == undefined || this.props.pkg == null) {
+				return;
+			}
+		},
+*/
 		componentDidUpdate: function(){
 			if (this.props.pkg == undefined || this.props.pkg == null) {
 				$(this.refs.dialog).modal('hide');
 				return;
 			}
 			$(this.refs.dialog).modal('show');
+			if (!this.props.currentTab){
+				this.setDefaultTab();
+			}
 		},
 
-		getTabOrder: function(){
-			// Order release binary tab as first page, but if there are no releases,
-			// make source code downloads first.
+		setTab: function(tab){
+			var pkg = this.props.pkg;
+			if (!pkg) return null;
+			if (this.context.routes.showDialog){
+				this.context.routes.showDialog(pkg.id,tab);
+			}
+		},
 
+		setDefaultTab: function(){
+			// Select release binary tab, but if there are no releases,
+			// open source code downloads.
 			var pkg = this.props.pkg;
 			if (!pkg) return null;
 			if (!!pkg.releases){
-				return {download: 1,
-						devVersions: 2,
-						source: 3
-					   };
+				this.setTab(DetailsTabsEnum.download);
 			} else {
-				return {source:1,
-						download: 2,
-						devVersions: 3
-					   };
-
+				this.setTab(DetailsTabsEnum.source);
 			}
 		},
 
@@ -275,14 +302,13 @@
 		render: function(){
 			const Tabs = ReactBootstrap.Tabs;
 			const Tab = ReactBootstrap.Tab;
-			const tabOrder = this.getTabOrder();
 			var modalContent = null;
 			if (this.props.pkg != undefined && this.props.pkg != null) {
 				const tabs = (
-						<Tabs defaultActiveKey={1}>
-						<Tab eventKey={tabOrder.download} title="Download"><DownloadTab pkg={this.props.pkg} /></Tab>
-						<Tab eventKey={tabOrder.devVersions} title="Development Releases"><DevelopmentVersionsTab pkg={this.props.pkg} /></Tab>
-						<Tab eventKey={tabOrder.source} title="Source Code"><SourceCodeTab pkg={this.props.pkg} /></Tab>
+						<Tabs activeKey={this.props.currentTab}  onSelect={this.setTab}>
+						<Tab eventKey={DetailsTabsEnum.download} title="Download"><DownloadTab pkg={this.props.pkg} /></Tab>
+						<Tab eventKey={DetailsTabsEnum.devreleases} title="Development Releases"><DevelopmentVersionsTab pkg={this.props.pkg} /></Tab>
+						<Tab eventKey={DetailsTabsEnum.source} title="Source Code"><SourceCodeTab pkg={this.props.pkg} /></Tab>
 						</Tabs>);
 
 				modalContent = (<div className="modal-content">
