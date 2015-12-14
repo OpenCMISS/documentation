@@ -9,7 +9,7 @@ ifndef SITE_URL
 endif
 	grunt --siteurl=$(SITE_URL)
 
-debug: summary clean prep apidoc
+debug: summary clean deps apidoc
 	grunt serve
 
 summary:
