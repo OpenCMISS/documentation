@@ -182,6 +182,10 @@ div.gsc-control-cse {
 		height: 100%;
 		padding: 0;
 	}
+	.infobox ul {
+		height: 160px;
+		margin-bottom:5px;
+	}
 
 	.news-wrapper {
 		padding-right:20px;
@@ -405,9 +409,6 @@ li.box-link {
 	    background-image: url('../images/news.png');
 	    color: white;
 	}
-	.items-section {
-		padding-top: 10px;
-	}
 }
 
 .docs {
@@ -548,10 +549,6 @@ footer {
 }
 
 .news-list {
-	li {
-		padding:5px;
-	}
-
 	.date {
 		margin:0px;
 		display: block;
