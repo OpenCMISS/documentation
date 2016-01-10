@@ -15,7 +15,7 @@
 				"formats": [
 					{
 						"description":"Guide to Installing from Source (PDF)",
-						"url":"https://github.com/OpenCMISS/manage/raw/v1.0/OpenCMISSBuildEnvironment.docx.pdf"
+						"url":"https://github.com/OpenCMISS/manage/raw/v1.1/OpenCMISSBuildEnvironment.docx.pdf"
 					},
 					{
 						"description":"Browse source code",
