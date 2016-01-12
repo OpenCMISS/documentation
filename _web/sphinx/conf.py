@@ -18,8 +18,8 @@ version = '1.1'
 # The master toctree document.
 master_doc = 'index'
 
-# needed to find the cmake extension
-sys.path.insert(0, os.path.abspath('../../cmake/docs'))
+# needed to find the cmake extension (copied to the containing folder by grunt script)
+sys.path.insert(0, os.path.abspath('.'))
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
