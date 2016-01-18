@@ -13,6 +13,7 @@ Welcome to OpenCMISS's documentation!
    data_format/index
    zinc/index
    cmake/docs/index
+   contribute/index
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
