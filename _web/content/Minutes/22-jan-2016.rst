@@ -1,0 +1,11 @@
+Minutes for 22 January 2016
+================================
+
+:date: 2016-01-22
+
+Present: Chris, Noel, Prasad, Daniel, Soroush, Hashem, Hugh, Andre
+
+Apologies: Richard
+
+1. Updates
+	a. Prasad: getting build set up

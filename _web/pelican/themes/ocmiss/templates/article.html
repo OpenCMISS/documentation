@@ -7,9 +7,11 @@
 {% block sidebar_content %}
 <ul>
 {% for cat,articles in categories %}
+{% if cat == category %}
 {% for a in articles[:10] %}
 <li><a href="{{ SITEURL }}/{{a.url}}">{{a.title}}</a></li>
 {% endfor %}
+{% endif %}
 	 {% endfor %}
 </ul>
 {% endblock %}
