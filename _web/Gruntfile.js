@@ -380,13 +380,20 @@ module.exports = function (grunt) {
 					dest: '.tmp/sphinxenv',
 					src: '**/*.*'
 				},
-						{
-							expand: true,
-							dot: true,
-							cwd: '<%= config.app %>',
-							dest: '.tmp/sphinxenv/templates/ocmiss',
-							src: 'partials/**/*.*'
-						}]
+				{ // Copy the cmake module to the temporary sphinx environment
+					expand: true,
+					dot: true,
+					cwd: '../cmake/docs',
+					dest: '.tmp/sphinxenv',
+					src: 'cmake.py'
+				},
+				{
+					expand: true,
+					dot: true,
+					cwd: '<%= config.app %>',
+					dest: '.tmp/sphinxenv/templates/ocmiss',
+					src: 'partials/**/*.*'
+				}]
 			},
 			sphinxOutputToDist: {
 				files: [{

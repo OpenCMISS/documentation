@@ -8,3 +8,6 @@
 [submodule "_web/apidoc/LibZincDoxygen"]
 	path = _web/apidoc/LibZincDoxygen
 	url = https://github.com/alan-wu/LibZincDoxygen
+[submodule "cmake"]
+	path = cmake
+	url = https://github.com/OpenCMISS/manage
