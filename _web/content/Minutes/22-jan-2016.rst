@@ -8,4 +8,107 @@ Present: Chris, Noel, Prasad, Daniel, Soroush, Hashem, Hugh, Andre
 Apologies: Richard
 
 1. Updates
-	a. Prasad: getting build set up
+
+   a. Prasad: getting building set up, aiming at contact mechanics
+      tidy-up; looking at using python bindings and how to set that up.
+      Reviving some old code from a really old version of OpenCMISS,
+      useful code will get merged into current devel. This will get
+      Nancy’s work mostly back into the prime repo.
+   b. Daniel: windows CMake builds (see below), cmake build working on a
+      range of machines with feature tests passing, windows building but
+      feature tests not running (hopefully trivial fixes), VS 2013 zinc
+      build (debug and release). Can try to get windows intel compiler
+      license to try iron builds in VS. Using intel compilers not MS
+      compilers. Need to overhaul the symbols dependencies are exporting
+      (cmake PUBLIC, PRIVATE, INTERFACE).
+   c. Soroush: implemented new geometry from brazilian group. 10 hours
+      to simulate 1 time period on one processor. Going to multiple
+      processors (2+) resulted in mismatches in the connectivity between
+      regions on different processors. Now relearning parallel
+      debugging. Element based flow direction now implemented.
+      Implementing acid-base physiology CellML models.
+   d. Hashem: Imaging and image processing to get data to use in fitting
+      geometric meshes. Host mesh fitting developments in own fork, need
+      to get merged back to prime/devel. Working on framework for
+      predicting growth/growth models. Cubic hermite is the way to go
+      for future use in mechanics and growth. Prasad suggesting
+      considering alternative elements eg cubic lagrange for simplicity.
+   e. Hugh: Updated github repo for Zinc - now to be used as the prime
+      zinc repo. SVN repo should be deleted next week before Richard is
+      back (perhaps just switched to readonly) - will try to get
+      developers to stop pushing changes into the svn repo using a memo
+      for now. Zinc source and tests moved into github repo, bindings
+      next on the list. Getting instruction from Marty and Prasad as to
+      the requirements for Neon for the 3rd year mechanics class (321) -
+      putting together plan now, time to get things changed before
+      implementing. Noel currently generating documentation from the SVN
+      repo, but can switch over to github repo.
+   f. Andre: hopefully fixed windows bug with OpenCMISS cellml (cellml
+      component in the cmake system).
+   g. Chris: Looking at cmake build on many platforms - seems to be
+      working, iterating on some issues with Daniel and getting through
+      them. Building on NeSI with Intel MKL with old code from Nancy and
+      mostly got that working. Need to check on cmake build on NeSI to
+      see if it worked (default build).
+   h. Noel: minutes section added to the website (currently listed on
+      front page, but will remove that or move it to a developer’s
+      page). Website issues to be worked on: documentation landing page
+      to be moved into the sphinx project for better consistency of user
+      experience; supporting documentation versioning.
+
+2. Proposal for documentation versions on the website
+
+   a. opencmiss.org/documentation/ -
+
+      i.  landing page, version selector (e.g. cmake.org/documentation);
+          or
+      ii. latest release (e.g. Chris had an example but I can’t recall
+          it).
+
+Discussion on which of the above is best, no agreement achieved today.
+Think about it and we can make a decision next week.
+
+1.
+
+   a. opencmiss.org/documentation/v1.1/ - documentation for release 1.1
+   b. opencmiss.org/documentation/v1.2 …
+   c. opencmiss.org/documentation/devel - development version docs
+
+2. Status of Windows builds
+
+   a. priority on VS or mingw? can have a quick look at using Intel
+      compilers with VS and Iron to see if achievable in the time
+      remaining with Daniel here.
+   b. default config for building with VS on windows? need a fortran
+      compiler in order to build Iron but not Zinc. Default should be to
+      give an error if no fortran compiler available and user required
+      to read the documentation and turn off Iron if they still want to
+      build. For consistency should have similar failure for all
+      components - if they are turned on and something is missing that
+      is an error.
+
+3. Examples status
+
+   a. OpenCMISS/examples - all the examples in one repo
+   b. OpenCMISS-Examples/examples - all the examples as submodules to
+      match tree from OpenCMISS/examples, each example in its own repo,
+      Daniel has a process to update things from OpenCMISS/examples.
+      This is mostly used for maintenance.
+   c. Cool python script to copy/update examples from OpenCMISS/examples
+      to individual repositories under OpenCMISS-Examples and update
+      submodule links in OpenCMISS-Examples/examples.
+   d. Need to confirm state of all examples under old Makefile build
+      system. Will give a base for determining when the CMake build
+      system replicates same functionality as Makefile build system.
+   e. Need to notify people to submit back any outstanding changes to
+      OpenCMISS/examples and let them know that the repo will disappear
+      shortly in favour of individual repos under OpenCMISS-Examples
+      GitHub organisation.
+
+4. Python bindings
+
+   a. multiple architecture/configs installs of python bindings
+   b. Chris doesn’t like the use of virtual environments for the “dumb
+      user”, believes it to be more complex than a user could cope with.
+   c. Need to investigate possible alternatives to see if there is any
+      other way to manage python environments.
