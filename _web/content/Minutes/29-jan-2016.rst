@@ -1,0 +1,79 @@
+Minutes for 29 January 2016
+===========================
+
+:date: 2016-01-29
+
+Present: Noel, Koray, Prasad, Hugh, Peter, Daniel, Chris, Andre
+
+Apologies: Hashem, Soroush, Richard
+
+1. Documentation versioning proposal:
+   `https://docs.google.com/document/d/1n35Rp_Mdi76PPwT5S8k5kgWqexTTuh6dWwtx499O6BM/edit?usp=sharing <https://docs.google.com/document/d/1n35Rp_Mdi76PPwT5S8k5kgWqexTTuh6dWwtx499O6BM/edit?usp=sharing>`__
+
+   Talked through proposal. Discussed concept of versioned documentation vs
+   those pages which should always show most recent version.
+
+   Best approach may depend on the process used to manage releases of
+   OpenCMISS: backporting fixes, old releases never updated, etc. OpenCOR
+   uses a fixed release system whereby bugs are only fixed in new versions
+   and not fixed in previous releases, which is working well.
+
+   Suggested release process should be simple and address the 99% of people
+   who just want to download and use. We should follow the OpenCOR
+   approach. Keep a linear progression of releases and use tracker to
+   manage “known bugs”. Release notes would track which issues have been
+   fixed in each release (e.g.,
+   `http://opencor.ws/user/whatIsNew.html#0.4.1 <http://opencor.ws/user/whatIsNew.html#0.4.1>`__ .
+   Links to latest release in the header is sufficient to get to the latest
+   information from any page a user may reach after following URLs
+   published using earlier releases.
+
+   Proposal updated and accepted.
+
+2. Infrastructure
+
+	-  trackers
+
+   	-  GitHub issues (agreed)
+
+      	-  could investigate anonymous issue submission. GitReports.com
+           might be a good starting point.
+
+   	-  Physiome Bugzilla
+
+      	-  could be migrated en mass if required (script writing require)
+      	-  might be better to manually migrate issues that are still
+           relevant
+
+	-  code repositories
+
+   	-  git repositories on GitHub (agreed)
+
+	-  documentation system
+
+   	-  technology
+   	-  presentation of releases on the website
+
+	-  mailing list
+
+   	-  UoA supplied mailing lists (agreed)
+
+	-  development environment
+	-  supported platforms
+
+   	-  Linux
+   	-  OS X
+   	-  Windows
+   	-  Various HPC machines
+
+	-  continuous integration
+
+   	-  Jenkins (Currently Stuttgart partial implementation to test it
+	   out, working well and Daniel has been able to do everything he has
+	   wanted to do)
+   	-  Buildbot (Auckland BaTS)
+   	-  GitHub integration required
+   	-  useful to have authorised users able to test their own forks/repos
+	   without needing to submit a pull request.
+
+   Common infrastructure across OpenCMISS projects (strong recommendation or enforced?)

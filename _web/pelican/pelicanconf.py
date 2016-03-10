@@ -27,7 +27,7 @@ DEFAULT_PAGINATION = 10
 
 DIRECT_TEMPLATES = ["index","categories"]
 
-PAGINATED_DIRECT_TEMPLATES = ['News']
+PAGINATED_DIRECT_TEMPLATES = ['News','Minutes']
 
 TEMPLATE_PAGES = {'custompages/index.html':'index.html',
 				  'custompages/about.html':'about.html',
@@ -59,5 +59,6 @@ PAGE_URL = 'slug.html'
 
 # Metadata for template
 NAV_HEADINGS_FOR_CATEGORY = {
-	"News": "community"
+	"News": "community",
+	"Minutes":"community"
 }
