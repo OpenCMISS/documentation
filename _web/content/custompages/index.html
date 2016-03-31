@@ -30,11 +30,17 @@
 			</div>
 			<div class="items-section">
 				<ul class="list-unstyled news-list">
-				  {% for article in articles[:3] %}
+					{% for category,articles in articles|groupby('category') %}
+					{% if category.name == "News" %}
+					{% for article in articles[:3] %}
+					{% if article.category.name == "News" %}
 				    <li>
 				      <span class="date">{{article.date|strftime('%d/%b/%Y') }}</span>
 				      <a class="larger" href="{{ SITEURL }}/{{article.url}}">{{article.title}}</a>
 				    </li>
+					{% endif %}
+					{% endfor %}
+					{% endif %}
 				  {% endfor %}
 				</ul>
 				<a class="btn btn-link more-link" href="/news/">more news and updates <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
