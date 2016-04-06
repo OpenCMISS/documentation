@@ -22,8 +22,7 @@ Apologies: Hashem, Soroush, Richard
    who just want to download and use. We should follow the OpenCOR
    approach. Keep a linear progression of releases and use tracker to
    manage “known bugs”. Release notes would track which issues have been
-   fixed in each release (e.g.,
-   `http://opencor.ws/user/whatIsNew.html#0.4.1 <http://opencor.ws/user/whatIsNew.html#0.4.1>`__ .
+   fixed in each release (e.g., `http://opencor.ws/user/whatIsNew.html#0.4.1 <http://opencor.ws/user/whatIsNew.html#0.4.1>`__ .
    Links to latest release in the header is sufficient to get to the latest
    information from any page a user may reach after following URLs
    published using earlier releases.
@@ -32,48 +31,44 @@ Apologies: Hashem, Soroush, Richard
 
 2. Infrastructure
 
-	-  trackers
+ - trackers
 
-   	-  GitHub issues (agreed)
+   - GitHub issues (agreed)
 
-      	-  could investigate anonymous issue submission. GitReports.com
-           might be a good starting point.
+     - could investigate anonymous issue submission. GitReports.com might be a good starting point.
 
-   	-  Physiome Bugzilla
+   - Physiome Bugzilla
 
-      	-  could be migrated en mass if required (script writing require)
-      	-  might be better to manually migrate issues that are still
-           relevant
+     -  could be migrated en mass if required (script writing require)
+     -  might be better to manually migrate issues that are still relevant
 
-	-  code repositories
+ - code repositories
 
-   	-  git repositories on GitHub (agreed)
+   - git repositories on GitHub (agreed)
 
-	-  documentation system
+ - documentation system
 
-   	-  technology
-   	-  presentation of releases on the website
+   - technology
+   - presentation of releases on the website
 
-	-  mailing list
+ - mailing list
 
-   	-  UoA supplied mailing lists (agreed)
+   - UoA supplied mailing lists (agreed)
 
-	-  development environment
-	-  supported platforms
+ - development environment
 
-   	-  Linux
-   	-  OS X
-   	-  Windows
-   	-  Various HPC machines
+ - supported platforms
 
-	-  continuous integration
+   -  Linux
+   -  OS X
+   -  Windows
+   -  Various HPC machines
 
-   	-  Jenkins (Currently Stuttgart partial implementation to test it
-	   out, working well and Daniel has been able to do everything he has
-	   wanted to do)
-   	-  Buildbot (Auckland BaTS)
-   	-  GitHub integration required
-   	-  useful to have authorised users able to test their own forks/repos
-	   without needing to submit a pull request.
+ - continuous integration
 
-   Common infrastructure across OpenCMISS projects (strong recommendation or enforced?)
+   - Jenkins (Currently Stuttgart partial implementation to test it out, working well and Daniel has been able to do everything he has wanted to do)
+   - Buildbot (Auckland BaTS)
+   - GitHub integration required
+   - useful to have authorised users able to test their own forks/repos without needing to submit a pull request.
+
+3. Common infrastructure across OpenCMISS projects (strong recommendation or enforced?)

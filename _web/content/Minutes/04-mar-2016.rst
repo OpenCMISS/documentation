@@ -9,6 +9,8 @@ Apologies:
 
 1. Build a generic environment to work with different softwares in the
    near future.
+
 2. Make a more consistent way to define error codes for Zinc and Iron.
+
 3. Some bugs have been reported for cmake, how to address these bugs
    without Daniel. Totalview is now working with the new version.
