@@ -9,12 +9,12 @@ Apologies:
 
 1. Updates:
 
- - Noel: adding new features to the website
+   - Noel: adding new features to the website
 
- - Andre: preparing OpenCMISS tutorial sessions
+   - Andre: preparing OpenCMISS tutorial sessions
 
- - Chris: doing OpenCMISS name change
+   - Chris: doing OpenCMISS name change
 
- - David: finishing the thesis
+   - David: finishing the thesis
 
- - Richard: presenting in Friday Seminar (Zinc)
+   - Richard: presenting in Friday Seminar (Zinc)

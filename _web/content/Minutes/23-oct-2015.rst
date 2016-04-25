@@ -9,4 +9,4 @@ Apologies:
 
 1. Updates:
 
- - Noel: discussing the feedbacks for OpenCMISS website
+   - Noel: discussing the feedbacks for OpenCMISS website

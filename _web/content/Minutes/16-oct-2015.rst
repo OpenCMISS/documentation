@@ -9,10 +9,10 @@ Apologies: Chris
 
 1. Updates:
 
- - Noel: getting the feedbacks for the website
+   - Noel: getting the feedbacks for the website
 
- - David:  putting the validations in OpenCMISS
+   - David:  putting the validations in OpenCMISS
 
- - Soroush: debugging the problem with dxi/dx in venous system
+   - Soroush: debugging the problem with dxi/dx in venous system
 
- - Hugh: turning off the buildbot since it's taking too long
+   - Hugh: turning off the buildbot since it's taking too long

@@ -9,12 +9,12 @@ Apologies:
 
 1. Updates:
 
- - Noel: website is going alive, compiling the API documentations from Zinc
+   - Noel: website is going alive, compiling the API documentations from Zinc
 
- - Richard: refactoring the finite element
+   - Richard: refactoring the finite element
 
- - Soroush: implementing the code for merging flow in circle of willis
+   - Soroush: implementing the code for merging flow in circle of willis
 
- - David: fixing the bugs for mpi
+   - David: fixing the bugs for mpi
 
- - Chris: buildbot is fixed, problem with compiling OpenCMISS with cmake
+   - Chris: buildbot is fixed, problem with compiling OpenCMISS with cmake
