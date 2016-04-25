@@ -1,7 +1,7 @@
-Minutes for 27 November 2015
+Minutes for 20 November 2015
 ============================
 
-:date: 2015-11-27
+:date: 2015-11-20
 
 Present: Soroush, Chris, David
 
@@ -9,4 +9,4 @@ Apologies:
 
 1. Updates:
 
- - Chris: fixing buildbot, fixing the documentations
+   - Chris: fixing buildbot, fixing the documentations

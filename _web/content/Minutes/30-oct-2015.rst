@@ -9,8 +9,8 @@ Apologies:
 
 1. Updates:
 
- - Noel: adding documentations to the website for OpenCMISS tutorial
- 
- - Richard: OpenCMISS tutorial
- 
- - Soroush: MedtechCore launch party
+   - Noel: adding documentations to the website for OpenCMISS tutorial
+
+   - Richard: OpenCMISS tutorial
+
+   - Soroush: MedtechCore launch party

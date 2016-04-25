@@ -9,4 +9,4 @@ Apologies:
 
 1. Updates:
 
- - Noel: adding new features to the website – documentation, small screen, new font
+   - Noel: adding new features to the website – documentation, small screen, new font

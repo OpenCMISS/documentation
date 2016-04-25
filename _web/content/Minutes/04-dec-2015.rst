@@ -9,16 +9,16 @@ Apologies:
 
 1. Updates:
 
- - Noel: setting the download page in staging website 
+   - Noel: setting the download page in staging website
 
- - Soroush: finished the cerebral circulation, defining the element based direction for flow in NavierStokes
+   - Soroush: finished the cerebral circulation, defining the element based direction for flow in NavierStokes
 
- - Hugh: making the OpenCMISS pre-binary wrapped in python in windows 
+   - Hugh: making the OpenCMISS pre-binary wrapped in python in windows
 
- - Chris: fixing the bugs for generated mesh
+   - Chris: fixing the bugs for generated mesh
 
- - Hashem: building VTK
+   - Hashem: building VTK
 
- - Andre: checking OpenCMISS.org, working on finite elasticity example
+   - Andre: checking OpenCMISS.org, working on finite elasticity example
 
- - Prasad: compiling OpenCMISS using cmake
+   - Prasad: compiling OpenCMISS using cmake

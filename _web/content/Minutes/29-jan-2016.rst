@@ -31,44 +31,38 @@ Apologies: Hashem, Soroush, Richard
 
 2. Infrastructure
 
- - trackers
+   - trackers
+	 - GitHub issues (agreed)
 
-   - GitHub issues (agreed)
-
-     - could investigate anonymous issue submission. GitReports.com might be a good starting point.
+	   - could investigate anonymous issue submission. GitReports.com might be a good starting point.
 
    - Physiome Bugzilla
 
      -  could be migrated en mass if required (script writing require)
      -  might be better to manually migrate issues that are still relevant
 
- - code repositories
+   - code repositories
+	 - git repositories on GitHub (agreed)
 
-   - git repositories on GitHub (agreed)
+   - documentation system
+	 - technology
+	 - presentation of releases on the website
 
- - documentation system
+   - mailing list
+	 - UoA supplied mailing lists (agreed)
 
-   - technology
-   - presentation of releases on the website
+   - development environment
 
- - mailing list
+   - supported platforms
+	 -  Linux
+	 -  OS X
+	 -  Windows
+	 -  Various HPC machines
 
-   - UoA supplied mailing lists (agreed)
-
- - development environment
-
- - supported platforms
-
-   -  Linux
-   -  OS X
-   -  Windows
-   -  Various HPC machines
-
- - continuous integration
-
-   - Jenkins (Currently Stuttgart partial implementation to test it out, working well and Daniel has been able to do everything he has wanted to do)
-   - Buildbot (Auckland BaTS)
-   - GitHub integration required
-   - useful to have authorised users able to test their own forks/repos without needing to submit a pull request.
+   - continuous integration
+	 - Jenkins (Currently Stuttgart partial implementation to test it out, working well and Daniel has been able to do everything he has wanted to do)
+	 - Buildbot (Auckland BaTS)
+	 - GitHub integration required
+	 - useful to have authorised users able to test their own forks/repos without needing to submit a pull request.
 
 3. Common infrastructure across OpenCMISS projects (strong recommendation or enforced?)
