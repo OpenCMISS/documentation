@@ -1,0 +1,20 @@
+Minutes for 09 October 2015
+===========================
+
+:date: 2015-10-09
+
+Present: Noel, Soroush, Andre, Richard, Hugh
+
+Apologies: Chris
+
+1. Updates:
+
+   - Noel: adding new features to the website – animated heart, different versions of API docs, feedback
+
+   - Richard: refactoring Zinc finite element, cmgui in the future (python based, QT)
+
+   - Andre: testing MPI
+
+   - Hugh: changing CMISS.py to something more appropriate
+
+   - Soroush: finishing 1D model of venous system

@@ -1,0 +1,18 @@
+Minutes for 16 October 2015
+===========================
+
+:date: 2015-10-16
+
+Present: Noel, Soroush, David, Hugh
+
+Apologies: Chris
+
+1. Updates:
+
+   - Noel: getting the feedbacks for the website
+
+   - David:  putting the validations in OpenCMISS
+
+   - Soroush: debugging the problem with dxi/dx in venous system
+
+   - Hugh: turning off the buildbot since it's taking too long

@@ -1,0 +1,126 @@
+Minutes for 17 February 2016
+============================
+
+:date: 2016-02-17
+
+Present: Oliver, Martyn, Chris, Prasad, Richard, Andre, Hugh, Daniel, Peter
+
+Apologies:
+
+1. Manage system status - are we ready to switch default build systems?
+
+   - Platform statuses
+	 - Windows MSVC
+	   - MSVC 2013 update 5 minimum required
+
+	   - Daniel can build Iron and Zinc, Zinc passed 100% tests, Iron has some breaks but just the same examples that break on other platforms.
+
+	   - Zinc working fine MSVC 2015 (Community edition)
+
+	 - Windows MSYS
+	   - Building without Python bindings, but work stopped in favour of MSVC
+
+	   - Building Python bindings breaks (possibly an issue with 32 vs 64 bit Python library)
+
+   - Linux Ubuntu
+
+     - All good and working.
+
+     - All Zinc tests pass on a range of machines (Auckland and Stuttgart)
+
+   - Linux Fedora
+
+     - TBC
+
+   - Linux Arch
+
+     - Working well.
+
+   - Scientific Linux
+
+     - Working well.
+
+   - OS X
+
+     - OS X 10.9 Passing all the tests (apart from the Iron ones not working on all platforms)
+
+     - OS X 10.10 devel not passing Iron tests (for Andre) but non-devel version working well (including Python)
+
+     - OS X 10.11 (Hugh) was working, but not tried recently
+
+   - NeSI PAN cluster
+
+     - TBC
+
+   - Latest gfortran (5.2) giving internal compiler error when compiling Iron.
+
+   - OpenMPI (1.8.4+) shared builds don’t work
+
+   - Intel 13 compiler suite can give errors with long paths
+
+   - Packaging
+	 - Daniel discovered a bug in CMake that breaks packaging of components, reported to CMake.
+
+	 - Daniel developing CPack script for windows installer, which could then be used for other platform specific installers.
+
+	 - CPack doesn’t seem to allow multiple configurations in a single installer. Future investigation could result in a packaging script that overcomes this.
+
+	 - Some platform installers will disallow installing to the same file system location.
+
+   - Should MPI implementation be bundled into the OpenCMISS installer? Would need to include all supporting MPI execution tools. Can add dependencies on system packages, etc. This could be something investigated in future to improve packaging/installers.
+
+   - Further investigation needed regarding CPack/CMake/Manage vs python based configuration/setup (i.e. pip) for OpenCMISS application (Neon) and how that works with the SDKs.
+
+   - Downloads (Daniel working on Windows installers currently)
+
+     - Application binary
+
+       - Neon application (with supporting libraries, python, etc. hidden underneath).
+
+       - Neon not yet integrated into manage.
+
+       - Initial target to get a pre-built Neon executable and simply include that in the package/installer. Not attempting to create that bundle using the CPack configuration used to create the SDKs.
+
+     - User SDK - no source, just building applications. Manage not needed.
+
+       - arch path should be used to ensure matching toolchains and MPI
+
+       - multiple MPI implementations included in SDK? can be done, but initial step would be separate SDKs for each MPI.
+
+     - Developer SDK - sources for Iron and Zinc (and Neon in future) with pre-built dependencies. Use manage to configure locally.
+
+       - arch path should be used.
+
+       - multiple MPIs could be included, but as for user SDK initial step is separate downloads for different configurations.
+
+     - Source code - manage repository is the starting point.
+
+2. Testing status - are we ready to make a release?
+
+   - CI not yet set up and running, relying on the usual develop “make test”
+
+   - Zinc unit tests comprehensive and passing across all platforms
+
+   - Iron tests mostly working across all platforms.
+
+   - Yes, ready to make an initial release.
+
+   - Release numbering and versioning of components still needs to be decided.
+
+3. Development process
+
+   - Branch definitions and intentions for OpenCMISS repositories
+	 - Proposal 1:
+	   - branches in ‘prime’ repository: master; develop
+
+	   - ‘master’ branch is only used for releases any commit on the branch is a release
+
+	   - ‘develop’ branch is used for collecting together the current development  code that has been reviewed and given the green tick from CI.
+
+	   - All pull requests are made against the develop branch
+
+	   - Users are free to use their own branches as they see fit, we would encourage a branch for everything approach.
+
+4. Other business
+
+5. Next meeting

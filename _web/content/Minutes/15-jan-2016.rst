@@ -1,0 +1,53 @@
+Minutes for 15 January 2016
+===========================
+
+:date: 2016-01-15
+
+Present: Andre, Daniel, Prasad, Hashem, Soroush
+
+Apologies: Chris, Richard
+
+1. Prasad mentioned that he was having trouble with getting pyZinc running on his machine. Daniel filled in the currentstatus of Zinc in the CMake build system (not really supported but will be shortly).
+
+2. Daniel ran us through the documentation he has been integrating into the opencmiss.org website - particularly the CMake build system, which will become the default once the live website gets updated:
+
+    http://staging.opencmiss.org/documentation/cmake/docs/index.html
+
+   Highlights include:
+
+   - automatic integration of documentation from the CMake sources (for options, flags, etc) - which could be extended to source documentation if required
+
+   - documentation reflects what is currently known to work
+
+   - very comprehensive
+
+   - lots of issues with current website which cause confusion for (new) users. Would be better to simply sphinx’ify everything using some of the features Daniel has implemented in the CMake docs.
+
+   - Downloads page is confusing, better to only have OpenCMISS no need for separate component downloads which just confuse the user.
+
+   - feedback, proof reading, etc. now required.
+
+
+3. Discussion on versioning for OpenCMISS and whether/how components (Zinc and Iron) should be versioned in relation to the OpenCMISS suite. Ideas discussed included:
+
+   - Use the manage repository as the “OpenCMISS suite” and that reflects the actual version of OpenCMISS (which is what is downloaded from the download page)
+
+   - should new versions of Iron and Zinc trigger a version increment in OpenCMISS
+
+   - when making a release of OpenCMISS check whether it makes sense to increment versions of zinc and iron
+
+   - no problem having multiple releases of OpenCMISS which include the same version of zinc or iron
+
+   - release branches will be used to make management/hotfixes easier.
+
+4. Brief discussion on setting up Jenkins and/or Buildbot for the OpenCMISS cmake system (Stuttgart already has a functional Jenkins building all sorts of combinations and testing them)
+
+5. Discussion on cmake build targets and what should be visible to the user (triggered by discussion on user list regarding the use of FieldML in an example).
+
+   - see discussion on (and contribute!)
+
+      https://github.com/OpenCMISS/manage/issues/27
+
+   - related to what is marked as public, private, or interface dependencies in the CMake system for the iron, zinc targets
+
+   - if private, then users can’t directly access the dependencies by only doing a find_package(iron)

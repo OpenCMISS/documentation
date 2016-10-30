@@ -1,0 +1,12 @@
+Minutes for 02 October 2015
+===========================
+
+:date: 2015-10-02
+
+Present: Noel, Soroush, Chris, David, Andre, Hugh
+
+Apologies:
+
+1. Updates:
+
+   - Noel: adding new features to the website – documentation, small screen, new font

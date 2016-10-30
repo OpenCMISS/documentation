@@ -1,0 +1,20 @@
+Minutes for 25 September 2015
+=============================
+
+:date: 2015-09-25
+
+Present: Noel, Soroush, Chris, Richard, David, Andre
+
+Apologies:
+
+1. Updates:
+
+   - Noel: adding new features to the website
+
+   - Andre: preparing OpenCMISS tutorial sessions
+
+   - Chris: doing OpenCMISS name change
+
+   - David: finishing the thesis
+
+   - Richard: presenting in Friday Seminar (Zinc)

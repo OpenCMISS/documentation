@@ -1,0 +1,16 @@
+Minutes for 30 October 2015
+===========================
+
+:date: 2015-10-30
+
+Present: Noel, Soroush, Chris, Richard
+
+Apologies:
+
+1. Updates:
+
+   - Noel: adding documentations to the website for OpenCMISS tutorial
+
+   - Richard: OpenCMISS tutorial
+
+   - Soroush: MedtechCore launch party

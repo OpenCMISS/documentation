@@ -1,0 +1,20 @@
+Minutes for 27 November 2015
+============================
+
+:date: 2015-11-27
+
+Present: Noel, Soroush, Hugh, Chris, Richard, David
+
+Apologies:
+
+1. Updates:
+
+   - Noel: website is going alive, compiling the API documentations from Zinc
+
+   - Richard: refactoring the finite element
+
+   - Soroush: implementing the code for merging flow in circle of willis
+
+   - David: fixing the bugs for mpi
+
+   - Chris: buildbot is fixed, problem with compiling OpenCMISS with cmake

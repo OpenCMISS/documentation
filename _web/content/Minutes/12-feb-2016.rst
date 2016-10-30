@@ -1,0 +1,68 @@
+Minutes for 12 February 2016
+============================
+
+:date: 2016-02-12
+
+Present: Soroush, Daniel, Oliver, Andre, Peter, Richard
+
+Apologies: David Ladd, Chris, Hugh
+
+1. User and developer intention document
+
+   - need to consider how to present user/developer intention on website and across the documentation and help users navigate to the most appropriate documentation for their needs.
+
+   - not every entry in intention table needs to be a separate page, will be overlap between categories of users.
+
+   - opencmiss.org: could remove documentation category (section/heading at top of page) and add a “For Users” category and start guiding visitors to the appropriate docs.
+
+2. Infrastructure status
+
+   - Set up Jenkins CI for OpenCMISS to test things out.
+
+   - Everything moving to GitHub
+
+3. Manage testing status
+
+   - current examples a mix of “tests” and demonstrations, some analytic tests that perform checks internally for accuracy, etc.
+
+   - Daniel has taken a subset of examples (mostly analytic ones) and added them as “unit” tests in the Iron repository to kick start the process of creating unit tests for Iron.
+
+   - CMake system can build and execute these tests as part of the build process.
+
+   - Can later add ability to run external “tests” which grab specific examples and build/test them.
+
+   - Doing this on Windows, Daniel found some non-API code in Iron that needed to be exported to get functional DLLs under MSVC - could be more that need to be exported for certain examples in future (Daniel added to the technical documentation describing this).
+
+   - Not all these tests are currently passing on all platforms.
+
+4. Migration pathway for OpenCMISS-Examples
+
+   - migrating from current single OpenCMISS/Examples repository to the OpenCMISS-Examples organisation
+
+   - current examples that have a single “example” in multiple languages (C/Fortran/Python) - e.g., Laplace. These should be grouped as a single example with single documentation and just different implementations.
+
+   - other examples that have, for example, FieldML and non-FieldML version
+
+   - not clear how to break up or group examples
+
+   - mix of tests and demonstration examples
+
+   - need to make sure that documentation isn’t needlessly duplicated across examples
+
+   - How do these fit into tutorial/teaching applications
+
+   - Use documentation development to drive the “creation” of examples, can then pull out appropriate examples and move them over.
+
+   - All agree that current example repo left as is and then move examples over as required by the documentation development/evolution. Some of the multi-language examples (e.g., Laplace) can be moved now to ensure the framework is up and running in the way that we would like moving forward.
+
+   - Examples could have their own tests if necessary, as well as the entire example also being used as a test.
+
+   - “examples” which are purely created to test Iron functionality should be in the Iron/tests not OpenCMISS-Examples.
+
+5. Branch definitions and intentions for OpenCMISS repositories
+
+   - deferred.
+
+6. Other business
+
+7. Next Meeting: Wednesday next week (TBC)

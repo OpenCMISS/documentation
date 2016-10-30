@@ -1,0 +1,22 @@
+Minutes for 06 November 2015
+============================
+
+:date: 2015-11-06
+
+Present: Noel, Soroush, Hugh, Chris, Richard, Andre
+
+Apologies:
+
+1. Updates:
+
+   - Noel: adding documentations to the website for OpenCMISS tutorial
+
+   - Richard:  adding documentations to the website, creating a new style for exelem file
+
+   - Soroush: running OpenCMISS on OSX, merging the name changes
+
+   - Hugh: restarting the buildbot, preparing the new cmake
+
+   - Chris: compiling OpenCMISSExtras on new hpc3
+
+   - Andre: creating an example for passive finite elasticity using CellML, moving towards active mechanics

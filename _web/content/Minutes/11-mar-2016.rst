@@ -1,0 +1,14 @@
+Minutes for 11 March 2016
+=========================
+
+:date: 2016-03-11
+
+Present: Soroush, David, Alan, Chris, Prasad, Richard, Andre, Peter
+
+Apologies:
+
+1. Jenny raised an issue about face numbering in OpenCMISS. What is the most sensible way of defining relative faces in OpenCMISS?
+
+2. Noel added the Minutes section to the website.
+
+3. Discussing the proposal for OpenCMISS documentation. We separate the content generation from presentation while keeping the source in one format. Which format we should use for math? MathML or LaTeX?

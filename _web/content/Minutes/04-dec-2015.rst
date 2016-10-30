@@ -1,0 +1,24 @@
+Minutes for 4 December 2015
+===========================
+
+:date: 2015-12-04
+
+Present: Noel, Soroush, Hugh, Chris, Hashem, Prasad, Andre, Jenny, David
+
+Apologies:
+
+1. Updates:
+
+   - Noel: setting the download page in staging website
+
+   - Soroush: finished the cerebral circulation, defining the element based direction for flow in NavierStokes
+
+   - Hugh: making the OpenCMISS pre-binary wrapped in python in windows
+
+   - Chris: fixing the bugs for generated mesh
+
+   - Hashem: building VTK
+
+   - Andre: checking OpenCMISS.org, working on finite elasticity example
+
+   - Prasad: compiling OpenCMISS using cmake
