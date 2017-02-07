@@ -5,6 +5,3 @@
 [submodule "tutorials/zinc_view_graphics"]
 	path = tutorials/zinc_view_graphics
 	url = https://github.com/OpenCMISS-Examples/zinc_view_graphics
-[submodule "_web/apidoc/LibZincDoxygen"]
-	path = _web/apidoc/LibZincDoxygen
-	url = https://github.com/alan-wu/LibZincDoxygen
