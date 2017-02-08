@@ -8,6 +8,8 @@
 [submodule "building/cmake/setup"]
 	path = building/cmake/setup
 	url = https://github.com/OpenCMISS/setup
+	branch = develop
 [submodule "building/cmake/manage"]
 	path = building/cmake/manage
 	url = https://github.com/OpenCMISS/manage.git
+	branch = develop
