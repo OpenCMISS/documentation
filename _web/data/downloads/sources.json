@@ -1,8 +1,0 @@
-{
-		"sources": {
-		"OpenCMISS-Zinc": {"repoType":"SVN Repository",
-				 "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/library/"},
-		"pyzinc":{"repoType":"SVN Repository",
-				  "repoUrl":"https://svn.physiomeproject.org/svn/cmiss/zinc/bindings/"}
-		}
-}
