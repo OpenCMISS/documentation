@@ -3,8 +3,26 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to OpenCMISS's Build documentation!
-===========================================
+Building OpenCMISS Libraries From Source
+========================================
+
+TLDR;
+-----
+
+::
+
+ mkdir opencmiss
+ mkdir setup-build
+ git clone https://github.com/OpenCMISS/setup.git
+ cd setup-build
+ cmake -DOPENCMISS_ROOT=../opencmiss ../setup
+ cmake --build .
+
+The above instructions will not work if the basic requirements listed in _requirements is not met.  If executing these commands from a Visual Studio command prompt on a Windows machine the penultimate command may need to by adpated to include the generator required. For example if a 64 bit build is desired the command would be adapted to::
+
+  cmake -DOPENCMISS_ROOT=../opencmiss -G"Visual Studio 14 2015 Win64" ../setup
+
+When building the OpenCMISS libraries from source it is advisable to have git installed and available.  If this is not the case the 'git clone' command above can be repaced with the unzipped source available from https://github.com/OpenCMISS/setup.
 
 .. toctree::
    :maxdepth: 1
