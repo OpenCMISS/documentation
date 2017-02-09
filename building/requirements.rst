@@ -33,7 +33,7 @@ GNU/Linux Ubuntu
  - Python development files (Optional)
  - SWIG (Optional)
 
-_note::
+.. note::
 
   Without SWIG and Python the Python bindings will not be generated.
 
