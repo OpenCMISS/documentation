@@ -5,9 +5,11 @@
 [submodule "tutorials/zinc_view_graphics"]
 	path = tutorials/zinc_view_graphics
 	url = https://github.com/OpenCMISS-Examples/zinc_view_graphics
-[submodule "_web/apidoc/LibZincDoxygen"]
-	path = _web/apidoc/LibZincDoxygen
-	url = https://github.com/alan-wu/LibZincDoxygen
-[submodule "cmake"]
-	path = cmake
-	url = https://github.com/OpenCMISS/manage
+[submodule "building/cmake/setup"]
+	path = building/cmake/setup
+	url = https://github.com/OpenCMISS/setup
+	branch = develop
+[submodule "building/cmake/manage"]
+	path = building/cmake/manage
+	url = https://github.com/OpenCMISS/manage.git
+	branch = develop
