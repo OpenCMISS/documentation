@@ -31,7 +31,7 @@ If executing these commands from a Visual Studio command prompt on a Windows mac
 
   cmake -DOPENCMISS_ROOT=../opencmiss -G"Visual Studio 14 2015 Win64" ../setup
 
-When building the OpenCMISS libraries from source it is advisable to have git installed and available. If this is not the case the 'git clone' command above can be repaced with the unzipped source available from https://github.com/OpenCMISS/setup.
+When building the OpenCMISS libraries from source it is advisable to have git installed and available. If this is not the case the :command:`git clone` command above can be repaced with the unzipped source available from https://github.com/OpenCMISS/setup.
 
 ---------------
 Further Details
