@@ -6,9 +6,17 @@
 Building OpenCMISS Libraries From Source
 ========================================
 
------
-TLDR;
------
+------------
+Requirements
+------------
+
+The list of the software requried for building the OpenCMISS libraries is outlined in _requirements.
+
+------------------
+Building OpenCMISS
+------------------
+
+The following instructions describe the procedure for building a release version of OpenCMISS. If you wish to build a debug version, please read the developer documentation for more information.
 
 ::
 
@@ -19,11 +27,11 @@ TLDR;
  cmake -DOPENCMISS_ROOT=../opencmiss ../setup
  cmake --build .
 
-The above instructions will not work if the basic requirements listed in _requirements is not met.  If executing these commands from a Visual Studio command prompt on a Windows machine the penultimate command may need to by adpated to include the generator required. For example if a 64 bit Visual Studio build is desired the command would be adapted to::
+If executing these commands from a Visual Studio command prompt on a Windows machine the penultimate command may need to by adpated to include the generator required. For example if a 64 bit Visual Studio build is desired the command would be adapted to::
 
   cmake -DOPENCMISS_ROOT=../opencmiss -G"Visual Studio 14 2015 Win64" ../setup
 
-When building the OpenCMISS libraries from source it is advisable to have git installed and available.  If this is not the case the 'git clone' command above can be repaced with the unzipped source available from https://github.com/OpenCMISS/setup.
+When building the OpenCMISS libraries from source it is advisable to have git installed and available. If this is not the case the 'git clone' command above can be repaced with the unzipped source available from https://github.com/OpenCMISS/setup.
 
 ---------------
 Further Details
