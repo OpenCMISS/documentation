@@ -7,7 +7,7 @@ The following is a list of the software requried for building the OpenCMISS libr
 All Platforms
 -------------
 
-All platforms require CMake for generating the build scripts, at least version 3.4.0.  If it is not possible to install a versoin that satisifies this requirement then a cmake with a suitable version can be built.  The build process has a facility for building CMake is required, although this itself depends on an older version of CMake being present.
+All platforms require CMake for generating the build scripts, where CMake is at least version 3.4.0.  If it is not possible to install a version that satisifies this requirement then a CMake with a suitable version can be built.  The build generation scripts have a facility for building CMake, although this itself depends on an older version of CMake being present.  A target 'cmake' will automatically be created if the CMake application in use does not meet the minimum version requirements.
 
 Windows
 -------
