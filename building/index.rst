@@ -7,7 +7,7 @@ Building OpenCMISS Libraries From Source
 ========================================
 
 -----
-TLDR;
+TL;DR
 -----
 
 ::
@@ -31,14 +31,18 @@ Further Details
 
 For parties interested in the details and an understanding of the above commands the documentation below explains further.
 
-Making use of the setup repository to create an OpenCMISS installation can simplify the insatllation process, however if you require a specific installation consider installing OpenCMISS manually.
+Making use of the setup repository to create an OpenCMISS installation can simplify the insatllation process, however if you require a specific installation consider installing OpenCMISS manually.  Before starting make sure to check the requirements documentation
 
 .. toctree::
    :maxdepth: 1
 
-   requirements
-   cmake/setup/docs/index
-   cmake/manage/docs/index
+   Requirements <requirements>
+
+.. toctree::
+   :maxdepth: 1
+
+   Install using setup helper scripts <cmake/setup/docs/index>
+   Install manually <cmake/manage/docs/index>
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
