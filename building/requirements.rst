@@ -2,7 +2,7 @@
 Requirements for Building OpenCMISS Libraries
 =============================================
 
-The following is a list of the software requried for building the OpenCMISS libraries.  Also listed are softwares required for optional extensions.  It is possible to only build particular OpenCMISS libraries, in this case all the requirements specified here may not be required.
+The following is a list of the software requried for building the OpenCMISS libraries.  Also listed are softwares required for optional extensions.  It is possible to only build particular OpenCMISS libraries, in this case all the requirements specified here may not be strictly required.  For example, if only the zinc library is to be built then a fortran compiler is not necessary.
 
 All Platforms
 -------------
@@ -13,6 +13,7 @@ Windows
 -------
 
  - Visual Studio 2015
+ - Intel fortran
  - MSMPI
  - Python version 3.5 > (Optional)
  - SWIG (Optional)

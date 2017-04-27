@@ -39,7 +39,7 @@ Further Details
 
 For parties interested in the details and an understanding of the above commands the documentation below explains further.
 
-Making use of the setup repository to create an OpenCMISS installation can simplify the insatllation process, however if you require a specific installation consider installing OpenCMISS manually.  Before starting make sure to check the requirements documentation
+Making use of the setup repository to create an OpenCMISS libraries installation can simplify the insatllation process, however if you require a specific installation consider installing OpenCMISS manually.  Before starting make sure to check the requirements documentation
 
 .. toctree::
    :maxdepth: 1
