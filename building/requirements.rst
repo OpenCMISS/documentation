@@ -36,5 +36,5 @@ GNU/Linux Ubuntu
 
 .. note::
 
-  Without SWIG and Python the Python bindings will not be generated.
+  Without SWIG and Python the Python bindings cannot be generated.
 
