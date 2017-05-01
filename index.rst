@@ -14,6 +14,7 @@ Welcome to OpenCMISS's documentation!
    zinc/index
    building/index
    contribute/index
+   glossary
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
