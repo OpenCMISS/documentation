@@ -3,16 +3,17 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to OpenCMISS's documentation!
-=====================================
+=============================================
+Welcome to OpenCMISS libraries documentation!
+=============================================
 
 .. toctree::
    :maxdepth: 1
 
    tutorials/index
    data_format/index
-   zinc/index
    building/index
+   zinc/index
    contribute/index
    glossary
 
