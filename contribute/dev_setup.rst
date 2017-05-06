@@ -35,7 +35,8 @@ Login to GitHub using your credentials and go to the OpenCMISS GitHub organisati
 
    https://github.com/OpenCMISS
 
-The OpenCMISS organisation contains the git repositories for each component of OpenCMISS:
+The OpenCMISS organisation contains the git repositories for each of
+its components, documentation and tools:
 
    - https://github.com/OpenCMISS/iron
    - https://github.com/OpenCMISS/zinc
