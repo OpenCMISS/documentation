@@ -33,8 +33,7 @@ GitHub Issue
 
 Github issues is the place to discuss the particulars related to an issue, discussions on determining the scope of the issue or clarification of any points that are unclear.
 
-If an issue does not exist for the required work (e.g. implementation of a feature, fixing of a bug), then create a new one.  Create the new issue in the issue list for the respective OpenCMISS component repository that it relates to. If the issue relates to multiple components then create an issue in each repository and add a comment to link to the other e.g. OpenCMISS/zinc#60 (see `this github-secrets blog post <https://github.com/blog/967-github-secrets/>`_
-for more information).
+If an issue does not exist for the required work (e.g. implementation of a feature, fixing of a bug), then create a new one.  Create the new issue in the issue list for the respective OpenCMISS component repository that it relates to. If the issue relates to multiple components then create an issue in each repository and add a comment to link to the other e.g. OpenCMISS/zinc#60 (see `this github-secrets blog post <https://github.com/blog/967-github-secrets/>`_ for more information).
 
 Labels
 ------
@@ -82,8 +81,8 @@ It may be necessary to refactor the current design to enable the easiest possibl
 
 For simple or obvious bugs which have fallen through the testing gaps just the implementation is fine.
 
-Commiting changes to your feature branch
-========================================
+Committing changes to your feature branch
+=========================================
 
 Once some changes have been made and local commits committed push your changes to your GitHub OpenCMISS repository (refer to :numref:`Figure %s <OpenCMISS-branching>`).
 
