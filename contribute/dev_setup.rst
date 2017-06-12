@@ -11,7 +11,7 @@ Overview
 
 The OpenCMISS codebase is hosted on GitHub and therefore Git is used to track changes in the codebase.  Before you begin you will need to have a few prerequisites satisfied:
 
-#. GitHub user account (for the rest of this document we will call our user *Prasad*)
+#. GitHub user account
 #. Git installed
 
 This document doesn't cover the process of satisfying these prerequisites, it is left as an exercise for you (Google is your friend).  The remainder of this document assumes that these prerequisites have been met.  This document covers setup from the command line if you are using a GUI like 'GitHub for Windows' or 'Pycharm' then you will need to adjust the commands for the GUI you are using.
@@ -58,24 +58,21 @@ Select the repository that you wish to develop and use the fork button to create
 Clone
 =====
 
-You now need to clone the selected repository to your PC.  Do this by going to your fork (in this example user *prasad*'s fork) at::
+You now need to clone the selected repository to your PC. Do this by going to your fork at::
 
-   https://github.com/prasad/iron
+   https://github.com/username/iron
 
-.. warning::
-
-   Don't try and clone this location. Substitute your GitHub username for *prasad*.
+where *username* is your GitHub user account.
 
 On the right hand side of the webpage on your fork of the repository you can get the link for cloning the repository to your PC, in our example::
 
-        git@github.com:prasad/iron.git
+        git@github.com:username/iron.git
 
 Now clone the repository::
 
         cd <somewhere/you/keep/development/code>
-        git clone git@github.com:prasad/iron.git
+        git clone git@github.com:username/iron.git
 
-Note: Again, don't clone this location. Substitute your GitHub username for *prasad*.
 
 Set Git remotes
 ===============
@@ -91,7 +88,7 @@ You have now added a new remote named **prime** and set origin as the default fe
 Finally
 =======
 
-You are all done and ready to start development, read :doc:`Building <dev_building>` on how to build OpenCMISS then read :doc:`Contribution <dev_contribution>` to get your changes into OpenCMISS's prime repository.
+You are all done and ready to start development, read the documentation on how to build OpenCMISS then read :doc:`Contribution <dev_contribution>` to get your changes into OpenCMISS's prime repository.
 
 .. toctree::
    :maxdepth: 1

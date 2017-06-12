@@ -4,7 +4,7 @@
 Contributing
 ============
 
-This document covers the process to follow for getting your changes into the :term:`prime repository`.  While there are many types of contribution, this section focuses on contributions made through GitHub and Git, or in other words assets that are managed using the version control system.  It is assumed that :doc:`Setup <dev_setup>` and :doc:`Building <dev_building>` have already been read and followed.
+This document covers the process to follow for getting your changes into the :term:`prime repository`.  While there are many types of contribution, this section focuses on contributions made through GitHub and Git, or in other words assets that are managed using the version control system.  It is assumed that :doc:`Setup <dev_setup>` and the OpenCMISS build instructions have already been read and followed.
 
 .. contents::
 
