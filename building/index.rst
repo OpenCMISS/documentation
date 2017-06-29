@@ -28,7 +28,10 @@ The following instructions describe the procedure for building a release version
  cmake -DOPENCMISS_ROOT=../opencmiss ../setup
  cmake --build .
 
-If executing these commands from a Visual Studio command prompt on a Windows machine the penultimate command may need to by adpated to include the generator required. For example if a 64 bit Visual Studio build is desired the command would be adapted to::
+If executing these commands from a Visual Studio command prompt on a Windows
+ machine the penultimate command may need to by adapted to include the
+ generator required. For example if a 64 bit Visual Studio build is desired
+ the command would be adapted to::
 
   cmake -DOPENCMISS_ROOT=../opencmiss -G"Visual Studio 14 2015 Win64" ../setup
 

@@ -24,16 +24,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.32"
-     inkscape:cx="2907.4381"
-     inkscape:cy="3017.3062"
+     inkscape:zoom="0.64"
+     inkscape:cx="1459.4927"
+     inkscape:cy="3168.0382"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="752"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="3840"
+     inkscape:window-height="2094"
+     inkscape:window-x="1920"
+     inkscape:window-y="225"
      inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true" />
@@ -9535,8 +9535,8 @@
        inkscape:export-xdpi="90.135109"
        d="m 2241.6365,-2454.4905 248.9,0 c 17.8,0 32.1999,14.4 32.1999,32.2 l 0,28.2 c 0,17.8 -14.4,32.2 -32.1999,32.2 l -248.9,0 c -17.8001,0 -32.2,-14.4 -32.2,-32.2 l 0,-28.2 c 0,-17.8 14.4,-32.2 32.2,-32.2 z" />
     <text
-       y="-2390.3394"
-       x="2274.1116"
+       y="-2389.2346"
+       x="2229.9175"
        style="font-size:48px;font-family:Arial-BoldMT"
        font-size="48"
        id="text1270-9"
@@ -9545,7 +9545,7 @@
        inkscape:export-ydpi="90.135109">
       <tspan
          style="font-weight:bold"
-         id="tspan5050">Prasad</tspan>
+         id="tspan5050">Username</tspan>
     </text>
     <path
        inkscape:connector-curvature="0"
@@ -10144,8 +10144,8 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:28px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-102.92309"
-       y="-2557.6724"
+       x="-139.38329"
+       y="-2555.4626"
        id="text7985-4-15"
        sodipodi:linespacing="125%"
        inkscape:export-filename="/Users/thiranjababarendagamage/Desktop/OpenCMISSProcesses-GitBranching.png"
@@ -10153,9 +10153,9 @@
        inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan7987-9-61"
-         x="-102.92309"
-         y="-2557.6724"
-         style="font-weight:bold;font-size:48px">Prasad</tspan></text>
+         x="-139.38329"
+         y="-2555.4626"
+         style="font-weight:bold;font-size:48px">Username</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:36px;line-height:125%;font-family:Sans;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
