@@ -21,23 +21,6 @@ Code Comments
 * Do not use comments as an excuse for poor code. 
 * If you implement an algorithm from a paper or book put a reference to the source in the comments.
 
-Commit messages
----------------
-
-* Commit messages must describe what a change does, and preferably also why the change was made if that is not obvious.
-* The recommended format for a commit message is to have the first line as a short summary, including the issue number that the commit relates to. Then there should be a blank line and any further description of the change which can be in paragraphs or bulleted.
-* If there is no relevant issue item then this should be stated.
-
-Example commit message
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block::
-
-   1234: Add a new finite elasticity constitutive relation
-
-   Description of what the constitutive relation is used for
-   and a reference to the paper it is described in.
-
 =======================
 Fortran Coding Standard
 =======================
