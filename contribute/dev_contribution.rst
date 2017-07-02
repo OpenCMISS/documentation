@@ -4,7 +4,7 @@
 Contributing
 ============
 
-This document covers the process to follow for getting your changes into the :term:`prime repository`.  While there are many types of contribution, this section focuses on contributions made through GitHub and Git, or in other words assets that are managed using the version control system.  It is assumed that :doc:`Setup <dev_setup>` and :doc:`Building <dev_building>` have already been read and followed.
+This document covers the process to follow for getting your changes into the :term:`prime repository`.  While there are many types of contribution, this section focuses on contributions made through GitHub and Git, or in other words assets that are managed using the version control system.  It is assumed that :doc:`Setup <dev_setup>` and the OpenCMISS build instructions have already been read and followed.
 
 .. contents::
 
@@ -31,7 +31,9 @@ Note that a bug is just a type of issue, and that resolving the bug should have 
 GitHub Issue
 ============
 
-If an issue does not exist for the required work (e.g. implementation of a feature, fixing of a bug), then create a new one.  The issue is the place to discuss the particulars related to the issue, discussions on determining the scope of the issue or clarification of any points that are unclear.
+Github issues is the place to discuss the particulars related to an issue, discussions on determining the scope of the issue or clarification of any points that are unclear.
+
+If an issue does not exist for the required work (e.g. implementation of a feature, fixing of a bug), then create a new one.  Create the new issue in the issue list for the respective OpenCMISS component repository that it relates to. If the issue relates to multiple components then create an issue in each repository and add a comment to link to the other e.g. OpenCMISS/zinc#60 (see `this github-secrets blog post <https://github.com/blog/967-github-secrets/>`_ for more information).
 
 Labels
 ------
@@ -46,10 +48,10 @@ A GitHub Issue may be assigned labels by the project administrators to help iden
 
 In addition, a **Platform** label may be used to identify the issue as specific to a given platform (Windows/Linux/OS X). **Milestone** labels may be used to project when a feature is expected to be complete and/or indicate the priority of a given issue. Higher priority issues will take precedence and therefore be assigned a more immediate (lower) milestone number.
 
-Topic Branch
-============
+Feature Branch
+==============
 
-A topic or feature branch is a branch that is local to you (and anyone you collaborate with), it is a branch that will not be available from the :term:`prime repository`.  All development work should be carried out on a topic branch, for example any major feature that you work on or minor bug fix. Before creating a local topic branch, pull the latest changes from the :term:`prime repository` develop branch into your develop branch.
+A feature branch is a branch that is local to you (and anyone you collaborate with), it is a branch that will not be available from the :term:`prime repository`.  All development work should be carried out on a feature branch, for example any major feature that you work on or minor bug fix. Before creating a local feature branch, pull the latest changes from the :term:`prime repository` develop branch into your develop branch.
 
 .. _OpenCMISS-branching:
 .. figure:: images/OpenCMISSProcesses-GitBranching.png
@@ -58,14 +60,17 @@ A topic or feature branch is a branch that is local to you (and anyone you colla
 
    Git branching illustration
 
-Following this process will make it easier to have multiple topic branches at once and keep them in-sync with the :term:`prime repository` develop branch.  Which will in turn make it easier to manage multiple pull requests.
+Following this process will make it easier to have multiple feature branches at once and keep them in-sync with the :term:`prime repository` develop branch.  Which will in turn make it easier to manage multiple pull requests.
 
-The following Git command line commands show an example of how to create a topic branch for fixing a (hypothetical) bug described in `issue #46`::
+The following Git command line commands show an example of how to create a
+feature branch for fixing a (hypothetical) bug described in `issue #46`::
 
    git fetch prime develop
    git checkout develop # Not required if already on develop branch
    git merge prime/develop
-   git checkout -b issue46
+   git checkout -b 46_hypothetical_bug
+
+We recommend users name their branches by starting with the issue number they are working on followed by a word or words to succinctly describe it. Some examples include: 56_refactor_fe or 36_derivatives.
 
 Test Driven Development
 =======================
@@ -76,25 +81,30 @@ It may be necessary to refactor the current design to enable the easiest possibl
 
 For simple or obvious bugs which have fallen through the testing gaps just the implementation is fine.
 
-GitHub Pull Request
-===================
+Committing changes to your feature branch
+=========================================
 
-Once some changes have been made and local commits committed push your changes to your GitHub OpenCMISS repository (refer to :numref:`Figure %s <OpenCMISS-branching>`).  From there create a pull request from your topic branch to the :term:`prime repository` develop branch.  When creating the pull request make sure to add in the comment ``addresses issue #46`` (of course replace the number 46 with the actual number of the issue you are addressing), or something to that effect.  This will create a link between the issue and the pull request enabling other people to see that you are working on this issue and comment on your work.
+Once some changes have been made and local commits committed push your changes to your GitHub OpenCMISS repository (refer to :numref:`Figure %s <OpenCMISS-branching>`).
 
 The following Git command line commands show an example of how to add all files, commit the changes and push them to a GitHub repository for the first time::
 
    git add .
    git commit -m "Appropiately descriptive message about the changes made."
-   git push -u origin issue46
+   git push -u origin 46_hypothetical_bug
 
-The ``git add`` and ``git commit`` commands should be obvious,  the ``git push`` command sets the local branch ``issue46`` to be linked with the remote branch ``issue46`` in the origin (the default shorthand for your libCellML repository on GitHub) repository, this branch will be created in the origin repository if it doesn't already exist.
+The ``git add`` command will stage the changes you have selected. You can use this command multiple times to add all the necessary files that you intend to commit. The ``git commit`` command will commit these changes with the commit message indicated by the ``-m`` argument. The ``git push`` command will push the changes (and also create the branch if it does not already exist) to your origin repository. Your origin repository represents the OpenCMISS repository you have forked on GitHub.
+
+GitHub Pull Request
+===================
+
+From there create a pull request from your feature branch to the :term:`prime repository` develop branch. When creating the pull request make sure to add in the comment ``addresses issue #46`` (replace the number 46 with the actual number of the issue you are addressing), or something to that effect. This will create a link between the issue and the pull request enabling other people to see that you are working on this issue and comment on your work.
 
 To create a pull request from one GitHub repository to another follow the instructions `here <https://help.github.com/articles/creating-a-pull-request/>`_.
 
 Satisfy Comments
 ================
 
-It is important to respond to all feedback appropriately, the review process will check to make sure that all comments have been dealt with.  Feel free to respond to comments as appropriate, e.g. through code changes, posting a direct reply etc.
+It is important to respond to all feedback appropriately, the review process will check to make sure that all comments have been dealt with. Feel free to respond to comments as appropriate, e.g. through code changes, posting a direct reply etc.
 
 Review
 ======

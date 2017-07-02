@@ -18,15 +18,10 @@ For more information on contributing code, please see the follwoing pages:
 
    dev_guidelines
    dev_setup
-   dev_building
    dev_coding_standard
    dev_documentation
-   dev_testing_code
    dev_contribution
    dev_review_process
-   dev_technical
-
-
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
