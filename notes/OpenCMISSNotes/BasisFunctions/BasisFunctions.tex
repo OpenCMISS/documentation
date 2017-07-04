@@ -1,0 +1,1007 @@
+\clearemptydoublepage
+\chapter{Basis Function and Interpolation}
+\label{cha:basisfunctions}
+
+\section{Representing a One-Dimensional Field}
+\label{sec:reponedfield}
+
+Consider the problem of finding a mathematical expression $\fnof{u}{x}$ to
+represent a one-dimensional field \eg measurements of temperature $u$
+against distance $x$ along a bar, as shown in \figref{fig:1Dfield}.
+
+
+\epstexfigure{svgs/BasisFunctions/onedimfield.eps_tex}{One dimensional field
+  measurements.}  {Temperature distribution $\fnof{u}{x}$ along a bar.
+  The points are the measured temperatures.}{fig:1Dfield}{0.3}
+\epstexfigure{svgs/BasisFunctions/onedimfieldline.eps_tex}{One dimensional
+  field measurements with fitted line.}{A least-squares polynomial fit to the
+  data, showing the unacceptable oscillation between data
+  points}{fig:1Dfieldline}{0.3}
+
+One approach would be to use a polynomial expression $\fnof{u}{x} = a + bx +
+cx^{2} + dx^{3} + \ldots$ and to estimate the values of the parameters
+$a$, $b$, $c$ and $d$ from a least-squares fit to the data.  As the degree of the
+polynomial is increased the data points are fitted with increasing accuracy
+and polynomials provide a very convenient form of expression because they can
+be differentiated and integrated readily. For low degree polynomials this is a
+satisfactory approach, but if the polynomial order is increased further to
+improve the accuracy of fit a problem arises: the polynomial can be made to
+fit the data accurately, but it oscillates unacceptably between the data
+points, as shown in \figref{fig:1Dfieldline}.  
+
+\section{Summation Notation}
+\label{sec:summation notation}
+
+The following (Einstein) summation notation will be used throughout these notes. In order to
+eliminate summation symbols repeated ``dummy'' indices will be used \ie
+\begin{equation}
+  \gsum{i=1}{n}{a^{i}b_{i}}=a^{i}b_{i}
+\end{equation}
+
+To indicate an index that is not summed, parentheses will be used
+\ie $a^{(i)}b_{(i)}$ is talking about the singular expression for $i$ \eg
+$a^{1}b_{1}$, $a^{2}b_{2}$ \etc
+
+In order to indicate a summation the sum must occur over indices that are
+different sub/super-script \ie the sum must be over an ``upper'' and a
+``lower'' index or a ``lower'' and an ``upper'' index. Note that it may be
+useful to remember that if an index appears in the denominator of a fractional
+expression then the index upper- or lower- ness is ``reversed''. 
+
+For some quantities with both upper and lower indices a dot will be used to
+indicate the ``second'' index \eg in the expression $A^{i}_{.j}$ then $i$ can
+be considered the first index and $j$ the second index.
+
+\section{Basis Functions and Interpolation}
+\label{sec:basisfunctions}
+
+Both the finite element method (FEM) and the boundary element method (BEM) use
+interpolation in finding a field solution \ie the methods find the solution at
+a number of points in the domain of interest and then approximate the solution
+between these points using interpolation. The points at which the solution is
+found are known as \emph{nodes}. \emph{Basis functions} are used to
+interpolate the field between nodes within a subregion of the domain known as
+an \emph{element}. Interpolation is achieved by mapping the field coordinate
+onto a \emph{local parametric}, or $\xi$, coordinate (which varies from $0$ to
+$1$) within each element. The global nodes which make up each element are also
+mapped onto local element nodes and the basis functions are chosen (in terms
+of polynomials of the local parametric coordinate) such that the interpolated
+field is equal to the known nodal values at each node and is thus continuous
+between elements. A schematic of this
+scheme is shown in \figref{fig:nodesandelements}.
+
+\epstexfigure{svgs/BasisFunctions/nodesandelements.eps_tex}{A schematic of the
+  relationship between local and global nodes, elements and the parametric
+  elemental $\xi$ coordinate.} {A schematic of the relationship between local
+  and global nodes, elements and the parametric elemental $\xi$
+  coordinate.}{fig:nodesandelements}{0.3}
+
+\subsection{Lagrangian Basis Functions}
+\label{sec:lagrangebasisfunctions}
+
+One important family of basis functions are the Lagrange basis functions. This
+family has one basis function for each of the local element nodes and are
+defined such that, at a particular node, only one basis function is non-zero
+and has the value of one. In this sense a basis function can be thought of as
+being associated with a local node and serves to weight the interpolated
+solution in terms of the field value at that node. Lagrange basis functions
+hence provide only $C^{0}$ continuity of the field variable across element
+boundaries.
+
+\subsubsection{Linear Lagrange basis functions}
+
+The simplest basis functions of the Lagrange family are the \onedal linear
+Lagrange basis functions. These basis functions involve two local nodes and
+are defined as
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xi}&=1-\xi \\
+    \lbfn{2}{\xi}&=\xi
+  \end{split}
+  \label{eqn:linearlbfuns}
+\end{equation}
+
+The two \onedal linear Lagrange basis functions are gshown in \figref{fig:linlagrangebfuns}.
+
+\pstexfigure{plots/BasisFunctions/linlagrangebfuns.pstex}{Linear Lagrange basis functions.}
+{Linear Lagrange basis functions.}{fig:linlagrangebfuns}
+
+The interpolation of a field variable, $u$, using these basis functions is
+given by
+\begin{equation}
+  \begin{split}
+    \fnof{u}{\xi}&=\lbfn{1}{\xi}\nodept{u}{1}+\lbfn{2}{\xi}\nodept{u}{2} \\
+    &=\pbrac{1-\xi}\nodept{u}{1}+\xi\nodept{u}{2}
+  \end{split}
+\end{equation}
+where $\nodept{u}{1}$ and $\nodept{u}{2}$ are the values of the field variable at
+the first and second local nodes respectively. These basis functions hence
+provide a linear variation between the local nodal values with the local
+element coordinate, $\xi$.
+
+\subsubsection{Quadratic Lagrange basis functions}
+
+Lagrange basis functions can also be used to provide higher order variations,
+for example the one-dimensional quadratic Lagrange basis functions involve
+three local nodes and can provide a quadratic variation of field parameter
+with $\xi$. They are defined as
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xi}&=2\pbrac{\xi-\frac12}\pbrac{\xi-1} \\
+    \lbfn{2}{\xi}&=4\xi\pbrac{1-\xi} \\
+    \lbfn{3}{\xi}&=2\xi\pbrac{\xi-\frac12}
+  \end{split}
+  \label{eqn:quadraticlbfuns}
+\end{equation}
+
+The three \onedal quadratic Lagrange basis functions are shown in \figref{fig:quadlagrangebfuns}.
+
+\pstexfigure{plots/BasisFunctions/quadlagrangebfuns.pstex}{Quadratic Lagrange basis functions.}
+{Quadratic Lagrange basis functions.}{fig:quadlagrangebfuns}
+
+The interpolation formula is
+\begin{equation}
+  \begin{split}
+    \fnof{u}{\xi}&=\lbfn{1}{\xi}\nodept{u}{1}+\lbfn{2}{\xi}\nodept{u}{2}+
+    \lbfn{3}{\xi}\nodept{u}{3}\\
+    &=2\pbrac{\xi-\frac12}\pbrac{\xi-1}\nodept{u}{1}+
+    4\xi\pbrac{1-\xi}\nodept{u}{2}+2\xi\pbrac{\xi-\frac12}\nodept{u}{3}
+  \end{split}
+\end{equation}
+
+\subsubsection{Cubic Lagrange basis functions}
+
+One-dimensional cubic Lagrange basis functions involve
+four local nodes and can provide a cubic variation of field parameter
+with $\xi$. They are defined as
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xi}&=\frac12\pbrac{3\xi-1}\pbrac{3\xi-2}\pbrac{1-\xi} \\
+    \lbfn{2}{\xi}&=\frac92\xi\pbrac{3\xi-2}\pbrac{\xi-1} \\
+    \lbfn{3}{\xi}&=\frac92\xi\pbrac{3\xi-1}\pbrac{1-\xi} \\
+    \lbfn{4}{\xi}&=\frac12\xi\pbrac{3\xi-1}\pbrac{3\xi-2}
+  \end{split}
+  \label{eqn:cubiclbfuns}
+\end{equation}
+
+The four \onedal cubic Lagrange basis functions are shown in \figref{fig:cublagrangebfuns}.
+
+\pstexfigure{plots/BasisFunctions/cublagrangebfuns.pstex}{Cubic Lagrange basis functions.}
+{Cubic Lagrange basis functions.}{fig:cublagrangebfuns}
+
+The interpolation formula is
+\begin{equation}
+  \begin{split}
+    \fnof{u}{\xi}&=\lbfn{1}{\xi}\nodept{u}{1}+\lbfn{2}{\xi}\nodept{u}{2}+
+    \lbfn{3}{\xi}\nodept{u}{3}+\lbfn{4}{\xi}\nodept{u}{4}\\
+    &=\frac12\pbrac{3\xi-1}\pbrac{3\xi-2}\pbrac{1-\xi}\nodept{u}{1}+
+    \frac92\xi\pbrac{3\xi-2}\pbrac{\xi-1}\nodept{u}{2} \\
+    &\quad+\frac92\xi\pbrac{3\xi-1}\pbrac{1-\xi}\nodept{u}{3}+
+    \frac12\xi\pbrac{3\xi-1}\pbrac{3\xi-2}\nodept{u}{4}
+  \end{split}
+\end{equation}
+
+\subsubsection{General Lagrange basis functions}
+
+In general the interpolation formula for the Lagrange family of basis
+functions is, using \index{Einstein summation notation}\emph{Einstein
+  summation notation}, given by
+\begin{equation}
+  \fnof{u}{\xi}=\lbfn{\alpha}{\xi}\nodept{u}{\alpha}\quad \alpha=1,\ldots,n_{e}
+  \label{eqn:lagrangeinterpolation}
+\end{equation}
+where $n_{e}$ is the number of local nodes in the element. Einstein summation
+notation uses a repeated index in a product expression to imply summation. For
+example \eqnref{eqn:lagrangeinterpolation} is equivalent to
+\begin{equation}
+  \fnof{u}{\xi}=\gsum{\alpha=1}{n_{e}}{\lbfn{\alpha}{\xi}\nodept{u}{\alpha}}
+\end{equation}
+
+\subsubsection{Bilinear Lagrange basis functions}
+
+Multi-dimensional Lagrange basis functions can be constructed from the tensor,
+or outer, products of the one-dimensional Lagrange basis functions. For
+example the two-dimensional bilinear Lagrange basis functions have four local
+nodes with the basis functions given by
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{1}{\xitwo}=
+    \pbrac{1-\xione}\pbrac{1-\xitwo}\\
+    \lbfn{2}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{1}{\xitwo}=
+    \xione\pbrac{1-\xitwo}\\
+    \lbfn{3}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{2}{\xitwo}=
+    \pbrac{1-\xione}\xitwo \\
+    \lbfn{4}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{2}{\xitwo}=
+    \xione\xitwo
+  \end{split}
+\end{equation}
+
+The four \twodal bilinear Lagrange basis functions are shown in \figref{fig:bilinlagrangebfuns}.
+
+\pstexfigure{plots/BasisFunctions/bilinlagrangebfuns.pstex}{Bilinear Lagrange basis functions.}
+            {Bilinear Lagrange basis functions.}{fig:bilinlagrangebfuns}
+            
+The multi-dimensional interpolation formula is still a sum of the products of
+the nodal basis function and the field value at the node. For example the
+interpolated geometric position vector within an element is given by
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo}&=\lbfn{\alpha}{\xione,\xitwo}
+    \nodept{\vect{x}}{\alpha}\\
+    &=\lbfn{1}{\xione,\xitwo}\nodept{\vect{x}}{1}+\lbfn{2}{\xione,\xitwo}
+    \nodept{\vect{x}}{2}+\lbfn{3}{\xione,\xitwo}\nodept{\vect{x}}{3}+
+    \lbfn{4}{\xione,\xitwo}\nodept{\vect{x}}{4}
+  \end{split}
+\end{equation}
+where, for the vector field, each component is interpolated separately using
+the given basis functions.
+
+\subsection{Hermitian Basis Functions}
+\label{sec:Hermitianbasisfunctions}
+
+Hermitian basis functions preserve continuity of the derivative of the
+interpolating variable \ie $C^{1}$ continuity, with respect to $\xi$ across
+element boundaries by defining additional nodal derivative parameters. Like
+Lagrange bases, Hermitian basis functions are also chosen so that, at a
+particular node, only one basis function is non-zero and equal to one. They
+also are chosen so that, at a particular node, the \emph{derivative} of only
+one of four basis functions is non-zero and is equal to one. Hermitian basis
+functions hence serve to weight the interpolated solution in terms of the
+field value and derivative of the field value at nodes.
+
+\subsubsection{Cubic Hermite basis functions}
+
+\Cubicherm basis functions are the simplest of the Hermitian family and
+involve two local nodes per element. The interpolation within each element is
+in terms of $\nodept{\vect{x}}{\alpha}$ and \evalat{\dby{\vect{x}}{\xi}}{\alpha}
+and is given by \index{cubic Hermite basis!$\xi$ interpolation formula}
+\begin{equation}
+  \fnof{\vect{x}}{\xi}=\chbfn{1}{0}{\xi}\nodept{\vect{x}}{1}+\chbfn{1}{1}{\xi}
+  \evalat{\dby{\vect{x}}{\xi}}{1}+\chbfn{2}{0}{\xi}\nodept{\vect{x}}{2}+
+  \chbfn{2}{1}{\xi}\evalat{\dby{\vect{x}}{\xi}}{2}
+  \label{eqn:chxiinterpolation}
+\end{equation}
+where the four \onedal \cubicherm basis functions are given in 
+\eqnref{eqn:chbfuns} and shown in \figref{fig:chbfuns}.
+\index{cubic Hermite basis!basis functions formulae}
+\begin{equation}
+  \begin{split}
+    \chbfn{1}{0}{\xi} &= 1-3\xi^{2}+2\xi^{3} \\
+    \chbfn{1}{1}{\xi} &= \xi(\xi-1)^{2} \\
+    \chbfn{2}{0}{\xi} &= \xi^{2}(3-2\xi) \\
+    \chbfn{2}{1}{\xi} &= \xi^{2}(\xi-1) 
+  \end{split}
+  \label{eqn:chbfuns}
+\end{equation}
+\pstexfigure{plots/BasisFunctions/chbfuns.pstex}{Cubic Hermite basis functions.}
+{Cubic Hermite basis functions.}{fig:chbfuns}
+
+\subsubsection{Scaling}
+
+One further step is required to make \cubicherm basis functions useful in
+practice.  Consider the two \cubicherm elements shown in
+\figref{fig:chelements}.
+
+\epstexfigure{svgs/BasisFunctions/cubichermiteelem.eps_tex}{Two
+  cubic Hermite elements formed from three nodes.}{Two cubic Hermite elements
+  (denoted by $\mathit{1}$ and $\mathit{2}$) formed from three nodes (shown as
+  a $\bullet$ and denoted by $\mathbf{1}, \mathbf{2}$ and $\mathbf{3}$) and
+  having \arclens $s_{1}$ and $s_{2}$ respectively.}{fig:chelements}{0.35}
+
+The derivative $\evalat{\dby{\vect{x}}{\xi}}{\alpha}$ defined at local node
+$\alpha$ is dependent upon the local element \xicoord and is therefore, in
+general, different in the two adjacent elements. Interpretation of the
+derivative is hence difficult as two derivatives with the same magnitude in
+different parts of the mesh might represent two completely different physical
+derivatives. This is problematic for modelling and computation if the interpretation of the
+magnitude of the derivative (or \emph{scaling}) is unknown \eg we cannot
+assign physical units. If the scaling varies throughout the mesh then a
+derivative at a node that has a magnitude of, say, 5 will be different from
+another derivative at another node that also has the magnitude of 5. Thus, a
+numerical solver that is given a vector of derivative values would assume that
+the scalings are the same and interpret the magnitudes identically. This would
+mean that algorithms may fail \eg if, say, we needed to compute the
+norm of a vector of derivatives then by assuming the same scaling the wrong
+result would be computed.
+
+In order to the have a consistent interpretation of the derivative
+throughout the mesh it is better to base the interpolation on a physical
+coordinate. Whilst we are free to choose the physical coordinate to be
+anything the optimum choice is arc length as this is what physical processes
+are based on. However, arc-length is extremely difficult to use as an
+interpolation parameter as the inherent nonlinearity involved in its
+calculation makes conversion to and from coordinates non trivial.
+The solution is to find a parameter that scales
+in the same way as arc-length or as close to it as we can. 
+
+Consider then basing the derivatives on an \arclen coordinate at nodes,
+$\dby{\nodept{\vect{x}}{\alpha}}{s}$, with
+\begin{equation}
+  \begin{split}
+    \evalat{\dby{\vect{x}}{\xi}}{\alpha}&=\dby{\nodept{\vect{x}}{
+        \fnof{\Delta}{\alpha,e}}}{s}\pbrac{\dby{s}{\xi}}_{e} \\ &=
+    \dby{\nodept{\vect{x}}{\fnof{\Delta}{\alpha,e}}}{s}\esfone{e}
+  \end{split}
+  \label{eqn:xitosch}
+\end{equation}
+used to determine $\evalat{\dby{\vect{x}}{\xi}}{\alpha}$. Here
+$\dby{\vect{x}}{s}$ is a physical \arclen derivative,
+$\fnof{\Delta}{\alpha,e}$ is the global node number of local node $\alpha$ in
+element $e$, $\pbrac{\dby{s}{\xi}}_{e}$ is an \index{element scale
+  factor}element \emph{scale factor}, denoted by $\esfone{e}$, which scales
+the \arclen derivative to the \xicoord derivative.  Thus $\dby{\vect{x}}{s}$
+is constrained to be continuous across element boundaries rather than
+$\dby{\vect{x}}{\xi}$. The \cubicherm interpolation formula now becomes
+\begin{equation}
+  \fnof{\vect{x}}{\xi}=\chbfn{1}{0}{\xi}\nodept{\vect{x}}{1}+\chbfn{1}{1}{\xi}
+  \dby{\nodept{\vect{x}}{1}}{s}\esfone{e}+\chbfn{2}{0}{\xi}\nodept{\vect{x}}{2}+
+  \chbfn{2}{1}{\xi}\dby{\nodept{\vect{x}}{2}}{s}\esfone{e}
+  \label{eqn:chseinterpolation}
+\end{equation}
+
+By interpolating with respect to $s$ rather than with respect to $\xi$ there is some
+liberty as to the choice of the element scale factor, $\esfone{e}$. The choice
+of the scale factor will, however, affect how $\xi$ changes with $s$.  It is
+computationally desirable to have a relatively uniform change of $\xi$ with
+$s$ (for example not biasing the Gaussian quadrature -- see later -- scheme to
+one end of the element). For this reason the element scale factor is chosen as
+some function of the \arclen of the element, $s_{e}$. The simplest linear
+function that can be chosen is the \arclen itself. This type of scaling is
+called \index{arc-length scaling}\emph{\arclen scaling}.
+
+To calculate the \arclen for a particular element an iterative process is
+needed. The \arclen for a \onedal element in \twods is defined as
+\index{arc-length definition}
+\begin{equation}
+  \text{\arclen, }s_{e}=\gint{0}{1}{\norm{\dby{\fnof{\vect{x}}{\xi}}{\xi}}}
+  {\xi}=\gint{0}{1}{\sqrt{\pbrac{\dby{\fnof{x}{\xi}}{\xi}}^{2}+
+      \pbrac{\dby{\fnof{y}{\xi}}{\xi}}^{2}}}{\xi}
+  \label{eqn:arclendef}
+\end{equation}
+
+However, since the interpolation of $\fnof{\vect{x}}{\xi}$, as defined in
+\eqnref{eqn:chseinterpolation}, uses the \arclen in the calculation of the
+scaling factor, an iterative root finding technique is needed to obtain the
+\arclen.
+
+Thus, for an element $e$, the \onedal \cubicherm interpolation
+formula in \eqnref{eqn:chseinterpolation} becomes
+\begin{equation}
+  \fnof{\vect{x}}{\xi}=\chbfn{\alpha}{u}{\xi}\nodept{\vect{x}}{\alpha}_{,u}
+  \esftwo{e}{u}
+  \label{eqn:chsfinterpolation}
+\end{equation}
+where $\alpha$ varies from $1$ to $2$, $u$ varies from $0$ to $1$,
+$\nodept{\vect{x}}{\alpha}_{,0}=\nodept{\vect{x}}{\alpha}$,
+$\nodept{\vect{x}}{\alpha}_{,1}= \dby{\nodept{\vect{x}}{\alpha}}{s}$,
+$\esftwo{e}{0}=1$ and $\esftwo{e}{1}=\esfone{e}=s_{e}$. \Eqnref{eqn:chsfinterpolation} is equivalent to
+\begin{equation}
+  \fnof{\vect{x}}{\xi}=\chbfn{1}{0}{\xi}\nodept{\vect{x}}{1}_{,0}\esftwo{e}{0}
+  +\chbfn{1}{1}{\xi}\nodept{\vect{x}}{1}_{,1}\esftwo{e}{1}+
+  \chbfn{2}{0}{\xi}\nodept{\vect{x}}{2}_{,0}\esftwo{e}{0}
+  +\chbfn{2}{1}{\xi}\nodept{\vect{x}}{2}_{,1}\esftwo{e}{1}
+\end{equation}
+\ie there is an implied sum with $\alpha$ and $u$ for $\chbfn{\alpha}{u}{\xi}$
+and $\nodept{\vect{x}}{\alpha}_{,u}$ but not for $\esftwo{e}{u}$.
+
+There is one final condition that must be placed on the $\xi$ to \arclen
+transformation to ensure \arclen derivatives. This condition is based on the
+geometric defintion of \arclen which is given by Pythagorus \ie for \twods in
+rectangular cartesian coordinate we have
+\begin{equation}
+  ds^{2}=dx^{2}+dy^{2}
+  \label{eqn:arclengthpythagorus}
+\end{equation}
+or, in general coordinates,
+\begin{equation}
+  ds^{2}=g_{ij}dx^{i}dx^{j}
+  \label{eqn:genarclengthpythagorus}
+\end{equation}
+where $g_{ij}$ are the components of the metric tensor.
+
+Rearranging \eqnref{eqn:arclengthpythagorus} we find that the \arclen derivative vector at a
+node for geometric like fields, for rectangular cartesian coordinates, must
+have unit magnitude. Thus for global node $A$ we have
+\begin{equation}
+  \norm{\dby{\nodept{\vect{x}}{A}}{s}}=1
+  \label{eqn:chnormconstraint}
+\end{equation}
+
+In general coordinates this condition becomes
+\begin{equation}
+  \norm{\delby{\nodept{\vect{x}}{A}}{s_{k}}}=\sqrt{\det{\tensor{g}}}
+  \label{eqn:genchnormconstraint}
+\end{equation}
+where $s_{k}$ is the \nth{k} global arc-length direction and $\tensor{g}$ is the metric tensor.
+
+The use of this constraint on \arclen derivative magnitude ensures that there is continuity with respect to a physical parameter,
+$s$, rather than with respect to a mathematical parameter $\xi$. The set of
+mesh parameters, $\vect{u}$, for \cubicherm interpolation hence contains the
+set of nodal values (or positions), the set of nodal \arclen derivatives and
+the set of scale factors.
+
+\subsubsection{Extension to higher orders}
+
+\Bicubicherm basis functions are the \twodal extension of the \onedal
+\cubicherm basis functions. They are formed from the tensor (or outer) product
+of two of the \onedal cubic Hermite basis functions defined in
+\eqnref{eqn:chbfuns}.  The interpolation formula for the point
+$\fnof{\vect{x}}{\xione,\xitwo}$ within an element is obtained from the
+\bicubicherm interpolation formula \cite{nielsen:1991a}, \index{bicubic
+  Hermite basis!$\xi$ interpolation formula}
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo} &=
+    \chbfn{1}{0}{\xione}\chbfn{1}{0}{\xitwo}\nodept{\vect{x}}{1} +
+    \chbfn{2}{0}{\xione}\chbfn{1}{0}{\xitwo}\nodept{\vect{x}}{2} + \\
+    & \chbfn{1}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{3} +
+    \chbfn{2}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{4} + \\
+    & \chbfn{1}{1}{\xione}\chbfn{1}{0}{\xitwo}\evalat{\delby{\vect{x}}{\xione}}
+    {1}+
+    \chbfn{2}{1}{\xione}\chbfn{1}{0}{\xitwo}\evalat{\delby{\vect{x}}{\xione}}
+    {2}+ \\ 
+    & \chbfn{1}{1}{\xione}\chbfn{2}{0}{\xitwo}\evalat{\delby{\vect{x}}{\xione}}
+    {3}+
+    \chbfn{2}{1}{\xione}\chbfn{2}{0}{\xitwo}\evalat{\delby{\vect{x}}{\xione}}
+    {4} + \\ 
+    & \chbfn{1}{0}{\xione}\chbfn{1}{1}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}
+    {1}+
+    \chbfn{2}{0}{\xione}\chbfn{1}{1}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}
+    {2} + \\ 
+    & \chbfn{1}{0}{\xione}\chbfn{2}{1}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}
+    {3}+
+    \chbfn{2}{0}{\xione}\chbfn{2}{1}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}
+    {4} + \\ 
+    & \chbfn{1}{1}{\xione}\chbfn{1}{1}{\xitwo}\evalat{\deltwoby{\vect{x}}
+      {\xione}{\xitwo}}{1} +
+    \chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}\evalat{\deltwoby{\vect{x}}
+      {\xione}{\xitwo}}{2} + \\
+    & \chbfn{1}{1}{\xione}\chbfn{2}{1}{\xitwo}\evalat{\deltwoby{\vect{x}}
+      {\xione}{\xitwo}}{3} + 
+    \chbfn{2}{1}{\xione}\chbfn{2}{1}{\xitwo}\evalat{ \deltwoby{\vect{x}}
+      {\xione}{\xitwo}}{4}    
+  \end{split}
+  \label{eqn:bichxiinterp}
+\end{equation}
+
+As with \onedal \cubicherm elements, the derivatives with respect to $\xi$ in
+the \twodal interpolation formula above are expressed as the product of a
+nodal \arclen derivative and a scale factor. This is, however, complicated by
+the fact that there are now multiple $\xi$ directions at each node. From the
+product rule the transformation from an $\xi$ based derivative to an \arclen
+based derivative is given by,
+\begin{equation}
+  \delby{\vect{x}}{\xi_{l}}=\delby{\vect{x}}{s_{1}}\delby{s_{1}}{\xi_{l}}+
+  \delby{\vect{x}}{s_{2}}\delby{s_{2}}{\xi_{l}}
+  \label{eqn:xitosproductrule}
+\end{equation}
+
+Now, by definition, the $\nth{l}$ \arclen direction is only a function of the
+$\nth{l}$ $\xi$ direction, hence the derivative at local node $\alpha$ is
+\begin{equation}
+  \evalat{\delby{\vect{x}}{\xi_{l}}}{\alpha}=\delby{\nodept{\vect{x}}{
+      \fnof{\Delta}{\alpha,e}}}{s_{l}}\esftwo{e}{l}
+  \label{eqn:xitosbich}
+\end{equation}
+and the cross-derivative is
+\begin{equation}
+  \evalat{\deltwoby{\vect{x}}{\xione}{\xitwo}}{\alpha}=
+  \deltwoby{\nodept{\vect{x}}{\fnof{\Delta}{\alpha,e}}}{s_{1}}{s_{2}}\esftwo{e}{1}
+  \esftwo{e}{2}
+  \label{eqn:xitosbichcd}
+\end{equation}
+
+Unlike the \onedal \cubicherm case a condition must be placed on
+this transformation in order to maintain $C^{1}$ continuity across element
+boundaries. 
+
+Consider the line between global nodes $\mathbf{1}$ and $\mathbf{2}$ in the
+two \bicubicherm elements shown in \figref{fig:bichelementcont}.
+\epstexfigure{svgs/BasisFunctions/C1bicubicHermite.eps_tex}{Continuity of two bicubic
+  Hermite elements.}{Two bicubic Hermite elements (denoted by $\mathit{1}$ and
+  $\mathit{2}$). The global node numbers are given in boldface, the local node
+  numbers in normal text and the element scale factors used along each line
+  are denoted by $\esfone{l}$.}{fig:bichelementcont}{0.35}
+
+For $C^{1}$ continuity, as opposed to $G^{1}$ continuity, between these
+elements the derivative with respect to $\xione$, that is
+\delby{\fnof{\vect{x}}{\xitwo}}{\xione}, must be continuous\footnote{For
+  $C^{1}$ continuity the normals either side of an element boundary must be in
+  the same direction \emph{and} have the same magnitude. For $G^{1}$
+  continuity the normals must only have the same direction.}. The formula for
+this derivative in element $\mathit{1}$ along the boundary between elements
+$\mathit{1}$ and $\mathit{2}$ is
+\begin{equation}
+  \delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}=\chbfn{0}{1}{\xitwo}\evalat{
+    \delby{\vect{x}}{\xione}}{2}+\chbfn{0}{2}{\xitwo}\evalat{
+    \delby{\vect{x}}{\xione}}{4}+\chbfn{1}{1}{\xitwo}\evalat{
+    \deltwoby{\vect{x}}{\xione}{\xitwo}}{2}+\chbfn{1}{2}{\xitwo}\evalat{
+    \deltwoby{\vect{x}}{\xione}{\xitwo}}{4}
+  \label{eqn:c1contelem1}
+\end{equation}
+and for element $\mathit{2}$ is
+\begin{equation}
+  \delby{\fnof{\vect{x}}{0,\xitwo}}{\xione}=\chbfn{0}{1}{\xitwo}\evalat{
+    \delby{\vect{x}}{\xione}}{1}+\chbfn{0}{2}{\xitwo}\evalat{
+    \delby{\vect{x}}{\xione}}{3}+\chbfn{1}{1}{\xitwo}\evalat{
+    \deltwoby{\vect{x}}{\xione}{\xitwo}}{1}+\chbfn{1}{2}{\xitwo}\evalat{
+    \deltwoby{\vect{x}}{\xione}{\xitwo}}{3}
+  \label{eqn:c1contelem2}
+\end{equation}
+
+Now substituting \eqnrefs{eqn:xitosbich}{eqn:xitosbichcd} into the
+above equations yields for element $\mathit{1}$
+\begin{equation}
+  \begin{split}
+    \delby{\fnof{\vect{x}}{1,\xitwo}}{\xione} &=
+    \chbfn{0}{1}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{1}}\esfone{2}+
+    \chbfn{0}{2}{\xitwo}\delby{\nodept{\vect{x}}{4}}{s_{1}}\esfone{5}+ \\
+    &\quad\chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{2}}{s_{1}}{s_{2}}
+    \esfone{2}\esfone{4}+
+    \chbfn{1}{2}{\xitwo}\deltwoby{\nodept{\vect{x}}{4}}{s_{1}}{s_{2}}
+    \esfone{5}\esfone{4}
+  \end{split}
+\end{equation}
+and for element $\mathit{2}$
+\begin{equation}
+  \begin{split}
+    \delby{\fnof{\vect{x}}{0,\xitwo}}{\xione} &=
+    \chbfn{0}{1}{\xione}\delby{\nodept{\vect{x}}{1}}{s_{1}}\esfone{3}+
+    \chbfn{0}{2}{\xitwo}\delby{\nodept{\vect{x}}{3}}{s_{1}}\esfone{6}+ \\
+    &\quad\chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{1}}{s_{1}}{s_{2}}
+    \esfone{3}\esfone{4}+ 
+    \chbfn{1}{2}{\xitwo}\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}
+    \esfone{6}\esfone{4}
+  \end{split}
+\end{equation}
+
+Now local node $2$ in element $\mathit{1}$ and local node $1$ in element
+$\mathit{2}$ is the same as global node $\mathbf{1}$ and local node $4$ in
+element $\mathit{1}$ and local node $3$ in element $\mathit{2}$ is the same as
+global node $\mathbf{2}$. Hence for a given $\xitwo$ the condition for $C^{1}$
+continuity across the element boundary is
+\begin{multline}
+  \chbfn{0}{1}{\xitwo}\delby{\nodept{\vect{x}}{\mathbf{1}}}{s_{1}}\esfone{2}+
+  \chbfn{0}{2}{\xitwo}\delby{\nodept{\vect{x}}{\mathbf{2}}}{s_{1}}\esfone{5}+ 
+  \chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{\mathbf{1}}}{s_{1}}{s_{2}}
+  \esfone{2}\esfone{4} \\
+  +\chbfn{1}{2}{\xitwo}\deltwoby{\nodept{\vect{x}}{\mathbf{2}}}{s_{1}}{s_{2}}
+  \esfone{5}\esfone{4} = \chbfn{0}{1}{\xitwo}\delby{\nodept{\vect{x}}
+    {\mathbf{1}}}{s_{1}}\esfone{3}+\chbfn{0}{2}{\xitwo}\delby{\nodept{\vect{x}}
+    {\mathbf{2}}}{s_{1}}\esfone{6} \\
+  +\chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{\mathbf{1}}}{s_{1}}{s_{2}}
+  \esfone{3}\esfone{4}+\chbfn{1}{2}{\xitwo}\deltwoby{\nodept{\vect{x}}
+    {\mathbf{2}}}{s_{1}}{s_{2}}\esfone{6}\esfone{4}
+\end{multline}
+or
+\begin{multline}
+  \pbrac{\esfone{2}-\esfone{3}}\pbrac{\chbfn{0}{1}{\xitwo}
+    \delby{\nodept{\vect{x}}{\mathbf{1}}}{s_{1}}+\chbfn{1}{1}{\xitwo}
+    \deltwoby{\nodept{\vect{x}}{\mathbf{1}}}{s_{1}}{s_{2}}\esfone{4}} = \\
+  \pbrac{\esfone{6}-\esfone{5}}\pbrac{\chbfn{0}{2}{\xitwo}
+    \delby{\nodept{\vect{x}}{\mathbf{2}}}{s_{1}}+\chbfn{1}{2}{\xitwo}
+    \deltwoby{\nodept{\vect{x}}{\mathbf{2}}}{s_{1}}{s_{2}}\esfone{4}}
+  \label{eqn:bchc1condition}
+\end{multline}
+
+Now by choosing the scale factors to be equal on either side of node
+$\mathbf{1}$ and $\mathbf{2}$ (\ie $\esfone{2}=\esfone{3}=\nsfone{\mathbf{1}}$
+and $\esfone{5}=\esfone{6}=\nsfone{\mathbf{2}}$), that is nodal based scale
+factors, \eqnref{eqn:bchc1condition} is satisfied for any choice of the scale
+factors.  Hence nodal scale factors are a sufficient condition to ensure
+$C^{1}$ continuity. If it is desired that the scale factors be different
+either side of the node then \eqnref{eqn:bchc1condition} must be satisfied to
+ensure continuity.
+
+The choice of the scale factors again determines the $\xi$
+to $s$ spacing. We have a number of choices for the scale factor depending on
+whether or not the $\xi$ to $s$ spacing should favour bigger or smaller
+elements. One choice which equally favours both elements either side of the
+node is for the scale factors to be chosen to be nodally based and equal to the average \arclen on either side
+of the node for each $\xi$ direction \ie for the $\nth{l}$ direction
+\begin{equation}
+  \nsftwo{A}{l}=\dfrac{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}}+
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}{2}
+  \label{eqn:arithmeanarclenscale}
+\end{equation}
+where $\nsftwo{A}{l}$ is the nodal scale factor in the $\nth{l}$ $\xi$
+direction at global node $A$, $\fnof{A_{\ominus}}{l}$ is the element
+immediately preceding (in the \nth{l} direction) node $A$, and
+$\fnof{A_{\oplus}}{l}$ is the element immediately after (in the \nth{l}
+direction) node $A$ and $\fnof{s_{l}}{e}$ is the \arclen in the \nth{l} $\xi$
+direction from node $A$ in element $e$. This type of scaling is known as
+\emph{arithmetic mean \arclen scaling}.
+
+Other means can be used \ie \emph{geometric mean \arclen scaling}
+\begin{equation}
+  \nsftwo{A}{l}=\sqrt{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}}
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}
+  \label{eqn:geomeanarclenscale}
+\end{equation}
+or \emph{harmonic mean \arclen scaling}
+\begin{equation}
+  \nsftwo{A}{l}=\dfrac{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}}
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}}+
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}
+  \label{eqn:harmonicmeanarclenscale}
+\end{equation}
+
+
+
+\pstexfigure{plots/BasisFunctions/funcscaling.pstex}{Function scaling.}
+{Function scaling.}{fig:functionscaling}{1.5}
+
+\pstexfigure{plots/BasisFunctions/firstdscaling.pstex}{First derivative scaling.}
+{First derivative scaling.}{fig:firstdscaling}{1.5}
+
+\pstexfigure{plots/BasisFunctions/seconddscaling.pstex}{Second derivative scaling.}
+{Second derivative scaling.}{fig:seconddscaling}{1.5}
+
+
+\subsubsection{Hermite-sector elements}
+\label{sec:hselements}
+
+One problem that arises when using quadrilateral elements (such as
+\bicubicherm elements) to describe a surface is that it is impossible to
+'close the surface' in three-dimensions whilst maintaining consistent $\xione$
+and $\xitwo$ directions throughout the mesh. This is important as $C^{1}$
+continuity requires either consistent $\xi$ directions or a transformation at
+each node to take into account the inconsistent directions \cite{petera:1994}.
+
+One solution to this problem is to \emph{collapse} a \bicubicherm element.
+This entails placing one of the four local nodes of the element at the same
+geometric location as another local node of the element and results in a
+triangular element from which it is possible to close the surface. There are
+two main problems with this solution.  The first is that one of the two $\xi$
+directions at the collapsed node is undefined.  The second is that the
+distance between the two nodes at the same location is zero.  Numerical
+problems can result from this zero distance.  An alternative strategy has
+been developed in which special elements, called ``Hermite-sector''
+elements\index{Hermite-sector elements}, are used to close a \bicubicherm
+surface in three-dimensions. There are two types of elements depending on
+whether the $\xi$ (or $s$) directions come together at local node one or local
+node three.  These two elements are shown in \figref{fig:hermitesectors}.
+
+\epstexfigure{svgs/BasisFunctions/hermitesectors.eps_tex}{Hermite-sector elements.}
+{Hermite-sector elements. (a) Apex node one element. (b) Apex node three
+  element.}{fig:hermitesectors}{0.3}
+
+From \figref{fig:hermitesectors} it can be seen that the $s_{2}$ direction is
+not unique at the apex nodes. This gives us two choices for the interpolation
+within the element: ignore the $s_{2}$ derivative when interpolating or set
+the $s_{2}$ derivative identically to zero.
+
+\textbf{Ignore $s_{2}$ apex derivative}: For this case it can be seen from
+\figref{fig:hermitesectors} that the interpolation in the $\xione$ direction
+is just the standard cubic Hermite interpolation. The interpolation in the
+$\xitwo$ direction is now a little different in that the nodal \arclen
+derivative has been dropped as it is no longer defined at the apex node.  For
+an apex node one element shown in \figref{fig:hermitesectors}(a) the
+interpolation for the line between local node one and local node $n$ is now
+quadratic and is given by
+\begin{equation}
+  \fnof{\vect{x}}{\xitwo}=\hsonebfn{1}{\xitwo}\nodept{\vect{x}}{1}+
+  \hsonebfn{2}{\xitwo}\nodept{\vect{x}}{n}+
+  \hsonebfn{3}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}{n}
+  \label{eqn:hsapex1xiinterp}
+\end{equation}
+with the basis functions given by
+\index{quadratic Hermite basis!apex node one!basis functions formulae}
+\begin{equation}
+  \begin{split}
+    \hsonebfn{1}{\xi}&=\pbrac{\xi-1}^{2} \\ 
+    \hsonebfn{2}{\xi}&=2\xi-\xi^{2} \\
+    \hsonebfn{3}{\xi}&=\xi^{2}-\xi
+  \end{split}
+  \label{eqn:hsapex1bfuns}
+\end{equation}
+
+For the apex node three element shown in \figref{fig:hermitesectors}(b) the
+interpolation for the line connecting local node $n$ with local node three is
+given by
+\begin{equation}
+  \fnof{\vect{x}}{\xitwo}=\hsthreebfn{1}{\xitwo}\nodept{\vect{x}}{3}+
+  \hsthreebfn{2}{\xitwo}\nodept{\vect{x}}{n}+
+  \hsthreebfn{3}{\xitwo}\evalat{\delby{\vect{x}}{\xitwo}}{n}
+  \label{eqn:hsapex3xiinterp}
+\end{equation}
+with the basis functions given by
+\index{quadratic Hermite basis!apex node three!basis functions formulae}
+\begin{equation}
+  \begin{split}
+    \hsthreebfn{1}{\xi}&=\xi^{2} \\ 
+    \hsthreebfn{2}{\xi}&=1-\xi^{2} \\ 
+    \hsthreebfn{3}{\xi}&=\xi-\xi^{2}
+  \end{split}
+  \label{eqn:hsapex3Bfuns}
+\end{equation}
+ 
+The full interpolation formula for the sector element can then be found by
+taking the tensor product of the interpolation in the $\xione$ direction,
+given in \eqnref{eqn:chxiinterpolation}, with the interpolation in the
+$\xitwo$ direction (given by either Equations \bref{eqn:hsapex1xiinterp} or
+\bref{eqn:hsapex3xiinterp}). The interpolation formula can be converted from
+nodal $\xi$ derivatives to nodal \arclen derivatives using the procedure
+outlined for the \bicubicherm case. For example, the interpolation formulae for
+an apex node one element is \index{Hermite-sector basis!apex node one!\arclen
+  interpolation formula}
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo} &=
+    \hsonebfn{1}{\xitwo}\nodept{\vect{x}}{1}+\chbfn{1}{0}{\xione}\hsonebfn{2}
+    {\xitwo}\nodept{\vect{x}}{2}+\chbfn{2}{0}{\xione}\hsonebfn{2}{\xitwo}
+    \nodept{\vect{x}}{3} + \\
+    & \chbfn{1}{1}{\xione}\hsonebfn{2}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{1}}
+    \nsftwo{2}{1}+\chbfn{2}{1}{\xione}\hsonebfn{2}{\xitwo}\delby{\nodept{\vect{x}}
+      {3}}{s_{1}}\nsftwo{3}{1} + \\
+    & \chbfn{1}{0}{\xione}\hsonebfn{3}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{2}}
+    \nsftwo{2}{2} + \chbfn{2}{0}{\xione}\hsonebfn{3}{\xitwo}
+    \delby{\nodept{\vect{x}}{3}}{s_{2}}\nsftwo{3}{2} + \\
+    & \chbfn{1}{1}{\xione}\hsonebfn{3}{\xitwo}\deltwoby{\nodept{\vect{x}}{2}}
+    {s_{1}}{s_{2}}\nsftwo{2}{1}\nsftwo{2}{2} + 
+    \chbfn{2}{1}{\xione}\hsonebfn{3}{\xitwo}\deltwoby{\nodept{\vect{x}}{3}}
+    {s_{1}}{s_{2}}\nsftwo{3}{1}\nsftwo{3}{2}    
+  \end{split}
+  \label{eqn:hsapex1sinterp}
+\end{equation}
+
+Care must be taken when using Hermite-sector elements for rapidly changing
+surfaces. Consider an apex node one element with undefined $s_{2}$ apex
+derivatives. The rate of change of $\vect{x}$ with respect to
+$\xione$ along the line from node one to node three (\ie $\xione=1$) is
+\begin{equation}
+  \begin{split}
+    \delby{\fnof{\vect{x}}{1,\xitwo}}{\xione} &= \hsonebfn{2}{\xitwo}\delby{
+      \nodept{\vect{x}}{3}}{s_{1}}\nsftwo{3}{1}+\hsonebfn{3}{\xitwo}\deltwoby{
+      \nodept{\vect{x}}{3}}{s_{1}}{s_{2}}\nsftwo{3}{1}\nsftwo{3}{2} \\
+    &= \nsftwo{3}{1}\pbrac{\pbrac{2\xitwo-\xitwo^{2}}\delby{\nodept{\vect{x}}{3}}
+      {s_{1}}+\pbrac{\xitwo^{2}-\xitwo}\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}
+      \nsftwo{3}{2}}
+  \end{split}
+\end{equation}
+
+Taking the dot product of $\delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}$ with 
+$\delby{\nodept{\vect{x}}{3}}{s_{1}}$ gives
+\begin{equation}
+  \dotprod{\delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}}{\delby{\nodept{\vect{x}}{3}}
+    {s_{1}}} = \nsftwo{3}{1}
+  \pbrac{\pbrac{2\xitwo-\xitwo^{2}}\dotprod{\delby{\nodept{\vect{x}}{3}}{s_{1}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}+\pbrac{\xitwo^{2}-\xitwo}\nsftwo{3}{2}
+    \dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}}
+  \label{eqn:hsonedirectiondotprod}
+\end{equation}
+
+The normality constraint for \arclen derivatives means that
+$\dotprod{\delby{\nodept{\vect{x}}{3}}{s_{1}}}{\delby{\nodept{\vect{x}}{3}}
+  {s_{1}}}=1$ and thus the right hand side of
+\eqnref{eqn:hsonedirectiondotprod} divided by $\nsftwo{3}{1}$ (\ie normalised
+by $\nsftwo{3}{1}$) is the quadratic
+\begin{equation*}
+  \pbrac{2\xitwo-\xitwo^{2}}+\pbrac{\xitwo^{2}-\xitwo}\nsftwo{3}{2}
+  \dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
+      {3}}{s_{1}}} 
+\end{equation*}
+or
+\begin{equation*}
+  \pbrac{\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}} -1}\xitwo^{2}+
+  \pbrac{2-\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}}\xitwo
+  \label{eqn:hsonedirectionpolynomial}
+\end{equation*}
+
+This quadratic is $1$ at $\xitwo=1$ and always has a root at $\xitwo=0$.
+Consider the case of this quadratic having its second root in the interval
+$(0,1)$. This would mean that at some point in the interval $(0,1)$ the dot
+product of \delby{\fnof{\vect{x}}{1,\xitwo}}{\xione} and
+\delby{\nodept{\vect{x}}{3}}{s_{1}} would go from zero to negative and then
+positive as $\xitwo$ changed from $0$ to $1$ \ie the angle between
+$\delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}$ and
+$\delby{\nodept{\vect{x}}{3}}{s_{1}}$ would, at some stage, be greater than
+ninety degrees. As the direction of the normal to the surface along the line
+between local node one and three is given by the cross product of
+$\delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}$ and
+$\delby{\fnof{\vect{x}}{1,\xitwo}}{\xitwo}$ then, if the quadratic became
+sufficiently negative, the normal to the surface could reverse direction from
+an outward to an inward normal as $\xitwo$ changed from $0$ to $1$. This is
+clearly undesirable. In fact even if the quadratic is only slightly negative
+the resulting surface would be grossly deformed.
+
+To avoid these effects the second root of the quadratic must be outside the
+interval $(0,1)$. From the quadratic formula the conditions for this are
+\begin{equation}
+  \dfrac{\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}-2}{\nsftwo{3}{2}\dotprod{
+      \deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}{3}}
+      {s_{1}}}-1}<0
+\end{equation}
+and 
+\begin{equation}
+  \dfrac{\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}-2}{\nsftwo{3}{2}\dotprod{
+      \deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}{3}}
+      {s_{1}}}-1}>1
+\end{equation}
+that is (for the line from local node one to local node $n$) 
+\index{Hermite-sector basis!apex node one!cross-derivative condition}
+\begin{equation}
+  \dotprod{\deltwoby{\nodept{\vect{x}}{n}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
+      {n}}{s_{1}}}<\dfrac{2}{\nsftwo{n}{2}}
+\end{equation}
+
+The simplest way to interpret this constraint is that if the element is large
+(\ie $\nsftwo{n}{2}$ is large) then $\dotprod{\deltwoby{\nodept{\vect{x}}{n}}
+  {s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}{n}}{s_{1}}}$ must be small. The
+simplest way for this to happen is to ensure the magnitude of the components of
+$\deltwoby{\nodept{\vect{x}}{n}}{s_{1}}{s_{2}}$ are small (or of opposite sign to
+the comparable components of $\delby{\nodept{\vect{x}}{n}}{s_{1}}$).
+
+The equivalent interpolation formula to \eqnref{eqn:hsapex1sinterp} for an
+apex node three Hermite-sector element is 
+\index{Hermite-sector basis!apex node three!\arclen interpolation formula}
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo} &=
+    \chbfn{1}{0}{\xione}\hsthreebfn{2}{\xitwo}\nodept{\vect{x}}{1}+
+    \chbfn{2}{0}{\xione}\hsthreebfn{2}{\xitwo}\nodept{\vect{x}}{2}+
+    \hsthreebfn{1}{\xitwo}\nodept{\vect{x}}{3}+ \\
+    & \chbfn{1}{1}{\xione}\hsthreebfn{2}{\xitwo}\delby{\nodept{\vect{x}}{1}}
+    {s_{1}}\nsftwo{1}{1}+\chbfn{2}{1}{\xione}\hsthreebfn{2}{\xitwo}
+    \delby{\nodept{\vect{x}}{2}}{s_{1}}\nsftwo{2}{1} + \\
+    & \chbfn{1}{0}{\xione}\hsthreebfn{3}{\xitwo}\delby{\nodept{\vect{x}}{1}}
+    {s_{2}}\nsftwo{1}{2}+\chbfn{2}{0}{\xione}\hsthreebfn{3}{\xitwo}
+    \delby{\nodept{\vect{x}}{2}}{s_{2}}\nsftwo{2}{2} + \\
+    & \chbfn{1}{1}{\xione}\hsthreebfn{3}{\xitwo}\deltwoby{\nodept{\vect{x}}{1}}
+    {s_{1}}{s_{2}}\nsftwo{1}{1}\nsftwo{1}{2} + 
+    \chbfn{2}{1}{\xione}\hsthreebfn{3}{\xitwo}\deltwoby{\nodept{\vect{x}}{2}}
+    {s_{1}}{s_{2}}\nsftwo{2}{1}\nsftwo{2}{2}    
+  \end{split}
+  \label{eqn:hsapex3sinterp}
+\end{equation}
+and the equivalent constraint for apex node three Hermite-sector elements (for
+the line from local node $n$ to local node three) is
+\index{Hermite-sector basis!apex node three!cross-derivative condition}
+\begin{equation}
+  \dotprod{\deltwoby{\nodept{\vect{x}}{n}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
+      {n}}{s_{1}}}>\dfrac{-2}{\nsftwo{n}{2}}
+\end{equation}
+
+\textbf{Zero $s_{2}$ apex derivative}: For this case the sector basis
+functions are just the cubic Hermite basis functions. The corresponding
+interpolation formulae for an apex node one element is hence
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo} &= \chbfn{1}{0}{\xitwo}
+    \nodept{\vect{x}}{1} + 
+     \chbfn{1}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{2} +
+    \chbfn{2}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{3} + \\
+    & \chbfn{1}{1}{\xione}\chbfn{2}{0}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{1}}
+    \nsftwo{2}{1}+
+    \chbfn{2}{1}{\xione}\chbfn{2}{0}{\xitwo}\delby{\nodept{\vect{x}}{3}}{s_{1}}
+    \nsftwo{3}{1} + \\ 
+    & \chbfn{1}{0}{\xione}\chbfn{2}{1}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{2}}
+    \nsftwo{2}{2}+
+    \chbfn{2}{0}{\xione}\chbfn{2}{1}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{2}}
+    \nsftwo{3}{2} + \\ 
+    & \chbfn{1}{1}{\xione}\chbfn{2}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{2}}
+      {s_{1}}{s_{2}}\nsftwo{2}{1}\nsftwo{2}{2} + 
+    \chbfn{2}{1}{\xione}\chbfn{2}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{3}}
+      {s_{1}}{s_{2}}\nsftwo{3}{1}\nsftwo{3}{2}
+  \end{split}
+\end{equation}
+and the condition to avoid reversal of the normal is
+\begin{equation}
+  \dotprod{\deltwoby{\nodept{\vect{x}}{n}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
+      {n}}{s_{1}}}<\dfrac{3}{\nsftwo{n}{2}}
+\end{equation}
+and for the apex node three element the interpolation formula is
+\begin{equation}
+  \begin{split}
+    \fnof{\vect{x}}{\xione,\xitwo} &=
+    \chbfn{1}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{1} +
+    \chbfn{2}{0}{\xione}\chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{2} + 
+    \chbfn{2}{0}{\xitwo}\nodept{\vect{x}}{3} + \\
+    & \chbfn{1}{1}{\xione}\chbfn{1}{0}{\xitwo}\delby{\nodept{\vect{x}}{1}}{s_{1}}
+    \nsftwo{1}{1}+
+    \chbfn{2}{1}{\xione}\chbfn{1}{0}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{1}}
+    \nsftwo{2}{1} + \\ 
+    & \chbfn{1}{0}{\xione}\chbfn{1}{1}{\xitwo}\delby{\nodept{\vect{x}}{1}}{s_{2}}
+    \nsftwo{1}{2}+
+    \chbfn{2}{0}{\xione}\chbfn{1}{1}{\xitwo}\delby{\nodept{\vect{x}}{2}}{s_{2}}
+    \nsftwo{2}{2} + \\ 
+    & \chbfn{1}{1}{\xione}\chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{1}}
+      {s_{1}}{s_{2}}\nsftwo{1}{1}\nsftwo{1}{2} + 
+    \chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}\deltwoby{\nodept{\vect{x}}{2}}
+      {s_{1}}{s_{2}}\nsftwo{2}{1}\nsftwo{2}{2}
+  \end{split}
+\end{equation}
+with a condition of
+\begin{equation}
+  \dotprod{\deltwoby{\nodept{\vect{x}}{n}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
+      {n}}{s_{1}}}>\dfrac{-3}{\nsftwo{n}{2}}
+\end{equation}
+
+Although the Hermite-sector basis function in which the $s_{2}$ apex node
+derivatives are identically zero have an increased limit on the
+cross-derivative constraints (a right hand side numerator of $\pm 3$ instead
+of $\pm 2$) they have the problem that as all derivatives vanish at the apex
+any interpolated function has a zero Hessian at the apex. As this can cause
+numerical problems the Hermite-sector basis functions which have an undefined
+$s_{2}$ derivative are prefered.
+
+
+\subsection{Simplex Basis Functions}
+
+Simplex basis function and its derivatives are evaluated with respect to external $\vect{\xi}$ coordinates.
+
+For Simplex line elements there are two area coordinates which are a function of $\xi_{1}$ \ie
+\begin{align}
+  L_{1} &= 1 - \xi_{1} \\
+  L_{2} &= \xi_{1} - 1
+\end{align}
+
+The derivatives wrt to external coordinates are then given by 
+\begin{align}
+  \delby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \delby{\vect{\sbfnsymb{}}}{L_{2}}-\delby{\vect{\sbfnsymb{}}}{L_{1}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{1}}-
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{2}}
+\end{align}
+
+For Simplex triangle elements there are three area coordinates which are a function of $\xi_{1}$ and
+$\xi_{2}$ \ie
+\begin{align} 
+  L_{1} &= 1 - \xi_{1} \\
+  L_{2} &= 1 - \xi_{2} \\
+  L_{3} &= \xi_{1} + \xi_{2} - 1 
+\end{align}
+
+The derivatives wrt to external coordinates are then given by 
+\begin{align}
+  \delby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \delby{\vect{\sbfnsymb{}}}{L_{3}}-\delby{\vect{\sbfnsymb{}}}{L_{1}} \\
+  \delby{\vect{\sbfnsymb{}}}{\xi_{2}} &= \delby{\vect{\sbfnsymb{}}}{L_{3}}-\delby{\vect{\sbfnsymb{}}}{L_{2}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{1}}- 
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{3}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{3}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{2}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{2}}- 
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{3}} \\
+  \deltwoby{\vect{\sbfnsymb{}}}{\xi_{1}}{\xi_{2}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{3}}-
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{3}}-\deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}}+
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}
+\end{align}
+  
+For Simplex tetrahedral elements there are four area coordinates which are a
+function of $\xi_{1}$, $\xi_{2}$ and $\xi_{3}$ \ie
+\begin{align}
+  L_{1} &= 1 - \xi_{1} \\
+  L_{2} &= 1 - \xi_{2} \\
+  L_{3} &= 1 - \xi_{3} \\
+  L_{4} &= \xi_{1} + \xi_{2} + \xi_{3} - 2
+\end{align}
+
+The derivatives wrt to external coordinates are then given by
+\begin{align}
+  \delby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \delby{\vect{\sbfnsymb{}}}{L_{4}}-\delby{\vect{\sbfnsymb{}}}{L_{1}} \\
+  \delby{\vect{\sbfnsymb{}}}{\xi_{2}} &= \delby{\vect{\sbfnsymb{}}}{L_{4}}-\delby{\vect{\sbfnsymb{}}}{L_{2}} \\
+  \delby{\vect{\sbfnsymb{}}}{\xi_{3}} &= \delby{\vect{\sbfnsymb{}}}{L_{4}}-\delby{\vect{\sbfnsymb{}}}{L_{3}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{1}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{1}}-
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{4}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{4}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{2}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{2}}-
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{4}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{4}} \\
+  \deltwosqby{\vect{\sbfnsymb{}}}{\xi_{3}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{3}}-
+  2\deltwoby{\vect{\sbfnsymb{}}}{L_{3}}{L_{4}}+\deltwosqby{\vect{\sbfnsymb{}}}{L_{4}} \\  
+  \deltwoby{\vect{\sbfnsymb{}}}{\xi_{1}}{\xi_{2}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{4}}-
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{4}}-\deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{4}}+
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}} \\
+  \deltwoby{\vect{\sbfnsymb{}}}{\xi_{1}}{\xi_{3}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{4}}-
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{4}}-\deltwoby{\vect{\sbfnsymb{}}}{L_{3}}{L_{4}}+
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{3}} \\
+  \deltwoby{\vect{\sbfnsymb{}}}{\xi_{2}}{\xi_{3}} &= \deltwosqby{\vect{\sbfnsymb{}}}{L_{4}}-
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{4}}-\deltwoby{\vect{\sbfnsymb{}}}{L_{3}}{L_{4}}+
+  \deltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}} \\
+  \delthreeby{\vect{\sbfnsymb{}}}{\xi_{1}}{\xi_{2}}{\xi_{3}} &= \delthreecuby{\vect{\sbfnsymb{}}}{L_{4}}-
+  \deldeltwoby{\vect{\sbfnsymb{}}}{L_{1}}{L_{4}}-\deldeltwoby{\vect{\sbfnsymb{}}}{L_{2}}{L_{4}}-
+  \deldeltwoby{\vect{\sbfnsymb{}}}{L_{3}}{L_{4}}+ \\
+  &\delthreeby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}{L_{4}}+\delthreeby{\vect{\sbfnsymb{}}}{L_{1}}{L_{3}}{L_{4}}+
+  \delthreeby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}}{L_{4}}-\delthreeby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}{L_{3}}
+\end{align}
+
