@@ -21,4 +21,4 @@ Welcome to OpenCMISS libraries documentation!
 .. toctree::
    :hidden:
 
-   misc/status
+..   misc/status
