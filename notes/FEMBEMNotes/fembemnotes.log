@@ -1,0 +1,814 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=latex 2017.5.27)  4 JUL 2017 16:15
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\def\inputfigure{\input} \input fembemnotes
+(./fembemnotes.tex (/usr/share/texlive/texmf-dist/tex/latex/base/book.cls
+Document Class: book 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/bk12.clo
+File: bk12.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/data/OpenCMISS/documentation/notes/latex/opencmiss_macros.tex
+(/usr/share/texlive/texmf-dist/tex/latex/base/alltt.sty
+Package: alltt 1997/06/16 v2.0g defines alltt environment
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2016/06/28 v2.15d AMS math features
+\@mathmargin=\skip43
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen103
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen104
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count88
+LaTeX Info: Redefining \frac on input line 199.
+\uproot@=\count89
+\leftroot@=\count90
+LaTeX Info: Redefining \overline on input line 297.
+\classnum@=\count91
+\DOTSCASE@=\count92
+LaTeX Info: Redefining \ldots on input line 394.
+LaTeX Info: Redefining \dots on input line 397.
+LaTeX Info: Redefining \cdots on input line 518.
+\Mathstrutbox@=\box26
+\strutbox@=\box27
+\big@size=\dimen105
+LaTeX Font Info:    Redeclaring font encoding OML on input line 634.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 635.
+\macc@depth=\count93
+\c@MaxMatrixCols=\count94
+\dotsspace@=\muskip10
+\c@parentequation=\count95
+\dspbrk@lvl=\count96
+\tag@help=\toks15
+\row@=\count97
+\column@=\count98
+\maxfields@=\count99
+\andhelp@=\toks16
+\eqnshift@=\dimen106
+\alignsep@=\dimen107
+\tagshift@=\dimen108
+\tagwidth@=\dimen109
+\totwidth@=\dimen110
+\lineht@=\dimen111
+\@envbody=\toks17
+\multlinegap=\skip44
+\multlinetaggap=\skip45
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2739.
+LaTeX Info: Redefining \] on input line 2740.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count100
+\calc@Bcount=\count101
+\calc@Adimen=\dimen112
+\calc@Bdimen=\dimen113
+\calc@Askip=\skip46
+\calc@Bskip=\skip47
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count102
+\calc@Cskip=\skip48
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks19
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2016/05/09 v1.0r Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/01/02 v1.10 sample graphics configuration
+)
+Package graphics Info: Driver file: dvips.def on input line 96.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvips.def
+File: dvips.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+\Gin@req@height=\dimen114
+\Gin@req@width=\dimen115
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/epsfig.sty
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+\epsfxsize=\dimen116
+\epsfysize=\dimen117
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip11
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+))
+(/data/OpenCMISS/documentation/notes/latex/opencmiss_defns.tex
+(/usr/share/texlive/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 2016/01/11 v2.6 eTeX basic definition package (PEB,DPC)
+\et@xins=\count103
+)
+(/usr/share/texlive/texmf-dist/tex/latex/eepic/epic.sty
+Enhancements to Picture Environment. Version 1.2 - Released June 1, 1986
+\@@multicnt=\count104
+\d@lta=\count105
+\@delta=\dimen118
+\@@delta=\dimen119
+\@gridcnt=\count106
+\@joinkind=\count107
+\@dotgap=\dimen120
+\@ddotgap=\dimen121
+\@x@diff=\count108
+\@y@diff=\count109
+\x@diff=\dimen122
+\y@diff=\dimen123
+\@dotbox=\box28
+\num@segments=\count110
+\num@segmentsi=\count111
+\@datafile=\read1
+) (/usr/share/texlive/texmf-dist/tex/latex/eepic/eepic.sty
+Extension to Epic and LaTeX. Version 1.1e - Released Dec 21, 1999
+\@gphlinewidth=\count112
+\@eepictcnt=\count113
+\@tempdimc=\dimen124
+\maxovaldiam=\dimen125
+\@filltype=\box29
+) (/usr/share/texlive/texmf-dist/tex/latex/rotating/rotating.sty
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count114
+\rotFPtop=\skip49
+\rotFPbot=\skip50
+\rot@float@box=\box30
+\rot@mess@toks=\toks20
+)
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.sty
+Package: subfigure 2002/03/15 v2.1.5 subfigure package
+\subfigtopskip=\skip51
+\subfigcapskip=\skip52
+\subfigcaptopadj=\dimen126
+\subfigbottomskip=\skip53
+\subfigcapmargin=\dimen127
+\subfiglabelskip=\skip54
+\c@subfigure=\count115
+\c@lofdepth=\count116
+\c@subtable=\count117
+\c@lotdepth=\count118
+
+****************************************
+* Local config file subfigure.cfg used *
+****************************************
+(/usr/share/texlive/texmf-dist/tex/latex/subfigure/subfigure.cfg)
+\subfig@top=\skip55
+\subfig@bottom=\skip56
+)
+(/usr/share/texlive/texmf-dist/tex/latex/harvard/harvard.sty
+Package: harvard 
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: dvips.def on input line 144.
+
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/dvipsnam.def
+File: dvipsnam.def 2015/12/30 v3.0k Driver-dependent file (DPC,SPQR)
+))
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+\bigstrutjot=\dimen128
+)
+(/usr/share/texlive/texmf-dist/tex/latex/base/makeidx.sty
+Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
+)
+(/usr/share/texlive/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+(/usr/share/texlive/texmf-dist/tex/latex/vmargin/vmargin.sty
+Package: vmargin 2004/07/15 V2.5 set document margins (VK)
+
+Package: vmargin 2004/07/15 V2.5 set document margins (VK)
+\PaperWidth=\dimen129
+\PaperHeight=\dimen130
+)) (/data/OpenCMISS/documentation/notes/latex/opencmiss_abbreviations.tex)
+(/data/OpenCMISS/documentation/notes/latex/styles/mybook.sty
+(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+\fancy@headwidth=\skip57
+\f@ncyO@elh=\skip58
+\f@ncyO@erh=\skip59
+\f@ncyO@olh=\skip60
+\f@ncyO@orh=\skip61
+\f@ncyO@elf=\skip62
+\f@ncyO@erf=\skip63
+\f@ncyO@olf=\skip64
+\f@ncyO@orf=\skip65
+)
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen131
+\captionmargin@=\dimen132
+\captionwidth=\dimen133
+\caption@tempdima=\dimen134
+\caption@indent=\dimen135
+\caption@parindent=\dimen136
+\caption@hangindent=\dimen137
+)
+\c@ContinuedFloat=\count119
+Package caption Info: rotating package is loaded.
+Package caption Info: subfigure package is loaded.
+))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+)
+\@indexfile=\write3
+\openout3 = `fembemnotes.idx'.
+
+
+Writing index file fembemnotes.idx
+(./fembemnotes.aux (./titlepage.aux) (./fem_basis_fns/fem_basis_fns.aux)
+(./heat_conduction/heat_conduction.aux) (./bem/bem.aux)
+(./transient_heat_condn/transient_heat_condn.aux)
+(./lin_elasticity/lin_elasticity.aux) (./modal_analysis/modal_analysis.aux)
+(./con_mechanics/con_mechanics.aux) (./datafitting/datafitting.aux)
+(./derivative_bie/derivative_bie.aux) (./domints_in_bem/domints_in_bem.aux)
+(./timedep_bem/timedep_bem.aux) (./references.aux))
+\openout1 = `fembemnotes.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
+LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 53.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+\openout2 = `titlepage.aux'.
+
+ (./titlepage.tex
+File: ABILogos/abi-vc-4c.eps Graphic file (type eps)
+
+<ABILogos/abi-vc-4c.eps>
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 28.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 28.
+) [1
+
+
+] [2
+
+
+]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 59.
+
+(./fembemnotes.toc
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Try loading font information for U+msa on input line 2.
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 2.
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+] [2] [3])
+\tf@toc=\write4
+\openout4 = `fembemnotes.toc'.
+
+
+[4]
+\openout2 = `fem_basis_fns/fem_basis_fns.aux'.
+
+ (./fem_basis_fns/fem_basis_fns.tex
+Chapter 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 3.
+(./figs/fem_basis_fns/1Dfield.pstex
+File: figs/fem_basis_fns/1Dfield.eps Graphic file (type eps)
+ <figs/fem_basis_fns/1Dfield.eps>)
+(./figs/fem_basis_fns/Tempmeas.pstex
+File: figs/fem_basis_fns/Tempmeas.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Tempmeas.eps>)
+[1
+
+
+
+] (./figs/fem_basis_fns/Linearbf.pstex
+File: figs/fem_basis_fns/Linearbf.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Linearbf.eps>)
+(./figs/fem_basis_fns/Relationship.pstex
+File: figs/fem_basis_fns/Relationship.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Relationship.eps>) [2] (./figs/fem_basis_fns/Tmfit.pstex
+File: figs/fem_basis_fns/Tmfit.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Tmfit.eps>) [3]
+(./figs/fem_basis_fns/Weighting.pstex
+File: figs/fem_basis_fns/Weighting.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Weighting.eps>)
+[4] [5] (./figs/fem_basis_fns/xandurel.pstex
+File: figs/fem_basis_fns/xandurel.eps Graphic file (type eps)
+ <figs/fem_basis_fns/xandurel.eps>) (./figs/fem_basis_fns/1DQbf.pstex
+File: figs/fem_basis_fns/1DQbf.eps Graphic file (type eps)
+ <figs/fem_basis_fns/1DQbf.eps>) [6] [7]
+(./figs/fem_basis_fns/2Dbbf.pstex
+File: figs/fem_basis_fns/2Dbbf.eps Graphic file (type eps)
+ <figs/fem_basis_fns/2Dbbf.eps>) [8] [9]
+(./figs/fem_basis_fns/6node.pstex
+File: figs/fem_basis_fns/6node.eps Graphic file (type eps)
+ <figs/fem_basis_fns/6node.eps>)
+(./figs/fem_basis_fns/8nte.pstex
+File: figs/fem_basis_fns/8nte.eps Graphic file (type eps)
+ <figs/fem_basis_fns/8nte.eps>) [10] [11]
+(./figs/fem_basis_fns/cubic.pstex
+File: figs/fem_basis_fns/cubic.eps Graphic file (type eps)
+ <figs/fem_basis_fns/cubic.eps>) [12]
+(./figs/fem_basis_fns/interpol.pstex
+File: figs/fem_basis_fns/interpol.eps Graphic file (type eps)
+ <figs/fem_basis_fns/interpol.eps>)
+[13] [14] (./figs/fem_basis_fns/surface.pstex
+File: figs/fem_basis_fns/surface.eps Graphic file (type eps)
+ <figs/fem_basis_fns/surface.eps>) (./figs/fem_basis_fns/areacoord.pstex
+File: figs/fem_basis_fns/areacoord.eps Graphic file (type eps)
+ <figs/fem_basis_fns/areacoord.eps>)
+[15] (./figs/fem_basis_fns/6nodeqt.pstex
+File: figs/fem_basis_fns/6nodeqt.eps Graphic file (type eps)
+ <figs/fem_basis_fns/6nodeqt.eps>)
+(./figs/fem_basis_fns/defca.pstex
+File: figs/fem_basis_fns/defca.eps Graphic file (type eps)
+ <figs/fem_basis_fns/defca.eps>) [16] [17]
+(./figs/fem_basis_fns/Psc.pstex
+File: figs/fem_basis_fns/Psc.eps Graphic file (type eps)
+ <figs/fem_basis_fns/Psc.eps>) [18]
+(./figs/fem_basis_fns/spse.pstex
+File: figs/fem_basis_fns/spse.eps Graphic file (type eps)
+ <figs/fem_basis_fns/spse.eps>) [19]
+(./figs/fem_basis_fns/egdiag1.pstex
+File: figs/fem_basis_fns/egdiag1.eps Graphic file (type eps)
+ <figs/fem_basis_fns/egdiag1.eps>)
+(./figs/fem_basis_fns/egdiag2.pstex
+File: figs/fem_basis_fns/egdiag2.eps Graphic file (type eps)
+ <figs/fem_basis_fns/egdiag2.eps>)
+(./figs/fem_basis_fns/egdiag3.pstex
+File: figs/fem_basis_fns/egdiag3.eps Graphic file (type eps)
+ <figs/fem_basis_fns/egdiag3.eps>)
+(./figs/fem_basis_fns/egdiag4.pstex
+File: figs/fem_basis_fns/egdiag4.eps Graphic file (type eps)
+ <figs/fem_basis_fns/egdiag4.eps>)
+(./figs/fem_basis_fns/egdiag5.pstex
+File: figs/fem_basis_fns/egdiag5.eps Graphic file (type eps)
+ <figs/fem_basis_fns/egdiag5.eps>)) [20
+
+]
+[21] [22
+
+
+]
+\openout2 = `heat_conduction/heat_conduction.aux'.
+
+ (./heat_conduction/heat_conduction.tex
+Chapter 2.
+[23
+
+
+]
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 57.
+ [24] [25] [26] (./figs/heat_conduction/assembly.pstex
+File: figs/heat_conduction/assembly.eps Graphic file (type eps)
+
+<figs/heat_conduction/assembly.eps>) [27] [28]
+(./figs/heat_conduction/fesoln.pstex
+File: figs/heat_conduction/fesoln.eps Graphic file (type eps)
+ <figs/heat_conduction/fesoln.eps>)
+[29] [30] (./figs/heat_conduction/galerkin.pstex
+File: figs/heat_conduction/galerkin.eps Graphic file (type eps)
+
+<figs/heat_conduction/galerkin.eps>) [31]
+Overfull \hbox (1.0245pt too wide) in paragraph at lines 497--497
+[]\OT1/ptm/b/n/17.28 Two and Three-Dimensional Steady-State Heat Con-duc-tion 
+ []
+
+(./figs/heat_conduction/regionbdy.pstex
+File: figs/heat_conduction/regionbdy.eps Graphic file (type eps)
+ <figs/heat_conduction/regionbdy.eps>)
+[32]
+Overfull \hbox (3.29482pt too wide) in paragraph at lines 547--550
+[]\OT1/ptm/m/n/12 Using Equa-tion (2.16[]) in Equa-tion (2.14[]) gives the two-
+dimensional equiv-a-lent of Equa-tion (2.6[])
+ []
+
+[33] (./figs/heat_conduction/mapping.pstex
+File: figs/heat_conduction/mapping.eps Graphic file (type eps)
+ <figs/heat_conduction/mapping.eps>)
+[34] (./figs/heat_conduction/heatflow.pstex
+File: figs/heat_conduction/heatflow.eps Graphic file (type eps)
+
+<figs/heat_conduction/heatflow.eps>) [35] [36]
+(./figs/heat_conduction/assemble.pstex
+File: figs/heat_conduction/assemble.eps Graphic file (type eps)
+ <figs/heat_conduction/assemble.eps>)
+[37] (./figs/heat_conduction/zeroflux.pstex
+File: figs/heat_conduction/zeroflux.eps Graphic file (type eps)
+
+<figs/heat_conduction/zeroflux.eps>) [38] (./figs/heat_conduction/Gaussq.pstex
+File: figs/heat_conduction/Gaussq.eps Graphic file (type eps)
+
+<figs/heat_conduction/Gaussq.eps>) [39] [40]) [41] [42
+
+
+]
+\openout2 = `bem/bem.aux'.
+
+ (./bem/bem.tex
+Chapter 3.
+[43
+
+
+] (./figs/bem/unitf.pstex
+File: figs/bem/unitf.eps Graphic file (type eps)
+ <figs/bem/unitf.eps>)
+Overfull \hbox (8.55792pt too wide) in paragraph at lines 88--88
+[] 
+ []
+
+[44]
+Overfull \hbox (4.44904pt too wide) in paragraph at lines 123--133
+\OT1/ptm/m/n/12 We de-velop here the fun-da-men-tal so-lu-tion (also called the
+ freespace Green's[] func-tion) for Laplace's
+ []
+
+[45] (./figs/bem/domused.pstex
+File: figs/bem/domused.eps Graphic file (type eps)
+ <figs/bem/domused.eps>)
+Overfull \hbox (9.532pt too wide) in paragraph at lines 201--201
+[] 
+ []
+
+[46] [47] [48] (./figs/bem/illus.pstex
+File: figs/bem/illus.eps Graphic file (type eps)
+ <figs/bem/illus.eps>) [49] [50]
+(./figs/bem/intang.pstex
+File: figs/bem/intang.eps Graphic file (type eps)
+ <figs/bem/intang.eps>) [51] [52]
+(./figs/bem/schemi.pstex
+File: figs/bem/schemi.eps Graphic file (type eps)
+ <figs/bem/schemi.eps>) [53] [54] [55]
+(./figs/bem/decri.pstex
+File: figs/bem/decri.eps Graphic file (type eps)
+ <figs/bem/decri.eps>) [56] [57] [58] [59] [60]
+(./figs/bem/region.pstex
+File: figs/bem/region.eps Graphic file (type eps)
+ <figs/bem/region.eps>) [61] [62] [63]
+(./figs/bem/symcirc.pstex
+File: figs/bem/symcirc.eps Graphic file (type eps)
+ <figs/bem/symcirc.eps>) [64]
+(./figs/bem/symcirc2.pstex
+File: figs/bem/symcirc2.eps Graphic file (type eps)
+ <figs/bem/symcirc2.eps>) [65] [66]
+(./figs/bem/cylinder.pstex
+File: figs/bem/cylinder.eps Graphic file (type eps)
+ <figs/bem/cylinder.eps>) (./figs/bem/rdiag.pstex
+File: figs/bem/rdiag.eps Graphic file (type eps)
+
+<figs/bem/rdiag.eps>) [67] [68] (./figs/bem/symm.pstex
+File: figs/bem/symm.eps Graphic file (type eps)
+ <figs/bem/symm.eps>)
+[69] [70]
+Overfull \hbox (25.61987pt too wide) in paragraph at lines 1446--1450
+[]$[] \OML/cmm/m/it/12 e[]$| 
+ []
+
+[71
+
+]) [72]
+\openout2 = `transient_heat_condn/transient_heat_condn.aux'.
+
+ (./transient_heat_condn/transient_heat_condn.tex
+Chapter 4.
+[73
+
+
+
+
+] (./figs/transient_heat_condn/findiff.pstex
+File: figs/transient_heat_condn/findiff.eps Graphic file (type eps)
+
+<figs/transient_heat_condn/findiff.eps>) [74] [75]
+(./figs/transient_heat_condn/impfd.pstex
+File: figs/transient_heat_condn/impfd.eps Graphic file (type eps)
+ <figs/transient_heat_condn/impfd.eps>) [76] [77] [78] (./figs/transient_heat_c
+ondn/annumsol.pstex
+File: figs/transient_heat_condn/annumsol.eps Graphic file (type eps)
+
+<figs/transient_heat_condn/annumsol.eps>) [79]
+(./figs/transient_heat_condn/advection.pstex
+File: figs/transient_heat_condn/advection.eps Graphic file (type eps)
+
+<figs/transient_heat_condn/advection.eps>)
+Overfull \hbox (41.37639pt too wide) in paragraph at lines 3--537
+ [][][] 
+ []
+
+[80] [81]) [82]
+\openout2 = `lin_elasticity/lin_elasticity.aux'.
+
+ (./lin_elasticity/lin_elasticity.tex
+Chapter 5.
+[83
+
+
+
+
+] (./figs/lin_elasticity/truss.pstex
+File: figs/lin_elasticity/truss.eps Graphic file (type eps)
+ <figs/lin_elasticity/truss.eps>)
+[84] (./figs/lin_elasticity/system.pstex
+File: figs/lin_elasticity/system.eps Graphic file (type eps)
+ <figs/lin_elasticity/system.eps>)
+[85] (./figs/lin_elasticity/reaction.pstex
+File: figs/lin_elasticity/reaction.eps Graphic file (type eps)
+ <figs/lin_elasticity/reaction.eps>)
+[86] [87] [88] [89] [90] (./figs/lin_elasticity/uniformbound.pstex
+File: figs/lin_elasticity/uniformbound.eps Graphic file (type eps)
+
+<figs/lin_elasticity/uniformbound.eps>) [91] [92] [93] [94] [95] [96] [97]
+[98] [99] (./figs/lin_elasticity/illus.pstex
+File: figs/lin_elasticity/illus.eps Graphic file (type eps)
+ <figs/lin_elasticity/illus.eps>)
+[100] [101]
+Overfull \hbox (15.27538pt too wide) in paragraph at lines 1101--1139
+[]\OT1/ptm/m/n/12 As $\OML/cmm/m/it/12 "[]\OT1/cmr/m/n/12 0$\OT1/ptm/m/n/12 , $
+\OT1/cmr/m/n/12 ^^@[] \OMS/cmsy/m/n/12 ! \OT1/cmr/m/n/12 ^^@$ \OT1/ptm/m/n/12 a
+nd we write the sec-ond in-te-gral of Equa-tion (5.52[]) as $[]  \OML/cmm/m/it/
+12 t[] [] u[] []  d\OT1/cmr/m/n/12 ^^@ []$
+ []
+
+[102] [103] [104] (./figs/lin_elasticity/CMISSA.pstex
+File: figs/lin_elasticity/CMISSA.eps Graphic file (type eps)
+
+<figs/lin_elasticity/CMISSA.eps>)) [105
+
+] [106
+
+
+]
+\openout2 = `modal_analysis/modal_analysis.aux'.
+
+
+(./modal_analysis/modal_analysis.tex
+Chapter 6.
+[107
+
+
+] [108] [109] [110]) [111] [112
+
+
+]
+\openout2 = `con_mechanics/con_mechanics.aux'.
+
+ (./con_mechanics/con_mechanics.tex
+Chapter 7.
+[113
+
+
+] [114] [115]) [116]
+\openout2 = `datafitting/datafitting.aux'.
+
+ (./datafitting/datafitting.tex
+Chapter 8.
+
+LaTeX Warning: Reference `cha:linearfieldfitting' on page 117 undefined on inpu
+t line 13.
+
+
+LaTeX Warning: Reference `' on page 117 undefined on input line 20.
+
+
+LaTeX Warning: Reference `)' on page 117 undefined on input line 21.
+
+(./figs/datafitting/linfieldfit.pstex
+File: figs/datafitting/linfieldfit.eps Graphic file (type eps)
+ <figs/datafitting/linfieldfit.eps>)
+[117
+
+
+
+
+] [118] [119]
+
+Package caption Warning: \label without proper reference on input line 210.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:polargeomfit' on page 120 undefined on input line
+ 201.
+
+[120] [121] [122] [123] (./figs/datafitting/cubichermiteelem.pstex
+File: figs/datafitting/cubichermiteelem.eps Graphic file (type eps)
+
+<figs/datafitting/cubichermiteelem.eps>)
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 418.
+ [124] [125]
+(./figs/datafitting/datapos.pstex
+File: figs/datafitting/datapos.eps Graphic file (type eps)
+ <figs/datafitting/datapos.eps>) [126]
+(./figs/datafitting/fitting.pstex
+File: figs/datafitting/fitting.eps Graphic file (type eps)
+ <figs/datafitting/fitting.eps>) [127]
+[128] [129] [130]
+
+LaTeX Warning: Reference `sec:probform' on page 131 undefined on input line 905
+.
+
+
+LaTeX Warning: Reference `eqn:dataresjacnode' on page 131 undefined on input li
+ne 933.
+
+[131]
+
+LaTeX Warning: Reference `eqn:sobjacnode' on page 132 undefined on input line 1
+021.
+
+
+LaTeX Warning: Reference `eqn:sobjacline' on page 132 undefined on input line 1
+021.
+
+) [132]
+\openout2 = `derivative_bie/derivative_bie.aux'.
+
+ (./derivative_bie/derivative_bie.tex
+Chapter 9.
+[133
+
+
+
+
+]
+
+LaTeX Warning: Reference `eq:Laplace' on page 134 undefined on input line 100.
+
+[134]
+Overfull \hbox (7.89952pt too wide) in alignment at lines 165--174
+ [][][] []
+ []
+
+[135]
+Overfull \hbox (54.67815pt too wide) in alignment at lines 202--216
+ [][][] []
+ []
+
+
+Overfull \hbox (30.53271pt too wide) in alignment at lines 223--232
+ [][][] []
+ []
+
+[136] [137]
+
+LaTeX Warning: Reference `fig:2' on page 138 undefined on input line 354.
+
+[138] [139]) [140]
+\openout2 = `domints_in_bem/domints_in_bem.aux'.
+
+ (./domints_in_bem/domints_in_bem.tex
+Chapter 10.
+[141
+
+
+
+
+]
+Overfull \hbox (0.45459pt too wide) in paragraph at lines 76--76
+[]\OT1/ptm/b/n/17.28 Removing Do-main In-te-grals due to In-ho-mo-ge-neous Term
+s 
+ []
+
+[142]
+Overfull \hbox (7.39838pt too wide) in paragraph at lines 125--134
+[]\OT1/ptm/m/n/12 Fairweather, Rizzo, Shippy & Wu (1979) de-ter-mined the Galer
+kin vec-tor for the two-dimensional
+ []
+
+[143] [144] [145]
+Overfull \hbox (1.19756pt too wide) in paragraph at lines 294--300
+\OT1/ptm/m/n/12 can be trans-formed into an in-ho-mo-ge-neous Helmholtz equa-ti
+on. They used the per-tur-ba-tion method
+ []
+
+[146] [147] [148] [149] [150]
+Overfull \hbox (1.14894pt too wide) in paragraph at lines 651--656
+\OT1/ptm/m/n/12 found that in gen-eral in-clud-ing higher-order terms leads to 
+lit-tle im-prove-ment in ac-cu-racy ([]Partridge
+ []
+
+[151] [152] [153] [154] [155]) [156]
+\openout2 = `timedep_bem/timedep_bem.aux'.
+
+ (./timedep_bem/timedep_bem.tex
+Chapter 11.
+[157
+
+
+
+
+]
+Overfull \hbox (1.9381pt too wide) in paragraph at lines 104--106
+[]\OT1/ptm/m/n/12 Tanaka, Mat-si-moto & Yang (1994) pro-posed a gen-er-alised v
+er-sion of this time-stepping scheme.
+ []
+
+[158] [159] [160] [161] [162]) [163] [164
+
+
+]
+\openout2 = `references.aux'.
+
+ (./references.tex (./fembemnotes.bbl [165
+
+
+] [166] [167])) [168]
+No file fembemnotes.ind.
+(./fembemnotes.aux (./titlepage.aux) (./fem_basis_fns/fem_basis_fns.aux)
+(./heat_conduction/heat_conduction.aux) (./bem/bem.aux)
+(./transient_heat_condn/transient_heat_condn.aux)
+(./lin_elasticity/lin_elasticity.aux) (./modal_analysis/modal_analysis.aux)
+(./con_mechanics/con_mechanics.aux) (./datafitting/datafitting.aux)
+(./derivative_bie/derivative_bie.aux) (./domints_in_bem/domints_in_bem.aux)
+(./timedep_bem/timedep_bem.aux) (./references.aux))
+
+LaTeX Warning: There were undefined references.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 5276 strings out of 493047
+ 76488 string characters out of 6137279
+ 154261 words of memory out of 5000000
+ 8427 multiletter control sequences out of 15000+600000
+ 32889 words of font info for 100 fonts, out of 8000000 for 9000
+ 1137 hyphenation exceptions out of 8191
+ 43i,20n,46p,1053b,421s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on fembemnotes.dvi (174 pages, 647340 bytes).

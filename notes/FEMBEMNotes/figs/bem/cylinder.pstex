@@ -1,0 +1,12 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/bem/cylinder.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(3221,2499)(1835,-2053)
+\put(4502,-736){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\overline{\Gamma}$}}}}
+\put(3827,209){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\overline{\Gamma}$}}}}
+\put(3286,-961){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\overline{\Omega}$}}}}
+\put(2881,299){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$z$}}}}
+\put(5041,-1861){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$r$}}}}
+\end{picture}%

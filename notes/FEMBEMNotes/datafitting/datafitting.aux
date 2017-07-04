@@ -1,0 +1,110 @@
+\relax 
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Data fitting with finite elements}{117}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{cha:datafitting}{{8}{117}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Introduction}{117}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Linear field fitting}{117}}
+\newlabel{sec:linearfieldfitting}{{8.2}{117}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.1}The linear field fitting problem}{117}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.2}Calculation of data point projections}{117}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Least-squares fitting of finite element nodal parameters $u_{n}$, $n=1..4$, to measured data values $u_{d}$, $d=1..D$, at point locations $(x_{d}, y_{d})$.\relax }}{118}}
+\newlabel{fig:linfieldfit}{{8.1}{118}}
+\newlabel{eqn:datapointposfield}{{8.1}{119}}
+\newlabel{eqn:dataxipos1}{{8.2}{119}}
+\newlabel{eqn:dataxipos2}{{8.3}{119}}
+\newlabel{eqn:dataxipos3}{{8.4}{119}}
+\newlabel{eqn:dataxipos4}{{8.5}{119}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.3}Least squares field fitting}{119}}
+\newlabel{eqn:datasumsqs}{{8.6}{119}}
+\newlabel{eqn:linfieldfiteqn}{{8.8}{120}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2.4}Gauss point fitting}{120}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.3}Linear geometric fitting}{120}}
+\newlabel{sec:lineargeometricfitting}{{8.3}{120}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.1}Introduction}{120}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.2}Fitting with one geometric variable}{121}}
+\newlabel{fig:polargeomfit}{{\caption@xref {fig:polargeomfit}{ on input line 210}}{121}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3.3}Linear geometric fitting with fixed $\xi _{d}$ locations}{121}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.2}{\ignorespaces Geometric fitting problem. The three nodal y-coordinates $y_{1}, y_{2}$ and $y_{3}$ of a two linear element basis function mesh are fitted to five data points. The initial locations of the nodes are $(x_{1},y_{1})=(0,0), (x_{2},y_{2})=(1,0)$ and $(x_{3},y_{3})=(2,0)$. The location of the data points are $(x^{1},y^{1})=(0.2,1.2),(x^{2},y^{2})=(0.8,1.5),(x^{3},y^{3})=(1.3,1.5), (x^{4},y^{4})=(1.5,1.1)$ and $(x^{5},y^{5})=(1.7,0.8)$. The initial $\xi $ projections are $\xi ^{1}=0.2$ and $\xi ^{2}=0.8$ in element 1 and $\xi ^{3}=0.3,\xi ^{4}=0.5$ and $\xi ^{5}=0.7$ in element 2.\relax }}{122}}
+\newlabel{fig:fixedxifitbefore}{{8.2}{122}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.3}{\ignorespaces Fitted mesh. The $\xi _{d}$ locations on the fitted mesh are $\xi ^{1}=0.212$ and $\xi ^{2}=0.752$ in element 1 and $\xi ^{3}=0.233, \xi ^{4}=0.504$ and $\xi ^{5}=0.726$ in element 2.\relax }}{123}}
+\newlabel{fig:fixedxifitafter}{{8.3}{123}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.4}Geometric fitting with Hermite elements}{123}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.1}Review of cubic Hermite interpolation}{123}}
+\@writefile{toc}{\contentsline {subsubsection}{Cubic Hermite basis functions}{123}}
+\newlabel{eqn:linLagrangeinterp}{{8.21}{123}}
+\newlabel{eqn:linLagrangeBfuns}{{8.22}{123}}
+\newlabel{eqn:cubHermxiinterp}{{8.23}{123}}
+\newlabel{eqn:cubHermBfuns}{{8.24}{123}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.4}{\ignorespaces Two cubic Hermite elements (denoted by {\bf  1} and {\bf  2}) formed from three nodes (shown as a $\bullet $ and denoted by 1, 2 and 3) and having arc-lengths $s_{1}$ and $s_{2}$.\relax }}{124}}
+\newlabel{fig:cubHermelem}{{8.4}{124}}
+\newlabel{eqn:xitoarclength}{{8.25}{124}}
+\newlabel{eqn:cubHermnormconst}{{8.26}{124}}
+\@writefile{toc}{\contentsline {subsubsection}{Bicubic Hermite basis functions}{124}}
+\newlabel{eqn:bicubHerminterp}{{8.27}{125}}
+\newlabel{eqn:xitoarclength2}{{8.28}{125}}
+\newlabel{eqn:xitoarclength3}{{8.29}{125}}
+\newlabel{eqn:avearclenscale}{{8.30}{125}}
+\newlabel{eqn:cubHerminterp}{{8.31}{125}}
+\newlabel{eqn:arclendef}{{8.32}{125}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.5}{\ignorespaces Definition of a data point projection into an element. The data point at geometric location $\ensuremath  {\lowercase {\boldsymbol  {z}}}_{d}$ is projected into an element at a geometric position $\ensuremath  {\lowercase {\boldsymbol  {z}}}$ and element co-ordinate $\xi _{d}$.\relax }}{126}}
+\newlabel{fig:dataproj}{{8.5}{126}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.2}Least squares fitting with cubic Hermite interpolation}{126}}
+\@writefile{toc}{\contentsline {subsubsection}{Problem formulation}{126}}
+\newlabel{eqn:datapointpos}{{8.33}{126}}
+\citation{young:1989}
+\citation{terzopoulos:1986,tikhonov:1977}
+\newlabel{eqn:linfitobjfun}{{8.35}{127}}
+\newlabel{eqn:lindatajacnode}{{8.36}{127}}
+\newlabel{eqn:lindatajacderiv}{{8.37}{127}}
+\newlabel{eqn:linsystem}{{8.38}{127}}
+\@writefile{toc}{\contentsline {subsubsection}{Sobelov Smoothing}{127}}
+\newlabel{eqn:Sobnorm}{{8.39}{127}}
+\newlabel{eqn:Sobvalue}{{8.40}{127}}
+\citation{terzopoulos:1986}
+\@writefile{lof}{\contentsline {figure}{\numberline {8.6}{\ignorespaces Geometric data fitting with cubic Hermite elements. (a) The data points (+) are shown projected onto the two element mesh at some intermediate stage in the fitting procedure. (b) The final fitted mesh.\relax }}{128}}
+\newlabel{fig:cubHermfit}{{8.6}{128}}
+\newlabel{eqn:ptwoSobnorm}{{8.41}{128}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.3}Non-linear geometric fitting with Hermite elements}{128}}
+\@writefile{toc}{\contentsline {subsubsection}{Problem formulation}{128}}
+\newlabel{eqn:errorvec}{{8.42}{128}}
+\citation{gill:1986}
+\newlabel{eqn:dataresidvec}{{8.43}{129}}
+\newlabel{eqn:dataresfun}{{8.44}{129}}
+\newlabel{eqn:normconst}{{8.45}{129}}
+\newlabel{eqn:nloproblem}{{8.46}{129}}
+\@writefile{toc}{\contentsline {subsubsection}{Alternative formulation}{130}}
+\newlabel{sec:alternativeformulation}{{8.4.3}{130}}
+\newlabel{eqn:arclenconst}{{8.49}{130}}
+\@writefile{toc}{\contentsline {subsubsection}{Residual and constraint Jacobians}{131}}
+\newlabel{sec:resandcontjacs}{{8.4.3}{131}}
+\newlabel{eqn:delxdelxiinterp}{{8.52}{131}}
+\newlabel{eqn:arclenjacline}{{8.53}{131}}
+\@writefile{toc}{\contentsline {subsubsection}{Sobelov smoothing}{132}}
+\newlabel{eqn:addSobresidual}{{8.54}{132}}
+\@setckpt{datafitting/datafitting}{
+\setcounter{page}{133}
+\setcounter{equation}{55}
+\setcounter{enumi}{3}
+\setcounter{enumii}{2}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{8}
+\setcounter{section}{4}
+\setcounter{subsection}{3}
+\setcounter{subsubsection}{0}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{6}
+\setcounter{table}{0}
+\setcounter{parentequation}{0}
+\setcounter{r@tfl@t}{0}
+\setcounter{subfigure}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{lotdepth}{1}
+\setcounter{ContinuedFloat}{0}
+}

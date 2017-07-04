@@ -1,0 +1,11 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/datafitting/cubichermiteelem.eps}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begin{picture}(5123,3286)(961,-5675)
+\put(2851,-3361){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$s_{1}$}}}}
+\put(2326,-2536){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xi$}}}}
+\put(4651,-5611){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xi$}}}}
+\put(5176,-4786){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$s_{2}$}}}}
+\end{picture}%

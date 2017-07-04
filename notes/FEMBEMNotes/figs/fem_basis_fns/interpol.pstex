@@ -1,0 +1,15 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/fem_basis_fns/interpol.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(4036,3798)(1246,-3052)
+\put(5267,-2717){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(2253,-63){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $3$}}}}
+\put(4413,-63){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $4$}}}}
+\put(4413,-2943){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $2$}}}}
+\put(1261,-241){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\pbrac{\delby{u}{\xione}}_{3}$}}}}
+\put(1261,-2716){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\pbrac{\delby{u}{\xi_1}}_{1}$}}}}
+\put(2071,-2941){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $1$}}}}
+\put(2116,479){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\end{picture}%

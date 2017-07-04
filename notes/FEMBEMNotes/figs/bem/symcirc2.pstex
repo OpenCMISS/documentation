@@ -1,0 +1,13 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/bem/symcirc2.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(3090,3250)(1876,-2369)
+\put(1891,-286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{N+1-i}$}}}}
+\put(4411,-286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{i}$}}}}
+\put(3916,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{1}$}}}}
+\put(2791,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{N}$}}}}
+\put(3421,614){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$z$}}}}
+\put(4951,-916){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$x$}}}}
+\end{picture}%

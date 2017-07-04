@@ -1,0 +1,13 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/fem_basis_fns/surface.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(5331,3195)(1156,-2416)
+\put(2746,-1636){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$y$}}}}
+\put(2611,299){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}12 parameters per node}}}}
+\put(1171,524){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$z$}}}}
+\put(3736,-1771){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(3196,-1096){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\put(5356,-2311){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$x$}}}}
+\end{picture}%

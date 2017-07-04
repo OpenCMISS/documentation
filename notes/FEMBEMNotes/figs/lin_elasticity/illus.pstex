@@ -1,0 +1,13 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/lin_elasticity/illus.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(5011,2947)(1163,-2128)
+\put(4862,-75){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{-\varepsilon}$}}}}
+\put(3827,-975){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Omega$}}}}
+\put(1622,240){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Omega^{\prime}$}}}}
+\put(3916,420){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{\varepsilon}$}}}}
+\put(3376,105){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\varepsilon$}}}}
+\put(3377,-480){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$P$}}}}
+\end{picture}%

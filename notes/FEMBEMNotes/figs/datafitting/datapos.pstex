@@ -1,0 +1,10 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/datafitting/datapos.eps}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begin{picture}(3766,2804)(2318,-4944)
+\put(3976,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\vect{z}$}}}}
+\put(3526,-2536){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xi_{d}$}}}}
+\put(5701,-2311){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}+ $\vect{z}_{d}$}}}}
+\end{picture}%

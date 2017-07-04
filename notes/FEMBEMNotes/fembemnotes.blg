@@ -1,0 +1,59 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: fembemnotes.aux
+A level-1 auxiliary file: titlepage.aux
+A level-1 auxiliary file: fem_basis_fns/fem_basis_fns.aux
+A level-1 auxiliary file: heat_conduction/heat_conduction.aux
+A level-1 auxiliary file: bem/bem.aux
+A level-1 auxiliary file: transient_heat_condn/transient_heat_condn.aux
+A level-1 auxiliary file: lin_elasticity/lin_elasticity.aux
+A level-1 auxiliary file: modal_analysis/modal_analysis.aux
+A level-1 auxiliary file: con_mechanics/con_mechanics.aux
+A level-1 auxiliary file: datafitting/datafitting.aux
+A level-1 auxiliary file: derivative_bie/derivative_bie.aux
+A level-1 auxiliary file: domints_in_bem/domints_in_bem.aux
+A level-1 auxiliary file: timedep_bem/timedep_bem.aux
+A level-1 auxiliary file: references.aux
+The style file: agsm.bst
+Database file #1: opencmiss_references.bib
+You've used 42 entries,
+            2909 wiz_defined-function locations,
+            1163 strings with 15018 characters,
+and the built_in function-call counts, 159000 in all, are:
+= -- 25638
+> -- 2172
+< -- 1
++ -- 12036
+- -- 649
+* -- 13572
+:= -- 32133
+add.period$ -- 42
+call.type$ -- 42
+change.case$ -- 582
+chr.to.int$ -- 41
+cite$ -- 42
+duplicate$ -- 737
+empty$ -- 1492
+format.name$ -- 812
+if$ -- 28625
+int.to.chr$ -- 6
+int.to.str$ -- 0
+missing$ -- 46
+newline$ -- 129
+num.names$ -- 449
+pop$ -- 196
+preamble$ -- 1
+purify$ -- 630
+quote$ -- 0
+skip$ -- 602
+stack$ -- 0
+substring$ -- 35919
+swap$ -- 150
+text.length$ -- 589
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 156
+warning$ -- 0
+while$ -- 952
+width$ -- 0
+write$ -- 559

@@ -1,0 +1,12 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/bem/region.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(2901,2609)(2056,-2074)
+\put(2071,-1006){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{B}$}}}}
+\put(4051,-1816){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{f}$}}}}
+\put(3601,-376){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Omega_{f}$}}}}
+\put(2701,-1951){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Gamma_{I}$}}}}
+\put(2611,-241){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\Omega_{B}$}}}}
+\end{picture}%

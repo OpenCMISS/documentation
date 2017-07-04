@@ -1,0 +1,28 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/fem_basis_fns/1DQbf.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(5581,4765)(436,-4100)
+\put(3752,-1330){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0$}}}}
+\put(3676,-54){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(5664,-1330){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(6002,-1180){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\xi$}}}}
+\put(4131,-3595){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\xi$}}}}
+\put(1876,-3768){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0$}}}}
+\put(1801,-2455){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(3789,-3768){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(2815,-3768){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0.5$}}}}
+\put(4726,-1318){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0.5$}}}}
+\put(3752,482){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\lbfn{2}{\xi}$}}}}
+\put(1875,-1956){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\lbfn{3}{\xi}$}}}}
+\put(2176,-4018){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}(c)  $\lbfn{3}{\xi} = 2\xi\pbrac{\xi-0.5}$}}}}
+\put(788,-1618){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}(a)  $\lbfn{1}{\xi} = 2\pbrac{\xi-1}\pbrac{\xi-0.5}$}}}}
+\put(4127,-1630){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}(b)  $\lbfn{2}{\xi} = 4\xi\pbrac{1-\xi}$}}}}
+\put(2776,-1192){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\xi$}}}}
+\put(527,-1366){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0$}}}}
+\put(451,-54){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(2439,-1366){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$1$}}}}
+\put(527,445){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$\lbfn{1}{\xi}$}}}}
+\put(1463,-1356){\makebox(0,0)[lb]{\smash{{\SetFigFont{10}{12.0}$0.5$}}}}
+\end{picture}%

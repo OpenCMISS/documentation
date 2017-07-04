@@ -1,0 +1,33 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/datafitting/linfieldfit.eps}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begin{picture}(4697,5371)(1486,-6059)
+\put(5476,-4261){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$u_{2}$}}}}
+\put(2626,-1411){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$u_{3}$}}}}
+\put(4651,-1111){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$u_{4}$}}}}
+\put(3076,-3286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3376,-2836){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3826,-3586){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3826,-2611){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4351,-3286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4726,-2836){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4351,-2461){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4276,-1861){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3751,-1936){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3451,-1861){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3001,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(2926,-2536){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(2776,-2986){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4651,-3661){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(5101,-4036){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(4651,-2161){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3601,-2311){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(3526,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(6076,-4561){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}x}}}}
+\put(1801,-811){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}y}}}}
+\put(2251,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$u_{1}$}}}}
+\put(1501,-5311){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}coordinates $(x_{d}, y_{d})$}}}}
+\put(3751,-5986){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}coordinates $(x_{2}, y_{2})$}}}}
+\end{picture}%

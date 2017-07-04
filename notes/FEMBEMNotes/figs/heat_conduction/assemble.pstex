@@ -1,0 +1,24 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/heat_conduction/assemble.eps}%
+\end{picture}%
+\setlength{\unitlength}{3947sp}%
+%
+\begin{picture}(7497,4612)(1111,-4070)
+\put(1126,239){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$y$}}}}
+\put(3826,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$2$}}}}
+\put(2026,-3136){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$1$}}}}
+\put(2026,-1261){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$3$}}}}
+\put(3826,-1261){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$4$}}}}
+\put(1201,-286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$7$}}}}
+\put(3001,-286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$8$}}}}
+\put(4726,-286){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$9$}}}}
+\put(4801,-2161){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$6$}}}}
+\put(3001,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$5$}}}}
+\put(1201,-2086){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$4$}}}}
+\put(1201,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$1$}}}}
+\put(3001,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$2$}}}}
+\put(4801,-3886){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$3$}}}}
+\put(5326,-3961){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$x$}}}}
+\put(5101,-1411){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}element numbering}}}}
+\put(5101,-1036){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}global node numbering}}}}
+\end{picture}%

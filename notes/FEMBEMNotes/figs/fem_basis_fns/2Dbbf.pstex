@@ -1,0 +1,29 @@
+\begin{picture}(0,0)%
+\includegraphics{figs/fem_basis_fns/2Dbbf.eps}%
+\end{picture}%
+\setlength{\unitlength}{4144sp}%
+%
+\begin{picture}(6155,5201)(303,-4551)
+\put(5898,-1787){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(5852,-751){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\put(2118,-1878){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(1443,-482){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $3$}}}}
+\put(2388,-1472){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $4$}}}}
+\put(1218,-1832){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $2$}}}}
+\put(5088,-1742){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$1$}}}}
+\put(4188,-1337){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$0$}}}}
+\put(318,-1472){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}node $1$}}}}
+\put(2208,-752){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\put(5898,-4487){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(5942,-3451){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\put(2163,-4487){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xione$}}}}
+\put(497,-3946){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$0$}}}}
+\put(1442,-4396){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$1$}}}}
+\put(4232,-3946){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$0$}}}}
+\put(5177,-4396){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$1$}}}}
+\put(2206,-3270){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\xitwo$}}}}
+\put(631,479){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\lbfnsymb{1}$}}}}
+\put(4366,479){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\lbfnsymb{3}$}}}}
+\put(676,-2131){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\lbfnsymb{2}$}}}}
+\put(4411,-2131){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}$\lbfnsymb{4}$}}}}
+\end{picture}%
