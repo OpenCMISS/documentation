@@ -31,6 +31,11 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
-    'cmake'
+    'sphinxcontrib.rawfiles',
+    'cmake',
 ]
 
+# Raw files to copy to destination
+rawfiles = [
+    'about_video'
+]
