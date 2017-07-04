@@ -39,3 +39,7 @@ extensions = [
 rawfiles = [
     'about_video'
 ]
+
+if os.path.exists('partials/common_with_sidebar.jinja'):
+    html_theme = "ocmiss"
+    html_theme_path = ["_themes"]
