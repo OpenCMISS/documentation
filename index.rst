@@ -10,6 +10,7 @@ Welcome to OpenCMISS libraries documentation!
 .. toctree::
    :maxdepth: 1
 
+   about_video
    tutorials/index
    data_format/index
    building/index
