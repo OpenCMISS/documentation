@@ -1,9 +1,0 @@
-\begin{picture}(0,0)%
-\includegraphics{figs/bem/schemi.eps}%
-\end{picture}%
-\setlength{\unitlength}{4144sp}%
-%
-\begin{picture}(5319,2310)(973,-1886)
-\put(1711,-1817){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}(a)}}}}
-\put(4952,-1772){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}(b)}}}}
-\end{picture}%

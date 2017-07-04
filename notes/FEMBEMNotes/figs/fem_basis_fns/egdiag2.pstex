@@ -1,9 +1,0 @@
-\begin{picture}(0,0)%
-\includegraphics{figs/fem_basis_fns/egdiag2.eps}%
-\end{picture}%
-\setlength{\unitlength}{4144sp}%
-%
-\begin{picture}(3174,2049)(2015,-1423)
-\put(3061,-511){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}1}}}}
-\put(4321,-511){\makebox(0,0)[lb]{\smash{{\SetFigFont{12}{14.4}2}}}}
-\end{picture}%
