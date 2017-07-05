@@ -40,6 +40,6 @@ rawfiles = [
     'videos/oclibs_intro'
 ]
 
-if os.path.exists('partials/common_with_sidebar.jinja'):
+if os.path.exists('_themes/ocmiss/partials/common_with_sidebar.jinja'):
     html_theme = "ocmiss"
     html_theme_path = ["_themes"]
