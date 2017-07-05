@@ -7,19 +7,24 @@
 Welcome to OpenCMISS libraries documentation!
 =============================================
 
+
+-----------------
+Contents Overview
+-----------------
+
 .. toctree::
    :maxdepth: 1
 
-   about_video
+   getting_started_oclibs
+   videos/index
+   user_guides
    tutorials/index
-   data_format/index
-   building/index
-   zinc/index
-   contribute/index
-   glossary
+   examples
+   reference
+   contribute
 
 .. Pages that don't need to be shown can be included under this toctree.
 .. toctree::
-   :hidden:
+..   :hidden:
 
 ..   misc/status

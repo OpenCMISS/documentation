@@ -37,7 +37,7 @@ extensions = [
 
 # Raw files to copy to destination
 rawfiles = [
-    'about_video'
+    'videos/oclibs_intro'
 ]
 
 if os.path.exists('partials/common_with_sidebar.jinja'):
