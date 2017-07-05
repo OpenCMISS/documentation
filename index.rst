@@ -7,6 +7,8 @@
 Welcome to OpenCMISS libraries documentation!
 =============================================
 
+.. This page is mapped to the documentation.html page in https://github.com/OpenCMISS/website.git
+   don't change the contents here without also making the corresponding change there.
 
 -----------------
 Contents Overview
