@@ -3,27 +3,27 @@
 Getting Started
 ===============
 
-------------------------------------------------------------
-`Downloading the OpenCMISS libraries SDK </downloads.html>`_
-------------------------------------------------------------
+---------------------------------------
+Downloading the OpenCMISS libraries SDK
+---------------------------------------
 
-Links for downloading OpenCMISS libraries software.
+Links for `downloading OpenCMISS libraries </downloads.html>`_ software.
 
 
-----------------------------------------------------------------
-`Installing requirements and OpenCMISS libraries SDK <install>`_
-----------------------------------------------------------------
+---------------------------------------------------
+Installing requirements and OpenCMISS libraries SDK
+---------------------------------------------------
 
-Instructions on how to install OpenCMISS libraries requirements and SDK.
+Instructions on how to `install OpenCMISS libraries <install>`_ requirements and SDK.
 
-----------------------------------------------
-`Using the OpenCMISS libraries SDK <usersdk>`_
-----------------------------------------------
+---------------------------------
+Using the OpenCMISS libraries SDK
+---------------------------------
 
-Instructions on how to use OpenCMISS libraries from SDK.
+Instructions on how to `use OpenCMISS libraries <usersdk>`_ from SDK.
 
-----------------------------------------------
-`Building the OpenCMISS libraries <building>`_
-----------------------------------------------
+--------------------------------
+Building the OpenCMISS libraries
+--------------------------------
 
-Instructions on how to build OpenCMISS libraries from source.
+Instructions on how to `build OpenCMISS libraries <building>`_ from source.
