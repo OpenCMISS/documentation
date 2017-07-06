@@ -9,7 +9,6 @@ Downloading the OpenCMISS libraries SDK
 
 Links for `downloading OpenCMISS libraries </downloads.html>`_ software.
 
-
 ---------------------------------------------------
 Installing requirements and OpenCMISS libraries SDK
 ---------------------------------------------------
