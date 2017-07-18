@@ -31,6 +31,15 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
-    'cmake'
+    'sphinxcontrib.rawfiles',
+    'cmake',
 ]
 
+# Raw files to copy to destination
+rawfiles = [
+    'videos/oclibs_intro'
+]
+
+if os.path.exists('_themes/ocmiss/partials/common_with_sidebar.jinja'):
+    html_theme = "ocmiss"
+    html_theme_path = ["_themes"]
