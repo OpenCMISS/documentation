@@ -10,9 +10,9 @@
  */
 
 var PrezInfo = {
-	Name:"OpenCMISS Introduction Video",
+	Name:"OpenCMISS Libraries Introduction Video",
 	Description:"",
-	Date1: "07/04/2017",
+	Date1: "07/07/2017",
 	Author:"Hugh Sorby",
 	Copyright:"",
 	Homepage:"",
