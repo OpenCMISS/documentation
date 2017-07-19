@@ -68,7 +68,7 @@ An ``ExternalEvaluator`` is an extension mechanism mainly used in the FieldML St
 Data Resources and Data Sources
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Bulk data for ``ParameterEvaluator`` objects, ``MeshType`` element shape maps and ``EnsembleType`` identifier declarations is supplied by ``DataSource`` objects describing arrays within a ``DataResource``, which consists of either inline text, or a link to an external text file or HDF5 document. For large models, external data resources are required to gain the promised performance of FieldML; inline text is however fine for explaining concepts and for small datasets.
+Bulk data for ``ParameterEvaluator`` objects, ``MeshType`` element shape maps and ``EnsembleType`` identifier declarations is supplied by ``DataSource`` objects describing arrays within a ``DataResource``, which consists of either inline text string, or a link to an external text file or HDF5 document. For large models, external data resources are required to gain the promised performance of FieldML; inline string data is however fine for explaining concepts and for small datasets.
 
 Note that the format for extracting arrays from text resources permits starting at any line in the resource and picking particular ranges of columns from it. This often allows parts of other data formats to be marked up for reading via FieldML.
 
@@ -105,17 +105,18 @@ OpenCMISS-Iron is currently limited to reading and writing basic FieldML models 
 
 Only node-mapped parameters are currently handled in FieldML by OpenCMISS Iron and Zinc.
 
-Simple cube model
------------------
+Example Models
+--------------
+
+Note that all the following models are output by an in-development version of OpenCMISS-Zinc. In most cases inline string data resources are used to keep everything in one file. The first example explains most parts of the FieldML 0.5 document in depth; later examples focus on new concepts.
 
 
-Simple model with varying element shape and interpolation
----------------------------------------------------------
+.. toctree::
+   :maxdepth: 1
 
+   fieldml/cube_pressure
+.. fieldml/tetrahedral_mesh
+.. fieldml/wheel with varying shape and function
+.. fieldml/hermite_network Hermite 1-D network with derivatives and versions
 
-Hermite interpolation with derivatives and versions
----------------------------------------------------
-
-
-Scaling and general linear map
-------------------------------
+Serialisation of scale factors and general linear maps is currently being worked on, and an example will be added when that is production ready.
