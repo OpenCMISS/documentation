@@ -16,7 +16,6 @@ Following is the tetrahedral mesh model serialised in FieldML. It is similar to 
 
 .. literalinclude:: tetmesh.fieldml
   :language: xml
-  :lines: 1-185
   :emphasize-lines: 18-20,53-55,130-138,160-168
   :linenos:
 
