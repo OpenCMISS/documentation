@@ -115,7 +115,7 @@ Note that all the following models are output by an in-development version of Op
    :maxdepth: 1
 
    fieldml/cube_pressure
-.. fieldml/tetrahedral_mesh
+   fieldml/tetmesh
 .. fieldml/wheel with varying shape and function
 .. fieldml/hermite_network Hermite 1-D network with derivatives and versions
 

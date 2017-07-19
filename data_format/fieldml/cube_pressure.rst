@@ -1,5 +1,5 @@
-Cube with pressure field
-========================
+FieldML Example: Cube With Pressure Field
+=========================================
 
 This FieldML 0.5 document defines a single element cube model which linearly interpolates a 3-D "coordinates" field and a scalar "pressure" field. A visualisation of the result is shown in the folling figure:
  
