@@ -15,7 +15,7 @@ Introduction to FieldML 0.5
 
 The following gives a quick introduction to the objects making up the FieldML 0.5 data model, suitable for explaining how it is used in OpenCMISS. More detailed information can be found in `this paper <https://link.springer.com/article/10.1007/s11517-013-1097-7>`_.
 
-FieldML is designed to have a minimal set of constructs from which models can be build. Its avoids complex high-level objects such as *elements* which may be familiar in modelling codes, instead declaring sets of labels for such objects, and interchanging all of their attributes as maps from labels to values, in the same way that fields are mapped to model domains. This not only makes for a simpler data model and library but typically makes the serialisation much smaller because:
+FieldML is designed to have a minimal set of constructs from which models can be build. It avoids complex high-level objects such as *elements* which may be familiar in modelling codes, instead declaring sets of labels for such objects, and interchanging all of their attributes as maps from labels to values, in the same way that fields are mapped to model domains. This not only makes for a simpler data model and library but typically makes the serialisation much smaller because:
 
 1. Optional attributes are only output if used.
 
@@ -37,18 +37,18 @@ Types
 
 Finite element and other computation models are built out of *domains*: sets which label the spaces making up the model and give them their topology. Additionally, more abstract sets are needed to represent parameter indexes, components and other discrete quantities. FieldML 0.5 represents these as 'Types', which are further divided into discrete, continuous and mixed. Types describe both the spaces over which fields are defined (their *domain*), and the type of value they compute (their *codomain*); see the Evaluators section for more details.
 
-FieldML 0.5 represents every discrete set via an ``EnsembleType`` consisting of a set of integer labels, defined either as a simple range or via a separate bulk ``DataSource`` (see below). These are used for labelling mesh elements, nodes, data points, parameter indexes, field components, derivative types, versions etc.
+FieldML 0.5 represents every discrete set via an ``EnsembleType`` consisting of a set of integer labels, defined either as a simple range or via a separate ``DataSource`` (see below). These are used for labelling mesh elements, nodes, data points, parameter indexes, field components, derivative types, versions etc.
 
 A ``ContinuousType`` declares an *N*-dimensional continuous space with a connected topology. If *N>1*, it also declares an ``EnsembleType`` to index its components. These are used to represent coordinate systems including element charts and the codomains of real-valued fields.
 
-A ``MeshType`` defines a sets of elements via an ``EnsembleType`` plus a mapping to each element's shape as a subset of the ``ContinuousType`` element chart for the mesh dimension. Non-trivial shape mappings are defined using a ``ParameterEvaluator`` (see below) using a separate ``DataSource`` for the shape map data.
+A ``MeshType`` is a hybrid of these, defining a set of elements via an ``EnsembleType`` plus a mapping to each element's shape as a subset of the ``ContinuousType`` element chart for the mesh dimension. Non-trivial shape mappings are defined using a ``ParameterEvaluator`` (see below) using a separate ``DataSource`` for the shape map data.
 
 Evaluators
 ^^^^^^^^^^
 
-FieldML 0.5 'Evaluators' are used to define functions of values from zero or more Types, giving a single value of its specified value type. These serve to represent not only fields but all other mappings, parameter sets and constants used in the representation of finite element and other computational models. The Evaluator types in FieldML 0.5 are described in the following.
+FieldML 0.5 'Evaluators' are used to define functions giving a value of a specified Type, in terms of values of zero or more arguments of further Types. These serve to represent not only fields but all other mappings, parameter sets and constants used in finite element and other computational models. The Evaluator types in FieldML 0.5 are described in the following.
 
-An ``ArgumentEvaluator`` serves as a value of a Type (or location in a domain), as a starting point for evaluation, but also to represent unknown inputs to field templates. It is defined by its output value type, and optionally by any other arguments it is expected to vary with. A complex example of the latter case is unknown node parameters defined as a real value that is a function of an argument of ``EnsembleType`` nodes.
+An ``ArgumentEvaluator`` gives a value of a Type, serving as a starting point for evaluation e.g. to give a location in a domain. It may optionally have arguments of its own so it can represent unknown functions which may be used as template arguments. For example, a field template may be defined in terms of an unknown node parameters argument, promising a real value as a function of an argument of ``EnsembleType`` nodes. When defining a field from this template, this argument must be bound to actual field parameters.
 
 A ``ParameterEvaluator`` maps one or more ``EnsembleType`` arguments to real values (for typical field parameters) or ``EnsembleType`` labels (for other maps). The parameter map may be dense, giving a value for all permutations of discrete arguments, or sparse, which is represented using a *Dictionary of Keys*. In both cases the bulk data is referenced from separate ``DataSource`` arrays (see below). Examples:
 
@@ -57,11 +57,11 @@ A ``ParameterEvaluator`` maps one or more ``EnsembleType`` arguments to real val
 
 A ``ConstantEvaluator`` is a convenient simplification of ``ParameterEvaluator`` giving a constant value.
 
-A ``ReferenceEvaluator`` applies another evaluator and optionally binds one or more arguments it depends on to perform function composition. A common use is to apply an interpolation function from the FieldML standard library at the chart location for a given mesh and with parameters mapped to elements for a given mesh and field (or if defining a template: an argument representing unknown field parameters).
+A ``ReferenceEvaluator`` applies another evaluator and optionally binds one or more arguments it depends on to perform function composition. A common use is to apply an interpolation function from the FieldML standard library at the chart location for a given mesh and with parameters mapped to elements for a given mesh and field (or if defining a template, values derived from unknown field parameters).
 
-A ``PiecewiseEvaluator`` switches between delegate evaluators depending on the value of an index argument of ``EnsembleType``, or indirectly via an evaluator giving such a value. A common use is to switch between different functions on elements of a mesh, e.g. different basis functions or parameter maps. The indirect form commonly uses a ``ParameterEvaluator`` with a separate ``DataSource``.
+A ``PiecewiseEvaluator`` switches between delegate evaluators depending on the value of an index argument of ``EnsembleType``, or indirectly via an evaluator giving such a value. A common use is to switch between different functions on elements of a mesh, e.g. different basis functions and/or parameter maps. The indirect form commonly uses a ``ParameterEvaluator`` with a separate ``DataSource``.
 
-An ``AggregateEvaluator`` similarly builds a vector ``ContinuousType`` value by switching delegate function by component. Common uses include switching between field templates used for each field component, and aggregating element parameters for passing to interpolation functions.
+An ``AggregateEvaluator`` similarly builds a vector ``ContinuousType`` value by switching the delegate evaluator by component. Common uses include switching between field templates used for each field component, and aggregating element parameters for passing to interpolation functions.
 
 An ``ExternalEvaluator`` is an extension mechanism mainly used in the FieldML Standard Library to describe a function external to the language. The URL and name of interpolation functions etc. in the Standard Library are intended to be permanent identifiers for the functions and are documented as such.
 
@@ -70,17 +70,40 @@ Data Resources and Data Sources
 
 Bulk data for ``ParameterEvaluator`` objects, ``MeshType`` element shape maps and ``EnsembleType`` identifier declarations is supplied by ``DataSource`` objects describing arrays within a ``DataResource``, which consists of either inline text, or a link to an external text file or HDF5 document. For large models, external data resources are required to gain the promised performance of FieldML; inline text is however fine for explaining concepts and for small datasets.
 
+Note that the format for extracting arrays from text resources permits starting at any line in the resource and picking particular ranges of columns from it. This often allows parts of other data formats to be marked up for reading via FieldML.
+
 Imports and the FieldML Standard Library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-FieldML 0.5 Imports make FieldML Types and Evaluators from another document available under local aliases. Most commonly these are imported from the FieldML Standard Library, which defines many ``ExternalEvaluator`` objects representing interpolation by common basis functions, with supporting element parameter vector types. It also defines standard element shape bounds evaluators and declarations of types representing Cartesian coordinate systems.
+FieldML 0.5 Imports make FieldML Types and Evaluators from another document available under local names.
 
-FieldML Patterns for OpenCMISS
-------------------------------
+Most commonly these are imported from the FieldML Standard Library, which defines many ``ExternalEvaluator`` objects representing interpolation by common basis functions, with supporting element parameter vector types. It also defines standard element shape bounds evaluators and declarations of types representing Cartesian coordinate systems.
 
-Synonym issues.
-Status in Zinc and Iron.
-Limitations.
+FieldML Conventions for OpenCMISS
+---------------------------------
+
+FieldML is free from many limitations of modelling software data structures, including those of the OpenCMISS libraries, Iron and Zinc. For example, it can define an unlimited number of meshes and point sets (nodes, data points etc.) in a Region, and their relationship with each other is not fixed. In contrast, OpenCMISS libraries have one set of nodes per region (plus a similar set of data points) with a fixed relationship to all meshes. Iron supports any number of mesh objects in a region, but Zinc is currently limited to one mesh each of dimensions 1, 2 and 3 (but this and the limitation on the number of point sets will be removed in future, to allow any number of uniquely-named domains).
+
+FieldML is also a powerful enough language to be able to represent the many different data structures that modelling software packages use. Major differences stem from their degree of templating and reuse, for example whether they employ mesh field/component templates, element field/component templates, or use no templates at all. A vector field may be implemented to switch function by element before component or element after component. FieldML thus has a 'synonym problem' in that it is capable of describing different data models through different sequences of evaluators, and while these can usually be translated to the representation of another software package, doing so takes time and is only done when needed.
+
+For these practical reasons it is necessary to adopt conventions for encoding models in FieldML, and the following lists those conventions currently used within OpenCMISS:
+
+1. Nodes are always serialised as an ``EnsembleType`` called ``"nodes"``. Similar naming conventions are being adopted for nodal derivatives and versions, and for the set of data points.
+2. 'Mesh field templates' are defined which describe interpolation of a scalar real value over a mesh in terms of unknown node parameters and potentially element and other parameters. This is consistent with the mesh component/domain objects in Iron, and the mesh field template objects being added to Zinc. Mesh field templates use a ``PiecewiseEvaluator`` to switch which 'element field template' is used at each element, even if it does not vary by element.
+3. 'Element field templates' are defined as a ``ReferenceEvaluator`` which applies a basis interpolator but binds parameters from the node parameters argument using a local-to-global node map, and binds the generic chart for the interpolator to the element chart for this mesh. OpenCMISS FieldML readers currently recognise a legacy convention suitable only for simple Lagrange and simplex basis functions, which aggregates their parameters by applying the node parameters and binding the local-to-global node map. This is being replaced by a more general two-part element field template: the first 'generic' part describes the interpolation and parameter mapping that is common to all elements e.g. in terms of local nodes (and their parameters), local scale factors, and the generic element chart. The second part applies this but binds in the local-to-global node map, local-to-global scale factor map, and the mesh element chart.
+4. Scalar fields are implemented as a ``ReferenceEvaluator`` applying a mesh field template and binding actual node parameters to the unknown node parameters template argument.
+5. Vector fields are implemented as an ``AggregateEvaluator`` delegating to the appropriate mesh field templates for each field component, and binding actual node parameters to the unknown node parameters template argument. The actual node field parameters must also vary by field component.
+
+OpenCMISS FieldML I/O API and Limitations
+-----------------------------------------
+
+The limitation on having only one Region in FieldML 0.5 applies.
+
+OpenCMISS-Zinc reads and writes to FieldML using its standard region serialisation APIs. A current limitation is that it only reads or writes a single mesh (that of the highest dimension in use) and the fields defined on it. Zinc is reliant on the naming conventions for nodes, node derivatives and versions mentioned in point 1 above. However, if the above conventions are adhered to, Zinc will read the mesh and all fields defined on it without any additional API calls or options. Support for Hermite bases with node derivatives and versions is implemented in Zinc, however implementation of scale factor serialisation and general linear maps is currently in progress.
+
+OpenCMISS-Iron is currently limited to reading and writing basic FieldML models consisting of Lagrange and simplex bases that are homogeneous across elements. The Iron API for reading from FieldML currently requires more client intervention to specify the global Iron objects into which meshes, mesh field templates, basis functions and fields (as evaluators) are read, plus the nodes ensemble is explicitly named in the FieldML dataset. Through this API Iron is capable of reading several meshes from a single FieldML dataset.
+
+Only node-mapped parameters are currently handled in FieldML by OpenCMISS Iron and Zinc.
 
 Simple cube model
 -----------------
