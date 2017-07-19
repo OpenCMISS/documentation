@@ -1,3 +1,7 @@
+
+.. _ref-label-oc-zinc-library-doc:
+
+====================================
 OpenCMISS-Zinc Library Documentation
 ====================================
 

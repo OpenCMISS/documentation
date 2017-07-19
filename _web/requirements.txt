@@ -1,4 +1,0 @@
-Sphinx
-Jinja2
-sphinxcontrib-newsfeed
-pelican>3.6
