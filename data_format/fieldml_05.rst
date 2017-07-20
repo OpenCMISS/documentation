@@ -116,7 +116,7 @@ Note that all the following models are output by an in-development version of Op
 
    fieldml/cube_pressure
    fieldml/tetmesh
-.. fieldml/wheel with varying shape and function
+   fieldml/wheel
 .. fieldml/hermite_network Hermite 1-D network with derivatives and versions
 
 Serialisation of scale factors and general linear maps is currently being worked on, and an example will be added when that is production ready.
