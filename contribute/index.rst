@@ -22,6 +22,14 @@ Prior to contributing code:
    - Subscribe to the OpenCMISS developer mailing list.
    - Watch the appropriate repo that you wish to develop (e.g. iron, zinc, examples, documentation, or website) in your GitHub account.
 
+Here is a collection of further useful links for developers:
+
+`List of links to OpenCMISS GitHub Issues <http://opencmiss.org/community.html#GitHubIssues>`_
+`Mailing Lists <http://opencmiss.org/community.html#mailinglist>`_
+`Mailing Lists <http://opencmiss.org/community.html#mailinglist>`_
+`Contributors List <http://opencmiss.org/community.html#contributors>`_
+
+
 .. toctree::
    :maxdepth: 1
 
