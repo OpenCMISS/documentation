@@ -387,14 +387,21 @@
 \newcommand{\const}[1]{\ensuremath{\mathrm{#1}}} % constant
 \newcommand{\cont}[1]{\ensuremath{C^{#1}}} % continuity e.g. \cont{1} => C1
 \newcommand{\convolution}[2]{\ensuremath{#1*#2}} % convolution e.g. \convolution{a}{b} => a*b
-\newcommand{\curl}[1]{\ensuremath{ %
-    \crossprod{\nabla}{#1} %
-    }} % curl e.g. \curl{a} => nabla x a
+\newcommand{\curl}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\crossprod{\nabla}{#2}}
+  }{
+    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
+  }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
-\newcommand{\diverg}[1]{\ensuremath{ %
-    \dotprod{\nabla}{#1} %
-    }} % divergence e.g. \diverg{a} => nabla . a
+\newcommand{\divergence}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\dotprod{\nabla}{#2}}
+  }{
+    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
+  }} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} =>
+     % nabla_{x} . a
 \newcommand{\dint}{\ensuremath{\displaystyle\int}} % display integral
 \newcommand{\dintl}[2]{\ensuremath{ %
     \displaystyle\int\limits_{#1}^{#2} %
@@ -454,9 +461,12 @@
     }} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
 \newcommand{\grad}{\ensuremath{\nabla}} % gradient
 \newcommand{\gradsq}{\ensuremath{\nabla^{2}}} % gradient squared 
-\newcommand{\gradient}[1]{ %
-  \ensuremath{\grad #1} %
-  } % gradient e.g. \gradient{u} => \grad u
+\newcommand{\gradient}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\grad #2}
+  }{
+    \ensuremath{\grad_{#1} #2} % 
+  }} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x} u
 \newcommand{\innerprod}[2]{\ensuremath{ %
     \left<#1,#2\right> %
     }} % inner product e.g. \innerprod{a,b} => <a,b>
@@ -682,12 +692,15 @@
   }} % Exterior derivative e.g., \exteriorderiv{a} => da
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek tensors
 %\newcommand{\tensor}[1]{\ensuremath{\mathbf{#1}}} % tensor
-\newcommand{\tensor}[1]{\ensuremath{\boldsymbol{#1}}} % tensor
+\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
+\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
+\newcommand{\tensortwo}[1]{\ensuremath{\boldsymbol{\mathit{#1}}}} % 2nd order tensor
+\newcommand{\tensorthree}[1]{\ensuremath{\boldsymbol{\mathrm{#1}}}} % 3rd order tensor
+\newcommand{\tensorfour}[1]{\ensuremath{\boldsymbol{\mathsf{#1}}}} % 4th order tensor
+\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
-\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
-\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
 \newcommand{\tensorproduct}[2]{\ensuremath{ %
     #1 \otimes #2 %
   }} % tensor product e.g., \tensorproduct{a}{b} => a x b.

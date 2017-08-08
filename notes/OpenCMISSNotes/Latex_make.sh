@@ -27,6 +27,9 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Introduction/Introduction.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
+"Maths/Maths.tex "\
+"Maths/Notation/Notation.tex "\
+"Maths/VectorCalculus/VectorCalculus.tex "\
 "EquationSets/EquationSets.tex "\
 "EquationSets/ClassicalFieldClass/AdvectionDiffusionEquation.tex "\
 "EquationSets/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\

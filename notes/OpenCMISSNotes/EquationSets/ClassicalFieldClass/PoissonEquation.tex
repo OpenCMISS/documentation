@@ -8,7 +8,7 @@ The general form of Poisson's equation with source on a domain $\Omega$ with bou
 $\Gamma$ in \OpenCMISS can be stated as
 \begin{equation}
   \boxed{
-    \diverg{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}\gradient{\fnof{u}{\vect{x}}}}}+
+    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}\gradient{}{\fnof{u}{\vect{x}}}}}+
     \fnof{a}{\vect{x}}=0
   }
   \label{eqn:Poissonequation}
@@ -28,7 +28,7 @@ and/or Neumann conditions in terms of the solution flux in the normal
 direction, $e$ \ie
 \begin{equation}
   \fnof{q}{\vect{x}} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}
-      \gradient{\fnof{u}{\vect{x}}}}}{\normal} =
+      \gradient{}{\fnof{u}{\vect{x}}}}}{\normal} =
   \fnof{e}{\vect{x}} \quad \vect{x}\in\Gamma_{N},
   \label{eqn:PoissonNeumannBC} 
 \end{equation}
@@ -40,7 +40,7 @@ vector to the boudary and $\Gamma=\union{\Gamma_{D}}{\Gamma_{N}}$.
 The corresponding weak form of \eqnref{eqn:Poissonequation} can be found by
 integrating over the spatial domain with a test function \ie
 \begin{equation}
-  \gint{\Omega}{}{\pbrac{\diverg{\pbrac{\tensor{\sigma}\gradient{u}}}+a}w}{\Omega}=0
+  \gint{\Omega}{}{\pbrac{\divergence{}{\pbrac{\tensor{\sigma}\gradient{}{u}}}+a}w}{\Omega}=0
   \label{eqn:Poissonweakform1}
 \end{equation}
 where $w$ is a suitable spatial test function.
@@ -49,8 +49,8 @@ Applying the divergence theorem in \eqnref{eqn:DivergenceTheormScalarVector}
 to \eqnref{eqn:Poissonweakform1} gives
 \begin{equation}
   -\gint{\Omega}{}{\dotprod{\tensor{\sigma}
-      \gradient{u}}{\gradient{w}}}{\Omega}
-  +\gint{\Gamma}{}{\pbrac{\dotprod{\tensor{\sigma}\gradient{u}}{\normal}}w}{\Gamma}+
+      \gradient{}{u}}{\gradient{}{w}}}{\Omega}
+  +\gint{\Gamma}{}{\pbrac{\dotprod{\tensor{\sigma}\gradient{}{u}}{\normal}}w}{\Gamma}+
   \gint{\Omega}{}{aw}{\Omega}=0
   \label{eqn:Poissonweakform2}
 \end{equation}

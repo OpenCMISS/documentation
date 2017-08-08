@@ -9,7 +9,7 @@ $\Gamma$ in \OpenCMISS can be stated as
 \begin{equation}
   \boxed{
     \fnof{a}{\vect{x}}\delby{\fnof{u}{\vect{x},t}}{t}+
-    \diverg{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}\gradient{\fnof{u}{\vect{x},t}}}}+
+    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}\gradient{}{\fnof{u}{\vect{x},t}}}}+
     \fnof{b}{\vect{x},t}=0  
   }
   \label{eqn:diffusionequation}
@@ -30,7 +30,7 @@ and/or Neumann conditions in terms of the solution flux in the normal
 direction, $e$ \ie
 \begin{equation}
   \fnof{q}{\vect{x}} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}
-      \gradient{\fnof{u}{\vect{x}}}}}{\normal} =
+      \gradient{}{\fnof{u}{\vect{x}}}}}{\normal} =
   \fnof{e}{\vect{x}} \quad \vect{x}\in\Gamma_{N},
   \label{eqn:diffusionNeumannBC} 
 \end{equation}
@@ -49,8 +49,8 @@ specification of an initial value of the solution, $f$ \ie
 The corresponding weak form of \eqnref{eqn:diffusionequation} can be found by
 integrating over the spatial domain with a test function \ie
 \begin{equation}
-  \gint{\Omega}{}{a\delby{u}{t}+\pbrac{\diverg{\pbrac{\tensor{\sigma}
-          \gradient{u}}}+a}w}{\Omega}=0
+  \gint{\Omega}{}{a\delby{u}{t}+\pbrac{\divergence{}{\pbrac{\tensor{\sigma}
+          \gradient{}{u}}}+a}w}{\Omega}=0
   \label{eqn:diffusionweakform1}
 \end{equation}
 where $w$ is a suitable spatial test function.
@@ -59,8 +59,8 @@ Applying the divergence theorem in \eqnref{eqn:DivergenceTheormScalarVector}
 to \eqnref{eqn:diffusionweakform1} gives
 \begin{equation}
   \gint{\Omega}{}{\pbrac{a\delby{u}{t}}w}{\Omega}-
-      \gint{\Omega}{}{\dotprod{\tensor{\sigma}\gradient{u}}{\gradient{w}}}{\Omega}
-      +\gint{\Gamma}{}{\pbrac{\dotprod{\tensor{\sigma}\gradient{u}}{\normal}}w}{\Gamma}+
+      \gint{\Omega}{}{\dotprod{\tensor{\sigma}\gradient{}{u}}{\gradient{}{w}}}{\Omega}
+      +\gint{\Gamma}{}{\pbrac{\dotprod{\tensor{\sigma}\gradient{}{u}}{\normal}}w}{\Gamma}+
       \gint{\Omega}{}{bw}{\Omega}=0
   \label{eqn:diffusionweakform2}
 \end{equation}

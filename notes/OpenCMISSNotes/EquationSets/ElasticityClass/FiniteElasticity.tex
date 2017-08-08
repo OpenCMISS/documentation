@@ -119,7 +119,6 @@ The polar decomposition
  & &  \tangentspace{S}{x} & &
 \end{diagram}
 
-
 If we let the deformed coordinates be given by the position vector,
 $\fnof{\vectr{z}}{\vectr{x},t}$ then the deformation gradient tensor with
 respect to the undeformed $\vectr{X}$ coordinates is given by
@@ -337,14 +336,235 @@ and
   \sigma^{ij}=\inverse{J_{e}}\pbrac{F_{e}}^{i}_{B}T^{BC}\pbrac{\transpose{F_{e}}}^{j}_{C}
 \end{equation}
 
-Now the principle of virtual work (Marsden and Hughes, pg 168) can be stated as
+\subsection{Principle of Virtual Work}
+
+Consider a configuration, defined by a displacement field $\vectr{u}$, of some
+deformable body, $\embedmanifold{B}$, subject to some \emph{displacement
+  boundary conditions} $\vectr{u}=\bar{\vectr{u}}$ over some part of the
+boundary $\boundary{\embedmanifold{B}}_{u}$ and some \emph{traction boundary
+  conditions} $\vectr{t}=\dotprod{\tensor{\sigma}}{\vectr{n}}=\bar{\vectr{t}}$
+over some part of the boundary $\boundary{\embedmanifold{B}}_{t}$. Note that
+$\boundary{\embedmanifold{B}}_{u}\cap\boundary{\embedmanifold{B}}_{t}=\emptyset$
+and
+$\boundary{\embedmanifold{B}}_{u}\cup\boundary{\embedmanifold{B}}_{t}\subseteq\boundary{\embedmanifold{B}}$.
+
+We wish to find the displacement field $\vectr{u}$ which satisfies the
+deformation boundary conditions where they are applied and the equations of
+motion and the traction boundary conditions where they are applied. A
+displacement field $\vectr{u}$ which satisfies the displacemnet boundary
+conditions where they are applied but whose resulting stress field does not
+necessarily satisfy the equations of motion or the traction boundary
+conditions where they are applied is known as a \emph{kinematically admissable
+  displacement field}. Similarily, a stress field $\tensor{\sigma}$ which
+satisfies the equations of motion and the traction boundary conditions where
+they are applied but whost resulting displacement field does not necessarily
+satisfy the displacement boundary conditions where they are applied is known
+as a \emph{statically admissable stress field}.
+
+For a statically admissable stress field $\tensor{\sigma}$ conservation of
+momentum gives us the equations of motion \ie
 \begin{equation}
-  \gint{\embedmanifold{B}}{}{\rho\dotprod{\vectr{a}}{\delta\vectr{u}}}{v}=
-  \gint{\embedmanifold{B}}{}{\rho\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}-
-  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{\delta\vectr{u}}}}{v}+
-  \gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{n}}}}{\delta\vectr{u}}}{a}
+  \gint{\embedmanifold{B}}{}{\rho\vectr{a}}{v}=\gint{\embedmanifold{B}}{}{\pbrac{\divergence{}{\tensor{\sigma}}+\vectr{b}}}{v}
 \end{equation}
-where $\delta\vectr{u}$ are the virtual displacements.
+where $\vectr{a}$ is the acceleration of the body and $\vectr{b}$ are the body
+forces. If we now multiply by the equations of motion by a kinematically
+admissable displacement field $\vectr{u}$ we obtain
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}}}{v} &=
+    \gint{\embedmanifold{B}}{}{\dotprod{\pbrac{\divergence{}{\tensor{\sigma}}+\vectr{b}}}{\vectr{u}}}{v}\\
+    &=\gint{\embedmanifold{B}}{}{\dotprod{\pbrac{\divergence{}{\tensor{\sigma}}}}{\vectr{u}}}{v}+
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v}
+  \end{split}
+  \label{eqn:equationsofwork}
+\end{equation}
+
+Now, by the vector identity
+\begin{equation}
+  \divergence{}{\pbrac{\dotprod{\tensortwo{\sigma}}{\vectr{u}}}}=\dotprod{\pbrac{\divergence{}{\tensortwo{\sigma}}}}{\vectr{u}}+
+  \doubledotprod{\transpose{\tensortwo{\sigma}}}{\gradient{}{\vectr{u}}}
+\end{equation}
+we have
+\begin{equation}
+  \dotprod{\pbrac{\divergence{}{\tensortwo{\sigma}}}}{\vectr{u}}=\divergence{}{\pbrac{\dotprod{\tensortwo{\sigma}}{\vectr{u}}}}-
+  \doubledotprod{\tensortwo{\sigma}}{\gradient{}{\vectr{u}}}
+\end{equation}
+as the stress tensor, $\tensortwo{\sigma}$, symmetric and so
+$\transpose{\tensortwo{\sigma}}=\tensortwo{\sigma}$. \Eqnref{eqn:equationsofwork} becomes
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}}}{v}&=
+    \gint{\embedmanifold{B}}{}{\pbrac{\divergence{}{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{u}}}}-
+        \doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}}}}}{v}+
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v} \\
+    &=\gint{\embedmanifold{B}}{}{\divergence{}{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{u}}}}}{v}-
+    \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}}}}{v}+
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v}
+  \end{split}
+\end{equation}
+
+Applying the divergence theorem to the first integral on the right hand side
+gives
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}}{}{\divergence{}{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{u}}}}}{v}
+    &=\gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{u}}}}{\vectr{n}}}{a}\\
+    &=\gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{n}}}}{\vectr{u}}}{a}
+  \end{split}
+\end{equation}
+or, by Cauchy's law, $\vectr{t}=\dotprod{\tensor{\sigma}}{\vectr{n}}$, we have
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\divergence{}{\pbrac{\dotprod{\tensor{\sigma}}{\vectr{u}}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\vectr{t}}{\vectr{u}}}{a}
+\end{equation}
+
+\Eqnref{eqn:equationsofwork} thus becomes
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\vectr{t}}{\vectr{u}}}{a}-
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}}}}{v}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v}
+\end{equation}
+or
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}}{}{\dotprod{\vectr{t}}{\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v}
+\end{equation}
+
+Taking the boundary conditions into account we have
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{u}}{}{\dotprod{\vectr{t}}{\bar{\vectr{u}}}}{a}+
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}}}{v}
+  \label{eqn:virtualworkdisp1}
+\end{equation}
+
+If we now consider a second kinematically admissable displacement field
+$\vectr{u}^{*}$ then the above equation will also hold \ie
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\vectr{u}^{*}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\vectr{u}^{*}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{u}}{}{\dotprod{\vectr{t}}{\bar{\vectr{u}}}}{a}+
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\vectr{u}^{*}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\vectr{u}^{*}}}{v}
+  \label{eqn:virtualworkdisp2}
+\end{equation}
+
+Now, subtracting \Eqnref{eqn:virtualworkdisp2} from
+\Eqnref{eqn:virtualworkdisp1} gives us
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\pbrac{\vectr{u}-\vectr{u}^{*}}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\pbrac{\vectr{u}-\vectr{u}^{*}}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{u}}{}{\dotprod{\vectr{t}}{\bar{\vectr{u}}}}{a}+
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\pbrac{\vectr{u}-\vectr{u}^{*}}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\pbrac{\vectr{u}-\vectr{u}^{*}}}}{v}
+  \label{eqn:virtualworkdispdiff}
+\end{equation}
+
+If we now define the \emph{virtual displacements} as
+$\delta\vectr{u}=\vectr{u}-\vectr{u}^{*}$ and note that
+$\delta\vectr{u}=\vectr{u}-\vectr{u}^{*}=\bar{\vectr{u}}-\bar{\vectr{u}}=\vectr{0}$
+on $\boundary{\embedmanifold{B}}_{u}$ then we have
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\delta\vectr{u}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\delta\vectr{u}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}
+  \label{eqn:virtualworkstatment}
+\end{equation}
+
+This is known as the \emph{Principle of Virtual Work} \ie when a deformable
+body undergoes some virtual displacement, $\delta\vectr{u}$, the \emph{kinetic
+  work}, $\fnof{W_{kin}}{\delta\vectr{u}}$, plus the \emph{internal work},
+$\fnof{W_{int}}{\delta\vectr{u}}$, is balanced by the \emph{external work},
+$\fnof{W_{ext}}{\delta\vectr{u}}$, where
+\begin{equation}
+  \begin{split}
+    \fnof{W_{kin}}{\delta\vectr{u}}&=\gint{\embedmanifold{B}}{}{\rho\dotprod{\vectr{a}}{\delta\vectr{u}}}{v}\\
+    \fnof{W_{int}}{\delta\vectr{u}}&=\gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\delta\vectr{u}}}}{v}\\
+    \fnof{W_{ext}}{\delta\vectr{u}}&=\gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}+
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}
+  \end{split}
+\end{equation}
+
+Note that the internal work is often writen in terms of \emph{virtual strain}
+instead of virtual displacement. Consider
+\begin{equation}
+  \begin{split}
+    \gradient{}{\delta\vectr{u}} &= 
+    \dfrac{1}{2}\pbrac{\gradient{}{\delta\vectr{u}}+\transpose{\pbrac{\gradient{}{\delta\vectr{u}}}}}+
+    \dfrac{1}{2}\pbrac{\gradient{}{\delta\vectr{u}}-\transpose{\pbrac{\gradient{}{\delta\vectr{u}}}}}\\
+    &=\delta\sqbrac{\dfrac{1}{2}\pbrac{\gradient{}{\vectr{u}}+\transpose{\pbrac{\gradient{}{\vectr{u}}}}}}+
+    \delta\sqbrac{\dfrac{1}{2}\pbrac{\gradient{}{\vectr{u}}-\transpose{\pbrac{\gradient{}{\vectr{u}}}}}} \\
+    &=\delta\tensor{\epsilon} +\delta\tensor{\omega}
+  \end{split}
+\end{equation}
+where $\tensor{\epsilon}$ is the \emph{small strain tensor} and
+$\tensor{\omega}$ is the \emph{small rotation tensor}. The internal work is now
+given by
+\begin{equation}
+  \begin{split}
+    \fnof{W_{int}}{\delta\vectr{u}}&=\gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\delta\vectr{u}}}}{v}\\
+    &=\gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\pbrac{\delta\tensor{\epsilon}+\delta\tensor{\omega}}}}{v} \\
+    &=\gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\delta\tensor{\epsilon}}}{v}+
+    \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\delta\tensor{\omega}}}{v}
+  \end{split}
+\end{equation}
+Therefore
+\begin{equation}
+  \fnof{W_{int}}{\delta\tensor{\epsilon}}=\gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\delta\tensor{\epsilon}}}{v}
+\end{equation}
+as the stress tensor is a symmetric tensor and the small rotation tensor is a
+skew-symmetric tensor and the double dot product between a symmetric and
+skew-symmetric tensor is always zero.
+
+In terms of strain the principle of virtual work can thus be stated as
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\dotprod{\rho\vectr{a}}{\delta\vectr{u}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\delta\tensor{\epsilon}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}
+  \label{eqn:virtualworkstrainstatment}
+\end{equation}
+
+The internal work can also be expressed in the undeformed manifold in terms of
+the $2^{nd}$ Piola-Kirchoff stress, $\tensor{S}$ and the Green-Lagrange strain
+tensor, $\tensor{E}$, \ie
+\begin{equation}
+  \fnof{W_{int}}{\delta\tensor{E}}=\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\tensor{S}}{\delta\tensor{E}}}{V}
+\end{equation}
+
+\subsection{Variational Principle}
+
+The principle of virtual work can be used to solve a finite deformation
+problem by setting up a variational principle. The weak form of a nonlinear
+elastic system is formulated from the principle of minimum potential
+energy. The total energy in an elastic system is obtained
+
+Now consider a variation, $\delta\vectr{u}$, in this deformation
+$\vectr{u}$. Now if
+\begin{equation}
+  \vectr{u}=\vectr{z}-\vectr{x}
+\end{equation}
+then
+\begin{equation}
+  \begin{split}
+    \delta\vectr{u} &=\delta\pbrac{\vectr{z} -\vectr{X}} \\
+    &=\delta\vectr{z}-\delta\vectr{X} \\
+    &=\delta\vectr{z}
+  \end{split}
+\end{equation}
+as there is no variation in the original reference configuration $\vectr{X}$. The corresponding variation in the work done is
+\begin{equation}
+  \fnof{\delta\Pi}{\vectr{u},\delta\vectr{u}} = \fnof{\delta W_{kin}}{\vectr{u},\delta\vectr{u}} - \fnof{\delta
+    W_{ext}}{\vectr{u},\delta\vectr{u}} + \fnof{\delta W_{int}}{\vectr{u},\delta\vectr{u}}
+\end{equation}
+where $\delta\vectr{u}$ are known as the virtual displacements and the above
+statement is known as the principle of virtual work. 
 
 In component form we have
 \begin{equation}
@@ -361,19 +581,6 @@ The left hand side of the virtual work statement is
           u_{j}}{i}-\christoffel{k}{j}{i}\delta u_{k}}}{v} \\
     &= \gint{\embedmanifold{B}}{}{\sigma^{ij}\pbrac{\delby{\delta
           u_{j}}{x^{i}}-\christoffel{k}{j}{i}\delta u_{k}}}{v}
-  \end{split}
-\end{equation}
-
-Now
-\begin{equation}
-  \vectr{u}=\vectr{z}-\vectr{x}
-\end{equation}
-and so
-\begin{equation}
-  \begin{split}
-    \delta\vectr{u} &=\delta\pbrac{\vectr{z} -\vectr{X}} \\
-    &=\delta\vectr{z}-\delta\vectr{X} \\
-    &=\delta\vectr{z}
   \end{split}
 \end{equation}
 
@@ -537,7 +744,125 @@ forward of the linearisation of the second Piola-Kirchoff stress
 \end{equation}
 
 
-\clearpage
+\section{Uniaxial extension of a unit cube}
+
+Consider a uniaxial stretch of $\alpha$ of a unit cube in the $x$
+direction. The resulting deformed configuration will be a cube of dimensions
+$X$, $Y$ and $Z$.
+
+Here the deformation gradient tensor will be
+\begin{equation}
+  \tensor{F}= \begin{bmatrix}
+    1+\alpha & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+everywhere, and the Jacobian of transformation will be 
+\begin{equation}
+  J = \det{\tensor{F}}=1+\alpha
+\end{equation}
+
+The right Cauchy-Green tensor will be
+\begin{equation}
+  \tensor{C} = \transpose{\tensor{F}}\tensor{F} = \begin{bmatrix}
+    1+\alpha & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix} \begin{bmatrix}
+    1+\alpha & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix} = \begin{bmatrix}
+    \pbrac{1+\alpha}^2 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+And the Lagrange strain tensor will be
+\begin{equation}
+  \tensor{E} = \frac{1}{2}\pbrac{\tensor{C}-\tensor{I}} = \frac{1}{2}\pbrac{\begin{bmatrix}
+    \pbrac{1+\alpha}^2 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix} - \begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}} = \begin{bmatrix}
+    \alpha+\frac{\alpha^2}{2} & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+The Finger strain tensor is thus
+\begin{equation}
+  \tensor{f} = \inverse{\tensor{C}} =  \begin{bmatrix}
+    \frac{1}{\pbrac{1+\alpha}^2} & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+The second Piola-Kirchoff stress tensor will be
+\begin{equation}
+  \begin{split}
+    \tensor{T} &= \begin{bmatrix}
+      2c_{1}+2c_{2}\pbrac{C_{22}+C_{33}} & -2c_{2}C_{21} & -2c_{2}C_{31} \\
+      -2c_{2}C_{12} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{33}} & -2c_{2}C_{32} \\
+      -2c_{2}C_{13} & -2c_{2}C_{23} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{22}}
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+      2c_{1}+4c_{2} & 0 & 0 \\
+      0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1} & 0 \\
+      0 & 0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1}
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+and the Kirchoff stress tensor will be
+\begin{equation}
+  \begin{split}
+    \tensor{\tau}&=\tensor{F}\tensor{T}\transpose{\tensor{F}} \\
+    &= \begin{bmatrix}
+      1+\alpha & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{bmatrix} \begin{bmatrix}
+      2c_{1}+4c_{2} & 0 & 0 \\
+      0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1} & 0 \\
+      0 & 0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1}
+    \end{bmatrix}\begin{bmatrix}
+      1+\alpha & 0 & 0 \\
+      0 & 1 & 0 \\
+      0 & 0 & 1
+    \end{bmatrix} \\
+    &= \begin{bmatrix}
+      \pbrac{2c_{1}+4c_{2}}\pbrac{1+\alpha}^2 & 0 & 0 \\
+      0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1} & 0 \\
+      0 & 0 & 2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1}
+    \end{bmatrix}
+  \end{split}  
+\end{equation}
+
+The Cauchy stress tensor is thus
+\begin{equation}
+  \tensor{\sigma} = \frac{\tensor{\tau}}{J}= \begin{bmatrix}
+    \pbrac{2c_{1}+4c_{2}}\pbrac{1+\alpha} & 0 & 0 \\
+    0 & \frac{2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1}}{1+\alpha} & 0 \\
+    0 & 0 & \frac{2c_{1}+2c_{2}\pbrac{\pbrac{1+\alpha}^2+1}}{1+\alpha}
+  \end{bmatrix}
+\end{equation}
+
+The Cauchy tensor resulting from hydrostatic pressure is 
+\begin{equation}
+  \tensor{\sigma}_{p}= p\tensor{I}=\begin{bmatrix}
+    p & 0 & 0 \\
+    0 & p & 0 \\
+    0 & 0 & p
+  \end{bmatrix}
+\end{equation}
 
 \subsection{Old Stuff}
 

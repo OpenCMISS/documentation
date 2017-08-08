@@ -29,53 +29,53 @@ coordinate system that is locally Euclidean.
 \section{Tensor Analysis}
 \subsection{Base vectors}
 
-Now, if we have a vector, $\vect{v}$ we can write
+Now, if we have a vector, $\vectr{v}$ we can write
 \begin{equation}
-  \vect{v}=v^{i}\vect{g}_{i}
+  \vectr{v}=v^{i}\vectr{g}_{i}
 \end{equation}
 where $v^{i}$ are the components of the contravariant vector, and
-$\vect{g}_{i}$ are the covariant base vectors.
+$\vectr{g}_{i}$ are the covariant base vectors.
 
-Similarly, the vector $\vect{v}$ can also be written as 
+Similarly, the vector $\vectr{v}$ can also be written as 
 \begin{equation}
-  \vect{v}=v_{i}\vect{g}^{i}
+  \vectr{v}=v_{i}\vectr{g}^{i}
 \end{equation}
 where $v_{i}$ are the components of the covariant vector, and
-$\vect{g}^{i}$ are the contravariant base vectors. 
+$\vectr{g}^{i}$ are the contravariant base vectors. 
 
 We now note that
 \begin{equation}
-  \vect{v}=v^{i}\vect{g}_{i}=v^{i}\sqrt{g_{ii}}\hat{\vect{g}_{i}}
+  \vectr{v}=v^{i}\vectr{g}_{i}=v^{i}\sqrt{g_{ii}}\hat{\vectr{g}_{i}}
 \end{equation}
 where $v^{i}\sqrt{g_{ii}}$ are the physical components of the vector and
-$\hat{\vect{g}_{i}}$ are the unit vectors given by
+$\hat{\vectr{g}_{i}}$ are the unit vectors given by
 \begin{equation}
-  \hat{\vect{g}_{i}}=\dfrac{\vect{g}_{i}}{\sqrt{g_{ii}}}
+  \hat{\vectr{g}_{i}}=\dfrac{\vectr{g}_{i}}{\sqrt{g_{ii}}}
 \end{equation}
 
 \subsection{Metric Tensors}
 \label{sec:metric tensors}
 
-Metric tensors are the inner product of base vectors. If $\vect{g}_{i}$ are the
+Metric tensors are the inner product of base vectors. If $\vectr{g}_{i}$ are the
 covariant base vectors then the covariant metric tensor is given by
 \begin{equation}
-  g_{ij}=\dotprod{\vect{g}_{i}}{\vect{g}_{j}}
+  g_{ij}=\dotprod{\vectr{g}_{i}}{\vectr{g}_{j}}
 \end{equation}
 
-Similarily if $\vect{g}^{i}$ are the contravariant base vectors then the
+Similarily if $\vectr{g}^{i}$ are the contravariant base vectors then the
 contravariant metric tensor is given by 
 \begin{equation}
-  g^{ij}=\dotprod{\vect{g}^{i}}{\vect{g}^{j}}
+  g^{ij}=\dotprod{\vectr{g}^{i}}{\vectr{g}^{j}}
 \end{equation}
 
 We can also form a mixed metric tensor from the dot product of a contravariant
 and a covariant base vector \ie
 \begin{equation}
-  g^{i}_{.j}=\dotprod{\vect{g}^{i}}{\vect{g}_{j}}
+  g^{i}_{.j}=\dotprod{\vectr{g}^{i}}{\vectr{g}_{j}}
 \end{equation}
 and 
 \begin{equation}
-  g_{i}^{.j}=\dotprod{\vect{g}_{i}}{\vect{g}^{j}}
+  g_{i}^{.j}=\dotprod{\vectr{g}_{i}}{\vectr{g}^{j}}
 \end{equation}
 
 Note that for mixed tensors the ``.'' indicates the order of the index \ie
@@ -84,7 +84,7 @@ index is covariant whereas $g_{i}^{.j}$ indicates that the first index is
 covariant and the second index is contravariant.
 
 If the base vectors are all mutually orthogonal and constant then
-$\vect{g}_{i}=\vect{g}^{i}$ and $g_{ij}=g^{ij}$.
+$\vectr{g}_{i}=\vectr{g}^{i}$ and $g_{ij}=g^{ij}$.
 
 The metric tensors generalise (Euclidean) distance \ie
 \begin{equation}
@@ -94,14 +94,14 @@ The metric tensors generalise (Euclidean) distance \ie
 Note that multiplying by the covariant metric tensor lowers indices \ie
 \begin{equation}
   \begin{split}
-    \vect{A}_{i} &= g_{ij}\vect{A}^{j} \\
+    \vectr{A}_{i} &= g_{ij}\vectr{A}^{j} \\
     A_{ij} &= g_{ik}g_{jl}A^{kl} = g_{jk}A_{i}^{.k} = g_{ik}A^{k}_{.j} 
   \end{split}
 \end{equation}
 and that multiplying by the contravariant metric tensor raises indices \ie
 \begin{equation}
   \begin{split}
-  \vect{A}^{i} &=  g^{ij}\vect{A}_{j} \\
+  \vectr{A}^{i} &=  g^{ij}\vectr{A}_{j} \\
    A^{ij} &= g^{ik}g^{jl}A_{kl} = g^{ik}A_{k}^{.j} = g^{jk}A^{i}_{.k}
   \end{split}
 \end{equation}
@@ -115,8 +115,8 @@ and for the mixed tensors
 
 \subsection{Transformations}
 
-The transformation rules for tensors in going from a $\vect{\nu}$ coordinate
-system to a $\vect{\xi}$ coordinate system are as follows: 
+The transformation rules for tensors in going from a $\vectr{\nu}$ coordinate
+system to a $\vectr{\xi}$ coordinate system are as follows: 
 
 
 For a covariant vector (a rank (0,1) tensor)
@@ -153,7 +153,7 @@ and
 
 \subsubsection{Scalars}
 
-We note that a scalar quantity $\fnof{u}{\vect{\xi}}$ has derivatives
+We note that a scalar quantity $\fnof{u}{\vectr{\xi}}$ has derivatives
 \begin{equation}
   \delby{u}{\xi^{i}}=\partialderiv{u}{i}
 \end{equation}
@@ -166,33 +166,33 @@ rank 0 tensor $u$ is
 
 \subsubsection{Vectors}
 
-The derivatives of a vector $\vect{v}$ are given by
+The derivatives of a vector $\vectr{v}$ are given by
 \begin{equation}
   \begin{split}
-    \delby{\vect{v}}{\xi^{i}} &=
-    \delby{}{\xi^{i}}\pbrac{v^{k}\vect{g}_{k}} \\
-    &= \delby{v^{k}}{\xi^{i}}\vect{g}_{k}+v^{k}\delby{\vect{g}_{k}}{\xi^{i}} \\
-    &= \partialderiv{v^{k}}{i}\vect{g}_{k}+v^{k}\partialderiv{\vect{g}_{k}}{i}
+    \delby{\vectr{v}}{\xi^{i}} &=
+    \delby{}{\xi^{i}}\pbrac{v^{k}\vectr{g}_{k}} \\
+    &= \delby{v^{k}}{\xi^{i}}\vectr{g}_{k}+v^{k}\delby{\vectr{g}_{k}}{\xi^{i}} \\
+    &= \partialderiv{v^{k}}{i}\vectr{g}_{k}+v^{k}\partialderiv{\vectr{g}_{k}}{i}
   \end{split}
 \end{equation}
 
 Now introducing the notation
 \begin{equation}
-  \christoffelsecond{i}{j}{k} = \dotprod{\vect{g}^{i}}{\delby{\vect{g}_{j}}{x^{k}}}
+  \christoffelsecond{i}{j}{k} = \dotprod{\vectr{g}^{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
 \end{equation}
 where $\christoffelsecond{i}{j}{k}$ are the Christoffel symbols of the second
 kind. 
 
 Note that the Christoffel symbols of the first kind are given by
 \begin{equation}
-  \christoffelfirst{i}{j}{k} = \dotprod{\vect{g}_{i}}{\delby{\vect{g}_{j}}{x^{k}}}
+  \christoffelfirst{i}{j}{k} = \dotprod{\vectr{g}_{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
 \end{equation}
 
 Note that
 \begin{equation}
   \begin{split}
-    \christoffel{i}{j}{k} &= \dotprod{\vect{g}^{i}}{\partialderiv{\vect{g}_{j}}{k}} \\
-    &=\dotprod{\vect{g}^{i}}{\christoffelsecond{l}{j}{k}\vect{g}_{l}} \\
+    \christoffel{i}{j}{k} &= \dotprod{\vectr{g}^{i}}{\partialderiv{\vectr{g}_{j}}{k}} \\
+    &=\dotprod{\vectr{g}^{i}}{\christoffelsecond{l}{j}{k}\vectr{g}_{l}} \\
     &= \christoffel{i}{j}{l}g^{i}_{.l} 
   \end{split}
 \end{equation}
@@ -210,7 +210,7 @@ and that Christoffel symbols of the second kind are given by
 \end{equation}
 
 Note that Christoffel symbols are not tensors and the have the following
-transformation laws from $\vect{\nu}$ to $\vect{\xi}$ coordinates
+transformation laws from $\vectr{\nu}$ to $\vectr{\xi}$ coordinates
 \begin{align}
   \christoffelfirst{i}{j}{k} &=
   \christoffelfirst{a}{b}{c}\delby{\nu^{b}}{\xi^{j}}\delby{\nu^{c}}{\xi^{k}}\delby{\nu^{a}}{\xi^{i}}+
@@ -222,10 +222,10 @@ transformation laws from $\vect{\nu}$ to $\vect{\xi}$ coordinates
 We can now write (BELOW SEEMS WRONG - CHECK)
 \begin{equation}
   \begin{split}
-    \partialderiv{\vect{v}}{i}&=\partialderiv{v^{k}}{i}\vect{g}_{k}+\christoffel{k}{i}{j}v^{j}\vect{g}_{j}\\
-    &=\partialderiv{v^{k}}{i}\vect{g}_{k}+\christoffel{j}{i}{k}v^{k}\vect{g}_{k}\\
-    &=\pbrac{\partialderiv{v^{k}}{i}+\christoffel{j}{i}{k}v^{k}}\vect{g}_{k}\\
-    &=\covarderiv{v^{k}}{i}\vect{g}_{k}
+    \partialderiv{\vectr{v}}{i}&=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{k}{i}{j}v^{j}\vectr{g}_{j}\\
+    &=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{j}{i}{k}v^{k}\vectr{g}_{k}\\
+    &=\pbrac{\partialderiv{v^{k}}{i}+\christoffel{j}{i}{k}v^{k}}\vectr{g}_{k}\\
+    &=\covarderiv{v^{k}}{i}\vectr{g}_{k}
   \end{split}
 \end{equation}
 where $\covarderiv{v^{k}}{i}$ is the covariant derivative of $v^{k}$ . 
@@ -264,18 +264,18 @@ involve tensor quantities \ie covariant derivatives rather than partial derivati
 As the covariant derivative of a scalar is just the partial derivative the
 gradient of a scalar function $\phi$ using covariant derivatives is
 \begin{equation}
-  \text{grad } \phi = \gradient{\phi}=\covarderiv{\phi}{i}\vect{g}^{i}=\partialderiv{\phi}{i}\vect{g}^{i}
+  \text{grad } \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}\vectr{g}^{i}
 \end{equation}
 and
 \begin{equation}
-  \gradient{\phi}=\partialderiv{\phi}{i}\vect{g}^{i}=\partialderiv{\phi}{i}g^{ij}\vect{g}_{j}
+  \gradient{}{\phi}=\partialderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}g^{ij}\vectr{g}_{j}
 \end{equation}
 
 \subsubsection{Divergence}
 
 The divergence of a vector using covariant derivatives is
 \begin{equation}
-  \text{div } \vect{\phi} = \diverg{\vect{\phi}}=\covarderiv{\phi^{i}}{i}=\frac{1}{\sqrt{\abs{g}}}\partialderiv{\pbrac{\sqrt{\abs{g}}\phi^{i}}}{i}
+  \text{div } \vectr{\phi} = \divergence{}{\vectr{\phi}}=\covarderiv{\phi^{i}}{i}=\frac{1}{\sqrt{\abs{g}}}\partialderiv{\pbrac{\sqrt{\abs{g}}\phi^{i}}}{i}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
@@ -283,7 +283,7 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The curl of a vector using covariant derivatives is
 \begin{equation}
-  \text{curl } \vect{\phi} = \curl{\vect{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vect{g}_{k}
+  \text{curl } \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vectr{g}_{k}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
@@ -291,22 +291,22 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The Laplacian of a scalar using covariant derivatives is
 \begin{equation}
-  \laplacian{\phi}=\text{div}\pbrac{\text{grad }\phi}=\diverg{\gradient{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
+  \laplacian{\phi}=\text{div}\pbrac{\text{grad }\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The Laplacian of a vector using covariant derivatives is
 \begin{equation}
-  \laplacian{\vect{\phi}}=\text{grad }\pbrac{\text{div }\vect{\phi}}-\text{curl } \pbrac{\text{curl }\vect{\phi}}==\mixedderiv{\vect{\phi}}{i}{i}
+  \laplacian{\vectr{\phi}}=\text{grad }\pbrac{\text{div }\vectr{\phi}}-\text{curl } \pbrac{\text{curl }\vectr{\phi}}==\mixedderiv{\vectr{\phi}}{i}{i}
 \end{equation}
 
 The Laplacian of a contravariant (rank (0,1)) tensor $\phi^{k}$ is
 \begin{equation}
-  \laplacian{\vect{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{K}{j}{H}\delby{\phi^{h}}{x^{i}}+\phi^{h}\delby{g^{ij}\christoffel{K}{i}{j}}{x^{h}}}\vect{e}^{k}
+  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{K}{j}{H}\delby{\phi^{h}}{x^{i}}+\phi^{h}\delby{g^{ij}\christoffel{K}{i}{j}}{x^{h}}}\vectr{e}^{k}
 \end{equation}
 and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 \begin{equation}
-  \laplacian{\vect{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vect{e}_{k}
+  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
 \end{equation}
 
 \subsection{Coordinate Systems}
@@ -316,10 +316,10 @@ and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    \vect{i}_{1} \\ 
-    \vect{i}_{2} \\
-    \vect{i}_{3} 
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \vectr{i}_{1} \\ 
+    \vectr{i}_{2} \\
+    \vectr{i}_{3} 
   \end{bmatrix}
 \end{equation}
 
@@ -356,10 +356,10 @@ coordinates $\pbrac{r,\theta,z}$ are defined by
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    \cos\theta\vect{i}_{1} + \sin\theta\vect{i}_{2} \\ 
-    -r\sin\theta\vect{i}_{1}+ r\cos\theta\vect{i}_{2} \\
-    \vect{i}_{3} 
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \cos\theta\vectr{i}_{1} + \sin\theta\vectr{i}_{2} \\ 
+    -r\sin\theta\vectr{i}_{1}+ r\cos\theta\vectr{i}_{2} \\
+    \vectr{i}_{3} 
   \end{bmatrix}
 \end{equation}
 
@@ -401,10 +401,10 @@ coordinates $\pbrac{r,\theta,\phi}$ are defined by
 
 The base vectors with respect to the spherical polar coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    \cos\theta\sin\phi\vect{i}_{1}+\sin\theta\sin\phi\vect{i}_{2}+\cos\phi\vect{i}_{3} \\ 
-    -r\sin\theta\sin\phi\vect{i}_{1}+r\cos\theta\sin\phi\vect{i}_{2} \\
-    r\cos\theta\cos\phi\vect{i}_{1}+r\sin\theta\cos\phi\vect{i}_{2}-r\sin\phi\vect{i}_{3}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \cos\theta\sin\phi\vectr{i}_{1}+\sin\theta\sin\phi\vectr{i}_{2}+\cos\phi\vectr{i}_{3} \\ 
+    -r\sin\theta\sin\phi\vectr{i}_{1}+r\cos\theta\sin\phi\vectr{i}_{2} \\
+    r\cos\theta\cos\phi\vectr{i}_{1}+r\sin\theta\cos\phi\vectr{i}_{2}-r\sin\phi\vectr{i}_{3}
   \end{bmatrix}
 \end{equation}
 
@@ -451,10 +451,10 @@ where $a\ge0$ is the focus.
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    a\cosh\lambda\sin\mu\cos\theta\vect{i}_{1}+a\cosh\lambda\sin\mu\sin\theta\vect{i}_{2}+a\sinh\lambda\cos\mu\vect{i}_{3}\\ 
-    a\sinh\lambda\cos\mu\cos\theta\vect{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vect{i}_{2}-a\cosh\lambda\sin\mu\vect{i}_{3}\\
-    -a\sinh\lambda\sin\mu\sin\theta\vect{i}_{1}+a\sinh\lambda\sin\mu\cos\theta\vect{i}_{2}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}+a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\ 
+    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}-a\cosh\lambda\sin\mu\vectr{i}_{3}\\
+    -a\sinh\lambda\sin\mu\sin\theta\vectr{i}_{1}+a\sinh\lambda\sin\mu\cos\theta\vectr{i}_{2}
   \end{bmatrix}
 \end{equation}
 
@@ -505,10 +505,10 @@ where $a\ge0$ is the focus.
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    a\sinh\lambda\cos\mu\cos\theta\vect{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vect{i}_{2}+a\cosh\lambda\sin\mu\vect{i}_{3}\\
-    -a\cosh\lambda\sin\mu\cos\theta\vect{i}_{1}-a\cosh\lambda\sin\mu\sin\theta\vect{i}_{2}+a\sinh\lambda\cos\mu\vect{i}_{3}\\    
-    -a\cosh\lambda\cos\mu\sin\theta\vect{i}_{1}+a\cosh\lambda\cos\mu\cos\theta\vect{i}_{2}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}+a\cosh\lambda\sin\mu\vectr{i}_{3}\\
+    -a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}-a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\    
+    -a\cosh\lambda\cos\mu\sin\theta\vectr{i}_{1}+a\cosh\lambda\cos\mu\cos\theta\vectr{i}_{2}
   \end{bmatrix}
 \end{equation}
 
@@ -558,10 +558,10 @@ coordinates $\pbrac{\xi,\eta,z}$  are defined by
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    \eta\vect{i}_{1}+\xi\vect{i}_{2}\\
-    \xi\vect{i}_{1}-\eta\vect{i}_{2}\\    
-    \vect{i}_{3}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \eta\vectr{i}_{1}+\xi\vectr{i}_{2}\\
+    \xi\vectr{i}_{1}-\eta\vectr{i}_{2}\\    
+    \vectr{i}_{3}
   \end{bmatrix}
 \end{equation}
 
@@ -607,10 +607,10 @@ coordinates $\pbrac{\xi,\eta,\theta}$  are defined by
 
 The base vectors with respect to the global coordinate system are
 \begin{equation}
-  \vect{g}_{i}=\begin{bmatrix} 
-    \eta\cos\theta\vect{i}_{1}+\eta\sin\theta\vect{i}_{3}+\xi\vect{i}_{3}\\
-    \xi\cos\theta\vect{i}_{1}+\xi\sin\theta\vect{i}_{3}-\eta\vect{i}_{3}\\ 
-    -\xi\eta\sin\theta\vect{i}_{1}+\xi\eta\cos\theta\vect{i}_{2}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \eta\cos\theta\vectr{i}_{1}+\eta\sin\theta\vectr{i}_{3}+\xi\vectr{i}_{3}\\
+    \xi\cos\theta\vectr{i}_{1}+\xi\sin\theta\vectr{i}_{3}-\eta\vectr{i}_{3}\\ 
+    -\xi\eta\sin\theta\vectr{i}_{1}+\xi\eta\cos\theta\vectr{i}_{2}
   \end{bmatrix}
 \end{equation}
 
@@ -649,6 +649,6 @@ with all other Christofell symbols zero.
 \section{Curves}
 
 \epstexfigure{svgs/DifferentialGeometry/curve.eps_tex}{A curve in space.}{A
-  parametised curve in space. The position, $\fnof{\vect{r}}{\xi}$ is given in
-  terms of the curve parameter $\xi$. $\vect{t}$ is the tangent vector to the
-  curve and $\vect{n}$ is the normal vector to the curve.}{fig:curve}{1.0}
+  parametised curve in space. The position, $\fnof{\vectr{r}}{\xi}$ is given in
+  terms of the curve parameter $\xi$. $\vectr{t}$ is the tangent vector to the
+  curve and $\vectr{n}$ is the normal vector to the curve.}{fig:curve}{1.0}

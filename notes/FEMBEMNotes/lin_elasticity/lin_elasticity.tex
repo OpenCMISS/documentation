@@ -322,14 +322,14 @@ condition with their associated reactions are
 \vspace{-5mm}
 \index{Plane stress elements|(}
 For two-dimensional problems, we define the displacement vector 
-$\vect{u} = \begin{bmatrix} 
+$\vectr{u} = \begin{bmatrix} 
   u \\ 
   v 
-\end{bmatrix}$, strain vector $\vect{e} = \begin{bmatrix}
+\end{bmatrix}$, strain vector $\vectr{e} = \begin{bmatrix}
   e_{x} \\
   e_{y} \\ 
   e_{xy}
-\end{bmatrix}$ and stress vector $\vect{\sigma} = \begin{bmatrix}
+\end{bmatrix}$ and stress vector $\vectr{\sigma} = \begin{bmatrix}
   \sigma_{x} \\
   \sigma_{y} \\
   \sigma_{xy} 
@@ -344,7 +344,7 @@ $\vect{u} = \begin{bmatrix}
 \end{gather}
 can be written in matrix form
 \begin{displaymath}
-  \vect{\sigma}=\matr{E}\vect{e}
+  \vectr{\sigma}=\matr{E}\vectr{e}
 \end{displaymath}
 where $\matr{E} = \dfrac{E}{1-\nu^{2}} \begin{bmatrix}
   1 & \nu & 0\\
@@ -363,9 +363,9 @@ The strain components are given in terms of displacement gradients by
 
 The strain energy\index{Strain energy} is 
 \begin{align*}
-  \text{SE} &= \dfrac{1}{2} \goneint{\transpose{\vect{\sigma}}\vect{e}}{V} = \dfrac{1}{2}
+  \text{SE} &= \dfrac{1}{2} \goneint{\transpose{\vectr{\sigma}}\vectr{e}}{V} = \dfrac{1}{2}
   \goneint{\pbrac{e_{x}\sigma_{x} + e_{y}\sigma_{y} + e_{xy}\sigma_{xy}}}{V} \\ &=
-  \dfrac{1}{2} \goneint{\transpose{\vect{e}}\matr{E}\vect{e}}{V} = \dfrac{1}{2}
+  \dfrac{1}{2} \goneint{\transpose{\vectr{e}}\matr{E}\vectr{e}}{V} = \dfrac{1}{2}
   \goneint{\dfrac{E}{1-\nu^{2}} \sqbrac{e_{x}^{2} + e_{y}^{2} + 2\nu e_{x}e_{y} +
       \pbrac{1-\nu}e_{xy}^{2}}}{V}
 \end{align*}
@@ -373,15 +373,15 @@ The strain energy\index{Strain energy} is
 The potential energy\index{Potential energy} is
 \begin{equation}
   \text{PE} = \text{SE} -\text{ external work }= \dfrac{1}{2}
-  \goneint{\transpose{\vect{e}}\matr{E}\vect{e}}{V} -
-  \goneint{\transpose{\vect{u}}\vect{l}}{A} 
+  \goneint{\transpose{\vectr{e}}\matr{E}\vectr{e}}{V} -
+  \goneint{\transpose{\vectr{u}}\vectr{l}}{A} 
   \label{eqn:pe}
 \end{equation}
-where $\vect{l}$ represents the external loads (forces) acting on the elastic
+where $\vectr{l}$ represents the external loads (forces) acting on the elastic
 body.
 
 Following the steps outlined in \Secref{sec:Intro} we approximate the
-displacement field $\vect{u}$ with a finite element basis $u=\lbfnsymb{n} u_{n}$,
+displacement field $\vectr{u}$ with a finite element basis $u=\lbfnsymb{n} u_{n}$,
 $v=\lbfnsymb{n} v_{n}$ and calculate the strains
 \begin{gather}
   \begin{aligned}
@@ -395,7 +395,7 @@ $v=\lbfnsymb{n} v_{n}$ and calculate the strains
 \end{gather}
 or
 \begin{equation}
-  \vect{e} = \begin{bmatrix}
+  \vectr{e} = \begin{bmatrix}
     e_{x} \\
     e_{y} \\
     e_{xy}
@@ -406,19 +406,19 @@ or
   \end{bmatrix} \begin{bmatrix}
     u_{n} \\
     v_{n} 
-  \end{bmatrix} = \matr{B}\vect{u}
+  \end{bmatrix} = \matr{B}\vectr{u}
   \label{eqn:orstr}
 \end{equation}
 From \eqnref{eqn:pe} the potential energy is therefore
 \begin{align*}
   \text{PE} &= \dfrac{1}{2}
-  \goneint{\transpose{\pbrac{\matr{B}\vect{u}}}\matr{E}\pbrac{\matr{B}\vect{u}}}{V} -
-  \goneint{\transpose{\vect{u}}\vect{l}}{A} \\ 
-  &= \dfrac{1}{2}\transpose{\vect{u}} \left[
-  \goneint{\transpose{\matr{B}}\matr{E}\matr{B}}{V} \right] \vect{u} - 
-  \goneint{\transpose{\vect{u}}\vect{l}}{A} \\
-  &= \dfrac{1}{2} \transpose{\vect{u}}\matr{K}\vect{u}-
-  \goneint{\transpose{\vect{u}}\vect{l}}{A}
+  \goneint{\transpose{\pbrac{\matr{B}\vectr{u}}}\matr{E}\pbrac{\matr{B}\vectr{u}}}{V} -
+  \goneint{\transpose{\vectr{u}}\vectr{l}}{A} \\ 
+  &= \dfrac{1}{2}\transpose{\vectr{u}} \left[
+  \goneint{\transpose{\matr{B}}\matr{E}\matr{B}}{V} \right] \vectr{u} - 
+  \goneint{\transpose{\vectr{u}}\vectr{l}}{A} \\
+  &= \dfrac{1}{2} \transpose{\vectr{u}}\matr{K}\vectr{u}-
+  \goneint{\transpose{\vectr{u}}\vectr{l}}{A}
 \end{align*}
 where $\matr{K} = \goneint{\transpose{\matr{B}}\matr{E}\matr{B}}{V}$ is the
 element stiffness matrix.
@@ -426,11 +426,11 @@ element stiffness matrix.
 We next minimize the potential energy with respect to the nodal parameters
 $u_{n}$ and $v_{n}$ giving
 \begin{equation}
-  \matr{K}\vect{u} = \vect{f}
+  \matr{K}\vectr{u} = \vectr{f}
   \label{eqn:pennodpam}
 \end{equation}
 \index{Plane stress elements|)} 
-where $\vect{f} = \goneint{\vect{l}}{A}$ is a vector of nodal forces.
+where $\vectr{f} = \goneint{\vectr{l}}{A}$ is a vector of nodal forces.
 
 \subsection{Notes on calculating nodal loads}
 \label{sec:noteoncalc}
@@ -440,7 +440,7 @@ may be applied by calculating equivalent nodal forces. For example, consider a
 uniform load $\nunit{p}{\kNpm}$ applied to the edge of the plane stress
 element in \Figref{fig:uniformbound}a.
 
-The nodal load vector $\vect{f}$ in \eqnref{eqn:pennodpam} has components
+The nodal load vector $\vectr{f}$ in \eqnref{eqn:pennodpam} has components
 \begin{equation}
   f_{n} = \goneint{p \lbfnsymb{n}}{x} = pL \gint{0}{1}{\lbfnsymb{n}}{\xi}
   \label{eqn:nlv}
@@ -492,8 +492,8 @@ results in the governing stress equilibrium equations
 where $\sigma_{ij}$ are the components of the stress tensor ($\sigma_{ij}$ is
 the component of the traction or stress vector in the $\nth{i}$ direction
 which is acting on the face of a rectangle whose normal is in the $\nth{j}$
-direction), and $b_{i}$ is the body force/unit volume (\eg $\vect{b} =
-\rho\vect{g}$). Note that the notation $\sigma_{ij,j} =
+direction), and $b_{i}$ is the body force/unit volume (\eg $\vectr{b} =
+\rho\vectr{g}$). Note that the notation $\sigma_{ij,j} =
 \delby{\sigma_{ij}}{x_{j}}$ has been introduced to represent the derivative.
 
 Recall that the components of the linear (or small) strain tensor are
@@ -501,7 +501,7 @@ Recall that the components of the linear (or small) strain tensor are
   e_{ij} =  \dfrac{1}{2}\pbrac{u_{i,j} + u_{j,i}} \qquad i,j=1,2,3
   \label{eqn:sst}
 \end{equation}
-where $\vect{u}$ is the displacement vector (\ie $\vect{u}$ is the difference
+where $\vectr{u}$ is the displacement vector (\ie $\vectr{u}$ is the difference
 between the final and initial positions of a material point in
 question). Note: we are assuming here that the displacement gradients are
 small compared to unity, which is appropriate for many materials in solid
@@ -572,7 +572,7 @@ Using weighted residuals as before we can write
   \goneint{\pbrac{\sigma_{ij,j} + b_{i}} u_{i}^{*}}{\Omega} = 0
   \label{eqn:integral}
 \end{equation}
-where $\vect{u}^{*} = \pbrac{u_{i}^{*}}$ is a (vector) weighting field.  The
+where $\vectr{u}^{*} = \pbrac{u_{i}^{*}}$ is a (vector) weighting field.  The
 $u_{i}^{*}$ are usually interpreted as a consistent set of virtual
 displacements (hence we use the notation $u$ instead of $w$).
 
@@ -589,21 +589,21 @@ re-written
   &= \goneint{(\sigma_{ij} u_{i}^{*})_{,j}}{\Omega} - 
   \goneint{\sigma_{ij}u_{i,j}^{*}}{\Omega} \nonumber \\
 %%
-  &= \goneint{\diverg{\pbrac{\sigma_{ij} u_{i}^{*} }}}{\Omega}
+  &= \goneint{\divergence{}{\pbrac{\sigma_{ij} u_{i}^{*} }}}{\Omega}
     - \goneint{\sigma_{ij} u_{i,j}^{*}}{\Omega} \nonumber\\
 %%
   &= \gint{\del \Omega}{}{\sigma_{ij} u_{i}^{*}n_{j}}{\Gamma}
   - \goneint{\sigma_{ij} u_{i,j}^{*}}{\Omega}
   \label{eqn:divtheory}
 \end{align}
-where the domain integral involving ``$\diverg{} = \delby{}{x_{j}}$'' has been
+where the domain integral involving ``$\divergence{}{} = \delby{}{x_{j}}$'' has been
 transformed into a surface integral using the divergence theorem
 \begin{displaymath}
-  \goneint{\diverg{\vect{g}}}{\Omega} = \gint{\del
-  \Omega}{}{\dotprod{\vect{g}}{\vect{n}}}{\Gamma} \qquad \text{or} \qquad
+  \goneint{\divergence{}{\vectr{g}}}{\Omega} = \gint{\del
+  \Omega}{}{\dotprod{\vectr{g}}{\vectr{n}}}{\Gamma} \qquad \text{or} \qquad
   \goneint{g_{j,j}}{\Omega} = \gint{\del \Omega}{}{g_{j} n_{j}}{\Gamma}
 \end{displaymath}
-where $\vect{n} = n_{j}\vect{i}_{j}$ is the outward normal vector to the
+where $\vectr{n} = n_{j}\vectr{i}_{j}$ is the outward normal vector to the
 surface $\Gamma$.
 
 Thus, combining \eqnref{eqn:integral} and \eqnref{eqn:divtheory} we have
@@ -614,11 +614,11 @@ Thus, combining \eqnref{eqn:integral} and \eqnref{eqn:divtheory} we have
   {b_{i} u_{i}^{*}}{\Omega} + \gint{\del \Omega}{}{t_{i} u_{i}^{*}}{\Gamma}
   \label{eqn:virtws}
 \end{align}
-where $t_{i}$ are the components of the internal stress vector (\vect{t}) and
+where $t_{i}$ are the components of the internal stress vector (\vectr{t}) and
 are related to the components of the stress tensor ($\sigma_{ij}$) by Cauchy's
 formula
 \begin{equation}
-\vect{t} = \sigma_{ij}n_{j}\vect{i}_{i}
+\vectr{t} = \sigma_{ij}n_{j}\vectr{i}_{i}
 \label{eqn:cauchyseqn}
 \end{equation}
 
@@ -631,12 +631,12 @@ using the principle of virtual work (below). Note that the weighted integral
 \subsection{The Principle of Virtual Work}
 
 The governing equations for elastostatics can also be derived from a
-physically appealing argument. Let $\vect{s}$ be the external traction vector
+physically appealing argument. Let $\vectr{s}$ be the external traction vector
 (\ie force per unit surface area).  For equilibrium, the work done by the
-external surface forces $\vect{s} = s_{i}\vect{i}_{i}$, in moving through a
-virtual displacement $\vect{u}^{*} = u_{i}^{*}\vect{i}_{i}$ is equal to the
-work done by the stress vector $\vect{t} = t_{i}\vect{i}_{i}$ in moving
-through a compatible set of virtual displacements $\vect{u}^{*}$. In
+external surface forces $\vectr{s} = s_{i}\vectr{i}_{i}$, in moving through a
+virtual displacement $\vectr{u}^{*} = u_{i}^{*}\vectr{i}_{i}$ is equal to the
+work done by the stress vector $\vectr{t} = t_{i}\vectr{i}_{i}$ in moving
+through a compatible set of virtual displacements $\vectr{u}^{*}$. In
 mathematical terms, the principle of virtual work can be written
 \begin{equation}
   \gint{\del \Omega}{}{s_{i} u_{i}^{*}}{\Gamma} = \gint{\del \Omega}{}{t_{i} u_{i}^{*}}{\Gamma} 
@@ -881,7 +881,7 @@ We choose the virtual displacements such that
 \end{equation}
 (or equivalently $- b_{i}^{*} + e_{i} \delta = 0$), where $e_{i}$ is the \nth{i}
 component of a unit vector in the \nth{i} direction and $e_{i}\delta =
-e_{i}\fnof{\delta}{\vect{x} - P}$. We can interpret this as the body force
+e_{i}\fnof{\delta}{\vectr{x} - P}$. We can interpret this as the body force
 components which correspond to a positive unit point load applied at a point
 $P \in \Omega$ in each of the three orthogonal directions.
 
@@ -889,7 +889,7 @@ Therefore
 
 \begin{displaymath}
   \gint{\Omega}{}{\sigma_{ij,j}^{*} u_{i}}{\Omega} = -
-  \gint{\Omega}{}{\fnof{\delta}{\vect{x} - P} e_{i} u_{i}}{\Omega} = - u_{i}(P)e_{i}
+  \gint{\Omega}{}{\fnof{\delta}{\vectr{x} - P} e_{i} u_{i}}{\Omega} = - u_{i}(P)e_{i}
 \end{displaymath}
 \ie the volume integral is replaced with a point value (as for Laplace's 
 equation).
@@ -932,11 +932,11 @@ displacement.
 
 Recall from \eqnref{eqn:FundSol} that $\sigma_{ij}^{*}$ satisfied
 \begin{equation}
-  \sigma_{ij,j}^{*} + \fnof{\delta}{\vect{x} - P}e_{i}  = 0 
+  \sigma_{ij,j}^{*} + \fnof{\delta}{\vectr{x} - P}e_{i}  = 0 
 \end{equation} 
 or equivalently
 \begin{displaymath}
-  b_{i}^{*} = e_{i} \fnof{\delta}{\vect{x} - P}
+  b_{i}^{*} = e_{i} \fnof{\delta}{\vectr{x} - P}
 \end{displaymath}
 Navier's equation for the displacements $u_{i}^{*}$ is
 \begin{displaymath}
@@ -946,7 +946,7 @@ where $G$ = shear Modulus.
 
 Thus $u_{i}^{*}$ satisfy
 \begin{equation}
-  G\;u_{i,kk}^{*}  +  \dfrac{G}{1-2\nu}u_{k,ki}^{*} + \fnof{\delta}{\vect{x} -
+  G\;u_{i,kk}^{*}  +  \dfrac{G}{1-2\nu}u_{k,ki}^{*} + \fnof{\delta}{\vectr{x} -
     P}e_{i} = 0 
   \label{eqn:satisfy}
 \end{equation}
@@ -956,19 +956,19 @@ known as Kelvin~\footnote{Lord Kelvin (1824-1907) Scottish physicist who made
   great contributions to the science of thermodynamics}'s fundamental
 solutions\index{Fundamental solution!Kelvin} and are given by
 \begin{equation}
-  \fnof{u_{ij}^{*}}{P,\vect{x}} = \dfrac{1}{16\pi\pbrac{1 - \nu}Gr}\bbrac{\pbrac{3
+  \fnof{u_{ij}^{*}}{P,\vectr{x}} = \dfrac{1}{16\pi\pbrac{1 - \nu}Gr}\bbrac{\pbrac{3
     -4\nu} \delta_{ij} + r_{,i}r_{,j}}
   \label{eqn:Kelvin}
 \end{equation}
 for three-dimensions and for two-dimensional plane strain problems,
 \begin{equation}
-  \fnof{u_{ij}^{*}}{P,\vect{x}} = \dfrac{-1}{8\pi\pbrac{1 -
+  \fnof{u_{ij}^{*}}{P,\vectr{x}} = \dfrac{-1}{8\pi\pbrac{1 -
       \nu}G}\bbrac{\pbrac{3 -4\nu} \delta_{ij} \log r - r_{,i}r_{,j}}
   \label{eqn:threeD}
 \end{equation}
 and 
 \begin{equation}
-  \fnof{t_{ij}^{*}}{P,\vect{x}} = \dfrac{-1}{4 \alpha \pi\pbrac{1 - \nu}r^{\alpha}}
+  \fnof{t_{ij}^{*}}{P,\vectr{x}} = \dfrac{-1}{4 \alpha \pi\pbrac{1 - \nu}r^{\alpha}}
   \bbrac{\pbrac{\pbrac{1-2\nu} \delta_{ij} + \beta r_{,i}r_{,j}} 
       \delby{r}{n} - \pbrac{1-2\nu}\pbrac{r_{,i}n_{j} -r_{,j}n_{i}}} 
   \label{eqn:twoD}
@@ -976,21 +976,21 @@ and
 where $\alpha = 1,2; \beta = 2,3$ for two-dimensional plane strain and
 three-dimensional problems respectively.
 
-Here $r\equiv \fnof{r}{P,\vect{x}}$, the distance between load point ($P$) and
-field point ($\vect{x}$), 
-$r_{i}  = \fnof{x_{i}}{\vect{x}}-\fnof{x_{i}}{P}$ and
-$r_{,i} = \delby{r}{\fnof{x_{i}}{\vect{x}}}= \dfrac{r_{i}}{r}$.
+Here $r\equiv \fnof{r}{P,\vectr{x}}$, the distance between load point ($P$) and
+field point ($\vectr{x}$), 
+$r_{i}  = \fnof{x_{i}}{\vectr{x}}-\fnof{x_{i}}{P}$ and
+$r_{,i} = \delby{r}{\fnof{x_{i}}{\vectr{x}}}= \dfrac{r_{i}}{r}$.
 
-In addition the strains at an point $\vect{x}$ due to a unit point load applied
+In addition the strains at an point $\vectr{x}$ due to a unit point load applied
 at $P$ in the $\nth{i}$ direction are given by
 \begin{displaymath}
-  \fnof{e_{jki}^{*}}{P,\vect{x}} = \dfrac{-1}{8 \alpha \pi \pbrac{1-\nu}
+  \fnof{e_{jki}^{*}}{P,\vectr{x}} = \dfrac{-1}{8 \alpha \pi \pbrac{1-\nu}
     Gr^{\alpha}} \bbrac{\pbrac{1-2\nu}\pbrac{r_{,k} \delta_{ij} +r_{,j} \delta
     _{ik}} - r_{,i} \delta_{jk} + \beta r_{,i} r_{,j}r_{,k}}
 \end{displaymath}
 and the stresses are given by
 \begin{displaymath}
-  \fnof{\sigma_{ijk}^{*}}{P,\vect{x}} = \dfrac{-1}{4 \alpha \pi \pbrac{1-\nu}
+  \fnof{\sigma_{ijk}^{*}}{P,\vectr{x}} = \dfrac{-1}{4 \alpha \pi \pbrac{1-\nu}
     r^{\alpha}} \bbrac{\pbrac{1-2\nu}\pbrac{r_{,k} \delta_{ij} +r_{,j} \delta
       _{ki} - r_{,i} \delta_{jk}} + \beta r_{,i} r_{,j}r_{,k}}
 \end{displaymath}
@@ -1022,12 +1022,12 @@ Details can be found in \citeasnoun{brebbia:1984} pp 190--191, 255--258.
 
 This yields
 \begin{align*}
-  \fnof{\sigma_{ij}}{P} &= \gint{\Gamma}{}{\fnof{u_{ijk}^{*}}{P,\vect{x}}
-    \fnof{t_{k}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} -
-    \gint{\Gamma}{}{\fnof{t_{ijk}^{*}}{P,\vect{x}}
-    \fnof{u_{k}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} \\ 
-  &+ \gint{\Omega}{}{\fnof{u_{ijk}^{*}}{P,\vect{x}}
-    \fnof{b_{k}}{\vect{x}}}{\fnof{\Omega}{\vect{x}}}
+  \fnof{\sigma_{ij}}{P} &= \gint{\Gamma}{}{\fnof{u_{ijk}^{*}}{P,\vectr{x}}
+    \fnof{t_{k}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} -
+    \gint{\Gamma}{}{\fnof{t_{ijk}^{*}}{P,\vectr{x}}
+    \fnof{u_{k}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} \\ 
+  &+ \gint{\Omega}{}{\fnof{u_{ijk}^{*}}{P,\vectr{x}}
+    \fnof{b_{k}}{\vectr{x}}}{\fnof{\Omega}{\vectr{x}}}
 \end{align*}
 
 Note: One can find internal stress via numerical differentiation as in FE/FD
@@ -1056,13 +1056,13 @@ shown.
 Then \eqnref{eqn:eqnF} can be written as
 \begin{multline}
   \fnof{u_{i}}{P} = \gint{\Gamma_{-\varepsilon} +\Gamma_{\varepsilon}}{}
-  {\fnof{u_{ij}^{*}}{P,\vect{x}}
-    \fnof{t_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} -
+  {\fnof{u_{ij}^{*}}{P,\vectr{x}}
+    \fnof{t_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} -
   \gint{\Gamma_{-\varepsilon}+
-    \Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-    \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} \\ +
-    \gint{\Omega^{\prime}}{}{\fnof{u_{ij}^*}{P,\vect{x}} \fnof{b_{j}}{\vect{x}}}
-    {\fnof{\Omega}{\vect{x}}} 
+    \Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+    \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} \\ +
+    \gint{\Omega^{\prime}}{}{\fnof{u_{ij}^*}{P,\vectr{x}} \fnof{b_{j}}{\vectr{x}}}
+    {\fnof{\Omega}{\vectr{x}}} 
   \label{eqn:Fwrit}
 \end{multline} 
 
@@ -1070,38 +1070,38 @@ We need to look at each integral in turn as $\varepsilon^{\downarrow}0$ (\ie
 $\varepsilon \rightarrow 0$ from above).  The only integral that presents a
 problem is the second integral. This can be written as
 \begin{multline}
-  \gint{\Gamma_{-\varepsilon}+\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}} \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} =
-  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-    \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} \\ +
-  \gint{\Gamma_{-\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-    \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}}
+  \gint{\Gamma_{-\varepsilon}+\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}} \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} =
+  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+    \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} \\ +
+  \gint{\Gamma_{-\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+    \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}}
   \label{eqn:2ndint}
 \end{multline} 
 
 The first integral on the right hand side can be written as
 \begin{multline}
-  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-    \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} =
-  \underbrace{\gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-      \sqbrac{\fnof{u_{j}}{\vect{x}}-\fnof{u_{j}}{P}}}{\Gamma(x)}}_{\text{$0$
+  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+    \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} =
+  \underbrace{\gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+      \sqbrac{\fnof{u_{j}}{\vectr{x}}-\fnof{u_{j}}{P}}}{\Gamma(x)}}_{\text{$0$
       by continuity of $\fnof{u_{j}}{x}$}} \\ + \fnof{u_{j}}{P}
-  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}}
-  {\fnof{\Gamma}{\vect{x}}}
+  \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}}
+  {\fnof{\Gamma}{\vectr{x}}}
 \label{eqn:1stint}
 \end{multline}  
   
 Let
 \begin{equation}
   \fnof{c_{ij}}{P} = \delta_{ij} + \lim_{\varepsilon \downarrow 0}
-   \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}}
-   {\fnof{\Gamma}{\vect{x}}}
+   \gint{\Gamma_{\varepsilon}}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}}
+   {\fnof{\Gamma}{\vectr{x}}}
  \label{eqn:eqnG}
 \end{equation}
 
 As $\varepsilon^{\downarrow} 0$, $\Gamma_{-\varepsilon}\rightarrow \Gamma$ and
 we write the second integral of \eqnref{eqn:2ndint} as $\gint{\Gamma}{}
-{\fnof{t_{ij}^{*}}{P,\vect{x}}
-  \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}}$ where we interpret this in
+{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+  \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}}$ where we interpret this in
 the Cauchy Principal Value\footnote{What is a Cauchy Principle Value? 
                 \newline Consider $\fnof{f}{x} = \dfrac{1}{x}$ on
     $\Gamma_{-\varepsilon} = \sqbrac{-2,-\varepsilon) \cup (\varepsilon,2}$
@@ -1140,11 +1140,11 @@ the Cauchy Principal Value\footnote{What is a Cauchy Principle Value?
 Thus as $\varepsilon^{\downarrow}0$ we get the boundary integral equation
 \begin{multline}
   \fnof{c_{ij}}{P} \fnof{u_{j}}{P} +
-  \gint{\Gamma}{}{\fnof{t_{ij}^{*}}{P,\vect{x}}
-    \fnof{u_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} \\
-  = \gint{\Gamma}{}{\fnof{u_{ij}^{*}}{P,\vect{x}}
-    \fnof{t_{j}}{\vect{x}}}{\fnof{\Gamma}{\vect{x}}} 
-  + \goneint{\fnof{u_{ij}^{*}}{P,\vect{x}} \fnof{b_{j}}{\vect{x}}}{\Omega}
+  \gint{\Gamma}{}{\fnof{t_{ij}^{*}}{P,\vectr{x}}
+    \fnof{u_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} \\
+  = \gint{\Gamma}{}{\fnof{u_{ij}^{*}}{P,\vectr{x}}
+    \fnof{t_{j}}{\vectr{x}}}{\fnof{\Gamma}{\vectr{x}}} 
+  + \goneint{\fnof{u_{ij}^{*}}{P,\vectr{x}} \fnof{b_{j}}{\vectr{x}}}{\Omega}
   \label{eqn:eqnH}
 \end{multline}
 (or, in brief (no body force), $c_{ij} u_{j} + \gint{\Gamma}{}{t_{ij}^{*}
@@ -1161,24 +1161,24 @@ quantities) here the unknowns are vector quantities. Thus it is more
 convenient to work with matrices instead of indicial notation.
 \newline \ie use
 \begin{displaymath}
-  \vect{u} = \begin{bmatrix}
+  \vectr{u} = \begin{bmatrix}
     u_{1} \\
     u_{2} \\
     u_{3}
   \end{bmatrix}, \qquad 
-  \vect{t} = \begin{bmatrix}
+  \vectr{t} = \begin{bmatrix}
     t_{1} \\ 
     t_{2} \\
     t_{3}
   \end{bmatrix}
 \end{displaymath}
 \begin{displaymath}
-  \vect{u}^{*} = \begin{bmatrix}
+  \vectr{u}^{*} = \begin{bmatrix}
     u_{11}^{*} &  u_{12}^{*} &  u_{13}^{*}\\
     u_{21}^{*} &  u_{22}^{*} &  u_{23}^{*}\\
     u_{31}^{*} &  u_{32}^{*} &  u_{33}^{*}
   \end{bmatrix}, \qquad
-  \vect{t}^{*} = \begin{bmatrix}
+  \vectr{t}^{*} = \begin{bmatrix}
     t_{11}^{*} &  t_{12}^{*} &  t_{13}^{*}\\
     t_{21}^{*} &  t_{22}^{*} &  t_{23}^{*}\\
     t_{31}^{*} &  t_{32}^{*} &  t_{33}^{*}
@@ -1186,8 +1186,8 @@ convenient to work with matrices instead of indicial notation.
 \end{displaymath}
 Then (in absence of a body force) we can write \eqnref{eqn:eqnH} as 
 \begin{equation}
-  \vect{cu} + \goneint{\vect{t}^{*}\vect{u}}{\Gamma} =
-  \goneint{\vect{u}^{*}\vect{t}}{\Gamma}
+  \vectr{cu} + \goneint{\vectr{t}^{*}\vectr{u}}{\Gamma} =
+  \goneint{\vectr{u}^{*}\vectr{t}}{\Gamma}
   \label{eqn:eqnH*}
 \end{equation}
 
@@ -1195,21 +1195,21 @@ We can discretise the boundary as before and put $P$, the singular point, at
 each node (each node has $6$ unknowns - $3$ displacements and $3$ tractions - we get
 $3$ equations per node). The overall matrix equation
 \begin{equation}
-  \matr{A}\vect{U}=\matr{B}\vect{T}
+  \matr{A}\vectr{U}=\matr{B}\vectr{T}
   \label{eqn:matrix}
 \end{equation}
-where $\vect{U} = 
+where $\vectr{U} = 
 \begin{bmatrix}
-  \vect{u}_{1} \\ 
-  \vect{u}_{2} \\ 
+  \vectr{u}_{1} \\ 
+  \vectr{u}_{2} \\ 
   \vdots \\ 
-  \vect{u}_{n}
-\end{bmatrix} $ and  $ \vect{t} = 
+  \vectr{u}_{n}
+\end{bmatrix} $ and  $ \vectr{t} = 
 \begin{bmatrix}
-  \vect{t}_{1} \\
-  \vect{t}_{2} \\ 
+  \vectr{t}_{1} \\
+  \vectr{t}_{2} \\ 
   \vdots \\
-  \vect{t}_{n}
+  \vectr{t}_{n}
 \end{bmatrix}$ where $n$ is the number nodes.
 
 The diagonal elements of the $\matr{A}$ matrix in \eqnref{eqn:matrix} 
@@ -1217,9 +1217,9 @@ The diagonal elements of the $\matr{A}$ matrix in \eqnref{eqn:matrix}
 matrix) contains principal value components. If we have a rigid-body
 displacement of a \emph{finite} body in any one direction then we get
 \begin{equation*}
-  \matr{A}\vect{I}_{l} = \vect{0}
+  \matr{A}\vectr{I}_{l} = \vectr{0}
 \end{equation*}
-($\vect{I}_{l}$ = vector defining a rigid body displacement in direction $l$)
+($\vectr{I}_{l}$ = vector defining a rigid body displacement in direction $l$)
 \begin{displaymath}
     \Rightarrow a_{ii} = -\dsuml{i\neq j}{}a_{ij} \qquad \text{(no sum on $i$)} 
 \end{displaymath} 
@@ -1271,7 +1271,7 @@ Then
   b_{j}}{\Omega}
 \end{displaymath} 
 
-Under a constant gravitational load $\vect{g}=\pbrac{g_{j}}$
+Under a constant gravitational load $\vectr{g}=\pbrac{g_{j}}$
 \begin{align*}
   b_{j} &= \rho g_{j}\\
   \Rightarrow B_{i} &= \rho g_{j} \goneint{\pbrac{G_{ik,j}^{*} 
