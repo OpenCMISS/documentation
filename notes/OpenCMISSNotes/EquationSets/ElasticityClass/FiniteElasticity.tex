@@ -1,4 +1,3 @@
- 
 \subsection{Finite Elasticity}
 \label{subsec:FiniteElasticity}
 
@@ -7,31 +6,31 @@
 
 \subsubsection{Kinematics}
 
-As shown in \figref{fig:configurationsetting}, consider a \textit{material
+As shown in \figref{fig:configurationsetting}, consider a \emph{material
   body} which is a three-dimensional smooth manifold with a boundary, $\manifold{B}$,
-which consists of a set of points which are refered to as \textit{material
+which consists of a set of points which are refered to as \emph{material
   points}. Consider also an ambient space manifold,
 $\manifold{S}\in\rntopology{n}$. The material body is only accessible to
 the observer when it moves through the ambient space. This motion is a
 time-dependent embedding on the material body into the ambient space. The
-embedding is known as a \textit{placement of the body}. It is given by the
+embedding is known as a \emph{placement of the body}. It is given by the
 mapping
 \begin{equation}
   \mapping{\fnof{\kappa}{\mathcal{X},t}}{\manifold{B}}{\manifold{S}}
 \end{equation}
 
 The embedded submanifold occupying a location in the ambient space is is
-called a \textit{configuration} of $\manifold{B}$ and is given by
+called a \emph{configuration} of $\manifold{B}$ and is given by
 \begin{equation}
   \embedmanifold{B}_{t}=\fnof{\kappa_{t}}{\manifold{B}}=\fnof{\kappa}{\manifold{B},t}
 \end{equation}
 
-The customary (but not necessary) \textit{reference placement} is given by
+The customary (but not necessary) \emph{reference placement} is given by
 \begin{equation}
   \mapping{\kappa_{0}}{\manifold{B}}{\manifold{S}}
 \end{equation}
 and the region of space occupied by the reference placement \ie the
-\textit{reference configuration} is given by
+\emph{reference configuration} is given by
 \begin{equation}
   \embedmanifold{B}_{0}=\fnof{\kappa_{0}}{\manifold{B}}
 \end{equation}
@@ -52,14 +51,14 @@ fixed can write $\fnof{V_{t}}{X}=\fnof{V}{X,t}$. We then have
   \fnof{V_{t}}{X}=\fnof{V}{X,t}=\delby{\fnof{\chi}{X,t}}{t}=\dby{\fnof{\chi_{X}}{t}}{t}
 \end{equation}
 
-Here $V_{t}$ is called the \textit{material velocity} of the motion. The
-\textit{material acceleration} of the body is defined as
+Here $V_{t}$ is called the \emph{material velocity} of the motion. The
+\emph{material acceleration} of the body is defined as
 \begin{equation}
   \fnof{A_{t}}{X}=\fnof{A}{X,t}=\delby{\fnof{V}{X,t}}{t}=\dby{\fnof{V_{X}}{t}}{t}
 \end{equation}
 
-The \textit{spatial velocity} of the motion is defined by $v_{t}$ and the
-\textit{spatial acceleration} of the motion is defined by $a_{t}$.
+The \emph{spatial velocity} of the motion is defined by $v_{t}$ and the
+\emph{spatial acceleration} of the motion is defined by $a_{t}$.
 
 \subsubsection{Deformation Gradient}
 
@@ -67,47 +66,21 @@ Let
 $\mapping{\chi}{\embedmanifold{B}_{0}}{\fnof{\chi}{\embedmanifold{B}_{0}}\subset\manifold{S}}$
 be a deformation configuration of $\embedmanifold{B}$ in $\manifold{S}$. The
 tangent of the mapping \ie $\tangentbundle{\chi}$ is denoted as $\tensor{F}$
-and is called the \textit{deformation gradient} of $\chi$ \ie
-$\tensor{F}=\tangentbundle{\chi}$. For $X\in\embedmanifold{B}$ we have
+and is called the \emph{deformation gradient} of $\chi$ \ie
+$\tensor{F}=\tangentbundle{\chi}$. For $X\in\embedmanifold{B}$ we
+have\symbolat{$\tensortwo{F}$}{Deformation gradient tensor}
 \begin{equation}
   \tensor{F}_{X}=\mapping{\fnof{\tensor{F}}{X}}{\tangentspace{\embedmanifold{B}}{X}}{\tangentspace{\manifold{S}}{\fnof{\chi}{X}}}
 \end{equation}
  
-If $X^{A}$ and $x^{a}$ are the coordinates on $\embedmanifold{B}$ and
+If $X^{I}$ and $x^{i}$ are the coordinates on $\embedmanifold{B}$ and
 $\manifold{S}$ then the deformation gradient tensor with respect to the
 coordinate bases are
 \begin{equation}
-  \fnof{F^{a}_{A}}{X}=\delby{\fnof{\chi^{a}}{X}}{X^{A}}
+  \fnof{F^{i}_{I}}{X}=\delby{\fnof{\chi^{i}}{X}}{X^{I}}
 \end{equation}
 
 Note that $\tensor{F}$ is a two-point tensor. 
-
-The \textit{right Cauchy-Green (or Green) deformation tensor}, $\tensor{C}$, is defined by
-\begin{equation}
-  \mapping{\fnof{\tensor{C}}{X}}{\tangentspace{\embedmanifold{B}}{X}}{\tangentspace{\embedmanifold{B}}{X}}
-\end{equation}
-as the pullback of the spatial metric tensor \ie $\fnof{\tensor{C}}{X}=\transpose{\fnof{\tensor{F}}{X}}\fnof{\tensor{g}}{x}\fnof{\tensor{F}}{X}$
-or $\tensor{C}=\transpose{\tensor{F}}\tensor{g}\tensor{F}$ where $x=\fnof{\chi}{X}$. In terms of coordinates we
-have
-\begin{equation}
-  C_{AB}=g_{ab}F^{a}_{A}F^{b}_{B}
-\end{equation}
-
-If $\tensor{C}$ is invertible we also have $\tensor{B}=\inverse{\tensor{C}}$
-called the \textit{Piola deformation tensor}.
-
-The \textit{left Cauchy-Green (or Finger) deformation tensor}, $\tensor{b}$, is defined by
-\begin{equation}
-  \mapping{\fnof{\tensor{b}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}
-\end{equation}
-as the push forward of the material metric tensor \ie $\fnof{\tensor{b}}{x}=\fnof{\tensor{F}}{X}\fnof{\tensor{G}}{X}\transpose{\fnof{\tensor{F}}{X}}$
-or $\tensor{b}=\tensor{F}\tensor{G}\transpose{\tensor{F}}$ where $X=\fnof{\inverse{\chi}}{x}$. In terms of coordinates we
-have
-\begin{equation}
-  b^{ab}=G^{AB}F^{a}_{A}F^{b}_{B}
-\end{equation}
-
-We also have $\tensor{c}=\inverse{\tensor{b}}$.
 
 The polar decomposition
 
@@ -119,6 +92,16 @@ The polar decomposition
  & &  \tangentspace{S}{x} & &
 \end{diagram}
 
+is given by
+\begin{equation}
+  \tensor{F}=\dotprod{\tensor{R}}{\tensor{U}}=\dotprod{\tensor{V}}{\tensor{R}}
+\end{equation}
+where $\tensor{U}$ is the \emph{right stretch tensor}, $\tensor{V}$ is the
+\emph{left stretch tensor} and $\tensor{R}$ is the \emph{rotation
+  tensor}.\symbolat{$\tensor{U}$}{Right stretch
+  tensor}\symbolat{$\tensor{V}$}{Left stretch
+  tensor}\symbolat{$\tensor{R}$}{Rotation tensor}
+
 If we let the deformed coordinates be given by the position vector,
 $\fnof{\vectr{z}}{\vectr{x},t}$ then the deformation gradient tensor with
 respect to the undeformed $\vectr{X}$ coordinates is given by
@@ -127,8 +110,114 @@ respect to the undeformed $\vectr{X}$ coordinates is given by
 \end{equation}
 or, in component form,
 \begin{equation}
-  F^{i}_{M}=\delby{z^{i}}{X^{M}}=\delby{z^{i}}{\xi^{k}}\delby{\xi^{k}}{X^{M}}
+  F^{i}_{I}=\delby{z^{i}}{X^{I}}=\delby{z^{i}}{\xi^{r}}\delby{\xi^{r}}{X^{I}}
 \end{equation}
+
+\subsubsection{Strain tensors}
+
+There are three strain tensors in the \emph{material} coordinate system. The
+\emph{right Cauchy-Green (or Green) deformation tensor}, $\tensor{C}$, is
+defined by\symbolat{$\tensortwo{C}$}{Right Cauchy-Green (or Green) deformation
+  tensor}
+\begin{equation}
+  \mapping{\fnof{\tensor{C}}{X}}{\tangentspace{\embedmanifold{B}}{X}}{\tangentspace{\embedmanifold{B}}{X}}
+\end{equation}
+as the pullback of the spatial metric tensor \ie $\fnof{\tensor{C}}{X}=\transpose{\fnof{\tensor{F}}{X}}\fnof{\tensor{g}}{x}\fnof{\tensor{F}}{X}$
+or $\tensor{C}=\transpose{\tensor{F}}\tensor{g}\tensor{F}$ where $x=\fnof{\chi}{X}$. In terms of coordinates we
+have
+\begin{equation}
+  C_{IJ}=g_{ij}F^{i}_{I}F^{j}_{J}
+\end{equation}
+
+If $\tensor{C}$ is invertible we also have $\tensor{B}=\inverse{\tensor{C}}$
+where $\tensor{B}$ is called the \emph{Piola deformation
+  tensor}.\symbolat{$\tensortwo{B}$}{Piola deformation tensor}
+
+We also have the \emph{Green-Lagrange strain tensor} is given by the difference
+in metric tensors\symbolat{$\tensortwo{E}$}{Green-Lagrange strain tensor}
+\begin{equation}
+  \tensor{E}=\frac{1}{2}\pbrac{\tensor{C}-\tensor{G}}
+\end{equation}
+
+There are also three strain tensors in the \emph{spatial} coordinate
+sytsem. The \emph{left Cauchy-Green (or Finger) deformation tensor},
+$\tensor{b}$, is defined by\symbolat{$\tensortwo{b}$}{Left Cauchy-Green (or
+  Finger) deformation tensor}
+\begin{equation}
+  \mapping{\fnof{\tensor{b}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}
+\end{equation}
+as the push forward of the material metric tensor \ie
+$\fnof{\tensor{b}}{x}=\fnof{\tensor{F}}{X}\fnof{\tensor{G}}{X}\transpose{\fnof{\tensor{F}}{X}}$
+or $\tensor{b}=\tensor{F}\tensor{G}\transpose{\tensor{F}}$ where
+$X=\fnof{\inverse{\chi}}{x}$. In terms of coordinates we have
+\begin{equation}
+  b^{ij}=G^{IJ}F^{i}_{I}F^{j}_{J}
+\end{equation}
+
+The left and right Cauchy-Green deformation tensors get their left and right
+names from their relationship to the left and right stretch tensors \ie in
+cartesian coordinates
+\begin{equation}
+  \tensor{U}=\sqrt{\tensor{C}}
+\end{equation}
+and
+\begin{equation}
+  \tensor{V}=\sqrt{\tensor{b}}
+\end{equation}
+
+We also have $\tensor{c}=\inverse{\tensor{b}}$ where $\tensor{c}$ is the
+\emph{Cauchy deformation tensor}.\symbolat{$\tensor{c}$}{Cauchy deformation tensor}
+
+The final spatial strain tensor is the \emph{Euler-Almansi strain tensor},
+$\tensor{e}$, is defined as the difference in metrics
+by\symbolat{$\tensor{e}$}{Euler-Almansi strain tensor}
+\begin{equation}
+  \mapping{\fnof{\tensor{e}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}{\tangentspace{\fnof{\chi}{\embedmanifold{B}}}{x}}
+\end{equation}
+and
+\begin{equation}
+  \begin{split}
+    \tensor{e}&=\frac{1}{2}\pbrac{\tensor{g}-\inverse{\tensor{b}}}\\
+    &= \frac{1}{2}\pbrac{\tensor{g}-\tensor{c}}
+  \end{split}
+\end{equation}
+where $\tensor{c}=\inverse{\tensor{b}}$. In component form we have
+\begin{equation}
+  e_{ij}=\frac{1}{2}\pbrac{g_{ij}-c_{ij}}
+\end{equation}
+
+Note that we have the following relationships between the deformation tensors
+and metric tensors
+\begin{alignat}{7}
+  \flattensor{\tensor{C}}&=&\pullback{\chi}{\flattensor{\tensor{g}}} &\quad&
+  \flattensor{\tensor{c}}&=&\pushforward{\chi}{\flattensor{\tensor{G}}} \\
+  \sharptensor{\tensor{B}}&=&\pullback{\chi}{\sharptensor{\tensor{g}}} &\quad&
+  \sharptensor{\tensor{b}}&=&\pushforward{\chi}{\sharptensor{\tensor{G}}} \\
+  \flattensor{\tensor{E}}&=&\pullback{\chi}{\flattensor{\tensor{e}}} &\quad&
+  \flattensor{\tensor{e}}&=&\pushforward{\chi}{\flattensor{\tensor{E}}} \\ 
+  &=&\frac{1}{2}\pbrac{\pullback{\chi}{\flattensor{\tensor{g}}}-\flattensor{\tensor{G}}}&\quad&
+  &=&\frac{1}{2}\pbrac{\flattensor{\tensor{g}}-\pushforward{\chi}{\flattensor{\tensor{G}}}}
+\end{alignat}
+\ie
+\begin{alignat}{7}
+  \flattensor{\tensor{C}}&=&\transpose{\tensor{F}}\flattensor{\tensor{g}}\tensor{F} &\quad&
+  \flattensor{\tensor{c}}&=&\invtranspose{\tensor{F}}\flattensor{\tensor{G}}\inverse{\tensor{F}} \\
+  \sharptensor{\tensor{B}}&=&\inverse{\tensor{F}}\sharptensor{\tensor{g}}\invtranspose{\tensor{F}} &\quad&
+  \sharptensor{\tensor{b}}&=&\tensor{F}\sharptensor{\tensor{G}}\transpose{\tensor{F}} \\
+  \flattensor{\tensor{E}}&=&\transpose{\tensor{F}}\flattensor{\tensor{e}}\tensor{F} &\quad&
+  \flattensor{\tensor{e}}&=&\invtranspose{\tensor{F}}\flattensor{\tensor{E}}\inverse{\tensor{F}}   
+\end{alignat}
+or, in component form,
+\begin{alignat}{3}
+  C_{IJ}=g_{ij}F^{i}_{I}F^{j}_{J} &\quad& 
+  c_{ij}=G_{IJ}\pbrac{\inverse{F}}^{I}_{i}\pbrac{\inverse{F}}^{J}_{j} \\
+  B^{IJ}=g^{ij}\pbrac{\inverse{F}}^{I}_{i}\pbrac{\inverse{F}}^{J}_{j} &\quad&
+  b^{ij}=G^{IJ}F^{i}_{I}F^{j}_{J} \\
+  E_{IJ}=e_{ij}F^{i}_{I}F^{j}_{J} &\quad&
+  e_{ij}=E_{IJ}\pbrac{\inverse{F}}^{I}_{i}\pbrac{\inverse{F}}^{J}_{j}   
+\end{alignat}
+
+\subsubsection{Anisotropy}
 
 In order to deal with anisotropy we wish to base our stress and strain
 calculation on fibre, $\vectr{\nu}$, coordinates. To change our reference
@@ -176,10 +265,6 @@ the pullback of the current configuration metric tensor, $\tensor{g}$,
 \begin{equation}
   \fnof{\tensor{C}}{\vectr{\nu}}=\fnof{\transpose{\tensor{F}_{e}}}{\vectr{\nu}}\tensor{g}\fnof{\tensor{F}_{e}}{\vectr{\nu}}
 \end{equation}
-and the Lagrange strain tensor is given by the difference in metric tensors
-\begin{equation}
-  \fnof{\tensor{E}}{\vectr{\nu}}=\frac{1}{2}\pbrac{\fnof{\tensor{C}}{\vectr{\nu}}-\tensor{G}}
-\end{equation}
 
 In component form we have
 \begin{equation}
@@ -188,127 +273,6 @@ In component form we have
 and
 \begin{equation}
   E_{AB}=\frac{1}{2}\pbrac{C_{AB}-G_{AB}}
-\end{equation}
-
-The constituative law can then be used to derive the second Piola Kirchhoff
-stress tensor in fibre coordinates, $\fnof{\tensor{T}}{\vectr{\nu}}$, from
-either the right Cauchy-Green deformation tensor or the Green-Lagrange strain
-tensor \ie
-\begin{equation}
-  \fnof{\tensor{T}}{\vectr{\nu}}=2\delby{\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}}{\fnof{\tensor{C}}{\vectr{\nu}}}
-\end{equation}
-or
-\begin{equation}
-  \fnof{\tensor{T}}{\vectr{\nu}}=\delby{\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}}{\fnof{\tensor{E}}{\vectr{\nu}}}
-\end{equation}
-where $\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}$ or
-$\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}$ is the strain energy
-function. In component form we have
-\begin{equation}
-  T^{AB}=2\delby{W}{C_{AB}}
-\end{equation}
-or
-\begin{equation}
-  T^{AB}=\delby{W}{E_{AB}}
-\end{equation}
-
-Because $\tensor{C}$ is symmetric then we can deal with the invariants. The
-three invariants are
-\begin{equation}
-  \begin{split}
-    I_{1} &= \operatorname{tr}\tensor{C} \\
-    &= C_{11} + C_{22} + C_{33} \\
-    I_{2} &=
-    \dfrac{1}{2}\pbrac{\pbrac{\operatorname{tr}\tensor{C}}^{2}-\operatorname{tr}\tensor{C}^{2}} \\
-    &=
-    \dfrac{1}{2}\left(\pbrac{C_{11}+C_{22}+C_{33}}^{2}\right. \\
-      & \quad\left.-\pbrac{C_{11}^{2}+C_{12}C_{21}+C_{13}C_{31}+
-        C_{21}C_{12}+C_{22}^{2}+C_{23}C_{32}+C_{31}C_{13}+C_{32}C_{23}+C_{33}^{2}}\right) \\
-    I_{3} &= \det{\tensor{C}} \\
-    &=C_{11}C_{22}C_{33}+C_{12}C_{23}C_{31}+C_{13}C_{21}C_{32}\\
-    &\quad-C_{13}C_{22}C_{31}-C_{12}C_{21}C_{33}-C_{11}C_{23}C_{32}
-  \end{split}
-\end{equation}
-We thus have
-$\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}=\fnof{W}{I_{1},I_{2},I_{3}}$ and
-thus
-\begin{equation}
-  T^{AB}=2\pbrac{\delby{W}{I_{1}}\delby{I_{1}}{C_{AB}}+\delby{W}{I_{2}}\delby{I_{2}}{C_{AB}}+\delby{W}{I_{3}}\delby{I_{3}}{C_{AB}}}
-\end{equation}
-or if we have
-$\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}=\fnof{W}{I_{1},I_{2},I_{3}}$ and
-thus
-\begin{equation}
-  T^{AB}=\pbrac{\delby{W}{I_{1}}\delby{I_{1}}{E_{AB}}+\delby{W}{I_{2}}\delby{I_{2}}{E_{AB}}+\delby{W}{I_{3}}\delby{I_{3}}{E_{AB}}}
-\end{equation}
-
-Now we have
-\begin{equation}
-  \delby{I_{1}}{C_{AB}}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & 1 & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-and
-\begin{equation}
-  \delby{I_{2}}{C_{AB}}=\begin{bmatrix}
-    C_{22}+C_{33} & -C_{21} & -C_{31} \\
-    -C_{12} & C_{11}+C_{33} & -C_{32} \\
-    -C_{13} & -C_{23} & C_{11}+C_{22}
-  \end{bmatrix}
-\end{equation}
-and
-\begin{equation}
-  \delby{I_{3}}{C_{AB}}=\begin{bmatrix}
-    C_{22}C_{33}-C_{23}C_{32} & C_{23}C_{31}-C_{21}C_{33} & C_{23}C_{32}-C_{22}C_{31} \\
-    C_{13}C_{32}-C_{12}C_{33} & C_{11}C_{33}-C_{13}C_{31} & C_{12}C_{31}-C_{11}C_{32} \\
-    C_{12}C_{32}-C_{22}C_{31} & C_{13}C_{23}-C_{11}C_{23} & C_{11}C_{22}-C_{12}C_{21}
-  \end{bmatrix}
-\end{equation}
-
-As an example consider a Mooney-Rivlin material. The strain energy function is
-given by
-\begin{equation}
-  \fnof{W}{I_{1},I_{2}}=c_{1}\pbrac{I_{1}-3}+c_{2}\pbrac{I_{2}-3}
-\end{equation}
-
-The second Piola Kirchhoff tensor is thus
-\begin{equation}
-  T^{AB}=\begin{bmatrix}
-    2c_{1}+2c_{2}\pbrac{C_{22}+C_{33}} & -2c_{2}C_{21} & -2c_{2}C_{31} \\
-    -2c_{2}C_{12} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{33}} & -2c_{2}C_{32} \\
-    -2c_{2}C_{13} & -2c_{2}C_{23} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{22}}
-  \end{bmatrix}
-\end{equation}
-or
-\begin{equation}
-  T^{AB}=\begin{bmatrix}
-    c_{1}+c_{2}\pbrac{E_{22}+E_{33}} & -c_{2}E_{21} & -c_{2}E_{31} \\
-    -c_{2}E_{12} & c_{1}+c_{2}\pbrac{E_{11}+E_{33}} & -c_{2}E_{32} \\
-    -c_{2}E_{13} & -c_{2}E_{23} & c_{1}+c_{2}\pbrac{E_{11}+E_{22}}
-  \end{bmatrix}
-\end{equation}
-
-For incompressible materials we need to add in the volumetric stress. The
-hydrostatic stress is a Cauchy stress and so we have
-\begin{equation}
-  \tensor{\sigma}_{p} = -p\tensor{g}
-\end{equation}
-or in component form
-\begin{equation}
-  \sigma_{p}^{ij} = -p g^{ij}
-\end{equation}
-
-We can pull this stress back to give a second Piola Kirchhoff stress via the
-pullback operation for a second order tensor \ie
-\begin{equation}
-  \tensor{T}_{p}=
-  -\inverse{\tensor{F}_{e}}\tensor{\sigma}_{p}\invtranspose{\tensor{F}_{e}} = -p\inverse{\tensor{C}}
-\end{equation}
-or in component form
-\begin{equation}
-  T_{p}^{AB}=-\pbrac{F_{e}}^{A}_{i}p g^{ij}\pbrac{F_{e}}^{B}_{j}=-p\pbrac{\inverse{C}}^{AB}
 \end{equation}
 
 To find the stress tensors in deformed coordinates we need to push the second
@@ -325,7 +289,7 @@ tensor using the Jacobian of the deformation \ie
 \begin{equation}
   \fnof{\tensor{\sigma}}{\vectr{x}}=\inverse{J_{e}}\fnof{\tensor{\tau}}{\vectr{x}}=\inverse{J_{e}}
   \fnof{\tensor{F}_{e}}{\vectr{\nu}}\fnof{\tensor{T}}{\vectr{\nu}}\fnof{\transpose{\tensor{F}_{e}}}{\vectr{\nu}}
-\end{equation}
+\end{equation}7
 
 In component form we have
 \begin{equation}
@@ -344,9 +308,9 @@ deformable body, $\embedmanifold{B}$, subject to some \emph{displacement
 boundary $\boundary{\embedmanifold{B}}_{u}$ and some \emph{traction boundary
   conditions} $\vectr{t}=\dotprod{\tensor{\sigma}}{\vectr{n}}=\bar{\vectr{t}}$
 over some part of the boundary $\boundary{\embedmanifold{B}}_{t}$. Note that
-$\boundary{\embedmanifold{B}}_{u}\cap\boundary{\embedmanifold{B}}_{t}=\emptyset$
+$\intersection{\boundary{\embedmanifold{B}}_{u}}{\boundary{\embedmanifold{B}}_{t}}=\emptyset$
 and
-$\boundary{\embedmanifold{B}}_{u}\cup\boundary{\embedmanifold{B}}_{t}\subseteq\boundary{\embedmanifold{B}}$.
+$\union{\boundary{\embedmanifold{B}}_{u}}{\boundary{\embedmanifold{B}}_{t}}\subseteq\boundary{\embedmanifold{B}}$.
 
 We wish to find the displacement field $\vectr{u}$ which satisfies the
 deformation boundary conditions where they are applied and the equations of
@@ -532,10 +496,10 @@ In terms of strain the principle of virtual work can thus be stated as
 \end{equation}
 
 The internal work can also be expressed in the undeformed manifold in terms of
-the $2^{nd}$ Piola-Kirchoff stress, $\tensor{S}$ and the Green-Lagrange strain
+the $2^{nd}$ Piola-Kirchoff stress, $\tensor{T}$ and the Green-Lagrange strain
 tensor, $\tensor{E}$, \ie
 \begin{equation}
-  \fnof{W_{int}}{\delta\tensor{E}}=\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\tensor{S}}{\delta\tensor{E}}}{V}
+  \fnof{W_{int}}{\delta\tensor{E}}=\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\tensor{T}}{\delta\tensor{E}}}{V}
 \end{equation}
 
 \subsection{Variational Principle}
@@ -543,14 +507,313 @@ tensor, $\tensor{E}$, \ie
 The principle of virtual work can be used to solve a finite deformation
 problem by setting up a variational principle. The weak form of a nonlinear
 elastic system is formulated from the principle of minimum potential
-energy. The total energy in an elastic system is obtained
+energy. The total energy in an elastic system is obtained from
+\begin{equation}
+  \fnof{\Pi}{\vectr{u}}=\fnof{W_{kin}}{\vectr{u}}+\fnof{W_{int}}{\vectr{u}}-\fnof{W_{ext}}{\vectr{u}}
+\end{equation}
 
-Now consider a variation, $\delta\vectr{u}$, in this deformation
-$\vectr{u}$. Now if
+Firstly, let us assume that the body is in static equillibrium \ie
+$\vectr{a}=\vectr{0}$ and so $\fnof{W_{kin}}{\vectr{u}}=0$.
+
+Now, the equillibrium potential will be given by
+\begin{equation}
+  \delta\fnof{\Pi}{\vectr{u},\delta\vectr{u}}=\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}-
+  \delta\fnof{W_{ext}}{\vectr{u},\delta\vectr{u}}=0
+\end{equation}
+where $\delta\vectr{u}$ is the variation in displacement \ie
+\begin{equation}
+  \begin{split}
+    \delta\fnof{\Pi}{\vectr{u},\delta\vectr{u}}&=
+    \gint{\embedmanifold{B}}{}{\doubledotprod{\fnof{\tensor{\sigma}}{\fnof{\tensor{\epsilon}}{\vectr{u}}}}{
+        \gradient{}{\delta\vectr{u}}}}{v}-
+    \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}-
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}\\
+    &=\gint{\embedmanifold{B}}{}{\doubledotprod{\fnof{\tensor{\sigma}}{\fnof{\tensor{\epsilon}}{\vectr{u}}}}{
+        \fnof{\delta\tensor{\epsilon}}{\delta\vectr{u}}}}{v}-
+    \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}-
+    \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}\\
+    &=0
+  \end{split}
+\end{equation}
+
+Note that the variation statement is linear in $\delta\vectr{u}$ but, in
+general, nonlinear in $\vectr{u}$.
+
+
+\subsection{Constituative Laws}
+
+The constituative law can then be used to derive the second Piola Kirchhoff
+stress tensor in fibre coordinates, $\fnof{\tensor{T}}{\vectr{\nu}}$, from
+either the right Cauchy-Green deformation tensor or the Green-Lagrange strain
+tensor \ie
+\begin{equation}
+  \fnof{\tensor{T}}{\vectr{\nu}}=2\delby{\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}}{\fnof{\tensor{C}}{\vectr{\nu}}}
+\end{equation}
+or
+\begin{equation}
+  \fnof{\tensor{T}}{\vectr{\nu}}=\delby{\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}}{\fnof{\tensor{E}}{\vectr{\nu}}}
+\end{equation}
+where $\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}$ or
+$\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}$ is the strain energy
+function. In component form we have
+\begin{equation}
+  T^{AB}=2\delby{W}{C_{AB}}
+\end{equation}
+or
+\begin{equation}
+  T^{AB}=\delby{W}{E_{AB}}
+\end{equation}
+
+Because $\tensor{C}$ is symmetric then we can deal with the invariants. The
+three invariants are
+\begin{equation}
+  \begin{split}
+    I_{1} &= \operatorname{tr}\tensor{C} \\
+    &= C_{11} + C_{22} + C_{33} \\
+    I_{2} &=
+    \dfrac{1}{2}\pbrac{\pbrac{\operatorname{tr}\tensor{C}}^{2}-\operatorname{tr}\tensor{C}^{2}} \\
+    &=
+    \dfrac{1}{2}\left(\pbrac{C_{11}+C_{22}+C_{33}}^{2}\right. \\
+      & \quad\left.-\pbrac{C_{11}^{2}+C_{12}C_{21}+C_{13}C_{31}+
+        C_{21}C_{12}+C_{22}^{2}+C_{23}C_{32}+C_{31}C_{13}+C_{32}C_{23}+C_{33}^{2}}\right) \\
+    I_{3} &= \det{\tensor{C}} \\
+    &=C_{11}C_{22}C_{33}+C_{12}C_{23}C_{31}+C_{13}C_{21}C_{32}\\
+    &\quad-C_{13}C_{22}C_{31}-C_{12}C_{21}C_{33}-C_{11}C_{23}C_{32}
+  \end{split}
+\end{equation}
+We thus have
+$\fnof{W}{\fnof{\tensor{C}}{\vectr{\nu}}}=\fnof{W}{I_{1},I_{2},I_{3}}$ and
+thus
+\begin{equation}
+  T^{AB}=2\pbrac{\delby{W}{I_{1}}\delby{I_{1}}{C_{AB}}+\delby{W}{I_{2}}\delby{I_{2}}{C_{AB}}+\delby{W}{I_{3}}\delby{I_{3}}{C_{AB}}}
+\end{equation}
+or if we have
+$\fnof{W}{\fnof{\tensor{E}}{\vectr{\nu}}}=\fnof{W}{I_{1},I_{2},I_{3}}$ and
+thus
+\begin{equation}
+  T^{AB}=\pbrac{\delby{W}{I_{1}}\delby{I_{1}}{E_{AB}}+\delby{W}{I_{2}}\delby{I_{2}}{E_{AB}}+\delby{W}{I_{3}}\delby{I_{3}}{E_{AB}}}
+\end{equation}
+
+Now we have
+\begin{equation}
+  \delby{I_{1}}{C_{AB}}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+and
+\begin{equation}
+  \delby{I_{2}}{C_{AB}}=\begin{bmatrix}
+    C_{22}+C_{33} & -C_{21} & -C_{31} \\
+    -C_{12} & C_{11}+C_{33} & -C_{32} \\
+    -C_{13} & -C_{23} & C_{11}+C_{22}
+  \end{bmatrix}
+\end{equation}
+and
+\begin{equation}
+  \delby{I_{3}}{C_{AB}}=\begin{bmatrix}
+    C_{22}C_{33}-C_{23}C_{32} & C_{23}C_{31}-C_{21}C_{33} & C_{23}C_{32}-C_{22}C_{31} \\
+    C_{13}C_{32}-C_{12}C_{33} & C_{11}C_{33}-C_{13}C_{31} & C_{12}C_{31}-C_{11}C_{32} \\
+    C_{12}C_{32}-C_{22}C_{31} & C_{13}C_{23}-C_{11}C_{23} & C_{11}C_{22}-C_{12}C_{21}
+  \end{bmatrix}
+\end{equation}
+
+\subsubsection{Mooney-Rivlin}
+
+As an example consider a Mooney-Rivlin material. The strain energy function is
+given by
+\begin{equation}
+  \fnof{W}{I_{1},I_{2}}=c_{1}\pbrac{I_{1}-3}+c_{2}\pbrac{I_{2}-3}
+\end{equation}
+
+The second Piola Kirchhoff tensor is thus
+\begin{equation}
+  T^{AB}=\begin{bmatrix}
+    2c_{1}+2c_{2}\pbrac{C_{22}+C_{33}} & -2c_{2}C_{21} & -2c_{2}C_{31} \\
+    -2c_{2}C_{12} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{33}} & -2c_{2}C_{32} \\
+    -2c_{2}C_{13} & -2c_{2}C_{23} & 2c_{1}+2c_{2}\pbrac{C_{11}+C_{22}}
+  \end{bmatrix}
+\end{equation}
+or
+\begin{equation}
+  T^{AB}=\begin{bmatrix}
+    c_{1}+c_{2}\pbrac{E_{22}+E_{33}} & -c_{2}E_{21} & -c_{2}E_{31} \\
+    -c_{2}E_{12} & c_{1}+c_{2}\pbrac{E_{11}+E_{33}} & -c_{2}E_{32} \\
+    -c_{2}E_{13} & -c_{2}E_{23} & c_{1}+c_{2}\pbrac{E_{11}+E_{22}}
+  \end{bmatrix}
+\end{equation}
+
+\subsubsection{Elasticity Tensors}
+
+If $\fnof{\tensor{P}}{\vectr{X},\tensor{F}}$ is the first Piola-Kirchoff
+constituative function that depends on $\vectr{X}$ and the deformation
+gradient tensor $\tensor{F}$. The \emph{first elasticity tensor},
+$\tensorfour{A}$, is given by \symbolat{$\tensorfour{A}$}{First elasticity
+  tensor}
+\begin{equation}
+  \tensorfour{A}=\delby{\tensor{P}}{\tensor{F}}
+\end{equation}
+or
+\begin{equation}
+  A^{iAB}_{j}=\delby{P^{iA}}{F^{j}_{B}}
+\end{equation}
+
+Note that $\tensorfour{A}$ is a two-point tensor. 
+
+If $\fnof{\tensor{T}}{\vectr{X},\tensor{C}}$ is the second Piola-Kirchoff
+constitutive function that depends on $\vectr{X}$ and the right Cauchy-Green
+strain tensor $\tensor{C}$. The \emph{second elasticity tensor},
+$\tensorfour{C}$, is given by \symbolat{$\tensorfour{C}$}{Second elasticity
+  tensor}
+\begin{equation}
+  \tensorfour{C}=\delby{\tensor{T}}{\tensor{C}}
+\end{equation}
+or
+\begin{equation}
+  C^{ABCD}=\delby{T^{AB}}{C_{CD}}
+\end{equation}
+
+We can derive a relationship between $\tensor{A}$ and $\tensor{C}$. Differentiating
+\begin{equation}
+  \tensor{P}=\tensor{F}\tensor{T}
+\end{equation}
+or
+\begin{equation}
+  P^{iA}=F^{i}_{B}T^{BA}
+\end{equation}
+with respect to the deformation gradient tensor gives
+\begin{equation}
+  \delby{P^{iA}}{F^{j}_{B}}=F^{i}_{C}\delby{T^{CA}}{C_{DE}}\delby{C_{DE}}{F^{i}_{C}}+\delby{F^{i}_{C}}{F^{j}_{B}}T^{CA}
+\end{equation}
+
+Now
+\begin{equation}
+  C_{DE}=F^{l}_{D}F^{k}_{E}g_{lk}
+\end{equation}
+and so
+\begin{equation}
+  \delby{C_{DE}}{F^{j}_{B}}=\mixedkronecker{D}{B}F^{k}_{E}g_{jk}+F^{l}_{D}\mixedkronecker{E}{B}g_{lj}
+\end{equation}
+
+Substituting this into the above equation gives
+\begin{equation}
+  \begin{split}
+    \delby{P^{iA}}{F^{j}_{B}}&=C^{CADE}\pbrac{\mixedkronecker{D}{B}F^{k}_{E}g_{jk}+
+      F^{l}_{D}\mixedkronecker{E}{B}g_{lj}}F^{i}_{C}+T^{CA}\mixedkronecker{i}{j}\mixedkronecker{C}{B}\\
+    &=C^{CABE}F^{k}_{E}F^{i}_{C}g_{jk}+C^{CADE}F^{l}_{D}F^{i}_{C}g_{lj}+T^{BA}\mixedkronecker{j}{i}
+  \end{split}
+\end{equation}
+
+Now, using the symmetries $C^{CABE}=C^{CAEB}$ and $T^{AB}=T^{BA}$ we have
+\begin{equation}
+  \tensorfour{A}=2\dotprod{\tensorfour{C}}{\dotprod{\tensortwo{F}}{\dotprod{\tensortwo{F}}{\tensortwo{g}}}}+
+  \tensorproduct{\tensortwo{T}}{\tensortwo{I}}
+\end{equation}
+or
+\begin{equation}
+  A^{iAB}_{j}=2C^{CADB}F^{k}_{D}F^{i}_{C}g_{kj}+T^{AB}\mixedkronecker{j}{i}
+\end{equation}
+
+Now, we can also define the \emph{first spatial elasticity tensor},
+$\tensorfour{a}$, and the \emph{second spatial elasticity tensor},
+$\tensorfour{c}$, using push forwards and Piola transforms of $\tensorfour{A}$
+and $\tensorfour{C}$ respectively \ie\symbolat{$\tensorfour{a}$}{First spatial
+elasticity tensor}\symbolat{$\tensorfour{c}$}{Second spatial elasticity
+tensor}
+\begin{equation}
+  \begin{split}
+    \tensorfour{a}&=\frac{1}{J}\pushforward{\chi}\tensorfour{A} \\
+    \tensorfour{c}&=\frac{2}{J}\pushforward{\chi}\tensorfour{C} \\
+  \end{split}
+\end{equation}
+or
+\begin{equation}
+  \begin{split}
+    a^{ikl}_{j}&=\frac{1}{J}F^{k}_{A}F^{l}_{B}A^{iAB}_{j} \\
+    c^{ijkl}&=\frac{2}{J}F^{i}_{A}F^{j}_{B}F^{k}_{C}F^{l}_{D}C^{ABCD} \\
+  \end{split}
+\end{equation}
+
+The relationship between $\tensorfour{a}$ and $\tensorfour{c}$ is given by
+\begin{equation}
+  \tensorfour{a}=2\dotprod{\tensorfour{c}}{\tensortwo{g}}+\tensorproduct{\tensortwo{\sigma}}{\tensortwo{I}}
+\end{equation}
+or
+\begin{equation}
+  a^{ikl}_{j}=c^{ikml}g_{mj}+\sigma^{kl}\mixedkronecker{j}{i}
+\end{equation}
+
+There is also a relationship between $\tensorfour{A}$ and $\tensorfour{a}$
+known as the \emph{Piola identity} \ie
+\begin{equation}
+  \divergence{\vectr{X}}{\pbrac{\dotprod{\tensorfour{A}}{\vectr{U}}}}=
+  J\divergence{\vectr{x}}{\pbrac{\dotprod{\tensorfour{a}}{\vectr{u}}}}
+\end{equation}
+where
+\begin{equation}
+  \vectr{u}=\pushforward{\chi}{\vectr{U}}
+\end{equation}
+
+Note that the tensor $\tensorfour{c}$ is different to $\tensorfour{C}$ in that
+it is \emph{not} given by $\delby{\sigma^{ij}}{c_{kl}}$ and $\sigma^{ij}\neq
+2\delby{W}{c_{ij}}$. They are instead given by
+\begin{equation}
+  c^{ijkl}=\delby{\sigma^{ij}}{g_{kl}}
+\end{equation}
+and
+\begin{equation}
+  \sigma^{ij}=2\delby{W}{g_{ij}}
+\end{equation}
+
+\subsubsection{Incompressibility}
+
+For incompressible materials we need to add in the volumetric stress. The
+hydrostatic stress is a Cauchy stress and so we have
+\begin{equation}
+  \tensor{\sigma}_{p} = -p\tensor{g}
+\end{equation}
+or in component form
+\begin{equation}
+  \sigma_{p}^{ij} = -p g^{ij}
+\end{equation}
+where $p$ is known as the \emph{hydrostatic
+  pressure}.\symbolat{$p$}{Hydrostatic pressure}
+
+The value of the hydrostatic pressure is determined via a incompressibility
+constraint \ie $p$ can be thought of in terms of a Lagrange multipler. The
+compressibility constraint is
+\begin{equation}
+  J-1 = 0
+\end{equation}
+
+We can pull this stress back to give a second Piola Kirchhoff stress via the
+pullback operation for a second order tensor \ie
+\begin{equation}
+  \tensor{T}_{p}=
+  -\inverse{\tensor{F}_{e}}\tensor{\sigma}_{p}\invtranspose{\tensor{F}_{e}} = -p\inverse{\tensor{C}}
+\end{equation}
+or in component form
+\begin{equation}
+  T_{p}^{AB}=-\pbrac{F_{e}}^{A}_{i}p g^{ij}\pbrac{F_{e}}^{B}_{j}=-p\pbrac{\inverse{C}}^{AB}
+\end{equation}
+
+\subsection{Finite Element Formulation}
+
+\subsubsection{Residual}
+
+The residual statement is given by
+\begin{equation}
+  R=\delta\fnof{\Pi}{\vectr{u},\delta\vectr{u}}=0
+\end{equation}
+
+Firstly, consider the displacement, $\vectr{u}$, between the
+reference/material coordinates, $\vectr{x}$, and the current/spatial
+coordinates, $\vectr{z}$. The displacement is defined by
 \begin{equation}
   \vectr{u}=\vectr{z}-\vectr{x}
 \end{equation}
-then
+and thus
 \begin{equation}
   \begin{split}
     \delta\vectr{u} &=\delta\pbrac{\vectr{z} -\vectr{X}} \\
@@ -558,22 +821,32 @@ then
     &=\delta\vectr{z}
   \end{split}
 \end{equation}
-as there is no variation in the original reference configuration $\vectr{X}$. The corresponding variation in the work done is
-\begin{equation}
-  \fnof{\delta\Pi}{\vectr{u},\delta\vectr{u}} = \fnof{\delta W_{kin}}{\vectr{u},\delta\vectr{u}} - \fnof{\delta
-    W_{ext}}{\vectr{u},\delta\vectr{u}} + \fnof{\delta W_{int}}{\vectr{u},\delta\vectr{u}}
-\end{equation}
-where $\delta\vectr{u}$ are known as the virtual displacements and the above
-statement is known as the principle of virtual work. 
+as there is no variation in the original reference configuration $\vectr{X}$. 
 
-In component form we have
+The variational statement  is 
 \begin{equation}
-  \gint{\embedmanifold{B}}{}{\sigma^{ij}\covarderiv{\delta u_{j}}{i}}{v}=
-  \gint{\embedmanifold{B}}{}{\rho\pbrac{b^{j}-a^{j}}\delta u_{j}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\pbrac{\tensor{\sigma}+
+        \tensor{\sigma}_{p}}}{\gradient{}{\delta\vectr{u}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}
+\end{equation}
+or
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}}{\gradient{}{\delta\vectr{u}}}}{v}+
+  \gint{\embedmanifold{B}}{}{\doubledotprod{\tensor{\sigma}_{p}}{\gradient{}{\delta\vectr{u}}}}{v}=
+  \gint{\boundary{\embedmanifold{B}}_{t}}{}{\dotprod{\bar{\vectr{t}}}{\delta\vectr{u}}}{a}+
+  \gint{\embedmanifold{B}}{}{\dotprod{\vectr{b}}{\delta\vectr{u}}}{v}
+\end{equation}
+
+In component form, we have
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\sigma^{ij}\covarderiv{\delta u_{j}}{i}}{v}+
+  \gint{\embedmanifold{B}}{}{\sigma^{ij}_{p}\covarderiv{\delta u_{j}}{i}}{v}=
+  \gint{\embedmanifold{B}}{}{b^{j}\delta u_{j}}{v}+
   \gint{\boundary{\embedmanifold{B}}}{}{t^{j}\delta u_{j}}{a}
 \end{equation}
 
-The left hand side of the virtual work statement is
+The first integral on the left hand side of the virtual work statement is
 \begin{equation}
   \begin{split}
     \gint{\embedmanifold{B}}{}{\sigma^{ij}\covarderiv{\delta u_{j}}{i}}{v}
@@ -582,6 +855,12 @@ The left hand side of the virtual work statement is
     &= \gint{\embedmanifold{B}}{}{\sigma^{ij}\pbrac{\delby{\delta
           u_{j}}{x^{i}}-\christoffel{k}{j}{i}\delta u_{k}}}{v}
   \end{split}
+\end{equation}
+and thus the second integral on the left hand side is
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\sigma^{ij}_{p}\covarderiv{\delta u_{j}}{i}}{v}=
+  \gint{\embedmanifold{B}}{}{\sigma^{ij}_{p}\pbrac{\delby{\delta
+        u_{j}}{x^{i}}-\christoffel{k}{j}{i}\delta u_{k}}}{v}
 \end{equation}
 
 If we now substitute $\delta\vectr{u}=\delta\vectr{z}$ and convert the left
@@ -609,18 +888,30 @@ then $\tensor{\sigma}$ needs to be with respect to $\vectr{x}$ coordinates. As t
 is no coordinate transformations the Christoffel symbols are all zero and can
 be dropped.
 
+The second integral on the left hand side is thus
+\begin{equation}
+  \gint{\embedmanifold{B}}{}{\sigma^{ij}_{p}\pbrac{\delby{\delta
+        u_{j}}{x^{i}}-\christoffel{k}{j}{i}\delta u_{k}}}{v}=
+  \gint{\vectr{0}}{\vectr{1}}{\fnof{\sigma^{ij}_{p}}{\vectr{\xi}}
+    \delby{\xi_{l}}{x^{i}}\delby{\delta\fnof{z_{j}}{\vectr{\xi}}}{\xi^{l}}
+    \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
+\end{equation}
+
 The right hand side of the virtual work statement is
 \begin{equation}
   \begin{split}
-    \gint{\embedmanifold{B}}{}{\rho\pbrac{b^{j}-a^{j}}\delta u_{j}}{v}+
-    \gint{\boundary{\embedmanifold{B}}}{}{t^{j}\delta u_{j}}{a}
-    &= \gint{\embedmanifold{B}}{}{\rho\pbrac{b^{j}-a^{j}}\delta z_{j}}{v}+
-    \gint{\boundary{\embedmanifold{B}}}{}{Pn^{j}\delta z_{j}}{a} \\
-    &= \gint{\vectr{0}}{\vectr{1}}{\rho\pbrac{\fnof{b^{j}}{\vectr{\xi}}-\fnof{a^{j}}{\vectr{\xi}}}\delta
+    \gint{\embedmanifold{B}}{}{b^{j}\delta u_{j}}{v}+
+    \gint{\boundary{\embedmanifold{B}_{t}}}{}{\bar{t}^{j}\delta u_{j}}{a}
+    &= \gint{\embedmanifold{B}}{}{b^{j}\delta z_{j}}{v}+
+    \gint{\boundary{\embedmanifold{B}_{t}}}{}{t^{j}\delta z_{j}}{a} +
+    \gint{\boundary{\embedmanifold{B}_{P}}}{}{Pn^{j}\delta z_{j}}{a} \\
+    &= \gint{\vectr{0}}{\vectr{1}}{\fnof{b^{j}}{\vectr{\xi}}\delta
       \fnof{z_{j}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}\\
+    &\quad+\gint{\vectr{0}}{\vectr{1}}{\fnof{t^{j}}{\vectr{\xi}}\delta
+      \fnof{z_{j}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}\\ 
     &\quad+\gint{\vectr{0}}{\vectr{1}}{\fnof{P}{\vectr{\xi}}\fnof{n^{j}}{\vectr{\xi}}\delta
       \fnof{z_{j}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}    
-  \end{split}
+   \end{split}
 \end{equation}
 where $P$ is the applied surface pressure.
 
@@ -628,7 +919,7 @@ If we now use basis functions to interpolate the virtual displacements \ie
 \begin{equation}
   \delta \fnof{z_{j}}{\vectr{\xi}} = \idxgbfn{j}{m}{\alpha}{\vectr{\xi}}\delta z_{j,\alpha}^{m}\gsf{m}{\alpha}
 \end{equation}
-which, assuming rectangular cartesian coordinates, gives for the left hand side integral
+which, assuming rectangular cartesian coordinates, gives for the first left hand side integral
 \begin{equation}
   \begin{split}
     \gint{\vectr{0}}{\vectr{1}}{\fnof{\sigma^{ij}}{\vectr{\xi}}\delby{\xi_{l}}{x^{i}}\delby{\delta
@@ -645,22 +936,44 @@ which, assuming rectangular cartesian coordinates, gives for the left hand side 
       \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}} 
   \end{split}
 \end{equation}
+and for the second left hand side integral
+\begin{equation}
+  \gint{\vectr{0}}{\vectr{1}}{\fnof{\sigma^{ij}_{p}}{\vectr{\xi}}\delby{\xi_{l}}{x^{i}}\delby{\delta
+      \fnof{z_{j}}{\vectr{\xi}}}{\xi^{l}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}=
+  \delta z_{j,\alpha}^{m}\gsf{m}{\alpha}
+  \gint{\vectr{0}}{\vectr{1}}{\fnof{\sigma^{ij}_{p}}{\vectr{\xi}}\delby{\xi_{l}}{x^{i}}\delby{
+      \gbfn{m}{j\alpha}{\vectr{\xi}}}{\xi^{l}}
+    \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}} 
+\end{equation}
 and for the first integral on the right hand side integral we have
 \begin{equation}
   \begin{split}
-    \gint{\vectr{0}}{\vectr{1}}{\rho\pbrac{\fnof{b^{j}}{\vectr{\xi}}-\fnof{a^{j}}{\vectr{\xi}}}\delta
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{b^{j}}{\vectr{\xi}}\delta
       \fnof{z_{j}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
-    &= \gint{\vectr{0}}{\vectr{1}}{\rho\pbrac{\fnof{b^{j}}{\vectr{\xi}}-\fnof{a^{j}}{\vectr{\xi}}}
+    &= \gint{\vectr{0}}{\vectr{1}}{\fnof{b^{j}}{\vectr{\xi}}
       \idxgbfn{j}{m}{\alpha}{\vectr{\xi}}\delta
       z_{j,\alpha}^{m}\gsf{m}{\alpha}
       \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}} \\
     &= \delta
-    z_{j,\alpha}^{m}\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\rho\pbrac{\fnof{b^{j}}{\vectr{\xi}}-
-        \fnof{a^{j}}{\vectr{\xi}}}\gbfn{m}{j\alpha}{\vectr{\xi}}
+    z_{j,\alpha}^{m}\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{b^{j}}{\vectr{\xi}}\gbfn{m}{j\alpha}{\vectr{\xi}}
       \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
   \end{split}
 \end{equation}
 and for the second integral on the right hand side we have
+\begin{equation}
+  \begin{split}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{t^{j}}{\vectr{\xi}}\delta
+      \fnof{z_{j}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
+    &= \gint{\vectr{0}}{\vectr{1}}{\fnof{t^{j}}{\vectr{\xi}}
+      \idxgbfn{j}{m}{\alpha}{\vectr{\xi}}\delta
+      z_{j,\alpha}^{m}\gsf{m}{\alpha}
+      \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}} \\
+    &= \delta
+    z_{j,\alpha}^{m}\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{t^{j}}{\vectr{\xi}}\gbfn{m}{j\alpha}{\vectr{\xi}}
+      \fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
+  \end{split}
+\end{equation}
+and for the third integral on the right hand side we have
 \begin{equation}
   \begin{split}
     \gint{\vectr{0}}{\vectr{1}}{\fnof{P}{\vectr{\xi}}\fnof{n^{j}}{\vectr{\xi}}\delta
@@ -700,7 +1013,7 @@ Now, as the virtual displacements are arbitrary we have the residual statement
 In order to handle incompressible materials we need an additional constraint
 which penalises change in volume. The change in volume is given by
 \begin{equation}
-  \Delta V = \dfrac{J_{\embedmanifold{B}}}{J_{g}J_{\embedmanifold{B}_{0}}}
+  \Delta V = \dfrac{\sqrt{\det \tensor{g}}}{J_{g}\sqrt{\det \tensor{G}}}
 \end{equation}
 and the residual equation is
 \begin{equation}
@@ -708,41 +1021,274 @@ and the residual equation is
     r_{m}^{\pbrac{N+1}\alpha}&=\gint{\vectr{0}}{\vectr{1}}{\pbrac{\fnof{\Delta V}{\vectr{\xi}} -
         1}\gbfn{m}{\pbrac{N+1}\alpha}{\vectr{\xi}}\gsf{m}{\alpha}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
     \\
-    &=\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\pbrac{\dfrac{\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\fnof{J_{g}}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}_{0}}}{\vectr{\xi}}} -
+    &=\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\pbrac{\dfrac{\sqrt{\det
+            \fnof{\tensor{g}}{\vectr{\xi}}}}{\fnof{J_{g}}{\vectr{\xi}}\sqrt{\det
+            \fnof{\tensor{G}}{\vectr{\xi}}}} -
         1}\gbfn{m}{\pbrac{N+1}\alpha}{\vectr{\xi}}\fnof{J_{\embedmanifold{B}}}{\vectr{\xi}}}{\vectr{\xi}}
   \end{split}
 \end{equation}
 where $N$ is the number of dimensions.
 
+\subsubsection{Jacobian}
+
 In order to solve the nonlinear system of equations a Newton scheme can be
 used. To calculate the Jacobian of the system we need to calculate the
-variation of the virtual work statement.
+variation of the virtual work statement. The Jacobian is given by the
+derivative of the residual equation in the direction of a change in
+$\vectr{u}$, $\Delta{\vectr{u}}$ \ie the Lie derivative of the residual vector
+in the direction $\Delta{\vectr{u}}$.
 
-This requires a linerization.
-
-Consider a linearisation of the second Piola-Kirchoff stress.
+This requires a linerization. A linearisation of a function
+$\fnof{f}{\vectr{x}}$ in the direction of $\Delta\vectr{x}$ is
 \begin{equation}
-  L\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}=\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}+
-          \delta\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}
+  \linearisation{\Delta\vectr{x}}{\fnof{f}{\vectr{x}}}=\dby{}{\epsilon}\evalat{\fnof{f}{\vectr{x}+\epsilon\Delta\vectr{x}}}{\epsilon=0}=\transpose{\pbrac{\delby{f}{\vectr{x}}}}\Delta\vectr{x}
 \end{equation}
 
-A linearisation of the Kirchoff stress can thus be calculated from a push
-forward of the linearisation of the second Piola-Kirchoff stress
-
+The linearization of the residual equation is given by 
 \begin{equation}
   \begin{split}
-    L\fnof{\tensor{\tau}}{\vectr{u},\delta\vectr{u}}&=\tensor{F}_{e}L\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}\transpose{\tensor{F}_{e}} \\
-    &= \tensor{F}_{e}\pbrac{\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}+
-      \delta\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}}\transpose{\tensor{F}_{e}}
-    \\
-    &=
-    \tensor{F}_{e}\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}\transpose{\tensor{F}_{e}}+
-    \tensor{F}_{e}\delta\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}\transpose{\tensor{F}_{e}}
-    \\
-    & =\fnof{\tensor{\tau}}{\vectr{u},\delta\vectr{u}}+\tensor{F}_{e}\delta\fnof{\tensor{T}}{\vectr{u},\delta\vectr{u}}\transpose{\tensor{F}_{e}}
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{\Pi}{\vectr{u},\delta\vectr{u}}}&=
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}-
+      \delta\fnof{W_{ext}}{\vectr{u},\delta\vectr{u}}}\\
+    &=\linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}-
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{ext}}{\vectr{u},\delta\vectr{u}}}
   \end{split}
 \end{equation}
 
+For the linearisation of the internal work variation it is useful to consider
+the internal work in terms of second Piola-Kirchoff stress and the
+Green-Lagrange strain \ie
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}&=
+    \linearisation{\Delta\vectr{u}}{\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\fnof{\tensor{T}}{
+            \fnof{\tensor{E}}{\vectr{u}}}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}{V}}\\
+    &=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\doubledotprod{\fnof{\tensor{T}}{
+          \fnof{\tensor{E}}{\vectr{u}}}}{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}+
+      \doubledotprod{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{
+            \fnof{\tensor{E}}{\vectr{u}}}}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}}{V}
+  \end{split}
+\end{equation}
+(SPLIT T INTO DEVIATORIC PART PLUS HYDROSTATIC STRESS)
+
+Now, $\delta\fnof{\tensortwo{E}}{\delta\vectr{u}}$ can be found by pulling
+back $\delta\fnof{\tensortwo{\epsilon}}{\delta\vectr{u}}$ \ie
+\begin{equation}
+  \begin{split}
+    \delta\fnof{\tensortwo{E}}{\delta\vectr{u}}&=
+    \transpose{\tensortwo{F}}\delta\fnof{\tensortwo{\epsilon}}{\delta\vectr{u}}\tensortwo{F}\\
+    &=\transpose{\tensortwo{F}}\frac{1}{2}\pbrac{\transpose{\pbrac{\gradient{\vectr{x}}{\delta\vectr{u}}}}
+      +\gradient{\vectr{x}}{\delta\vectr{u}}}\tensortwo{F}\\
+    &=\frac{1}{2}\pbrac{\transpose{\tensortwo{F}}\transpose{\pbrac{\gradient{\vectr{x}}{\delta\vectr{u}}}}\tensortwo{F}+
+      \transpose{\tensortwo{F}}\gradient{\vectr{x}}{\delta\vectr{u}}\tensortwo{F}}\\
+    &=\frac{1}{2}\pbrac{\transpose{\pbrac{\gradient{\vectr{X}}{\delta\vectr{u}}}}\tensortwo{F}+
+      \transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}} \\
+    &= \sympart\pbrac{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}}
+  \end{split}
+\end{equation}
+
+Now, recall that
+\begin{equation}
+  \tensortwo{F}=\tensortwo{I}+\delby{\vectr{u}}{\vectr{X}}=\tensortwo{I}+\gradient{\vectr{X}}{\vectr{u}}
+\end{equation}
+and so
+\begin{equation}
+  \linearisation{\Delta\vectr{u}}{\tensortwo{F}}=\gradient{\vectr{X}}{\Delta\vectr{u}}
+\end{equation}
+
+We thus have
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{\tensortwo{E}}{\delta\vectr{u}}}&=
+    \linearisation{\Delta\vectr{u}}{\sympart\pbrac{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}}}\\
+    &=\sympart\pbrac{\transpose{\tensortwo{F}}\linearisation{\Delta\vectr{u}}{\gradient{\vectr{X}}{\delta\vectr{u}}}+
+      \transpose{\pbrac{\linearisation{\Delta\vectr{u}}{\tensortwo{F}}}}\gradient{\vectr{X}}{\delta\vectr{u}}}\\
+    &=\sympart\pbrac{0+\transpose{\pbrac{\gradient{\vectr{X}}{\Delta\vectr{u}}}}\gradient{\vectr{X}}{\delta\vectr{u}}}\\
+    &=\sympart\pbrac{\transpose{\pbrac{\gradient{\vectr{X}}{\Delta\vectr{u}}}}\gradient{\vectr{X}}{\delta\vectr{u}}}
+  \end{split}
+\end{equation}
+as $\delta\vectr{u}$ is independent of $\vectr{u}$ and is this unaffected by
+the linearisation (CHECK).
+
+We also have
+\begin{equation}
+  \linearisation{\Delta\vectr{u}}{\fnof{\tensortwo{E}}{\delta\vectr{u}}}=
+  \sympart\pbrac{\transpose{\pbrac{\gradient{\vectr{X}}{\Delta\vectr{u}}}}\tensortwo{F}}
+\end{equation}
+(DERIVE).
+
+Now
+\begin{equation}
+  \linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}=
+  \doubledotprod{\delby{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}{\fnof{\tensor{E}}{\vectr{u}}}}{
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}
+\end{equation}
+
+The derivative of the stress tensor with respect to the strain tensor is the
+fourth order \emph{elasticity tensor} (sometimes called the \emph{stiffness
+  tensor}) \ie
+\begin{equation}
+  \tensorfour{C}=\delby{\fnof{\tensortwo{T}}{\tensortwo{E}}}{\tensortwo{E}}
+\end{equation}
+or in component form
+\begin{equation}
+  C^{ABCD}=\delby{T^{AB}}{E_{CD}}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \begin{split}
+    \doubledotprod{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}&=
+    \doubledotprod{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}{\sympart\pbrac{\transpose{\pbrac{\gradient{\vectr{X}}{\Delta\vectr{u}}}}\gradient{\vectr{X}}{\delta\vectr{u}}}}\\
+    &=\doubledotprod{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}{\transpose{\pbrac{\gradient{\vectr{X}}{\Delta\vectr{u}}}}\gradient{\vectr{X}}{\delta\vectr{u}}}\\
+    &=\doubledotprod{\gradient{\vectr{X}}{\delta\vectr{u}}}{\gradient{\vectr{X}}{\Delta\vectr{u}}\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}
+  \end{split}
+\end{equation}
+as
+$\doubledotprod{\tensor{A}}{\transpose{\tensor{B}}\tensor{C}}=\doubledotprod{\tensor{C}}{\tensor{B}\tensor{A}}$, and
+\begin{equation}
+  \begin{split}
+    \doubledotprod{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}{\delta\fnof{\tensortwo{E}}{\delta\vectr{u}}}
+    &=\doubledotprod{\doubledotprod{\delby{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}{\fnof{\tensor{E}}{\vectr{u}}}}{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}\\
+    &=\doubledotprod{\doubledotprod{\tensorfour{C}}{\sympart\pbrac{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}}{\sympart\pbrac{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}}}\\
+    &=\doubledotprod{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}}{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}
+  \end{split}
+\end{equation}
+as
+$\doubledotprod{\tensor{A}}{\tensor{B}}=\doubledotprod{\tensor{B}}{\tensor{A}}$.
+
+Putting this together gives
+\begin{equation}
+  \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\doubledotprod{\gradient{\vectr{X}}{\delta\vectr{u}}}{\gradient{\vectr{X}}{\Delta\vectr{u}}\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}+\doubledotprod{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\delta\vectr{u}}}{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}}}{V}
+\end{equation}
+or, in component form,
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta u_{j}}{\delta\fnof{W_{int}}{u_{i},\delta
+        u_{i}}}&=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\delby{\delta
+          u_{i}}{X^{B}}\delby{\Delta u_{j}}{X^{D}}\contrakronecker{i}{j}T^{BD}+F^{i}_{A}\delby{\delta
+          u_{i}}{X^{B}}C^{ABCD}F^{j}_{C}\delby{\Delta u_{j}}{X^{D}}}}{V}\\
+    &=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\delby{\delta
+          u_{i}}{X^{B}}\sqbrac{\contrakronecker{i}{j}T^{BD}+F^{i}_{A}F^{j}_{C}C^{ABCD}}\delby{\Delta u_{j}}{X^{D}}}}{V}
+  \end{split}
+\end{equation}
+
+Now, consider the linearisation of the internal work variation in the current
+configuration \ie with respect to cauchy stress and ??? strain
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}&=
+    \linearisation{\Delta\vectr{u}}{\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\fnof{\tensor{\sigma}}{
+            \fnof{\tensor{e}}{\vectr{u}}}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}{V}}\\
+    &=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\doubledotprod{\fnof{\tensor{\sigma}}{
+          \fnof{\tensor{e}}{\vectr{u}}}}{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}+
+      \doubledotprod{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{
+            \fnof{\tensor{e}}{\vectr{u}}}}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}}{V}
+  \end{split}
+\end{equation}
+
+We can now use a push forward operation to find the linearisation of the
+Cauchy stress in terms of the results from the linearisation of the second
+Piola-Kirchoff stress \ie
+\begin{equation}
+  \begin{split}
+    \fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}\\
+    \linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}}\\
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}&=
+    \pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}}\\
+    \delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}&=\pushforward{\chi}{\pbrac{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}
+  \end{split}
+\end{equation}
+
+Now,
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}}\\
+    &=\inverse{J}\pushforward{\chi}{\pbrac{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}}\\
+    &=\inverse{J}\tensor{F}\pbrac{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}\transpose{\tensor{F}}
+  \end{split}
+\end{equation}
+
+The push forward of the fourth order elasticity tensor is
+\begin{equation}
+  \tensorfour{c}=\inverse{J}\pushforward{\chi}{\pbrac{\tensorfour{C}}}
+\end{equation}
+
+In component form this is
+\begin{equation}
+  c^{ijkl}=\inverse{J}F^{i}_{A}F^{j}_{B}F^{k}_{C}F^{l}_{D}C^{ABCD}
+\end{equation}
+
+
+Now, consider the linearisation of the internal work variation in the current
+configuration \ie with respect to cauchy stress and ??? strain
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}&=
+    \linearisation{\Delta\vectr{u}}{\gint{\embedmanifold{B}_{0}}{}{\doubledotprod{\fnof{\tensor{\sigma}}{
+            \fnof{\tensor{e}}{\vectr{u}}}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}{V}}\\
+    &=\gint{\embedmanifold{B}_{0}}{}{\pbrac{\doubledotprod{\fnof{\tensor{\sigma}}{
+          \fnof{\tensor{e}}{\vectr{u}}}}{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}+
+      \doubledotprod{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{
+            \fnof{\tensor{e}}{\vectr{u}}}}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}}}{V}
+  \end{split}
+\end{equation}
+
+We can now use a push forward operation to find the linearisation of the
+Cauchy stress in terms of the results from the linearisation of the second
+Piola-Kirchoff stress \ie
+\begin{equation}
+  \begin{split}
+    \fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}\\
+    \linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}}\\
+    \linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}}&=
+    \pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}}\\
+    \delta\fnof{\tensor{\epsilon}}{\delta\vectr{u}}&=\pushforward{\chi}{\pbrac{\delta\fnof{\tensor{E}}{\delta\vectr{u}}}}
+  \end{split}
+\end{equation}
+
+Now,
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta\vectr{u}}{\fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}}&=
+    \inverse{J}\pushforward{\chi}{\pbrac{\linearisation{\Delta\vectr{u}}{\fnof{\tensor{T}}{\fnof{\tensor{E}}{\vectr{u}}}}}}\\
+    &=\inverse{J}\pushforward{\chi}{\pbrac{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}}\\
+    &=\inverse{J}\tensor{F}\pbrac{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\Delta\vectr{u}}}}\transpose{\tensor{F}}
+  \end{split}
+\end{equation}
+
+The push forward of the fourth order elasticity tensor is
+\begin{equation}
+  \tensorfour{c}=\inverse{J}\pushforward{\chi}{\pbrac{\tensorfour{C}}}
+\end{equation}
+
+In component form this is
+\begin{equation}
+  c^{ijkl}=\inverse{J}F^{i}_{A}F^{j}_{B}F^{k}_{C}F^{l}_{D}C^{ABCD}
+\end{equation}
+
+Putting this together gives
+\begin{equation}
+  \linearisation{\Delta\vectr{u}}{\delta\fnof{W_{int}}{\vectr{u},\delta\vectr{u}}}=
+  \gint{\embedmanifold{B}}{}{\pbrac{\doubledotprod{\gradient{\vectr{x}}{\delta\vectr{u}}}{\gradient{\vectr{x}}{\Delta\vectr{u}}\fnof{\tensor{\sigma}}{\fnof{\tensor{e}}{\vectr{u}}}}+
+      \doubledotprod{\gradient{\vectr{x}}{\delta\vectr{u}}}{\doubledotprod{\tensorfour{c}}{\gradient{\vectr{x}}{\Delta\vectr{u}}}}}}{v}
+\end{equation}
+or, in component form,
+\begin{equation}
+  \begin{split}
+    \linearisation{\Delta u_{j}}{\delta\fnof{W_{int}}{u_{i},\delta u_{i}}}&=
+    \gint{\embedmanifold{B}}{}{\pbrac{\delby{\delta u_{i}}{x^{k}}\delby{\Delta
+          u_{j}}{x^{l}}\contrakronecker{i}{j}\sigma^{kl}+
+        \delby{\delta u_{i}}{x^{k}}c^{ikjl}\delby{\Delta u_{j}}{x^{l}}}}{v}\\
+    &=\gint{\embedmanifold{B}}{}{\pbrac{\delby{\delta
+          u_{i}}{x^{k}}\sqbrac{\contrakronecker{i}{j}\sigma^{kl}+c^{ikjl}}\delby{\Delta u_{j}}{x^{l}}}}{v}
+  \end{split}
+\end{equation}
 
 \section{Uniaxial extension of a unit cube}
 

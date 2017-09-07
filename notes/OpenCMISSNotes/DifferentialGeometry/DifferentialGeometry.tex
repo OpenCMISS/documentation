@@ -91,6 +91,8 @@ The metric tensors generalise (Euclidean) distance \ie
   ds^{2}=g_{ij}dx^{i}dx^{j}
 \end{equation}
 
+\subsubsection{Raising and lowering indices}
+
 Note that multiplying by the covariant metric tensor lowers indices \ie
 \begin{equation}
   \begin{split}
@@ -112,6 +114,33 @@ and for the mixed tensors
   A^{i}_{.j} &= g^{ik}A_{kj} = g_{jk}A^{ik} \\
   \end{split}
 \end{equation}
+
+We can denote a tensor in which all indicies have been raised as a
+\emph{sharp} tensor, $\sharptensor{\tensor{A}}$, and one in which all indicies have been lowered as a
+\emph{flat} tensor, $\flattensor{\tensor{A}}$. This is known as \emph{musical isomorphism} \ie
+isomorphism between the tangent and cotangent bundles of a manifold, $\manifold{M}$.
+\begin{equation}
+  \mapping{\sharptensor{}}{\cotangentbundle{M}}{\tangentbundle{M}}
+\end{equation}
+and
+\begin{equation}
+  \mapping{\flattensor{}}{\tangentbundle{M}}{\cotangentbundle{M}}
+\end{equation}
+
+\subsubsection{Induced metric}
+
+An induced metric is the metric tensor induced on a submanifold that has been
+embedded into a larger manifold with a metric. If $\vectr{\xi}$ are the
+coordinates in the submanifold and $\fnof{\vectr{x}}{\vectr{\xi}}$ are the
+functions which embedded the submanifold into a larger manifold then the
+induced metric is given by
+\begin{equation}
+  g_{ab}=\delby{x^{\mu}}{\xi^{a}}\delby{x^{\nu}}{\xi^{b}}g_{\mu\nu}
+\end{equation}
+where $a, b$ are the coordinate indices in the submanifold, $\mu, \nu$ are the
+coordinate indices in the larger manifold, $g_{\mu\nu}$ are the components of
+the metric tensor in the larger manifold and $g_{ab}$ are the components of
+the induced metric in the submanifold.
 
 \subsection{Transformations}
 
@@ -264,7 +293,7 @@ involve tensor quantities \ie covariant derivatives rather than partial derivati
 As the covariant derivative of a scalar is just the partial derivative the
 gradient of a scalar function $\phi$ using covariant derivatives is
 \begin{equation}
-  \text{grad } \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}\vectr{g}^{i}
+  \gradop \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}\vectr{g}^{i}
 \end{equation}
 and
 \begin{equation}
@@ -275,7 +304,7 @@ and
 
 The divergence of a vector using covariant derivatives is
 \begin{equation}
-  \text{div } \vectr{\phi} = \divergence{}{\vectr{\phi}}=\covarderiv{\phi^{i}}{i}=\frac{1}{\sqrt{\abs{g}}}\partialderiv{\pbrac{\sqrt{\abs{g}}\phi^{i}}}{i}
+  \divop \vectr{\phi} = \divergence{}{\vectr{\phi}}=\covarderiv{\phi^{i}}{i}=\frac{1}{\sqrt{\abs{g}}}\partialderiv{\pbrac{\sqrt{\abs{g}}\phi^{i}}}{i}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
@@ -283,7 +312,7 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The curl of a vector using covariant derivatives is
 \begin{equation}
-  \text{curl } \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vectr{g}_{k}
+  \curlop \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vectr{g}_{k}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
@@ -291,22 +320,22 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The Laplacian of a scalar using covariant derivatives is
 \begin{equation}
-  \laplacian{\phi}=\text{div}\pbrac{\text{grad }\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
+  \laplacian{}{\phi}=\divop\pbrac{\gradop\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The Laplacian of a vector using covariant derivatives is
 \begin{equation}
-  \laplacian{\vectr{\phi}}=\text{grad }\pbrac{\text{div }\vectr{\phi}}-\text{curl } \pbrac{\text{curl }\vectr{\phi}}==\mixedderiv{\vectr{\phi}}{i}{i}
+  \laplacian{}{\vectr{\phi}}=\gradop\pbrac{\divop\vectr{\phi}}-\curlop \pbrac{\curlop\vectr{\phi}}==\mixedderiv{\vectr{\phi}}{i}{i}
 \end{equation}
 
 The Laplacian of a contravariant (rank (0,1)) tensor $\phi^{k}$ is
 \begin{equation}
-  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{K}{j}{H}\delby{\phi^{h}}{x^{i}}+\phi^{h}\delby{g^{ij}\christoffel{K}{i}{j}}{x^{h}}}\vectr{e}^{k}
+  \laplacian{}{\vectr{\phi}}=\pbrac{\laplacian{}{\phi_{k}}-2g^{ij}\christoffel{K}{j}{H}\delby{\phi^{h}}{x^{i}}+\phi^{h}\delby{g^{ij}\christoffel{K}{i}{j}}{x^{h}}}\vectr{e}^{k}
 \end{equation}
 and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 \begin{equation}
-  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
+  \laplacian{}{\vectr{\phi}}=\pbrac{\laplacian{}{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
 \end{equation}
 
 \subsection{Coordinate Systems}

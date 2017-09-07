@@ -5,7 +5,7 @@
 The Navier-Stokes equations arise from applying Newton's second law to fluid motion, i.e. the temporal and spatial fluid inertia is in equilibrium with internal (volume/body)  and external (surface) forces. The reaction of surface forces can be described in terms of the fluid stress as the sum of a diffusing viscous term, plus a pressure term. The equations are named for the 19th century contributions of Claude-Louis Navier and George Gabriel Stokes. A solution of the Navier-Stokes equations is called a flow field, i.e. velocity and pressure field, which is a description of the fluid at a given point in space and time.  In the common case of an incompressible Newtonian fluid, the nonlinear Navier-Stokes equations (three-dimensional, transient) can be written using 'primitive variables' (i.e. u-velocity, p-pressure) as:
 \begin{equation}
   \label{eqn:NSE}
-    \rho\delby{\vectr{u}}{t}+\rho\pbrac{\dotprod{\vectr{u}}{\grad}}\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}
+    \rho\delby{\vectr{u}}{t}+\rho\pbrac{\dotprod{\vectr{u}}{\grad}}\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
 \end{equation}
 accompanied by the conservation of mass (incompressibility)
 \begin{equation}
@@ -27,7 +27,7 @@ The weak form of equations \ref{eqn:NSE} and \ref{eqn:NSEIncompressibility} can 
   \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{u}}{t}
     +\rho\vectr{u}\cdot\gradient{}{\vectr{u}}
     -\vectr{f}
-    -\mu\laplacian{\vectr{u}}
+    -\mu\laplacian{}{\vectr{u}}
     +\gradient{}{p}}{\vectr{w}}}{\Omega} = 0
 \end{equation}
 
@@ -408,19 +408,19 @@ The use of the Petrov-Galerkin formulation in this way allows for the stabilizat
 %ALE form
 Whereas \eqnref{eqn:NavierStokesequation1} has been formulated in Eulerian form, moving domain approaches often require the ALE modification taking an additional term into account, depending on the fluid density $\rho$ and a correction velocity $\vectr{u}^*$ which yields to:
 \begin{equation}
-    \rho((\vectr{u}-\vectr{u}^*)\cdot\grad)\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}
+    \rho\pbrac{\dotprod{\pbrac{\vectr{u}-\vectr{u}^*}}{\grad}}\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
   \label{eqn:NavierStokesequationALE}
 \end{equation}
 So far, the nonlinear term in \eqnref{eqn:NavierStokesequation1} represents the fluid spatial acceleration only. \eqnref{eqn:NavierStokesequation2} now also takes the dynamic inertia terms into account
 \begin{equation}
-    \rho\delby{\vectr{u}}{t}+ \rho((\vectr{u}-\vectr{u}^*)\cdot\grad)\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}
+    \rho\delby{\vectr{u}}{t}+ \dotprod{\rho\pbrac{\vectr{u}-\vectr{u}^*}}{\grad}\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
   \label{eqn:NavierStokesequation2}
 \end{equation}
 which gives us the complete Navier-Stokes equations in ALE formulation.
 The following section, however, describes the reordered quasi-static formulation of  \eqnref{eqn:NavierStokesequationALE}:
 \begin{equation}
-\rho((\vectr{u}-\vectr{u}^*)\cdot\grad)\vectr{u}-\mu\laplacian{\vectr{u}}+\gradient{}{p}=\vectr{f}
-%     -\gradient{}{p}+\mu\laplacian{\vectr{u}}-\rho(\vectr{u}^*\cdot\grad)\vectr{u}=\vectr{f}
+\rho\pbrac{\dotprod{\pbrac{\vectr{u}-\vectr{u}^*}}{\grad}}\vectr{u}-\mu\laplacian{}{\vectr{u}}+\gradient{}{p}=\vectr{f}
+%     -\gradient{}{p}+\mu\laplacian{}{\vectr{u}}-\rho\pbrac{\dotprod{\vectr{u}^*}{\grad}\vectr{u}=\vectr{f}
   \label{eqn:NavierStokesequationALE2}
 \end{equation}
 
@@ -436,50 +436,50 @@ where u(t) is the dependent variables vector $\vectr{u}(\vectr{x},t)$ and $p$ fo
 
 The corresponding weak form of the equation system consisting of \eqnref{eqn:NavierStokesequation1} and \eqnref{eqn:NavierStokesmasequation} can be written as:
 \begin{equation}
-  \gint{\Omega}{}{\rho(\vectr{u}\cdot\grad)\vectr{u}\vectr{v} }{\Omega}
-  -\gint{\Omega}{}{\rho(\vectr{u}^*\cdot\grad)\vectr{u}\vectr{v} }{\Omega}
-  +\gint{\Omega}{}{\mu\laplacian{\vectr{u}}\vectr{v}}{\Omega}
+  \gint{\Omega}{}{\rho\pbrac{\dotprod{\vectr{u}}{\grad}}\vectr{u}\vectr{v} }{\Omega}
+  -\gint{\Omega}{}{\rho\pbrac{\dotprod{\vectr{u}^*}{\grad}}\vectr{u}\vectr{v} }{\Omega}
+  +\gint{\Omega}{}{\mu\laplacian{}{\vectr{u}}\vectr{v}}{\Omega}
   -\gint{\Omega}{}{\gradient{}{p}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\grad\cdot \vectr{u}q}{\Omega}=
+  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}=
   \gint{\Omega}{}{\vectr{f}\vectr{v}}{\Omega}  
   \label{eqn:NavierStokesweakform}
 \end{equation}
 The general form for this kind of equation system is
 \begin{equation}
-  \matr{K}{\vectr{\hat{u}}}+
-  \fnof{\vectr{\hat{g}}}{{\vectr{{u}}}}={\vectr{\hat{f}}}
+  \matr{K}{\vect{\hat{u}}}+
+  \fnof{\vect{\hat{g}}}{{\vect{{u}}}}={\vect{\hat{f}}}
   \label{eqn:NavierStokesequationALE2general}
 \end{equation}
-where ${\vectr{\hat{u}}}$ is the vector of unknown ``DOFs'', $\matr{K}$ is the
-stiffness matrix, $\fnof{\vectr{\hat{g}}}{{\vectr{{u}}}}$ a non-linear vector
-function and ${\vectr{\hat{f}}}$ the forcing vector. In \eqnref{eqn:NavierStokesweakform} the only real non-linear term is represented by $\fnof{\vectr{\hat{g}}}{\vectr{{u}}}=\gint{\Omega}{}{\rho(\vectr{u}\cdot\grad)\vectr{u}\vectr{v} }{\Omega}$.
-If $\fnof{\vectr{\hat{g}}}{\vectr{u}}$ is not $\equiv\vectr{0}$ then we use Newton's method \ie
+where ${\vect{\hat{u}}}$ is the vector of unknown ``DOFs'', $\matr{K}$ is the
+stiffness matrix, $\fnof{\vect{\hat{g}}}{{\vect{{u}}}}$ a non-linear vector
+function and ${\vect{\hat{f}}}$ the forcing vector. In \eqnref{eqn:NavierStokesweakform} the only real non-linear term is represented by $\fnof{\vect{\hat{g}}}{\vect{{u}}}=\gint{\Omega}{}{\rho\pbrac{\dotprod{\vectr{u}}{\grad}}\vectr{u}\vectr{v} }{\Omega}$.
+If $\fnof{\vect{\hat{g}}}{\vect{u}}$ is not $\equiv\vect{0}$ then we use Newton's method \ie
 \begin{equation}
   \begin{split}
-    \text{1.  } & \fnof{\matr{J}}{\vectr{u}_{i}}.\delta
-    \vectr{u}_{i} = 
-    -\fnof{\vectr{\psi}}{\vectr{u}_{i}} \\
-    \text{2.  } & \vectr{u}_{i+1}=\vectr{u}_{i}+\delta
-    \vectr{u}_{i}
+    \text{1.  } & \fnof{\matr{J}}{\vect{u}_{i}}.\delta
+    \vect{u}_{i} = 
+    -\fnof{\vect{\psi}}{\vectr{u}_{i}} \\
+    \text{2.  } & \vect{u}_{i+1}=\vect{u}_{i}+\delta
+    \vect{u}_{i}
   \end{split}
 \end{equation}
-where $\fnof{\matr{J}}{\vectr{u}}$ is the Jacobian and is given by
+where $\fnof{\matr{J}}{\vect{u}}$ is the Jacobian and is given by
 \begin{equation}
-  \fnof{\matr{J}}{\vectr{u}}=\matr{K}+
-    \delby{\fnof{\vectr{\hat{g}}}{\vectr{u}}}{\vectr{u}}
+  \fnof{\matr{J}}{\vect{u}}=\matr{K}+
+    \delby{\fnof{\vect{\hat{g}}}{\vect{u}}}{\vect{u}}
 \end{equation}
 with the stiffness matrix $\matr{K}$ derived from \eqnref{eqn:NavierStokesequationALE2general} by applying Green's theorem as follows:
 \begin{equation}
   \begin{split}
   \matr{K}\vectr{\hat{u}}=
-  \gint{\Omega}{}{\grad\cdot\vectr{v}p}{\Omega}
-  -\gint{\Omega}{}{\mu\grad\vectr{v}:\grad\vectr{u}}{\Omega}
-  -\gint{\Omega}{}{\rho(\vectr{u}^*\cdot\grad)\vectr{u}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\grad\cdot \vectr{u}q}{\Omega}
+  \gint{\Omega}{}{\divergence{}{\vectr{v}}p}{\Omega}
+  -\gint{\Omega}{}{\doubledotprod{\mu\gradient{}{\vectr{v}}}{\gradient{}{\vectr{u}}}}{\Omega}
+  -\gint{\Omega}{}{\rho\pbrac{\dotprod{\vectr{u}^*}{\grad}}\vectr{u}\vectr{v}}{\Omega}
+  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}
   \end{split}
   \label{eqn:NavierStokesweakform2}
 \end{equation}
-and $\fnof{\vectr{\psi}}{\vectr{\hat{u}}}=\matr{K}\vectr{\hat{u}}+\fnof{\vectr{\hat{g}}}{\vectr{u}}+\vectr{\hat{f}}$.
+and $\fnof{\vect{\psi}}{\vect{\hat{u}}}=\matr{K}\vect{\hat{u}}+\fnof{\vect{\hat{g}}}{\vect{u}}+\vect{\hat{f}}$.
 
 
 %%% Local Variables: 

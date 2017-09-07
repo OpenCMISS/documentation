@@ -101,18 +101,18 @@ reduces the attraction of the BEM over domain-based numerical methods.
 For some particular forms of the inhomogeneous function $\gamma$ the domain
 integral can be transformed directly into boundary integrals. 
 
-Consider the Poisson equation $\laplacian{u} = \gamma$.  Applying the BEM gives
+Consider the Poisson equation $\laplacian{}{u} = \gamma$.  Applying the BEM gives
 an equation of the form of \eqnref{eq:inhomog}.  Using Green's second
 identity
 \begin{equation}
-  \goneint{\pbrac{\gamma \laplacian{v} - v
-  \laplacian{\gamma}}}{\Omega} = 
+  \goneint{\pbrac{\gamma \laplacian{}{v} - v
+  \laplacian{}{\gamma}}}{\Omega} = 
   \goneint{\pbrac{\gamma \delby{v}{n} - v \delby{\gamma}{n}}}{\Gamma}
 \end{equation}
 domain integration can be avoided for certain forms of $\gamma$.  If a
-\index{Galerkin vector} $v$ can be found which satisfies $\laplacian{v} = \omega$,
+\index{Galerkin vector} $v$ can be found which satisfies $\laplacian{}{v} = \omega$,
 where $\omega$ is the fundamental solution of Laplace's equation, then for
-the specific case of $\gamma$ being harmonic ($\laplacian{\gamma} = 0$) Green's
+the specific case of $\gamma$ being harmonic ($\laplacian{}{\gamma} = 0$) Green's
 second identity can be reduced to
 \begin{equation}
   \goneint{\gamma \omega}{\Omega} = \goneint{\pbrac{\gamma \delby{v}{n} - v
@@ -230,7 +230,7 @@ considered the two-dimensional generalised Laplace equation
 Using the substitution $\fnof{V}{x,y} = \kappa^{-\dfrac{1}{2}} \fnof{u}{x,y}$
 \eqnref{eq:rangge2} can be recast as a heterogeneous Helmholtz equation
 \begin{equation}
-  \laplacian{u} + \fnof{f}{x,y}u = 0
+  \laplacian{}{u} + \fnof{f}{x,y}u = 0
 \label{eq:varhelm2}
 \end{equation}
 where $f$ is a known function of position.
@@ -238,7 +238,7 @@ where $f$ is a known function of position.
 \citename{rangogni:1986} treated 
 this equation as a perturbation about Laplace's equation. He considered the class of equations
 \begin{equation}
-  \laplacian{u} + \varepsilon \fnof{f}{x,y} u = 0 \qquad 
+  \laplacian{}{u} + \varepsilon \fnof{f}{x,y} u = 0 \qquad 
     \text{where } 0 \leq \varepsilon \leq 1
 \label{eq:eqnfamily}
 \end{equation}
@@ -251,15 +251,15 @@ for which he sought a solution of the form
 Substituting \eqnref{eq:uexpan} into \eqnref{eq:eqnfamily} and grouping powers
  of $\varepsilon$ gives
 \begin{equation}
-  \laplacian{u_{0}} + \varepsilon \pbrac{\laplacian{u_{1}} + fu_{0}} +
-  \varepsilon^{2} \pbrac{\laplacian{u_{2}} + fu_{1}} + \ldots = 0
+  \laplacian{}{u_{0}} + \varepsilon \pbrac{\laplacian{}{u_{1}} + fu_{0}} +
+  \varepsilon^{2} \pbrac{\laplacian{}{u_{2}} + fu_{1}} + \ldots = 0
 \label{eq:groups}
 \end{equation}
 A solution will only exist for all values of $\varepsilon$ if the terms at
 each power of $\varepsilon $ equal zero. This allows \eqnref{eq:groups} to be
 treated as an infinite series of distinct problems which can be solved
 using the boundary element method. $u_{0}$ can be found by solving 
- $\laplacian{u_{0}} = 0$ which Rangogni assumes will satisfy the boundary 
+ $\laplacian{}{u_{0}} = 0$ which Rangogni assumes will satisfy the boundary 
 conditions of the original problem.  Each successive $u_{j}$ can then be
 found by solving a Poisson equation with homogeneous boundary conditions as 
  $u_{j-1}$ has been previously determined.  Rangogni used a domain
@@ -274,12 +274,12 @@ accurate results using only $u_{0}$ and $u_{1}$.
 \citeasnoun{rangogni:1991} extended this coupled perturbation - boundary
 element method to the general second-order variable coefficient PDE
 \begin{equation}
-  \laplacian{u} + \fnof{f}{x,y} \delby{u}{x} + \fnof{g}{x,y} \delby{u}{y} =
+  \laplacian{}{u} + \fnof{f}{x,y} \delby{u}{x} + \fnof{g}{x,y} \delby{u}{y} =
   \fnof{h}{x,y}
 \end{equation}
 He considered the family of equations
 \begin{equation}
-  \laplacian{u} + \varepsilon \sqbrac{\fnof{f}{x,y} \delby{u}{x} +
+  \laplacian{}{u} + \varepsilon \sqbrac{\fnof{f}{x,y} \delby{u}{x} +
     \fnof{g}{x,y} \delby{u}{y}} = \fnof{h}{x,y} 
     \quad (0 \leq \varepsilon \leq 1)
 \label{eq:family2}
@@ -331,7 +331,7 @@ is used.
 
  \index{Multiple reciprocity method!Poisson equation} Consider the Poisson equation
 \begin{equation}
-  \laplacian{u} = b_{0}
+  \laplacian{}{u} = b_{0}
 \end{equation}
 where $b_{0} = \fnof{b_{0}}{\vect{x}}$ is a known function of position.
 Applying BEM to this equation, using the fundamental solution to the Laplace
@@ -348,36 +348,36 @@ in \eqnref{eq:mrmstart} needs to be expressed as equivalent boundary
 integrals.  Using MRM this is achieved by defining a higher-order
 fundamental solution $\omega_{1}$ such that
 \begin{equation}
-  \laplacian{\omega_{1}} = \omega_{0}
+  \laplacian{}{\omega_{1}} = \omega_{0}
 \end{equation}
 Using this higher-order fundamental solution the domain integral in
 \eqnref{eq:mrmstart} can be written as
 \begin{equation}
   \goneint{b_{0} \omega_{0}}{\Omega} =
-  \goneint{b_{0}\laplacian{\omega_{1}}}{\Omega} 
+  \goneint{b_{0}\laplacian{}{\omega_{1}}}{\Omega} 
 \end{equation}
 or 
 \begin{equation}
   \goneint{b_{0} \omega_{0}}{\Omega} = 
   \goneint{\pbrac{u \delby{\omega_{1}}{n} - \omega_{1} \delby{u}{n}}}{\Gamma} +
-  \goneint{\omega_{1} \laplacian{b_{0}}}{\Omega}
+  \goneint{\omega_{1} \laplacian{}{b_{0}}}{\Omega}
 \label{eq:delb}
 \end{equation}
 This formulation has generated a new domain integral.  $b_{0}$ is a known
 function so we can introduce a new function $b_{1}$ which can be determined
 analytically from the relationship
 \begin{equation}
-  b_{1} = \laplacian{b_{0}}
+  b_{1} = \laplacian{}{b_{0}}
 \end{equation}
 giving 
 \begin{equation}
-  \goneint{\omega_{1} \laplacian{b_{0}}}{\Omega} = 
+  \goneint{\omega_{1} \laplacian{}{b_{0}}}{\Omega} = 
   \goneint{\omega_{1} b_{1}}{\Omega}
 \end{equation}
 This process can be repeated by introducing a new higher-order fundamental
 solution $\omega_{2}$ such that
 \begin{equation}
-  \laplacian{\omega_{2}} = \omega_{1}
+  \laplacian{}{\omega_{2}} = \omega_{1}
 \end{equation}
 and continuing until convergence is reached.
 
@@ -385,9 +385,9 @@ This procedure is based on the recurrence relationships
 %\section{}
 
 \begin{alignat}{2}
-  b_{j+1} & = \laplacian{b_{j}} & \qquad \text{for }j &= 0,1,2,\ldots
+  b_{j+1} & = \laplacian{}{b_{j}} & \qquad \text{for }j &= 0,1,2,\ldots
   \label{eq:recurr} \\
-  \laplacian{\omega_{j+1}} & = \omega_{j} & \qquad \text{for }j &= 0,1,2,\ldots
+  \laplacian{}{\omega_{j+1}} & = \omega_{j} & \qquad \text{for }j &= 0,1,2,\ldots
   \label{eq:higher}
 \end{alignat}
 Using these recurrence relationships gives the boundary integral formulation
@@ -424,12 +424,12 @@ The MRM can be extended to other equations by allowing the forcing function
 $b_{0}$ to be a general function such that $b_{0} = \fnof{b_{0}}{\vect{x},u,t}$.
 The MRM will be restricted to cases where the recurrence relationships -
 \eqnrefs{eq:recurr}{eq:higher} - can be employed.  \citeasnoun{brebbia:1989}
-have applied the MRM to the Helmholtz equation $\laplacian{u} + \kappa^{2} u =
+have applied the MRM to the Helmholtz equation $\laplacian{}{u} + \kappa^{2} u =
 0$ where $b_{0} = -\kappa^{2} u$ and the recurrence relationship defined by
 \eqnref{eq:recurr} becomes simply 
 \index{Multiple reciprocity method!Helmholtz equation}
 \begin{equation}
-  u_{j+1} = \laplacian{u_{j}} = - \kappa^{2j} u
+  u_{j+1} = \laplacian{}{u_{j}} = - \kappa^{2j} u
 \end{equation}
 In this case the boundary integral formulation will be
 \begin{equation}
@@ -454,7 +454,7 @@ will be illustrated for this choice.
 
 Consider a second-order PDE which can be expressed in the form
 \begin{equation}
-  \laplacian{u} = b
+  \laplacian{}{u} = b
 \label{eq:drmbase}
 \end{equation}
 The forcing function $b$ can be completely general. If $b = \fnof{b}{\vect{x}}$
@@ -491,14 +491,14 @@ single particular solution, which may be difficult to determine, the DR-BEM
 employs a series of particular solutions $\hat{u}_{j}$ which are related to
 the approximating functions $f_{j}$ as shown in \eqnref{eq:harmonic}.
 \begin{equation}
-  \laplacian{\hat{u}_{j}} = f_{j} \quad j = 1, \ldots ,M
+  \laplacian{}{\hat{u}_{j}} = f_{j} \quad j = 1, \ldots ,M
 \label{eq:harmonic}
 \end{equation}
 By substituting \eqnrefs{eq:globalapprox}{eq:harmonic} into \eqnref{eq:drmbase}
 the forcing function $b$ is approximated by a weighted summation of
 particular solutions to the Poisson equation.
 \begin{equation}
-  \laplacian{u} = \dsuml{j=1}{M} \alpha_{j} \laplacian{\hat{u}_{j}}
+  \laplacian{}{u} = \dsuml{j=1}{M} \alpha_{j} \laplacian{}{\hat{u}_{j}}
 \label{eq:rhsapprox}
 \end{equation}
 The DR-BEM essentially constructs an approximate particular solution to the
@@ -632,7 +632,7 @@ Choosing $f$ to be a function of only one variable simplifies the process
 of determining $\hat{u}$ and $\hat{q}$.  For two-dimensional problems, if $f
 = \fnof{f}{r}$ then the relationship
 \begin{equation}
-  \laplacian{\hat{u}} = \fnof{f}{r} 
+  \laplacian{}{\hat{u}} = \fnof{f}{r} 
 \end{equation}
 can be reduced to the ordinary differential equation
 \begin{equation}
@@ -737,7 +737,7 @@ If $b$ is a function of the dependent variable then $\vect{\alpha}$ will also
 be a function of the dependent variable. Consider, for example, the 
 linear second-order differential equation
 \begin{equation}
-  \laplacian{u} + u = 0
+  \laplacian{}{u} + u = 0
 \label{eq:helmtypeeqn}
 \end{equation}
 In this case $b = -u$ so $\vect{\alpha} = \matr{F}^{-1} \vect{-u}$.
@@ -774,7 +774,7 @@ The DR-BEM can also be applied for elliptic problems where
 $b$ involves derivatives of the dependent variable
 \cite{partridge:1992}. Consider, for example, the differential equation 
 \begin{equation}
-  \laplacian{u} + \delby{u}{x} = 0
+  \laplacian{}{u} + \delby{u}{x} = 0
 \end{equation}
 In this case applying DR-BEM, using the Laplace fundamental solution, gives
 \begin{equation}
@@ -860,7 +860,7 @@ the problem of singularities.
 The DR-BEM can be readily extended to equations with variable coefficients.
 Consider the variable coefficient Helmholtz equation
 \begin{equation}
-  \laplacian{u} + \fnof{\kappa}{\vect{x}} u = 0
+  \laplacian{}{u} + \fnof{\kappa}{\vect{x}} u = 0
 \end{equation}
 where $\kappa$ is a function of position - $\kappa = \fnof{\kappa}{x,y}$ in
 two dimensions.  If the DR-BEM is applied using the known fundamental solution
@@ -907,7 +907,7 @@ cases where $b$ involves a sum of terms due to the basic property
 \end{equation}
 Consider a two-dimensional equation of the form
 \begin{equation}
-  \laplacian{\fnof{u}{x,y}} = \fnof{k}{x,y} u + \fnof{l}{x,y} \delby{u}{x} +
+  \laplacian{}{\fnof{u}{x,y}} = \fnof{k}{x,y} u + \fnof{l}{x,y} \delby{u}{x} +
   \fnof{m}{x,y} \delby{u}{y} + \fnof{n}{x,y}
 \end{equation}
 Applying the DR-BEM to this equation gives a matrix system of the form
@@ -942,7 +942,7 @@ which a particular solution $\hat{u}$ can be determined.
 \citeasnoun{zhu:1993} has determined the particular solutions necessary for
 applying the DR-BEM based on the two-dimensional Helmholtz operator.
 \begin{equation}
-  \laplacian{u} + \kappa^2 u = \fnof{b}{x,y,u,t}
+  \laplacian{}{u} + \kappa^2 u = \fnof{b}{x,y,u,t}
 \end{equation}
 Radial functions have generally been used when applying the DR-BEM.  Along
 the lines of \citeasnoun{wrobel:1986}, \citename{zhu:1993} chose an
@@ -957,13 +957,13 @@ which can be achieved using a variation of coefficients method.
 \citeasnoun{partridge:1992} applied the DR-BEM to the transient convection
 diffusion equation
 \begin{equation}
-  D \laplacian{u} - v_{x} \delby{u}{x} - v_{y} \delby{u}{y} - k u = \delby{u}{t}
+  D \laplacian{}{u} - v_{x} \delby{u}{x} - v_{y} \delby{u}{y} - k u = \delby{u}{t}
 \end{equation}
 where the material parameters $D$, $v_{x}$, $v_{y}$ and $k$ are all assumed to
 be homogeneous.  They applied the DR-BEM based on the steady-state
 convection-diffusion operator
 \begin{equation}
-  D \laplacian{u} - v_{x} \delby{u}{x} - v_{y} \delby{u}{y} - k u = 0
+  D \laplacian{}{u} - v_{x} \delby{u}{x} - v_{y} \delby{u}{y} - k u = 0
 \label{eq:steadycd}
 \end{equation}
 which has a known fundamental solution.
@@ -971,7 +971,7 @@ which has a known fundamental solution.
 This analysis requires the determination of a particular solution $\hat{u}$
 which satisfies
 \begin{equation}
-  D \laplacian{\hat{u}} - v_{x} \delby{\hat{u}}{x} - v_{y} \delby{\hat{u}}{y}
+  D \laplacian{}{\hat{u}} - v_{x} \delby{\hat{u}}{x} - v_{y} \delby{\hat{u}}{y}
   - k \hat{u} = f
 \label{eq:cdpartic}
 \end{equation}

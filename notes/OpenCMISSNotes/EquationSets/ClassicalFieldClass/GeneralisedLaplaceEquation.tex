@@ -19,14 +19,14 @@ The generalised Laplace's equation on a domain $\Omega$ with boundary $\Gamma$
 in \OpenCMISS can be stated as
 \begin{equation}
   \boxed{
-    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}\gradient{}{\fnof{u}{\vect{x}}}}}=0
+    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x}}}}}=0
   }
   \label{eqn:generalisedLaplaceequation}
 \end{equation}
-where $\vect{x}\in\Omega$, $\fnof{u}{\vect{x}}$ is the potential and 
-$\fnof{\tensor{\sigma}}{\vect{x}}$ is the (positive definite) conductivity
+where $\vectr{x}\in\Omega$, $\fnof{u}{\vectr{x}}$ is the potential and 
+$\fnof{\tensor{\sigma}}{\vectr{x}}$ is the (positive definite) conductivity
 tensor throughout the domain. Note that $\tensor{\sigma}=\tensor{I}$ gives 
-the standard form of Laplace's equation \ie $\laplacian{u}=0$.
+the standard form of Laplace's equation \ie $\laplacian{}{u}=0$.
 
 To complete the description of the boundary value problem,
 the governing \eqnref{eqn:generalisedLaplaceequation} is supplemented
@@ -34,18 +34,18 @@ by suitable boundary conditions on the domain boundary~$\Gamma$.
 These boundary conditions can either be of Dirichlet type and specify a
 solution value, $d$ \ie
 \begin{equation}
-  \fnof{u}{\vect{x}} = \fnof{d}{\vect{x}} \quad \vect{x}\in\Gamma_{D},
+  \fnof{u}{\vectr{x}} = \fnof{d}{\vectr{x}} \quad \vectr{x}\in\Gamma_{D},
   \label{eqn:LaplaceDirichletBC} 
 \end{equation}
 and/or of Neumann type and specify the solution gradient in normal direction,
 $e$ \ie
 \begin{equation}
-  \fnof{q}{\vect{x},t} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vect{x}}
-      \gradient{}{\fnof{u}{\vect{x},t}}}}{\normal} =
-  \fnof{e}{\vect{x},t} \quad \vect{x}\in\Gamma_{N},  
+  \fnof{q}{\vectr{x},t} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+      \gradient{}{\fnof{u}{\vectr{x},t}}}}{\normal} =
+  \fnof{e}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},  
   \label{eqn:LaplaceNeumannBC} 
 \end{equation}
-where $\fnof{q}{\vect{x},t}$ is the flux in the normal direction, $\normal$ is the normal
+where $\fnof{q}{\vectr{x},t}$ is the flux in the normal direction, $\normal$ is the normal
 vector to the boudary and $\Gamma = \Gamma_D \cup \Gamma_N$.
 
 \subsubsection{Weak formulation:}
@@ -62,13 +62,13 @@ Applying Green's theorem to \eqnref{eqn:Laplaceweakform} gives
 \begin{equation}
  \gint{\Omega}{}{\divergence{}{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}w}{\Omega}
  = -\gint{\Omega}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\gradient{}{w}}}{\Omega}
-   +\gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\vect{n}}w}{\Gamma}
+   +\gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\vectr{n}}w}{\Gamma}
  = 0
 \end{equation}
 or
 \begin{equation}
   \gint{\Omega}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\gradient{}{w}}}{\Omega}
-  = \gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\vect{n}w}}{\Gamma} \,,
+  = \gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{\phi}}}{\vectr{n}w}}{\Gamma} \,,
   \label{eqn:Laplaceweightedresidualform}
 \end{equation}
 
@@ -91,7 +91,7 @@ and
 Now, Equations (\ref{eqn:Laplaceweakformfactor1}) and (\ref{eqn:Laplaceweakformfactor2})
 represent vectors that are covariant and therefore we must convert Equation
 (\ref{eqn:Laplaceweakformfactor1}) to a contravariant vector by 
-multiplying by the contravariant metric tensor (from $\vect{i}$ to $\vect{x}$ 
+multiplying by the contravariant metric tensor (from $\vectr{i}$ to $\vectr{x}$ 
 coordinates; see Sections~\ref{sec:metric tensors} and \ref{sec:coordinate systems})
 so that we can take the dot product. The final tensorial form for the left
 hand integral is
@@ -126,23 +126,23 @@ $\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$,
 The next step is to approximate the dependent variable, $u$, using basis
 functions. To simplify this for different types of basis functions an
 \emph{interpolation notation} is adopted. This interpolation is such that
-$\gbfn{n}{\beta}{\vect{\xi}}$ are the appropriate basis functions for the
+$\gbfn{n}{\beta}{\vectr{\xi}}$ are the appropriate basis functions for the
 type of element (\eg \bicubicherm, Hermite-sector, \etc) and dimension of 
-the problem (one, two or \threedal). For example if $\vect{\xi}=\bbrac{\xi}$ 
+the problem (one, two or \threedal). For example if $\vectr{\xi}=\bbrac{\xi}$ 
 and the element is a cubic Hermite element
-(\secref{sec:Hermitianbasisfunctions}) then $\gbfn{n}{\beta}{\vect{\xi}}$ 
+(\secref{sec:Hermitianbasisfunctions}) then $\gbfn{n}{\beta}{\vectr{\xi}}$ 
 are the cubic Hermite basis functions where the local node number $n$ ranges 
 from $1$ to $2$ and the derivative $\beta$ ranges from $0$ to $1$. If,
-however, $\vect{\xi}=\bbrac{\xione,\xitwo}$ and the element is a \bicubicherm 
+however, $\vectr{\xi}=\bbrac{\xione,\xitwo}$ and the element is a \bicubicherm 
 element then $n$ ranges from $1$ to $4$, $\beta$ ranges from $0$ to $3$ and
-$\gbfn{n}{\beta}{\vect{\xi}}$ is the appropriate basis function for the nodal
+$\gbfn{n}{\beta}{\vectr{\xi}}$ is the appropriate basis function for the nodal
 variable $\nodedof{u}{n}{\beta}$. The nodal variables are defined as
 follows: $\nodedof{u}{n}{0}=\nodept{u}{n}$,
 $\nodedof{u}{n}{1}=\delby{\nodept{u}{n}}{s_{1}}$,
 $\nodedof{u}{n}{2}=\delby{\nodept{u}{n}}{s_{2}}$,
 $\nodedof{u}{n}{3}=\deltwoby{\nodept{u}{n}}{s_{1}}{s_{2}}$,
 \etc Hence for the \bicubicherm element the interpolation function
-$\gbfn{2}{3}{\vect{\xi}}$ multiplies the nodal variable
+$\gbfn{2}{3}{\vectr{\xi}}$ multiplies the nodal variable
 $\nodedof{u}{2}{3}=\deltwoby{u^{2}}{s_{1}}{s_{2}}$ and thus the
 interpolation function is $\chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}$.  The
 scale factors for the Hermite interpolation are handled by the introduction of
@@ -152,17 +152,17 @@ $\gsf{n}{0}=1$, $\gsf{n}{1}=\nsftwo{n}{1}$, $\gsf{n}{2}=
 \etc For Lagrangian basis functions the interpolation scale factors are all
 one. The general form of the interpolation notation for $u$ is then
 \begin{equation}
-  \fnof{u}{\vect{\xi}}=\gbfn{n}{\beta}{\vect{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}
+  \fnof{u}{\vectr{\xi}}=\gbfn{n}{\beta}{\vectr{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}
   \label{eqn:uinterpolation}
 \end{equation}
 
 We can also interpolate the other variables in a similar manner \ie
 \begin{equation}
   \begin{split}
-    \fnof{q}{\vect{\xi}} &= \gbfn{o}{\gamma}{\vect{\xi}\nodedof{q}{o}{\gamma}}
+    \fnof{q}{\vectr{\xi}} &= \gbfn{o}{\gamma}{\vectr{\xi}\nodedof{q}{o}{\gamma}}
     \gsf{o}{\gamma} \\
-    \fnof{\tensor{\sigma}}{\vect{\xi}}
-    &=\gbfn{p}{\delta}{\vect{\xi}}\nodedof{\tensor{\sigma}}{p}{\delta}\gsf{p}{\delta} \\
+    \fnof{\tensor{\sigma}}{\vectr{\xi}}
+    &=\gbfn{p}{\delta}{\vectr{\xi}}\nodedof{\tensor{\sigma}}{p}{\delta}\gsf{p}{\delta} \\
   \end{split}
 \end{equation}
 where $\nodedof{q}{o}{\gamma}$ and $\nodedof{\tensor{\sigma}}{p}{\delta}$ are the
@@ -171,24 +171,24 @@ nodal degrees-of-freedom for the flux variable and conductivity tensor.
 Using a Galerkin finite element approach (where the weighting functions are
 chosento be the interpolating basis functions) we have 
 \begin{equation}
-  \fnof{w}{\vect{\xi}}=\gbfn{m}{\alpha}{\vect{\xi}}\gsf{m}{\alpha}
+  \fnof{w}{\vectr{\xi}}=\gbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}
 \end{equation}
 
 \subsubsection{Spatial integration:}
 
 When dealing with integrals a similar interpolation notation is adopted in
-that $d\vect{\xi}$ is the appropriate infinitesimal for the dimension of the
+that $d\vectr{\xi}$ is the appropriate infinitesimal for the dimension of the
 problem. The limits of the integral are also written in bold font and indicate
 the appropriate number of integrals for the dimension of the problem.  For
-example if $\vect{\xi}=\bbrac{\xione,\xitwo}$ then
-$\gint{\vect{0}}{\vect{1}}{x}
-{\vect{\xi}}=\giint{0}{1}{0}{1}{x}{\xione}{\xitwo}$,
-but if $\vect{\xi}=\bbrac{\xione,\xitwo,\xithree}$ then 
-$\gint{\vect{0}}{\vect{1}}{x}{\vect{\xi}}=
+example if $\vectr{\xi}=\bbrac{\xione,\xitwo}$ then
+$\gint{\vectr{0}}{\vectr{1}}{x}
+{\vectr{\xi}}=\giint{0}{1}{0}{1}{x}{\xione}{\xitwo}$,
+but if $\vectr{\xi}=\bbrac{\xione,\xitwo,\xithree}$ then 
+$\gint{\vectr{0}}{\vectr{1}}{x}{\vectr{\xi}}=
 \dintl{0}{1}\!\dintl{0}{1}\!\dintl{0}{1}\,x\,d\xione d\xitwo d\xithree$.
 
-In order to integrate in $\vect{\xi}$ coordinates we must convert the spatial
-derivatives to derivatives with respect to $\vect{\xi}$. Using the tensor
+In order to integrate in $\vectr{\xi}$ coordinates we must convert the spatial
+derivatives to derivatives with respect to $\vectr{\xi}$. Using the tensor
 transformation equations for a covariant vector we have
 \begin{equation}  
   \covarderiv{u}{i}=\delby{\xi^{s}}{x^{i}}\covarderiv{u}{s}=
@@ -201,61 +201,61 @@ and
 \end{equation}
 
 As we only know $\tilde{\tensor{\sigma}}$, the conductivity in the 
-$\vect{\nu}$ (fibre) coordinate system rather than $\tensor{\sigma}$, the
-conductivity in the $\vect{x}$ (geometric) coordinate system, we must transform the mixed
-tensor ${\tilde{\sigma}}^{a}_{.b}$ from $\vect{\nu}$ to $\vect{x}$ coordinates. However, as the
-fibre coordinate system is defined in terms of $\vect{\xi}$ coordinates we
-first transform the conductivity tensor from $\vect{\nu}$ to $\vect{\xi}$
+$\vectr{\nu}$ (fibre) coordinate system rather than $\tensor{\sigma}$, the
+conductivity in the $\vectr{x}$ (geometric) coordinate system, we must transform the mixed
+tensor ${\tilde{\sigma}}^{a}_{.b}$ from $\vectr{\nu}$ to $\vectr{x}$ coordinates. However, as the
+fibre coordinate system is defined in terms of $\vectr{\xi}$ coordinates we
+first transform the conductivity tensor from $\vectr{\nu}$ to $\vectr{\xi}$
 coordinates \ie
 \begin{equation}
-  \fnof{\sigma^{d}_{.e}}{\vect{\xi}}=\delby{\xi^{d}}{\nu^{a}}\delby{\nu^{b}}{\xi^{e}}
-  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vect{\xi}}
+  \fnof{\sigma^{d}_{.e}}{\vectr{\xi}}=\delby{\xi^{d}}{\nu^{a}}\delby{\nu^{b}}{\xi^{e}}
+  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}
 \end{equation}
 with $.b$ indicating that $b$ is the ``second'' index (\secref{subsec:summation notation}),
-and then transform the conductivity from $\vect{\xi}$ coordinates to
-$\vect{x}$ coordinates \ie
+and then transform the conductivity from $\vectr{\xi}$ coordinates to
+$\vectr{x}$ coordinates \ie
 \begin{equation}
   \begin{split}
-    \fnof{\sigma^{i}_{.j}}{\vect{\xi}} &=
+    \fnof{\sigma^{i}_{.j}}{\vectr{\xi}} &=
     \delby{x^{i}}{\xi^{d}}\delby{\xi^{e}}{x^{j}}
-    \fnof{{\sigma}^{d}_{.e}}{\vect{\xi}} \\
+    \fnof{{\sigma}^{d}_{.e}}{\vectr{\xi}} \\
     &= \delby{x^{i}}{\xi^{d}}\delby{\xi^{e}}{x^{j}}\delby{\xi^{d}} 
-    {\nu^{a}}\delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vect{\xi}}
+    {\nu^{a}}\delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}
   \end{split}
 \end{equation}
 where $\tilde{\tensor{\sigma}}$ is interpolated in the normal way \ie
 \begin{equation}
-  \fnof{\tilde{\tensor{\sigma}}}{\vect{\xi}}
-  =\gbfn{p}{\delta}{\vect{\xi}}\nodedof{\tilde{\tensor{\sigma}}}{p}{\delta}
+  \fnof{\tilde{\tensor{\sigma}}}{\vectr{\xi}}
+  =\gbfn{p}{\delta}{\vectr{\xi}}\nodedof{\tilde{\tensor{\sigma}}}{p}{\delta}
   \gsf{p}{\delta}
 \end{equation}
 
 Using an interpolated variables yields
 \begin{multline}
-  \dsum_{e=1}^{E}\dintl{\vect{0}}{\vect{1}}G^{jk}\delby{x^{i}}{\xi^{d}}
+  \dsum_{e=1}^{E}\dintl{\vectr{0}}{\vectr{1}}G^{jk}\delby{x^{i}}{\xi^{d}}
     \delby{\xi^{e}}{x^{j}}\delby{\xi^{d}}{\nu^{a}}
-    \delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vect{\xi}}\delby{\xi^{s}}{x^{i}} \\
-    \delby{\pbrac{\gbfn{n}{\beta}{\vect{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}}}{\xi^{s}}
-    \delby{\xi^{r}}{x^{k}}\delby{\pbrac{\gbfn{m}{\alpha}{\vect{\xi}}\gsf{m}{\alpha}}}{\xi^{r}}
-    \abs{\fnof{\matr{J}}{\vect{\xi}}}d\vect{\xi} \\ 
-  = \dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{\gbfn{o}{\gamma}{\vect{\xi}}\nodedof{q}{o}{\gamma}
-    \gsf{o}{\gamma}\gbfn{m}{\alpha}{\vect{\xi}}\gsf{m}{\alpha}}{\Gamma}
+    \delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}\delby{\xi^{s}}{x^{i}} \\
+    \delby{\pbrac{\gbfn{n}{\beta}{\vectr{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}}}{\xi^{s}}
+    \delby{\xi^{r}}{x^{k}}\delby{\pbrac{\gbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}}}{\xi^{r}}
+    \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi} \\ 
+  = \dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{\gbfn{o}{\gamma}{\vectr{\xi}}\nodedof{q}{o}{\gamma}
+    \gsf{o}{\gamma}\gbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}}{\Gamma}
 \end{multline}
-where $\fnof{\matr{J}}{\vect{\xi}}$ is the \emph{Jacobian} of the
-transformation from the integration $\vect{x}$ to $\vect{\xi}$ coordinates.
+where $\fnof{\matr{J}}{\vectr{\xi}}$ is the \emph{Jacobian} of the
+transformation from the integration $\vectr{x}$ to $\vectr{\xi}$ coordinates.
 
 Taking the fixed nodal degrees-of-freedom and scale factors outside the integral we have
 \begin{multline}
   \dsum_{e=1}^{E}\nodedof{u}{n}{\beta}\gsf{m}{\alpha}\gsf{n}{\beta}
-  \dintl{\vect{0}}{\vect{1}}G^{jk}\delby{x^{i}}{\xi^{d}}
+  \dintl{\vectr{0}}{\vectr{1}}G^{jk}\delby{x^{i}}{\xi^{d}}
   \delby{\xi^{e}}{x^{j}}\delby{\xi^{d}}{\nu^{a}}
-  \delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vect{\xi}} \\
+  \delby{\nu^{b}}{\xi^{e}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}} \\
   \delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
-  \delby{\gbfn{m}{\alpha}{\vect{\xi}}}{\xi^{s}}
-  \delby{\gbfn{n}{\beta}{\vect{\xi}}}{\xi^{r}}
-  \abs{\fnof{\matr{J}}{\vect{\xi}}}d\vect{\xi} \\
+  \delby{\gbfn{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}
+  \delby{\gbfn{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+  \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi} \\
   = \dsum_{f=1}^{F}\nodedof{q}{o}{\gamma}\gsf{m}{\alpha}\gsf{o}{\gamma}
-  \gint{\Gamma_{f}}{}{\gbfn{o}{\gamma}{\vect{\xi}}\gbfn{m}{\alpha}{\vect{\xi}}}{\Gamma}
+  \gint{\Gamma_{f}}{}{\gbfn{o}{\gamma}{\vectr{\xi}}\gbfn{m}{\alpha}{\vectr{\xi}}}{\Gamma}
   \label{eqn:elementalfemlhs1}
 \end{multline}
 
@@ -265,44 +265,44 @@ This is an equation of the form of
 \end{equation}
 where
 \begin{equation}
-  \vect{f}=\matr{N}\vect{q}
+  \vectr{f}=\matr{N}\vectr{q}
 \end{equation}
 
 The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
 \begin{equation}
   K^{\alpha\beta}_{mn}=\gsf{m}{\alpha}\gsf{m}{\beta}
-  \gint{\vect{0}}{\vect{1}}{\delby{\gbfn{m}{\alpha}{\vect{\xi}}}{\xi^{r}}
-    \delby{\gbfn{n}{\beta}{\vect{\xi}}}{\xi^{s}}\fnof{\gamma^{rs}}{\vect{\xi}}
-    \abs{\fnof{\matr{J}}{\vect{\xi}}}}{\vect{\xi}}
+  \gint{\vectr{0}}{\vectr{1}}{\delby{\gbfn{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}
+    \delby{\gbfn{n}{\beta}{\vectr{\xi}}}{\xi^{s}}\fnof{\gamma^{rs}}{\vectr{\xi}}
+    \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
   \label{eqn:elementalfemlhs2}
 \end{equation}
 where
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vect{\xi}}=G^{jk}\delby{x^{i}}{\xi^{d}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=G^{jk}\delby{x^{i}}{\xi^{d}}
   \delby{\xi^{e}}{x^{j}}\delby{\xi^{d}}{\nu^{a}}\delby{\nu^{b}}{\xi^{e}}
-  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vect{\xi}}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
   \label{eqn:diffusiongammadefinition1}
 \end{equation}
 
 Note that for Laplace's equation with no conductivity or fibre fields we have
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vect{\xi}}=G^{ik}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=G^{ik}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
   \label{eqn:diffusiongammadefinition2}
 \end{equation}
 and that for rectangular-Cartesian coordinates systems
 $G^{ik}=\contrakronecker{i}{k}$ and thus $i=k$. This now gives
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vect{\xi}}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{i}}=g^{rs}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{i}}=g^{rs}
   \label{eqn:diffusiongammadefinition3}
 \end{equation}
-where $g^{rs}$ is the \emph{contravariant metric tensor} from $\vect{x}$ to
-$\vect{\xi}$ coordinates. It may thus be helpful to think about $\gamma^{rs}$
+where $g^{rs}$ is the \emph{contravariant metric tensor} from $\vectr{x}$ to
+$\vectr{\xi}$ coordinates. It may thus be helpful to think about $\gamma^{rs}$
 as a scaled/transformed contravariant metric tensor.
 
 The right hand side flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 \begin{equation}
   N^{\alpha\gamma}_{mo} = \gsf{m}{\alpha}\gsf{o}{\gamma}
-  \gint{\Gamma_{f}}{}{\gbfn{m}{\alpha}{\vect{\xi}}\gbfn{o}{\gamma}{\vect{\xi}}}{\Gamma}
+  \gint{\Gamma_{f}}{}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}}{\Gamma}
 \end{equation}
 
 % \subsubsection{Coded OpenCMISS formulation:}
@@ -312,8 +312,8 @@ The right hand side flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 %   \boxed{
 %   \dsum_{e=1}^{E}\nodedof{\phi}{\alpha}{u}\gsf{(\alpha)}{(u)} \gsf{(\beta)}{(v)}
 %   \dsum_{i=1}^{n}
-%   \left(\delby{\gbfn{\alpha}{u}{\vect{\xi}}}{\xi^{r}}
-%   \delby{\gbfn{\beta}{v}{\vect{\xi}}}{\xi^{s}}\gamma^{rs}\abs{\fnof{\matr{J}}{\vect{\xi}}}
+%   \left(\delby{\gbfn{\alpha}{u}{\vectr{\xi}}}{\xi^{r}}
+%   \delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi^{s}}\gamma^{rs}\abs{\fnof{\matr{J}}{\vectr{\xi}}}
 %   \right)(x_i)g_i
 %   }
 %   \label{eqn:Laplaceweightedresidualtensorform in OpenCMISS}

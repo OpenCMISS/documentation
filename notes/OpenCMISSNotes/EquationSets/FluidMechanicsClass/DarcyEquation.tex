@@ -7,11 +7,11 @@ and body forces, Darcy's equation is:
   \vectr{v} = -\frac{\tensor{K}}{\mu} \gradient{}{p}
 \end{equation}
 
-$\vectr{v}$ is the relative fluid flow vector, given by $n (\vectr{v}^f - \vectr{v}^s)$ where
-$n$ is the porosity, and $\vectr{v}^f$ and $\vectr{v}^s$ are the
-Eulerian fluid and solid component velocities.
-$\tensor{K}$ is the permeability tensor, $\mu$ is viscosity
-and $p$ is the fluid pressure.
+$\vectr{v}$ is the relative fluid flow vector, given by
+$n \pbrac{\vectr{v}^f - \vectr{v}^s}$ where $n$ is the porosity, and
+$\vectr{v}^f$ and $\vectr{v}^s$ are the Eulerian fluid and solid component
+velocities.  $\tensor{K}$ is the permeability tensor, $\mu$ is viscosity and
+$p$ is the fluid pressure.
 
 Conservation of mass also gives:
 
@@ -22,11 +22,11 @@ Conservation of mass also gives:
 The weighted residual forms of these equations over a region $\Omega$ with surface $\Gamma$ are:
 
 \begin{equation}
-  \gint{\Omega}{}{\left(\vectr{v} \vectr{w} + \frac{\tensor{K}}{\mu} \gradient{}{p} \vectr{w}\right)}{\Omega} = 0
+  \gint{\Omega}{}{\pbrac{\vectr{v} \vectr{w} + \frac{\tensor{K}}{\mu}\gradient{}{p}\vectr{w}}}{\Omega} = 0
 \end{equation}
 
 \begin{equation}
-  \gint{\Omega}{}{q \divergence{v}}{\Omega} = 0
+  \gint{\Omega}{}{q \divergence{}{v}}{\Omega} = 0
 \end{equation}
 
 Where $\vectr{w}$ is the weighting function for the flow and $q$ is the weighting function
@@ -35,7 +35,7 @@ Applying Green's theorem to the pressure term to give the weak form of the equat
 $\mu \inverse{\tensor{K}}$:
 
 \begin{equation}
-  \gint{\Omega}{}{\left(\mu \inverse{\tensor{K}} \vectr{v} \vectr{w} - p \gradient{}{\vectr{w}}\right)}{\Omega}  + %
+  \gint{\Omega}{}{\pbrac{\mu \inverse{\tensor{K}} \vectr{v} \vectr{w} - p \gradient{}{\vectr{w}}}}{\Omega}  + %
   \gint{\Gamma}{}{p \vectr{n} \vectr{w}}{\Gamma}= 0
 \end{equation}
 
@@ -50,13 +50,13 @@ equations developed by \cite{masud:2002}. This adds stabilising terms, so that t
 of the implemented equations is:
 
 \begin{equation}
-  \gint{\Omega}{}{\left(\mu \inverse{\tensor{K}} \vectr{v} \vectr{w} - p \gradient{}{\vectr{w}} - %
-  \frac{1}{2} \left( \gradient{}{p} \vectr{w} + \mu \inverse{\tensor{K}} \vectr{v} \vectr{w} \right) \right)}{\Omega} + %
+  \gint{\Omega}{}{\pbrac{\mu \inverse{\tensor{K}} \vectr{v} \vectr{w} - p \gradient{}{\vectr{w}} - %
+  \frac{1}{2} \pbrac{\gradient{}{p} \vectr{w} + \mu \inverse{\tensor{K}} \vectr{v} \vectr{w}}}}{\Omega} + %
   \gint{\Gamma}{}{p \vectr{n} \vectr{w}}{\Gamma}= 0
 \end{equation}
 
 \begin{equation}
-  \gint{\Omega}{}{q \divergence{\vectr{v}} + %
-  \frac{1}{2} \left( \dotprod{\gradient{}{q}}{\vectr{v}} + %
-  \frac{\tensor{K}}{\mu} \dotprod{\gradient{}{p}}{\gradient{}{q}} \right)}{\Omega}= 0
+  \gint{\Omega}{}{q \divergence{}{\vectr{v}} + %
+  \frac{1}{2} \pbrac{\dotprod{\gradient{}{q}}{\vectr{v}} + %
+  \frac{\tensor{K}}{\mu} \dotprod{\gradient{}{p}}{\gradient{}{q}}}}{\Omega}= 0
 \end{equation}

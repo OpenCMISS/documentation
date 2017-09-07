@@ -87,7 +87,13 @@ LATEX_PSQ	=	latex \\batchmode \
 			'\def\inputfigure\#1{\psfig{figure=\#1.ps}}' \
 			\\input
 
-$(MAINFILE).dvi	:	$(MAINFILE).tex $(TEX_SRC) $(BIBS) $(EPS_SRC) $(FIG_SRC) $(PLOT_SRC)
+OPENCMISS_MACROS =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_macros.tex
+OPENCMISS_ABBREV =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_abbreviations.tex
+OPENCMISS_ACRONY =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_acronyms.tex
+OPENCMISS_DEFNS  =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_defns.tex
+
+$(MAINFILE).dvi	:	$(MAINFILE).tex $(TEX_SRC) $(BIBS) $(EPS_SRC) $(FIG_SRC) $(PLOT_SRC) \
+			$(OPENCMISS_MACROS)  $(OPENCMISS_ABBREV) $(OPENCMISS_ACRONY) $(OPENCMISS_DEFNS)
 	@if test -d figs ; \
 		then $(MAKE) -f ${OPENCMISS_ROOT}/documentation/notes/latex/Latex_Makefile figsmake ; \
 		else : ; \

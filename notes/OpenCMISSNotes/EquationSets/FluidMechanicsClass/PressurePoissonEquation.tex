@@ -2,13 +2,13 @@
 
 The Navier-Stokes equation can be written as
 \begin{equation}
-  \rho\pbrac{\delby{\vectr{u}}{t}-\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}=-\grad{p}+\mu\divergence{}{\gradient{}{\vectr{u}}}
+  \rho\pbrac{\delby{\vectr{u}}{t}-\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}=-\gradient{}{p}+\mu\divergence{}{\gradient{}{\vectr{u}}}
   \label{eqn:NavierStokes}
 \end{equation}
 
-Rearranging for $\grad{p}$ gives
+Rearranging for $\gradient{}{p}$ gives
 \begin{equation}
-  \grad{p}=\mu\divergence{}{\gradient{}{\vectr{u}}}-\rho\pbrac{\delby{\vectr{u}}{t}-\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}  
+  \gradient{}{p}=\mu\divergence{}{\gradient{}{\vectr{u}}}-\rho\pbrac{\delby{\vectr{u}}{t}-\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}  
 \end{equation}
 or
 \begin{equation}
@@ -95,16 +95,16 @@ or
 Now, using a standard Galerkin Finite Element approach
 \eqnref{eqn:PressurePoissonFinalWeakForm} can be written in the following form
  \begin{equation}
-   \matr{K}_{p}\vectr{p}=\vectr{s}
+   \matr{K}_{p}\vect{p}=\vect{s}
   \label{eqn:PressurePoissonFinalWeakForm}
 \end{equation}
-where $\matr{K}_{p}$ is the pressure stiffness matrix, $\vectr{p}$ the vector of unknown
-pressure DOFs and $\vectr{s}$ the source vector. 
+where $\matr{K}_{p}$ is the pressure stiffness matrix, $\vect{p}$ the vector of unknown
+pressure DOFs and $\vect{s}$ the source vector. 
 
 Note that you can write
-$\vectr{s}$ in terms of $\matr{K}_{u}$ the velocity
-stiffness matrix, $\matr{M}$ the mass matrix, $\vectr{u}$ the vector of know
-velocity DOFs and $\fnof{\vectr{h}}{\vectr{u}}$ the nonlinear Navier-Stokes
+$\vect{s}$ in terms of $\matr{K}_{u}$ the velocity
+stiffness matrix, $\matr{M}$ the mass matrix, $\vect{u}$ the vector of know
+velocity DOFs and $\fnof{\vect{h}}{\vect{u}}$ the nonlinear Navier-Stokes
 vector.
 
 Note that $\matr{K}_{P}$ is most likely singular and therefore you will need to

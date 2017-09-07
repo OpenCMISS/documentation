@@ -2,9 +2,14 @@
 
 \subsubsection{Governing equations:}
 
-Stokes flow is a type of fluid flow where advective inertial forces are small compared with viscous forces. The Reynolds number is low, i.e. $\textit{Re}\ll 1$. For this type of flow, the inertial forces are assumed to be negligible and the Navier-Stokes equations simplify to give the Stokes equations. In the common case of an incompressible Newtonian fluid, the linear Stokes equations (three-dimensional, quasi-static) can be written as:
+Stokes flow is a type of fluid flow where advective inertial forces are small
+compared with viscous forces. The Reynolds number is low, i.e.
+$\textit{Re}\ll 1$. For this type of flow, the inertial forces are assumed to
+be negligible and the Navier-Stokes equations simplify to give the Stokes
+equations. In the common case of an incompressible Newtonian fluid, the linear
+Stokes equations (three-dimensional, quasi-static) can be written as:
 \begin{equation}
-    \vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}=\vectr{0}
+    \vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}=\vectr{0}
   \label{eqn:Stokesequation1}
 \end{equation}
 accompanied by the conservation of mass
@@ -12,47 +17,63 @@ accompanied by the conservation of mass
   \divergence{}{\vectr{u}}=0
   \label{eqn:Stokesmasequation}
 \end{equation}
-where $\vectr{u}(\vectr{x},t)=(u_1,u_2,u_3)^T$ is the velocity vector depending on spatial coordinates $\vectr{x}=(x_1,x_2,x_3)^T$ and the time $t$, $p$ is the scalar pressure, $\vectr{f}$ an applied body force, and the material parameter $\mu$ is fluid viscosity, respectively. Whereas \eqnref{eqn:Stokesequation1} has been formulated in Eulerian form, moving domain approaches often require the ALE modification taking an additional term into account, depending on the fluid density $\rho$ and a correction velocity $\vectr{u}^*$ which yields to:
+where $\vectr{u}(\vectr{x},t)=\transpose{\sqbrac{u_1,u_2,u_3}}$ is the
+velocity vector depending on spatial coordinates $\vectr{x}=\transpose{\sqbrac{x_1,x_2,x_3}}$
+and the time $t$, $p$ is the scalar pressure, $\vectr{f}$ an applied body
+force, and the material parameter $\mu$ is fluid viscosity,
+respectively. Whereas \eqnref{eqn:Stokesequation1} has been formulated in
+Eulerian form, moving domain approaches often require the ALE modification
+taking an additional term into account, depending on the fluid density $\rho$
+and a correction velocity $\vectr{u}^*$ which yields to:
 \begin{equation}
-    \vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}=-\rho(\vectr{u}^*\cdot\grad)\vectr{u}
+  \vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}=-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}
   \label{eqn:StokesequationALE}
 \end{equation}
-Although by definition a Stokes flow has no dependence on time (other than through changing boundary conditions), \eqnref{eqn:StokesequationALE} can be modified easily towards a dynamic Stokes flow:
+Although by definition a Stokes flow has no dependence on time (other than
+through changing boundary conditions), \eqnref{eqn:StokesequationALE} can be
+modified easily towards a dynamic Stokes flow:
 \begin{equation}
-    \rho\delby{\vectr{u}}{t}-\rho(\vectr{u}^*\cdot\grad)\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{\vectr{u}}
+    \rho\delby{\vectr{u}}{t}-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
   \label{eqn:Stokesequation2}
 \end{equation}
-The following section, however, describes the reordered quasi-static formulation of  \eqnref{eqn:StokesequationALE}:
+The following section, however, describes the reordered quasi-static
+formulation of \eqnref{eqn:StokesequationALE}:
 \begin{equation}
-    -\gradient{}{p}+\mu\laplacian{\vectr{u}}-\rho(\vectr{u}^*\cdot\grad)\vectr{u}=\vectr{f}
+    -\gradient{}{p}+\mu\laplacian{}{\vectr{u}}-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}=\vectr{f}
   \label{eqn:StokesequationALE2}
 \end{equation}
 
 \subsubsection{Weak formulation:}
 
-The corresponding weak form of the equation system consisting of \eqnref{eqn:Stokesequation1} and \eqnref{eqn:Stokesmasequation} can be written as:
+The corresponding weak form of the equation system consisting of
+\eqnref{eqn:Stokesequation1} and \eqnref{eqn:Stokesmasequation} can be written
+as:
 \begin{equation}
   -\gint{\Omega}{}{\gradient{}{p}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\mu\laplacian{\vectr{u}}\vectr{v}}{\Omega}
-  -\gint{\Omega}{}{\rho(\vectr{u}^*\cdot\grad)\vectr{u}\vectr{v} }{\Omega}
-  +\gint{\Omega}{}{\grad\cdot \vectr{u}q}{\Omega}=
+  +\gint{\Omega}{}{\mu\laplacian{}{\vectr{u}}\vectr{v}}{\Omega}
+  -\gint{\Omega}{}{\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}\vectr{v} }{\Omega}
+  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}=
   \gint{\Omega}{}{\vectr{f}\vectr{v}}{\Omega}  
   \label{eqn:Stokesweakform}
 \end{equation}
 Applying Green's theorm to \eqnref{eqn:Stokesweakform} gives
 \begin{equation}
   \begin{split}
-  \gint{\Omega}{}{\grad\cdot\vectr{v}p}{\Omega}
-  -\gint{\Omega}{}{\mu\grad\vectr{v}:\grad\vectr{u}}{\Omega}
-  -\gint{\Omega}{}{\rho(\vectr{u}^*\cdot\grad)\vectr{u}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\grad\cdot \vectr{u}q}{\Omega}=\\
+  \gint{\Omega}{}{\divergence{}{\vectr{v}}p}{\Omega}
+  -\gint{\Omega}{}{\mu\doubledotprod{\gradient{}{\vectr{v}}}{\gradient{\vectr{u}}}}{\Omega}
+  -\gint{\Omega}{}{\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}\vectr{v}}{\Omega}
+  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}=\\
   \gint{\Omega}{}{\vectr{f}\vectr{v}}{\Omega}  
   +\gint{\Gamma}{}{\dotprod{p}{\vectr{n}\vectr{v}}}{\Gamma}
-  -\gint{\Gamma}{}{\dotprod{\vectr{v}\grad\vectr{u}}{\vectr{n}}}{\Gamma}
+  -\gint{\Gamma}{}{\dotprod{\vectr{v}\gradient{}{\vectr{u}}}{\vectr{n}}}{\Gamma}
   \end{split}
   \label{eqn:Stokesweakform2}
 \end{equation}
-The left-hand side of \eqnref{eqn:Stokesweakform2} represents the unknown velocity and pressure field on $\Omega$ whereas the right-hand side represents Neumann boundary conditions on $\Gamma$ and source terms (here in form of volume or body forces) on $\Omega$. For now we want to neglect the right-hand side and continue with the homogeneous form of \eqnref{eqn:Stokesweakform2}
+The left-hand side of \eqnref{eqn:Stokesweakform2} represents the unknown
+velocity and pressure field on $\Omega$ whereas the right-hand side represents
+Neumann boundary conditions on $\Gamma$ and source terms (here in form of
+volume or body forces) on $\Omega$. For now we want to neglect the right-hand
+side and continue with the homogeneous form of \eqnref{eqn:Stokesweakform2}
 \begin{equation}
   \begin{split}
   \gint{\Omega}{}{\grad\cdot\vectr{v}p}{\Omega}
