@@ -19,7 +19,6 @@ This document doesn't cover the process of satisfying these prerequisites, it is
 The goal here is to get a working copy of source code, tests, and documentation onto your PC so that you can begin development.  To make this happen you will need to fork a :term:`prime OpenCMISS repository`, make a clone onto your PC, and set up the Git remotes.  In :numref:`fig_devSetup_githubRepos` you can see a pictorial representation of what we are aiming to achieve.
 
 .. _fig_devSetup_githubRepos:
-
 .. figure:: images/OpenCMISSProcesses-GitHubRepos.png
    :align: center
    :alt: Setup of Git repositories
@@ -84,6 +83,11 @@ You now need to setup a read-only remote connection to the prime repository.  Gi
    git config remote.prime.pushurl "you really didn't want to do that"
 
 You have now added a new remote named **prime** and set origin as the default fetch and push location to point at repositories under your control on GitHub.  Here **prime** is a reference to the main definitive repository where releases are made from for the OpenCMISS project.  You have also set the **prime** repository as read-only by setting an invalid push url.
+
+Developer Scripts
+=================
+
+In order to help setup your development environment an optional login script can be used on Linux systems. This script will simplify setting various environment variables, paths etc. and will setup development tools like compilers and debuggers etc. Documentation on the Linux developer scripts can be found :doc:`here <dev_login_scripts>`.
 
 Finally
 =======
