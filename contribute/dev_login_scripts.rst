@@ -42,7 +42,7 @@ To invoke it add the following commands to your ~/.bashrc or ~/.profile script.
    export OPENCMISS_ROOT=<path-to-where-you-put-your-OpenCMISS-files>
    if [ -r "$OPENCMISS_ROOT/utilities/scripts/opencmiss_developer.sh" ]; then
        . $OPENCMISS_ROOT/utilities/scripts/opencmiss_developer.sh
-       fi
+   fi
 
 For csh/tcsh users
 ------------------
@@ -118,7 +118,7 @@ This environment variable specifies the MPI library to use with OpenCMISS. Avail
 OPENCMISS_MPI_BUILD_TYPE
 ------------------------
 
-This environment variable specifies the build type of MPI to be setup. Available options are debug, release and relwithdebinfo. Defaults to release.
+This environment variable specifies the build type of MPI to be setup. Available options are debug, release, relwithdebinfo and minsizerel. Defaults to release.
 
 OPENCMISS_INSTRMENTATION
 ------------------------
