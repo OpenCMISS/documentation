@@ -113,7 +113,7 @@ This environment variable specifies the build type of OpenCMISS to be setup. Ava
 OPENCMISS_MPI
 -------------
 
-This environment variable specifies the MPI library to use with OpenCMISS. Available options are none, mpich, mpich2, openmpi, mvapich2 or intel. Defaults to none.
+This environment variable specifies the MPI library to use with OpenCMISS. Available options are none, mpich, mpich2, openmpi, mvapich2, msmpi (Windows only) or intel. Defaults to none.
 
 OPENCMISS_MPI_BUILD_TYPE
 ------------------------
