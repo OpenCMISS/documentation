@@ -1,3 +1,5 @@
+
+=========================
 Contributing to OpenCMISS
 =========================
 
@@ -7,6 +9,7 @@ We at OpenCMISS want to make contributing as easy as possible while maintaining 
 of quality.
 
 Prior to contributing code:
+
    - Subscribe to the OpenCMISS developer mailing list.
    - Watch the appropriate repo that you wish to develop (e.g. iron, zinc, examples, documentation, or website) in your GitHub account.
 

@@ -95,7 +95,7 @@ Fortran 90
 * All features.
 
 Fortran 95
-^^^^^^^^^
+^^^^^^^^^^
 
 * All features.
 
