@@ -557,11 +557,11 @@ generate $L$ equations.
 
 We can assemble these equations into the matrix system
 \begin{equation}
-  \matr{A}\vect{u} = \matr{B}\vect{q}
+  \matr{A}\vectr{u} = \matr{B}\vectr{q}
   \label{eqn:ms}
 \end{equation}
-(compare to the global finite element equations $\matr{K}\vect{u} = \vect{f}$)
-where the vectors $\vect{u}$ and $\vect{q}$ are the vectors of nodal values of
+(compare to the global finite element equations $\matr{K}\vectr{u} = \vectr{f}$)
+where the vectors $\vectr{u}$ and $\vectr{q}$ are the vectors of nodal values of
 $u$ and $q$.  Note that the \nth{ij} component of the $\matr{A}$ matrix in general
 is \emph{not} $a_{ij}^{\alpha}$ and similarly for $\matr{B}$.
 
@@ -570,10 +570,10 @@ a value of $u$ or $q$ (or some combination of these) to have a well-defined
 problem.  We therefore have $L$ equations (the number of nodes) and have $L$
 unknowns to find.  We need to rearrange the above system of equations to get
 \begin{equation}
-  \matr{C}\vect{x} = \vect{f}
+  \matr{C}\vectr{x} = \vectr{f}
   \label{eqn:ms2}
 \end{equation}
-where $\vect{x}$ is the vector of unknowns.  This can be solved using standard
+where $\vectr{x}$ is the vector of unknowns.  This can be solved using standard
 linear equation solvers, although specialist solvers are required if the
 problem is large (refer \todo{todo : Section ???}).
 
@@ -593,9 +593,9 @@ diagonally dominant (at least for Laplace's equation). The matrix $\matr{C}$ is
 therefore also well conditioned and \eqnref{eqn:ms2} can be solved reasonably
 easily.
 
-The vector $\vect{x}$ contains the unknown values of $\vect{u}$ and $\vect{q}$ on
-the boundary.  Once this has been found, all boundary values of $\vect{u}$ and
-$\vect{q}$ are known.  If a solution is then required at a point inside the
+The vector $\vectr{x}$ contains the unknown values of $\vectr{u}$ and $\vectr{q}$ on
+the boundary.  Once this has been found, all boundary values of $\vectr{u}$ and
+$\vectr{q}$ are known.  If a solution is then required at a point inside the
 domain, then we can use \eqnref{eqn:isopar3} with the singular point $P$ located
 at the required solution point \ie
 \begin{equation}
@@ -657,10 +657,10 @@ where $\pbrac{x_{i},y_{i}}$ are the coordinates of node $i$.
 
 To find $\dby{r_{i}}{n}$  we note that  
 \begin{equation}
-  \dby{r_{i}}{n} = \dotprod{\grad r_{i}}{\hat{\vect{n}}}
+  \dby{r_{i}}{n} = \dotprod{\grad r_{i}}{\hat{\vectr{n}}}
   \label{eqn:dridn}
 \end{equation}
-where $\hat{\vect{n}}$ is a unit outward normal vector.  To find a unit normal
+where $\hat{\vectr{n}}$ is a unit outward normal vector.  To find a unit normal
 vector, we simply rotate the tangent vector (given by
 $\pbrac{\fnof{x'}{\xi},\fnof{y'}{\xi}}$ ) by $\dfrac{\pi}{2}$ in the
 appropriate direction and then normalise.
@@ -761,17 +761,17 @@ The fundamental solution is
     \pbrac{\fnof{z}{\xione,\xitwo}-z_{i}}^{2}}
 \end{alignat*}
 where $\pbrac{x_{i},y_{i},z_{i}}$ are the coordinates of node $i$.  As before
-we use $\dby{r_{i}}{n} = \dotprod{\grad r_{i}}{\hat{\vect{n}}}$ to find
-$\dby{r_{i}}{n}$.  The unit outward normal $\hat{\vect{n}}$ is found by
-normalising the cross product of the two tangent vectors $\vect{t}_{1} =
+we use $\dby{r_{i}}{n} = \dotprod{\grad r_{i}}{\hat{\vectr{n}}}$ to find
+$\dby{r_{i}}{n}$.  The unit outward normal $\hat{\vectr{n}}$ is found by
+normalising the cross product of the two tangent vectors $\vectr{t}_{1} =
 \pbrac{\delby{x}{\xi_{1}}, \delby{y}{\xi_{1}},\delby{z}{\xi_{1}}}$ and
-$\vect{t}_{2} = \pbrac{\delby{x}{\xi_{2}},\delby{y}{\xi_{2}},\delby{z}{\xi_{2}}
+$\vectr{t}_{2} = \pbrac{\delby{x}{\xi_{2}},\delby{y}{\xi_{2}},\delby{z}{\xi_{2}}
 }$ (it relies on the user of any BEM code to ensure that the elements
 have been defined with a consistent set of element coordinates $\xione$ and
 $\xitwo$).
 
-The Jacobian $\fnof{J}{\xione,\xitwo}$ is given by \lnorm{}{\vect{t}_{1} \times
-\vect{t}_{2}} (where $\vect{t}_{1}$ and $\vect{t}_{2}$ are the two tangent
+The Jacobian $\fnof{J}{\xione,\xitwo}$ is given by \lnorm{}{\vectr{t}_{1} \times
+\vectr{t}_{2}} (where $\vectr{t}_{1}$ and $\vectr{t}_{2}$ are the two tangent
 vectors).  Note that this is different for the determinant in a
 two-dimensional finite element code - in that case we are dealing with a
 two-dimensional surface in two-dimensional space, whereas here we have a
@@ -811,7 +811,7 @@ considered as advantageous or disadvantageous to a particular scheme.
   hence an entire domain solution is not required.
 \item \textbf{FEM}: Reactions on the boundary typically less accurate than the 
   dependent variables. \\
-  \textbf{BEM}: Both $\vect{u}$ and $\vect{q}$ of the same accuracy.
+  \textbf{BEM}: Both $\vectr{u}$ and $\vectr{q}$ of the same accuracy.
 \item \textbf{FEM}: Differential Equation is being approximated. \\
   \textbf{BEM}: Only boundary conditions are being approximated. \\ 
   \textbf{Comment}: The use of the Green-Gauss theorem and a fundamental 
@@ -952,7 +952,7 @@ integral and MRM, DRM, Monte-carlo integration.
 \section{Solution of Matrix Equations}
 
 The standard BEM approach results in a system of equations of the form
- $\matr{C}\vect{x} = \vect{f}$ (refer \eqref{eqn:ms2}).  As mentioned above the
+ $\matr{C}\vectr{x} = \vectr{f}$ (refer \eqref{eqn:ms2}).  As mentioned above the
 matrix $\matr{C}$ is generally well conditioned, fully populated and
 nonsymmetric.  For small problems, direct solution methods, based on LU
 factorisations, can be used.  As the problem size increases, the time taken for
@@ -1001,39 +1001,39 @@ Consider the region shown in \Figref{fig:region}, where
 \end{figure}
 The BEM matrices for $\Omega_{B}$ can be written as
 \begin{equation}
-  \matr{A}\vect{u} = \matr{B}\vect{q}
+  \matr{A}\vectr{u} = \matr{B}\vectr{q}
   \label{eqn:BEM matrices}
 \end{equation}
-where $\vect{u}$ is a vector of the nodal values of $u$ and $\vect{q}$ is a vector
+where $\vectr{u}$ is a vector of the nodal values of $u$ and $\vectr{q}$ is a vector
 of the nodal values of $\delby{u}{n}$
 
 The FEM matrices for $\Omega_{F}$ can be written as
 \begin{equation}
-  \matr{K}\vect{u} = \vect{f}
+  \matr{K}\vectr{u} = \vectr{f}
   \label{eqn:FEM matrices}
 \end{equation}
-where $\matr{K}$ is the stiffness matrix and $\vect{f}$ is the load vector.  
+where $\matr{K}$ is the stiffness matrix and $\vectr{f}$ is the load vector.  
 
 To apply method $1$ (\ie treating BEM as an equivalent FEM region) we get (from
 \eqnref{eqn:BEM matrices})
 \begin{equation}
-  \matr{B}^{-1}\matr{A}\vect{u}=\vect{q}
+  \matr{B}^{-1}\matr{A}\vectr{u}=\vectr{q}
   \label{eqn:appliedmethod}
 \end{equation}
 
-If we recall what the elements of $\vect{f}$ in \eqnref{eqn:FEM matrices}
-contained, then we can convert $\vect{q}$ in \eqnref{eqn:appliedmethod} to an
-equivalent load vector by weighting the nodal values of $\vect{q}$ by the
+If we recall what the elements of $\vectr{f}$ in \eqnref{eqn:FEM matrices}
+contained, then we can convert $\vectr{q}$ in \eqnref{eqn:appliedmethod} to an
+equivalent load vector by weighting the nodal values of $\vectr{q}$ by the
 appropriate basis functions, producing a matrix $\matr{M}$ \ie 
-$\vect{f}_{B}=\matr{M}\vect{q}$
+$\vectr{f}_{B}=\matr{M}\vectr{q}$
 
 Therefore \eqnref{eqn:appliedmethod} becomes 
 \begin{equation*}
-  \matr{M}\pbrac{\matr{B}^{-1}\matr{A}}\vect{u}=  \matr{M}\vect{q} = \vect{f}_{B}
+  \matr{M}\pbrac{\matr{B}^{-1}\matr{A}}\vectr{u}=  \matr{M}\vectr{q} = \vectr{f}_{B}
 \end{equation*}
 \ie 
 \begin{alignat*}{2}
-    && \matr{K}_{B}\vect{u} &= \vect{f}_{B} \\
+    && \matr{K}_{B}\vectr{u} &= \vectr{f}_{B} \\
     \text{where} && \matr{K}_{B} &= \matr{M}\matr{B}^{-1}\matr{A}
 \end{alignat*}
 an equivalent stiffness matrix obtain from BEM.
@@ -1050,19 +1050,19 @@ FEM-type system for the entire region $\Omega_{B}$.
   matrix - of doubtful quality. (\eg replace $\matr{K}_{B}$ by 
   $\dfrac{1}{2}\pbrac{ \matr{K}_{B}-\matr{K}_{B}^{T}}$ - 
   often yields inaccurate results).
-\item On $\Gamma_{I}$ nodal values of $\vect{u}$ and $\vect{q}$ are unknown.  One
+\item On $\Gamma_{I}$ nodal values of $\vectr{u}$ and $\vectr{q}$ are unknown.  One
   must make use of the following
   \begin{alignat*}{2}
-    \vect{u}_{B}^{I} &= \vect{u}_{F}^{I} && \text{($\vect{u}$ is continuous)}
-    \\ \delby{\vect{u}_{B}^{I}}{\vect{n}_{B}} &= -\delby{\vect{u}_{F}^{I}}
-    {\vect{n}_{F}} && \text{($\vect{q}$ is continuous, but $\Gamma_{B} =
+    \vectr{u}_{B}^{I} &= \vectr{u}_{F}^{I} && \text{($\vectr{u}$ is continuous)}
+    \\ \delby{\vectr{u}_{B}^{I}}{\vectr{n}_{B}} &= -\delby{\vectr{u}_{F}^{I}}
+    {\vectr{n}_{F}} && \text{($\vectr{q}$ is continuous, but $\Gamma_{B} =
       -\Gamma_{F}$)}
   \end{alignat*}
 \end{enumerate}
 
 To apply method $2$ (\ie to treat the FEM region as an equivalent BEM region)
-we firstly note that, as before, $\vect{f}=\matr{M}\vect{q}$. Applying this to
-\bref{eqn:FEM matrices} yields $\matr{K}\vect{u}=\matr{M}\vect{q}$ an
+we firstly note that, as before, $\vectr{f}=\matr{M}\vectr{q}$. Applying this to
+\bref{eqn:FEM matrices} yields $\matr{K}\vectr{u}=\matr{M}\vectr{q}$ an
 equivalent BEM system.  This can be assembled into the existing BEM system
 (using compatability conditions) and use existing BEM matrix solvers.
 
