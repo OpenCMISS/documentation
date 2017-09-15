@@ -18,7 +18,6 @@
 %   Chris Bradley, 6 August 2014, Differential geometry support.
 %   Chris Bradley, 4 July 2017, tidyup for outdated packages.
 
-
 %
 % Necessary packages
 %
@@ -33,14 +32,13 @@
 \usepackage{xspace}
 \usepackage{url}
 
-
+%
 % URL commands
 %
 \newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
 \newcommand{\directory} {\begingroup \urlstyle{sf}\Url}
 \newcommand{\file}      {\begingroup \urlstyle{sf}\Url}
 \renewcommand{\url}     {\begingroup \urlstyle{sf}\Url}
-
 
 %
 % Software and systmes
@@ -63,10 +61,12 @@
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 %\newcommand{\newion}[3]{\newcommand{#1}{\ion{#2}{#3}}} % new ion
 %\newcommand{\newunit}[2]{\newcommand{#1}{\units{#2}}} % new unit
+
 %
 % New enironments
 %
 \newenvironment{code}[0]{\small\begin{alltt}}{\end{alltt}\normalsize}
+
 %
 % Figures etc.
 %
@@ -213,7 +213,6 @@
 \newcommand{\ion}[2]{\ensuremath{\mathrm{{#1}^{#2}}}\xspace} % ion
 \newcommand{\ionCa}{\ion{Ca}{2+}} % calcium ion
 
-
 \newcommand{\ionCl}{\ion{Cl}{-}} % chloride ion
 \newcommand{\ionH}{\ion{H}{+}} % hydrogen ion
 \newcommand{\ionK}{\ion{K}{+}} % potassium ion
@@ -221,6 +220,7 @@
 \newcommand{\ionNa}{\ion{Na}{+}} % sodium ion
 \newcommand{\ionphosphate}{\ion{PO_{4}}{3-}} % phosphate ion
 \newcommand{\ionbicarbonate}{\ion{HCO_{3}}{-}} % bicarbonate ion
+
 %
 % Units
 %
@@ -231,7 +231,6 @@
 \newcommand{\nrunit}[3]{\ensuremath{ %
     #1\text{--}#2~#3 %
     }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
-
 
 \newcommand{\mg}{\units{mg}} % milligrams
 \newcommand{\g}{\units{g}} % grams
@@ -279,7 +278,6 @@
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
 \newcommand{\unitseparator}{\thickspace}
-
 
 \newcommand{\Hpm}{\units{\H\unitseparator\m^{-1}}} % Henrys/metre
 \newcommand{\kNpm}{\units{\kN\unitseparator\m^{-1}}} % kilo-Newtons/metre
@@ -378,7 +376,6 @@
 \newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
 \newcommand{\pbracl}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
 \newcommand{\transpose}[1]{\ensuremath{{#1}^{T}}} % transpose
-%
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
 \newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % Braces { bracket
 \newcommand{\conjugate}[1]{\ensuremath{ %
@@ -577,6 +574,9 @@
 \newcommand{\dby}[2]{\ensuremath{ %
     \dfrac{ d #1}{d #2} %
     }} % e.g. \dby{u}{v} => d u / d v
+\newcommand{\dbyat}[3]{\ensuremath{ %
+    \evalat{\dfrac{ d #1}{d #2}}{#3} %
+    }} % e.g. \dbyat{u}{v}{a} => d u / d v | _{a}
 \newcommand{\Dby}[2]{\ensuremath{ %
     \dfrac{ D #1}{D #2} %
     }} % e.g. \Dby{u}{v} => D u / D v i.e. the full derivative
@@ -660,10 +660,10 @@
   \delntwoby{#1}{}{#3}{#4}{#5}{#6}\pbrac{#2} %
   } % horizontal delntwoby e.g. \hdelntwoby{3}{u}{x}{1}{y}{2} => 
     % del^3/del x^1 del y^2 (u)
+
 %
 % Differential Geometry
 %
-
 \newcommand{\manifold}[1]{\ensuremath{ %
   \mathfrak{#1} %
   }} % manifold symbol

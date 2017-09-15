@@ -80,8 +80,9 @@ set label 1 "$a$" at a,0.1,0 centre
 set label 2 "$b$" at b,0.1,0 centre
 set label 3 "$2\pi$" at L,0.1,0 centre
 set yrange [-2.1:2.1]
-set key at 6.0,-0.75,0
-set title "Function interpolation"
+#set key at 6.0,-0.75,0
+set key outside
+#set title "Function interpolation"
 set arrow 1 from a,-2.1 to a,2.1 nohead linetype 10
 set arrow 2 from b,-2.1 to b,2.1 nohead linetype 10
 plot[0:L] uanal(x) title "Analytic", ual(x) title "Arc length", umin(x) title "Minimum", uhm(x) title "Harmonic mean", ugm(x) title "Geometric mean", uam(x) title "Arithmetic mean", urms(x) title "Root Mean Square", umax(x) title "Maximum"

@@ -7,21 +7,15 @@
 
 We show here how finite elements can be used for fitting one, two or
 three-dimensional fields. The data could, for examples, be a series of
-temperature measurememts (as in figure ***) and there is a need to find the
-finite element nodal parameteres which, together with the chosen basis
-functions, 'fit' the data in a least-sqquares sense. This linear least-squares
-probelm is considerd in \secref{cha:linearfieldfitting} Another common
-requirement is to fit nodal geometric parameters describing a finite element
-surface in 3D space to a set of non-uniformly spced coordinates defining the
-original surface. Geometric fitting problems are nonlinear when the $\xi_i$
--coordinates found at the orthogonal projection of the data onto the finite
-element mesh are changed by the fitting process. A jucicious choice of
-coordinate system can sometimes avoid the problem and keep the geometric
-fitting linear, (this situation considers in **\secref{}. Full nonlinear
-geometric fitting is considered in \secref)
-
-
-
+temperature measurememts and there is a need to find the finite element nodal
+parameteres which, together with the chosen basis functions, 'fit' the data in
+a least-squares sense. Another common requirement is to fit nodal geometric
+parameters describing a finite element surface in 3D space to a set of
+non-uniformly spced coordinates defining the original surface. Geometric
+fitting problems are nonlinear when the $\xi_i$ -coordinates found at the
+orthogonal projection of the data onto the finite element mesh are changed by
+the fitting process. A jucicious choice of coordinate system can sometimes
+avoid the problem and keep the geometric fitting linear.
 
 \section{Linear field fitting}
 \label{sec:linearfieldfitting}
@@ -31,12 +25,12 @@ geometric fitting is considered in \secref)
 Consider the two-dimensional bilinear element shown in
 \figref{fig:linfieldfit}. The element surrounds a set of data points (shown by
 the x's in \figref{fig:linfieldfit}) which consist of measured values $u_{d}$,
-$d=1..D$, of some field (such as temperature) at specified locations $(x_{d},
-y_{d})$. The field fitting problem is to find the values of the finite element
-nodal parameters $u_{n}$, $n=1..4$, which minimise the sum of squared
-differences $(u(\xi_{d})-u_{d})^{2}$ between $u_{d}$ and the finite element
-field $u$ evaluated at the $(\xi_{1},\xi_{2})$ coordinates of data point $d$ 
-$(u(\xi_{d}))$.
+$d=1..D$, of some field (such as temperature) at specified locations
+$(x_{d}, y_{d})$. The field fitting problem is to find the values of the
+finite element nodal parameters $u_{n}$, $n=1..4$, which minimise the sum of
+squared differences $(u(\xi_{d})-u_{d})^{2}$ between $u_{d}$ and the finite
+element field $u$ evaluated at the $(\xi_{1},\xi_{2})$ coordinates of data
+point $d$ $(u(\xi_{d}))$.
 
 \begin{figure}[htpb] \centering
   \input{figs/datafitting/linfieldfit.pstex}
@@ -63,8 +57,8 @@ following relations for each data point:
   \label{eqn:datapointposfield}
 \end{equation}
 
-where $(x_{n}, y_{n}), n=1..4$, are the specified node positions and $(x_{d},
-y_{d}), d=1..D$, are the specified data point positions. To solve
+where $(x_{n}, y_{n}), n=1..4$, are the specified node positions and
+$(x_{d}, y_{d}), d=1..D$, are the specified data point positions. To solve
 \bref{eqn:datapointposfield} for $\xi_{1}^{d}$ and $\xi_{2}^{d}$ we rearrange
 \bref{eqn:datapointposfield} as
 
@@ -123,9 +117,7 @@ where there is an implied sum over $n=1..4$. Now the weighted sum of squared
 differences between this value and the measured value $u_{d}$ for $d=1..D$, is
 
 \begin{equation}
-%  {\cal F(\vect{u})}=\dsum_{d=1}^{D}w_{d}\left(\Psi_n(\xi_{d})u_{n}-
-%    u_{d}\right)^{2}
-  eqn here
+  {\cal F(\vect{u})}=\dsum_{d=1}^{D}w_{d}\left(\Psi_n(\xi_{d})u_{n}-u_{d}\right)^{2}
   \label{eqn:datasumsqs}
 \end{equation}
 where $w_{d}$ is the weight for data point $d$. For measured data a good
@@ -145,12 +137,10 @@ or
 \end{equation}
 Note that there is an implied sum over $n=1..4$ on the left hand side of
 \eqref{eqn:linfieldfiteqn}. For the single 4-node element shown in
-\figref{fig:linfieldfit}. 
-\todo{check capital?}
-\eqref{eqn:linfieldfiteqn} gives four unknowns
-$u_{1}, u_{2}, u_{3}$ and $u_{4}$. If more than one element is used in the
-fitting, the matrix and vector on the left and right hand sides, respectively,
-of \bref{eqn:linfieldfiteqn} are
+\figref{fig:linfieldfit}.  \todo{check capital?}  \eqref{eqn:linfieldfiteqn}
+gives four unknowns $u_{1}, u_{2}, u_{3}$ and $u_{4}$. If more than one
+element is used in the fitting, the matrix and vector on the left and right
+hand sides, respectively, of \bref{eqn:linfieldfiteqn} are
 \begin{equation}
   E_{mn}=\dsum_{d=1}^{D}w_{d}\Psi_m(\xi_{d})\Psi_n(\xi_{d}) \quad \mbox{and} 
   \quad f_{m}=\dsum_{d=1}^{D}w_{d}\Psi_m(\xi_{d})u_{d}
@@ -359,7 +349,7 @@ The fitted solution is shown in \figref{fig:fixedxifitafter}.
 \end{figure}
 It should be noted that after the fit the new data point projections have
 changed after the fit. Hence it general there maybe some benefit from
-reapplying the fitting procedure to the new data point projection i.e. 
+reapplying the fitting procedure to the new data point projection \ie 
 iterating on the fit.
 
 \section{Geometric fitting with Hermite elements}
@@ -371,7 +361,7 @@ iterating on the fit.
 One of the most commonly used basis functions in finite elements are Lagrange
 basis functions which preserve continuity of the geometric coordinates across
 element boundaries by interpolating nodal coordinates which are shared by
-adjacent elements i.e.  $C^{0}$ continuity.  The interpolation formula for
+adjacent elements \ie  $C^{0}$ continuity.  The interpolation formula for
 linear Lagrange interpolation is given in \eqref{eqn:linLagrangeinterp}.
 \begin{equation}
   \fnof{\vect{x}}{\xi}=\varphi_{1}(\xi)\vect{x}_{1}+\varphi_{2}(\xi)\vect{x}_{2}
@@ -387,15 +377,12 @@ one-dimensional linear Lagrange basis functions are given in
 
 Cubic Hermite functions, on the other hand, also preserve continuity of the
 derivative of these coordinates with respect to $\xi$ across element
-boundaries by defining additional nodal parameters \todo{here}
-%\dbyat{\vect{x}}{\xi}{n}
-i.e. $C^{1}$ continuity. The interpolation formula within an element is given
+boundaries by defining additional nodal parameters $\dbyat{\vect{x}}{\xi}{n}$
+\ie $C^{1}$ continuity. The interpolation formula within an element is given
 by
 \begin{equation}
-%  \fnof{\vect{x}}{\xi}=\Psi_{1}^{0}(\xi)\vect{x}_{1}+\Psi_{1}^{1}(\xi)\dbyat{\vect{x}}
-%  {\xi}{1}+\Psi_{2}^{0}(\xi)\vect{x}_{2}+\Psi_{2}^{1}(\xi)\dbyat{\vect{x}}
-%  {\xi}{2}
-  \todo{eqn}
+  \fnof{\vectr{x}}{\xi}=\Psi_{1}^{0}(\xi)\vectr{x}_{1}+\Psi_{1}^{1}(\xi)\dbyat{\vectr{x}}
+  {\xi}{1}+\Psi_{2}^{0}(\xi)\vectr{x}_{2}+\Psi_{2}^{1}(\xi)\dbyat{\vectr{x}}{\xi}{2}
   \label{eqn:cubHermxiinterp}
 \end{equation}
 where the four one-dimensional cubic Hermite basis functions are given in 
@@ -585,9 +572,9 @@ point.
   \label{fig:dataproj}
 \end{figure}
 
-For simplicity only two-dimensional fitting (i.e. cubic Hermite elements) will
+For simplicity only two-dimensional fitting (\ie cubic Hermite elements) will
 be covered in this section. Hence, given $\xi_{d}$, $\vect{z}$ can be found from
-interpolation i.e.
+interpolation \ie
 \begin{equation}
 %  \vf{z}{\xi_{d}}=\sum_{n=1,2}\left[\onevf{\Psi_{n}^{0}}{\xi_{d}}\vect{x}_{n}+
 %  \onevf{\Psi_{n}^{1}}{\xi_{d}}\brdby{\vect{x}}{s}_{n}.{\cal S}_{n}\right]
@@ -600,7 +587,7 @@ between the data point and its closest projection onto the current mesh:
 %  \onevf{f_{d}}{\xi_{d}}=\norm{\vf{z}{\xi_{d}}-\vect{z}_{d}}
 \end{equation} 
 
-For a given projection of the data points onto the mesh (i.e. $\xi_{d}$ is
+For a given projection of the data points onto the mesh (\ie $\xi_{d}$ is
 held constant) the objective function to be minimised in the fit is then formed
 as the sum-of-squares of the individual errors.
 \begin{equation}
@@ -690,9 +677,9 @@ function, called the Sobelov value, is defined as
 \end{equation}
 where $\Omega$ is the mesh domain.
 
-For the case of two-dimensional fitting (i.e. cubic Hermite elements) $j=0$
+For the case of two-dimensional fitting (\ie cubic Hermite elements) $j=0$
 (as there is no $\xi_{2}$ direction) and for the case of three-dimensional
-fitting (i.e. bicubic Hermite elements) $j=0..2$. Consider the case for $p=2$,
+fitting (\ie bicubic Hermite elements) $j=0..2$. Consider the case for $p=2$,
 and for 2D: $w_{0}=0, w_{1}=\alpha, w_{2}=\beta$, and for 3D: $w_{00}=0,
 w_{01}=w_{10}=\alpha, w_{20}=w_{02}= \beta, w_{11}=2\beta$. The Sobelov value
 now becomes
@@ -899,19 +886,19 @@ Solution of the non-linear problem given by \bref{eqn:nloproblem} will
 generally require the evaluation of objective gradient (or residual vector
 Jacobian) and the constraint Jacobian with respect to the optimisation (mesh)
 parameters. For simplicity in this section we will be concerned with
-two-dimensions only (i.e.  one-dimensional cubic Hermite elements). The
+two-dimensions only (\ie  one-dimensional cubic Hermite elements). The
 residual and constraint Jacobians will be given for the alternative
 formulation as this covers all cases. If the scale factors are found by
-iteration (i.e. the problem as described in \secref{sec:probform}) the
+iteration (\ie the problem as described in \secref{sec:probform}) the
 Jacobians with respect to the nodal scale factors can be ignored, as can the
 second constraint (\eqref{eqn:arclenconst}) which ensures average arc-length
 scale factors.  In this case there are three basic types of variable within an
 element: the nodal variables $\left(x_{j} \right)_{n}$, the derivative
-%variables $\brdelby{x_{j}}{s}_{n}$ and the nodal scale factors ${\cal S}_{n}$.
+variables $\brdelby{x_{j}}{s}_{n}$ and the nodal scale factors ${\cal S}_{n}$.
 The residual and constraint Jacobians are given below for each of these three
 variable types.
 
-%Consider the error vector for the data point $d$, $\vect{e}_{d}$, defined in
+Consider the error vector for the data point $d$, $\vect{e}_{d}$, defined in
 \bref{eqn:errorvec}, and its corresponding residual $f_{d}$, defined in
 \bref{eqn:dataresidvec}. The position of the projection of data point $d$
 within the element is given by \bref{eqn:datapointpos}.  Substituting
@@ -988,7 +975,7 @@ Note that when the integrand in these formula contains $n_{\ominus}$
 ($n_{\oplus}$) the $\xi$ variable is assumed to be taken over the previous
 (next) element.
 
-Similar results can be found for three-dimensions (i.e. bicubic Hermite
+Similar results can be found for three-dimensions (\ie bicubic Hermite
 elements).
 
 \subsubsection{Sobelov smoothing}
