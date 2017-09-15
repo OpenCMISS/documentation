@@ -80,9 +80,9 @@ set label 1 "$a$" at a,0.1,0 centre
 set label 2 "$b$" at b,0.1,0 centre
 set label 3 "$2\pi$" at L,0.1,0 centre
 
-set title "Second derivative interpolation"
+#set title "Second derivative interpolation"
 set yrange [-25:20]
-set key at 6.0,17.5,0
+set key at 6.3,18.5,0
 set arrow 1 from a,-25 to a,20 nohead linetype 10
 set arrow 2 from b,-25 to b,20 nohead linetype 10
 plot[0:L] d2uanal(x) title "Analytic", d2ual(x) title "Arc length", d2umin(x) title "Minimum", d2uhm(x) title "Harmonic mean", d2ugm(x) title "Geometric mean", d2uam(x) title "Arithmetic mean", d2urms(x) title "Root Mean Square", d2umax(x) title "Maximum"
