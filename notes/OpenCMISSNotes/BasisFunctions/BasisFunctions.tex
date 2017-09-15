@@ -236,6 +236,38 @@ interpolated geometric position vector within an element is given by
 where, for the vector field, each component is interpolated separately using
 the given basis functions.
 
+\subsubsection{Biquadratic Lagrange basis functions}
+
+The two-dimensional biquadratic Lagrange basis functions have nine local nodes
+with the basis functions given by
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{1}{\xitwo}=
+    4\pbrac{\xione-\frac12}\pbrac{\xione-1}\pbrac{\xitwo-\frac12}\pbrac{\xitwo-1} \\
+    \lbfn{2}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{1}{\xitwo}=
+    8\xione\pbrac{1-\xione}\pbrac{\xitwo-\frac12}\pbrac{\xitwo-1} \\
+    \lbfn{3}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{1}{\xitwo}=
+    4\xione\pbrac{\xione-\frac12}\pbrac{\xitwo-\frac12}\pbrac{\xitwo-1} \\
+    \lbfn{4}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{2}{\xitwo}=
+    8\pbrac{\xione-\frac12}\pbrac{\xione-1}\xitwo\pbrac{1-\xitwo} \\
+    \lbfn{5}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{2}{\xitwo}=
+    16\xione\pbrac{1-\xione}\xitwo\pbrac{1-\xitwo} \\
+    \lbfn{6}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{2}{\xitwo}=
+    8\xione\pbrac{\xione-\frac12}\xitwo\pbrac{1-\xitwo} \\
+    \lbfn{7}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{3}{\xitwo}=
+    4\pbrac{\xione-\frac12}\pbrac{\xione-1}\xitwo\pbrac{\xitwo-\frac12} \\
+    \lbfn{8}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{3}{\xitwo}=
+    8\xione\pbrac{1-\xione}\xitwo\pbrac{\xitwo-\frac12} \\
+    \lbfn{9}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{3}{\xitwo}=
+    4\xione\pbrac{\xione-\frac12}\xitwo\pbrac{\xitwo-\frac12}
+  \end{split}
+\end{equation}
+
+The four \twodal biquadratic Lagrange basis functions are shown in \figref{fig:biquadlagrangebfuns}.
+
+\pstexfigure{plots/BasisFunctions/biquadlagrangebfuns.pstex}{Biquadratic Lagrange basis functions.}
+            {Biquadratic Lagrange basis functions.}{fig:biquadlagrangebfuns}
+
 \subsection{Hermitian Basis Functions}
 \label{sec:Hermitianbasisfunctions}
 
@@ -1002,3 +1034,16 @@ The derivatives wrt to external coordinates are then given by
   \delthreeby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}}{L_{4}}-\delthreeby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}{L_{3}}
 \end{align}
 
+\epstexfigure{svgs/BasisFunctions/lineartriangle.eps_tex}{Linear Triangle
+  Definition.}{Linear triangle local node ordering.}{fig:lineartriangle}{0.5}
+\epstexfigure{svgs/BasisFunctions/quadratictriangle.eps_tex}{Quadratic Triangle
+  Definition.}{Quadratic triangle local node ordering.}{fig:quadratictriangle}{0.5}
+\epstexfigure{svgs/BasisFunctions/cubictriangle.eps_tex}{Cubic Triangle
+  Definition.}{Cubic triangle local node ordering.}{fig:cubictriangle}{0.5}
+
+\epstexfigure{svgs/BasisFunctions/lineartetrahedron.eps_tex}{Linear Tetrahedron
+  Definition.}{Linear tetrahedron local node ordering.}{fig:lineartetrahedron}{0.5}
+\epstexfigure{svgs/BasisFunctions/quadratictetrahedron.eps_tex}{Quadratic Tetrahedron
+  Definition.}{Qudadratic tetrahedron local node ordering.}{fig:quadratictetrahedron}{0.5}
+\epstexfigure{svgs/BasisFunctions/cubictetrahedron.eps_tex}{Cubic Tetrahedron
+  Definition.}{Cubic tetrahedron local node ordering.}{fig:cubictetrahedron}{0.5}
