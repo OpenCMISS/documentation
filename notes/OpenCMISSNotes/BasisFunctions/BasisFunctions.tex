@@ -318,7 +318,7 @@ practice.  Consider the two \cubicherm elements shown in
   cubic Hermite elements formed from three nodes.}{Two cubic Hermite elements
   (denoted by $\mathit{1}$ and $\mathit{2}$) formed from three nodes (shown as
   a $\bullet$ and denoted by $\mathbf{1}, \mathbf{2}$ and $\mathbf{3}$) and
-  having \arclens $s_{1}$ and $s_{2}$ respectively.}{fig:chelements}{0.35}
+  having \arclens $s_{1}$ and $s_{2}$ respectively.}{fig:chelements}{0.50}
 
 The derivative $\evalat{\dby{\vect{x}}{\xi}}{\alpha}$ defined at local node
 $\alpha$ is dependent upon the local element \xicoord and is therefore, in
@@ -658,14 +658,114 @@ or \emph{harmonic mean \arclen scaling}
   \label{eqn:harmonicmeanarclenscale}
 \end{equation}
 
-\pstexfigure{plots/BasisFunctions/funcscaling.pstex}{Function scaling.}
-{Function scaling.}{fig:functionscaling}{1.5}
+Other possible scalings include \emph{minimum \arclen scaling}
+\begin{equation}
+  \nsftwo{A}{l}=\min\pbrac{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}},
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}
+  \label{eqn:minimumarclenscale}
+\end{equation}
+and \emph{maximum \arclen scaling}
+\begin{equation}
+  \nsftwo{A}{l}=\max\pbrac{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}},
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}}
+  \label{eqn:maximumarclenscale}
+\end{equation}
+and \emph{Root Mean Squared (RMS) \arclen scaling}
+\begin{equation}
+  \nsftwo{A}{l}=\sqrt{\dfrac{\fnof{s_{l}}{\fnof{A_{\ominus}}{l}}^{2}+
+    \fnof{s_{l}}{\fnof{A_{\oplus}}{l}}^{2}}{2}}
+  \label{eqn:rmsarclenscale}
+\end{equation}
 
-\pstexfigure{plots/BasisFunctions/firstdscaling.pstex}{First derivative scaling.}
-{First derivative scaling.}{fig:firstdscaling}{1.5}
+To investigate the effect of different types of scaling consider the following
+test problem. Consider a fuction $\fnof{u}{x}=A\cos x$ in a \oned domain from
+$x\in\sqbrac{0,L}$. The domain is modelled with a mesh consisting of three
+cubic Hermite elements. The first of the four nodes is located at $x=0$, the
+second at $x=a$, the third at $x=b$ and the final node at $x=L$. The analytic
+first derivative would be $\fnof{u^{'}}{x}=-A\sin x$ and the analytic second
+derivative would be $\fnof{u^{''}}{x}=-A\cos x$. The nodal values and
+derivatives are set to their analytic values.
 
-\pstexfigure{plots/BasisFunctions/seconddscaling.pstex}{Second derivative scaling.}
-{Second derivative scaling.}{fig:seconddscaling}{1.5}
+As a specific example of this test problem let us first consider unevenly
+spaced elements with $L=2\pi$, $A=2$, $a=1.5$ and
+$b=3.5$ is given in \Figref{fig:functionscaling} for the function,
+\Figref{fig:firstdscaling} for the first derivative and
+\Figref{fig:seconddscaling} for the second derivative. Note that the first
+derivative is discontinuous at element boundaries for \arclen scaling.
+
+\pstexfigure{plots/BasisFunctions/funcscaling.pstex}{Function scaling for
+  uneven element spacing.}{Function scaling for uneven element
+  spacing.}{fig:functionscaling}{1.5}
+\pstexfigure{plots/BasisFunctions/firstdscaling.pstex}{First derivative
+  scaling for uneven element spacing.}{First derivative scaling for uneven
+  element spacing.}{fig:firstdscaling}{1.5}
+\pstexfigure{plots/BasisFunctions/seconddscaling.pstex}{Second derivative
+  scaling for uneven element spacing.}{Second derivative scaling for uneven
+  element spacing.}{fig:seconddscaling}{1.5}
+
+Now consider this problem with evenly spaced elements \ie with
+$a=\frac{2\pi}{3}$ and $b=\frac{4\pi}{3}$. The interpolations are given in
+\Figref{fig:functionscaling2} for the function, \Figref{fig:firstdscaling2}
+for the first derivative and \Figref{fig:seconddscaling2} for the second
+derivative. Note that the value of the function and the first derivative is
+continuous at element boundaries for all scaling types.
+
+\pstexfigure{plots/BasisFunctions/funcscaling2.pstex}{Function scaling for
+  even element spacing.}{Function scaling for even element
+  spacing.}{fig:functionscaling2}{1.5}
+\pstexfigure{plots/BasisFunctions/firstdscaling2.pstex}{First derivative
+  scaling for even element spacing.}{First derivative scaling for even element
+  spacing.}{fig:firstdscaling2}{1.5}
+\pstexfigure{plots/BasisFunctions/seconddscaling2.pstex}{Second derivative
+  scaling for even element spacing.}{Second derivative scaling for even
+  element spacing.}{fig:seconddscaling2}{1.5}
+
+Let us now consider the influence of scaling type on geometric variables which
+require normalised \arclen derivatives. For this problem let us consider
+modelling a circle with three cubic Hermite elements. The analytic description
+is given by $\fnof{x}{\theta}=A\cos\theta$ and $\fnof{y}{x}=A\sin\theta$. And
+the derivatives are given by $\delby{\fnof{x}{\theta}}{s}=-\sin\theta$,
+$\delby{\fnof{y}{\theta}}{s}=\cos\theta$,
+$\deltwosqby{\fnof{x}{\theta}}{s}=-\cos\theta$ and
+$\deltwosqby{\fnof{y}{\theta}}{s}=-\sin\theta$. The analytic value of the
+\arclen for an element is given by $s=A\Delta\theta$ where $\Delta\theta$ is
+the angle subtended by the element. 
+
+First let us consider unevenly spaced elements with $A=2$, $a=1.5$ and
+$b=3.5$. The nodal positions and derivatives are set to their analytic values
+and the element \arclens are set to their analytic value. The interpolation is
+given in \Figref{fig:geometricscaling} for the function,
+\Figref{fig:geomfirstdscaling} for the first derivative and
+\Figref{fig:geomseconddscaling} for the second derivative. Note that the first
+derivative is discontinuous at element boundaries for \arclen scaling.
+
+\pstexfigure{plots/BasisFunctions/geometricscaling.pstex}{Geometric circle
+  scaling for uneven element spacing.}{Geometric circle scaling for uneven
+  element spacing.}{fig:geometricscaling}{1.5}
+\pstexfigure{plots/BasisFunctions/geomfirstdscaling.pstex}{Geometric circle
+  first derivative scaling for uneven element spacing.}{Geometric circle first
+  derivative scaling for uneven element spacing.}{fig:geomfirstdscaling}{1.5}
+\pstexfigure{plots/BasisFunctions/geomseconddscaling.pstex}{Geometric circle
+  second derivative scaling for uneven element spacing.}{Geometric circle
+  second derivative scaling for uneven element
+  spacing.}{fig:geomseconddscaling}{1.5}
+
+Now consider this problem with evenly spaced elements \ie with
+$a=\frac{2\pi}{3}$ and $b=\frac{4\pi}{3}$. The interpolations are given in
+\Figref{fig:geometricscaling2} for the function, \Figref{fig:geomfirstdscaling2}
+for the first derivative and \Figref{fig:geomseconddscaling2} for the second
+derivative. Note that the value of the function and the first derivative is
+continuous at element boundaries for all scaling types.
+
+\pstexfigure{plots/BasisFunctions/geometricscaling2.pstex}{Geometric circle
+  scaling for even element spacing.}{Geometric circle scaling for even element
+  spacing.}{fig:geometricscaling2}{1.5}
+\pstexfigure{plots/BasisFunctions/geomfirstdscaling2.pstex}{Geometric circle
+  first derivative scaling for even element spacing.}{Geometric circle first
+  derivative scaling for even element spacing.}{fig:geomfirstdscaling2}{1.5}
+\pstexfigure{plots/BasisFunctions/geomseconddscaling2.pstex}{Geometric circle
+  second derivative scaling for even element spacing.}{Geometric circle second
+  derivative scaling for even element spacing.}{fig:geomseconddscaling2}{1.5}
 
 \subsubsection{Hermite-sector elements}
 \label{sec:hselements}
