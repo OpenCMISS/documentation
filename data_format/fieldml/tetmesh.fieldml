@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Fieldml version="0.5.0" xsi:noNamespaceSchemaLocation="http://www.fieldml.org/resources/xml/0.5/FieldML_0.5.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <Region name="/">
+  <Import xlink:href="http://www.fieldml.org/resources/xml/0.5/FieldML_Library_0.5.xml" region="library">
+   <ImportType localName="real.1d" remoteName="real.1d"/>
+   <ImportEvaluator localName="shape.unit.tetrahedron" remoteName="shape.unit.tetrahedron"/>
+   <ImportEvaluator localName="interpolator.3d.unit.trilinearSimplex" remoteName="interpolator.3d.unit.trilinearSimplex"/>
+   <ImportType localName="parameters.3d.unit.trilinearSimplex" remoteName="parameters.3d.unit.trilinearSimplex"/>
+   <ImportEvaluator localName="parameters.3d.unit.trilinearSimplex.argument" remoteName="parameters.3d.unit.trilinearSimplex.argument"/>
+   <ImportType localName="parameters.3d.unit.trilinearSimplex.component" remoteName="parameters.3d.unit.trilinearSimplex.component"/>
+   <ImportEvaluator localName="parameters.3d.unit.trilinearSimplex.component.argument" remoteName="parameters.3d.unit.trilinearSimplex.component.argument"/>
+   <ImportEvaluator localName="chart.3d.argument" remoteName="chart.3d.argument"/>
+   <ImportType localName="coordinates.rc.3d" remoteName="coordinates.rc.3d"/>
+   <ImportType localName="coordinates.rc.3d.component" remoteName="coordinates.rc.3d.component"/>
+   <ImportEvaluator localName="coordinates.rc.3d.component.argument" remoteName="coordinates.rc.3d.component.argument"/>
+  </Import>
+  <EnsembleType name="nodes">
+   <Members>
+    <MemberRange min="1" max="38"/>
+   </Members>
+  </EnsembleType>
+  <EnsembleType name="node_derivatives">
+   <Members>
+    <MemberRange min="1" max="8"/>
+   </Members>
+  </EnsembleType>
+  <ConstantEvaluator name="node_derivatives.value" value="1" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d_ds1" value="2" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d_ds2" value="3" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d2_ds1ds2" value="4" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d_ds3" value="5" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d2_ds1ds3" value="6" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d2_ds2ds3" value="7" valueType="node_derivatives"/>
+  <ConstantEvaluator name="node_derivatives.d3_ds1ds2ds3" value="8" valueType="node_derivatives"/>
+  <EnsembleType name="node_versions">
+   <Members>
+    <MemberRange min="1" max="1"/>
+   </Members>
+  </EnsembleType>
+  <ConstantEvaluator name="node_versions.1" value="1" valueType="node_versions"/>
+  <ArgumentEvaluator name="nodes.argument" valueType="nodes"/>
+  <ArgumentEvaluator name="node_derivatives.argument" valueType="node_derivatives"/>
+  <ArgumentEvaluator name="node_versions.argument" valueType="node_versions"/>
+  <ArgumentEvaluator name="nodes.parameters" valueType="real.1d">
+   <Arguments>
+    <Argument name="nodes.argument"/>
+    <Argument name="node_derivatives.argument"/>
+    <Argument name="node_versions.argument"/>
+   </Arguments>
+  </ArgumentEvaluator>
+  <MeshType name="mesh3d">
+   <Elements name="elements">
+    <Members>
+     <MemberRange min="1" max="102"/>
+    </Members>
+   </Elements>
+   <Chart name="xi">
+    <Components name="mesh3d.xi.components" count="3"/>
+   </Chart>
+   <Shapes evaluator="shape.unit.tetrahedron"/>
+  </MeshType>
+  <ArgumentEvaluator name="mesh3d.argument" valueType="mesh3d"/>
+  <EnsembleType name="mesh3d.eftIndexes">
+   <Members>
+    <MemberRange min="1" max="1"/>
+   </Members>
+  </EnsembleType>
+  <ArgumentEvaluator name="mesh3d.eftIndexes.argument" valueType="mesh3d.eftIndexes"/>
+  <EnsembleType name="mesh3d.eft1.nodes">
+   <Members>
+    <MemberRange min="1" max="4"/>
+   </Members>
+  </EnsembleType>
+  <ArgumentEvaluator name="mesh3d.eft1.nodes.argument" valueType="mesh3d.eft1.nodes"/>
+  <ArgumentEvaluator name="mesh3d.eft1.nodeparameters.argument" valueType="real.1d">
+   <Arguments>
+    <Argument name="node_derivatives.argument"/>
+    <Argument name="node_versions.argument"/>
+    <Argument name="mesh3d.eft1.nodes.argument"/>
+   </Arguments>
+  </ArgumentEvaluator>
+  <ConstantEvaluator name="mesh3d.eft1.nodes.1" value="1" valueType="mesh3d.eft1.nodes"/>
+  <ConstantEvaluator name="mesh3d.eft1.nodes.2" value="2" valueType="mesh3d.eft1.nodes"/>
+  <ConstantEvaluator name="mesh3d.eft1.nodes.3" value="3" valueType="mesh3d.eft1.nodes"/>
+  <ConstantEvaluator name="mesh3d.eft1.nodes.4" value="4" valueType="mesh3d.eft1.nodes"/>
+  <ReferenceEvaluator name="mesh3d.eft1.nodeparameters.node1.value.v1" evaluator="mesh3d.eft1.nodeparameters.argument" valueType="real.1d">
+   <Bindings>
+    <Bind argument="mesh3d.eft1.nodes.argument" source="mesh3d.eft1.nodes.1"/>
+    <Bind argument="node_derivatives.argument" source="node_derivatives.value"/>
+    <Bind argument="node_versions.argument" source="node_versions.1"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <ReferenceEvaluator name="mesh3d.eft1.nodeparameters.node2.value.v1" evaluator="mesh3d.eft1.nodeparameters.argument" valueType="real.1d">
+   <Bindings>
+    <Bind argument="mesh3d.eft1.nodes.argument" source="mesh3d.eft1.nodes.2"/>
+    <Bind argument="node_derivatives.argument" source="node_derivatives.value"/>
+    <Bind argument="node_versions.argument" source="node_versions.1"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <ReferenceEvaluator name="mesh3d.eft1.nodeparameters.node3.value.v1" evaluator="mesh3d.eft1.nodeparameters.argument" valueType="real.1d">
+   <Bindings>
+    <Bind argument="mesh3d.eft1.nodes.argument" source="mesh3d.eft1.nodes.3"/>
+    <Bind argument="node_derivatives.argument" source="node_derivatives.value"/>
+    <Bind argument="node_versions.argument" source="node_versions.1"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <ReferenceEvaluator name="mesh3d.eft1.nodeparameters.node4.value.v1" evaluator="mesh3d.eft1.nodeparameters.argument" valueType="real.1d">
+   <Bindings>
+    <Bind argument="mesh3d.eft1.nodes.argument" source="mesh3d.eft1.nodes.4"/>
+    <Bind argument="node_derivatives.argument" source="node_derivatives.value"/>
+    <Bind argument="node_versions.argument" source="node_versions.1"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <AggregateEvaluator name="mesh3d.eft1.parameters" valueType="parameters.3d.unit.trilinearSimplex">
+   <Bindings>
+    <BindIndex argument="parameters.3d.unit.trilinearSimplex.component.argument" indexNumber="1"/>
+   </Bindings>
+   <ComponentEvaluators>
+    <ComponentEvaluator component="1" evaluator="mesh3d.eft1.nodeparameters.node1.value.v1"/>
+    <ComponentEvaluator component="2" evaluator="mesh3d.eft1.nodeparameters.node2.value.v1"/>
+    <ComponentEvaluator component="3" evaluator="mesh3d.eft1.nodeparameters.node3.value.v1"/>
+    <ComponentEvaluator component="4" evaluator="mesh3d.eft1.nodeparameters.node4.value.v1"/>
+   </ComponentEvaluators>
+  </AggregateEvaluator>
+  <ReferenceEvaluator name="mesh3d.eft1" evaluator="interpolator.3d.unit.trilinearSimplex" valueType="real.1d">
+   <Bindings>
+    <Bind argument="parameters.3d.unit.trilinearSimplex.argument" source="mesh3d.eft1.parameters"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <DataResource name="mesh3d.eft1.localtoglobalnodes.data.resource">
+   <DataResourceDescription>
+    <DataResourceHref xlink:href="tetmesh.mesh3d.eft1.localtoglobalnodes.data.txt" format="PLAIN_TEXT"/>
+   </DataResourceDescription>
+   <ArrayDataSource name="mesh3d.eft1.localtoglobalnodes.data.source" location="1" rank="2">
+    <RawArraySize>102 4</RawArraySize>
+    <ArrayDataSize>102 4</ArrayDataSize>
+   </ArrayDataSource>
+  </DataResource>
+  <ParameterEvaluator name="mesh3d.eft1.localtoglobalnodes" valueType="nodes">
+   <DenseArrayData data="mesh3d.eft1.localtoglobalnodes.data.source">
+    <DenseIndexes>
+     <IndexEvaluator evaluator="mesh3d.argument.elements"/>
+     <IndexEvaluator evaluator="mesh3d.eft1.nodes.argument"/>
+    </DenseIndexes>
+   </DenseArrayData>
+  </ParameterEvaluator>
+  <ReferenceEvaluator name="mesh3d.eft1.evaluator" evaluator="mesh3d.eft1" valueType="real.1d">
+   <Bindings>
+    <Bind argument="chart.3d.argument" source="mesh3d.argument.xi"/>
+    <Bind argument="mesh3d.eft1.nodeparameters.argument" source="nodes.parameters"/>
+    <Bind argument="nodes.argument" source="mesh3d.eft1.localtoglobalnodes"/>
+   </Bindings>
+  </ReferenceEvaluator>
+  <PiecewiseEvaluator name="mesh3d.fieldtemplate1" valueType="real.1d">
+   <IndexEvaluators>
+    <IndexEvaluator evaluator="mesh3d.argument.elements" indexNumber="1"/>
+   </IndexEvaluators>
+   <EvaluatorMap default="mesh3d.eft1.evaluator"/>
+  </PiecewiseEvaluator>
+  <DataResource name="nodes.coordinates.data.resource">
+   <DataResourceDescription>
+    <DataResourceHref xlink:href="tetmesh.nodes.coordinates.data.txt" format="PLAIN_TEXT"/>
+   </DataResourceDescription>
+   <ArrayDataSource name="nodes.coordinates.data.source" location="0" rank="2">
+    <RawArraySize>38 3</RawArraySize>
+    <ArrayDataSize>38 3</ArrayDataSize>
+   </ArrayDataSource>
+  </DataResource>
+  <ParameterEvaluator name="nodes.coordinates" valueType="real.1d">
+   <DenseArrayData data="nodes.coordinates.data.source">
+    <DenseIndexes>
+     <IndexEvaluator evaluator="nodes.argument"/>
+     <IndexEvaluator evaluator="coordinates.rc.3d.component.argument"/>
+    </DenseIndexes>
+   </DenseArrayData>
+  </ParameterEvaluator>
+  <AggregateEvaluator name="coordinates" valueType="coordinates.rc.3d">
+   <Bindings>
+    <BindIndex argument="coordinates.rc.3d.component.argument" indexNumber="1"/>
+    <Bind argument="nodes.parameters" source="nodes.coordinates"/>
+   </Bindings>
+   <ComponentEvaluators default="mesh3d.fieldtemplate1"/>
+  </AggregateEvaluator>
+ </Region>
+</Fieldml>

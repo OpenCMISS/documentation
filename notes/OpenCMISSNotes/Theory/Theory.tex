@@ -1,0 +1,1078 @@
+\clearemptydoublepage
+\chapter{Theory}
+\label{cha:theory}
+
+\section{Tensor Analysis}
+\subsection{Base vectors}
+
+Now, if we have a vector, $\vectr{v}$ we can write
+\begin{equation}
+  \vectr{v}=v^{i}\vectr{g}_{i}
+\end{equation}
+where $v^{i}$ are the components of the contravariant vector, and
+$\vectr{g}_{i}$ are the covariant base vectors.
+
+Similarly, the vector $\vectr{v}$ can also be written as 
+\begin{equation}
+  \vectr{v}=v_{i}\vectr{g}^{i}
+\end{equation}
+where $v_{i}$ are the components of the covariant vector, and
+$\vectr{g}^{i}$ are the contravariant base vectors. 
+
+We now note that
+\begin{equation}
+  \vectr{v}=v^{i}\vectr{g}_{i}=v^{i}\sqrt{g_{ii}}\hat{\vectr{g}_{i}}
+\end{equation}
+where $v^{i}\sqrt{g_{ii}}$ are the physical components of the vector and
+$\hat{\vectr{g}_{i}}$ are the unit vectors given by
+\begin{equation}
+  \hat{\vectr{g}_{i}}=\dfrac{\vectr{g}_{i}}{\sqrt{g_{ii}}}
+\end{equation}
+
+\subsection{Metric Tensors}
+\label{sec:metric tensors}
+
+Metric tensors are the inner product of base vectors. If $\vectr{g}_{i}$ are the
+covariant base vectors then the covariant metric tensor is given by
+\begin{equation}
+  g_{ij}=\dotprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+\end{equation}
+
+Similarily if $\vectr{g}^{i}$ are the contravariant base vectors then the
+contravariant metric tensor is given by 
+\begin{equation}
+  g^{ij}=\dotprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+\end{equation}
+
+We can also form a mixed metric tensor from the dot product of a contravariant
+and a covariant base vector \ie
+\begin{equation}
+  g^{i}_{.j}=\dotprod{\vectr{g}^{i}}{\vectr{g}_{j}}
+\end{equation}
+and 
+\begin{equation}
+  g_{i}^{.j}=\dotprod{\vectr{g}_{i}}{\vectr{g}^{j}}
+\end{equation}
+
+Note that for mixed tensors the ``.'' indicates the order of the index \ie
+$g^{i}_{.j}$ indicates that the first index is contravariant and the second
+index is covariant whereas $g_{i}^{.j}$ indicates that the first index is
+covariant and the second index is contravariant.
+
+If the base vectors are all mutually orthogonal and constant then
+$\vectr{g}_{i}=\vectr{g}^{i}$ and $g_{ij}=g^{ij}$.
+
+The metric tensors generalise (Euclidean) distance \ie
+\begin{equation}
+  ds^{2}=g_{ij}dx^{i}dx^{j}
+\end{equation}
+
+Note that multiplying by the covariant metric tensor lowers indices \ie
+\begin{equation}
+  \begin{split}
+    \vectr{A}_{i} &= g_{ij}\vectr{A}^{j} \\
+    A_{ij} &= g_{ik}g_{jl}A^{kl} = g_{jk}A_{i}^{.k} = g_{ik}A^{k}_{.j} 
+  \end{split}
+\end{equation}
+and that multiplying by the contravariant metric tensor raises indices \ie
+\begin{equation}
+  \begin{split}
+  \vectr{A}^{i} &=  g^{ij}\vectr{A}_{j} \\
+   A^{ij} &= g^{ik}g^{jl}A_{kl} = g^{ik}A_{k}^{.j} = g^{jk}A^{i}_{.k}
+  \end{split}
+\end{equation}
+and for the mixed tensors
+\begin{equation}
+  \begin{split}
+  A_{i}^{.j} &= g^{jk}A_{ik} = g_{ik}A^{kj} \\
+  A^{i}_{.j} &= g^{ik}A_{kj} = g_{jk}A^{ik} \\
+  \end{split}
+\end{equation}
+
+\subsection{Transformations}
+
+The transformation rules for tensors in going from a $\vectr{\nu}$ coordinate
+system to a $\vectr{\xi}$ coordinate system are as follows: 
+
+
+For a covariant vector (a rank (0,1) tensor)
+\begin{equation}
+  {\tilde{a}}_{i}=\delby{\nu^{a}}{\xi^{i}}a_{a}
+\end{equation}
+
+For a contravariant vector (a rank (1,0) tensor)
+\begin{equation}
+  {\tilde{a}}^{i}=\delby{\xi^{i}}{\nu^{a}}a^{a}
+\end{equation}
+
+For a covariant tensor (a rank (0,2) tensor)
+\begin{equation}
+  {\tilde{A}}_{ij}=\delby{\nu^{a}}{\xi^{i}}\delby{\nu^{b}}{\xi^{j}}A_{ab} 
+\end{equation}
+
+For a contravariant tensor (a rank (2,0) tensor)
+\begin{equation}
+  {\tilde{A}}^{ij}=\delby{\xi^{i}}{\nu^{a}}\delby{\xi^{j}}{\nu^{b}}A^{ab}
+\end{equation}
+
+and for Mixed tensors (rank (1,1) tensors)
+\begin{equation}
+  {\tilde{A}}^{i}_{.j}=\delby{\xi^{i}}{\nu^{a}}\delby{\nu^{b}}{\xi^{j}}A^{a}_{.b}
+\end{equation}
+and
+\begin{equation}
+  {\tilde{A}}_{i}^{.j}=\delby{\nu^{a}}{\xi^{i}}\delby{\xi^{j}}{\nu^{b}}A_{a}^{.b}
+\end{equation}
+
+\subsection{Derivatives}
+\label{subsec:function derivatives}
+
+\subsubsection{Scalars}
+
+We note that a scalar quantity $\fnof{u}{\vectr{\xi}}$ has derivatives
+\begin{equation}
+  \delby{u}{\xi^{i}}=\partialderiv{u}{i}
+\end{equation}
+
+Or more formally, the covariant derivative ($\covarderiv{\cdot}{\cdot}$) of a
+rank 0 tensor $u$ is
+\begin{equation}
+  \covarderiv{u}{i}=\delby{u}{\xi^{i}}=\partialderiv{u}{i}
+\end{equation}
+
+\subsubsection{Vectors}
+
+The derivatives of a vector $\vectr{v}$ are given by
+\begin{equation}
+  \begin{split}
+    \delby{\vectr{v}}{\xi^{i}} &=
+    \delby{}{\xi^{i}}\pbrac{v^{k}\vectr{g}_{k}} \\
+    &= \delby{v^{k}}{\xi^{i}}\vectr{g}_{k}+v^{k}\delby{\vectr{g}_{k}}{\xi^{i}} \\
+    &= \partialderiv{v^{k}}{i}\vectr{g}_{k}+v^{k}\partialderiv{\vectr{g}_{k}}{i}
+  \end{split}
+\end{equation}
+
+Now introducing the notation
+\begin{equation}
+  \christoffelsecond{i}{j}{k} = \dotprod{\vectr{g}^{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
+\end{equation}
+where $\christoffelsecond{i}{j}{k}$ are the Christoffel symbols of the second
+kind. 
+
+Note that the Christoffel symbols of the first kind are given by
+\begin{equation}
+  \christoffelfirst{i}{j}{k} = \dotprod{\vectr{g}_{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
+\end{equation}
+
+Note that
+\begin{equation}
+  \begin{split}
+    \christoffel{i}{j}{k} &= \dotprod{\vectr{g}^{i}}{\partialderiv{\vectr{g}_{j}}{k}} \\
+    &=\dotprod{\vectr{g}^{i}}{\christoffelsecond{l}{j}{k}\vectr{g}_{l}} \\
+    &= \christoffel{i}{j}{l}g^{i}_{.l} 
+  \end{split}
+\end{equation}
+
+The Christoffel symbols of the first kind are also given by
+\begin{equation}
+  \christoffelfirst{i}{j}{k}=\frac{1}{2}\pbrac{\delby{g_{ij}}{\xi^{k}}+\delby{g_{ik}}{\xi^{j}}-\delby{g_{jk}}{\xi^{i}}}
+\end{equation}
+and that Christoffel symbols of the second kind are given by
+\begin{equation}
+  \begin{split}
+    \christoffelsecond{i}{j}{k} &= g^{il}\christoffelfirst{l}{j}{k} \\
+    &= \frac{1}{2}g^{il}\pbrac{\delby{g_{lj}}{\xi^{k}}+\delby{g_{lk}}{\xi^{j}}-\delby{g_{jk}}{\xi^{l}}} 
+  \end{split}
+\end{equation}
+
+Note that Christoffel symbols are not tensors and the have the following
+transformation laws from $\vectr{\nu}$ to $\vectr{\xi}$ coordinates
+\begin{align}
+  \christoffelfirst{i}{j}{k} &=
+  \christoffelfirst{a}{b}{c}\delby{\nu^{b}}{\xi^{j}}\delby{\nu^{c}}{\xi^{k}}\delby{\nu^{a}}{\xi^{i}}+
+  g_{ab}\delby{\nu^{c}}{\xi^{i}}\deltwoby{\nu^{c}}{\xi^{j}}{\xi^{k}} \\
+  \christoffelsecond{i}{j}{k} &= \christoffelsecond{a}{b}{c}\delby{\xi^{i}}{\nu^{a}}\delby{\nu^{b}}{\xi^{k}}\delby{\nu^{c}}{\xi^{j}}+
+  \delby{\xi^{i}}{\nu^{a}}\deltwoby{\nu^{a}}{\xi^{j}}{\xi^{k}} \\
+\end{align}
+
+We can now write (BELOW SEEMS WRONG - CHECK)
+\begin{equation}
+  \begin{split}
+    \partialderiv{\vectr{v}}{i}&=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{k}{i}{j}v^{j}\vectr{g}_{j}\\
+    &=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{j}{i}{k}v^{k}\vectr{g}_{k}\\
+    &=\pbrac{\partialderiv{v^{k}}{i}+\christoffel{j}{i}{k}v^{k}}\vectr{g}_{k}\\
+    &=\covarderiv{v^{k}}{i}\vectr{g}_{k}
+  \end{split}
+\end{equation}
+where $\covarderiv{v^{k}}{i}$ is the covariant derivative of $v^{k}$ . 
+
+The covariant derivative of a contravariant (rank (0,1)) tensor $v^{k}$ is
+\begin{equation}
+  \covarderiv{v^{k}}{i} =\partialderiv{v^{k}}{i}+\christoffel{k}{i}{j}v^{j}
+\end{equation}
+and the covariant derivative of a covariant tensor  (rank (1,0)) $v_{k}$ is
+\begin{equation}
+  \covarderiv{v_{k}}{i} =\partialderiv{v_{k}}{i}-\christoffel{j}{k}{i}v_{j}
+\end{equation}
+
+\subsubsection{Tensors}
+
+The covariant derivative of a contravariant (rank (0,2)) tensor $W^{mn}$ is
+\begin{equation}
+  \covarderiv{W^{mn}}{i}=\partialderiv{W^{mn}}{i}+\christoffel{m}{j}{i}W^{jn}+\christoffel{n}{j}{i}W^{mj}
+\end{equation}
+and the covariant derivative of a covariant (rank (2,0)) tensor $W_{mn}$ is
+\begin{equation}
+  \covarderiv{W_{mn}}{i}=\partialderiv{W_{mn}}{i}-\christoffel{j}{m}{i}W_{jn}-\christoffel{j}{n}{i}W_{mj}
+\end{equation}
+and the covariant derivative of a mixed (rank (1,1)) tensor $W^{m}_{.n}$ is
+\begin{equation}
+  \covarderiv{W^{m}_{.n}}{i}=\partialderiv{W^{m}_{.n}}{i}+\christoffel{m}{j}{i}W^{j}_{.n}-\christoffel{j}{n}{i}W^{m}_{.j}
+\end{equation}
+
+\subsection{Common Operators}
+
+For tensor equations to hold in any coordinate system the equations must
+involve tensor quantities \ie covariant derivatives rather than partial derivatives.
+
+\subsubsection{Gradient}
+
+As the covariant derivative of a scalar is just the partial derivative the
+gradient of a scalar function $\phi$ using covariant derivatives is
+\begin{equation}
+  \text{grad } \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}\vectr{g}^{i}
+\end{equation}
+and
+\begin{equation}
+  \gradient{}{\phi}=\partialderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}g^{ij}\vectr{g}_{j}
+\end{equation}
+
+\subsubsection{Divergence}
+
+The divergence of a vector using covariant derivatives is
+\begin{equation}
+  \text{div } \vectr{\phi} = \divergence{}{\vectr{\phi}}=\covarderiv{\phi^{i}}{i}=\frac{1}{\sqrt{\abs{g}}}\partialderiv{\pbrac{\sqrt{\abs{g}}\phi^{i}}}{i}
+\end{equation}
+where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
+
+\subsubsection{Curl}
+
+The curl of a vector using covariant derivatives is
+\begin{equation}
+  \text{curl } \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vectr{g}_{k}
+\end{equation}
+where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
+
+\subsubsection{Laplacian}
+
+The Laplacian of a scalar using covariant derivatives is
+\begin{equation}
+  \laplacian{\phi}=\text{div}\pbrac{\text{grad }\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
+\end{equation}
+where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
+
+The Laplacian of a vector using covariant derivatives is
+\begin{equation}
+  \laplacian{\vectr{\phi}}=\text{grad }\pbrac{\text{div }\vectr{\phi}}-\text{curl } \pbrac{\text{curl }\vectr{\phi}}==\mixedderiv{\vectr{\phi}}{i}{i}
+\end{equation}
+
+The Laplacian of a contravariant (rank (0,1)) tensor $\phi^{k}$ is
+\begin{equation}
+  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{K}{j}{H}\delby{\phi^{h}}{x^{i}}+\phi^{h}\delby{g^{ij}\christoffel{K}{i}{j}}{x^{h}}}\vectr{e}^{k}
+\end{equation}
+and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
+\begin{equation}
+  \laplacian{\vectr{\phi}}=\pbrac{\laplacian{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
+\end{equation}
+
+\subsection{Coordinate Systems}
+\label{sec:coordinate systems}
+
+\subsubsection{Rectangular Cartesian}
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \vectr{i}_{1} \\ 
+    \vectr{i}_{2} \\
+    \vectr{i}_{3} 
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+The Christoffel symbols of the second kind are all zero.
+
+\subsubsection{Cylindrical Polar}
+
+The global coordinates  $\pbrac{x,y,z}$ with respect to the cylindrical polar
+coordinates $\pbrac{r,\theta,z}$ are defined by
+\begin{equation}
+  \begin{aligned}
+    x = r\cos\theta  & \qquad r \ge0 \\
+    y = r\sin\theta & \qquad 0 \le\theta\le2\pi \\
+    z = z          & \qquad -\infty < z < \infty
+  \end{aligned}
+\end{equation}
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \cos\theta\vectr{i}_{1} + \sin\theta\vectr{i}_{2} \\ 
+    -r\sin\theta\vectr{i}_{1}+ r\cos\theta\vectr{i}_{2} \\
+    \vectr{i}_{3} 
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & r^{2} & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & \frac{1}{r^{2}} & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{r}{\theta}{\theta}&=-r \\
+  \christoffelsecond{\theta}{r}{\theta}=\christoffelsecond{\theta}{\theta}{r}&=\frac{1}{r}
+\end{align}
+with all other Christoffell symbols zero.
+
+\subsubsection{Spherical Polar}
+
+The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical polar
+coordinates $\pbrac{r,\theta,\phi}$ are defined by
+\begin{equation}
+  \begin{aligned}
+    x = r\cos\theta\sin\phi & \qquad r \ge 0 \\
+    y = r\sin\theta\sin\phi & \qquad 0 \le \theta \le 2\pi \\
+    z = r\cos\phi & \qquad 0 \le \phi \le \pi
+  \end{aligned}
+\end{equation}
+
+The base vectors with respect to the spherical polar coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \cos\theta\sin\phi\vectr{i}_{1}+\sin\theta\sin\phi\vectr{i}_{2}+\cos\phi\vectr{i}_{3} \\ 
+    -r\sin\theta\sin\phi\vectr{i}_{1}+r\cos\theta\sin\phi\vectr{i}_{2} \\
+    r\cos\theta\cos\phi\vectr{i}_{1}+r\sin\theta\cos\phi\vectr{i}_{2}-r\sin\phi\vectr{i}_{3}
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 & r^{2}\sin^{2}\phi & 0 \\
+    0 & 0 & r^{2} 
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    1 & 0 & 0 \\
+    0 &  \frac{1}{r^{2}\sin^{2}\phi} & 0 \\
+    0 & 0 & \frac{1}{r^{2}} 
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{r}{\theta}{\theta}&=-r\sin^{2}\phi \\
+  \christoffelsecond{r}{\phi}{\phi}&=-r \\
+  \christoffelsecond{\phi}{\theta}{\theta}&=-\sin\phi\cos\phi \\
+  \christoffelsecond{\theta}{r}{\theta}=\christoffelsecond{\theta}{\theta}{r}&=\frac{1}{r} \\
+  \christoffelsecond{\phi}{r}{\phi}=\christoffelsecond{\phi}{\phi}{r}&=\frac{1}{r} \\
+  \christoffelsecond{\theta}{\theta}{\phi}=\christoffelsecond{\theta}{\phi}{\theta}&=\cot\phi
+\end{align}
+with all other Christofell symbols zero.
+
+\subsubsection{Prolate Spheroidal}
+
+The global coordinates $\pbrac{x,y,z}$ with respect to the prolate spheroidal
+coordinates $\pbrac{\lambda,\mu,\theta}$ are defined by
+\begin{equation}
+  \begin{aligned}
+    x = a\sinh\lambda\sin\mu\cos\theta & \qquad \lambda \ge 0 \\
+    y = a\sinh\lambda\sin\mu\sin\theta & \qquad 0 \le \mu \le \pi \\
+    z = a\cosh\lambda\cos\mu & \qquad 0 \le \theta \le 2\pi 
+  \end{aligned}
+\end{equation}
+where $a\ge0$ is the focus.
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}+a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\ 
+    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}-a\cosh\lambda\sin\mu\vectr{i}_{3}\\
+    -a\sinh\lambda\sin\mu\sin\theta\vectr{i}_{1}+a\sinh\lambda\sin\mu\cos\theta\vectr{i}_{2}
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 & 0 \\
+    0 & a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 \\
+    0 & 0 & a^{2}\sinh^{2}\lambda\sin^{2}\mu 
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}}& 0 & 0 \\
+    0 & \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}} & 0 \\
+    0 & 0 & \frac{1}{a^{2}\sinh^{2}\lambda\sin^{2}\mu} 
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{\lambda}{\lambda}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\mu}{\mu}&=\frac{-\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\theta}{\theta}&=\frac{-\sinh\lambda\cosh\lambda\sin^{2}\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\lambda}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\mu}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\lambda}{\lambda}&=\frac{-\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\theta}{\theta}&=\frac{-\sinh^{2}\lambda\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\mu}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\theta}{\theta}{\lambda}&=\frac{\cosh\lambda}{\sinh\lambda} \\
+  \christoffelsecond{\theta}{\theta}{\mu}&=\frac{\cos\mu}{\sin\mu} \\
+ \end{align}
+with all other Christofell symbols zero.
+
+\subsubsection{Oblate Spheroidal}
+
+The global coordinates $\pbrac{x,y,z}$ with respect to the oblate spheroidal
+coordinates $\pbrac{\lambda,\mu,\theta}$  are defined by
+\begin{equation}
+  \begin{aligned}
+    x = a\cosh\lambda\cos\mu\cos\theta & \qquad \lambda \ge 0 \\
+    y = a\cosh\lambda\cos\mu\sin\theta & \qquad \frac{-\pi}{2} \le \mu \le \frac{\pi}{2} \\
+    z = a\sinh\lambda\sin\mu & \qquad 0 \le \theta \le 2\pi 
+  \end{aligned}
+\end{equation}
+where $a\ge0$ is the focus.
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}+a\cosh\lambda\sin\mu\vectr{i}_{3}\\
+    -a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}-a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\    
+    -a\cosh\lambda\cos\mu\sin\theta\vectr{i}_{1}+a\cosh\lambda\cos\mu\cos\theta\vectr{i}_{2}
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 & 0 \\
+    0 & a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 \\
+    0 & 0 & a^{2}\cosh^{2}\lambda\cos^{2}\mu 
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}}& 0 & 0 \\
+    0 & \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}} & 0 \\
+    0 & 0 & \frac{1}{a^{2}\cosh^{2}\lambda\cos^{2}\mu}
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{\lambda}{\lambda}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\mu}{\mu}&=\frac{-\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\theta}{\theta}&=\frac{-\sinh\lambda\cosh\lambda\cos^{2}\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\lambda}{\lambda}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\mu}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\lambda}{\lambda}&=\frac{-\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\theta}{\theta}&=\frac{\cosh^{2}\lambda\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\mu}{\mu}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
+  \christoffelsecond{\theta}{\theta}{\lambda}&=\frac{\sinh\lambda}{\cosh\lambda} \\
+  \christoffelsecond{\theta}{\theta}{\mu}&=\frac{-\sin\mu}{\cos\mu} \\
+\end{align}
+with all other Christofell symbols zero.
+
+\subsubsection{Cylindrical parabolic}
+
+The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical parabolic
+coordinates $\pbrac{\xi,\eta,z}$  are defined by
+\begin{equation}
+  \begin{aligned}
+    x = \xi\eta & \qquad -\infty < \xi < \infty \\
+    y = \frac{1}{2}\pbrac{\xi^{2}-\eta^{2}} & \qquad \eta \ge 0 \\
+    z =  z & \qquad -\infty < z < \infty
+  \end{aligned}
+\end{equation}
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \eta\vectr{i}_{1}+\xi\vectr{i}_{2}\\
+    \xi\vectr{i}_{1}-\eta\vectr{i}_{2}\\    
+    \vectr{i}_{3}
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    \xi^{2}+\eta^{2} & 0 & 0 \\
+    0 & \xi^{2}+\eta^{2} & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    \frac{1}{\xi^{2}+\eta^{2}}& 0 & 0 \\
+    0 & \frac{1}{\xi^{2}+\eta^{2}} & 0 \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{\xi}{\xi}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\eta}{\eta}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\xi}{\xi}&=\frac{-\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\xi}{\eta}{\eta}&=\frac{-\xi}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\xi}{\xi}{\eta}=\christoffelsecond{\xi}{\eta}{\xi}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\xi}{\eta}=\christoffelsecond{\eta}{\eta}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
+\end{align}
+with all other Christofell symbols zero.
+
+\subsubsection{Parabolic polar}
+
+The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical parabolic
+coordinates $\pbrac{\xi,\eta,\theta}$  are defined by
+\begin{equation}
+  \begin{aligned}
+    x = \xi\eta\cos\theta & \qquad \xi \ge 0 \\
+    y = \xi\eta\sin\theta & \qquad \eta \ge 0 \\
+    z = \frac{1}{2}\pbrac{\xi^{2}-\eta^{2}} & \qquad 0 \le \theta < 2\pi
+  \end{aligned}
+\end{equation}
+
+The base vectors with respect to the global coordinate system are
+\begin{equation}
+  \vectr{g}_{i}=\begin{bmatrix} 
+    \eta\cos\theta\vectr{i}_{1}+\eta\sin\theta\vectr{i}_{3}+\xi\vectr{i}_{3}\\
+    \xi\cos\theta\vectr{i}_{1}+\xi\sin\theta\vectr{i}_{3}-\eta\vectr{i}_{3}\\ 
+    -\xi\eta\sin\theta\vectr{i}_{1}+\xi\eta\cos\theta\vectr{i}_{2}
+  \end{bmatrix}
+\end{equation}
+
+The covariant metric tensor is
+\begin{equation}
+  g_{ij}=\begin{bmatrix}
+    \xi^{2}+\eta^{2} & 0 & 0 \\
+    0 & \xi^{2}+\eta^{2} & 0 \\
+    0 & 0 & \xi\eta
+  \end{bmatrix}
+\end{equation}
+and the contravariant metric tensor is
+\begin{equation}
+  g^{ij}=\begin{bmatrix}
+    \frac{1}{\xi^{2}+\eta^{2}}& 0 & 0 \\
+    0 & \frac{1}{\xi^{2}+\eta^{2}} & 0 \\
+    0 & 0 & \frac{1}{\xi\eta}
+  \end{bmatrix}
+\end{equation}
+
+The Christoffell symbols of the second kind are
+\begin{align}
+  \christoffelsecond{\xi}{\xi}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\eta}{\eta}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\xi}{\eta}{\eta}&=\frac{-\xi}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\xi}{\xi}&=\frac{-\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\theta}{\theta}&=\frac{-\xi^{2}\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\xi}{\theta}{\theta}&=\frac{-\xi\eta^{2}}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\xi}{\xi}{\eta}=\christoffelsecond{\xi}{\eta}{\xi}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\eta}{\xi}{\eta}=\christoffelsecond{\eta}{\eta}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
+  \christoffelsecond{\theta}{\xi}{\theta}=\christoffelsecond{\theta}{\theta}{\xi}&=\frac{1}{\xi} \\
+  \christoffelsecond{\theta}{\eta}{\theta}=\christoffelsecond{\theta}{\theta}{\eta}&=\frac{1}{\eta} \\
+\end{align}
+with all other Christofell symbols zero.
+
+\section{Equation set types}
+
+\subsection{Static Equations}
+
+The general form for static equations is
+
+\subsection{Dynamic Equations}
+
+The general form for dynamic equations is
+\begin{equation}
+  \matr{M}\fnof{\ddot{\vectr{u}}}{t}+\matr{C}\fnof{\dot{\vectr{u}}}{t}+\matr{K}\fnof{\vectr{u}}{t}+
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}+\fnof{\vectr{f}}{t}=\vectr{0}
+  \label{eqn:generaldynamicnonlinear}
+\end{equation}
+where $\fnof{\vectr{u}}{t}$ is the unknown ``displacement vector'', $\matr{M}$
+is the mass matrix, $\matr{C}$ is the damping matrix, $\matr{K}$ is the
+stiffness matrix, $\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ a non-linear vector
+function and $\fnof{\vectr{f}}{t}$ the forcing vector.
+
+From \cite{zienkiewicz:2006_1} we now expand the unknown vector $\fnof{\vectr{u}}{t}$ in terms of a polynomial of degree
+$p$. With the known values of $\vectr{u}_{n}$, $\dot{\vectr{u}}_{n}$,
+$\ddot{\vectr{u}}_{n}$ up to $\symover{p-1}{\vectr{u}}_{n}$ at the beginning of
+the time step $\Delta t$ we can write the polynomial expansion as
+\begin{equation}
+  \fnof{\vectr{u}}{t_{n}+\tau}\approx\fnof{\tilde{\vectr{u}}}{t_{n}+\tau}=\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+
+  \frac{1}{2!}\tau^{2}\ddot{\vectr{u}}_{n}+\cdots+\dfrac{1}{\factorial{p-1}}\tau^{p-1}\symover{p-1}{\vectr{u}}_{n}+
+  \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}
+  \label{eqn:timepolyexpansion}
+\end{equation}
+where the only unknown is the the vector $\vectr{\alpha}^{p}_{n}$,
+\begin{equation}
+  \vectr{\alpha}^{p}_{n}\approx\symover{p}{\vectr{u}}\equiv\dnby{p}{\vectr{u}}{t}
+\end{equation}
+
+A recurrance relationship can be established by substituting
+\eqnref{eqn:timepolyexpansion} into \eqnref{eqn:generaldynamicnonlinear} and
+taking a weighted residual approach \ie
+\begin{multline}
+  \dintl{0}{\Delta
+    t}\fnof{W}{\tau}\left[\matr{M}\pbrac{\ddot{\vectr{u}}_{n}+\tau\dddot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{\factorial{p-2}}\tau^{p-2}\vectr{\alpha}^{p}_{n}} \right.\\
+  +\matr{C}\pbrac{\dot{\vectr{u}}_{n}+\tau\ddot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{\factorial{p-1}}\tau^{p-1}\vectr{\alpha}^{p}_{n}} \\
+  +\matr{K}\pbrac{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}} \\
+  +\left.\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}+\fnof{\vectr{f}}{t_{n}+\tau}\right] d\tau = \vectr{0}
+\end{multline}
+where $\fnof{W}{\tau}$ is some weight function, $\tau=t-t_{n}$ and $\Delta
+t=t_{n+1}-t_{n}$. Dividing by $\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}$ we obtain
+\begin{multline}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{M}\pbrac{\ddot{\vectr{u}}_{n}+\tau\dddot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{\factorial{p-2}}\tau^{p-2}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{C}\pbrac{\dot{\vectr{u}}_{n}+\tau\ddot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{\factorial{p-1}}\tau^{p-1}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{K}\pbrac{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}  
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{f}}{t_{n}+
+        \tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=\vectr{0}
+\end{multline}
+
+Now if 
+\begin{equation}
+  \theta_{k}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{k}}{\tau}}{{\Delta
+      t}^{k}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \text{  for  } k=0,1,\ldots,p
+\end{equation}
+and
+\begin{equation}
+  \bar{\vectr{f}}=\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\fnof{\vectr{f}}{t_{n}+\tau}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  \label{eqn:meanweightedloadvector}
+\end{equation}
+we can write
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}+
+  \matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}+
+  \matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}+ \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}+\bar{\vectr{f}}=\vectr{0}
+  \label{eqn:dynamic1}
+\end{multline}
+where
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \gsum{q=0}{p-1}{\dfrac{\theta_{q}{\Delta
+            t}^{q}}{q!}\symover{q}{\vectr{u}}_{n}} \\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \gsum{q=1}{p-1}{\dfrac{\theta_{q-1}{\Delta
+            t}^{q-1}}{\factorial{q-1}}\symover{q}{\vectr{u}}_{n}} \\
+    \ddot{\bar{\vectr{u}}}_{n+1} &= \gsum{q=2}{p-1}{\dfrac{\theta_{q-2}{\Delta
+            t}^{q-2}}{\factorial{q-2}}\symover{q}{\vectr{u}}_{n}} 
+  \end{split}
+\end{equation}
+
+We note that as $\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ is nonlinear we need to
+evaluate an integral of the form
+\begin{equation}
+  \gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}
+\end{equation}
+
+To do this we form Taylor's series expansions for
+$\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ about the point $\fnof{\vectr{u}}{t_{n}+\tau}$ \ie
+\begin{equation}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}-
+  \tau\delby{\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}}{\vectr{u}}\evalat{\delby{\fnof{\vectr{u}}{t}}{t}}{t_{n}+\tau}
+  + \orderof{\tau^{2}}
+  \label{eqn:firstTaylorexpansion}
+\end{equation}
+and
+\begin{equation}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+
+  \pbrac{t_{n+1}-t_{n}-\tau}\delby{\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}}{\vectr{u}}
+  \evalat{\delby{\fnof{\vectr{u}}{t}}{t}}{t_{n}+\tau}+ \orderof{\tau^{2}}
+  \label{eqn:secondTaylorexpansion}
+\end{equation}
+
+Now if we add $\dfrac{1}{\tau}$ times \eqnref{eqn:firstTaylorexpansion} and
+$\dfrac{1}{t_{n+1}-t_{n}-\tau}=\dfrac{1}{\Delta t-\tau}$ times
+\eqnref{eqn:secondTaylorexpansion} we obtain
+\begin{equation}
+  \dfrac{\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}+\dfrac{\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\Delta
+    t-\tau}=\pbrac{\dfrac{\Delta t}{\tau\pbrac{\Delta t-\tau}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+
+  \pbrac{\dfrac{\Delta t}{\tau\pbrac{\Delta t-\tau}}}\orderof{\tau^{2}}
+\end{equation}
+
+Multiplying through by $\dfrac{\tau\pbrac{\Delta t-\tau}}{\Delta t}$ gives
+\begin{equation}
+  \dfrac{\Delta t-\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \dfrac{\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+\orderof{\tau^{2}}
+\end{equation}
+
+Therefore
+\begin{equation}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}
+  {\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}
+      \pbrac{\dfrac{\Delta t-\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+        \dfrac{\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}+\orderof{\tau^{2}}}}{\tau}}
+  {\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+
+Now if we recall that
+\begin{equation}
+\theta_{1}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau}{\tau}}{\Delta t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+we can write
+\begin{equation}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}
+  {\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \theta_{1}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}+\text{Error}
+\end{equation}
+where
+\begin{equation}
+  \text{Error}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\orderof{\tau^{2}}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+
+\Eqnref{eqn:dynamic1} now becomes
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}+
+  \matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}\\
+  +\matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}+ 
+  \pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\theta_{1}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}+
+  \text{Error}=\vectr{0}
+  \label{eqn:dynamic2}
+\end{multline}
+as $\fnof{\vectr{u}}{t_{n}}=\vectr{u}_{n}$ and
+$\fnof{\vectr{u}}{t_{n+1}}=\vectr{u}_{n+1}=\hat{\vectr{u}}_{n+1}+
+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}$ where $\hat{\vectr{u}}_{n+1}$
+is the \emph{predicted displacement} at the new time step and is given by
+\begin{equation}
+  \hat{\vectr{u}}_{n+1}=\gsum{q=0}{p-1}{\dfrac{{\Delta
+        t}^{q}}{q!}\symover{q}{\vectr{u}}_{n}}
+\end{equation}
+
+Rearranging gives
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\pbrac{\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\matr{M}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\matr{K}}\vectr{\alpha}^{p}_{n}+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ 
+    \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
+  +\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+
+  \pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+
+    \bar{\vectr{f}}}= \vectr{0}
+  \label{eqn:dynamic}
+\end{multline}
+or 
+\begin{equation}
+\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\matr{A}\vectr{\alpha}^{p}_{n}+
+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ \dfrac{{\Delta
+      t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}= \vectr{0}
+\end{equation}
+where $\matr{A}$ is the \emph{Amplification matrix} given by
+\begin{equation}
+  \matr{A}=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+  \dfrac{\theta_{p-1}{\Delta t}^{p-1}}{\factorial{p-1}}\matr{C}+
+  \dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}
+\end{equation}
+and $\vectr{b}$ is the right hand side vector given by
+\begin{equation}
+  \vectr{b}=\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+
+  \matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+If $\fnof{\vectr{g}}{\vectr{u}}\equiv\vectr{0}$ then \eqnref{eqn:dynamic} is linear in
+$\vectr{\alpha}^{p}_{n}$ and $\vectr{\alpha}^{p}_{n}$ can be found by solving
+the linear equation
+\begin{equation}
+  \vectr{\alpha}^{p}_{n} =-\inverse{\pbrac{\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+      \dfrac{\theta_{p-1}{\Delta t}^{p-1}}{\factorial{p-1}}\matr{C}+
+      \dfrac{\theta_{p}{\Delta
+          t}^{p}}{p!}\matr{K}}}\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+
+    \matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}}
+\end{equation}
+or 
+\begin{equation}
+  \vectr{\alpha}^{p}_{n} =-\inverse{\matr{A}}\vectr{b}
+\end{equation}
+
+If $\fnof{\vectr{g}}{\vectr{u}}$ is not $\equiv\vectr{0}$ then
+\eqnref{eqn:dynamic} is nonlinear in $\vectr{\alpha}^{p}_{n}$. To solve this
+equation we use Newton's method \ie
+\begin{equation}
+  \begin{split}
+    \text{1.  } & \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n(i)}}.\delta
+    \vectr{\alpha}^{p}_{n(i)} = 
+    -\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n(i)}} \\
+    \text{2.  } & \vectr{\alpha}^{p}_{n(i+1)}=\vectr{\alpha}^{p}_{n(i)}+\delta
+    \vectr{\alpha}^{p}_{n(i)}
+  \end{split}
+\end{equation}
+where $\fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}$ is the Jacobian and is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+  \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \dfrac{\theta_{1}{\Delta t}^{p}}{p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+\end{equation}
+or
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\theta_{1}{\Delta
+      t}^{p}}{p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+\end{equation}
+
+Once $\vectr{\alpha}^{p}_{n}$ has been obtained the values at the next time step can be obtained from
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t
+    \dot{\vectr{u}}_{n}+\cdots+\dfrac{{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}=\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}\\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t
+    \ddot{\vectr{u}}_{n}+\cdots+\dfrac{{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}=\dot{\hat{\vectr{u}}}_{n+1}+\dfrac{{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n} \\
+    &\vdots \\
+    \symover{p-1}{\vectr{u}}_{n+1} &= \symover{p-1}{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{p}_{n}
+  \end{split}
+\end{equation}
+
+For algorithms in which the degree of the polynomial, $p$, is higher than the
+order we require the algorithm to be initialised so that the initial velocity
+or acceleration can be computed. The initial velocity or acceleration values
+can be obtained by substituting the initial displacement or initial
+displacement and velocity values into \eqnref{eqn:generaldynamicnonlinear},
+rearranging and solving. For example consider an the case of a second degree
+polynomial and a first order system. Substituing the initial displacement
+$\vectr{u}_{0}$ into \eqnref{eqn:generaldynamicnonlinear} gives
+\begin{equation}
+  \matr{C}\dot{\vectr{u}}_{0}+\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}=\vectr{0}
+\end{equation}
+and therefore an approximation to the initial velocity can be found from
+\begin{equation}
+  \dot{\vectr{u}}_{0}=-\inverse{\matr{C}}\pbrac{\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+Similarily for a third degree polynomial and a second order system the initial
+acceleration can be found from
+\begin{equation}
+  \ddot{\vectr{u}}_{0}=-\inverse{\matr{M}}\pbrac{\matr{C}\dot{\vectr{u}}_{0}+\matr{K}\vectr{u}_{0}+
+    \fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+To evaluate the mean weighted load vector, $\bar{\vectr{f}}$, we need to
+evaluate the integral in \eqnref{eqn:meanweightedloadvector}. In some cases,
+however, we can make the assumption that the load vector varies linearly
+during the time step. In these cases the mean weighted load vector can be
+computed from
+\begin{equation}
+  \bar{\vectr{f}}=\theta_{1}\vectr{f}_{n+1}+\pbrac{1-\theta_{1}}\vectr{f}_{n}
+\end{equation}
+
+\subsubsection{Special SN11 case, p=1}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+   \bar{\vectr{u}}_{n+1} = \vectr{u}_{n}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\matr{C}+\theta_{1}\Delta t \matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The nonlinear function is given by
+\begin{equation}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{1}_{n}}=\matr{A}\vectr{\alpha}^{1}_{n}+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ 
+    \Delta t\vectr{\alpha}^{1}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}=\vectr{0}
+\end{equation}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{1}_{n}}=\matr{A}+\theta_{1}\Delta t
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\Delta t\vectr{\alpha}^{1}_{n}}}{\vectr{\alpha}^{1}_{n}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+    \vectr{u}_{n+1} = \vectr{u}_{n}+\Delta t\vectr{\alpha}^{1}_{n}
+\end{equation}
+
+\subsubsection{Special SN21 case, p=2}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \vectr{u}_{n}+\theta_{1}\Delta t\dot{\vectr{u}}_{n}\\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \dot{\vectr{u}}_{n}
+  \end{split}
+\end{equation}
+where
+\begin{equation}
+  \dot{\vectr{u}}_{0}=-\inverse{\matr{C}}\pbrac{\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\theta_{1}\Delta t\matr{C}+\dfrac{\theta_{2}{\Delta t}^{2}}{2}\matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The nonlinear function is given by
+\begin{equation}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{2}_{n}}=\matr{A}\vectr{\alpha}^{2}_{n}+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}=\vectr{0}
+\end{equation}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\theta_{1}{\Delta t}^{2}}{2}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{\alpha}^{2}_{n}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n} +\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n} \\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{2}_{n}
+  \end{split}
+\end{equation}
+
+\subsubsection{Special SN22 case, p=2}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \vectr{u}_{n}+\theta_{1}\Delta t\dot{\vectr{u}}_{n}\\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \dot{\vectr{u}}_{n}
+  \end{split}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\matr{M}+\theta_{1}\Delta t\matr{C}+\dfrac{\theta_{2}{\Delta t}^{2}}{2}\matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The nonlinear function is given by
+\begin{equation}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{2}_{n}}=\matr{A}\vectr{\alpha}^{2}_{n}+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ 
+    \dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}=\vectr{0}
+\end{equation}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\theta_{1}{\Delta t}^{2}}{2}
+  \delby{\fnof{\vectr{g}}{{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}}{\vectr{\alpha}^{2}_{n}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n} +\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n} \\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{2}_{n} 
+  \end{split}
+\end{equation}
+
+\section{Interface Conditions}
+
+\subsection{Variational principles}
+
+The branch of mathematics concerned with the problem of finding a function for
+which a certain integral of that function is either at its largest or smallest
+value is called the \emph{calculus of variations}. When scientific laws are formulated in terms of the principles of the calculus
+of variations they are termed \emph{variational principles}. 
+
+\subsection{Lagrange Multipliers}
+
