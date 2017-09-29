@@ -20,7 +20,7 @@ Read through the following pages to learn how you can contribute your code.
 Prior to contributing code:
 
 - Subscribe to the OpenCMISS developer mailing list.
-- Watch the appropriate repo that you wish to develop (e.g. iron, zinc, examples, documentation, or website) in your GitHub account.
+- Watch the appropriate repo that you wish to develop (e.g. iron, zinc, documentation, or website) in your GitHub account.
 
 Here is a collection of further useful links for developers:
 
