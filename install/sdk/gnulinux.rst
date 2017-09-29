@@ -26,18 +26,14 @@ Setting Up Virtual Environment
 
 We can set up a virtual environment with the OpenCMISS Iron and Zinc libraries.  This will enable us to run Iron and Zinc Python scripts and applications using the created virtual enviroment.
 
-
-
-
-
 For using the Python bindings of the OpenCMISS libraries you will need to install:
 
-   - The NumPy_ library (:code:`python-numpy`).  Basic install instructions are given below, for more detailed instructions read the documentation available from SciPy_.
+- The NumPy_ library (:code:`python-numpy`).  Basic install instructions are given below, for more detailed instructions read the documentation available from SciPy_.
      To install on Ubuntu (using package manager)::
 
         sudo apt-get install python-numpy
 
-   - [Optional but recommended] The Python virtualenv_ mechanism for independent Python environments
+- [Optional but recommended] The Python virtualenv_ mechanism for independent Python environments
 
 If you intend to use virtual environments, make sure your target environment is active before proceeding with the following installation steps.
 
