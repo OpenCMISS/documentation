@@ -1,0 +1,53 @@
+A=2.0
+
+t0=0.0
+t1=1.5
+t2=3.5
+t3=2.0*pi
+
+dt1=t1-t0
+dt2=t2-t1
+dt3=t3-t2
+
+s1=dt1
+s2=dt2
+s3=dt3
+
+U1=A*cos(t0)
+U2=A*cos(t1)
+U3=A*cos(t2)
+U4=A*cos(t3)
+
+dU1ds=-A*sin(t0)
+dU2ds=-A*sin(t1)
+dU3ds=-A*sin(t2)
+dU4ds=-A*sin(t3)
+
+load 'functions.gpl'
+load 'scalingfunctions.gpl'
+
+uanal(t) = A*cos(t)
+duanal(t) = -A*sin(t)
+d2uanal(t) = -A*cos(t)
+
+dual(t) = dalCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+dumin(t) = dminCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+duhm(t) = dhmCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+dugm(t) = dgmCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+duam(t) = damCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+durms(t) = drmsCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+dumax(t) = dmaxCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+
+set samples 1000
+set linetype 10 dt 2
+set xlabel "$x$"
+set label 1 "$a$" at t1,0.1 centre
+set label 2 "$b$" at t2,0.1 centre
+set label 3 "$2\pi$" at t3,0.1 centre
+set yrange [-3.1*A:3.1*A]
+set key at 2.0*pi,-A,0
+#set title "First derivative interpolation"
+set arrow 1 from t1,-3.1*A to t1,3.1*A nohead linetype 10
+set arrow 2 from t2,-3.1*A to t2,3.1*A nohead linetype 10
+plot[0:t3] duanal(x) title "Analytic", dual(x) title "Arc length", dumin(x) title "Minimum", duhm(x) title "Harmonic mean", dugm(x) title "Geometric mean", duam(x) title "Arithmetic mean", durms(x) title "Root Mean Square", dumax(x) title "Maximum"
+

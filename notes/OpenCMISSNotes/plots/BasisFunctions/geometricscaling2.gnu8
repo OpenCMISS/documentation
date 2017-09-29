@@ -1,0 +1,76 @@
+R=2.0
+
+t0=0.0
+t1=2.0*pi/3.0
+t2=4.0*pi/3.0
+t3=2.0*pi
+
+dt1=t1-t0
+dt2=t2-t1
+dt3=t3-t2
+
+s1=dt1*R
+s2=dt2*R
+s3=dt3*R
+
+X1=R*cos(t0)
+X2=R*cos(t1)
+X3=R*cos(t2)
+
+dX1ds=-sin(t0)
+dX2ds=-sin(t1)
+dX3ds=-sin(t2)
+
+Y1=R*sin(t0)
+Y2=R*sin(t1)
+Y3=R*sin(t2)
+
+dY1ds=cos(t0)
+dY2ds=cos(t1)
+dY3ds=cos(t2)
+
+load 'functions.gpl'
+load 'scalingfunctions.gpl'
+
+Xanal(theta) = R*cos(theta)
+dXanal(theta) = -R*sin(theta)
+d2Xanal(theta) = -R*cos(theta)
+
+Yanal(theta) = R*sin(theta)
+dYanal(theta) = R*cos(theta)
+d2Yanal(theta) = -R*sin(theta)
+
+Xal(theta) = alcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xmin(theta) = mincircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xhm(theta) = hmcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xgm(theta) = gmcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xam(theta) = amcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xrms(theta) = rmscircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+Xmax(theta) = maxcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+
+Yal(theta) = alcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Ymin(theta) = mincircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Yhm(theta) = hmcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Ygm(theta) = gmcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Yam(theta) = amcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Yrms(theta) = rmscircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+Ymax(theta) = maxcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+
+set parametric
+set size square
+set samples 1000
+set linetype 10 dt 2
+set xlabel "$x$"
+set ylabel "$y$"
+set label 1 "$0/2\pi$" at Xanal(t0),Yanal(t0) centre
+set label 2 "$a$" at Xanal(t1),Yanal(t1) centre
+set label 3 "$b$" at Xanal(t2),Yanal(t2) centre
+set xrange [-1.2*R:1.2*R]
+set yrange [-1.2*R:1.2*R]
+set key outside
+#set title "Function interpolation"
+set arrow 1 from 0,0 to Xanal(t0),Yanal(t0) nohead linetype 10
+set arrow 2 from 0,0 to Xanal(t1),Yanal(t1) nohead linetype 10
+set arrow 3 from 0,0 to Xanal(t2),Yanal(t2) nohead linetype 10
+plot[0:2.0*pi] Xanal(t),Yanal(t) title "Analytic", Xal(t),Yal(t) title "Arc length", Xmin(t),Ymin(t) title "Minimum", Xhm(t),Yhm(t) title "Harmonic mean", Xgm(t),Ygm(t) title "Geometric mean", Xam(t),Yam(t) title "Arithmetic mean", Xrms(t),Yrms(t) title "Root Mean Square", Xmax(t),Ymax(t) title "Maximum"
+

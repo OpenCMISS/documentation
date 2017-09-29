@@ -1,0 +1,53 @@
+A=2.0
+
+t0=0.0
+t1=2.0*pi/3.0
+t2=4.0*pi/3.0
+t3=2.0*pi
+
+dt1=t1-t0
+dt2=t2-t1
+dt3=t3-t2
+
+s1=dt1
+s2=dt2
+s3=dt3
+
+U1=A*cos(t0)
+U2=A*cos(t1)
+U3=A*cos(t2)
+U4=A*cos(t3)
+
+dU1ds=-A*sin(t0)
+dU2ds=-A*sin(t1)
+dU3ds=-A*sin(t2)
+dU4ds=-A*sin(t3)
+
+load 'functions.gpl'
+load 'scalingfunctions.gpl'
+
+uanal(t) = A*cos(t)
+duanal(t) = -A*sin(t)
+d2uanal(t) = -A*cos(t)
+
+ual(t) = alCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+umin(t) = minCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+uhm(t) = hmCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+ugm(t) = gmCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+uam(t) = amCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+urms(t) = rmsCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+umax(t) = maxCHinterp(t,U1,U2,U3,U4,dU1ds,dU2ds,dU3ds,dU4ds)
+
+set samples 1000
+set linetype 10 dt 2
+set xlabel "$x$"
+set label 1 "$a$" at t1,0.1 centre
+set label 2 "$b$" at t2,0.1 centre
+set label 3 "$2\pi$" at t3,0.1 centre
+set yrange [-1.1*A:1.1*A]
+set key at 2.0*pi,-0.34*A,0
+#set title "Function interpolation"
+set arrow 1 from t1,-1.1*A to t1,1.1*A nohead linetype 10
+set arrow 2 from t2,-1.1*A to t2,1.1*A nohead linetype 10
+plot[0:t3] uanal(x) title "Analytic", ual(x) title "Arc length", umin(x) title "Minimum", uhm(x) title "Harmonic mean", ugm(x) title "Geometric mean", uam(x) title "Arithmetic mean", urms(x) title "Root Mean Square", umax(x) title "Maximum"
+

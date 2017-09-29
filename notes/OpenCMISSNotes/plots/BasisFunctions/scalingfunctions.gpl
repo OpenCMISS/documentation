@@ -1,0 +1,80 @@
+# Scaling functions
+
+arithmeanscaling(s1,s2)=(s1+s2)/2.0
+geommeanscaling(s1,s2)=sqrt(s1*s2)
+harmmeanscaling(s1,s2)=2.0*s1*s2/(s1+s2)
+maxscaling(s1,s2)=max(s1,s2)
+minscaling(s1,s2)=min(s1,s2)
+rmsscaling(s1,s2)=sqrt((s1*s1+s2*s2)/2.0)
+
+# Lagrange interpolation functions
+
+e3LLinterp(t,n1,n2,n3,n4) = t<=t1 ? LLinterp(t/dt1,n1,n2) : t<=t2 ? LLinterp((t-t1)/dt2,n2,n3) : LLinterp((t-t2)/dt3,n3,n4)
+e3QLinterp(t,n1,n2,n3,n4,n5,n6,n7) = t<=t1 ? QLinterp(t/dt1,n1,n2,n3) : t<=t2 ? QLinterp((t-t1)/dt2,n3,n4,n5) : QLinterp((t-t2)/dt3,n5,n6,n7)
+e3CLinterp(t,n1,n2,n3,n4,n5,n6,n7,n8,n9,n10) = t<=t1 ? CLinterp(t/dt1,n1,n2,n3,n4) : t<=t2 ? CLinterp((t-t1)/dt2,n4,n5,n6,n7) : CLinterp((t-t2)/dt3,n7,n8,n9,n10)
+
+# Different scaling position interpolation
+
+# Different scaling CH interpolation functions
+
+alCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,s3,s3)
+amCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,arithmeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,arithmeanscaling(s2,s3),s3)
+gmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,geommeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,geommeanscaling(s2,s3),s3)
+hmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,harmmeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,harmmeanscaling(s2,s3),s3)
+maxCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,maxscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,maxscaling(s2,s3),s3)
+minCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,minscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,minscaling(s2,s3),s3)
+rmsCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,rmsscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,rmsscaling(s2,s3),s3)
+
+# Different scaling circular CH interpolation functions
+
+alcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,s3,s3)
+amcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,arithmeanscaling(s3,s1),arithmeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,arithmeanscaling(s2,s3),arithmeanscaling(s3,s1))
+gmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,geommeanscaling(s3,s1),geommeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,geommeanscaling(s2,s3),geommeanscaling(s3,s1))
+hmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,harmmeanscaling(s3,s1),harmmeanscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,harmmeanscaling(s2,s3),harmmeanscaling(s3,s1))
+maxcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,maxscaling(s3,s1),maxscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,maxscaling(s2,s3),maxscaling(s3,s1))
+mincircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,minscaling(s3,s1),minscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,minscaling(s2,s3),minscaling(s3,s1))
+rmscircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,rmsscaling(s3,s1),rmsscaling(s1,s2)) : t<=t2 ? CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,rmsscaling(s2,s3),rmsscaling(s3,s1))
+
+# Different scaling first derivative interpolation
+
+# Different scaling CH interpolation functions
+
+dalCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,s3,s3)
+damCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,arithmeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,arithmeanscaling(s2,s3),s3)
+dgmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,geommeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,geommeanscaling(s2,s3),s3)
+dhmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,harmmeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,harmmeanscaling(s2,s3),s3)
+dmaxCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,maxscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,maxscaling(s2,s3),s3)
+dminCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,minscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,minscaling(s2,s3),s3)
+drmsCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,rmsscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,rmsscaling(s2,s3),s3)
+
+# Different scaling circular CH interpolation functions
+
+dalcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,s3,s3)
+damcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,arithmeanscaling(s3,s1),arithmeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,arithmeanscaling(s2,s3),arithmeanscaling(s3,s1))
+dgmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,geommeanscaling(s3,s1),geommeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,geommeanscaling(s2,s3),geommeanscaling(s3,s1))
+dhmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,harmmeanscaling(s3,s1),harmmeanscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,harmmeanscaling(s2,s3),harmmeanscaling(s3,s1))
+dmaxcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,maxscaling(s3,s1),maxscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,maxscaling(s2,s3),maxscaling(s3,s1))
+dmincircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,minscaling(s3,s1),minscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,minscaling(s2,s3),minscaling(s3,s1))
+drmscircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? dCHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,rmsscaling(s3,s1),rmsscaling(s1,s2)) : t<=t2 ? dCHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : dCHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,rmsscaling(s2,s3),rmsscaling(s3,s1))
+
+# Different scaling second derivative interpolation
+
+# Different scaling CH interpolation functions
+
+d2alCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,s3,s3)
+d2amCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,arithmeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,arithmeanscaling(s2,s3),s3)
+d2gmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,geommeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,geommeanscaling(s2,s3),s3)
+d2hmCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,harmmeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,harmmeanscaling(s2,s3),s3)
+d2maxCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,maxscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,maxscaling(s2,s3),s3)
+d2minCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,minscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,minscaling(s2,s3),s3)
+d2rmsCHinterp(t,n1,n2,n3,n4,dn1ds,dn2ds,dn3ds,dn4ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,rmsscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n4,dn3ds,dn4ds,rmsscaling(s2,s3),s3)
+
+# Different scaling circular CH interpolation functions
+
+d2alcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,s1,s1) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,s2,s2) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,s3,s3)
+d2amcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,arithmeanscaling(s3,s1),arithmeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,arithmeanscaling(s1,s2),arithmeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,arithmeanscaling(s2,s3),arithmeanscaling(s3,s1))
+d2gmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,geommeanscaling(s3,s1),geommeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,geommeanscaling(s1,s2),geommeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,geommeanscaling(s2,s3),geommeanscaling(s3,s1))
+d2hmcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,harmmeanscaling(s3,s1),harmmeanscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,harmmeanscaling(s1,s2),harmmeanscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,harmmeanscaling(s2,s3),harmmeanscaling(s3,s1))
+d2maxcircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,maxscaling(s3,s1),maxscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,maxscaling(s1,s2),maxscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,maxscaling(s2,s3),maxscaling(s3,s1))
+d2mincircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,minscaling(s3,s1),minscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,minscaling(s1,s2),minscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,minscaling(s2,s3),minscaling(s3,s1))
+d2rmscircCHinterp(t,n1,n2,n3,dn1ds,dn2ds,dn3ds) = t<=t1 ? d2CHinterp((t-t0)/dt1,n1,n2,dn1ds,dn2ds,rmsscaling(s3,s1),rmsscaling(s1,s2)) : t<=t2 ? d2CHinterp((t-t1)/dt2,n2,n3,dn2ds,dn3ds,rmsscaling(s1,s2),rmsscaling(s2,s3)) : d2CHinterp((t-t2)/dt3,n3,n1,dn3ds,dn1ds,rmsscaling(s2,s3),rmsscaling(s3,s1))
