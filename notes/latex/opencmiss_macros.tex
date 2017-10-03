@@ -279,6 +279,7 @@
 %\newcommand{\unitseparator}{\cdot}
 \newcommand{\unitseparator}{\thickspace}
 
+\newcommand{\cmps}{\units{\cm\unitseparator\s^{-1}}} % centimetres/second
 \newcommand{\Hpm}{\units{\H\unitseparator\m^{-1}}} % Henrys/metre
 \newcommand{\kNpm}{\units{\kN\unitseparator\m^{-1}}} % kilo-Newtons/metre
 \newcommand{\Lps}{\units{L\unitseparator\s^{-1}}} % litres/second
@@ -293,6 +294,8 @@
 \newcommand{\mtwo}{\units{\m^{2}}} % metres squared
 \newcommand{\mmtwo}{\units{\mm^{2}}} % millimetres squared
 \newcommand{\mmthree}{\units{\mm^{3}}} % millimetres cubed
+\newcommand{\pmetre}{\units{\m^{-1}}} % per meter n.g. \pm is plus-minus
+\newcommand{\pcm}{\units{\cm^{-1}}} % per centimeter
 \newcommand{\pum}{\units{\um^{-1}}} % per micrometer
 \newcommand{\pmm}{\units{\mm^{-1}}} % per millimeter
 \newcommand{\pms}{\units{\ms^{-1}}} % per millisecond
@@ -392,7 +395,20 @@
   }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
-\newcommand{\directionalderiv}[2]{\ensuremath{\del_{#1} #2}} % directional derivative
+\newcommand{\directionalderiv}[2]{\ensuremath{\del_{#1} #2}} % directional
+                                % derivative
+\newcommand{\derivativeop}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{D#2}
+  }{
+    \ensuremath{D_{#1}#2} % 
+  }} % derivative operator e.g. \derivativeop{}{f} => Da & \derivativeop{x}{f} => D_{x}a
+\newcommand{\hessianop}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{D^{2}#2}
+  }{
+    \ensuremath{D^{2}_{#1}#2} % 
+  }} % Hessian operator e.g. \hessianop{}{f} => D^2a & \hessianop{x}{f} => D^{2}_{x}a
 \newcommand{\divergence}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\dotprod{\nabla}{#2}}
@@ -673,6 +689,9 @@
 \newcommand{\embedmanifold}[1]{\ensuremath{ %
   \mathcal{#1} %
   }} % embedded manifold symbol
+\newcommand{\connection}[2]{\ensuremath{ %
+  \grad_{#1}{#2} %
+  }} % connection e.g., \connection{X}{Y} => \grad_{X} Y
 \newcommand{\coordspacesymbol}{\ensuremath{ %
     \mathcal{C} %
   }} % Coordinate space symbol => C
@@ -725,6 +744,18 @@
 \newcommand{\covarderiv}[2]{\ensuremath{ %
     {#1}_{;#2}
     }} % covariant derivative e.g. \covarderiv{i}{j} => i_{;j}
+\newcommand{\covarderivop}[2]{%
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\nabla{#2}}
+  }{
+    \ensuremath{\nabla_{#1}{#2}} % 
+  }} % covariant derivative operator e.g. \covarderivop{x}{y} => \nabla_{x}y
+\newcommand{\doublecovarderivop}[2]{%
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\nabla^{2}{#2}}
+  }{
+    \ensuremath{\nabla^{2}_{#1}{#2}} % 
+  }} % double covariant derivative operator e.g. \doublecovarderivop{x}{y} => \nabla^{2}_{x}y
 \newcommand{\mixedderiv}[3]{\ensuremath{ %
     \brac{.}{#1}{|}^{#2}_{#3}
     }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}

@@ -1147,3 +1147,20 @@ The derivatives wrt to external coordinates are then given by
   Definition.}{Qudadratic tetrahedron local node ordering.}{fig:quadratictetrahedron}{0.5}
 \epstexfigure{svgs/BasisFunctions/cubictetrahedron.eps_tex}{Cubic Tetrahedron
   Definition.}{Cubic tetrahedron local node ordering.}{fig:cubictetrahedron}{0.5}
+
+
+\subsection{General linear map}
+
+From the definition of Christoffel symbols
+\begin{equation}
+  \deltwoby{x^{p}}{\xi^{j}}{\xi^{k}}=\christoffel{m}{k}{j}\delby{x^{p}}{\xi^{m}}
+\end{equation}
+\ie
+\begin{equation}
+  \christofell{i}{k}{j}=\deltwoby{x^{l}}{\xi^{k}}{\xi^{j}}\delby{\xi^{i}}{x^{l}}
+\end{equation}
+or in vector form
+\begin{equation}
+  \christofell{i}{j}{k}=\dotproduct{\deltwoby{\vectr{x}}{\xi^{k}}{\xi^{j}}}{\gradient{}{\xi^{i}}}
+\end{equation}
+
