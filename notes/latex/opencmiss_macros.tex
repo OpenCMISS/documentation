@@ -18,7 +18,6 @@
 %   Chris Bradley, 6 August 2014, Differential geometry support.
 %   Chris Bradley, 4 July 2017, tidyup for outdated packages.
 
-
 %
 % Necessary packages
 %
@@ -33,14 +32,13 @@
 \usepackage{xspace}
 \usepackage{url}
 
-
+%
 % URL commands
 %
 \newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
 \newcommand{\directory} {\begingroup \urlstyle{sf}\Url}
 \newcommand{\file}      {\begingroup \urlstyle{sf}\Url}
 \renewcommand{\url}     {\begingroup \urlstyle{sf}\Url}
-
 
 %
 % Software and systmes
@@ -63,10 +61,12 @@
 \newcommand{\clearemptydoublepage}{\newpage{\pagestyle{empty}\cleardoublepage}}
 %\newcommand{\newion}[3]{\newcommand{#1}{\ion{#2}{#3}}} % new ion
 %\newcommand{\newunit}[2]{\newcommand{#1}{\units{#2}}} % new unit
+
 %
 % New enironments
 %
 \newenvironment{code}[0]{\small\begin{alltt}}{\end{alltt}\normalsize}
+
 %
 % Figures etc.
 %
@@ -213,7 +213,6 @@
 \newcommand{\ion}[2]{\ensuremath{\mathrm{{#1}^{#2}}}\xspace} % ion
 \newcommand{\ionCa}{\ion{Ca}{2+}} % calcium ion
 
-
 \newcommand{\ionCl}{\ion{Cl}{-}} % chloride ion
 \newcommand{\ionH}{\ion{H}{+}} % hydrogen ion
 \newcommand{\ionK}{\ion{K}{+}} % potassium ion
@@ -221,6 +220,7 @@
 \newcommand{\ionNa}{\ion{Na}{+}} % sodium ion
 \newcommand{\ionphosphate}{\ion{PO_{4}}{3-}} % phosphate ion
 \newcommand{\ionbicarbonate}{\ion{HCO_{3}}{-}} % bicarbonate ion
+
 %
 % Units
 %
@@ -231,7 +231,6 @@
 \newcommand{\nrunit}[3]{\ensuremath{ %
     #1\text{--}#2~#3 %
     }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
-
 
 \newcommand{\mg}{\units{mg}} % milligrams
 \newcommand{\g}{\units{g}} % grams
@@ -279,7 +278,6 @@
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
 \newcommand{\unitseparator}{\thickspace}
-
 
 \newcommand{\Hpm}{\units{\H\unitseparator\m^{-1}}} % Henrys/metre
 \newcommand{\kNpm}{\units{\kN\unitseparator\m^{-1}}} % kilo-Newtons/metre
@@ -378,7 +376,6 @@
 \newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
 \newcommand{\pbracl}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
 \newcommand{\transpose}[1]{\ensuremath{{#1}^{T}}} % transpose
-%
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
 \newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % Braces { bracket
 \newcommand{\conjugate}[1]{\ensuremath{ %
@@ -387,14 +384,22 @@
 \newcommand{\const}[1]{\ensuremath{\mathrm{#1}}} % constant
 \newcommand{\cont}[1]{\ensuremath{C^{#1}}} % continuity e.g. \cont{1} => C1
 \newcommand{\convolution}[2]{\ensuremath{#1*#2}} % convolution e.g. \convolution{a}{b} => a*b
-\newcommand{\curl}[1]{\ensuremath{ %
-    \crossprod{\nabla}{#1} %
-    }} % curl e.g. \curl{a} => nabla x a
+\newcommand{\curl}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\crossprod{\nabla}{#2}}
+  }{
+    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
+  }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
-\newcommand{\diverg}[1]{\ensuremath{ %
-    \dotprod{\nabla}{#1} %
-    }} % divergence e.g. \diverg{a} => nabla . a
+\newcommand{\directionalderiv}[2]{\ensuremath{\del_{#1} #2}} % directional derivative
+\newcommand{\divergence}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\dotprod{\nabla}{#2}}
+  }{
+    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
+  }} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} =>
+     % nabla_{x} . a
 \newcommand{\dint}{\ensuremath{\displaystyle\int}} % display integral
 \newcommand{\dintl}[2]{\ensuremath{ %
     \displaystyle\int\limits_{#1}^{#2} %
@@ -454,9 +459,17 @@
     }} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
 \newcommand{\grad}{\ensuremath{\nabla}} % gradient
 \newcommand{\gradsq}{\ensuremath{\nabla^{2}}} % gradient squared 
-\newcommand{\gradient}[1]{ %
-  \ensuremath{\grad #1} %
-  } % gradient e.g. \gradient{u} => \grad u
+\newcommand{\gradient}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\grad #2}
+  }{
+    \ensuremath{\grad_{#1} #2} % 
+  }} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x}
+     % u
+\newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
+                                % \functional{f}{a} => f[a]
+\newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
+                                % \functionalderiv{f} => \delta f
 \newcommand{\innerprod}[2]{\ensuremath{ %
     \left<#1,#2\right> %
     }} % inner product e.g. \innerprod{a,b} => <a,b>
@@ -479,8 +492,21 @@
        % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
 \newcommand{\kronecker}[2]{\covarkronecker{#1}{#2}} % kronecker delta
        % tensor. Default to covariant.
-\newcommand{\laplacian}[1]{\ensuremath{\gradsq {#1}}} % laplacian
+\newcommand{\linearisation}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\fnof{L}{#2}}
+  }{
+    \ensuremath{\fnof{L_{#1}}{#2}} % 
+  }} % linearisation e.g. \linearisation{}{u} => L(u) & \linearisation{x}{u} => L_x(u)
+\newcommand{\laplacian}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\gradsq #2}
+  }{
+    \ensuremath{\gradsq_{#1} #2} % 
+  }} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} =>
+     % \nabla^2_x u
 \newcommand{\legendre}[3]{\ensuremath{\fnof{P_{#1}^{#2}}{#3}}} % Legendre polynomial
+\newcommand{\liederiv}[2]{\ensuremath{\mathcal{L}_{#1} #2}} % Lie derivative
 \newcommand{\limit}[3]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2} #3 %
     }} % limit e.g. \limit{a}{b}{c} => lim a->b c
@@ -520,6 +546,25 @@
 \newcommand{\nttento}[2]{\ensuremath{ %
     #1\ttento{#2} %
     }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
+% Operators
+% 
+
+% Vector calculus operators
+\DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
+\DeclareMathOperator{\divop}{div} % divergence operator e.g., div A
+\DeclareMathOperator{\curlop}{curl} % curl operator e.g., curl A
+\DeclareMathOperator{\Gradop}{Grad} % Gradient operator e.g., Grad A
+\DeclareMathOperator{\Divop}{Div} % Divergence operator e.g., Div A
+\DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
+
+% Tensor operators
+\DeclareMathOperator{\sympart}{sym} % symmetric part e.g., sym A
+\DeclareMathOperator{\skewpart}{skew} % skew-symmetric part e.g., skew A
+\DeclareMathOperator{\devpart}{dev} % deviatoric part e.g., dev A
+\DeclareMathOperator{\sphpart}{sph} % spherical part e.g., sph A
+
 %
 %  Fractions
 %
@@ -529,6 +574,9 @@
 \newcommand{\dby}[2]{\ensuremath{ %
     \dfrac{ d #1}{d #2} %
     }} % e.g. \dby{u}{v} => d u / d v
+\newcommand{\dbyat}[3]{\ensuremath{ %
+    \evalat{\dfrac{ d #1}{d #2}}{#3} %
+    }} % e.g. \dbyat{u}{v}{a} => d u / d v | _{a}
 \newcommand{\Dby}[2]{\ensuremath{ %
     \dfrac{ D #1}{D #2} %
     }} % e.g. \Dby{u}{v} => D u / D v i.e. the full derivative
@@ -612,10 +660,10 @@
   \delntwoby{#1}{}{#3}{#4}{#5}{#6}\pbrac{#2} %
   } % horizontal delntwoby e.g. \hdelntwoby{3}{u}{x}{1}{y}{2} => 
     % del^3/del x^1 del y^2 (u)
+
 %
 % Differential Geometry
 %
-
 \newcommand{\manifold}[1]{\ensuremath{ %
   \mathfrak{#1} %
   }} % manifold symbol
@@ -652,7 +700,10 @@
 \newcommand{\cotangentbundle}[1]{\ensuremath{ %
     \cotangentspacesymbol \manifold{#1} %
   }} % Cotangent bundle e.g., \cotangentbundle{M} => T^*M
-
+\newcommand{\pushforward}[2]{\ensuremath{#1_{*}#2}} % push forward
+                                % e.g. \pushforward{M}{v} => M_* v
+\newcommand{\pullback}[2]{\ensuremath{#1^{*}#2}} % pull back
+                                % e.g. \pullback{M}{v} => M^* v
 \newcommand{\christoffel}[3]{\christoffelsecond{#1}{#2}{#3}} % Christoffel symbol
                                 % (defaults to Christoffel symbol of the
                                 % second kind)
@@ -680,14 +731,21 @@
 \newcommand{\exteriorderiv}[2]{\ensuremath{ %
     \boldsymbol{d}#1
   }} % Exterior derivative e.g., \exteriorderiv{a} => da
+\newcommand{\sharptensor}[1]{\ensuremath{#1^{\sharp}}} % sharp tensor e.g.,
+                                % \sharptensor{A} => A^#
+\newcommand{\flattensor}[1]{\ensuremath{#1^{\flat}}} % flat tensor e.g.,
+                                % \flattensor{A} => A^b
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek tensors
 %\newcommand{\tensor}[1]{\ensuremath{\mathbf{#1}}} % tensor
-\newcommand{\tensor}[1]{\ensuremath{\boldsymbol{#1}}} % tensor
+\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
+\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
+\newcommand{\tensortwo}[1]{\ensuremath{\boldsymbol{\mathit{#1}}}} % 2nd order tensor
+\newcommand{\tensorthree}[1]{\ensuremath{\boldsymbol{\mathrm{#1}}}} % 3rd order tensor
+\newcommand{\tensorfour}[1]{\ensuremath{\boldsymbol{\mathsf{#1}}}} % 4th order tensor
+\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
-\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
-\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
 \newcommand{\tensorproduct}[2]{\ensuremath{ %
     #1 \otimes #2 %
   }} % tensor product e.g., \tensorproduct{a}{b} => a x b.

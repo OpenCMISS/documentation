@@ -25,8 +25,12 @@ MY_MAINFILE=OpenCMISSNotes
 
 MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Introduction/Introduction.tex "\
+"BasisFunctions/BasisFunctions.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
+"Maths/Maths.tex "\
+"Maths/Notation/Notation.tex "\
+"Maths/VectorCalculus/VectorCalculus.tex "\
 "EquationSets/EquationSets.tex "\
 "EquationSets/ClassicalFieldClass/AdvectionDiffusionEquation.tex "\
 "EquationSets/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
@@ -45,6 +49,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "EquationSets/FluidMechanicsClass/NavierStokesEquation.tex "\
 "EquationSets/MultiphysicsClass/Poroelasticity.tex "\
 "AnalyticSolutions/AnalyticSolutions.tex "\
+"AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
 "AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
 "References/References.tex "\
@@ -59,7 +64,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 MY_EPS_SRC="epsfiles/Modules/*.eps"
 MY_FIG_SRC=figs/BasisFunctions/*.fig
 MY_SVG_SRC="svgs/BasisFunctions/*.svg svgs/DifferentialGeometry/*.svg"
-MY_PLOT_SRC=plots/BasisFunctions/*.gnu
+MY_PLOT_SRC="plots/BasisFunctions/*.gnu plots/BasisFunctions/*.gnu8"
 
 #
 # The name of the directory to place the html version of the document.

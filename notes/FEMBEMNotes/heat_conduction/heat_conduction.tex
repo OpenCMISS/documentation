@@ -508,7 +508,7 @@ and $z$ axes respectively. If the material is assumed to be isotropic, $k_{x}
 = k_{y} = k_{z} = k$, and the above equation can be written
 as
 \begin{equation}
-  -\diverg{\pbrac{k \grad u}} = 0
+  -\divergence{}{\pbrac{k \gradient{}{u}}} = 0
   \label{eqn:S-SH}
 \end{equation}
 and, if $k$ is spatially constant (in the case of a homogeneous material), this reduces to Laplace's equation 
@@ -519,14 +519,14 @@ region $\Omega$, subject to boundary conditions on $\Gamma$ (see \figref{fig:reg
 
 The weighted integral equation, corresponding to \eqnref{eqn:S-SH}, is
 \begin{equation}
-  \goneint{-\diverg{\pbrac{k\grad u}}\omega}{\Omega} = 0
+  \goneint{-\divergence{}{\pbrac{k\gradient{}{u}}}\omega}{\Omega} = 0
   \label{eqn:weighted_integral}
 \end{equation}
 
 The multi-dimensional equivalent of integration by parts is the Green-Gauss
 theorem:
 \begin{equation}
-  \goneint{\pbrac{f\diverg{\grad g}+\dotprod{\grad f}{\grad g}}}{\Omega} =
+  \goneint{\pbrac{f\divergence{}{\gradient{}{g}}+\dotprod{\gradient{}{f}}{\gradient{}{g}}}}{\Omega} =
   \goneint{f \delby{g}{n}}{\Gamma}
   \label{eqn:nabla_eq}
 \end{equation}
@@ -536,8 +536,8 @@ Wiley, 1993).
 This is used (with $f=\omega$, $g=-ku$ and assuming that $k$ is constant) 
 to reduce the derivative order from two to one as follows:
 \begin{equation}
-  \goneint{-\diverg{\pbrac{k\grad u}}\omega}{\Omega} 
-  = \goneint{k \dotprod{\grad u}{\grad  \omega}}{\Omega} 
+  \goneint{-\divergence{}{\pbrac{k\gradient{}{u}}}\omega}{\Omega} 
+  = \goneint{k \dotprod{\gradient{}{u}}{\gradient{}{\omega}}}{\Omega} 
   - \goneint{k\delby{u}{n} \omega}{\Gamma}      
   \label{eqn:Green-Gauss}
 \end{equation}
@@ -548,7 +548,7 @@ Using \eqnref{eqn:Green-Gauss} in \eqnref{eqn:weighted_integral} gives the
 two-dimensional equivalent of \eqnref{eqn:integration_by_parts} 
 (but with no source term):
 \begin{equation}
-  \goneint{k \dotprod{\grad u}{\grad \omega}}{\Omega}
+  \goneint{k \dotprod{\gradient{}{u}}{\gradient{}{\omega}}}{\Omega}
   = \goneint{k \delby{u}{n}\omega}{\Gamma}
   \label{eqn:2-D_equiv}
 \end{equation}
@@ -557,7 +557,7 @@ being given on another part of the boundary.
 
 The integrand on the LHS of \bref{eqn:2-D_equiv} is evaluated using
 \begin{equation}
-  \dotprod{\grad u}{\grad \omega} = \dotprod{\delby{u}{x_{k}}}{\delby{\omega}{x_{k}}} = 
+  \dotprod{\gradient{}{u}}{\gradient{}{\omega}} = \dotprod{\delby{u}{x_{k}}}{\delby{\omega}{x_{k}}} = 
   \dotprod{\delby{u}{\xi_{i}} \delby{\xi_{i}}{x_{k}}}{\delby{\omega}{\xi_{j}} 
   \delby{\xi_{j}}{x_{k}}}
   \label{eqn:integrand}
@@ -630,7 +630,7 @@ For each element, the basis functions and their derivatives are:
 
 The equation is 
 \begin{equation}
-  \goneint{k\dotprod{\grad u}{\grad \omega}}{\Omega} 
+  \goneint{k\dotprod{\gradient{}{u}}{\gradient{}{\omega}}}{\Omega} 
      = \goneint{k\delby{u}{n}\omega}{\Gamma}
 \end{equation}
 \ie

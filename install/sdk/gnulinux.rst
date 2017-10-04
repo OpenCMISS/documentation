@@ -3,14 +3,37 @@
 GNU/Linux
 =========
 
+The following instructions are targeted at the Ubuntu distribution of GNU/Linux.  The following instructions also assume that the SDK for Ubuntu has been downloaded from the `opencmiss website <http://opencmiss.org/downloads.html>`_ and has been saved into the 'Downloads' directory on a local disk.
+
+-----------
+Extract SDK
+-----------
+
+The first task is to create a directory in to which the SDK can be extracted::
+
+   mkdir opencmiss_sdk
+
+Then we can use the tar command to extract the files from the SDK, first changing into the 'opencmiss_sdk' directory::
+
+   cd opencmiss_sdk
+   tar xzf ~/Downloads/OpenCMISS-Libraries_1.3.0_SDK_Ubuntu-16.04.tar.gz
+
+That is all we need to do to make the SDK available on our system.
+
+------------------------------
+Setting Up Virtual Environment
+------------------------------
+
+We can set up a virtual environment with the OpenCMISS Iron and Zinc libraries.  This will enable us to run Iron and Zinc Python scripts and applications using the created virtual enviroment.
+
 For using the Python bindings of the OpenCMISS libraries you will need to install:
 
-   - The NumPy_ library (:code:`python-numpy`).  Basic install instructions are given below, for more detailed instructions read the documentation available from SciPy_.
+- The NumPy_ library (:code:`python-numpy`).  Basic install instructions are given below, for more detailed instructions read the documentation available from SciPy_.
      To install on Ubuntu (using package manager)::
 
         sudo apt-get install python-numpy
 
-   - [Optional but recommended] The Python virtualenv_ mechanism for independent Python environments
+- [Optional but recommended] The Python virtualenv_ mechanism for independent Python environments
 
 If you intend to use virtual environments, make sure your target environment is active before proceeding with the following installation steps.
 

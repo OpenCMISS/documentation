@@ -1,0 +1,76 @@
+R=2.0
+
+t0=0.0
+t1=2.0*pi/3.0
+t2=4.0*pi/3.0
+t3=2.0*pi
+
+dt1=t1-t0
+dt2=t2-t1
+dt3=t3-t2
+
+s1=dt1*R
+s2=dt2*R
+s3=dt3*R
+
+X1=R*cos(t0)
+X2=R*cos(t1)
+X3=R*cos(t2)
+
+dX1ds=-sin(t0)
+dX2ds=-sin(t1)
+dX3ds=-sin(t2)
+
+Y1=R*sin(t0)
+Y2=R*sin(t1)
+Y3=R*sin(t2)
+
+dY1ds=cos(t0)
+dY2ds=cos(t1)
+dY3ds=cos(t2)
+
+load 'functions.gpl'
+load 'scalingfunctions.gpl'
+
+Xanal(theta) = R*cos(theta)
+dXanal(theta) = -R*sin(theta)
+d2Xanal(theta) = -R*cos(theta)
+
+Yanal(theta) = R*sin(theta)
+dYanal(theta) = R*cos(theta)
+d2Yanal(theta) = -R*sin(theta)
+
+d2Xal(theta) = d2alcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xmin(theta) = d2mincircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xhm(theta) = d2hmcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xgm(theta) = d2gmcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xam(theta) = d2amcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xrms(theta) = d2rmscircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+d2Xmax(theta) = d2maxcircCHinterp(theta,X1,X2,X3,dX1ds,dX2ds,dX3ds)
+
+d2Yal(theta) = d2alcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Ymin(theta) = d2mincircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Yhm(theta) = d2hmcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Ygm(theta) = d2gmcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Yam(theta) = d2amcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Yrms(theta) = d2rmscircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+d2Ymax(theta) = d2maxcircCHinterp(theta,Y1,Y2,Y3,dY1ds,dY2ds,dY3ds)
+
+set parametric
+set size square
+set samples 1000
+set linetype 10 dt 2
+set xlabel "$x$"
+set ylabel "$y$"
+set label 1 "$0/2\pi$" at d2Xanal(t0),d2Yanal(t0) centre
+set label 2 "$a$" at d2Xanal(t1),d2Yanal(t1) centre
+set label 3 "$b$" at d2Xanal(t2),d2Yanal(t2) centre
+set xrange [-10.1*R:10.1*R]
+set yrange [-10.1*R:10.1*R]
+set key outside
+#set title "Second derivative interpolation"
+set arrow 1 from 0,0 to d2Xanal(t0),d2Yanal(t0) nohead linetype 10
+set arrow 2 from 0,0 to d2Xanal(t1),d2Yanal(t1) nohead linetype 10
+set arrow 3 from 0,0 to d2Xanal(t2),d2Yanal(t2) nohead linetype 10
+plot[0:2.0*pi] d2Xanal(t),d2Yanal(t) title "Analytic", d2Xal(t),d2Yal(t) title "Arc length", d2Xmin(t),d2Ymin(t) title "Minimum", d2Xhm(t),d2Yhm(t) title "Harmonic mean", d2Xgm(t),d2Ygm(t) title "Geometric mean", d2Xam(t),d2Yam(t) title "Arithmetic mean", d2Xrms(t),d2Yrms(t) title "Root Mean Square", d2Xmax(t),d2Ymax(t) title "Maximum"
+
