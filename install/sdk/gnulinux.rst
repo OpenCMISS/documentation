@@ -40,7 +40,7 @@ With virtualenv_ installed execute the following commands in a terminal applicat
    virtualenv --system-site-packages venv_opencmisslibs
    source venv_opencmisslibs/bin/activate
 
-We have created and activated a Python virtual environment that makes use of all the Python packages available from the system.  Next we install the OpenCMISS libraries Python bindings into the active virtual environment.  Again from the terminal application enter the following commands (assumes virtual environment activated above is still active)::
+We have created and activated a Python virtual environment that makes use of all the Python packages available from the system.  We can create the virtual environment anywhere, we don't have to create it inside the 'opencmiss_sdk' directory.  Next we install the OpenCMISS libraries Python bindings into the active virtual environment.  Again from the terminal application enter the following commands (assumes virtual environment activated above is still active)::
 
    pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.iron
    pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.zinc
@@ -54,6 +54,22 @@ for Iron Python bindings or::
    /home/opencmiss/opencmiss_sdk/lib/python2.7/Release/opencmiss.zinc
 
 for Zinc Python bindings.   
+
+Check Installed Libraries
+-------------------------
+
+With the OpenCMISS libraries installed into the virtual environment we can perform a quick check to make sure the process was successful.  First we launch Python (the virtual environment Python)::
+
+   python
+
+Then from the python command prompt we can enter::
+
+   >>> from opencmiss.iron import iron
+   >>> from opencmiss.zinc.context import Context
+
+If the opencmiss libraries have been installed properly then nothing should happen, congratulations the libraries have been properly installed!
+
+If an error message appeared try emailing the `mailing lists <http://opencmiss.org/community.html#mailinglist>`_ for help.
 
 .. _NumPy: https://www.scipy.org/
 .. _SciPy: https://www.scipy.org/install.html
