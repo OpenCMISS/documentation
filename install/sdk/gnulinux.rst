@@ -45,7 +45,7 @@ We have created and activated a Python virtual environment that makes use of all
    pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.iron
    pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.zinc
 
-Here, :path:`SDK_DIR` is the installation root of your SDK, the X, and Y are placeholders for the major and minor version of Python that the bindings have been built for.  The major and minor version number defined in the path must match the major and minor version number of the Python intreperter in use, and :path:`(Release|Debug)` refers to the build type. For the current Windows SDK, this path could be for example:: 
+Here, :path:`SDK_DIR` is the installation root of your SDK, the X, and Y are placeholders for the major and minor version of Python that the bindings have been built for.  The major and minor version number defined in the path must match the major and minor version number of the Python intreperter in use, and :path:`(Release|Debug)` refers to the build type. For the current Ubuntu SDK, this path could be for example:: 
 
    /home/opencmiss/opencmiss_sdk/lib/python2.7/Release/opencmiss.iron
 
