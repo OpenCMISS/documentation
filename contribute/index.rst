@@ -24,10 +24,7 @@ Prior to contributing code:
 
 Here is a collection of further useful links for developers:
 
-`List of links to OpenCMISS GitHub Issues <http://opencmiss.org/community.html#GitHubIssues>`_
-`Mailing Lists <http://opencmiss.org/community.html#mailinglist>`_
-`Mailing Lists <http://opencmiss.org/community.html#mailinglist>`_
-`Contributors List <http://opencmiss.org/community.html#contributors>`_
+`List of links to OpenCMISS GitHub Issues <http://opencmiss.org/community.html#GitHubIssues>`_, `Mailing Lists <http://opencmiss.org/community.html#mailinglist>`_, `Contributors List <http://opencmiss.org/community.html#contributors>`_
 
 
 .. toctree::
