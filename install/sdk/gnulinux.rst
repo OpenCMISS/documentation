@@ -33,26 +33,43 @@ For using the Python bindings of the OpenCMISS libraries you will need to instal
 
         sudo apt-get install python-numpy
 
-- [Optional but recommended] The Python virtualenv_ mechanism for independent Python environments
+- The Python virtualenv_ mechanism for independent Python environments
 
-If you intend to use virtual environments, make sure your target environment is active before proceeding with the following installation steps.
+With virtualenv_ installed execute the following commands in a terminal application to create and activate the virtual environment::
 
-To install the Python bindings, open a command prompt (and activate your virtual environment) and type::
+   virtualenv --system-site-packages venv_opencmisslibs
+   source venv_opencmisslibs/bin/activate
 
-   pip install --user <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.iron
-   pip install --user <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.zinc
+We have created and activated a Python virtual environment that makes use of all the Python packages available from the system.  We can create the virtual environment anywhere, we don't have to create it inside the 'opencmiss_sdk' directory.  Next we install the OpenCMISS libraries Python bindings into the active virtual environment.  Again from the terminal application enter the following commands (assumes virtual environment activated above is still active)::
 
-Here, :path:`SDK_DIR` is the installation root of your SDK, the X, and Y are placeholders for the major and minor version of Python that the bindings have been built for.  The major and minor version number defined in the path must match the major and minor version number of the Python intreperter in use, and :path:`(Release|Debug)` refers to the build type. For the current Windows SDK, this path could be for example:: 
+   pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.iron
+   pip install -e <SDK_DIR>/lib/pythonX.Y/(Release|Debug)/opencmiss.zinc
 
-   pip install --user <SDK_DIR>\lib\python3.4\Release\opencmiss.iron
+Here, :path:`SDK_DIR` is the installation root of your SDK, the X, and Y are placeholders for the major and minor version of Python that the bindings have been built for.  The major and minor version number defined in the path must match the major and minor version number of the Python intreperter in use, and :path:`(Release|Debug)` refers to the build type. For the current Ubuntu SDK, this path could be for example:: 
+
+   /home/opencmiss/opencmiss_sdk/lib/python2.7/Release/opencmiss.iron
 
 for Iron Python bindings or::
 
-   pip install --user <SDK_DIR>\lib\python3.4\Release\opencmiss.zinc
+   /home/opencmiss/opencmiss_sdk/lib/python2.7/Release/opencmiss.zinc
 
 for Zinc Python bindings.   
 
-.. note:: If using a virtualenv installation do not use the :code:`--user` option unless you created the virtual environment using the :code:`--system-site-packages` option.
+Check Installed Libraries
+-------------------------
+
+With the OpenCMISS libraries installed into the virtual environment we can perform a quick check to make sure the process was successful.  First we launch Python (the virtual environment Python)::
+
+   python
+
+Then from the python command prompt we can enter::
+
+   >>> from opencmiss.iron import iron
+   >>> from opencmiss.zinc.context import Context
+
+If the opencmiss libraries have been installed properly then nothing should happen, congratulations the libraries have been properly installed!
+
+If an error message appeared try emailing the `mailing lists <http://opencmiss.org/community.html#mailinglist>`_ for help.
 
 .. _NumPy: https://www.scipy.org/
 .. _SciPy: https://www.scipy.org/install.html
