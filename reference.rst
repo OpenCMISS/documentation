@@ -6,16 +6,16 @@ Reference
 Documentation about the technical aspects of OpenCMISS software and libraries.
 
 ------------------
-OpenCMISS-Zinc API Reference
+OpenCMISS-Zinc C++ API Reference
 ------------------
 
-OpenCMISS-Zinc Library `Application Programming Interface <apidoc/zinc/latest/index.html>`_ Reference.
+OpenCMISS-Zinc Library `C++ Application Programming Interface <apidoc/zinc/latest/index.html>`_ Reference.
 
 ------------------
-OpenCMISS-Iron API Reference
+OpenCMISS-Iron Fortran API Reference
 ------------------
 
-User documentation of the OpenCMISS-Iron library `Application Programming Interface <apidoc/iron/latest/fortran/index.html>`_ Reference.
+User documentation of the OpenCMISS-Iron library `Fortran Application Programming Interface <apidoc/iron/latest/fortran/index.html>`_ Reference.
 
 ------------------
 OpenCMISS-Iron Python Bindings API Reference
