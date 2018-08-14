@@ -723,7 +723,7 @@ continuous at element boundaries for all scaling types.
 Let us now consider the influence of scaling type on geometric variables which
 require normalised \arclen derivatives. For this problem let us consider
 modelling a circle with three cubic Hermite elements. The analytic description
-is given by $\fnof{x}{\theta}=A\cos\theta$ and $\fnof{y}{x}=A\sin\theta$. And
+is given by $\fnof{x}{\theta}=A\cos\theta$ and $\fnof{y}{\theta}=A\sin\theta$. And
 the derivatives are given by $\delby{\fnof{x}{\theta}}{s}=-\sin\theta$,
 $\delby{\fnof{y}{\theta}}{s}=\cos\theta$,
 $\deltwosqby{\fnof{x}{\theta}}{s}=-\cos\theta$ and
@@ -1157,10 +1157,10 @@ From the definition of Christoffel symbols
 \end{equation}
 \ie
 \begin{equation}
-  \christofell{i}{k}{j}=\deltwoby{x^{l}}{\xi^{k}}{\xi^{j}}\delby{\xi^{i}}{x^{l}}
+  \christoffel{i}{k}{j}=\deltwoby{x^{l}}{\xi^{k}}{\xi^{j}}\delby{\xi^{i}}{x^{l}}
 \end{equation}
 or in vector form
 \begin{equation}
-  \christofell{i}{j}{k}=\dotproduct{\deltwoby{\vectr{x}}{\xi^{k}}{\xi^{j}}}{\gradient{}{\xi^{i}}}
+  \christoffel{i}{j}{k}=\dotprod{\deltwoby{\vectr{x}}{\xi^{k}}{\xi^{j}}}{\gradient{}{\xi^{i}}}
 \end{equation}
 

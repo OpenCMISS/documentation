@@ -187,3 +187,30 @@ The analytic field component definitions in \OpenCMISS are shown in \tabref{tab:
   \label{tab:OpenCMISSAnalyticFieldExponentialSoureDiffusionEquationOneDim1}
 \end{table}
 
+\subsubsection{Three Dimensional with linear source Analytic Function 1}
+
+The three dimensional diffusions equation with a linear source is given by
+\begin{equation}
+  \delby{u}{t}=a\laplacian{}{u}+bu+c
+\end{equation}
+
+The general form of the \OpenCMISS diffusion equation with linear source is
+given by
+\begin{equation}
+  a\delby{u}{t}+k\laplacian{}{u}+bu+c=0
+\end{equation}
+
+Consider substituting an function of the form
+\begin{equation}
+  \fnof{u}{\vectr{x},t}=e^{-bt}\fnof{w}{\vectr{x},t}
+\end{equation}
+
+This gives
+\begin{equation}
+  -be^{bt}\fnof{w}{\vectr{x},t}+e^{-bt}\delby{\fnof{w}{\vectr{x},t}}{t}+ke^{-bt}\Laplacian{}{\fnof{w}{\vectr{x},t}}+be^{-bt}\fnof{w}{\vectr{x},t}+c=0
+\end{equation}
+or
+\begin{equation}
+  e^{-bt}\delby{\fnof{w}{\vectr{x},t}}{t}+ke^{-bt}\laplacian{}{\fnof{w}{\vectr{x},t}}+c=0
+\end{equation}
+  

@@ -395,8 +395,9 @@
   }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
-\newcommand{\directionalderiv}[2]{\ensuremath{\del_{#1} #2}} % directional
-                                % derivative
+\newcommand{\directionalderiv}[2]{\ensuremath{
+    \sqfnof{\fnof{D}{#1}}{#2}
+}} % directional derivative e.g., \directionalderiv{f}{u} => D(f)[u]
 \newcommand{\derivativeop}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{D#2}
@@ -444,6 +445,9 @@
 \newcommand{\fntof}[2]{\ensuremath{ %
     \transpose{#1}\brac{(}{#2}{)} %
     }} % function transpose of e.g. \fntof{x}{\xi} => x^T(xi)
+\newcommand{\sqfnof}[2]{\ensuremath{ %
+    #1\brac{[}{#2}{]} %
+    }} % square function of e.g. \fnof{x}{\xi} => x[xi]
 \newcommand{\gegenbauer}[3]{\ensuremath{ %
     \fnof{C_{#1}^{#2}}{#3} %
     }} % gegenbauer polynomial e.g. \gengenbauer{1}{2}{x} => C_1^2(x)
@@ -451,11 +455,11 @@
     \operatornamewithlimits{\lim}_{#1\rightarrow#2}
     }} % general limit e.g. \genlimit{a}{b} => lim a->b
 \newcommand{\gint}[4]{\ensuremath{ %
-    \dintl{#1}{#2}\,#3\,d#4 %
+    \dintl{#1}{#2}\,#3\,\exteriorderivop#4 %
     }} % general integral with two limits. e.g.  
        % \gint{a}{b}{xxx}{c} => int_a^b xxx dc
 \newcommand{\giint}[7]{\ensuremath{ %
-    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,d#6d#7 %
+    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
     }} % general double integral with two limits. e.g.  
        % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
 \newcommand{\gprod}[3]{\ensuremath{ %
@@ -494,26 +498,33 @@
     }} % display evaluated integral with limits e.g. 
        % \inteval{xxx}{a}{b} => [xxx]_a^b
 \newcommand{\inverse}[1]{\ensuremath{{#1}^{-1}}} % inverse e.g. \inverse{A} => A^-1
-\newcommand{\invtranspose}[1]{\ensuremath{{#1}^{-T}}} % inverse transpose e.g. \invtranspose{A} => A^-T
-\newcommand{\circcomposition}[2]{\ensuremath{#1\circ#2}} % composition with
-                                % circ e.g. \circcomposition{A}{B} => A o 
-\newcommand{\funccomposition}[2]{\ensuremath{\fnof{#1}{#2}} % composition with
-                                % function e.g. \funccomposition{A}{B} => A(B)
-\newcommand{\composition}[2]{\circcomposition{#1}{#2}}} % composition
-\newcommand{\contrakronecker}[2]{\ensuremath{\delta^{{#1}{#2}}}} %
-       % contravariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta^{ij}
-\newcommand{\covarkronecker}[2]{\ensuremath{\delta_{{#1}{#2}}}} %
-       % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
-\newcommand{\mixedkronecker}[2]{\ensuremath{\delta_{#1}^{#2}}} %
-       % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
-\newcommand{\kronecker}[2]{\covarkronecker{#1}{#2}} % kronecker delta
-       % tensor. Default to covariant.
-\newcommand{\linearisation}[2]{ %
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\fnof{L}{#2}}
+\newcommand{\invtranspose}[1]{\ensuremath{ %
+    {#1}^{-T}
+}} % inverse transpose e.g. \invtranspose{A} => A^-T
+\newcommand{\circcomposition}[2]{\ensuremath{ %
+    #1\circ#2
+}} % composition with circ e.g. \circcomposition{A}{B} => A o 
+\newcommand{\funccomposition}[2]{\ensuremath{ %
+    \fnof{#1}{#2}
+}} % composition with function e.g. \funccomposition{A}{B} => A(B)
+\newcommand{\contrakronecker}[2]{\ensuremath{ %
+    \delta^{{#1}{#2}}
+}} % contravariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta^{ij}
+\newcommand{\covarkronecker}[2]{\ensuremath{
+    \delta_{{#1}{#2}}
+}} % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
+\newcommand{\mixedkronecker}[2]{\ensuremath{
+    \delta_{#1}^{#2}
+}} % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
+\newcommand{\kronecker}[2]{ %
+  \covarkronecker{#1}{#2} %
+} % kronecker delta tensor. Default to covariant.
+\newcommand{\linearisation}[3]{ %
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\sqfnof{\fnof{L}{#1}}{#3}}
   }{
-    \ensuremath{\fnof{L_{#1}}{#2}} % 
-  }} % linearisation e.g. \linearisation{}{u} => L(u) & \linearisation{x}{u} => L_x(u)
+    \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{#3}} % 
+  }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[u] & \linearisation{f}{x}{u} => L_x(f)[u]
 \newcommand{\laplacian}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\gradsq #2}
@@ -549,6 +560,9 @@
 \newcommand{\set}[1]{\ensuremath{
     \bbrac{#1}
 }} % e.g. \set{1,2,3} => {1,2,3}
+\newcommand{\spaceprod}[2]{\ensuremath{
+    #1\times#2 %
+}} % space product e.g., \spaceprod{A}{B} => A X B
 \newcommand{\sqbrac}[1]{\brac{[}{#1}{]}} % square [ bracket
 \newcommand{\symover}[2]{\ensuremath{
     \stackrel{\scriptscriptstyle #1}{#2} %
@@ -681,69 +695,71 @@
 % Differential Geometry
 %
 \newcommand{\manifold}[1]{\ensuremath{ %
-  \mathfrak{#1} %
-  }} % manifold symbol
+    \mathfrak{#1} %
+}} % manifold symbol
 \newcommand{\boundary}[1]{\ensuremath{ %
-  \del{#1} %
-  }} % boundary symbol
+    \del{#1} %
+}} % boundary symbol
 \newcommand{\embedmanifold}[1]{\ensuremath{ %
   \mathcal{#1} %
-  }} % embedded manifold symbol
+}} % embedded manifold symbol
 \newcommand{\connection}[2]{\ensuremath{ %
-  \grad_{#1}{#2} %
-  }} % connection e.g., \connection{X}{Y} => \grad_{X} Y
+    \grad_{#1}{#2} %
+}} % connection e.g., \connection{X}{Y} => \grad_{X} Y
 \newcommand{\coordspacesymbol}{\ensuremath{ %
     \mathcal{C} %
-  }} % Coordinate space symbol => C
+}} % Coordinate space symbol => C
 \newcommand{\tangentspacesymbol}{\ensuremath{ %
     \mathcal{T} %
-  }} % Tangent space symbol => T
+}} % Tangent space symbol => T
 \newcommand{\cotangentspacesymbol}{\ensuremath{ %
     \tangentspacesymbol^{*} %
-  }} % Cotangent space symbol => T^*
+}} % Cotangent space symbol => T^*
 \newcommand{\coordspace}[2]{\ensuremath{ %
     \coordspacesymbol_{#2} \manifold{#1} %
-  }} % Coordinate space e.g., \coordspace{M}{p} => C_p M
+}} % Coordinate space e.g., \coordspace{M}{p} => C_p M
 \newcommand{\tangentspace}[2]{\ensuremath{ %
     \tangentspacesymbol_{#2} \manifold{#1} %
-  }} % Tangent space e.g., \tangentspace{M}{p} => T_p M
+}} % Tangent space e.g., \tangentspace{M}{p} => T_p M
 \newcommand{\cotangentspace}[2]{\ensuremath{ %
     \cotangentspacesymbol_{#2} \manifold{#1} %
-  }} % Cotangent space e.g., \cotangentspace{M}{p} => T_p^* M
+}} % Cotangent space e.g., \cotangentspace{M}{p} => T_p^* M
 \newcommand{\coordbundle}[1]{\ensuremath{ %
     \coordspacesymbol \manifold{#1} %
-  }} % Coordinate bundle e.g., \coordbundle{M} => CM
+}} % Coordinate bundle e.g., \coordbundle{M} => CM
 \newcommand{\tangentbundle}[1]{\ensuremath{ %
     \tangentspacesymbol \manifold{#1} %
-  }} % Tangent bundle e.g., \tangentbundle{M} => TM
+}} % Tangent bundle e.g., \tangentbundle{M} => TM
 \newcommand{\cotangentbundle}[1]{\ensuremath{ %
     \cotangentspacesymbol \manifold{#1} %
-  }} % Cotangent bundle e.g., \cotangentbundle{M} => T^*M
-\newcommand{\pushforward}[2]{\ensuremath{#1_{*}#2}} % push forward
-                                % e.g. \pushforward{M}{v} => M_* v
-\newcommand{\pullback}[2]{\ensuremath{#1^{*}#2}} % pull back
-                                % e.g. \pullback{M}{v} => M^* v
-\newcommand{\christoffel}[3]{\christoffelsecond{#1}{#2}{#3}} % Christoffel symbol
-                                % (defaults to Christoffel symbol of the
-                                % second kind)
+}} % Cotangent bundle e.g., \cotangentbundle{M} => T^*M
+\newcommand{\pushforward}[2]{\ensuremath{ %
+    #1_{*}#2 %
+}} % push forward e.g. \pushforward{M}{v} => M_* v
+\newcommand{\pullback}[2]{\ensuremath{ %
+    #1^{*}#2
+}} % pull back e.g., \pullback{M}{v} => M^* v
+\newcommand{\christoffel}[3]{ %
+  \christoffelsecond{#1}{#2}{#3}
+} % Christoffel symbol (defaults to Christoffel symbol of the second kind)
 \newcommand{\christoffelfirst}[3]{\ensuremath{ %
     \Gamma_{#1#2#3}
-    }} % Christoffel symbol of the first kind e.g. \christoffelfirst{i}{j}{k} => Gamma_{ijk}
+}} % Christoffel symbol of the first kind e.g. \christoffelfirst{i}{j}{k} => Gamma_{ijk}
 \newcommand{\christoffelsecond}[3]{\ensuremath{ %
     \Gamma^{#1}_{#2#3}
-    }} % Christoffel symbol of the second kind e.g. \christoffelsecond{i}{j}{k} => Gamma^{i}_{jk}
+}} % Christoffel symbol of the second kind e.g. \christoffelsecond{i}{j}{k} => Gamma^{i}_{jk}
 \newcommand{\partialderiv}[2]{\ensuremath{
     {#1}_{,#2}
-    }} % partial derivative. e.g., \partialderiv{i}{j} => i_{,j}
+}} % partial derivative. e.g., \partialderiv{i}{j} => i_{,j}
 \newcommand{\covarpartialderiv}[2]{\ensuremath{ %
     {#1}_{,#2}
-    }} % covariant partial derivative e.g. \convarpartialderiv{i}{j} => i_{,j}
+}} % covariant partial derivative e.g. \convarpartialderiv{i}{j} => i_{,j}
 \newcommand{\contrapartialderiv}[2]{\ensuremath{ %
-    {#1}^{,#2}
-    }} % contravariant partial derivative e.g. \contrapartialderiv{i}{j} => i^{,j}
+    {#1}^{,#2} %
+}} % contravariant partial derivative e.g. \contrapartialderiv{i}{j} => i^{,j}
 \newcommand{\covarderiv}[2]{\ensuremath{ %
     {#1}_{;#2}
-    }} % covariant derivative e.g. \covarderiv{i}{j} => i_{;j}
+}} % covariant derivative e.g. \covarderiv{i}{j} => i_{;j}
 \newcommand{\covarderivop}[2]{%
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\nabla{#2}}
@@ -755,15 +771,19 @@
     \ensuremath{\nabla^{2}{#2}}
   }{
     \ensuremath{\nabla^{2}_{#1}{#2}} % 
-  }} % double covariant derivative operator e.g. \doublecovarderivop{x}{y} => \nabla^{2}_{x}y
+}} % double covariant derivative operator e.g. \doublecovarderivop{x}{y} => \nabla^{2}_{x}y
 \newcommand{\mixedderiv}[3]{\ensuremath{ %
     \brac{.}{#1}{|}^{#2}_{#3}
-    }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
-\newcommand{\exteriorderiv}[2]{\ensuremath{ %
-    \boldsymbol{d}#1
+}} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
+\newcommand{\exteriorderivop}[0]{\ensuremath{ %
+    \boldsymbol{\mathrm{d}}
+  }} % Exterior derivative operator e.g., \exteriorderivop => d
+\newcommand{\exteriorderiv}[1]{\ensuremath{ %
+    \exteriorderivop#1
   }} % Exterior derivative e.g., \exteriorderiv{a} => da
-\newcommand{\sharptensor}[1]{\ensuremath{#1^{\sharp}}} % sharp tensor e.g.,
-                                % \sharptensor{A} => A^#
+\newcommand{\sharptensor}[1]{\ensuremath{ %
+    #1^{\sharp}
+}} % sharp tensor e.g.,\sharptensor{A} => A^#
 \newcommand{\flattensor}[1]{\ensuremath{#1^{\flat}}} % flat tensor e.g.,
                                 % \flattensor{A} => A^b
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek tensors
@@ -777,15 +797,15 @@
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
-\newcommand{\tensorproduct}[2]{\ensuremath{ %
+\newcommand{\tensorprod}[2]{\ensuremath{ %
     #1 \otimes #2 %
-  }} % tensor product e.g., \tensorproduct{a}{b} => a x b.
-\newcommand{\wedgeproduct}[2]{\ensuremath{ %
+  }} % tensor product e.g., \tensorprod{a}{b} => a x b.
+\newcommand{\wedgeprod}[2]{\ensuremath{ %
     #1 \wedge #2 %
-  }} % wedge product e.g., \wedgeproduct{a}{b} => a^b.
-\newcommand{\exteriorproduct}[2]{\ensuremath{ %
+  }} % wedge product e.g., \wedgeprod{a}{b} => a^b.
+\newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
-  }} % exterior product e.g., \exteriorproduct{a}{b} => a^b.
+  }} % exterior product e.g., \exteriorprod{a}{b} => a^b.
 
 %
 % Matrices and vectors

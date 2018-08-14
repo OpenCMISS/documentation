@@ -31,6 +31,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Maths/Maths.tex "\
 "Maths/Notation/Notation.tex "\
 "Maths/VectorCalculus/VectorCalculus.tex "\
+"Maths/Operations/Operations.tex "\
 "EquationSets/EquationSets.tex "\
 "EquationSets/ClassicalFieldClass/AdvectionDiffusionEquation.tex "\
 "EquationSets/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
@@ -48,6 +49,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "EquationSets/FluidMechanicsClass/DarcyEquation.tex "\
 "EquationSets/FluidMechanicsClass/NavierStokesEquation.tex "\
 "EquationSets/MultiphysicsClass/Poroelasticity.tex "\
+"EquationSets/MultiphysicsClass/FSI.tex "\
 "AnalyticSolutions/AnalyticSolutions.tex "\
 "AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\

@@ -60,17 +60,18 @@ $\covarderivop{X}{}$ is the covariant derivative.
 The covariant derivative of a $\pbrac{r,s}$ tensor is an $\pbrac{r,s+1}$
 tensor defined by
 \begin{equation}
-  \covarderivop{X}{Y}=\covarderivop{X}{\pbrac{X^{i}e_{i}}}=Y\pbrac{X^{i}}e_{i}+X^{i}\covarderivop{Y}e_{i}
+  \covarderivop{X}{Y}=\covarderivop{X}{\pbrac{X^{i}e_{i}}}=Y\pbrac{X^{i}}e_{i}+X^{i}\covarderivop{Y}{e_{i}}
 \end{equation}
 
 The covariant derivative has the following properties
-\begin{list}
-  \item Sumation Rule: $$
-\end{list}
+%\begin{list}
+%\item Sumation Rule: $abc$ \\
+%\item kaldf
+%\end{list}
 
 \subsubsection{Double covariant differentiation}
 
-For an $\prbrac{r,s}$ tensor field, $T$, the double covariant derivative is
+For an $\pbrac{r,s}$ tensor field, $T$, the double covariant derivative is
 \begin{equation}
   \doublecovarderivop{}{T}=\covarderivop{}{\covarderivop{}{T}}
 \end{equation}
@@ -273,7 +274,7 @@ The definition of the covariant Hessian is
 \end{equation}
 or in component notation
 \begin{equation}
-  \hessianop{}{f}=\pbrac{\deltwoby{f}{x^{i}}{x^{j}}-\christoffel{k}{i}{j}\delby{f}{x^{k}}}\tensorproduct{dx^{i}}{dx^{j}}
+  \hessianop{}{f}=\pbrac{\deltwoby{f}{x^{i}}{x^{j}}-\christoffel{k}{i}{j}\delby{f}{x^{k}}}\tensorprod{dx^{i}}{dx^{j}}
 \end{equation}
 
 
