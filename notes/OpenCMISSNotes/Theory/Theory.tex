@@ -762,7 +762,7 @@ and
   \label{eqn:firstordernextTaylorexpansion}
 \end{equation}
 
-Now if we sume \eqnref{eqn:firstordercurrentTaylorexpansion} times
+Now if we sum \eqnref{eqn:firstordercurrentTaylorexpansion} times
 $\dfrac{\Delta t -\tau}{\Delta t}$ and
 \eqnref{eqn:firstordernextTaylorexpansion} times 
 $\dfrac{\tau}{\Delta t}$ we obtain
@@ -802,8 +802,8 @@ and so
   t\gint{0}{\Delta
     t}{\fnof{W}{\tau}}{\tau}}- 
   \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
-\end{multiline}
+      t}{\fnof{W}{\tau}\orderof{\tau^{2}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{multline}
 
 Now if we recall that $\theta_{0}=\dfrac{\gint{0}{\Delta
     t}{\fnof{W}{\tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=1$ and
@@ -849,13 +849,13 @@ and
 If we sum the equations \eqnref{eqn:secondorderpreviousTaylorexpansion} times
 $\dfrac{-\tau\pbrac{\Delta t - \tau}}{2{\Delta t}^{2}}$,
 \eqnref{eqn:secondordercurrentTaylorexpansion} times
-$2\dfrac{\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$, and
+$\dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$, and
 \eqnref{eqn:secondordernextTaylorexpansion} times
 $\dfrac{\tau\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$ we obtain
 \begin{multline}
   \dfrac{-\tau\pbrac{\Delta t - \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}+
-  \dfrac{\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{\Delta
+  \dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
   \dfrac{\tau\pbrac{\Delta t + \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}\\
@@ -869,44 +869,43 @@ $\dfrac{\tau\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$ we obtain
     t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} = 
   \dintl{0}{\Delta t}\,\fnof{W}{\tau}\left(\dfrac{-\tau\pbrac{\Delta t - \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}+\right. \\
-  \left.\dfrac{\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{\Delta
+  \left.\dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
   \dfrac{\tau\pbrac{\Delta t + \tau}}{2\Delta
     t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\orderof{\tau^{3}}\right)\exteriorderivop\tau
 \end{multline}
 or
 \begin{multline}
-  \gint{0}{\Delta
-    t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} = 
+  \gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} = 
   \dintl{0}{\Delta t}\,\fnof{W}{\tau}\left(\pbrac{\dfrac{-\tau}{2\Delta t}+\dfrac{\tau^{2}}{2\Delta
       t^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}\right. \\
-  \left.+\pbrac{1-\dfrac{\tau^{2}}{{\Delta t}^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}} 
-  +\pbrac{\dfrac{\tau}{\Delta t}\dfrac{\tau^{2}}{2{\Delta t}^{2}}\}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
-  -\orderof{\tau^{3}}\right)\exteriorderivop\tau
+  \left.+\pbrac{1-\dfrac{\tau^{2}}{{\Delta t}^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}
+  +\pbrac{\dfrac{\tau}{2\Delta t}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
+    -\orderof{\tau^{3}}\right)\exteriorderivop\tau
 \end{multline}
-and so
+and so 
 \begin{multline}
-  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}
-      \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}}{\tau}}=\dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
-    t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
-    t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+ \\
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}-
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\Delta
-    t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+ 
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
-    t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+ \\
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
-    t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}- 
-  \dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}
+        {\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+        =\dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
+          t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \\ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}}{\tau}}- \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
+          t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \\ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}-
+        \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}}{\tau}}
 \end{multline}
 
 Now if we recall $\theta_{0}=\dfrac{\gint{0}{\Delta
@@ -1011,7 +1010,7 @@ or
   \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}\right. \\
   \left.+\pbrac{\dfrac{-\tau}{{\Delta t}}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}+\dfrac{\tau^{3}}{2{\Delta t}^{3}}}
   \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}
-  +\pbrac{1+\dfrac{\tau}{2{\Delta t}}+\dfrac{\tau^{2}}{{\Delta t}^{2}}-\dfrac{\tau^{3}}{2{\Delta t}^{3}}}
+  +\pbrac{1+\dfrac{\tau}{2{\Delta t}}-\dfrac{\tau^{2}}{{\Delta t}^{2}}-\dfrac{\tau^{3}}{2{\Delta t}^{3}}}
   \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}\right.\\
   \left.+\pbrac{\dfrac{\tau}{3{\Delta t}}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}+\dfrac{\tau^{3}}{6{\Delta t}^{3}}}
   \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
@@ -1041,7 +1040,7 @@ and so
   +\dfrac{\gint{0}{\Delta
       t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{2{\Delta
     t}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
-  +\dfrac{\gint{0}{\Delta
+  -\dfrac{\gint{0}{\Delta
       t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{{\Delta
     t}^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \\
   -\dfrac{\gint{0}{\Delta
@@ -1057,7 +1056,7 @@ and so
       t}{\fnof{W}{\tau}\tau^{3}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{6\Delta
     t^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
   -\dfrac{\gint{0}{\Delta
-      t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+      t}{\fnof{W}{\tau}\orderof{\tau^{4}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
 \end{multline}
 
 If we recall that $\theta_{0}=\dfrac{\gint{0}{\Delta
@@ -1069,10 +1068,10 @@ $\theta_{2}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{2}}{\tau}}{\Delta
 $\theta_{3}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{3}}{\tau}}{{\Delta
     t}^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$ we can write
 \begin{multline}
-  \bar{\vect{g}}=\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}
+  \bar{\vect{g}}=\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}
-  +\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}} \\
-  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}} \\
+  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
   -\text{Error}
 \end{multline}
 where
@@ -1114,10 +1113,10 @@ with a second order approximation in time or
   +\matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
         t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}
   +\matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
-        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}\\ +\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}\\ +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}
-  +\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}} \\
-  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}-
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}} \\
+  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}-
   \text{Error}=\vectr{0}
   \label{eqn:thirdorderdynamic2}
 \end{multline}
@@ -1166,11 +1165,11 @@ for a second order approximation or
         t}^{p-2}}{\factorial{p-2}}\matr{M}+\dfrac{\theta_{p-1}{\Delta
         t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
         t}^{p}}{p!}\matr{K}}\vectr{\alpha}^{p}_{n}+
-  \dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+  \dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
     \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
-  +\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}
-  +\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}} \\
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}} \\
   +\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+
     \bar{\vectr{f}}}= \vectr{0}
   \label{eqn:thirdorderdynamic}
@@ -1206,11 +1205,11 @@ and \eqnref{eqn:secondorderdynamic} as
 and \eqnref{eqn:thirdorderdynamic} as
 \begin{multline}
 \fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\matr{A}\vectr{\alpha}^{p}_{n}+
-\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}
+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}
   +\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
-+\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}+\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
++\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
 +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}} \\
-+\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
++\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
 +\vectr{b}=\vectr{0}
 \end{multline}
 
@@ -1314,7 +1313,7 @@ order we require the algorithm to be initialised so that the initial velocity
 or acceleration can be computed. The initial velocity or acceleration values
 can be obtained by substituting the initial displacement or initial
 displacement and velocity values into \eqnref{eqn:generaldynamicnonlinear},
-rearranging and solving. For example consider an the case of a second degree
+rearranging and solving. For example consider the case of a second degree
 polynomial and a first order system. Substituing the initial displacement
 $\vectr{u}_{0}$ into \eqnref{eqn:generaldynamicnonlinear} gives
 \begin{equation}
@@ -1348,10 +1347,10 @@ for a first order approximation or
 \end{equation}
 for a second order approximation or
 \begin{multline}
-  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\vectr{f}_{n+1}
-  +\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\vectr{f}_{n} \\
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\vectr{f}_{n+1}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\vectr{f}_{n} \\
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\vectr{f}_{n-1}
-  +\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\vectr{f}_{n-2}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\vectr{f}_{n-2}
   \label{eqn:thirdordermeanweightedloadvector}
 \end{multline}
 for a third order approximation.
@@ -1540,19 +1539,19 @@ The right hand side vector is given by
 
 The load vector is given by
 \begin{multline}
-  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{2}\vectr{f}_{n+1}
-  +\pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\vectr{f}_{n} \\
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\vectr{f}_{n+1}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\vectr{f}_{n} \\
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\vectr{f}_{n-1}
-  +\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{6}\vectr{f}_{n-2}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\vectr{f}_{n-2}
 \end{multline}
 
 The nonlinear function is given by
 \begin{multline}
   \fnof{\vectr{\psi}}{\vectr{\alpha}^{3}_{n}}=\matr{A}\vectr{\alpha}^{3}_{n}+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}
   \fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n}}+\\
-  \pbrac{1-\dfrac{\pbrac{\theta_{3}-2\theta_{2}-2\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
+  \pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
   +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}} \\
-  +\dfrac{\pbrac{\theta_{3}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
   +\vectr{b}=\vectr{0}
 \end{multline}
 
