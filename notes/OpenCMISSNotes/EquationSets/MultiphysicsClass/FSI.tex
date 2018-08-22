@@ -1,0 +1,30 @@
+\subsection{Fluid-Structure Interaction}
+
+\subsubsection{Fluid Model}
+
+The physics in the fluid domain is described by the ALE form of the Navier-Stokes equations
+\ie
+\begin{align}
+  \rho^{f}\pbrac{\delby{\vectr{v}}{t}+\pbrac{\dotprod{\vectr{v}}{\grad}}\pbrac{\vectr{v}-\vectr{w}}}&=\divergence{}{\tensor{\sigma}^{f}}+\rho^{f}\vectr{g}\\
+    \divergence{}{\vectr{v}}&=0
+\end{align}
+where $\rho^{f}$ is the fluid density, $\vectr{v}$ is the fluid velocity,
+$\vectr{w}$ is the fluid mesh velocity, $\tensor{\sigma}^{f}$ is the fluid
+stress and $\vectr{g}$ is the gravity acceleration vector.
+
+For Newtonian fluids, we have
+\begin{equation}
+  \tensor{\sigma}^{f}=-p^{f}\tensor{I}+\mu\pbrac{\gradient{}{\vectr{v}}+\transpose{\pbrac{\gradient{}{\vectr{v}}}}}
+\end{equation}
+where $p^{f}$ is the fluid pressure and $\mu$ is the fluid viscosity. 
+
+\subsubsection{Solid Model}
+
+The physics in the solid domain is described by a momentum balance
+\begin{equation}
+  \rho^{s}\deltwosqby{\vectr{u}}{t}=\divergence{}{\tensor{\sigma}^{s}}+\rho^{s}\vectr{g} 
+\end{equation}
+where $\rho^{s}$ is the solid density, $\vectr{u}$ is the solid displacement,
+$\tensor{\sigma}^{s}$ is the solid stress and $\vectr{g}$ is the gravity
+acceleration vector.
+
