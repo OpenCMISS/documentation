@@ -97,7 +97,7 @@ If $X^{I}$ and $x^{i}$ are the coordinates on $\embedmanifold{B}_{0}$ and
 $\manifold{S}$ then the deformation gradient tensor with respect to the
 coordinate bases are
 \begin{equation}
-  \fnof{\tensor{F}}{X}=\fnof{F^{i}_{I}}{X}\tensorprod{\vectr{G}^{I}}{\vectr{g}_{i}}=\delby{\fnof{\chi^{i}}{X}}{X^{I}}\tensorprod{\vectr{G}^{I}}{\vectr{g}_{i}}
+  \fnof{\tensor{F}}{X}=\fnof{F^{i}_{I}}{X}\tensorprod{\vectr{g}_{i}}{\vectr{G}^{I}}=\delby{\fnof{\chi^{i}}{X}}{X^{I}}\tensorprod{\vectr{g}_{i}}{\vectr{G}^{I}}
 \end{equation}
 
 Note that $\tensor{F}$ is a two-point tensor. 
@@ -178,7 +178,7 @@ as the pullback of the spatial metric tensor \ie $\fnof{\tensor{C}}{X}=\transpos
 or $\tensor{C}=\transpose{\tensor{F}}\tensor{g}\tensor{F}$ where $x=\fnof{\chi}{X}$. In terms of coordinates we
 have
 \begin{equation}
-  \tensor{C}=C_{IJ}\tensorprod{\vectr{G}^{I}}{\vectr{G}^{J}}=g_{ij}F^{i}_{I}F^{j}_{J}\tensorprod{\vectr{G}^{I}}{\vectr{G}^{J}}
+  \tensor{C}=C_{IJ}\tensorprod{\vectr{G}^{I}}{\vectr{G}^{J}}=g_{ij}F^{i}_{I}F^{j}_{J}\dotprod{\dotprod{\tensorprod{\vectr{G}^{I}}{\vectr{g}_{i}}}{\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}}}{\tensorprod{\vectr{g}_{j}}{\vectr{G}^{J}}}=\transpose{\tensor{F}}\tensor{g}\tensor{F}
 \end{equation}
 
 If $\tensor{C}$ is invertible we also have $\tensor{B}=\inverse{\tensor{C}}$
@@ -207,7 +207,7 @@ $\fnof{\tensor{b}}{x}=\fnof{\tensor{F}}{X}\fnof{\tensor{G}}{X}\transpose{\fnof{\
 or $\tensor{b}=\tensor{F}\tensor{G}\transpose{\tensor{F}}$ where
 $X=\fnof{\inverse{\chi}}{x}$. In terms of coordinates we have
 \begin{equation}
-  \tensor{b}=b^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=G^{IJ}F^{i}_{I}F^{j}_{J}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+  \tensor{b}=b^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=G^{IJ}F^{i}_{I}F^{j}_{J}\dotprod{\dotprod{\tensorprod{\vectr{g}_{i}}{\vectr{G}^{I}}}{\tensorprod{\vectr{G}_{I}}{\vectr{G}_{J}}}}{\tensorprod{\vectr{G}^{J}}{\vectr{g}_{j}}}=\tensor{F}\tensor{G}\transpose{\tensor{F}}
 \end{equation}
 
 The left and right Cauchy-Green deformation tensors get their left and right
@@ -330,11 +330,7 @@ Using the Piola transform we can construct two new stress tensors. If we apply
 the Piola transform to the second index of the Cauchy stress tensor we obtain
 the \emph{First Piola-Kirchoff Stress Tensor} \ie\symbolat{\tensortwo{P}}{First Piola-Kirchoff stress tensor}
 \begin{equation}
-  \tensor{P}=J\invtranspose{\tensor{F}}\tensor{\sigma}
-\end{equation}
-or, in component form,
-\begin{equation}
-  \tensor{P}=P^{iI}\tensorprod{\vectr{g}_{i}}{\vectr{G}_{I}}=J\pbrac{\inverse{F}}^{I}_{j}\sigma^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{G}_{I}}
+  \tensor{P}=P^{iI}\tensorprod{\vectr{g}_{i}}{\vectr{G}_{I}}=J\pbrac{\inverse{F}}^{I}_{j}\sigma^{ij}\dotprod{\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}{\tensorprod{\vectr{g}^{j}}{\vectr{G}_{I}}}=J\tensor{\sigma}\invtranspose{\tensor{F}}
 \end{equation}
 
 The first Piola-Kirchoff stress tensor relates forces in the current
@@ -350,15 +346,11 @@ given by
 If we now apply the Piola transform to the first index of the First Piola-Kirchoff stress tensor we obtain
 the \emph{Second Piola-Kirchoff Stress Tensor} \ie\symbolat{\tensortwo{S}}{Second Piola-Kirchoff stress tensor}
 \begin{equation}
-  \tensor{S}=J\inverse{\tensor{F}}\tensor{P}
+  \tensor{S}=\inverse{\tensor{F}}\tensor{P}
 \end{equation}
 or, in terms of the Cauchy stress,
 \begin{equation}
-  \tensor{S}=J\inverse{\tensor{F}}\tensor{\sigma}\invtranspose{\tensor{F}}
-\end{equation}
-or, in terms of components
-\begin{equation}
-  \tensor{S}=S^{IJ}\tensorprod{\vectr{G}_{I}}{\vectr{G}_{J}}=J\pbrac{\inverse{F}}^{I}_{i}\pbrac{\inverse{F}}^{J}_{j}\sigma^{ij}\tensorprod{\vectr{G}_{I}}{\vectr{G}_{J}}
+  \tensor{S}=S^{IJ}\tensorprod{\vectr{G}_{I}}{\vectr{G}_{J}}=J\pbrac{\inverse{F}}^{I}_{i}\pbrac{\inverse{F}}^{J}_{j}\sigma^{ij}\dotprod{\dotprod{\tensorprod{\vectr{G}_{I}}{\vectr{g}^{i}}}{\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}}{\tensorprod{\vectr{g}^{j}}{\vectr{G}_{J}}}=J\inverse{\tensor{F}}\tensor{\sigma}\invtranspose{\tensor{F}}
 \end{equation}
 
 The second Piola-Kirchoff stress tensor relates forces in the reference
@@ -401,6 +393,8 @@ The relationships between the stress tensors are given in \Tabref{tab:Relationsh
   \caption{Reltionships between stress tensors.}
   \label{tab:RelationshipBetweenStressTensors}
 \end{table}
+
+\subsubsection{Incompressibility}
 
 For incompressible materials we need an additional volumetric stress. The
 \emph{hydrostatic stress} is a Cauchy stress and so we have
@@ -474,30 +468,97 @@ Green-Lagrange strain tensor) \ie
 \subsubsection{Anisotropy}
 
 In order to deal with anisotropy we wish to base our stress and strain
-calculation on fibre, $\vectr{\nu}$, coordinates. To change our reference
-coordinate system from $\vectr{X}$ to $\vectr{\nu}$ we need to transform
-$\fnof{\tensor{F}}{\vectr{X}}$. As $\fnof{\tensor{F}}{\vectr{X}}$ is a two point tensor the transformation
-rule for transforming just the reference coordinates is given by
+calculation on fibre coordinates in the reference configuration where they are
+orthogonal \ie $\vectr{N}$ coordinates. To change our reference coordinate
+system from $\vectr{X}$ to $\vectr{N}$ we need to transform
+$\fnof{\tensor{F}}{\vectr{X}}$. As $\fnof{\tensor{F}}{\vectr{X}}$ is a two
+point tensor the transformation rule for transforming just the reference
+coordinates is given by
 \begin{equation}
-\fnof{\tensor{F}}{\vectr{\nu}}=\tensor{Q}\fnof{\tensor{F}}{\vectr{X}}
+  \fnof{\tensor{F}}{\vectr{N}}=\fnof{\tensor{F}}{\vectr{X}}\transpose{\tensor{Q}}
 \end{equation}
-where $\tensor{Q}$ is the rotation matrix from $\vectr{X}$ to $\vectr{\nu}$ \ie
+where $\tensor{Q}$ is the rotation matrix from $\vectr{X}$ to $\vectr{N}$ in
+the reference configuration.
+
+Consider $\vectr{X}=X^{I}\vectr{G}_{I}$ being the underformed geometric
+coordinate vector, $\vectr{N}=N^{I}\vectr{G}_{I}$ the undeformed fibre
+coordinate vector with respect to underformed geometric coordinates,
+$\tilde{\vectr{N}}=\tilde{N}^{A}\tilde{\vectr{N}}_{A}$ the undeformed fibre
+coordinate vector with respect to undeformed fibre coordinates,
+$\vectr{x}=x^{i}\vectr{g}_{i}$ the deformed geometric coordinate vector,
+$\vectr{\nu}=\nu^{i}\vectr{g}_{i}$ the deformed fibres with respect to the
+deformed geometric coordinates,
+$\tilde{\vectr{\nu}}=\tilde{\nu}^{a}\tilde{\vectr{\nu}}_{a}$ the deformed
+fibre coordinate vector with respect to deformed fibre coordinates,
+$\tensor{F}=F^{i}_{I}\tensorprod{\vectr{g}_{i}}{\vectr{G}^{I}}$ the
+deformation gradient tensor with respect to the undeformed and deformed
+geometric coordinates, and
+$\tilde{\tensor{F}}=\tilde{F}^{i}_{A}\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{N}}^{A}}$
+the deformation gradient tensor with respect to the undeformed fibre
+coordinates and the deformed geometric coordinates,
+$\tensor{Q}=Q^{A}_{I}\tensorprod{\tilde{\vectr{N}}_{A}}{\vectr{G}_{I}}$ the
+orthogonal rotation matrix from undeformed geometric coordinates to undeformed
+fibre coordinates,
+$\tensor{\sigma}=\sigma^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}$ the
+Cauchy stress tensor with respect to deformed geometric coordinates, and
+$\tilde{\tensor{\sigma}}=\sigma^{ab}\tensorprod{\tilde{\vectr{\nu}}_{a}}{\tilde{\vectr{\nu}}_{b}}$
+the Cauchy stress tensor with respect to the deformed fibre coordinates. Note
+that $\tilde{\cdot}$ indicates a quantity with respect to fibre coordinates.
+
+We have
+\begin{align}
+  \vectr{x}=x^{i}\vectr{g}_{i}&=F^{i}_{I}X^{I}\dotprod{\tensorprod{\vectr{g}_{i}}{\vectr{G}^{I}}}{\vectr{G}_{I}}=\tensor{F}\vectr{X}\\
+  \tensor{Q}=Q^{A}_{I}\tensorprod{\tilde{\vectr{N}}_{A}}{\vectr{G}^{I}}&=\delby{\tilde{N}^{A}}{X^{I}}\tensorprod{\tilde{\vectr{N}}_{A}}{\vectr{G}^{I}}\\
+  \tilde{\tensor{F}}=\tilde{F}^{i}_{A}\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{N}}^{A}}&=F^{i}_{I}\pbrac{\transpose{Q}}^{I}_{A}\dotprod{\tensorprod{\vectr{g_{i}}}{\vectr{G}^{I}}}{\tensorprod{\vectr{G}_{I}}{\tilde{\vectr{N}}^{A}}}=\tensor{F}\transpose{\tensor{Q}}\\
+  \tilde{\vectr{N}}=\tilde{N}^{A}\tilde{\vectr{N}}_{A}&=Q^{A}_{I}X^{I}\dotprod{\tensorprod{\tilde{\vectr{N}}_{A}}{\vectr{G}^{I}}}{\vectr{G}_{I}}=\tensor{Q}\vectr{X} \\
+  \vectr{\nu}=\nu^{i}\vectr{g}_{i}&=\tilde{F}^{i}_{A}\tilde{N}^{A}\dotprod{\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{N}}^{A}}}{\tilde{\vectr{N}}_{A}}=\tilde{\tensor{F}}\tilde{\vectr{N}}
+\end{align}
+
+Now we have $\tilde{\tensor{\sigma}}$ from the active model and we need
+$\tensor{\sigma}$ for the integration. We can thus use
+\begin{equation}
+  \tensor{q}=q^{i}_{a}\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{\nu}}^{a}}=\delby{x^{i}}{\tilde{\nu}^{a}}\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{\nu}}^{a}}
+\end{equation}
+where $\tensor{q}$ is the rotation matrix from $\tilde{\vectr{\nu}}$ to
+$\vectr{x}$ to give
+\begin{equation}
+  \tensor{\sigma}=\sigma^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=q^{i}_{a}q^{j}_{b}\tilde{\sigma}^{ab}\dotprod{\dotprod{\tensorprod{\vectr{g}_{i}}{\tilde{\vectr{\nu}}^{a}}}{\tensorprod{\tilde{\vectr{\nu}}_{a}}{\tilde{\vectr{\nu}}_{b}}}}{\tensorprod{\tilde{\vectr{\nu}}^{b}}{\vectr{g}_{j}}}=\tensor{q}\tilde{\tensor{\sigma}}\transpose{\tensor{q}}
+\end{equation}
+NOTE: this might not be strictly correct??? The above assumes that
+$\tensor{q}=\transpose{\tensor{q}}$??? $\vectr{x}$ is skew but
+$\tilde{\vectr{\nu}}$ is not???
+
+However, what is $\tilde{\vectr{\nu}}$? We have $\vectr{\nu}$ and so we can
+find $\tilde{\vectr{\nu}}$ from
+\begin{equation}
+  \tilde{\vectr{\nu}}=\tilde{\nu}^{a}\tilde{\vectr{\nu}}_{a}=s^{a}_{i}\nu^{i}\dotprod{\tensorprod{\tilde{\vectr{\nu}}_{a}}{\vectr{g}^{i}}}{\vectr{g}_{i}}=\tensor{s}\vectr{\nu}
+\end{equation}
+where
+\begin{equation}
+  \tensor{s}=s^{a}_{i}\tensorprod{\tilde{\vectr{\nu}}_{a}}{\vectr{g}^{i}}=\delby{\tilde{\nu}^{a}}{\nu^{i}}\tensorprod{\tilde{\vectr{\nu}}_{a}}{\vectr{g}^{i}}
+\end{equation}
+which is the structure tensor which constructs the orthogonal
+$\tilde{\vectr{\nu}}$ from the skewed $\vectr{\nu}$.
+
+Note that in \OpenCMISS we have
 \begin{equation}
   F^{i}_{A}=\delby{X^{M}}{\nu^{A}}F^{i}_{M}=\delby{X^{M}}{\nu^{A}}\delby{z^{i}}{\xi^{k}}\delby{\xi^{k}}{X^{M}}
 \end{equation}
 
+\subsubsection{Growth}
+
 To allow for growth we use a multiplicative decomposition approach \ie
 \begin{equation}
-  \fnof{\tensor{F}}{\vectr{\nu}}=\fnof{\tensor{F}_{e}}{\vectr{\nu}}\fnof{\tensor{F}_{g}}{\vectr{\nu}}
+  \fnof{\tensor{F}}{\vectr{N}}=\fnof{\tensor{F}_{e}}{\vectr{N}}\fnof{\tensor{F}_{g}}{\vectr{N}}
 \end{equation}
-where $\fnof{\tensor{F}_{g}}{\vectr{\nu}}$ is the growth tensor with
-respect to fibre coordinates and $\fnof{\tensor{F}_{e}}{\vectr{\nu}}$ is the
-elastic component of the deformation gradient tensor in fibre coordinates.
+where $\fnof{\tensor{F}_{g}}{\vectr{N}}$ is the growth tensor with
+respect to undeformed fibre coordinates and $\fnof{\tensor{F}_{e}}{\vectr{N}}$ is the
+elastic component of the deformation gradient tensor in undeformed fibre coordinates.
 
 The elastic component of the deformation gradient tensor can be calculated
 from
 \begin{equation}
-  \fnof{\tensor{F}_{e}}{\vectr{\nu}}=\fnof{\tensor{F}}{\vectr{\nu}}\fnof{\inverse{\tensor{F}_{g}}}{\vectr{\nu}}
+  \fnof{\tensor{F}_{e}}{\vectr{N}}=\fnof{\tensor{F}}{\vectr{N}}\fnof{\inverse{\tensor{F}_{g}}}{\vectr{N}}
 \end{equation}
 
 In component form we have
@@ -510,14 +571,14 @@ and
 \end{equation}
 
 The Jacobian of the growth component of the deformation is given by
-$J_{g}=\det{\fnof{\tensor{F}_{g}}{\vectr{\nu}}}$ and the Jacobian of the
+$J_{g}=\det{\fnof{\tensor{F}_{g}}{\vectr{N}}}$ and the Jacobian of the
 elastic component of the deformation is given by
-$J_{e}=\det{\fnof{\tensor{F}_{e}}{\vectr{\nu}}}$.
+$J_{e}=\det{\fnof{\tensor{F}_{e}}{\vectr{N}}}$.
 
 The right Cauchy Green deformation tensor in fibre coordinates is now given by
 the pullback of the current configuration metric tensor, $\tensor{g}$,
 \begin{equation}
-  \fnof{\tensor{C}}{\vectr{\nu}}=\fnof{\transpose{\tensor{F}_{e}}}{\vectr{\nu}}\tensor{g}\fnof{\tensor{F}_{e}}{\vectr{\nu}}
+  \fnof{\tensor{C}}{\vectr{N}}=\fnof{\transpose{\tensor{F}_{e}}}{\vectr{N}}\tensor{g}\fnof{\tensor{F}_{e}}{\vectr{N}}
 \end{equation}
 
 In component form we have
@@ -534,24 +595,24 @@ Piola Kirchhoff tensor in the reference coordinates forward to the deformed
 coordinates, $\vectr{x}$, to give the Kirchhoff stress tensor,
 $\fnof{\tensor{\tau}}{\vectr{x}}$. The push foward is given by
 \begin{equation}
-  \fnof{\tensor{\tau}}{\vectr{x}}=\fnof{\tensor{F}_{e}}{\vectr{\nu}}\fnof{\tensor{S}}{\vectr{\nu}}
-  \fnof{\transpose{\tensor{F}_{e}}}{\vectr{\nu}}
+  \fnof{\tensor{\tau}}{\vectr{x}}=\fnof{\tensor{F}_{e}}{\vectr{N}}\fnof{\tensor{S}}{\vectr{N}}
+  \fnof{\transpose{\tensor{F}_{e}}}{\vectr{N}}
 \end{equation}
 
 The Cauchy stress tensor, $\fnof{\tensor{\sigma}}{\vectr{x}}$, can then be calculated from the Kirchhoff stress
 tensor using the Jacobian of the deformation \ie
 \begin{equation}
   \fnof{\tensor{\sigma}}{\vectr{x}}=\inverse{J_{e}}\fnof{\tensor{\tau}}{\vectr{x}}=\inverse{J_{e}}
-  \fnof{\tensor{F}_{e}}{\vectr{\nu}}\fnof{\tensor{S}}{\vectr{\nu}}\fnof{\transpose{\tensor{F}_{e}}}{\vectr{\nu}}
+  \fnof{\tensor{F}_{e}}{\vectr{N}}\fnof{\tensor{S}}{\vectr{N}}\fnof{\transpose{\tensor{F}_{e}}}{\vectr{N}}
 \end{equation}7
 
 In component form we have
 \begin{equation}
-  \tau^{ij}=\pbrac{F_{e}}^{i}_{B}T^{BC}\pbrac{\transpose{F_{e}}}^{j}_{C}
+  \tau^{ij}=\pbrac{F_{e}}^{i}_{B}S^{BC}\pbrac{\transpose{F_{e}}}^{j}_{C}
 \end{equation}
 and
 \begin{equation}
-  \sigma^{ij}=\inverse{J_{e}}\pbrac{F_{e}}^{i}_{B}T^{BC}\pbrac{\transpose{F_{e}}}^{j}_{C}
+  \sigma^{ij}=\inverse{J_{e}}\pbrac{F_{e}}^{i}_{B}S^{BC}\pbrac{\transpose{F_{e}}}^{j}_{C}
 \end{equation}
 
 
@@ -1684,9 +1745,9 @@ And the Lagrange strain tensor will be
   \end{bmatrix}
 \end{equation}
 
-The Finger strain tensor is thus
+The Piola deformation tensor is thus
 \begin{equation}
-  \tensor{f} = \inverse{\tensor{C}} =  \begin{bmatrix}
+  \tensor{B} = \inverse{\tensor{C}} =  \begin{bmatrix}
     \frac{1}{\pbrac{1+\alpha}^2} & 0 & 0 \\
     0 & 1 & 0 \\
     0 & 0 & 1
