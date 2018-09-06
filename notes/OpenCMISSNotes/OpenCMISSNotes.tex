@@ -6,6 +6,7 @@
 %\input{ParameterEstimation/include} %define new commands etc.
 
 %\usepackage{mybook} %define book style
+\usepackage[toc,page]{appendix} %appendices
 \usepackage[center,sc,small]{caption}      % Alter caption styles
 \setcaptionmargin{0.25in}
 \usepackage{listings}
@@ -47,7 +48,9 @@
 \include{BoundaryConditions/BoundaryConditions}
 %\include{Modules/Modules}                     %input from Modules/Modules.tex
 \include{DevelopersDocument/DevelopersDoc}
-%\include{ParameterEstimation/ParameterEstimation}                         %input from ParameterEstimation/ParameterEstimation.tex
+%\include{ParameterEstimation/ParameterEstimation} %input from ParameterEstimation/ParameterEstimation.tex
+
+\include{Appendices/Appendices}               %input from Appendices/Appendices.tex
 
 \include{References/References}               %input from References/References.tex
 

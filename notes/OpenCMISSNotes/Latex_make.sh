@@ -54,6 +54,8 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
 "AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
+"Appendices/Appendices.tex "\
+"Appendices/CoordinateSystems.tex "\
 "References/References.tex "\
 "Index/Index.tex"
 

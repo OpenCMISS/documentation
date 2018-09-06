@@ -374,6 +374,7 @@
 \newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
 \newcommand{\dotprod}[2]{\ensuremath{#1\cdot#2}} % dot product
 \newcommand{\doubledotprod}[2]{\ensuremath{#1:#2}} % double dot product
+\newcommand{\doubledoubledotprod}[3]{\ensuremath{#1:#2:#3}} % double double dot product
 \newcommand{\crossprod}[2]{\ensuremath{#1\times#2}} % cross product
 \newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
 \newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
@@ -498,6 +499,9 @@
     }} % display evaluated integral with limits e.g. 
        % \inteval{xxx}{a}{b} => [xxx]_a^b
 \newcommand{\inverse}[1]{\ensuremath{{#1}^{-1}}} % inverse e.g. \inverse{A} => A^-1
+\newcommand{\invsquared}[1]{\ensuremath{ %
+    {#1}^{-2}
+}} % inverse squared e.g. \invsquared{A} => A^-2
 \newcommand{\invtranspose}[1]{\ensuremath{ %
     {#1}^{-T}
 }} % inverse transpose e.g. \invtranspose{A} => A^-T
@@ -590,10 +594,17 @@
 \DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
 
 % Tensor operators
-\DeclareMathOperator{\sympart}{sym} % symmetric part e.g., sym A
-\DeclareMathOperator{\skewpart}{skew} % skew-symmetric part e.g., skew A
-\DeclareMathOperator{\devpart}{dev} % deviatoric part e.g., dev A
-\DeclareMathOperator{\sphpart}{sph} % spherical part e.g., sph A
+\DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
+\DeclareMathOperator{\Trop}{Tr} % Trace operator e.g., Tr A
+\DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
+\DeclareMathOperator{\symop}{sym} % symmetric operator e.g., sym A
+\DeclareMathOperator{\Symop}{Sym} % Symmetric operator e.g., Sym A
+\DeclareMathOperator{\skewop}{skew} % skew-symmetric operator e.g., skew A
+\DeclareMathOperator{\Skewop}{Skew} % Skew-symmetric operator e.g., Skew A
+\DeclareMathOperator{\devop}{dev} % deviatoric operator e.g., dev A
+\DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
+\DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
+\DeclareMathOperator{\Sphop}{Sph} % Spherical operator e.g., Sph A
 
 %
 %  Fractions
@@ -777,7 +788,7 @@
 }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
 \newcommand{\exteriorderivop}[0]{\ensuremath{ %
     \boldsymbol{\mathrm{d}}
-  }} % Exterior derivative operator e.g., \exteriorderivop => d
+  }} % Exterior derivative operator e.g., \exteriorderivop => d7
 \newcommand{\exteriorderiv}[1]{\ensuremath{ %
     \exteriorderivop#1
   }} % Exterior derivative e.g., \exteriorderiv{a} => da
@@ -797,15 +808,31 @@
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
-\newcommand{\tensorprod}[2]{\ensuremath{ %
+\newcommand{\tensorprod}[2]{ %
+  \tensorprodtwo{#1}{#2} %
+} % tensor product e.g., \tensorprod{a}{b} => a Ox b.
+\newcommand{\tensorprodtwo}[2]{\ensuremath{ %
     #1 \otimes #2 %
-  }} % tensor product e.g., \tensorprod{a}{b} => a x b.
+}} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b.
+\newcommand{\tensorprodfour}[4]{\ensuremath{ %
+    #1 \otimes #2 \otimes #3 \otimes #4 %
+}} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d.
+\newcommand{\symtensorprod}[2]{ %
+  \symtensorprodtwo{#1}{#2} %
+} % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b.
+\newcommand{\symtensorprodtwo}[2]{\ensuremath{ %
+    #1 \odot #2 %
+}} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b.
+\newcommand{\symtensorprodfour}[4]{\ensuremath{ %
+    #1 \odot #2 \odot #3 \odot #4 %
+}} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a
+% O. b O. c O. d.
 \newcommand{\wedgeprod}[2]{\ensuremath{ %
     #1 \wedge #2 %
-  }} % wedge product e.g., \wedgeprod{a}{b} => a^b.
+}} % wedge product e.g., \wedgeprod{a}{b} => a^b.
 \newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
-  }} % exterior product e.g., \exteriorprod{a}{b} => a^b.
+}} % exterior product e.g., \exteriorprod{a}{b} => a^b.
 
 %
 % Matrices and vectors
