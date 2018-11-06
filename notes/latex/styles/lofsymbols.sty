@@ -85,18 +85,18 @@
 \def\symbolitemat#1#2#3{\item[#1] #2. \symbolatstring\ #3}
 \def\symbolitemskip{\vspace{\losskip}}
 
-\def\symbol#1#2{ %
-  \protected@write\@auxout %
-  {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble} %
-  {\string\@writefile{sym} %
-    {\protect\symbolitem{#1}{#2}}} %
+\def\symbol#1#2{%
+  \protected@write\@auxout%
+  {\let\label\@gobble\let\index\@gobble\let\glossary\@gobble}%
+  {\string\@writefile{sym}%
+    {\protect\symbolitem{#1}{#2}}}%
   }
 
-\def\symbolat#1#2{ %
-  \protected@write\@auxout %
-  {\let\label\@gobble \let\index\@gobble \let\glossary\@gobble} %
-  {\string\@writefile{sym} %
-    {\protect\symbolitemat{#1}{#2}{\thepage}.}} %
+\def\symbolat#1#2{%
+  \protected@write\@auxout%
+  {\let\label\@gobble\let\index\@gobble\let\glossary\@gobble}%
+  {\string\@writefile{sym}%
+    {\protect\symbolitemat{#1}{#2}{\thepage}.}}%
   }
 
 \def\symbolskip{ %

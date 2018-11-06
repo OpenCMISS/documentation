@@ -1,9 +1,183 @@
  
+\subsection{Directional derivative}
+\label{subsec:DirectionalDerivativeOperator}
+
+The directional derivative of a scalar function of a vector,
+$\fnof{f}{\vectr{x}}$, with respect to $\vectr{x}$ along the vector direction
+$\vectr{u}$ is defined by the limit
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\vectr{u}}&=\genlimit{\epsilon}{0}\dfrac{\fnof{f}{\vectr{x}+\epsilon\vectr{u}}-\fnof{f}{\vectr{x}}}{\epsilon}
+    \\ &=
+    \evalat{\dfrac{d}{d\epsilon}\fnof{f}{\vectr{x}+\epsilon\vectr{u}}}{\epsilon=0}\\ &=
+    \dotprod{\gradient{\vectr{x}}{\fnof{f}{\vectr{x}}}}{\vectr{u}} \\ &=
+    \dotprod{\delby{\fnof{f}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}
+  \end{split} 
+\end{equation} 
+ 
+Some properties of directional derivatives of a scalar function of a vector include
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}+\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}&=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}+\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}\\
+    &=\dotprod{\pbrac{\delby{\fnof{f_{1}}{\vectr{x}}}{\vectr{x}}+\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}}{\vectr{u}}\\
+    \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}&=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}\fnof{f_{2}}{\vectr{x}}+\fnof{f_{1}}{\vectr{x}}\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}\\
+    &=\pbrac{\dotprod{\delby{\fnof{f_{1}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}\fnof{f_{2}}{\vectr{x}}+\fnof{f_{1}}{\vectr{x}}\pbrac{\dotprod{\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}\\
+    \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\vectr{u}}&=\directionalderiv{f_{2}}{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}}\\
+    &=\delby{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\fnof{f_{2}}{\vectr{x}}}\pbrac{\dotprod{\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}
+  \end{split}
+\end{equation}
+
+Note that the normal derivative of a function is just the directional
+derivative in the normal direction \ie
+\begin{equation}
+  \delby{\fnof{f}{\vectr{x}}}{\vectr{n}}=\dotprod{\gradient{}{\fnof{f}{\vectr{x}}}}{\vectr{n}}=\directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\vectr{n}}
+\end{equation}
+
+For a vector valued function of a vector, $\fnof{\vectr{f}}{\vectr{x}}$, the
+directional derivative in the direction of a vector $\vectr{u}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{\vectr{f}}{\vectr{x}}}{\vectr{u}}&=\evalat{\dfrac{d}{d\epsilon}\fnof{\vectr{f}}{\vectr{x}+\epsilon\vectr{u}}}{\epsilon=0}\\
+    &=\dotprod{\gradient{\vectr{x}}{\fnof{\vectr{f}}{\vectr{x}}}}{\vectr{u}}\\
+    &=\dotprod{\delby{\fnof{\vectr{f}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}\\
+  \end{split}
+\end{equation}
+
+Some properties of directional derivatives of a vector function of a vector include
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}+\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}&=\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{u}}+\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}\\
+    &=\dotprod{\pbrac{\delby{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{x}}+\delby{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{x}}}}{\vectr{u}}\\
+    \directionalderiv{\vectr{x}}{\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\vectr{u}}&=\crossprod{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{u}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}+\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}\\
+    &=\crossprod{\pbrac{\dotprod{\delby{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}+\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\pbrac{\dotprod{\delby{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}}\\
+    \directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\vectr{u}}&=\directionalderiv{\vectr{f}_{2}}{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}\\
+    &=\dotprod{\delby{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\pbrac{\dotprod{\delby{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}}
+  \end{split}
+\end{equation}
+
+For a scalar valued function of a second order tensor, $\fnof{f}{\tensor{A}}$,
+the directional derivative in the the direction of a second order tensor
+$\tensor{U}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{f}{\tensor{A}}}{\vectr{U}}&=\evalat{\dfrac{d}{d\epsilon}\fnof{f}{\tensor{A}+\epsilon\tensor{U}}}{\epsilon=0}\\
+    &=\doubledotprod{\gradient{\tensor{A}}{\fnof{f}{\tensor{A}}}}{\tensor{U}}\\
+    &=\doubledotprod{\delby{\fnof{f}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}\\
+  \end{split}  
+\end{equation}
+
+Some properties of directional derivatives of a scalar function of a second
+order tensor include
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}+\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}&=\directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}}{\tensor{U}}+\directionalderiv{\tensor{A}}{\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}\\
+    &=\doubledotprod{\pbrac{\delby{\fnof{f_{1}}{\tensor{A}}}{\tensor{A}}+\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}}{\tensor{U}}\\
+    \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}&=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}\fnof{f_{2}}{\vectr{x}}+\fnof{f_{1}}{\vectr{x}}\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}\\
+    &=\pbrac{\doubledotprod{\delby{\fnof{f_{1}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}\fnof{f_{2}}{\tensor{A}}+\fnof{f_{1}}{\tensor{A}}\pbrac{\doubledotprod{\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}} \\
+    \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\tensor{U}}&=\directionalderiv{f_{2}}{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\directionalderiv{\tensor{A}}{\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}}\\
+    &=\delby{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\fnof{f_{2}}{\tensor{A}}}\pbrac{\doubledotprod{\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}
+  \end{split}
+\end{equation}
+
+For a second order tensor valued function of a second order tensor, $\fnof{F}{\tensor{A}}$,
+the directional derivative in the the direction of a second order tensor
+$\tensor{U}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{\tensor{F}}{\tensor{A}}}{\vectr{U}}&=\evalat{\dfrac{d}{d\epsilon}\fnof{\tensor{F}}{\tensor{A}+\epsilon\tensor{U}}}{\epsilon=0}\\
+    &=\doubledotprod{\gradient{\tensor{A}}{\fnof{\tensor{F}}{\tensor{A}}}}{\tensor{U}}\\
+    &=\doubledotprod{\delby{\fnof{\tensor{F}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}\\
+  \end{split}  
+\end{equation}
+
+Some properties of directional derivatives of a second order tensor function
+of a second order tensor include
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}+\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}&=\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{U}}+\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}\\
+    &=\doubledotprod{\pbrac{\delby{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{A}}+\delby{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{A}}}}{\tensor{U}}\\
+    \directionalderiv{\tensor{A}}{\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\tensor{A}}&=\dotprod{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{U}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}+\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}\\
+    &=\dotprod{\pbrac{\doubledotprod{\delby{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}+\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\pbrac{\doubledotprod{\delby{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}}\\
+    \directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\tensor{U}}&=\directionalderiv{\tensor{F}_{2}}{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}\\
+    &=\doubledotprod{\delby{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\pbrac{\doubledotprod{\delby{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}}
+  \end{split}
+\end{equation}
+
+
+Consider the directional derivative of the determinant of a tensor,
+$\tensor{A}$ in the direction of another tensor, $\tensor{U}$
+\begin{equation}
+  \begin{split}
+    \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}&=\evalat{\dby{}{\epsilon}\determinant{\tensor{A}+\epsilon\tensor{U}}}{\epsilon=0}\\
+    &=\evalat{\dby{}{\epsilon}\determinant{\tensor{A}\pbrac{\tensor{I}+\epsilon\inverse{\tensor{A}}\tensor{U}}}}{\epsilon=0}\\
+    &=\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\determinant{\pbrac{\tensor{I}+\epsilon\inverse{\tensor{A}}\tensor{U}}}}{\epsilon=0}
+  \end{split}
+\end{equation}
+
+Now, the characteristic equation for a tensor, $\tensor{B}$ is
+\begin{equation}
+  \determinant{\pbrac{\tensor{B}-\lambda\tensor{I}}}=\pbrac{\lambda_{1}-\lambda}\pbrac{\lambda_{2}-\lambda}\pbrac{\lambda_{3}-\lambda}
+\end{equation}
+where $\lambda_{i}$ is the $\nth{i}$ eigenvalue of $\tensor{B}$.
+
+We thus have
+\begin{equation}
+  \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}=\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\determinant{\pbrac{\pbrac{1+\epsilon\lambda_{1}}\pbrac{1+\epsilon\lambda_{2}}\pbrac{1+\epsilon\lambda_{3}}}}}{\epsilon=0}
+\end{equation}
+where $\lambda_{i}$ is the $\nth{i}$ eigenvalue of
+$\inverse{\tensor{A}}\tensor{U}$. Now
+\begin{equation}
+  \begin{split}
+    \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}&=\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\determinant{\pbrac{\pbrac{1+\epsilon\lambda_{1}}\pbrac{1+\epsilon\lambda_{2}}\pbrac{1+\epsilon\lambda_{3}}}}}{\epsilon=0}\\
+    &=\determinant{\tensor{A}}\pbrac{\lambda_{1}+\lambda_{2}+\lambda_{3}}\\
+    &=\determinant{\tensor{A}}\trace{\pbrac{\inverse{\tensor{A}}\tensor{U}}}\\
+    &=\determinant{\tensor{A}}\doubledotprod{\invtranspose{\tensor{A}}}{\tensor{U}}
+  \end{split}
+\end{equation}
+
+\subsection{Variation}
+\label{subsec:VariationOperator}
+
+Given a function $\fnof{\vectr{u}}{\vectr{x}}$  and another function
+$\fnof{\vectr{u}^{*}}{\vectr{x}}$ which is only infinitesimally different from
+the first function at every point $\vectr{x}$ then the variation of the
+function is defined as
+\begin{equation}
+  \fnof{\variationdir{\vectr{u}}}{\vectr{x}}=\fnof{\vectr{u}^{*}}{\vectr{x}}-\fnof{\vectr{u}}{\vectr{x}}
+\end{equation}
+
+The variation of a function is an infinitessimal change in the function at
+$\vectr{x}$ and is different from the derivative of a function at a point.
+
+Some properties of the variation operator include
+\begin{equation}
+  \begin{split}
+    \variationdir{\delby{\vectr{u}}{\vectr{x}}}&=\delby{\variationdir{\vectr{u}}}{\vectr{x}} \\
+    \variationdir{\gint{\vectr{x}_{1}}{\vectr{x}_{2}}{\fnof{\vectr{u}}{\vectr{x}}}{\vectr{x}}}&=\gint{\vectr{x}_{1}}{\vectr{x}_{2}}{\variationdir{\fnof{\vectr{u}}{\vectr{x}}}}{\vectr{x}} 
+  \end{split}
+\end{equation}
+
+Consider a function of $\vectr{u}$, $\fnof{\vectr{f}}{\vectr{x}}$, and a
+variation of $\vectr{u}$, $\variationdir{\vectr{u}}$. The variation in the
+function is given by
+\begin{equation}
+  \variation{\fnof{\vectr{f}}{\vectr{u}}}{\vectr{u}}=\fnof{\vectr{f}}{\vectr{u}+\variationdir{\vectr{u}}}-\fnof{\vectr{f}}{\vectr{u}}
+\end{equation}
+
+Now
+\begin{equation}
+  \fnof{\vectr{f}}{\vectr{u}+\epsilon\variationdir{\vectr{u}}}
+\end{equation}
+
+\begin{equation}
+  \variation{\fnof{\vectr{f}}{\vectr{u}}}{\vectr{u}}=\directionalderiv{}{\fnof{\vectr{f}}{\vectr{u}}}{\variationdir{\vectr{u}}}=\evalat{\dby{}{\epsilon}\fnof{\vectr{f}}{\vectr{u}+\epsilon\variationdir{\vectr{u}}}}{\epsilon=0}
+\end{equation}
+  
 \subsection{Linearisation}
 \label{subsec:Linearisation}
 
 A linearisation of a function $\fnof{f}{\vectr{x}}$ in the direction of
 $\Delta\vectr{x}$ is
 \begin{equation}
-  \linearisation{f}{\vectr{x}}{\Delta\vectr{x}}=\dby{}{\epsilon}\evalat{\fnof{f}{\vectr{x}+\epsilon\Delta\vectr{x}}}{\epsilon=0}=\fnof{f}{\vectr{x}}+\directionalderiv{\fnof{f}{\vectr{x}}}{\Delta\vectr{x}}
+  \linearisation{f}{\vectr{x}}{\vectr{x}}=\dby{}{\epsilon}\evalat{\fnof{f}{\vectr{x}+\epsilon\linearisationdir{\vectr{x}}}}{\epsilon=0}=\fnof{f}{\vectr{x}}+\directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\linearisationdir{\vectr{x}}}
 \end{equation}

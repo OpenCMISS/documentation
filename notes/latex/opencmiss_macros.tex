@@ -371,11 +371,19 @@
 %
 % Commonly-used Math Symbols and operations
 %
+% Products
+\newcommand{\dotprod}[2]{\dotprodtwo{#1}{#2}} % dot product
+\newcommand{\dotprodtwo}[2]{\ensuremath{#1\cdot#2}} % two times dot product
+\newcommand{\dotprodthree}[3]{\ensuremath{#1\cdot#2\cdot#3}} % three times dot product
+\newcommand{\doubledotprod}[2]{\doubledotprodtwo{#1}{#2}} % double dot product
+\newcommand{\doubledotprodtwo}[2]{\ensuremath{#1:#2}} % two times double dot product
+\newcommand{\doubledotprodthree}[3]{\ensuremath{#1:#2:#3}} % three times double double dot product
+\newcommand{\crossprod}[2]{\crossprodtwo{#1}{#2}} % cross product
+\newcommand{\crossprodtwo}[2]{\ensuremath{#1\times#2}} % two times cross product
+\newcommand{\crossprodthree}[3]{\ensuremath{#1\times#2\times#3}} % three times
+% cross product
+% Brackets
 \newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
-\newcommand{\dotprod}[2]{\ensuremath{#1\cdot#2}} % dot product
-\newcommand{\doubledotprod}[2]{\ensuremath{#1:#2}} % double dot product
-\newcommand{\doubledoubledotprod}[3]{\ensuremath{#1:#2:#3}} % double double dot product
-\newcommand{\crossprod}[2]{\ensuremath{#1\times#2}} % cross product
 \newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
 \newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
 \newcommand{\pbracl}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
@@ -396,21 +404,21 @@
   }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
-\newcommand{\directionalderiv}[2]{\ensuremath{
-    \sqfnof{\fnof{D}{#1}}{#2}
-}} % directional derivative e.g., \directionalderiv{f}{u} => D(f)[u]
 \newcommand{\derivativeop}[2]{
   \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{D#2}
+    \ensuremath{\fnof{D}{#2}}
   }{
-    \ensuremath{D_{#1}#2} % 
+    \ensuremath{\fnof{D_{#1}}{#2}} % 
   }} % derivative operator e.g. \derivativeop{}{f} => Da & \derivativeop{x}{f} => D_{x}a
 \newcommand{\hessianop}[2]{
   \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{D^{2}#2}
+    \ensuremath{\fnof{D^{2}}{#2}}
   }{
-    \ensuremath{D^{2}_{#1}#2} % 
+    \ensuremath{\fnof{D^{2}_{#1}}{#2}} % 
   }} % Hessian operator e.g. \hessianop{}{f} => D^2a & \hessianop{x}{f} => D^{2}_{x}a
+\newcommand{\directionalderiv}[3]{\ensuremath{
+    \sqfnof{\derivativeop{#1}{#2}}{#3}
+}} % directional derivative e.g., \directionalderiv{x}{f}{u} => D_x(f)[u]
 \newcommand{\divergence}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\dotprod{\nabla}{#2}}
@@ -523,12 +531,19 @@
 \newcommand{\kronecker}[2]{ %
   \covarkronecker{#1}{#2} %
 } % kronecker delta tensor. Default to covariant.
+\newcommand{\linearisationdirsymbol}{\ensuremath{ %
+    \Delta%
+    }} % linearisation direction symbol => \Delta
+\newcommand{\linearisationdir}[1]{\ensuremath{ %
+    \linearisationdirsymbol #1%
+    }} % linerarisation direction e.g. \linearisationdir{f} => \Delta f
 \newcommand{\linearisation}[3]{ %
   \ifthenelse{\equal{#2}{}}{ %
-    \ensuremath{\sqfnof{\fnof{L}{#1}}{#3}}
+    \ensuremath{\sqfnof{\fnof{L}{#1}}{\linearisationdir{#3}}}
   }{
-    \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{#3}} % 
-  }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[u] & \linearisation{f}{x}{u} => L_x(f)[u]
+    \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{\linearisationdir{#3}}} % 
+  }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[\Delta u] &
+     % \linearisation{f}{x}{u} => L_x(f)[\Delta u]
 \newcommand{\laplacian}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\gradsq #2}
@@ -580,6 +595,15 @@
 \newcommand{\nttento}[2]{\ensuremath{ %
     #1\ttento{#2} %
     }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+\newcommand{\variationsymbol}{\ensuremath{ %
+    \delta%
+    }} % variation symbol => \delta
+\newcommand{\variationdir}[1]{\ensuremath{ %
+    \variationsymbol #1%
+    }} % variation direction e.g. \variationdir{f} => \delta f
+\newcommand{\variation}[2]{\ensuremath{ %
+    \sqfnof{\variationsymbol #1}{\variationdir{#2}}%
+    }} % variation e.g. \variation{f}{u} => \delta f[\delta u]
 
 %
 % Operators
@@ -842,8 +866,14 @@
 \newcommand{\matr}[1]{\ensuremath{\uppercase{\boldsymbol{#1}}}} % matrix
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek vectors
 \newcommand{\vect}[1]{\ensuremath{\lowercase{\boldsymbol{#1}}}} % vector
-\newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
 \newcommand{\normal}{\vectr{n}} % normal
+
+% Matrix and vector operators
+\newcommand{\determinant}[1]{\det #1} % determinant e.g., \determinant{A} =
+                                % det A
+\newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
+\newcommand{\trace}[1]{\trop #1} % trace e.g., \trace{A} =
+                                % tr A
 
 %
 % Basis functions and interpolation
