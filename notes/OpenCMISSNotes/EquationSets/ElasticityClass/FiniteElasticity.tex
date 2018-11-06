@@ -1027,6 +1027,7 @@ The second material elasticity tensor is thus
   +J^{-\frac{4}{3}}\doubledotprodthree{\pullback{\tensorfour{M}}{}}{\bar{\tensorfour{C}}}{\tensorfour{M}^{*T}}+\dfrac{2}{3}J^{-\frac{2}{3}}\pullback{\Trop}{}\bar{\tensortwo{S}}\tensorfour{M}^{\sharp
     *}\\
   -\dfrac{2}{3}\sqbrac{\tensorprod{\tensortwo{B}}{\tensor{S}_{\pullback{\Devop}{}}}+\tensorprod{\tensortwo{S}_{\pullback{\Devop}{}}}{\tensortwo{B}}}
+  \label{eqn:IncompressibleSecondMaterialElasticityTensor}
 \end{multline}
 and the second spatial elasticity tensor is thus
 \begin{multline}
@@ -1034,6 +1035,7 @@ and the second spatial elasticity tensor is thus
   \\
   +J^{-\frac{4}{3}}\doubledotprodthree{\tensorfour{m}}{\bar{\tensorfour{c}}}{\transpose{\tensorfour{m}}}+\dfrac{2}{3}J^{-\frac{2}{3}}\trop\bar{\tensortwo{\sigma}}\tensorfour{m}^{\sharp}\\
   -\dfrac{2}{3}\sqbrac{\tensorprod{\inverse{\tensortwo{g}}}{\tensor{\sigma}_{\devop}}+\tensorprod{\tensortwo{\sigma}_{\devop}}{\inverse{\tensortwo{g}}}}
+  \label{eqn:IncompressibleSecondSpatialElasticityTensor}
 \end{multline}
 
 
@@ -2152,17 +2154,18 @@ Following the same procedure as for the potential energy case we obtain
   \directionalderiv{}{\variation{\fnof{\bar{\Pi}_{int}}{\vectr{u}}}{\vectr{u}}+\variation{\fnof{\Pi_{P}}{\vectr{u},p}}{\vectr{u}}}{\linearisationdir{\vectr{u}}}=\\
   \gint{\embedmanifold{B}_{0}}{}{\pbrac{\doubledotprod{\gradient{\vectr{X}}{\variationdir{\vectr{u}}}}{\gradient{\vectr{X}}{\linearisationdir{\vectr{u}}}\fnof{\tensor{S}}{\fnof{\tensor{E}}{\vectr{u}}}}+\doubledotprod{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\variationdir{\vectr{u}}}}{\doubledotprod{\tensorfour{C}}{\transpose{\tensortwo{F}}\gradient{\vectr{X}}{\linearisationdir{\vectr{u}}}}}}}{V}
 \end{multline}
-where
+where from \eqnref{eqn:IncompressibleSecondMaterialElasticityTensor}
 \begin{equation}
-  \tensorfour{C}=\bar{\tensorfour{C}}+\tensorfour{C}_{p}
+  \tensorfour{C}=\tensorfour{C}_{e}+\tensorfour{C}_{p}
 \end{equation}
 and
 \begin{equation}
-  \bar{\tensorfour{C}}=2\delby{\bar{\tensortwo{S}}}{\tensortwo{C}}=\delby{\bar{\tensortwo{S}}}{\tensortwo{E}}
-\end{equation}
-and
-\begin{equation}
-  \tensorfour{C}_{p}=-pJ\pbrac{\tensorprod{\inverse{\tensor{C}}}{\inverse{\tensor{C}}}-2\tensorfour{I}}
+  \begin{split}
+    \tensorfour{C}_{e}&=J^{-\frac{4}{3}}\doubledotprodthree{\pullback{\tensorfour{M}}{}}{\bar{\tensorfour{C}}}{\tensorfour{M}^{*T}}+\dfrac{2}{3}J^{-\frac{2}{3}}\pullback{\Trop}{}\bar{\tensortwo{S}}\tensorfour{M}^{\sharp *}
+    -\dfrac{2}{3}\sqbrac{\tensorprod{\tensortwo{B}}{\tensor{S}_{\pullback{\Devop}{}}}+\tensorprod{\tensortwo{S}_{\pullback{\Devop}{}}}{\tensortwo{B}}}\\
+    \tensorfour{C}_{p}&=-pJ\pbrac{3\tensorfour{K}^{\sharp *}-2\tensorfour{I}^{\sharp *}}\\
+    \bar{\tensorfour{C}}&=2\delby{\bar{\tensortwo{S}}}{\tensortwo{C}}=\delby{\bar{\tensortwo{S}}}{\tensortwo{E}}
+  \end{split}
 \end{equation}
 
 In the current configuration we have
@@ -2173,17 +2176,20 @@ In the current configuration we have
             \doubledotprod{\gradient{\vectr{x}}{\variationdir{\vectr{u}}}}{\doubledotprod{\tensorfour{c}}{\gradient{\vectr{x}}{\linearisationdir{\vectr{u}}}}}}}{v}
   \end{split}
 \end{equation}
-where
+where from \eqnref{eqn:IncompressibleSecondSpatialElasticityTensor}
 \begin{equation}
-  \tensorfour{c}=\bar{\tensorfour{c}}+\tensorfour{c}_{p}
+  \tensorfour{c}=\tensorfour{c}_{e}+\tensorfour{c}_{p}
 \end{equation}
 and
 \begin{equation}
-  \bar{\tensorfour{c}}=\inverse{J}\pushforward{\chi}{\pbrac{\bar{\tensorfour{C}}}}
-\end{equation}
-and
-\begin{equation}
-  \tensorfour{c}_{p}=\inverse{J}\pushforward{\chi}{\pbrac{\tensorfour{C}_{p}}}=-p\pbrac{\tensorprod{\tensortwo{i}}{\tensortwo{i}}-2\tensorfour{i}}
+  \begin{split}
+    \tensorfour{c}_{e}&=\inverse{J}\pushforward{\chi}{\pbrac{\tensorfour{C}_{e}}}\\
+    &=J^{-\frac{4}{3}}\doubledotprodthree{\tensorfour{m}}{\bar{\tensorfour{c}}}{\transpose{\tensorfour{m}}}+\dfrac{2}{3}J^{-\frac{2}{3}}\trop\bar{\tensortwo{\sigma}}\tensorfour{m}^{\sharp}
+    -\dfrac{2}{3}\sqbrac{\tensorprod{\inverse{\tensortwo{g}}}{\tensor{\sigma}_{\devop}}+\tensorprod{\tensortwo{\sigma}_{\devop}}{\inverse{\tensortwo{g}}}}\\
+    \tensorfour{c}_{p}&=\inverse{J}\pushforward{\chi}{\pbrac{\tensorfour{C}_{p}}}\\
+    &=-p\pbrac{3\tensorfour{k}^{\sharp}-2\tensorfour{i}^{\sharp}}\\
+  \bar{\tensorfour{c}}&=\inverse{J}\pushforward{\chi}{\pbrac{\bar{\tensorfour{C}}}}
+  \end{split}
 \end{equation}
 
 The linearisation of the other terms are
