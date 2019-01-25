@@ -181,3 +181,83 @@ $\Delta\vectr{x}$ is
 \begin{equation}
   \linearisation{f}{\vectr{x}}{\vectr{x}}=\dby{}{\epsilon}\evalat{\fnof{f}{\vectr{x}+\epsilon\linearisationdir{\vectr{x}}}}{\epsilon=0}=\fnof{f}{\vectr{x}}+\directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\linearisationdir{\vectr{x}}}
 \end{equation}
+ 
+\subsection{Tensor Operations}
+\label{subsec:TensorOperations}
+
+\subsubsection{Trace}
+\label{subsubsec:Trace}
+
+The trace of a tensor, $\tensor{A}$ (with respect to a metric, $\tensor{g}$) is given by
+\begin{equation}
+  \trace{\tensor{g}}{\tensor{A}}=\doubledotprod{\inverse{\tensor{g}}}{\tensor{A}}=g^{ij}A_{ij}
+\end{equation}
+
+The trace operator may also be written without the metric \ie
+$\trace{}{\tensor{A}}$. Note that the trace of a tensor is invariant with
+respect to a change of basis.
+
+For tensors $\tensor{A}$ and $\tensor{B}$ and a scalar $\phi$, some properties of the trace operator include:
+\begin{align}
+  \trace{}{\pbrac{\tensor{A}+\tensor{B}}}&=\trace{}{\tensor{A}}+\trace{}{\tensor{B}}\\
+  \trace{}{\pbrac{\phi\tensor{A}}}&=\phi\trace{}{\tensor{A}} \\
+  \trace{}{\tensor{A}}&=\trace{}{\transpose{\tensor{A}}} \\
+  \trace{}{\pbrac{\tensor{A}\tensor{B}}}&=\trace{}{\pbrac{\tensor{B}\tensor{A}}}\\
+  \trace{}{\pbrac{\tensorprod{\tensor{A}}{\tensor{B}}}}&=\trace{}{\tensor{A}}\trace{}{\tensor{B}}\\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\trace{}{\pbrac{\transpose{\tensor{A}}\tensor{B}}}=\trace{}{\pbrac{\tensor{A}\transpose{\tensor{B}}}}=\trace{}{\pbrac{\transpose{\tensor{B}}\tensor{A}}}=\trace{}{\pbrac{\tensor{B}\transpose{\tensor{A}}}}
+\end{align}
+
+\subsubsection{Symmetric and Skew-symmetric}
+\label{subsubsec:SymmetricSkew}
+
+Consider a second order tensor, $\tensor{A}$. Any second order tensor can be
+split into two parts \ie
+\begin{align}
+  \tensor{A}&=\frac{1}{2}\pbrac{\tensor{A}+\transpose{\tensor{A}}}+\frac{1}{2}\pbrac{\tensor{A}-\transpose{\tensor{A}}}
+  \notag \\
+  &=\symmetric{\tensor{A}}+\skewsym{\tensor{A}}
+\end{align}
+as first part of $\dfrac{1}{2}\pbrac{\tensor{A}+\transpose{\tensor{A}}}$ is a
+strictly symmetric tensor and the second part of
+$\dfrac{1}{2}\pbrac{\tensor{A}-\transpose{\tensor{A}}}$ is a strictly
+skew-symmetric tensor. Here $\symmetric{}$ is the symmetric operation and $\skewsym{}$ the
+skew-symmetric operator.
+
+For second order tensors $\tensor{A}$ and $\tensor{B}$, some properties of a symmetric and skew-symmetric decomposition include:
+\begin{align}
+  \transpose{\pbrac{\symmetric{\tensor{A}}}}&=\symmetric{\tensor{A}} \\
+  \transpose{\pbrac{\skewsym{\tensor{A}}}}&=-\skewsym{\tensor{A}} \\
+  \determinant{\pbrac{\skewsym{\tensor{A}}}}&=0 \\
+  \trace{}{\pbrac{\symmetric{\tensor{A}}\skewsym{\tensor{A}}}}&=0\\
+  \doubledotprod{\symmetric{\tensor{A}}}{\skewsym{\tensor{A}}}&=0\\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\symmetric{\tensor{A}}+\skewsym{\tensor{A}}}}{\pbrac{\symmetric{\tensor{B}}+\skewsym{\tensor{B}}}} \\
+  &=\doubledotprod{\symmetric{\tensor{A}}}{\symmetric{\tensor{B}}}+\doubledotprod{\skewsym{\tensor{A}}}{\skewsym{\tensor{B}}}
+\end{align}
+as the double contraction of a symmetric and skew-symmetric tensor is zero.
+
+\subsubsection{Deviatoric and Spherical}
+\label{subsubsec:DeviatoricSpherical}
+
+Consider a second order tensor, $\tensor{A}$, on a manifold with a metric,
+$\tensor{g}$. Any second order tensor can be split into two parts \ie
+\begin{align}
+  \tensor{A}&=\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}+\pbrac{\tensor{A}-\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}}
+  \notag \\
+  &=\spherical{\tensor{g}}{\tensor{A}}+\deviatoric{\tensor{g}}{\tensor{A}}
+\end{align}
+
+The spherical and deviatoric operators may also be written without the
+optional metric \ie $\spherical{}{\tensor{A}}$ and $\deviatoric{}{\tensor{A}}$.
+
+For tensors $\tensor{A}$ and $\tensor{B}$ and a scalar $c$, some properties of
+the spherical and deviatoric operators include:
+\begin{align}
+  \determinant{\pbrac{\deviatoric{}{\tensor{A}}}}&=1\\
+  \trace{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
+  \spherical{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
+  \doubledotprod{\deviatoric{}{\tensor{A}}}{\spherical{}{\tensor{B}}}&=0 \\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\spherical{}{\tensor{A}}+\deviatoric{}{\tensor{A}}}}{\pbrac{\spherical{}{\tensor{B}}+\deviatoric{}{\tensor{B}}}}
+  \notag \\
+  &=\doubledotprod{\spherical{}{\tensor{A}}}{\spherical{}{\tensor{B}}}+\doubledotprod{\deviatoric{}{\tensor{A}}}{\deviatoric{}{\tensor{B}}}
+\end{align}
+as the double contraction of a spherical and deviatoric tensor is zero.

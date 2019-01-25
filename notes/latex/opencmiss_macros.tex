@@ -395,7 +395,11 @@
     }} %% complex conjugate e.g. \conjugate{Z} => Z
 \newcommand{\const}[1]{\ensuremath{\mathrm{#1}}} % constant
 \newcommand{\cont}[1]{\ensuremath{C^{#1}}} % continuity e.g. \cont{1} => C1
-\newcommand{\convolution}[2]{\ensuremath{#1*#2}} % convolution e.g. \convolution{a}{b} => a*b
+\newcommand{\convolution}[2]{\ensuremath{#1*#2}} % convolution
+% e.g. \convolution{a}{b} => a*b
+\newcommand{\cuberoot}[1]{\ensuremath{ %
+    \sqrt[3]{#1} %
+  }} % cube root e.g. \cuberoot{a} = 3\sqrt{a}
 \newcommand{\curl}[2]{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\crossprod{\nabla}{#2}}
@@ -519,11 +523,17 @@
 \newcommand{\funccomposition}[2]{\ensuremath{ %
     \fnof{#1}{#2}
 }} % composition with function e.g. \funccomposition{A}{B} => A(B)
-\newcommand{\contrakronecker}[2]{\ensuremath{ %
+\newcommand{\sharpkronecker}[2]{\ensuremath{ %
     \delta^{{#1}{#2}}
+}} % sharp kronecker delta tensor e.g., \sharpkronecker{i}{j} => delta^{ij}
+\newcommand{\contrakronecker}[2]{\ensuremath{ %
+    \sharpkronecker{#1}{#2} %
 }} % contravariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta^{ij}
-\newcommand{\covarkronecker}[2]{\ensuremath{
+\newcommand{\flatkronecker}[2]{\ensuremath{
     \delta_{{#1}{#2}}
+}} % flat kronecker delta tensor e.g., \flatkronecker{i}{j} => delta_{ij}
+\newcommand{\covarkronecker}[2]{\ensuremath{
+    \flatkronecker{#1}{#2} %
 }} % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
 \newcommand{\mixedkronecker}[2]{\ensuremath{
     \delta_{#1}^{#2}
@@ -623,8 +633,8 @@
 \DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
 \DeclareMathOperator{\symop}{sym} % symmetric operator e.g., sym A
 \DeclareMathOperator{\Symop}{Sym} % Symmetric operator e.g., Sym A
-\DeclareMathOperator{\skewop}{skew} % skew-symmetric operator e.g., skew A
-\DeclareMathOperator{\Skewop}{Skew} % Skew-symmetric operator e.g., Skew A
+\DeclareMathOperator{\skewop}{skw} % skew-symmetric operator e.g., skw A
+\DeclareMathOperator{\Skewop}{Skw} % Skew-symmetric operator e.g., Skw A
 \DeclareMathOperator{\devop}{dev} % deviatoric operator e.g., dev A
 \DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
 \DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
@@ -871,9 +881,65 @@
 % Matrix and vector operators
 \newcommand{\determinant}[1]{\det #1} % determinant e.g., \determinant{A} =
                                 % det A
+\newcommand{\deviatoric}[2]{\ensuremath{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\devop #2}%
+  }{
+    \ensuremath{\devop_{#1} #2}% 
+  }
+}} % deviatoric operator e.g., \deviatoric{g}{A} = dev_g A where g is the optional metric
+   % for the deviatoric operator
+\newcommand{\Deviatorc}[2]{\ensuremath{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\Devop #2}%
+  }{
+    \ensuremath{\Devop_{#1} #2}% 
+  }
+}} % deviatoric operator e.g., \Deviatoric{g}{A} = Dev_g A where g is the optional metric
+   % for the deviatoric operator
 \newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
-\newcommand{\trace}[1]{\trop #1} % trace e.g., \trace{A} =
-                                % tr A
+\newcommand{\skewsym}[1]{\ensuremath{
+    \skewop #1 % skew-symmetric operator i.e., \skewsym{A} = skw A
+  }}
+\newcommand{\Skewsym}[1]{\ensuremath{
+    \Skewop #1 % skew-symmetric operator i.e., \Skewsym{A} = Skw A
+  }}
+\newcommand{\spherical}[2]{\ensuremath{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\sphop #2}%
+  }{
+    \ensuremath{\sphop_{#1} #2}% 
+  }
+}} % spherical oeprator e.g., \spherical{g}{A} = sph_g A where g is the optional metric
+   % for the spherical operator
+\newcommand{\Spherical}[2]{\ensuremath{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\Sphop #2}%
+  }{
+    \ensuremath{\Sphop_{#1} #2}% 
+  }
+}} % spherical operator e.g., \Spherical{g}{A} = Sph_g A where g is the optional metric
+   % for the spherical operator
+\newcommand{\symmetric}[1]{\ensuremath{
+    \symop #1 % symmetric operator i.e., \symmetric{A} = sym A
+  }}
+\newcommand{\Symmetric}[1]{\ensuremath{
+    \Symop #1 % symmetric operator i.e., \Symmetric{A} = Sym A
+  }}
+\newcommand{\trace}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\trop #2}
+  }{
+    \ensuremath{\trop_{#1} #2} % 
+  }
+} % trace e.g., \trace{g}{A} = tr_g A where g is the optional metric for the trace
+\newcommand{\Trace}[2]{
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\Trop #2}
+  }{
+    \ensuremath{\Trop_{#1} #2} % 
+  }
+} % Trace e.g., \Trace{G}{A} = Tr_G A where G is the optional metric for the trace
 
 %
 % Basis functions and interpolation
