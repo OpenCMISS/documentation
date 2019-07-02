@@ -1,3 +1,85 @@
 \subsection{Data Projection}
 
-T
+\subsubsection{$\xi$ point calculation}
+\label{sec:xipointcalculation}
+
+The fitting method described above requires the location of the orthogonal
+projection of a data point (the point at which the distance between the data
+point and the projection is a minimum) onto the mesh to be determined. To find
+this point consider the distance between a data point and it's projection,
+$\fnof{f^{d}}{\vectr{\xi}}$, as the Euclidean norm of the error vector from some point (at a
+parametric elemental position of $\vectr{\xi}$), $\fnof{\vectr{z}}{\vectr{\xi}}$,
+and the location of the data point, $\vectr{z}^{d}$ \ie
+\begin{equation}
+  \begin{split}
+    \fnof{f^{d}}{\vectr{\xi}}&=\norm{\fnof{\vectr{e}^{d}}{\vect{\xi}}} \\ 
+    &=\norm{\fnof{\vect{z}}{\vect{\xi}}-\vect{z}^{d}} \\ 
+    &=\norm{\gbfn{\alpha}{u}{\vectr{\xi}}\vect{x}^{\alpha}_{,u}
+      \gsf{\alpha}{u}-\vect{z}^{d}}
+  \end{split}
+\end{equation}
+
+The parametric elemental location which minimises this distance (assuming
+that it exists within the element), $\vect{\xi}^{d}$, is hence given by
+\begin{equation}
+  \delby{\fnof{f^{d}}{\vectr{\xi}^{d}}}{\xi_{l}}=\dfrac{\delby{\gbfn{
+        \alpha}{u}{\vectr{\xi}^{d}}}{\xi_{l}}\dotprod{\vectr{x}^{\alpha}_{,u}\gsf{\alpha}{u}{\fnof{\vectr{e}^{d}}{\vectr{\xi}^{d}}}}{\norm{\fnof{\vectr{e}^{d}}{\vectr{\xi}^{d}}}}=0
+\end{equation}
+with $l$ varying from $1$ to the number of $\xi$ coordinates in the mesh under
+consideration.
+
+The parametric projection location, $\vectr{\xi}^{d}$, can hence be found
+from the (vector) root of the (vector) function
+\begin{equation}
+  \fnof{g_{l}}{\vect{\xi}}=\dotprod{\delby{\fnof{\vect{z}}{\vectr{\xi}}}{
+      \xi_{l}}}{\fnof{\vectr{e}^{d}}{\vectr{\xi}}}=0
+\end{equation}
+
+This root is easily found using an iterative Newton-Raphson method. If an
+initial location, $\vectr{\xi}$, is assumed a correction to this position,
+$\Delta\vectr{\xi}$, can be found from 
+\begin{equation}
+  \Delta\vectr{\xi}=-\inverse{\fnof{\matr{J}}{\fnof{\vectr{g}}{\vectr{\xi}}}}
+  \fnof{\vectr{g}}{\vectr{\xi}}
+\end{equation}
+where $\fnof{\matr{J}}{\fnof{\vectr{g}}{\vectr{\xi}}}$ is the \emph{Jacobian
+  matrix} given by
+\begin{equation}
+  \fnof{\matr{J}}{\fnof{\vectr{g}}{\vect{\xi}}}=\begin{bmatrix}
+    \delby{g_{1}}{\xi_{1}} & \delby{g_{1}}{\xi_{2}} & \ldots & 
+    \delby{g_{1}}{\xi_{n}} \\
+    \delby{g_{2}}{\xi_{1}} & \delby{g_{2}}{\xi_{2}} & \ldots & 
+    \delby{g_{2}}{\xi_{n}} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \delby{g_{m}}{\xi_{1}} & \delby{g_{m}}{\xi_{2}} & \ldots & 
+    \delby{g_{m}}{\xi_{n}}
+  \end{bmatrix}
+\end{equation}
+
+For the function considered here
+\begin{equation}
+  \fnof{J_{ij}}{\fnof{\vectr{g}}{\vectr{\xi}}}=\dotprod{\deltwoby{\fnof{
+        \vectr{z}}{\vectr{\xi}}}{\xi_{i}}{\xi_{j}}}{\fnof{\vect{e}^{d}}{
+      \vectr{\xi}}}+\dotprod{\delby{\fnof{\vectr{z}}{\vectr{\xi}}}{\xi_{i}}}{
+    \delby{\fnof{\vectr{e}^{d}}{\vectr{\xi}}}{\xi_{j}}}
+\end{equation}
+
+The algorithm to find the orthogonal projections is hence:
+\begin{enumerate}
+\item For each data point, d.
+  \begin{enumerate}
+  \item For each element.
+    \begin{enumerate}
+    \item Guess an initial starting location for the projection (\eg the
+      middle of the element).
+    \item Iteratively apply the Newton-Raphson method until (a) The projection
+      is converged; (b) The maximum number of Newton-Raphson iterations is
+      exceeded; (c) The projection moves outside the element.
+    \item If a projection has been found inside the element and the distance
+      from this projection to the data point is smaller than other projections
+      in other elements set $\varepsilon^{d}$ to this element and
+      $\vect{\xi}^{d}$ to this projection.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+

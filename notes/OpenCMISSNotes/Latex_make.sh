@@ -48,8 +48,12 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "EquationSets/FluidMechanicsClass/StokesEquation.tex "\
 "EquationSets/FluidMechanicsClass/DarcyEquation.tex "\
 "EquationSets/FluidMechanicsClass/NavierStokesEquation.tex "\
+"EquationSets/FluidMechanicsClass/PressurePoissonEquation.tex "\
+"EquationSets/FluidMechanicsClass/FiniteVolume.tex "\
 "EquationSets/MultiphysicsClass/Poroelasticity.tex "\
 "EquationSets/MultiphysicsClass/FSI.tex "\
+"EquationSets/FittingClass/Fitting.tex "\
+"EquationSets/FittingClass/DataProjection.tex "\
 "AnalyticSolutions/AnalyticSolutions.tex "\
 "AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
@@ -67,7 +71,12 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 
 MY_EPS_SRC="epsfiles/Modules/*.eps"
 MY_FIG_SRC=figs/BasisFunctions/*.fig
-MY_SVG_SRC="svgs/BasisFunctions/*.svg svgs/DifferentialGeometry/*.svg"
+MY_SVG_SRC="svgs/BasisFunctions/*.svg "\
+    "svgs/DifferentialGeometry/*.svg "\
+    "svgs/Analytic/*.svg "\
+    "svgs/EquationsSets/Elasticity/FiniteElasticity/*.svg "\
+    "svgs/EquationsSets/FluidMechanics/NavierStokes/*.svg "\
+    "svgs/EquationsSets/Fitting/*.svg "
 MY_PLOT_SRC="plots/BasisFunctions/*.gnu plots/BasisFunctions/*.gnu8"
 
 #

@@ -1,3 +1,4 @@
+
 \subsection{Navier-Stokes Equations} 
 
 \subsubsection{Governing equations:}
@@ -10,30 +11,209 @@ viscous term, plus a pressure term. The equations are named for the 19th
 century contributions of Claude-Louis Navier and George Gabriel Stokes. A
 solution of the Navier-Stokes equations is called a flow field, \ie velocity
 and pressure field, which is a description of the fluid at a given point in
-space and time.  In the common case of an incompressible Newtonian fluid, the
-nonlinear Navier-Stokes equations (three-dimensional, transient) can be
-written using 'primitive variables' (\ie $u$-velocity, $p$-pressure) as:
+space and time.
+
+Consider the generalised transport (which arises from the Reynolds transport
+theorem) equation for a scalar quatity for a control volume. The generalised
+transport thereom comes from the conservation principle which states that the
+time rate of increase of the scalar inside the control volume plus thr net rate
+of decrease of the the scalar due to convection across the control volume
+boundary is equal to the net rate of increase of the scalar quantity due to
+diffusion across the control volume boundary plus the net rate of the creation
+of the scalar inside the control volume. Mathematically for a scalar quantity
+$\Phi$ this can be written as
 \begin{equation}
-    \rho\delby{\vectr{u}}{t}+\rho\pbrac{\dotprod{\vectr{u}}{\grad}}\vectr{u}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
-  \label{eqn:NSE}
+  \delby{}{t}\gint{\Omega}{}{\rho\Phi}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\Phi\vectr{v}}{\vectr{n}}}{\Gamma}=
+  \gint{\Gamma}{}{\dotprod{\vectr{q}_{\Phi}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}
+  \label{eqn:integralgenscalartransport}
 \end{equation}
-accompanied by the conservation of mass (incompressibility)
+where the control volume is $\Omega$ which has a boundary
+$\Gamma=\boundary{\Omega}$ with a normal $\vectr{n}$, $\vectr{v}$ is the
+convection velocity, $\vectr{q}_{\Phi}$ is the flux across the control volume
+boundary associated with $\Phi$, and $\dot{q}_{\Phi}$ is the volumetric
+generation (or source) term. The flux vector can often be related to $\Phi$ by
+a gradient law \ie $\vectr{q}_{\Phi}=\gamma\gradient{}{\Phi}$ where $\gamma$
+is a proportionality scalar.
+
+The equivalent differential form of the scalar transport equation by
+rearranging \Eqnref{eqn:integralgenscalartransport} and using the Green-Gauss
+theorem \ie
 \begin{equation}
-  \divergence{}{\vectr{u}}=0
-  \label{eqn:NSEIncompressibility}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\Phi}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\Phi\vectr{v}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{\dotprod{\pbrac{\gamma\gradient{}{\Phi}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}\\
+    \gint{\Omega}{}{\delby{\pbrac{\rho\Phi}}{t}}{\Omega}+\gint{\Omega}{}{\divergence{}{\pbrac{\rho\Phi\vectr{v}}}}{\Omega}
+    &=\gint{\Omega}{}{\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}}{\Omega}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}
+    \\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}}}{\Omega}
+    &=\gint{\Omega}{}{\pbrac{\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}+\dot{q}_{\Phi}}}{\Omega}
+    \\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}-
+        \divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}-\dot{q}_{\Phi}}}{\Omega}
+    &= 0
+  \end{split}
 \end{equation}
-where $\vectr{u}(\vectr{x},t)=\transpose{\pbrac{u_{1},u_{2},u_{3}}}$ is the
-velocity vector depending on spatial coordinates
-$\vectr{x}=\transpose{\pbrac{x_{1},x_{2},x_{3}}}$ and the time $t$, $p$ is the
-scalar pressure, $\vectr{f}$ an applied body force, and the material
-parameters $\mu$ and $\rho$ are the fluid viscosity and density,
-respectively.The first term represents unsteady accelerative inertial
-contributions, the second represents the nonlinear convective acceleration
-terms, the $\gradient{}{p}$ term the pressure contributions, and the last term
-represents viscous stresses in the system.
-% incompressibility and the LBB condition
-As with Stokes flow, the incompressibility condition
-$\divergence{}{\vectr{u}}=0$ also creates restrictions on the formulation of
+Now for the integral to vanish the integrand must vanish \ie
+\begin{equation}
+  \delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}
+  -\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}-\dot{q}_{\Phi}=0
+\end{equation}
+or
+\begin{equation}
+  \delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}=\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}+\dot{q}_{\Phi}
+  \label{eqn:differentialgenscalartransport}
+\end{equation}
+
+The Navier-Stokes equations can formulated in terms of the 'primitive
+variables' \ie velocity and pressure where
+$\fnof{\vectr{v}}{\vectr{x},t}=\transpose{\sqbrac{v_{1},v_{2},v_{3}}}$ is the
+velocity vector which depends on the spatial coordinates
+$\vectr{x}=\transpose{\sqbrac{x_{1},x_{2},x_{3}}}$ and the time
+$t$. $\fnof{p}{\vectr{x},t}$ is the scalar pressure field. The Navier-Stokes
+equations consist of an equation concerning conservation of momentum and an
+equation concerning conservation of mass. These can be thought of as special
+cases of the generalised transport theorem. For the conservation of momentum
+we have
+\begin{equation}
+  \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+  +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+  =\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+\end{equation}
+where $\tensor{T}$ is a stress tensor and $\vectr{f}$ is the body force
+vector.
+
+For Newtonian fluids we have
+\begin{equation}
+  \begin{split}
+    \tensor{T}&=\pbrac{-p+\lambda\divergence{}{\vectr{v}}}\tensor{g}+2\mu\tensor{D} \\
+    \tensor{T}&=-p\tensor{g}+\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+      \frac{2}{3}\divergence{}{\vectr{v}}\tensor{g}}\\
+    \tensor{T}&=-p\tensor{g}+\tensor{\tau}
+  \end{split}
+\end{equation}
+where $p$ is the pressure, $\tensor{D}$ is the deformation tensor given by
+\begin{equation}
+  \tensor{D}=\frac{1}{2}\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}
+\end{equation}
+\or
+\begin{equation}
+  D^{ij}\frac{1}{2}\pbrac{g^{ik}\covarderiv{u^{j}}{k}+g^{jk}\covarderiv{u^{i}}{k}}
+\end{equation}
+and $\mu$ is the viscosity and $\tensor{\tau}$ is the shear stress tensor \ie
+\begin{equation}
+  \tensor{\tau}=\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+    \frac{2}{3}\divergence{}{\vectr{v}}\tensor{I}}
+\end{equation}
+
+Rearranging the integral conservation of momentum equation gives us
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\mu\pbrac{\gradient{}{\vectr{v}}
+          +\transpose{\gradient{}{\vectr{v}}}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+  \end{split}
+  \label{eqn:integralconservationofmomentum}
+\end{equation}
+
+The differential form for the conservation of momentum is given by
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+
+    \gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    \gint{\Omega}{}{\delby{\pbrac{\rho\vectr{v}}}{t}}{\Omega}
+    +\gint{\Omega}{}{\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}}{\Omega}
+    &=\gint{\Omega}{}{-\gradient{}{p}}{\Omega}+\gint{\Omega}{}{\divergence{}{\tensor{\tau}}}{\Omega}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\vectr{v}}}{t}
+        +\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
+        -\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}}}{\Omega}&=0
+  \end{split}
+\end{equation}
+and thus we have
+\begin{equation}
+  \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
+  -\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}=0
+\end{equation}
+or
+\begin{equation}
+  \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
+  =\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}=0
+  \label{eqn:differentialconservationofmomentum}
+\end{equation}
+
+For the conservation of mass equation we have
+\begin{equation}
+  \delby{}{t}\gint{\Omega}{}{\rho}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}=0
+  \label{eqn:integralconservationofmass}
+\end{equation}
+
+And the differential form for the conservation of mass is given by
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}&=0
+    \\
+    \gint{\Omega}{}{\delby{\rho}{t}}{\Omega}+\gint{\Omega}{}{\divergence{}{\pbrac{\rho\vectr{v}}}}{\Omega}&=0\\
+    \gint{\Omega}{}{\pbrac{\delby{\rho}{t}+\divergence{}{\pbrac{\rho\vectr{v}}}}}{\Omega}&=0
+  \end{split}
+\end{equation}
+which gives us
+\begin{equation}
+  \delby{\rho}{t}+\divergence{}{\pbrac{\rho\vectr{v}}}=0
+  \label{eqn:differentialconservationofmass}
+\end{equation}
+
+For incompressible flows the density doesn't change and so the integral forms
+of the conservation of mass and momentum are given by
+\begin{equation}
+  \gint{\Gamma}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}=0
+\end{equation}
+and
+\begin{equation}
+  \rho\delby{}{t}\gint{\Omega}{}{\vectr{v}}{\Omega}
+  +\gint{\Gamma}{}{\dotprod{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}{\vectr{n}}}{\Gamma}
+  =\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+  +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+\end{equation}
+
+The differential form for the conservation of momentum and mass for
+incompressible flows is given by
+\begin{equation}
+  \rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
+  =\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}
+  \label{eqn:DiffIncompNSEMomentum}
+\end{equation}
+and
+\begin{equation}
+  \divergence{}{\vectr{v}}=0
+  \label{eqn:DiffIncompNSEMass}
+\end{equation}
+
+For a Newtonian fluid \Eqnref{eqn:DiffIncompNSEMomentum} becomes
+\begin{equation}
+  \rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
+  =\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}-\gradient{}{p}+\rho\vectr{f}
+  \label{eqn:DiffIncompNewtonianNSEMomentum}
+\end{equation}
+
+The first term on the left hand side of \Eqnref{eqn:DiffIncompNSEMomentum}
+represents unsteady accelerative inertial contributions, the second term on
+the left hand side represents the nonlinear convective acceleration terms. The
+first term on the right hand side of \Eqnref{eqn:DiffIncompNSEMomentum}
+represents the viscous stresses in the system, the second term represents the
+pressure source and the last term represents the body force.
+
+As with Stokes flow, the incompressibility condition in
+\Eqnref{eqn:DiffIncompNSEMass} creates restrictions on the formulation of
 the velocity and pressure spaces using finite elements known as the
 Ladyzhenkaya, Babuska, and Brezzi (LBB) or inf-sup consistency
 condition. Several methods have been devised to define a pressure function
@@ -42,9 +222,11 @@ include mixed element methods, penalty methods, generalized petrov-galerkin
 methods using pressure poisson correction, operator splitting, and
 semi-implicit pressure correction \cite{chung:2010}.
 
+\subsubsection{Finite element formulation}
+
 Using a classic Galerkin formulation, mixed methods are perhaps conceptually
 the most straightforward method of satisfying LBB, in which velocity is
-defined over a space one order higher than pressure (e.g. quadratic elements
+defined over a space one order higher than pressure (\eg quadratic elements
 for velocity, linear for pressure), allowing incompressibility to be
 satisfied. It should be noted that our use of a mixed formulation to satisfy
 LBB will also be reflected in the shape functions that our weak formulation
@@ -53,29 +235,32 @@ linear pressure, we will have 9 DOFs and weight functions for each velocity
 component and 4 for the pressure.
 % meaning of pressure in NSE.
 
-\subsubsection{Weak Formulation}
 % Galerkin formulation
-The weak form of equations \ref{eqn:NSE} and \ref{eqn:NSEIncompressibility}
-can be found by applying standard Galerkin test functions $\vectr{w}$:
+The weak form of equations \ref{eqn:DiffIncompNewtonianNSEMomentum} and
+\ref{eqn:DiffIncompNSEMass} can be found by applying standard Galerkin weight
+functions $\vectr{w}$ \ie
 \begin{equation}
-  \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{u}}{t}
-    +\rho\vectr{u}\cdot\gradient{}{\vectr{u}}
-    -\vectr{f}
-    -\mu\laplacian{}{\vectr{u}}
-    +\gradient{}{p}}{\vectr{w}}}{\Omega} = 0
- \label{eqn:BasicGalerkinNSE}
+  \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
+      -\mu\laplacian{}{\vectr{u}}+\gradient{}{p}
+      -\rho\vectr{f}}{\vectr{w}}}{\Omega} = 0
+ \label{eqn:BasicGalerkinNSEMomentum}
+\end{equation}
+and
+\begin{equation}
+  \gint{\Omega}{}{\divergence{}{\vectr{v}}w}{\Omega}
+ \label{eqn:BasicGalerkinNSEMass}
 \end{equation}
 
-Integrating by parts, we will get the weak form of the system of PDEs with the associated natural boundary conditions at the boundary $\Gamma_N$:
+Applying the Green-Gauss theorem to \Eqnref{eqn:BasicGalerkinNSEMomentum}, we will get the weak form of the system of PDEs with the
+associated natural boundary conditions at the boundary $\Gamma$ \ie
 \begin{multline}
   \gint{\Omega}{}{\rho\delby{\vectr{u}}{t}{\vectr{w}}}{\Omega}
- +\gint{\Omega}{}{\rho\vectr{u}\cdot\grad\vectr{u}{\vectr{w}}}{\Omega}
+ +\gint{\Omega}{}{\dotprod{\rho\vectr{u}}{\gradient{\vectr{u}}}\vectr{w}}{\Omega}
  +\gint{\Omega}{}{p\gradient{}{\vectr{w}}}{\Omega}
- -\gint{\Omega}{}{\mu\gradient{}{\vectr{u}}\cdot\vectr{\gradient{}{w}}}{\Omega}=\\
+ -\gint{\Omega}{}{\dotprod{\mu\gradient{}{\vectr{u}}}{\gradient{}{\vectr{w}}}}{\Omega}=\\
  \gint{\Omega}{}{\vectr{f}\vectr{w}}{\Omega}
- +\gint{\Gamma_N}{}{\mu\dotprod{\grad\vectr{u}}{\vectr{n}}\vectr{w}}{\Gamma_N}
- -\gint{\Gamma_N}{}{\dotprod{p}{\vectr{n}}\vectr{w}}{\Gamma_N}
- \label{GalerkinNSE}
+ +\gint{\Gamma_{N}}{}{\dotprod{\pbrac{\mu\gradient{}{\vectr{u}}-p\vectr{I}}}{\vectr{n}}\vectr{w}}{\Gamma}
+ \label{eqn:GalerkinNSE}
 \end{multline}
 
 % Boundary conditions
@@ -84,34 +269,36 @@ of the PDEs, we refer to \cite{gresho:2000}. From this weak form, we see
 natural (Neumann) boundary conditions arising as a direct result of the
 integration. Neumann boundary conditions will consist of a pressure term and
 viscous stress acting normal to a given boundary.
-\begin{gather}
-   \fnof{\vectr{q}}{\vectr{x},t} = \mu\dotprod{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}{\normal}-p\cdot{\normal}  \\
-%   \fnof{\vectr{q_2}}{\vectr{x},t} = p\cdot{\normal} \\
-   \quad \vectr{x}\in\Gamma_{N}
- \label{eqn:NSENeumannBC}  
-\end{gather}
+\begin{equation}
+  \fnof{\vectr{q}}{\vectr{x},t} =
+  \dotprod{\pbrac{\mu\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}-
+      \fnof{p}{\vectr{x},t}\vectr{I}}}{\vectr{n}}  \quad\quad \vectr{x}\in\Gamma_{N}
+  \label{eqn:NSENeumannBC}  
+\end{equation}
 Specification of Neumann boundaries will simply require the specification of
 the terms across element DOFs. Dirichlet boundary conditions on a boundary
 $\Gamma_D$ for velocity will take the form:
 \begin{gather}
   \fnof{\vectr{u}}{\vectr{x},t} = \fnof{\vectr{d}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
- \label{eqn:NSEDirichletBC} 
+  \label{eqn:NSEDirichletBC} 
 \end{gather}
 
 \subsubsection{Tensor notation}
-Assuming no forcing terms and substituting the natural boundary as defined
-above, equation \ref{eqn:GalerkinNSE} in tensor notation becomes:
+
+Substituting the natural boundary as defined above, equation
+\ref{eqn:GalerkinNSE} in tensor notation becomes
 \begin{multline}
-  \gint{\Omega}{}{\rho\dot{u}_{i}w_{i}}{\Omega}
- +\gint{\Omega}{}{{\rho}G^{jk}u_{j}\covarderiv{u_{i}}{k}w_{i}}{\Omega}
- +\gint{\Omega}{}{G^{jk}{p_{i}}\covarderiv{w_{i}}{k}}{\Omega}\\
- -\gint{\Omega}{}{{\mu}G^{jk}\covarderiv{u_{i}}{j}\covarderiv{w_{i}}{k}}{\Omega}
- -\gint{\Gamma_N}{}{{q_{i}}{w_i}}{\Gamma_N}=\vectr{0}
+  \gint{\Omega}{}{\rho\dot{u}^{i}w^{i}}{\Omega}
+ +\gint{\Omega}{}{{\rho}G^{k}_{l}u^{l}\covarderiv{7u^{i}}{k}w^{i}}{\Omega}
+ +\gint{\Omega}{}{G^{ik}{p}\covarderiv{w^{i}}{k}}{\Omega}\\
+ -\gint{\Omega}{}{{\mu}G^{jk}\covarderiv{u^{i}}{j}\covarderiv{w^{i}}{k}}{\Omega}
+ -\gint{\Omega}{}{{f^{i}}{w^{i}}}{\Omega}
+ -\gint{\Gamma_N}{}{{q^{i}}{w^{i}}}{\Gamma}=\vectr{0}
  \label{eqn:TensorNSE}
 \end{multline}
 or
 \begin{multline}
-  \gint{\Omega}{}{\rho\dot{u}_{i}w_{i}}{\Omega}
+  \gint{\Omega}{}{\rho\dot{u}^{i}w_{i}}{\Omega}
  +\gint{\Omega}{}{{\rho}G^{jk}{u_j}\pbrac{\partialderiv{u_{i}}{k}-\christoffel{i}{k}{h}u_h}{w_{i}}}{\Omega}
  +\gint{\Omega}{}{G^{jk}{p_{i}}\pbrac{\partialderiv{w_{i}}{k}-\christoffel{i}{k}{h}w_h}}{\Omega}\\
  -\gint{\Omega}{}{{\mu}G^{jk}\pbrac{\partialderiv{u_{i}}{j}-\christoffel{i}{j}{h}u_h}\pbrac{\partialderiv{w_{i}}{k}-\christoffel{i}{k}{h}w_h}}{\Omega}
@@ -153,8 +340,8 @@ interpolated separately in space and time. Here we must also be careful to
 note again the discrepancy between the functional spaces for velocity and
 pressure using a mixed formulation to satisfy the LBB consistency
 requirement. We will therefore define two separate weighting functions: for
-the velocity space on $\Omega$, the test function will be $\psi_i$ and for the
-pressure space, $\phi_i$, giving:
+the velocity space on $\Omega$, the test function will be $\psi_{i}$ and for the
+pressure space, $\phi_{i}$, giving:
 
 \begin{gather}
   \fnof{\vectr{u}}{\vectr{x},t}=\gbfn{n}{}{\vectr{x}}\fnof{\nodept{\vectr{u}}{n}}{t}\\
@@ -165,9 +352,9 @@ In standard interpolation notation within an element, we transform from
 $\vectr{x}$ to $\vectr{\xi}$:
 
 \begin{gather}
-  \fnof{u_{i}}{\vectr{\xi},t}=\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{u^{i}}{\vectr{\xi},t}=\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
   \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}\\
-  \fnof{p_{}}{\vectr{\xi},t}=\phi_{in}^{\beta}({\vectr{\xi}})
+  \fnof{p}{\vectr{\xi},t}=\phi_{in}^{\beta}({\vectr{\xi}})
   \fnof{\idxnodedof{p}{}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
 \end{gather}
 

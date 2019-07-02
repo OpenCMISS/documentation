@@ -5,26 +5,409 @@
 The physics in the fluid domain is described by the ALE form of the Navier-Stokes equations
 \ie
 \begin{align}
-  \rho^{f}\pbrac{\delby{\vectr{v}}{t}+\pbrac{\dotprod{\vectr{v}}{\grad}}\pbrac{\vectr{v}-\vectr{w}}}&=\divergence{}{\tensor{\sigma}^{f}}+\rho^{f}\vectr{g}\\
-    \divergence{}{\vectr{v}}&=0
+  \rho^{F}\pbrac{\delby{\vectr{v}}{t}+\pbrac{\dotprod{\pbrac{\vectr{v}-\vectr{v}^{*}}}{\grad_{\vectr{x}}}}\vectr{v}}&=\divergence{\vectr{x}}{\tensor{\sigma}^{F}}+\rho^{F}\vectr{g}\label{eqn:FSINavStokesMomentum}
+  \\
+    \divergence{\vectr{x}}{\vectr{v}}&=0 \label{eqn:FSINavStokesContinuity}
 \end{align}
-where $\rho^{f}$ is the fluid density, $\vectr{v}$ is the fluid velocity,
-$\vectr{w}$ is the fluid mesh velocity, $\tensor{\sigma}^{f}$ is the fluid
+where $\rho^{F}$ is the fluid density, $\vectr{v}$ is the fluid velocity,
+$\vectr{v}^{*}$ is the fluid mesh velocity, $\tensor{\sigma}^{F}$ is the fluid
 stress and $\vectr{g}$ is the gravity acceleration vector.
 
 For Newtonian fluids, we have
 \begin{equation}
-  \tensor{\sigma}^{f}=-p^{f}\tensor{I}+\mu\pbrac{\gradient{}{\vectr{v}}+\transpose{\pbrac{\gradient{}{\vectr{v}}}}}
+  \tensor{\sigma}^{F}=-p^{F}\tensor{I}+\mu\pbrac{\gradient{\vectr{x}}{\vectr{v}}+\transpose{\pbrac{\gradient{\vectr{x}}{\vectr{v}}}}}
 \end{equation}
-where $p^{f}$ is the fluid pressure and $\mu$ is the fluid viscosity. 
+where $p^{F}$ is the fluid pressure and $\mu$ is the fluid viscosity.
+
+The weak form of \eqnref{eqn:FSINavStokesMomentum} is given by
+\begin{equation}
+  \gint{\embedmanifold{B}^{F}_{t}}{}{\pbrac{\rho^{F}\pbrac{\delby{\vectr{v}}{t}
+        +\pbrac{\dotprod{\pbrac{\vectr{v}-\vectr{v}^{*}}}{\grad_{\vectr{x}}}}\vectr{v}-\vectr{g}}
+      +\gradient{\vectr{x}}{p^{F}}-\mu\laplacian{\vectr{x}}{\vectr{v}}}\vectr{w}}{v^{F}}=\vect{0}
+\end{equation}
+where $\vectr{w}$ are weighting functions and $\embedmanifold{B}^{F}_{t}$ is the fluid 
+domain in the current configuration. Applying the Gauss-Green theorem gives
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\delby{\vectr{v}}{t}\vect{w}}{v^{F}}
+    +\gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\dotprod{\pbrac{\vectr{v}-\vect{v}^{*}}}{\gradient{\vectr{x}}{\vectr{v}}}\vect{w}}{v^{F}}
+    -\gint{\embedmanifold{B}^{F}_{t}}{}{p^{F}\gradient{\vectr{x}}{\vect{w}}}{v^{F}}\\
+    +\gint{\embedmanifold{B}^{F}_{t}}{}{\dotprod{\mu\gradient{\vectr{x}}{\vectr{v}}}{\gradient{\vectr{x}}{\vectr{w}}}}{v^{F}}
+    -\gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\vect{g}\vect{w}}{v^{F}}
+    =\gint{\boundary{\embedmanifold{B}}^{F}_{t}}{}{\dotprod{\pbrac{\mu\gradient{\vectr{x}}{\vectr{v}}-p^{F}\matr{I}}}{\vectr{n}}\vectr{w}}{\covectr{a}^{F}}
+  \end{split}
+\end{equation}
+where $\boundary{\embedmanifold{B}}^{F}_{t}$ is the boundary of the fluid
+domain $\embedmanifold{B}^{F}_{t}$ with normal $\vectr{n}$. If we now consider
+the fluid boundary to be $\boundary{\embedmanifold{B}}^{F}_{t}=\union{\boundary{\embedmanifold{B}}^{FS}_{t}}{\boundary{\embedmanifold{B}}^{\bar{F}}_{t}}$
+where $\boundary{\embedmanifold{B}}^{FS}_{t}$ is the boundary between the fluid and the solid and
+$\boundary{\embedmanifold{B}}^{\bar{F}}_{t}$ is rest of the fluid boundary. Now, we can define
+\begin{equation}
+  \vectr{\lambda}^{F}=\dotprod{\pbrac{\mu\gradient{\vectr{x}}{\vectr{v}}-p^{F}\matr{I}}}{\vectr{n}}
+\end{equation}
+on $\boundary{\embedmanifold{B}}^{FS}_{t}$ and
+\begin{equation}
+  \vectr{t}^{F}=\dotprod{\pbrac{\mu\gradient{\vectr{x}}{\vectr{v}}-p^{F}\matr{I}}}{\vectr{n}}
+\end{equation}
+on $\boundary{\embedmanifold{B}}^{\bar{F}}_{t}$ where $\vectr{t}^{F}$ are the
+fluid tractions. We thus have
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\delby{\vectr{v}}{t}\vect{w}}{v^{F}}
+    +\gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\dotprod{\pbrac{\vectr{v}-\vect{v}^{*}}}{\gradient{\vectr{x}}{\vectr{v}}}\vect{w}}{v^{F}}
+    -\gint{\embedmanifold{B}^{F}_{t}}{}{p^{F}\gradient{\vectr{x}}{\vect{w}}}{v^{F}}\\
+    +\gint{\embedmanifold{B}^{F}_{t}}{}{\dotprod{\mu\gradient{\vectr{x}}{\vectr{v}}}{\gradient{\vectr{x}}{\vectr{w}}}}{v^{F}}
+    -\gint{\embedmanifold{B}^{F}_{t}}{}{\rho^{F}\vect{g}\vect{w}}{v^{F}}
+    -\gint{\boundary{\embedmanifold{B}}^{FS}_{t}}{}{\vectr{\lambda}^{F}\vectr{w}}{\covectr{a}^{FS}}
+    =\gint{\boundary{\embedmanifold{B}}^{\bar{F}}_{t}}{}{\vectr{t}^{F}\vectr{w}}{\covectr{a}^{\bar{F}}}
+  \end{split}
+\end{equation}
+
+Similarily for \eqnref{eqn:FSINavStokesContinuity} the weak form is given by
+\begin{equation}
+  \gint{\embedmanifold{B}^{F}_{t}}{}{\divergence{\vectr{x}}{\vectr{v}}w}{v^{F}}=0
+\end{equation}
+
+Upon discretisation the general form of the equations is given by
+\begin{equation}
+  \matr{C}^{F}\fnof{{\dot{\vectr{d}}}^{F}}{t}+\matr{K}^{F}\fnof{\vectr{d}^{F}}{t}+\fnof{\vectr{g}^{F}}{\fnof{\vectr{d}^{F}}{t}}+\vectr{s}^{F}+\matr{G}^{F}\fnof{\vectr{d}^{F}}{t}=\fnof{\vectr{f}^{F}}{t}
+\end{equation}
+where
+\begin{equation}
+  \fnof{\vectr{d}^{F}}{t}=\left[\begin{array}{c}
+  \fnof{\vectr{v}_{x}}{t} \\
+  \fnof{\vectr{v}_{y}}{t} \\
+  \fnof{\vectr{v}_{z}}{t} \\
+  \fnof{\vectr{p}^{F}}{t} \\ \hline
+  \fnof{\vectr{\lambda}_{x}}{t} \\
+  \fnof{\vectr{\lambda}_{y}}{t} \\
+  \fnof{\vectr{\lambda}_{z}}{t} 
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \matr{C}^{F}=\left[\begin{array}{cccc|ccc}
+    \matr{C}^{F}_{x} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{C}^{F}_{y} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{C}^{F}_{z} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \matr{K}^{F}=\left[\begin{array}{cccc|ccc}
+    \matr{A} & \matr{0} & \matr{0} & \matr{B}^{F}_{x} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{A} & \matr{0} & \matr{B}^{F}_{y} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{A} & \matr{B}^{F}_{z} & \matr{0} & \matr{0} & \matr{0} \\
+    -\transpose{\matr{B}^{F}_{x}} & -\transpose{\matr{B}^{F}_{y}} & -\transpose{\matr{B}^{F}_{z}} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \fnof{\vectr{g}^{F}}{\fnof{\vectr{d}^{F}}{t}}=\left[\begin{array}{c}
+  \fnof{\vectr{g}^{F}_{x}}{\fnof{\vectr{d}^{F}}{t}} \\
+  \fnof{\vectr{g}^{F}_{y}}{\fnof{\vectr{d}^{F}}{t}} \\
+  \fnof{\vectr{g}^{F}_{z}}{\fnof{\vectr{d}^{F}}{t}} \\
+  \vectr{0}
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \fnof{\vectr{f}^{F}}{t}=\left[\begin{array}{c}
+  \fnof{\vectr{t}^{F}_{x}}{t} \\
+  \fnof{\vectr{t}^{F}_{y}}{t} \\
+  \fnof{\vectr{t}^{F}_{z}}{t} \\
+  \vectr{0}
+  \end{array}\right]
+\end{equation}
+and
+\begin{equation}
+  \matr{G}^{F}=\left[\begin{array}{cccc|ccc}
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{G}^{F}_{x} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{G}^{F}_{y} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{G}^{F}_{z} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{array}\right]
+\end{equation}
+
 
 \subsubsection{Solid Model}
 
 The physics in the solid domain is described by a momentum balance
-\begin{equation}
-  \rho^{s}\deltwosqby{\vectr{u}}{t}=\divergence{}{\tensor{\sigma}^{s}}+\rho^{s}\vectr{g} 
-\end{equation}
-where $\rho^{s}$ is the solid density, $\vectr{u}$ is the solid displacement,
-$\tensor{\sigma}^{s}$ is the solid stress and $\vectr{g}$ is the gravity
-acceleration vector.
+\begin{align}
+  \rho^{S}\deltwosqby{\vectr{u}}{t}&=\divergence{\vectr{x}}{\tensor{\sigma}^{S}}+\rho^{S}\vectr{g}
+  \label{eqn:FSIElasticMomentum} \\
+  \delby{\pbrac{\determinant{\gradient{\vectr{x}}{\vectr{u}}}}}{t}&=0 \label{eqn:FSIElasticContinuity}
+\end{align}
+where $\rho^{S}$ is the solid density, $\vectr{u}$ is the solid displacement,
+$\tensor{\sigma}^{S}$ is the solid Cauchy stress and $\vectr{g}$ is the gravity
+acceleration vector and $\vectr{x}$ is the current deformed configuration coordinates.
 
+In general we have
+\begin{equation}
+  \tensor{\sigma}^{S}=\divergence{\vectr{x}}{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}
+\end{equation}
+where $\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}$ is the deviatoric stress and
+  $p^{S}$ is the solid hydrostatic pressure. The weak form of
+\eqnref{eqn:FSIElasticMomentum} is given by
+\begin{equation}
+  \gint{\embedmanifold{B}^{S}_{t}}{}{\pbrac{\rho^{S}\pbrac{\deltwosqby{\vectr{u}}{t}-\vectr{g}}-\divergence{\vectr{x}}{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}}\vectr{w}}{v^{S}}
+\end{equation}
+
+Applying the Green-Gauss theorem we obtain
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}^{S}_{t}}{}{\rho^{S}\deltwosqby{\vectr{u}}{t}\vectr{w}}{v^{S}}
+    +\gint{\embedmanifold{B}^{S}_{t}}{}{\dotprod{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}{\gradient{\vectr{x}}{\vectr{w}}}}{v^{S}} \\
+    -\gint{\embedmanifold{B}^{S}_{t}}{}{\rho^{S}\vectr{g}\vectr{w}}{v^{S}}
+    =\gint{\boundary{\embedmanifold{B}}^{S}_{t}}{}{\dotprod{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}{\vectr{n}}\vectr{w}}{\covectr{a}^{S}}
+  \end{split}
+\end{equation}
+where $\boundary{\embedmanifold{B}}^{S}_{t}$ is the boundary of the solid
+domain $\embedmanifold{B}^{S}_{t}$ with normal $\vectr{n}$. If we now consider
+the solid boundary to be $\boundary{\embedmanifold{B}}^{S}_{t}=\union{\boundary{\embedmanifold{B}}^{FS}_{t}}{\boundary{\embedmanifold{B}}^{\bar{S}}_{t}}$
+where $\boundary{\embedmanifold{B}}^{FS}_{t}$ is the boundary between the fluid and the solid and
+$\boundary{\embedmanifold{B}}^{\bar{S}}_{t}$ is rest of the solid boundary. Now, we can define
+\begin{equation}
+  \vectr{\lambda}^{S}=\dotprod{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}{\vectr{n}}
+\end{equation}
+on $\boundary{\embedmanifold{B}}^{FS}_{t}$ and
+\begin{equation}
+  \vectr{t}^{S}=\dotprod{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}{\vectr{n}}
+\end{equation}
+on $\boundary{\embedmanifold{B}}^{\bar{S}}_{t}$ where $\vectr{t}^{s}$ are the
+solid tractions. We thus have
+\begin{equation}
+  \begin{split}
+    \gint{\embedmanifold{B}^{S}_{t}}{}{\rho^{S}\deltwosqby{\vectr{u}}{t}\vectr{w}}{v^{S}}
+    +\gint{\embedmanifold{B}^{S}_{t}}{}{\dotprod{\pbrac{\fnof{\bar{\tensor{\sigma}}}{\vectr{u}}-p^{S}\matr{I}}}{\gradient{\vectr{x}}{\vectr{w}}}}{v^{S}} \\
+    -\gint{\embedmanifold{B}^{S}_{t}}{}{\rho^{S}\vectr{g}\vectr{w}}{v^{S}}
+    -\gint{\boundary{\embedmanifold{B}}^{FS}_{t}}{}{\vectr{\lambda}^{S}\vectr{w}}{\covectr{a}^{FS}}
+    =\gint{\boundary{\embedmanifold{B}}^{\bar{S}}_{t}}{}{\vectr{t}^{S}\vectr{w}}{\covectr{a}^{S}}
+  \end{split}
+\end{equation}
+
+Upon discretisation the general form of the equations is given by
+\begin{equation}
+  \matr{M}^{S}\fnof{{\ddot{\vectr{d}}}^{S}}{t}+\fnof{\vectr{g}^{S}}{\fnof{\vectr{d}^{S}}{t}}+\vectr{s}^{S}+\matr{H}^{S}\fnof{\vectr{d}^{S}}{t}=\fnof{\vectr{f}^{S}}{t}
+\end{equation}
+where
+\begin{equation}
+  \fnof{\vectr{d}^{S}}{t}=\left[\begin{array}{c}
+  \fnof{\vectr{u}_{x}}{t} \\
+  \fnof{\vectr{u}_{y}}{t} \\
+  \fnof{\vectr{u}_{z}}{t} \\
+  \fnof{\vectr{p}^{S}}{t} \\ \hline
+  \fnof{\vectr{\lambda}_{x}}{t} \\
+  \fnof{\vectr{\lambda}_{y}}{t} \\
+  \fnof{\vectr{\lambda}_{z}}{t} 
+  \end{array}\right]
+\end{equation}
+check below - mass distributed x,y,z?
+\begin{equation}
+  \matr{M}^{S}=\left[\begin{array}{cccc|ccc}
+    \matr{M}^{S}_{xx} & \matr{M}^{S}_{xy} & \matr{M}^{S}_{xz} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{M}^{S}_{yx} & \matr{M}^{S}_{yy} & \matr{M}^{S}_{yz} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{M}^{S}_{zx} & \matr{M}^{S}_{zx} & \matr{M}^{S}_{zz} & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \fnof{\vectr{g}^{S}}{\fnof{\vectr{d}^{S}}{t}}=\left[\begin{array}{c}
+  \fnof{\vectr{g}^{S}_{x}}{\fnof{\vectr{d}^{S}}{t}} \\
+  \fnof{\vectr{g}^{S}_{y}}{\fnof{\vectr{d}^{S}}{t}} \\
+  \fnof{\vectr{g}^{S}_{z}}{\fnof{\vectr{d}^{S}}{t}} \\
+  \fnof{\vectr{g}^{S}_{p}}{\fnof{\vectr{d}^{S}}{t}}
+  \end{array}\right]
+\end{equation}
+\begin{equation}
+  \fnof{\vectr{f}^{S}}{t}=\left[\begin{array}{c}
+  \fnof{\vectr{t}^{S}_{x}}{t} \\
+  \fnof{\vectr{t}^{S}_{y}}{t} \\
+  \fnof{\vectr{t}^{S}_{z}}{t} \\
+  \vectr{0}
+  \end{array}\right]
+\end{equation}
+and
+\begin{equation}
+  \matr{H}^{S}=\left[\begin{array}{cccc|ccc}
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{H}^{S}_{x} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{H}^{S}_{y} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{H}^{S}_{z} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{array}\right]
+\end{equation}
+
+\subsubsection{Coupling conditions}
+
+Along the fluid solid interface $\boundary{\embedmanifold{B}}_{t}^{FS}$ there
+are two conditions which must be satisfied to ensure coupling of the fluid and
+solid domains. The first constraint is the kinematic constraint along the
+interface boundary of
+\begin{equation}
+  \delby{\vectr{u}}{t}=\vectr{v} \label{eqn:FSIKinematicConstraint}
+\end{equation}
+which requires that the fluid velocity and rate of solid deformation are the
+same.
+
+The second constraint is the dynamic constraint along the interface boundary
+of
+\begin{equation}
+  \vectr{\lambda}^{F}= -\vectr{\lambda}^{S} \label{eqn:FSIDynamicConstraint}
+\end{equation}
+which requires that the tractions balance along the interface boundary.
+
+By defining some Lagrange multipliers as
+\begin{equation}
+  \vectr{\lambda}:=\vectr{\lambda}^{F}=-\vectr{\lambda}^{S}
+\end{equation}
+the both constraints can be satisfied via the constraint
+\begin{equation}
+  \gint{\boundary{\embedmanifold{B}}^{FS}_{t}}{}{\dotprod{\vectr{\lambda}}{\pbrac{\delby{\vectr{u}}{t}-\vectr{v}}}}{\covectr{a}^{FS}}=0 \label{eqn:FSIConstraint}
+\end{equation}
+
+\subsubsection{Monolithic Coupled Model}
+
+The combined system of equations can be written as
+\begin{align}
+  \matr{C}^{F}\fnof{{\dot{\vectr{d}}}^{F}}{t}+\matr{K}^{F}\fnof{\vectr{d}^{F}}{t}+\fnof{\vectr{g}^{F}}{\fnof{\vectr{d}^{F}}{t}}+\matr{G}^{F}\fnof{\vectr{d}^{F}}{t}&=\fnof{\vectr{f}^{F}}{t} \\
+  \matr{M}^{S}\fnof{{\ddot{\vectr{d}}}^{S}}{t}+\fnof{\vectr{g}^{S}}{\fnof{\vectr{d}^{S}}{t}}+\matr{H}^{S}\fnof{\vectr{d}^{S}}{t}&=\fnof{\vectr{f}^{S}}{t}
+  \\
+  \transpose{\hat{\matr{H}}}\fnof{\dot{\vectr{u}}}{t}-\transpose{\hat{\matr{G}}}\fnof{\vectr{v}}{t}&=\vectr{0}
+\end{align}
+or
+\begin{equation}
+  \matr{M}\fnof{\ddot{\vectr{d}}}{t}+\matr{C}\fnof{\dot{\vectr{d}}}{t}+\matr{K}\fnof{\vectr{d}}{t}+\fnof{\vectr{g}}{\fnof{\vectr{d}}{t}}=\fnof{\vectr{f}}{t}
+\end{equation}
+that is
+\begin{multline}
+  \left[\begin{array}{cccc|cccc|ccc}
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{M}^{S}_{x} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{M}^{S}_{y} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{M}^{S}_{z}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} 
+ \end{array}\right]\left[\begin{array}{c}
+    \fnof{\ddot{\vectr{v}}_{x}}{t} \\
+    \fnof{\ddot{\vectr{v}}_{y}}{t} \\
+    \fnof{\ddot{\vectr{v}}_{z}}{t} \\
+    \fnof{\ddot{\vectr{p}}^{F}}{t} \\ \hline
+    \fnof{\ddot{\vectr{u}}_{x}}{t} \\
+    \fnof{\ddot{\vectr{u}}_{y}}{t} \\
+    \fnof{\ddot{\vectr{u}}_{z}}{t} \\
+    \fnof{\ddot{\vectr{p}}^{S}}{t} \\ \hline
+    \fnof{\ddot{\vectr{\lambda}}_{x}}{t} \\
+    \fnof{\ddot{\vectr{\lambda}}_{y}}{t} \\
+    \fnof{\ddot{\vectr{\lambda}}_{z}}{t}
+  \end{array}\right] \\
+  +\left[\begin{array}{cccc|cccc|ccc}
+    \matr{C}^{F}_{x} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{C}^{F}_{y} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{C}^{F}_{z} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & -\transpose{\matr{H}_{x}} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & -\transpose{\matr{H}_{y}} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & -\transpose{\matr{H}_{z}}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} 
+ \end{array}\right]\left[\begin{array}{c}
+    \fnof{\dot{\vectr{v}}_{x}}{t} \\
+    \fnof{\dot{\vectr{v}}_{y}}{t} \\
+    \fnof{\dot{\vectr{v}}_{z}}{t} \\
+    \fnof{\dot{\vectr{p}}^{F}}{t} \\ \hline
+    \fnof{\dot{\vectr{u}}_{x}}{t} \\
+    \fnof{\dot{\vectr{u}}_{y}}{t} \\
+    \fnof{\dot{\vectr{u}}_{z}}{t} \\
+    \fnof{\dot{\vectr{p}}^{S}}{t} \\ \hline
+    \fnof{\dot{\vectr{\lambda}}_{x}}{t} \\
+    \fnof{\dot{\vectr{\lambda}}_{y}}{t} \\
+    \fnof{\dot{\vectr{\lambda}}_{z}}{t}
+    \end{array}\right] \\
+    +\left[\begin{array}{cccc|cccc|ccc}
+    \matr{A} & \matr{0} & \matr{0} & \matr{B}_{x} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{G}_{x} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{A} & \matr{0} & \matr{B}_{y} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{G}_{y} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{A} & \matr{B}_{z} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{G}_{z} \\
+    -\transpose{\matr{B}_{x}} & -\transpose{\matr{B}_{y}} & -\transpose{\matr{B}_{z}} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{H}_{x} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{H}_{y} & \matr{0} \\
+     \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{H}_{z} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\ \hline
+    \transpose{\matr{G}_{x}} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \transpose{\matr{G}_{y}} & \matr{0} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} \\
+     \matr{0} & \matr{0} & \transpose{\matr{G}_{z}} & \matr{0} & \matr{0} & \matr{0} & \matr{0}
+    & \matr{0} & \matr{0} & \matr{0} & \matr{0} 
+ \end{array}\right]\left[\begin{array}{c}
+    \fnof{\vectr{v}_{x}}{t} \\
+    \fnof{\vectr{v}_{y}}{t} \\
+    \fnof{\vectr{v}_{z}}{t} \\
+    \fnof{\vectr{p}^{F}}{t} \\ \hline
+    \fnof{\vectr{u}_{x}}{t} \\
+    \fnof{\vectr{u}_{y}}{t} \\
+    \fnof{\vectr{u}_{z}}{t} \\
+    \fnof{\vectr{p}^{S}}{t} \\ \hline
+    \fnof{\vectr{\lambda}_{x}}{t} \\
+    \fnof{\vectr{\lambda}_{y}}{t} \\
+    \fnof{\vectr{\lambda}_{z}}{t}
+  \end{array}\right]+ \left[\begin{array}{c}
+    \fnof{\vectr{g}^{F}_{x}}{\fnof{\vectr{d}}{t}} \\
+    \fnof{\vectr{g}^{F}_{y}}{\fnof{\vectr{d}}{t}} \\
+    \fnof{\vectr{g}^{F}_{z}}{\fnof{\vectr{d}}{t}} \\
+    \vectr{0}  \\ \hline
+    \fnof{\vectr{g}^{S}_{x}}{\fnof{\vectr{d}}{t}}\\
+    \fnof{\vectr{g}^{S}_{y}}{\fnof{\vectr{d}}{t}} \\
+    \fnof{\vectr{g}^{S}_{z}}{\fnof{\vectr{d}}{t}} \\
+    \vectr{0} \\ \hline
+    \vectr{0} \\
+    \vectr{0} \\
+    \vectr{0}
+  \end{array}\right]=\left[\begin{array}{c}
+    \fnof{\vectr{f}^{F}_{x}}{t} \\
+    \fnof{\vectr{f}^{F}_{y}}{t} \\
+    \fnof{\vectr{f}^{F}_{z}}{t} \\
+    \vectr{0}  \\ \hline
+    \fnof{\vectr{f}^{S}_{x}}{t} \\
+    \fnof{\vectr{f}^{S}_{y}}{t} \\
+    \fnof{\vectr{f}^{S}_{z}}{t} \\
+    \vectr{0} \\ \hline
+    \vectr{0} \\
+    \vectr{0} \\
+    \vectr{0}
+  \end{array}\right]
+\end{multline}
