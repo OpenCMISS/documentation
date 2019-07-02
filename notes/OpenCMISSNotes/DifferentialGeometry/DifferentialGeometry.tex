@@ -26,6 +26,60 @@ we wish to allow branching structures, but we will still refer to this as a
 manifold – the neighbourhoods of points at the branch do not admit a
 coordinate system that is locally Euclidean.
 
+\section{Vectors and Covectors}
+
+To motivate this section consider standing on a hill. Now, consider two
+vectors that can be applied. If we move around the hill at constant height we
+can talk about our velocity vector around the hill. We can also talk about
+moving down the slope of the hill. The gradient vector would give the steepest
+direction down the hill. If both these vectors had a unit magnitude in what
+ever units of measurement we are using we might consider these vectors to be
+similar (apart from the obvious difference in direction). Now consider a
+change of units \eg from $\m$ to $\cm$. If our velocity was prevoiusly
+$\nunit{1}{\mps}$ then it would be now $\nunit{100}{\cmps}$. However, our
+gradient vector that was previously $\nunit{1}{\pmetre}$ would become
+$\nunit{0.01}{\pcm}$. If these two ``vectors'' are really so similar why do
+the transform differently under a change of units/coordinates? The reason is
+that these two ``vectors'' are not actually that similar at all. Indeed, one
+of them is not a vector at all but rather it is a \emph{covector}.
+
+\section{Differential geometry of manifolds}
+
+\subsection{Connections}
+
+
+\subsection{Covariant Differentiation}
+
+A covariant derivative is a derivative along a tangent vector of a
+manifold. It is a generalisation of a directional derivative to manifolds. It
+is a derivative that under a coordinate transforms covariantly \ie linearly
+with the Jacobian. A covariant derivative is equivalent to the idea of a
+connection. For a connection $\connection{}{}$ and a vector field $X$ then
+$\covarderivop{X}{}$ is the covariant derivative. 
+
+The covariant derivative of a $\pbrac{r,s}$ tensor is an $\pbrac{r,s+1}$
+tensor defined by
+\begin{equation}
+  \covarderivop{X}{Y}=\covarderivop{X}{\pbrac{X^{i}e_{i}}}=Y\pbrac{X^{i}}e_{i}+X^{i}\covarderivop{Y}{e_{i}}
+\end{equation}
+
+The covariant derivative has the following properties
+%\begin{list}
+%\item Sumation Rule: $abc$ \\
+%\item kaldf
+%\end{list}
+
+\subsubsection{Double covariant differentiation}
+
+For an $\pbrac{r,s}$ tensor field, $T$, the double covariant derivative is
+\begin{equation}
+  \doublecovarderivop{}{T}=\covarderivop{}{\covarderivop{}{T}}
+\end{equation}
+which is an $\pbrac{r,s+2}$ tensor field. It is defined by
+\begin{equation}
+  \doublecovarderivop{X,Y}{T}=\covarderivop{X}{\covarderivop{Y}{T}}-\covarderivop{\connection{X}{Y}}{T}
+\end{equation}
+
 \section{Tensor Analysis}
 \subsection{Base vectors}
 
@@ -193,6 +247,38 @@ rank 0 tensor $u$ is
   \covarderiv{u}{i}=\delby{u}{\xi^{i}}=\partialderiv{u}{i}
 \end{equation}
 
+In more formal mathematical notation consider $f$ as a map between the
+manifolds $\manifold{M}$ and $\manifold{N}$ \ie
+\begin{equation}
+  \mapping{f}{\manifold{M}}{\manifold{N}}
+\end{equation}
+then, at the point $u$, the derivative can be thought of as 
+\begin{equation}
+  \mapping{\derivativeop{u}{f}}{\tangentspace{M}{u}}{\tangentspace{N}{\fnof{f}{u}}}
+\end{equation}
+\ie the derivative operator takes a vector $v\in\tangentspace{M}{u}$ and maps
+it to another vector $w\in\tangentspace{N}{\fnof{f}{u}}$.
+
+Second derivatives. The second derivative or Hessian operator is defined as
+\begin{equation}
+  \mapping{\hessianop{u,v}{f}}{\tangentspace{\tangentspace{M}{u}}{v}}{\tangentspace{\tangentspace{N}{\fnof{f}{u}}}{\fnof{f^{'}}{v}}}
+\end{equation}
+\ie the hessian operator takes the first input as a vector
+$v\in\tangentspace{M}{u}$ as the base direction you are moving in and a
+second input as a vector $w\in\tangentspace{\tangentspace{M}}{}{v}$ as the direction
+you are varying in.
+
+The definition of the covariant Hessian is
+\begin{equation}
+  \hessianop{X,Y}{f} = \funccomposition{X}{\funccomposition{Y}{f}}-\funccomposition{\connection{X}{Y}}{f}
+\end{equation}
+or in component notation
+\begin{equation}
+  \hessianop{}{f}=\pbrac{\deltwoby{f}{x^{i}}{x^{j}}-\christoffel{k}{i}{j}\delby{f}{x^{k}}}\tensorprod{dx^{i}}{dx^{j}}
+\end{equation}
+
+
+
 \subsubsection{Vectors}
 
 The derivatives of a vector $\vectr{v}$ are given by
@@ -337,343 +423,6 @@ and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 \begin{equation}
   \laplacian{}{\vectr{\phi}}=\pbrac{\laplacian{}{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
 \end{equation}
-
-\subsection{Coordinate Systems}
-\label{sec:coordinate systems}
-
-\subsubsection{Rectangular Cartesian}
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    \vectr{i}_{1} \\ 
-    \vectr{i}_{2} \\
-    \vectr{i}_{3} 
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & 1 & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & 1 & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-
-The Christoffel symbols of the second kind are all zero.
-
-\subsubsection{Cylindrical Polar}
-
-The global coordinates  $\pbrac{x,y,z}$ with respect to the cylindrical polar
-coordinates $\pbrac{r,\theta,z}$ are defined by
-\begin{equation}
-  \begin{aligned}
-    x = r\cos\theta  & \qquad r \ge0 \\
-    y = r\sin\theta & \qquad 0 \le\theta\le2\pi \\
-    z = z          & \qquad -\infty < z < \infty
-  \end{aligned}
-\end{equation}
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    \cos\theta\vectr{i}_{1} + \sin\theta\vectr{i}_{2} \\ 
-    -r\sin\theta\vectr{i}_{1}+ r\cos\theta\vectr{i}_{2} \\
-    \vectr{i}_{3} 
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & r^{2} & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & \frac{1}{r^{2}} & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{r}{\theta}{\theta}&=-r \\
-  \christoffelsecond{\theta}{r}{\theta}=\christoffelsecond{\theta}{\theta}{r}&=\frac{1}{r}
-\end{align}
-with all other Christoffell symbols zero.
-
-\subsubsection{Spherical Polar}
-
-The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical polar
-coordinates $\pbrac{r,\theta,\phi}$ are defined by
-\begin{equation}
-  \begin{aligned}
-    x = r\cos\theta\sin\phi & \qquad r \ge 0 \\
-    y = r\sin\theta\sin\phi & \qquad 0 \le \theta \le 2\pi \\
-    z = r\cos\phi & \qquad 0 \le \phi \le \pi
-  \end{aligned}
-\end{equation}
-
-The base vectors with respect to the spherical polar coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    \cos\theta\sin\phi\vectr{i}_{1}+\sin\theta\sin\phi\vectr{i}_{2}+\cos\phi\vectr{i}_{3} \\ 
-    -r\sin\theta\sin\phi\vectr{i}_{1}+r\cos\theta\sin\phi\vectr{i}_{2} \\
-    r\cos\theta\cos\phi\vectr{i}_{1}+r\sin\theta\cos\phi\vectr{i}_{2}-r\sin\phi\vectr{i}_{3}
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 & r^{2}\sin^{2}\phi & 0 \\
-    0 & 0 & r^{2} 
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    1 & 0 & 0 \\
-    0 &  \frac{1}{r^{2}\sin^{2}\phi} & 0 \\
-    0 & 0 & \frac{1}{r^{2}} 
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{r}{\theta}{\theta}&=-r\sin^{2}\phi \\
-  \christoffelsecond{r}{\phi}{\phi}&=-r \\
-  \christoffelsecond{\phi}{\theta}{\theta}&=-\sin\phi\cos\phi \\
-  \christoffelsecond{\theta}{r}{\theta}=\christoffelsecond{\theta}{\theta}{r}&=\frac{1}{r} \\
-  \christoffelsecond{\phi}{r}{\phi}=\christoffelsecond{\phi}{\phi}{r}&=\frac{1}{r} \\
-  \christoffelsecond{\theta}{\theta}{\phi}=\christoffelsecond{\theta}{\phi}{\theta}&=\cot\phi
-\end{align}
-with all other Christofell symbols zero.
-
-\subsubsection{Prolate Spheroidal}
-
-The global coordinates $\pbrac{x,y,z}$ with respect to the prolate spheroidal
-coordinates $\pbrac{\lambda,\mu,\theta}$ are defined by
-\begin{equation}
-  \begin{aligned}
-    x = a\sinh\lambda\sin\mu\cos\theta & \qquad \lambda \ge 0 \\
-    y = a\sinh\lambda\sin\mu\sin\theta & \qquad 0 \le \mu \le \pi \\
-    z = a\cosh\lambda\cos\mu & \qquad 0 \le \theta \le 2\pi 
-  \end{aligned}
-\end{equation}
-where $a\ge0$ is the focus.
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}+a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\ 
-    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}-a\cosh\lambda\sin\mu\vectr{i}_{3}\\
-    -a\sinh\lambda\sin\mu\sin\theta\vectr{i}_{1}+a\sinh\lambda\sin\mu\cos\theta\vectr{i}_{2}
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 & 0 \\
-    0 & a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 \\
-    0 & 0 & a^{2}\sinh^{2}\lambda\sin^{2}\mu 
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}}& 0 & 0 \\
-    0 & \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}} & 0 \\
-    0 & 0 & \frac{1}{a^{2}\sinh^{2}\lambda\sin^{2}\mu} 
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{\lambda}{\lambda}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\mu}{\mu}&=\frac{-\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\theta}{\theta}&=\frac{-\sinh\lambda\cosh\lambda\sin^{2}\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\lambda}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\mu}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\lambda}{\lambda}&=\frac{-\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\theta}{\theta}&=\frac{-\sinh^{2}\lambda\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\mu}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\theta}{\theta}{\lambda}&=\frac{\cosh\lambda}{\sinh\lambda} \\
-  \christoffelsecond{\theta}{\theta}{\mu}&=\frac{\cos\mu}{\sin\mu} \\
- \end{align}
-with all other Christofell symbols zero.
-
-\subsubsection{Oblate Spheroidal}
-
-The global coordinates $\pbrac{x,y,z}$ with respect to the oblate spheroidal
-coordinates $\pbrac{\lambda,\mu,\theta}$  are defined by
-\begin{equation}
-  \begin{aligned}
-    x = a\cosh\lambda\cos\mu\cos\theta & \qquad \lambda \ge 0 \\
-    y = a\cosh\lambda\cos\mu\sin\theta & \qquad \frac{-\pi}{2} \le \mu \le \frac{\pi}{2} \\
-    z = a\sinh\lambda\sin\mu & \qquad 0 \le \theta \le 2\pi 
-  \end{aligned}
-\end{equation}
-where $a\ge0$ is the focus.
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    a\sinh\lambda\cos\mu\cos\theta\vectr{i}_{1}+a\sinh\lambda\cos\mu\sin\theta\vectr{i}_{2}+a\cosh\lambda\sin\mu\vectr{i}_{3}\\
-    -a\cosh\lambda\sin\mu\cos\theta\vectr{i}_{1}-a\cosh\lambda\sin\mu\sin\theta\vectr{i}_{2}+a\sinh\lambda\cos\mu\vectr{i}_{3}\\    
-    -a\cosh\lambda\cos\mu\sin\theta\vectr{i}_{1}+a\cosh\lambda\cos\mu\cos\theta\vectr{i}_{2}
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 & 0 \\
-    0 & a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu} & 0 \\
-    0 & 0 & a^{2}\cosh^{2}\lambda\cos^{2}\mu 
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}}& 0 & 0 \\
-    0 & \frac{1}{a^{2}\pbrac{\sinh^{2}\lambda+\sin^{2}\mu}} & 0 \\
-    0 & 0 & \frac{1}{a^{2}\cosh^{2}\lambda\cos^{2}\mu}
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{\lambda}{\lambda}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\mu}{\mu}&=\frac{-\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\theta}{\theta}&=\frac{-\sinh\lambda\cosh\lambda\cos^{2}\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\lambda}{\lambda}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\mu}{\mu}&=\frac{\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\lambda}{\lambda}&=\frac{-\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\theta}{\theta}&=\frac{\cosh^{2}\lambda\sin\mu\cos\mu}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\mu}{\mu}{\lambda}&=\frac{\sinh\lambda\cosh\lambda}{\sinh^{2}\lambda+\sin^{2}\mu} \\
-  \christoffelsecond{\theta}{\theta}{\lambda}&=\frac{\sinh\lambda}{\cosh\lambda} \\
-  \christoffelsecond{\theta}{\theta}{\mu}&=\frac{-\sin\mu}{\cos\mu} \\
-\end{align}
-with all other Christofell symbols zero.
-
-\subsubsection{Cylindrical parabolic}
-
-The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical parabolic
-coordinates $\pbrac{\xi,\eta,z}$  are defined by
-\begin{equation}
-  \begin{aligned}
-    x = \xi\eta & \qquad -\infty < \xi < \infty \\
-    y = \frac{1}{2}\pbrac{\xi^{2}-\eta^{2}} & \qquad \eta \ge 0 \\
-    z =  z & \qquad -\infty < z < \infty
-  \end{aligned}
-\end{equation}
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    \eta\vectr{i}_{1}+\xi\vectr{i}_{2}\\
-    \xi\vectr{i}_{1}-\eta\vectr{i}_{2}\\    
-    \vectr{i}_{3}
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    \xi^{2}+\eta^{2} & 0 & 0 \\
-    0 & \xi^{2}+\eta^{2} & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    \frac{1}{\xi^{2}+\eta^{2}}& 0 & 0 \\
-    0 & \frac{1}{\xi^{2}+\eta^{2}} & 0 \\
-    0 & 0 & 1
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{\xi}{\xi}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\eta}{\eta}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\xi}{\xi}&=\frac{-\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\xi}{\eta}{\eta}&=\frac{-\xi}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\xi}{\xi}{\eta}=\christoffelsecond{\xi}{\eta}{\xi}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\xi}{\eta}=\christoffelsecond{\eta}{\eta}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
-\end{align}
-with all other Christofell symbols zero.
-
-\subsubsection{Parabolic polar}
-
-The global coordinates $\pbrac{x,y,z}$ with respect to the cylindrical parabolic
-coordinates $\pbrac{\xi,\eta,\theta}$  are defined by
-\begin{equation}
-  \begin{aligned}
-    x = \xi\eta\cos\theta & \qquad \xi \ge 0 \\
-    y = \xi\eta\sin\theta & \qquad \eta \ge 0 \\
-    z = \frac{1}{2}\pbrac{\xi^{2}-\eta^{2}} & \qquad 0 \le \theta < 2\pi
-  \end{aligned}
-\end{equation}
-
-The base vectors with respect to the global coordinate system are
-\begin{equation}
-  \vectr{g}_{i}=\begin{bmatrix} 
-    \eta\cos\theta\vectr{i}_{1}+\eta\sin\theta\vectr{i}_{3}+\xi\vectr{i}_{3}\\
-    \xi\cos\theta\vectr{i}_{1}+\xi\sin\theta\vectr{i}_{3}-\eta\vectr{i}_{3}\\ 
-    -\xi\eta\sin\theta\vectr{i}_{1}+\xi\eta\cos\theta\vectr{i}_{2}
-  \end{bmatrix}
-\end{equation}
-
-The covariant metric tensor is
-\begin{equation}
-  g_{ij}=\begin{bmatrix}
-    \xi^{2}+\eta^{2} & 0 & 0 \\
-    0 & \xi^{2}+\eta^{2} & 0 \\
-    0 & 0 & \xi\eta
-  \end{bmatrix}
-\end{equation}
-and the contravariant metric tensor is
-\begin{equation}
-  g^{ij}=\begin{bmatrix}
-    \frac{1}{\xi^{2}+\eta^{2}}& 0 & 0 \\
-    0 & \frac{1}{\xi^{2}+\eta^{2}} & 0 \\
-    0 & 0 & \frac{1}{\xi\eta}
-  \end{bmatrix}
-\end{equation}
-
-The Christoffell symbols of the second kind are
-\begin{align}
-  \christoffelsecond{\xi}{\xi}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\eta}{\eta}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\xi}{\eta}{\eta}&=\frac{-\xi}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\xi}{\xi}&=\frac{-\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\theta}{\theta}&=\frac{-\xi^{2}\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\xi}{\theta}{\theta}&=\frac{-\xi\eta^{2}}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\xi}{\xi}{\eta}=\christoffelsecond{\xi}{\eta}{\xi}&=\frac{\eta}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\eta}{\xi}{\eta}=\christoffelsecond{\eta}{\eta}{\xi}&=\frac{\xi}{\xi^{2}+\eta^{2}} \\
-  \christoffelsecond{\theta}{\xi}{\theta}=\christoffelsecond{\theta}{\theta}{\xi}&=\frac{1}{\xi} \\
-  \christoffelsecond{\theta}{\eta}{\theta}=\christoffelsecond{\theta}{\theta}{\eta}&=\frac{1}{\eta} \\
-\end{align}
-with all other Christofell symbols zero.
 
 \section{Curves}
 
