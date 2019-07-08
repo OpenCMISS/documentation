@@ -85,24 +85,20 @@ vector.
 For Newtonian fluids we have
 \begin{equation}
   \begin{split}
-    \tensor{T}&=\pbrac{-p+\lambda\divergence{}{\vectr{v}}}\tensor{g}+2\mu\tensor{D} \\
-    \tensor{T}&=-p\tensor{g}+\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
-      \frac{2}{3}\divergence{}{\vectr{v}}\tensor{g}}\\
-    \tensor{T}&=-p\tensor{g}+\tensor{\tau}
+    \tensor{T}&=\pbrac{-p+\lambda\divergence{}{\vectr{v}}}\sharptensor{\tensor{g}}+2\mu\tensor{D} \\
+    \tensor{T}&=-p\sharptensor{\tensor{g}}+\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+      \frac{2}{3}\divergence{}{\vectr{v}}\sharptensor{\tensor{g}}}\\
+    \tensor{T}&=-p\sharptensor{\tensor{g}}+\tensor{\tau}
   \end{split}
 \end{equation}
 where $p$ is the pressure, $\tensor{D}$ is the deformation tensor given by
 \begin{equation}
-  \tensor{D}=\frac{1}{2}\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}
-\end{equation}
-\or
-\begin{equation}
-  D^{ij}\frac{1}{2}\pbrac{g^{ik}\covarderiv{u^{j}}{k}+g^{jk}\covarderiv{u^{i}}{k}}
+  \tensor{D}=D^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=\frac{1}{2}\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}=\frac{1}{2}\pbrac{g^{ik}\covarderiv{u^{j}}{k}+g^{jk}\covarderiv{u^{i}}{k}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
 \end{equation}
 and $\mu$ is the viscosity and $\tensor{\tau}$ is the shear stress tensor \ie
 \begin{equation}
   \tensor{\tau}=\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
-    \frac{2}{3}\divergence{}{\vectr{v}}\tensor{I}}
+    \frac{2}{3}\divergence{}{\vectr{v}}\sharptensor{\tensor{g}}}
 \end{equation}
 
 Rearranging the integral conservation of momentum equation gives us
@@ -110,15 +106,16 @@ Rearranging the integral conservation of momentum equation gives us
   \begin{split}
     \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
-    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    &=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\ \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
     &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
-    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
-    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+    \\ \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\mu\pbrac{\gradient{}{\vectr{v}}
-          +\transpose{\gradient{}{\vectr{v}}}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
+            +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
+          \sharptensor{\tensor{g}}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+    \\
   \end{split}
   \label{eqn:integralconservationofmomentum}
 \end{equation}
@@ -147,7 +144,9 @@ and thus we have
 or
 \begin{equation}
   \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
-  =\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}=0
+  =\divergence{}{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
+            +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
+          \sharptensor{\tensor{g}}}}-\gradient{}{p}+\rho\vectr{f}=0
   \label{eqn:differentialconservationofmomentum}
 \end{equation}
 
@@ -241,7 +240,7 @@ The weak form of equations \ref{eqn:DiffIncompNewtonianNSEMomentum} and
 functions $\vectr{w}$ \ie
 \begin{equation}
   \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
-      -\mu\laplacian{}{\vectr{u}}+\gradient{}{p}
+      -\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}+\gradient{}{p}
       -\rho\vectr{f}}{\vectr{w}}}{\Omega} = 0
  \label{eqn:BasicGalerkinNSEMomentum}
 \end{equation}
