@@ -10,10 +10,10 @@ represent a one-dimensional field \eg measurements of temperature $u$
 against distance $x$ along a bar, as shown in \figref{fig:1Dfield}.
 
 
-\epstexfigure{svgs/BasisFunctions/onedimfield.eps_tex}{One dimensional field
+\epstexfigure{BasisFunctions/svgs/onedimfield.eps_tex}{One dimensional field
   measurements.}  {Temperature distribution $\fnof{u}{x}$ along a bar.
   The points are the measured temperatures.}{fig:1Dfield}{0.3}
-\epstexfigure{svgs/BasisFunctions/onedimfieldline.eps_tex}{One dimensional
+\epstexfigure{BasisFunctions/svgs/onedimfieldline.eps_tex}{One dimensional
   field measurements with fitted line.}{A least-squares polynomial fit to the
   data, showing the unacceptable oscillation between data
   points}{fig:1Dfieldline}{0.3}
@@ -70,7 +70,7 @@ field is equal to the known nodal values at each node and is thus continuous
 between elements. A schematic of this
 scheme is shown in \figref{fig:nodesandelements}.
 
-\epstexfigure{svgs/BasisFunctions/nodesandelements.eps_tex}{A schematic of the
+\epstexfigure{BasisFunctions/svgs/nodesandelements.eps_tex}{A schematic of the
   relationship between local and global nodes, elements and the parametric
   elemental $\xi$ coordinate.} {A schematic of the relationship between local
   and global nodes, elements and the parametric elemental $\xi$
@@ -103,7 +103,7 @@ are defined as
 
 The two \onedal linear Lagrange basis functions are gshown in \figref{fig:linlagrangebfuns}.
 
-\pstexfigure{plots/BasisFunctions/linlagrangebfuns.pstex}{Linear Lagrange basis functions.}
+\pstexfigure{BasisFunctions/plots/linlagrangebfuns.pstex}{Linear Lagrange basis functions.}
 {Linear Lagrange basis functions.}{fig:linlagrangebfuns}
 
 The interpolation of a field variable, $u$, using these basis functions is
@@ -136,7 +136,7 @@ with $\xi$. They are defined as
 
 The three \onedal quadratic Lagrange basis functions are shown in \figref{fig:quadlagrangebfuns}.
 
-\pstexfigure{plots/BasisFunctions/quadlagrangebfuns.pstex}{Quadratic Lagrange basis functions.}
+\pstexfigure{BasisFunctions/plots/quadlagrangebfuns.pstex}{Quadratic Lagrange basis functions.}
 {Quadratic Lagrange basis functions.}{fig:quadlagrangebfuns}
 
 The interpolation formula is
@@ -166,7 +166,7 @@ with $\xi$. They are defined as
 
 The four \onedal cubic Lagrange basis functions are shown in \figref{fig:cublagrangebfuns}.
 
-\pstexfigure{plots/BasisFunctions/cublagrangebfuns.pstex}{Cubic Lagrange basis functions.}
+\pstexfigure{BasisFunctions/plots/cublagrangebfuns.pstex}{Cubic Lagrange basis functions.}
 {Cubic Lagrange basis functions.}{fig:cublagrangebfuns}
 
 The interpolation formula is
@@ -218,7 +218,7 @@ nodes with the basis functions given by
 
 The four \twodal bilinear Lagrange basis functions are shown in \figref{fig:bilinlagrangebfuns}.
 
-\pstexfigure{plots/BasisFunctions/bilinlagrangebfuns.pstex}{Bilinear Lagrange basis functions.}
+\pstexfigure{BasisFunctions/plots/bilinlagrangebfuns.pstex}{Bilinear Lagrange basis functions.}
             {Bilinear Lagrange basis functions.}{fig:bilinlagrangebfuns}
             
 The multi-dimensional interpolation formula is still a sum of the products of
@@ -265,7 +265,7 @@ with the basis functions given by
 
 The four \twodal biquadratic Lagrange basis functions are shown in \figref{fig:biquadlagrangebfuns}.
 
-\pstexfigure{plots/BasisFunctions/biquadlagrangebfuns.pstex}{Biquadratic Lagrange basis functions.}
+\pstexfigure{BasisFunctions/plots/biquadlagrangebfuns.pstex}{Biquadratic Lagrange basis functions.}
             {Biquadratic Lagrange basis functions.}{fig:biquadlagrangebfuns}
 
 \subsection{Hermitian Basis Functions}
@@ -305,7 +305,7 @@ where the four \onedal \cubicherm basis functions are given in
   \end{split}
   \label{eqn:chbfuns}
 \end{equation}
-\pstexfigure{plots/BasisFunctions/chbfuns.pstex}{Cubic Hermite basis functions.}
+\pstexfigure{BasisFunctions/plots/chbfuns.pstex}{Cubic Hermite basis functions.}
 {Cubic Hermite basis functions.}{fig:chbfuns}
 
 \subsubsection{Scaling}
@@ -314,7 +314,7 @@ One further step is required to make \cubicherm basis functions useful in
 practice.  Consider the two \cubicherm elements shown in
 \figref{fig:chelements}.
 
-\epstexfigure{svgs/BasisFunctions/cubichermiteelem.eps_tex}{Two
+\epstexfigure{BasisFunctions/svgs/cubichermiteelem.eps_tex}{Two
   cubic Hermite elements formed from three nodes.}{Two cubic Hermite elements
   (denoted by $\mathit{1}$ and $\mathit{2}$) formed from three nodes (shown as
   a $\bullet$ and denoted by $\mathbf{1}, \mathbf{2}$ and $\mathbf{3}$) and
@@ -529,7 +529,7 @@ boundaries.
 
 Consider the line between global nodes $\mathbf{1}$ and $\mathbf{2}$ in the
 two \bicubicherm elements shown in \figref{fig:bichelementcont}.
-\epstexfigure{svgs/BasisFunctions/C1bicubicHermite.eps_tex}{Continuity of two bicubic
+\epstexfigure{BasisFunctions/svgs/C1bicubicHermite.eps_tex}{Continuity of two bicubic
   Hermite elements.}{Two bicubic Hermite elements (denoted by $\mathit{1}$ and
   $\mathit{2}$). The global node numbers are given in boldface, the local node
   numbers in normal text and the element scale factors used along each line
@@ -693,13 +693,13 @@ $b=3.5$ is given in \Figref{fig:functionscaling} for the function,
 \Figref{fig:seconddscaling} for the second derivative. Note that the first
 derivative is discontinuous at element boundaries for \arclen scaling.
 
-\pstexfigure{plots/BasisFunctions/funcscaling.pstex}{Function scaling for
+\pstexfigure{BasisFunctions/plots/funcscaling.pstex}{Function scaling for
   uneven element spacing.}{Function scaling for uneven element
   spacing.}{fig:functionscaling}{1.5}
-\pstexfigure{plots/BasisFunctions/firstdscaling.pstex}{First derivative
+\pstexfigure{BasisFunctions/plots/firstdscaling.pstex}{First derivative
   scaling for uneven element spacing.}{First derivative scaling for uneven
   element spacing.}{fig:firstdscaling}{1.5}
-\pstexfigure{plots/BasisFunctions/seconddscaling.pstex}{Second derivative
+\pstexfigure{BasisFunctions/plots/seconddscaling.pstex}{Second derivative
   scaling for uneven element spacing.}{Second derivative scaling for uneven
   element spacing.}{fig:seconddscaling}{1.5}
 
@@ -710,13 +710,13 @@ for the first derivative and \Figref{fig:seconddscaling2} for the second
 derivative. Note that the value of the function and the first derivative is
 continuous at element boundaries for all scaling types.
 
-\pstexfigure{plots/BasisFunctions/funcscaling2.pstex}{Function scaling for
+\pstexfigure{BasisFunctions/plots/funcscaling2.pstex}{Function scaling for
   even element spacing.}{Function scaling for even element
   spacing.}{fig:functionscaling2}{1.5}
-\pstexfigure{plots/BasisFunctions/firstdscaling2.pstex}{First derivative
+\pstexfigure{BasisFunctions/plots/firstdscaling2.pstex}{First derivative
   scaling for even element spacing.}{First derivative scaling for even element
   spacing.}{fig:firstdscaling2}{1.5}
-\pstexfigure{plots/BasisFunctions/seconddscaling2.pstex}{Second derivative
+\pstexfigure{BasisFunctions/plots/seconddscaling2.pstex}{Second derivative
   scaling for even element spacing.}{Second derivative scaling for even
   element spacing.}{fig:seconddscaling2}{1.5}
 
@@ -739,13 +739,13 @@ given in \Figref{fig:geometricscaling} for the function,
 \Figref{fig:geomseconddscaling} for the second derivative. Note that the first
 derivative is discontinuous at element boundaries for \arclen scaling.
 
-\pstexfigure{plots/BasisFunctions/geometricscaling.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geometricscaling.pstex}{Geometric circle
   scaling for uneven element spacing.}{Geometric circle scaling for uneven
   element spacing.}{fig:geometricscaling}{1.5}
-\pstexfigure{plots/BasisFunctions/geomfirstdscaling.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geomfirstdscaling.pstex}{Geometric circle
   first derivative scaling for uneven element spacing.}{Geometric circle first
   derivative scaling for uneven element spacing.}{fig:geomfirstdscaling}{1.5}
-\pstexfigure{plots/BasisFunctions/geomseconddscaling.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geomseconddscaling.pstex}{Geometric circle
   second derivative scaling for uneven element spacing.}{Geometric circle
   second derivative scaling for uneven element
   spacing.}{fig:geomseconddscaling}{1.5}
@@ -757,13 +757,13 @@ for the first derivative and \Figref{fig:geomseconddscaling2} for the second
 derivative. Note that the value of the function and the first derivative is
 continuous at element boundaries for all scaling types.
 
-\pstexfigure{plots/BasisFunctions/geometricscaling2.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geometricscaling2.pstex}{Geometric circle
   scaling for even element spacing.}{Geometric circle scaling for even element
   spacing.}{fig:geometricscaling2}{1.5}
-\pstexfigure{plots/BasisFunctions/geomfirstdscaling2.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geomfirstdscaling2.pstex}{Geometric circle
   first derivative scaling for even element spacing.}{Geometric circle first
   derivative scaling for even element spacing.}{fig:geomfirstdscaling2}{1.5}
-\pstexfigure{plots/BasisFunctions/geomseconddscaling2.pstex}{Geometric circle
+\pstexfigure{BasisFunctions/plots/geomseconddscaling2.pstex}{Geometric circle
   second derivative scaling for even element spacing.}{Geometric circle second
   derivative scaling for even element spacing.}{fig:geomseconddscaling2}{1.5}
 
@@ -791,7 +791,7 @@ surface in three-dimensions. There are two types of elements depending on
 whether the $\xi$ (or $s$) directions come together at local node one or local
 node three.  These two elements are shown in \figref{fig:hermitesectors}.
 
-\epstexfigure{svgs/BasisFunctions/hermitesectors.eps_tex}{Hermite-sector elements.}
+\epstexfigure{BasisFunctions/svgs/hermitesectors.eps_tex}{Hermite-sector elements.}
 {Hermite-sector elements. (a) Apex node one element. (b) Apex node three
   element.}{fig:hermitesectors}{0.3}
 
@@ -1134,18 +1134,18 @@ The derivatives wrt to external coordinates are then given by
   \delthreeby{\vect{\sbfnsymb{}}}{L_{2}}{L_{3}}{L_{4}}-\delthreeby{\vect{\sbfnsymb{}}}{L_{1}}{L_{2}}{L_{3}}
 \end{align}
 
-\epstexfigure{svgs/BasisFunctions/lineartriangle.eps_tex}{Linear Triangle
+\epstexfigure{BasisFunctions/svgs/lineartriangle.eps_tex}{Linear Triangle
   Definition.}{Linear triangle local node ordering.}{fig:lineartriangle}{0.5}
-\epstexfigure{svgs/BasisFunctions/quadratictriangle.eps_tex}{Quadratic Triangle
+\epstexfigure{BasisFunctions/svgs/quadratictriangle.eps_tex}{Quadratic Triangle
   Definition.}{Quadratic triangle local node ordering.}{fig:quadratictriangle}{0.5}
-\epstexfigure{svgs/BasisFunctions/cubictriangle.eps_tex}{Cubic Triangle
+\epstexfigure{BasisFunctions/svgs/cubictriangle.eps_tex}{Cubic Triangle
   Definition.}{Cubic triangle local node ordering.}{fig:cubictriangle}{0.5}
 
-\epstexfigure{svgs/BasisFunctions/lineartetrahedron.eps_tex}{Linear Tetrahedron
+\epstexfigure{BasisFunctions/svgs/lineartetrahedron.eps_tex}{Linear Tetrahedron
   Definition.}{Linear tetrahedron local node ordering.}{fig:lineartetrahedron}{0.5}
-\epstexfigure{svgs/BasisFunctions/quadratictetrahedron.eps_tex}{Quadratic Tetrahedron
+\epstexfigure{BasisFunctions/svgs/quadratictetrahedron.eps_tex}{Quadratic Tetrahedron
   Definition.}{Qudadratic tetrahedron local node ordering.}{fig:quadratictetrahedron}{0.5}
-\epstexfigure{svgs/BasisFunctions/cubictetrahedron.eps_tex}{Cubic Tetrahedron
+\epstexfigure{BasisFunctions/svgs/cubictetrahedron.eps_tex}{Cubic Tetrahedron
   Definition.}{Cubic tetrahedron local node ordering.}{fig:cubictetrahedron}{0.5}
 
 

@@ -1,5 +1,5 @@
 # Strip_pdftex_svgs
 
-## prefix includegraphics filename with 'svgs/' (subdirectory)
-s%unitlength\]{%unitlength\]{svgs/CUR_DIR/%
+## prefix includegraphics filename with current (subdirectory)
+s%unitlength\]{%unitlength\]{CUR_DIR/%
 

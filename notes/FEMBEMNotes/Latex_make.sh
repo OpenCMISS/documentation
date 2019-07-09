@@ -45,7 +45,7 @@ MY_TEX_SRC="titlepage.tex "\
 # if there are none then leave after the ='s sign blank.
 
 MY_EPS_SRC=
-MY_FIG_SRC="figs/fem_basis_fns/*.fig figs/bem/*.fig figs/datafitting/*.fig figs/heat_conduction/*.fig figs/lin_elasticity/*.fig figs/transient_heat_condn/*.fig figs/derivative_bie/*.fig"
+MY_FIG_SRC="fem_basis_fns/figs/*.fig bem/figs/*.fig datafitting/figs/*.fig heat_conduction/figs/*.fig lin_elasticity/figs/*.fig transient_heat_condn/figs/*.fig derivative_bie/figs/*.fig"
 MY_PLOT_SRC=
 
 #

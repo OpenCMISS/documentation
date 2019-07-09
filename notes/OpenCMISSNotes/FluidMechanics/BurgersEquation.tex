@@ -1,0 +1,243 @@
+\section{Burgers's Equations}
+
+\subsection{Generalised Burgers's Equation}
+
+\subsubsection{Governing equations:}
+
+For a given velocity $\fnof{u}{x,t}$ and a kinematic viscosity of $\nu$, Burgers's equation
+in one dimension is
+\begin{equation}
+  \delby{u}{t}+u\delby{u}{x}=\nu\deltwosqby{u}{x}
+  \label{eqn:Burgersequation}
+\end{equation}
+
+The general form of this equation in \OpenCMISS is7
+\begin{equation}
+  \fnof{a}{\vectr{x}}\delby{\fnof{\vectr{u}}{\vectr{x},t}}{t}+\fnof{b}{\vectr{x}}\laplacian{}{\fnof{\vectr{u}}{\vectr{x},t}}+
+  \fnof{c}{\vectr{x}}\dotprod{\fnof{\vectr{u}}{\vectr{x},t}}{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}=\vectr{0}
+  \label{eqn:GeneralFormBurgersequation}
+\end{equation}
+where $\fnof{\vectr{u}}{\vectr{x},t}$ is the velocity vector and
+$\fnof{a}{\vectr{x}}$, $\fnof{b}{\vectr{x}}$ and $\fnof{c}{\vectr{x}}$ are
+material parameters. The standard form of Burgers's equation can be found with
+$a=1$, $b=-\nu$ and $c=1$.
+
+Appropriate boundary conditions conditions for Burgers's
+equation are specification of Dirichlet boundary conditions on the solution,
+$\vectr{d}$ \ie
+\begin{equation}
+  \fnof{\vectr{u}}{\vectr{x},t} = \fnof{\vectr{d}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},
+  \label{eqn:BurgersDirichletBC} 
+\end{equation}
+and/or Neumann conditions in terms of the solution flux in the normal
+direction, $\vectr{e}$ \ie
+\begin{equation}
+  \fnof{\vectr{q}}{\vectr{x},t} = \dotprod{\pbrac{\fnof{b}{\vectr{x}}
+      \gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}}{\normal} =
+  \fnof{\vectr{e}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},
+  \label{eqn:BurgersNeumannBC} 
+\end{equation}
+where $\fnof{\vectr{q}}{\vectr{x},t}$ is the flux in the normal direction, $\normal$ is the normal
+vector to the boudary and $\Gamma=\union{\Gamma_{D}}{\Gamma_{N}}$.
+
+Appropriate initial conditions for the diffusion equation are the
+specification of an initial value of the solution, $\vectr{f}$ \ie
+\begin{equation}
+  \fnof{\vectr{u}}{\vectr{x},0} = \fnof{\vectr{f}}{\vectr{x}} \quad \vectr{x}\in\Omega.
+  \label{eqn:BurgersInitialC} 
+\end{equation}
+
+\subsubsection{Weak formulation:}
+
+The corresponding weak form of \eqnref{eqn:GeneralFormBurgersequation} can be
+found by integrating over the domain with test functions \ie
+\begin{equation}
+  \gint{\Omega}{}{\pbrac{a\delby{\vectr{u}}{t}+
+      b\laplacian{}{7\vectr{u}}+
+      c\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}\vectr{w}}{\Omega}=\vectr{0}
+  \label{eqn:Burgersweakform1}
+\end{equation}
+where $\vectr{w}$ are suitable spatial test functions.
+
+Applying the divergence theorem in \eqnref{eqn:DivergenceTheormScalarVector} to \eqnref{eqn:Burgersweakform1} gives
+\begin{equation}
+  \gint{\Omega}{}{\pbrac{a\delby{\vectr{u}}{t}}\vectr{w}}{\Omega}-
+      \gint{\Omega}{}{b\dotprod{\gradient{}{\vectr{u}}}{\gradient{}{\vectr{w}}}}{\Omega}
+      +\gint{\Gamma}{}{\pbrac{b\dotprod{\gradient{}{\vectr{u}}}{\normal}}\vectr{w}}{\Gamma}+
+      \gint{\Omega}{}{\pbrac{c\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}\vectr{w}}{\Omega}
+      =\vectr{0}
+  \label{eqn:Burgersweakform2}
+\end{equation}
+
+\subsubsection{Tensor notation:}
+
+\Eqnref{eqn:Burgersweakform2} can be written in tensor notation as
+\begin{equation}
+  \gint{\Omega}{}{a\dot{u}_{i}w_{i}}{\Omega}-
+  \gint{\Omega}{}{bG^{jk}\covarderiv{u_{i}}{j}\covarderiv{w_{i}}{k}}{\Omega}+
+  \gint{\Gamma}{}{bG^{jk}\covarderiv{u_{i}}{k}n_{j}w_{i}}{\Gamma} +
+  \gint{\Omega}{}{cG^{jk}u_{j}\covarderiv{u_{i}}{k}w_{i}}{\Omega}=\vectr{0}
+  \label{eqn:Burgerstensorform1}
+\end{equation}
+or
+\begin{equation}
+  \gint{\Omega}{}{a\dot{u}_{i}w_{i}}{\Omega}-
+  \gint{\Omega}{}{bG^{jk}\covarderiv{u_{i}}{j}\covarderiv{w_{i}}{k}}{\Omega}+
+  \gint{\Gamma}{}{q_{i}w_{i}}{\Gamma} +
+  \gint{\Omega}{}{cG^{jk}u_{j}\covarderiv{u_{i}}{k}w_{i}}{\Omega}=\vectr{0}
+  \label{eqn:Burgerstensorform2}
+\end{equation}
+or
+\begin{multline}
+  \gint{\Omega}{}{a\dot{u}_{i}w_{i}}{\Omega}-
+  \gint{\Omega}{}{bG^{jk}\pbrac{\partialderiv{u_{i}}{j}-\christoffel{i}{j}{h}u_{h}}
+    \pbrac{\partialderiv{w_{i}}{k}-\christoffel{i}{k}{l}w_{l}}}{\Omega}+ \\
+  \gint{\Gamma}{}{q_{i}w_{i}}{\Gamma} +
+  \gint{\Omega}{}{cG^{jk}u_{j}\pbrac{\partialderiv{u_{i}}{k}-
+      \christoffel{i}{k}{h}u_{h}}w_{i}}{\Omega}=\vectr{0}
+  \label{eqn:Burgerstensorform3}
+\end{multline}
+where $G^{jk}$ is the contravariant metric tensor and $\christoffel{i}{j}{k}$
+is the Christoffel symbol for the spatial coordinates.
+
+\subsubsection{Finite element formulation:}
+
+We can now discretise the domain into finite elements \ie $\Omega=
+\displaystyle{\bigcup_{e=1}^{E}}\Omega_{e}$ with
+$\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$. \Eqnref{eqn:Burgerstensorform2}
+now becomes
+\begin{multline}
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{a\dot{u}_{i}w_{i}}{\Omega}-
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{bG^{jk}\pbrac{\partialderiv{u_{i}}{j}-
+      \christoffel{i}{j}{h}u_{h}} \pbrac{\partialderiv{w_{i}}{k}-
+      \christoffel{i}{k}{l}w_{l}}}{\Omega}+ \\
+  \dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{q_{i}w_{i}}{\Gamma} +
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{cG^{jk}u_{j}\pbrac{\partialderiv{u_{i}}{k}-
+      \christoffel{i}{k}{h}u_{h}}w_{i}}{\Omega}=\vectr{0}
+  \label{eqn:Burgersfemform1}
+\end{multline}
+
+If we assume that we are in rectangular cartesian coordinates then the
+Christoffel symbols are all zero and
+$G^{jk}=\contrakronecker{j}{k}$. \Eqnref{eqn:Burgersfemform1} thus becomes
+\begin{equation}
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{a\dot{u}_{i}w_{i}}{\Omega}-
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{b\contrapartialderiv{u_{i}}{k}
+    \partialderiv{w_{i}}{k}}{\Omega}+ 
+  \dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{q_{i}w_{i}}{\Gamma} +
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{cu^{k}\partialderiv{u_{i}}{k}w_{i}}{\Omega}=\vectr{0}
+  \label{eqn:Burgersfemform2}
+\end{equation}
+
+If we now assume that the dependent variable $\vectr{u}$ can be interpolated
+separately in space and in time we can write
+\begin{equation}
+  \fnof{\vectr{u}}{\vectr{x},t}=\gbfn{n}{}{\vectr{x}}\fnof{\nodept{\vectr{u}}{n}}{t}
+\end{equation}
+or, in standard interpolation notation within an element,
+\begin{equation}
+  \fnof{u_{i}}{\vectr{\xi},t}=\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+\end{equation}
+and
+\begin{equation}
+  \fnof{u^{i}}{\vectr{\xi},t}=G^{ij}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{u}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}
+\end{equation}
+where $\fnof{\idxnodedof{u}{i}{n}{\beta}}{t}$ are the time varying nodal
+degrees-of-freedom for velocity component $i$, node $n$, global derivative $\beta$,
+$\idxgbfn{i}{n}{\beta}{\vectr{\xi}}$ are the corresponding basis functions 
+and $\idxgsf{i}{n}{\beta}$ are the scale factors. 
+
+We can also interpolate the other variables in a similar manner \ie
+\begin{equation}
+  \begin{split}
+    \fnof{q_{i}}{\vectr{\xi},t} &= \idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+    \fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma} \\
+    \fnof{a}{\vectr{\xi}} &=\gbfn{p}{\delta}{\vectr{\xi}}
+    \nodedof{a}{p}{\delta}\gsf{p}{\delta} \\
+    \fnof{b}{\vectr{\xi}} &=\gbfn{p}{\delta}{\vectr{\xi}}\nodedof{b}{p}{\delta}
+    \gsf{p}{\delta} \\
+    \fnof{c}{\vectr{\xi}}
+    &=\gbfn{p}{\delta}{\vectr{\xi}}\nodedof{c}{p}{\delta}\gsf{p}{\delta}
+  \end{split}
+\end{equation}
+where $\fnof{\nodedof{q_{i}}{o}{\gamma}}{t}$, $\nodedof{a}{p}{\delta}$,
+$\nodedof{b}{p}{\delta}$ and $\nodedof{c}{p}{\delta}$ are the
+nodal degrees-of-freedom for the variables.
+
+For a Galerkin finite element formulation we also choose the spatial weighting
+function $\vectr{w}$ to be equal to the basis fucntions \ie
+\begin{equation}
+  \fnof{w_{i}}{\vectr{\xi}}=\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+\end{equation}
+
+\subsubsection{Spatial integration:}
+
+Adopting the standard integration notation we can write the spatial
+integration term in \eqnref{eqn:Burgersfemform} as
+% \begin{multline}
+%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}{\fnof{a}{\vectr{\xi}}
+%     \delby{\pbrac{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+%         \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}}{t}
+%     \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}- \\
+%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}\fnof{b}{\vectr{\xi}}
+%   \delby{\pbrac{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+%       \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}}{x_{k}} \\
+%   \delby{\pbrac{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}}{x^{k}}
+%   \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi} + \\
+%   \dsum_{f=1}^{F}\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+%     \fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}
+%     \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}} + \\
+%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}{\fnof{c}{\vectr{\xi}}
+%   \idxgbfn{k}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{u}{j}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+%   \pbracr{\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{u}{i}{n}{\beta}}{t}
+%       \idxgsf{i}{n}{\beta}}{x^{k}}}- \\
+%   \pbracl{\christoffel{i}{k}{h}\idxgbfn{h}{m}{\alpha}{\vectr{\xi}}
+%     \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}\idxgsf{h}{m}{\alpha}}
+%   \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%   \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi}=\vectr{0}
+%   \label{eqn:Burgersfemform1}
+% \end{multline}
+
+% Rearranging \eqnref{eqn:Burgersfemform1} gives
+% \begin{multline}
+%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}{\fnof{a}{\vectr{\xi}}
+%     \delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{u}{i}{n}{\beta}}{t}
+%       \idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}- \\
+%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}{\fnof{b}{\vectr{\xi}}G^{jk}
+%     \delby{\pbrac{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+%         \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}}{x^{j}}
+%     \delby{\pbrac{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}}{x^{k}}
+%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}- \\
+%   \dsum_{e=1}^{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{b}{\vectr{\xi}}G^{jk}
+%   \pbracl{\delby{\pbrac{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+%         \fnof{\idxnodedof{u}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}}{x^{j}}
+%     \christoffel{i}{k}{l}\idxgbfn{l}{m}{\alpha}{\vectr{\xi}}
+%     \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}\idxgsf{l}{m}{\alpha}}+ \\
+%   \delby{\pbrac{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}}{x^{k}}
+%   \christoffel{i}{j}{h}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+%   \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}- \\ 
+%   \pbracl{\christoffel{i}{j}{h}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+%     \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
+%     \christoffel{i}{k}{l}\idxgbfn{l}{m}{\alpha}{\vectr{\xi}}
+%     \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}
+%     \idxgsf{l}{m}{\alpha}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi} + \\ 
+%   \dsum_{f=1}^{F}\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+%     \fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}
+%     \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}} + \\
+%   \dsum_{e=1}^{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{c}{\vectr{\xi}}
+%   G^{jk}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+%   \fnof{\idxnodedof{u}{j}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+%   \pbracr{\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{u}{i}{n}{\beta}}{t}
+%       \idxgsf{i}{n}{\beta}}{x^{k}}}- \\
+%   \pbracl{\christoffel{i}{k}{h}\idxgbfn{h}{m}{\alpha}{\vectr{\xi}}
+%     \fnof{\idxnodedof{u}{h}{n}{\beta}}{t}\idxgsf{h}{m}{\alpha}}
+%   \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+%   \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi}=\vectr{0}
+%   \label{eqn:Burgersfemform1}
+% \end{multline}

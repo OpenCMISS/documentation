@@ -212,7 +212,7 @@ illustrated in \figref{fig:asfig} where rows $1, .. , 4$ of the global
 stiffness matrix (shown here multiplied by the vector of global unknowns) are
 generalised from the weight function associated with nodes $1, .. , 4$.
 \begin{figure} \centering
- \input{figs/heat_conduction/assembly.pstex}
+ \input{heat_conduction/figs/assembly.pstex}
  \caption{The rows of the global stiffness matrix are generated from the
    global weight functions. The bar is shown at the top divided into three
    elements.}
@@ -339,7 +339,7 @@ Solving these equations gives: $U_{2} = 0.2885$ and $U_{3} = 0.6098$.  From
  $0.6102$, respectively. The finite element solution is shown in
 \figref{fig:f.e.soln}.
 \begin{figure} \centering
-  \input{figs/heat_conduction/fesoln.pstex}
+  \input{heat_conduction/figs/fesoln.pstex}
   \caption{Finite element solution of one-dimensional heat equation.}
   \label{fig:f.e.soln}
 \end{figure}
@@ -457,7 +457,7 @@ is the choice of weighting functions which are orthogonal to the equation
 residual (thought of here as the error or amount by which the equation fails
 to be exactly zero).  This idea is illustrated in \figref{fig:galerkin}.
 \begin{figure} \centering
-  \input{figs/heat_conduction/galerkin.pstex}
+  \input{heat_conduction/figs/galerkin.pstex}
   \caption{Showing how the Galerkin method maintains orthogonality between the 
     residual vector $\vect{R}$ and the set of basis vectors
     $\vect{\lbfnsymb{i}}$ as
@@ -514,7 +514,7 @@ as
 and, if $k$ is spatially constant (in the case of a homogeneous material), this reduces to Laplace's equation 
 $k\laplacian{u}=0$. Here we consider the solution of \eqnref{eqn:S-SH} over the 
 region $\Omega$, subject to boundary conditions on $\Gamma$ (see \figref{fig:regionbdy}).
-\pstexfigure{figs/heat_conduction/regionbdy.pstex}{}{The region $\Omega$ and
+\pstexfigure{heat_conduction/figs/regionbdy.pstex}{}{The region $\Omega$ and
   the boundary $\Gamma$.}{fig:regionbdy}
 
 The weighted integral equation, corresponding to \eqnref{eqn:S-SH}, is
@@ -605,7 +605,7 @@ solution region is the union of the individual elements. In each $\Omega_{i}$ le
 \lbfnsymb{n}u_{n} = \lbfnsymb{1}u_{1} + \lbfnsymb{2}u_{2} + \ldots + 
 \lbfnsymb{N}u_{N}$ and map each $\Omega_{i}$ to the $\xi_{1}, \xi_{2}$
 plane. \figref{fig:mapping} shows an example of this mapping. 
-\pstexfigure{figs/heat_conduction/mapping.pstex}{}{Mapping each $\Omega$ to the
+\pstexfigure{heat_conduction/figs/mapping.pstex}{}{Mapping each $\Omega$ to the
   $\xi_{1},\xi_{2}$ plane in a $2 \times 2$ element plane.}{fig:mapping}
 
 For each element, the basis functions and their derivatives are:
@@ -661,7 +661,7 @@ systems, \ie $F=kx$ where $k$ is the stiffness of spring and $F$ is the force/lo
 
 This yields the system of equations $E_{mn}u_{n} = F_{m}$. \eg heat flow in a
 unit square (see \figref{fig:heatflow}).
-\pstexfigure{figs/heat_conduction/heatflow.pstex}{}{Considering heat flow in a unit square.}
+\pstexfigure{heat_conduction/figs/heatflow.pstex}{}{Considering heat flow in a unit square.}
    {fig:heatflow}
 
 The first component $E_{11}$ is calculated as
@@ -713,7 +713,7 @@ matrix.  For example, consider $4$ elements (each of unit size) and nine nodes. 
 element has the same element stiffness matrix as that given above. This is
 because each element is the same size, shape and interpolation.
 
-\pstexfigure{figs/heat_conduction/assemble.pstex}{}{Assembling $4$ unit sized elements into a
+\pstexfigure{heat_conduction/figs/assemble.pstex}{}{Assembling $4$ unit sized elements into a
   global stiffness matrix.}{fig:assemble}{1.0}
 
 \begin{equation}
@@ -838,7 +838,7 @@ The RHS is $0$ at nodes $2$ and $8$ because it is insulated.
 To find out what the RHS is at node $5$ we need to examine the RHS expression
  $\goneint{\delby{u}{n}\omega}{\Gamma} = 0$ at node $5$. This is zero as flux is always $0$ at
 internal nodes. This can be explained in two ways.
-\pstexfigure{figs/heat_conduction/zeroflux.pstex}{}{``Cancelling'' of flux in internal nodes.}
+\pstexfigure{heat_conduction/figs/zeroflux.pstex}{}{``Cancelling'' of flux in internal nodes.}
    {fig:zeroflux}{1.0}
 \begin{description}
    \item [Correct way:] $\Gamma$ does not pass through node $5$ and each
@@ -877,7 +877,7 @@ polynomial of degree $2I-1$ (since a general polynomial of degree $2I-1$ has
 $2I$ arbitrary coefficients and there are $2I$ unknown Gauss points and
 weights).
 \begin{figure} \centering
-  \input{figs/heat_conduction/Gaussq.pstex}
+  \input{heat_conduction/figs/Gaussq.pstex}
   \caption{Gaussian quadrature. $\fnof{f}{\xi}$ is sampled at $I$ Gauss points 
   $\xi_{1},\xi_{2} \ldots \xi_{I}.$}
   \label{fig:Gaussian_quadrature}
