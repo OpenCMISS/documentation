@@ -955,12 +955,12 @@
 }} % Nodal DOF e.g., \nodedof{\psi}{n}{u} => nodal dof of \psi at node n
   % derivative u.
 \newcommand{\idxnodedof}[4]{\ensuremath{ %
-  \nodept{#1}{#3}_{#2,#4} %
+  \nodept{#1}{#2#3}_{,#4} %
 }} % Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
    % component of \psi at node n derivative u.
-\newcommand{\uidxnodedof}[4]{\ensuremath{ %
-  \nodept{#1}{#2#3}_{,#4} %
-}} % "Upper" Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
+\newcommand{\coidxnodedof}[4]{\ensuremath{ %
+  \nodept{#1}{#3}_{#2,#4} %
+}} % "Covector" Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
    % component of \psi at node n derivative u.
 \newcommand{\elementdof}[2]{\ensuremath{ %
   #1_{#2} %
@@ -1005,17 +1005,17 @@
     \phi_{#1}^{#2} %
     }} % Alternate generic basis function symbol
 \newcommand{\idxgbfnsymb}[3]{\ensuremath{ %
-    \psi_{#1#2}^{#3} %
+    \psi_{#2}^{#1#3} %
     }} % Indexed generic basis function symbol
 \newcommand{\altidxgbfnsymb}[3]{\ensuremath{ %
-    \phi_{#1#2}^{#3} %
-    }} % Alternate indexed generic basis function symbol
-\newcommand{\uidxgbfnsymb}[3]{\ensuremath{ %
-    \psi_{#2}^{#1#3} %
-    }} % "Upper" indexed generic basis function symbol
-\newcommand{\altuidxgbfnsymb}[3]{\ensuremath{ %
     \phi_{#2}^{#1#3} %
-    }} % Alternate "Upper" indexed generic basis function symbol
+    }} % Alternate indexed generic basis function symbol
+\newcommand{\coidxgbfnsymb}[3]{\ensuremath{ %
+    \psi_{#1#2}^{#3} %
+    }} % "Covector" indexed generic basis function symbol
+\newcommand{\altcoidxgbfnsymb}[3]{\ensuremath{ %
+    \phi_{#1#2}^{#3} %
+    }} % Alternate "covector" indexed generic basis function symbol
 \newcommand{\gbfn}[3]{\ensuremath{ %
     \fnof{\gbfnsymb{#1}{#2}}{#3} %
     }} % \gbfn{n}{i}{xi} => Generic bais function at n,i evaluated at xi
@@ -1028,8 +1028,8 @@
 \newcommand{\altidxgbfn}[4]{\ensuremath{ %
     \fnof{\altidxgbfnsymb{#1}{#2}{#3}}{#4} %
     }} % \altidxgbfn{j}{n}{i}{xi} => Alternate indexed j'th generic bais function at n,i evaluated at xi
-\newcommand{\uidxgbfn}[4]{\ensuremath{ %
-    \fnof{\uidxgbfnsymb{#1}{#2}{#3}}{#4} %
+\newcommand{\coidxgbfn}[4]{\ensuremath{ %
+    \fnof{\coidxgbfnsymb{#1}{#2}{#3}}{#4} %
     }} % \uidxbfn{j}{n}{i}{xi} => "Upper" indexed j'th generic bais function at n,i evaluated at xi
 \newcommand{\altuidxgbfn}[4]{\ensuremath{ %
     \fnof{\altuidxgbfnsymb{#1}{#2}{#3}}{#4} %

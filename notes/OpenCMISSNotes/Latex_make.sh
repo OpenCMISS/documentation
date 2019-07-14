@@ -33,6 +33,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Maths/VectorCalculus/VectorCalculus.tex "\
 "Maths/Operations/Operations.tex "\
 "EquationSets/EquationSets.tex "\
+"ClassicalField/ClassicalField.tex "\
 "ClassicalField/AdvectionDiffusionEquation.tex "\
 "ClassicalField/GeneralisedLaplaceEquation.tex "\
 "ClassicalField/BiharmonicEquation.tex "\
@@ -41,8 +42,10 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "ClassicalField/PoissonEquation.tex "\
 "ClassicalField/ReactionDiffusionEquation.tex "\
 "ClassicalField/WaveEquation.tex "\
+"SolidMechanics/SolidMechanics.tex "\
 "SolidMechanics/LinearElasticity.tex "\
 "SolidMechanics/FiniteElasticity.tex "\
+"FluidMechanics/FluidMechanics.tex "\
 "FluidMechanics/BurgersEquation.tex "\
 "FluidMechanics/PoiseuilleFlow.tex "\
 "FluidMechanics/StokesEquation.tex "\
@@ -50,8 +53,17 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "FluidMechanics/NavierStokesEquation.tex "\
 "FluidMechanics/PressurePoissonEquation.tex "\
 "FluidMechanics/FiniteVolume.tex "\
-"EquationSets/MultiphysicsClass/Poroelasticity.tex "\
-"EquationSets/MultiphysicsClass/FSI.tex "\
+"Bioelectrics/Bioelectrics.tex "\
+"Bioelectrics/BidomainEquation.tex "\
+"Bioelectrics/MonodomainEquation2.tex "\
+"MagnetoElectrics/MagnetoElectrics.tex "\
+"MagnetoElectrics/ElectrostaticEquations.tex "\
+"MagnetoElectrics/MagnetostaticEquations.tex "\
+"MagnetoElectrics/MaxwellEquations.tex "\
+"Multiphysics/Multiphysics.tex "\
+"Multiphysics/Poroelasticity.tex "\
+"Multiphysics/FSI.tex "\
+"Fitting/Fitting.tex "\
 "Fitting/LinearFitting.tex "\
 "Fitting/NonlinearFitting.tex "\
 "AnalyticSolutions/AnalyticSolutions.tex "\
@@ -70,10 +82,10 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 # individual sources seperated by spaces.
 
 MY_EPS_SRC=
-MY_FIG_SRC="figs/BasisFunctions/*.fig"
+MY_FIG_SRC="BasisFunctions/figs/*.fig"
 MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
 "DifferentialGeometry/svgs/*.svg "\
-"svgs/Analytic/*.svg "\
+"AnalyticSolutions/ClassicalFieldClass/svgs/*.svg "\
 "SolidMechanics/svgs/*.svg "\
 "FluidMechanics/svgs/*.svg "\
 "Fitting/svgs/*.svg "

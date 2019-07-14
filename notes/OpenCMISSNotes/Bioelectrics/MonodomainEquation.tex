@@ -1,5 +1,5 @@
 
-\subsection{Monodomain Equation}
+\section{Monodomain Equation}
  
 
 \renewcommand{\vec}[1]{\boldsymbol{#1}}
@@ -13,7 +13,7 @@
 
 This section describes the implementation of the monodomain equations and hardcoded cell models in OpenCMISS.
 
-\subsection{Equations}
+\section{Equations}
 The monodomain equations are:
 \begin{eqnarray}
  \pd{V_m}{t}  &=&  \nabla \cdot \lrbr{\vec{D} \nabla V_m}  -  \frac{1}{C_m}\lrbr{\Iion + \Iext}
@@ -38,7 +38,7 @@ where $\vec{v}$ is the vector of other variables defining the cell model.
 The solution obtained this way is not second-order accurate as normal Strang splitting uses half steps, but the error does not accumulate as
 fast since
 
-\subsubsection{Finite element discretization}
+\subsection{Finite element discretization}
 Equation \ref{diff} is discretized using a finite element approach, with a Crank-Nicholson discretization in time:\\
 \begin{equation}
  (\vec{M}/\dt+\vec{A}/2) \vec{V_m}(t+\dt) = (\vec{M}/\dt-\vec{A}/2) \vec{V_m}(t)
@@ -55,9 +55,9 @@ M_{kl} &=& \delta_{kl}  \int_v \phi^{(k)} ~ dv \\
 \end{eqnarray}
 Where $\phi^{(k)}$ is the basis function such that $\phi^{(k)}(x_j)=\delta_{kj}$.
 
-\subsection{Example usage}
+\section{Example usage}
 
-\subsubsection{Types}
+\subsection{Types}
 The problem class and type are always \verb!CMISSProblemBioelectricsClass! and \verb!CMISSProblemMonodomainStrangSplittingEquationType! respectively.
 The problem subtype defines the cell model, currently either
 \verb!CMISSProblemMonodomainBuenoOrovioSubtype! or \verb!CMISSProblemMonodomainTenTusscher06Subtype!.
@@ -66,7 +66,7 @@ The equations set class and type are always \verb!CMISSEquationsSetBioelectricsC
 The problem subtype defines the cell model, currently either
 \verb!CMISSEquationsSetMonodomainBuenoOrovioSubtype! or \verb!CMISSEquationsSetMonodomainTenTusscher06Subtype!.
 
-\subsubsection{Cell models}
+\subsection{Cell models}
 There are currently two options for the cell model:
 \begin{itemize}
  \item   Bueno-Orovio minimal cell model  with 1 Hz paced initial condition, 4 variables. 
@@ -78,7 +78,7 @@ Functions \verb!tentusscher06_initialize!, \verb!tentusscher06_integrate! are us
 
 
 
-\subsubsection{Fields}
+\subsection{Fields}
 The main fields relevant for the example is the material field, which has the following components:
 \begin{enumerate}
  \item Activation flag. Set to $1.0$ to have a cell be stimulated (standard $\Iext$) and to $0.0$ for no stimulation. Any other value $c$ will apply $c \Iext$ as stimulus current to that cell, allowing the strength to be tuned manually from the example file.
@@ -94,14 +94,14 @@ Fiber direction is normalized to lenght $1$ in the code, so input does not need 
 Internally, the dependent field contains a single variable $V_m$ (and its normal which is required by OpenCMISS but not used). The independent
 field contains the cell model, with the first component always being the copy of $V_m$ used in the cell model.
 
-\subsection{Internal implementation details}
+\section{Internal implementation details}
 The diffusion equation is solved using OpenCMISS standard setup for a linear dynamic equation solved using a finite element approach.
-\subsubsection{Finite element calculation}
+\subsection{Finite element calculation}
 The stiffness and damping matrices are calculated only once, and the update flags are set to false afterwards.
 Still, the basis function derivatives are tabulated instead of recalculated in the inner loop, and code for this table this could be used to speed up other equation types.
 
 
-\subsubsection{Examples}
+\subsection{Examples}
 Current examples using this code are:
 \begin{itemize}
  \item \verb!examples/Bioelectrics/MonodomainTP06!
@@ -109,13 +109,13 @@ Current examples using this code are:
 \end{itemize}
 The first of these is set up to match the euHeart benchmark problem.
 
-\subsection{Known issues and TODO}
+\section{Known issues and TODO}
 \begin{itemize}
  \item We are planning to implement an adaptive time step.
  \item Lookup tables would speed up the code as well, but there is currently no support for them.
 \end{itemize}
 
-\subsection{Testing}
+\section{Testing}
 Solutions for spacing $0.5, 0.2, 0.1$mm match a reference implementation, and further tests
 with non-axis aligned fibers also match.
 

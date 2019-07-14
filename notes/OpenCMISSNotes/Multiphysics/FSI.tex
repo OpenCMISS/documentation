@@ -1,6 +1,7 @@
-\subsection{Fluid-Structure Interaction}
+\section{Fluid-Structure Interaction}
+\label{sec:FSI}
 
-\subsubsection{Fluid Model}
+\subsection{Fluid Model}
 
 The physics in the fluid domain is described by the ALE form of the Navier-Stokes equations
 \ie
@@ -126,8 +127,7 @@ and
   \end{array}\right]
 \end{equation}
 
-
-\subsubsection{Solid Model}
+\subsection{Solid Model}
 
 The physics in the solid domain is described by a momentum balance
 \begin{align}
@@ -234,7 +234,7 @@ and
   \end{array}\right]
 \end{equation}
 
-\subsubsection{Coupling conditions}
+\subsection{Coupling conditions}
 
 Along the fluid solid interface $\boundary{\embedmanifold{B}}_{t}^{FS}$ there
 are two conditions which must be satisfied to ensure coupling of the fluid and
@@ -262,7 +262,7 @@ the both constraints can be satisfied via the constraint
   \gint{\boundary{\embedmanifold{B}}^{FS}_{t}}{}{\dotprod{\vectr{\lambda}}{\pbrac{\delby{\vectr{u}}{t}-\vectr{v}}}}{\covectr{a}^{FS}}=0 \label{eqn:FSIConstraint}
 \end{equation}
 
-\subsubsection{Monolithic Coupled Model}
+\subsection{Monolithic Coupled Model}
 
 The combined system of equations can be written as
 \begin{align}
