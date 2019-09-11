@@ -196,6 +196,25 @@ coordinate indices in the larger manifold, $g_{\mu\nu}$ are the components of
 the metric tensor in the larger manifold and $g_{ab}$ are the components of
 the induced metric in the submanifold.
 
+\subsubsection{Arc length}
+
+\subsubsection{Angle between vectors}
+
+The angle between two vectors $\vectr{u}$ and $\vectr{v}$ is given by
+\begin{equation}
+  \cos\theta=\dfrac{\dotprod{\vectr{u}}{\vectr{v}}}{\norm{\vectr{u}}\norm{\vectr{v}}}=
+  \dfrac{g_{ij}u^{i}v^{j}}{\sqrt{g_{pq}u^{p}v^{q}}\sqrt{g_{rs}u^{r}v^{s}}}
+  \label{eqn:AngleBetweenVectors}
+\end{equation}
+
+\subsubsection{Properties of the metric tensor}
+
+A metric tensor $\tensor{g}$ has the following properties
+\begin{align}
+  \divergence{}{\sharptensor{\tensor{g}}}=0
+  \label{eqn:DivergenceSharpMetricTensor}
+\end{align}
+
 \subsection{Transformations}
 
 The transformation rules for tensors in going from a $\vectr{\nu}$ coordinate
@@ -423,6 +442,11 @@ and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 \begin{equation}
   \laplacian{}{\vectr{\phi}}=\pbrac{\laplacian{}{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
 \end{equation}
+
+\section{Lie Derivatives}
+
+\epstexfigure{DifferentialGeometry/svgs/lie_derivative.eps_tex}{Lie
+  Derivative.}{Lie derivative.}{fig:LieDerivative}{0.5}
 
 \section{Curves}
 

@@ -77,7 +77,7 @@ we have
 \begin{equation}
   \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
   +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-  =\gint{\Gamma}{}{\dotprod{\tensor{\sigma}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+  =\gint{\Gamma}{}{\dotprod{\tensor{\sigma}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\vectr{f}}{\Omega}
 \end{equation}
 where $\tensor{\sigma}$ is the Cauchy stress tensor and $\vectr{f}$ is the body force
 vector.
@@ -106,16 +106,15 @@ Rearranging the integral conservation of momentum equation gives us
   \begin{split}
     \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\ \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
+    &=\gint{\Gamma}{}{\dotprod{\tensor{\sigma}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\vectr{f}}{\Omega}\\
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
-    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+    &=\gint{\Gamma}{}{\dotprod{\pbrac{-p\sharptensor{\tensor{g}}+\tensor{\tau}}}{\vectr{n}}}{\Gamma}
+    +\gint{\Omega}{}{\vectr{f}}{\Omega}
     \\ \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}
     +\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
-            +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
-          \sharptensor{\tensor{g}}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
-    \\
+    &=\gint{\Gamma}{}{\dotprod{-p\sharptensor{\tensor{g}}}{\vectr{n}}}{\Gamma}
+    +\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\vectr{f}}{\Omega}\\
   \end{split}
   \label{eqn:integralconservationofmomentum}
 \end{equation}
@@ -125,28 +124,40 @@ The differential form for the conservation of momentum is given by
   \begin{split}
     \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+
     \gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
-    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
-    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    &=\gint{\Gamma}{}{\dotprod{-p\sharptensor{\tensor{g}}}{\vectr{n}}}{\Gamma}
+    +\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+    +\gint{\Omega}{}{\vectr{f}}{\Omega} \\
     \gint{\Omega}{}{\delby{\pbrac{\rho\vectr{v}}}{t}}{\Omega}
     +\gint{\Omega}{}{\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}}{\Omega}
-    &=\gint{\Omega}{}{-\gradient{}{p}}{\Omega}+\gint{\Omega}{}{\divergence{}{\tensor{\tau}}}{\Omega}
-    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
-    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\vectr{v}}}{t}
-        +\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
-        -\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}}}{\Omega}&=0
+    &=\gint{\Omega}{}{\divergence{}{\pbrac{-p\sharptensor{\tensor{g}}}}}{\Omega}
+    +\gint{\Omega}{}{\divergence{}{\tensor{\tau}}}{\Omega}
+    +\gint{\Omega}{}{\vectr{f}}{\Omega}\\
+    \gint{\Omega}{}{\delby{\pbrac{\rho\vectr{v}}}{t}}{\Omega}
+    +\gint{\Omega}{}{\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}}{\Omega}
+    &=\gint{\Omega}{}{\pbrac{-\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}-p\divergence{}{\sharptensor{\tensor{g}}}}}{\Omega}+\gint{\Omega}{}{\divergence{}{\tensor{\tau}}}{\Omega}
+    +\gint{\Omega}{}{\vectr{f}}{\Omega}\\
   \end{split}
 \end{equation}
-and thus we have
+using \eqnref{eqn:TensorIdentity1}.
+
+Now, as $\divergence{}{\sharptensor{\tensor{g}}}=0$ [UNDER WHAT CONDITIONS???]
+we have
+\begin{equation}
+  \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\vectr{v}}}{t}
+      +\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
+      +\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}-\divergence{}{\tensor{\tau}}-\vectr{f}}}{\Omega}=0
+\end{equation}
+and thus
 \begin{equation}
   \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
-  -\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}=0
+  +\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}-\divergence{}{\tensor{\tau}}-\vectr{f}=0
 \end{equation}
 or
 \begin{equation}
   \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}
-  =\divergence{}{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
-            +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
-          \sharptensor{\tensor{g}}}}-\gradient{}{p}+\rho\vectr{f}=0
+  =-\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}+\divergence{}{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
+        +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
+      \sharptensor{\tensor{g}}}}+\vectr{f}=0
   \label{eqn:differentialconservationofmomentum}
 \end{equation}
 
@@ -174,33 +185,37 @@ which gives us
 For incompressible flows the density doesn't change and so the integral forms
 of the conservation of mass and momentum are given by
 \begin{equation}
-  \gint{\Gamma}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}=0
+  \gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}=0
 \end{equation}
 and
 \begin{equation}
   \rho\delby{}{t}\gint{\Omega}{}{\vectr{v}}{\Omega}
   +\gint{\Gamma}{}{\dotprod{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}{\vectr{n}}}{\Gamma}
-  =\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
-  +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+  =\gint{\Gamma}{}{\dotprod{-p\sharptensor{\tensor{g}}}{\vectr{n}}}{\Gamma}
+  +\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+  +\gint{\Omega}{}{\vectr{f}}{\Omega}
 \end{equation}
 
 The differential form for the conservation of momentum and mass for
 incompressible flows is given by
 \begin{equation}
   \rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
-  =\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}
+  =-\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}+\divergence{}{\tensor{\tau}}+\vectr{f}
   \label{eqn:DiffIncompNSEMomentum}
 \end{equation}
 and
 \begin{equation}
-  \divergence{}{\vectr{v}}=0
+  \divergence{}{\pbrac{\rho\vectr{v}}}=0
   \label{eqn:DiffIncompNSEMass}
 \end{equation}
 
 For a Newtonian fluid \Eqnref{eqn:DiffIncompNSEMomentum} becomes
 \begin{equation}
-  \rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
-  =\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}-\gradient{}{p}+\rho\vectr{f}
+  \rho\delby{\vectr{v}}{t}
+  +\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
+  =\dotprod{-\gradient{}{p}}{\sharptensor{\tensor{g}}}
+  +\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}
+  +\vectr{f}
   \label{eqn:DiffIncompNewtonianNSEMomentum}
 \end{equation}
 
@@ -237,31 +252,52 @@ component and 4 for the pressure.
 % Galerkin formulation
 The weak form of equations \ref{eqn:DiffIncompNewtonianNSEMomentum} and
 \ref{eqn:DiffIncompNSEMass} can be found by applying standard Galerkin weight
-functions $\vectr{w}$ \ie
+functions $\vectr{w}$ for the velocity variables \ie
 \begin{equation}
   \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
-      -\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}+\gradient{}{p}
-      -\rho\vectr{f}}{\vectr{w}}}{\Omega} = 0
+      +\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}
+      -\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}
+      -\vectr{f}}{\vectr{w}}}{\Omega} = 0
  \label{eqn:BasicGalerkinNSEMomentum}
 \end{equation}
 and
 \begin{equation}
-  \gint{\Omega}{}{\divergence{}{\vectr{v}}w^{p}}{\Omega}
+  \gint{\Omega}{}{\divergence{}{\vectr{v}}w^{p}}{\Omega} = 0
  \label{eqn:BasicGalerkinNSEMass}
 \end{equation}
+where $w^{p}$ is the Galerkin weight function for the pressure variable.
 
-Applying the Green-Gauss theorem to
+Before applying the Green-Gauss theorem we note that the pressure term in
+\eqnref{eqn:BasicGalerkinNSEMomentum} can be written as
+\begin{equation}
+  \dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}=\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}+p\divergence{}{\sharptensor{\tensor{g}}}=\divergence{}{\pbrac{p\sharptensor{\tensor{g}}}}
+\end{equation}
+using \eqnref{eqn:TensorIdentity1} as
+$\divergence{}{\sharptensor{\tensor{g}}}=0$.
+
+Now, the Green-Gauss theorem for a second order tensor, $\vectr{A}$ and a
+scalar $\phi$ can be written as
+\begin{equation}
+  \gint{\Omega}{}{\phi\divergence{}{\tensor{A}}}{\Omega}=\gint{\Gamma}{}{\dotprod{\phi\tensor{A}}{\vectr{n}}}{\Gamma}-\gint{\Omega}{}{\dotprod{\tensor{A}}{\gradient{}{\phi}}}{\Omega}
+\end{equation}
+and so the pressure integral from the $\nth{i}$ component of
+\eqnref{eqn:BasicGalerkinNSEMomentum} can be re-written as
+\begin{equation}
+  \gint{\Omega}{}{\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}w^{i}}{\Omega}=\gint{\Gamma}{}{\dotprod{p\sharptensor{\tensor{g}}}{\vectr{n}}w^{i}}{\Gamma}-\gint{\Omega}{}{\dotprod{p\sharptensor{\tensor{g}}}{\gradient{}{w^{i}}}}{\Omega}
+\end{equation}
+
+Thus applying the Green-Gauss theorem to
 \Eqnref{eqn:BasicGalerkinNSEMomentum}, we will get
-the weak form of the system of PDEs with the associated natural boundary
+the weak form of the momentum equation with the associated natural boundary
 conditions at the boundary $\Gamma$ \ie
 \begin{multline}
   \gint{\Omega}{}{\rho\delby{\vectr{v}}{t}{\vectr{w}}}{\Omega}
   +\gint{\Omega}{}{\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{u}}}\vectr{w}}{\Omega}
-  +\gint{\Omega}{}{p\gradient{}{\vectr{w}}}{\Omega}
-  -\gint{\Omega}{}{\dotprod{\mu\gradient{}{\vectr{v}}}{\gradient{}{\vectr{w}}}}{\Omega} \\
-  -\gint{\Omega}{}{\dotprod{\mu\gradient{}{\transpose{\vectr{v}}}}{\gradient{}{\vectr{w}}}}{\Omega}
-  =\gint{\Omega}{}{\vectr{f}\vectr{w}}{\Omega}
-  +\gint{\Gamma_{N}}{}{\dotprod{\pbrac{\mu\gradient{}{\vectr{v}-p\sharptensor{\vectr{g}}}}}{\vectr{n}}\vectr{w}}{\Gamma}
+  -\gint{\Omega}{}{\dotprod{p\sharptensor{\tensor{g}}}{\gradient{}{\vectr{w}}}}{\Omega}
+  +\gint{\Omega}{}{\dotprod{\pbrac{\mu\pbrac{\gradient{}{\vectr{v}}+\gradient{}{\transpose{\vectr{v}}}}}}{\gradient{}{\vectr{w}}}}{\Omega} \\
+  -\gint{\Omega}{}{\vectr{f}\vectr{w}}{\Omega}
+  =\gint{\Gamma}{}{\dotprod{\pbrac{\mu\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+        p\sharptensor{\vectr{g}}}}{\vectr{n}}\vectr{w}}{\Gamma}
   \label{eqn:GalerkinNSE}
 \end{multline}
 
@@ -269,80 +305,95 @@ conditions at the boundary $\Gamma$ \ie
 For more extensive discussion of this procedure, along with other weak forms
 of the PDEs, we refer to \cite{gresho:2000}. From this weak form, we see
 natural (Neumann) boundary conditions arising as a direct result of the
-integration. Neumann boundary conditions will consist of a pressure term and
+integration.
+
+Dirichlet boundary conditions on a boundary
+$\Gamma_D$ for velocity will take the form:
+\begin{equation}
+  \fnof{\vectr{v}}{\vectr{x},t} = \fnof{\vectr{v}_{D}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
+  \label{eqn:NSEVelocityDirichletBC} 
+\end{equation}
+and for pressure they will take the form
+\begin{equation}
+  \fnof{p}{\vectr{x},t} = \fnof{p_{D}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
+  \label{eqn:NSEPressureDirichletBC} 
+\end{equation}
+
+Neumann boundary conditions will consist of a pressure term and
 viscous stress acting normal to a given boundary.
 \begin{equation}
   \fnof{\vectr{q}}{\vectr{x},t} =
-  \dotprod{\pbrac{\mu\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}-
-      \fnof{p}{\vectr{x},t}\sharptensor{\vectr{g}}}}{\vectr{n}}  \quad\quad \vectr{x}\in\Gamma_{N}
+  \dotprod{\pbrac{\mu\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}+\transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}-
+      \fnof{p}{\vectr{x},t}\sharptensor{\vectr{g}}}}{\fnof{\vectr{n}}{\vectr{x},t}}  \quad\quad \vectr{x}\in\Gamma_{N}
   \label{eqn:NSENeumannBC}  
 \end{equation}
 or, in component notation,
 \begin{equation}
   \fnof{\vectr{q}}{\vectr{x},t}=\fnof{q^{i}}{\vectr{x},t}\vectr{g}_{i}=
-  \pbrac{\mu
-    g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}-pg^{ij}}n_{j}\vectr{g}_{i}
+  \pbrac{\mu\pbrac{
+    g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}+g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}}-pg^{ij}}n_{j}\vectr{g}_{i}
 \end{equation}
 or
 \begin{equation}
   \begin{split}
-    \fnof{\vectr{q}}{\vectr{x},t}=\fnof{q^{i}}{\vectr{x},t}\vectr{g}_{i}&=\pbrac{\mu
-      g^{jk}\partialderiv{v^{i}}{k}-pg^{ij}}n_{j}\vectr{g}_{i}+\mu
-    g^{jk}\christoffel{i}{k}{h}v^{h}n_{j}\vectr{g}_{i}\\
+    \fnof{\vectr{q}}{\vectr{x},t}=\fnof{q^{i}}{\vectr{x},t}\vectr{g}_{i}&=\pbrac{\mu\pbrac{
+      g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}\vectr{g}_{i}+\mu
+    \pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}\vectr{g}_{i}\\
     &=\bar{q}^{i}\vectr{g}_{i}+\tilde{q}^{i}\vectr{g}_{i}
   \end{split}
 \end{equation}
 
 Specification of Neumann boundaries will simply require the specification of
-the terms across element DOFs. Dirichlet boundary conditions on a boundary
-$\Gamma_D$ for velocity will take the form:
-\begin{gather}
-  \fnof{\vectr{v}}{\vectr{x},t} = \fnof{\vectr{d}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
-  \label{eqn:NSEDirichletBC} 
-\end{gather}
+the terms across element DOFs.
 
 \subsection{Tensor notation}
 
-Substituting the natural boundary as defined above, equation
-\ref{eqn:GalerkinNSE} in tensor notation becomes
+\Eqnref{eqn:GalerkinNSE} in tensor notation becomes
 \begin{multline}
   \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
- +\gint{\Omega}{}{{\rho}g^{k}_{l}v^{l}\covarderiv{v^{i}}{k}w^{i}}{\Omega}
- +\gint{\Omega}{}{g^{ik}{p}\covarderiv{w^{i}}{k}}{\Omega}\\
- -\gint{\Omega}{}{{\mu}g^{jk}\covarderiv{v^{i}}{k}\covarderiv{w^{i}}{j}}{\Omega}
- -\gint{\Omega}{}{{\mu}g^{ik}\covarderiv{v^{j}}{k}\covarderiv{w^{i}}{j}}{\Omega}\\
- -\gint{\Omega}{}{{\fnof{f^{i}}{t}}{w^{i}}}{\Omega}
- -\gint{\Gamma_N}{}{{q^{i}}{w^{i}}}{\Gamma}=0
+ +\gint{\Omega}{}{\rho v^{j}\covarderiv{v^{i}}{j}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\covarderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{{\mu}g^{jk}\covarderiv{v^{i}}{k}\covarderiv{w^{i}}{j}}{\Omega}
+ +\gint{\Omega}{}{{\mu}g^{ik}\covarderiv{v^{j}}{k}\covarderiv{w^{i}}{j}}{\Omega}\\
+ -\gint{\Omega}{}{f^{i}w^{i}}{\Omega}
+ -\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\covarderiv{v^{i}}{k}+g^{ik}\covarderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}=0
  \label{eqn:TensorNSE}
 \end{multline}
 or
 \begin{multline}
   \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
- +\gint{\Omega}{}{{\rho}g^{k}_{l}{v^{l}}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}{w^{i}}}{\Omega}
- +\gint{\Omega}{}{g^{ik}{p}\partialderiv{w^{i}}{k}}{\Omega}\\
- -\gint{\Omega}{}{{\mu}g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}
- -\gint{\Omega}{}{{\mu}g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}\\
- -\gint{\Omega}{}{{\fnof{f^{i}}{t}}{w^{i}}}{\Omega}
- -\gint{\Gamma_N}{}{\pbrac{\bar{q}^{i}+\tilde{q}^{i}}w^{i}}{\Gamma}=0
+ +\gint{\Omega}{}{\rho v^{j}\pbrac{\partialderiv{v^{i}}{j}+\christoffel{i}{j}{h}v^{h}}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{{\mu}g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}
+ +\gint{\Omega}{}{{\mu}g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}\\
+ -\gint{\Omega}{}{f^{i}w^{i}}{\Omega}
+ -\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}+g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}}-pg^{ij}}n_{j}w^{i}}{\Gamma}=0
  \label{eqn:Tensor2NSE}
 \end{multline}
 or
 \begin{multline}
   \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
- +\gint{\Omega}{}{{\rho}g^{k}_{l}{v^{l}}\partialderiv{v^{i}}{k}{w^{i}}}{\Omega}
- +\gint{\Omega}{}{g^{ik}{p}\partialderiv{w^{i}}{k}}{\Omega}\\
- -\gint{\Omega}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}
- -\gint{\Omega}{}{{\fnof{f^{i}}{t}}{w^{i}}}{\Omega}
- -\gint{\Gamma_N}{}{\bar{q}^{i}w^{i}}{\Gamma}\\
- -\gint{\Omega}{}{\rho
-   g^{k}_{l}v^{l}\christoffel{i}{k}{h}v^{h}w^{i}+\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
+ +\gint{\Omega}{}{\rho v^{j}\partialderiv{v^{i}}{j}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}
+ -\gint{\Omega}{}{f^{i}w^{i}}{\Omega}
+ -\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}\\
+ +\gint{\Omega}{}{\rho v^{j}\christoffel{i}{j}{h}v^{h}w^{i}+\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
      g^{ik}\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}
- -\gint{\Gamma_N}{}{\tilde{q}^{i}w^{i}}{\Gamma}=0
+ -\gint{\Gamma_N}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}w^{i}}{\Gamma}=0
  \label{eqn:Tensor3NSE}
 \end{multline}
 
 where $g^{jk}$ is the contravariant metric tensor and $\christoffel{i}{j}{k}$
 is the Christoffel symbol of the second kind for the spatial coordinates.
+
+The conservation of mass equation can be written as
+\begin{equation}
+  \gint{\Omega}{}{\covarderiv{v^{i}}{i}w^{p}}{\Omega}=
+  \gint{}{}{\pbrac{\partialderiv{v^{i}}{i}+\christoffel{i}{i}{j}v^{j}}w^{p}}{\Omega}=
+  \gint{\Omega}{}{\partialderiv{v^{i}}{i}w^{p}}{\Omega}+\gint{\Omega}{}{\christoffel{i}{i}{j}v^{j}w^{p}}{\Omega}=0
+  \label{eqn:TensorConvOfMass}
+\end{equation}
 
 \subsection{Finite Element Formulation}
 
@@ -353,17 +404,24 @@ becomes:
 
 \begin{multline}
   \gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho\dot{v}^{i}w^{i}}{\Omega}}
- +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{{\rho}g^{k}_{l}{v^{l}}\partialderiv{v^{i}}{k}{w^{i}}}{\Omega}}
- +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{g^{ik}{p}\partialderiv{w^{i}}{k}}{\Omega}}\\
- -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}}
- -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{{\fnof{f^{i}}{t}}{w^{i}}}{\Omega}}
- -\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\pbrac{\mu g^{jk}\partialderiv{v^{i}}{k}-pg^{ij}}n_{j}w^{i}}{\Gamma}}\\
- -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho
-   g^{k}_{l}v^{l}\christoffel{i}{k}{h}v^{h}w^{i}+\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
+ +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho v^{j}\partialderiv{v^{i}}{j}{w^{i}}}{\Omega}}
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}}\\
+ +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+
+       g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}}
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{f^{i}w^{i}}{\Omega}}
+ -\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\pbrac{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}}\\
+ +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho
+   v^{j}\christoffel{i}{j}{h}v^{h}w^{i}+\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
      g^{ik}\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}}
- -\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\mu g^{jk}\christoffel{i}{k}{h}v^{h}n_{j}w^{i}}{\Gamma}}=0
+ -\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}w^{i}}{\Gamma}}=0
  \label{eqn:FEMNSE}
 \end{multline}
+
+\Eqnref{eqn:TensorConvOfMass} now becomes
+\begin{equation}
+  \gsum{e=1}{E}{\gint{\Omega_{e}}{}{\partialderiv{v^{i}}{i}w^{p}}{\Omega}}
+  +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\christoffel{i}{i}{j}v^{j}w^{p}}{\Omega}}=0
+\end{equation}
 
 We will assume that the dependent variables $\vectr{v}$ and $p$ can be
 interpolated separately in space and time. Here we must also be careful to
@@ -431,9 +489,9 @@ formulation from \ref{eqn:NSEFEM2}:
   \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
   \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %convective term
-  +\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  +\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{j}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %pressure
   +\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{g^{ik}}{\vectr{\xi}}\altgbfn{n}{\beta}{\vectr{\xi}}
   \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{k}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
@@ -449,8 +507,8 @@ formulation from \ref{eqn:NSEFEM2}:
       \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %Christofell terms
   -\dsuml{e=1}{E} \dintl{\vectr{0}}{\vectr{1}} \fnof{\rho}{\vectr{\xi}}
-  \fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+  \idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
   \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
   \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\\
   +\fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
@@ -481,9 +539,9 @@ with respect to $\vectr{x}$ to derivatives with respect to $\vectr{\xi}$ gives
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %convective term
   +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
-      \fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-      \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
-      \delby{\xi^{r}}{x^{k}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+      \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %pressure
   +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gsf{n}{\beta}\fnof{\nodedof{p}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
@@ -506,9 +564,9 @@ with respect to $\vectr{x}$ to derivatives with respect to $\vectr{\xi}$ gives
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %Christofell terms
   -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
-      \fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-      \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}
-      \fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+      \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}
+      \fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
       \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
@@ -539,9 +597,9 @@ Christoffel symbols $\christoffel{i}{j}{k}$ will all be zero. This gives:
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %convective term
   +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
-      \fnof{\delta^{k}_{l}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-      \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
-      \delby{\xi^{r}}{x^{k}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+      \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
       \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %pressure
   +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gsf{n}{\beta}\fnof{\nodedof{p}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
@@ -684,18 +742,18 @@ convective operators and for the standard Galerkin formulation is given by
 where
 \begin{multline}
   \bar{g}^{i\alpha}_{m}=\bar{\vectr{g}}^{i}=\idxgsf{i}{m}{\alpha}\dintl{\vectr{0}}{\vectr{1}}\fnof{\rho}{\vectr{\xi}}
-    \fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-    \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\\
+    \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+    \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\\
     \delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
-    \delby{\xi^{r}}{x^{k}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
+    \delby{\xi^{r}}{x^{j}}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}
 \end{multline}
 and
 \begin{multline}
   \tilde{g}^{i\alpha}_{m}=\tilde{\vectr{g}}^{i}=\idxgsf{i}{m}{\alpha}\dintl{\vectr{0}}{\vectr{1}}\fnof{\rho}{\vectr{\xi}}
-    \fnof{g^{k}_{l}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{l}{n}{\beta}{\vectr{\xi}}
-    \fnof{\idxnodedof{v}{l}{n}{\beta}}{t}\idxgsf{l}{n}{\beta}\\
-    \fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+    \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+    \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\\
+    \fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
     \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}
 \end{multline}

@@ -212,7 +212,6 @@
     }} % concentration e.g. \conc{Na}{o} => [Na]_o
 \newcommand{\ion}[2]{\ensuremath{\mathrm{{#1}^{#2}}}\xspace} % ion
 \newcommand{\ionCa}{\ion{Ca}{2+}} % calcium ion
-
 \newcommand{\ionCl}{\ion{Cl}{-}} % chloride ion
 \newcommand{\ionH}{\ion{H}{+}} % hydrogen ion
 \newcommand{\ionK}{\ion{K}{+}} % potassium ion
@@ -232,6 +231,7 @@
     #1\text{--}#2~#3 %
     }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
 
+\newcommand{\ug}{\units{\mu g}} % micrograms
 \newcommand{\mg}{\units{mg}} % milligrams
 \newcommand{\g}{\units{g}} % grams
 \newcommand{\kg}{\units{kg}} % kilograms
@@ -246,7 +246,8 @@
 %\newcommand{\L}{\units{L}} % litres
 \newcommand{\Hz}{\units{Hz}} % Hertz
 \newcommand{\kHz}{\units{kHz}} % kilohertz
-\newcommand{\MHz}{\units{MHz}} % Megahertz
+\newcommand{\MHz}{\units{MHz}} % megahertz
+\newcommand{\GHz}{\units{GHz}} % gigahertz
 \newcommand{\nm}{\units{nm}} % nanometres
 \newcommand{\um}{\units{\mu m}} % micrometres
 \newcommand{\mm}{\units{mm}} % millimetres
@@ -274,6 +275,8 @@
 \newcommand{\kB}{\units{kB}} % kilobyte
 \newcommand{\MB}{\units{MB}} % megabyte
 \newcommand{\GB}{\units{GB}} % gigabyte
+\newcommand{\TB}{\units{TB}} % terabyte
+\newcommand{\PB}{\units{PB}} % petabyte
 
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
@@ -316,6 +319,19 @@
 \newcommand{\mgpkg}{\units{\mg\unitseparator\kg^{-1}}} % milligram/kilogram
 
 %
+% Numbers
+%
+\newcommand{\tento}[1]{\ensuremath{ %
+    10^{#1} %
+}} % e.g. \tento{3} ten to the power of 3
+\newcommand{\ttento}[1]{\ensuremath{ %
+    \times \tento{#1} %
+  }\xspace} % e.g. \ttento{5} => times ten the power of 5
+\newcommand{\nttento}[2]{\ensuremath{ %
+    #1\ttento{#2} %
+}} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
 % Base numbers
 %
 \newcommand{\naturalnums}{\ensuremath{ %
@@ -340,9 +356,29 @@
     \mathbb{I} %
   }} % Irrational numbers
 
+% 
+% Brackets
+%
+\newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
+\newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
+\newcommand{\pbracl}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
+\newcommand{\pbracr}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
+\newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % braces {} bracket
+\newcommand{\bbracl}[1]{\brac{\{}{#1}{.}} % braces { bracket
+\newcommand{\bbracr}[1]{\brac{.}{#1}{\}}} % braces } bracket
+\newcommand{\sqbrac}[1]{\brac{[}{#1}{]}} % square [] bracket
+\newcommand{\sqbracl}[1]{\brac{[}{#1}{.}} % square [ bracket
+\newcommand{\sqbracr}[1]{\brac{.}{#1}{]}} % square ] bracket
+\newcommand{\abrac}[1]{\brac{<}{#1}{>}} % angle <> bracket
+\newcommand{\abracl}[1]{\brac{<}{#1}{.}} % angle < bracket
+\newcommand{\abracr}[1]{\brac{.}{#1}{>}} % angle > bracket
+
 %
 % Sets
 %
+\newcommand{\set}[1]{\ensuremath{
+    \bbrac{#1}
+}} % e.g. \set{1,2,3} => {1,2,3}
 \newcommand{\union}[2]{\ensuremath{#1\cup#2}} % Union
 \newcommand{\intersection}[2]{\ensuremath{#1\cap#2}} % Intersection
 
@@ -369,27 +405,65 @@
   }} % D^n (discrete) topology
 
 %
+% Functions
+%
+\newcommand{\fnof}[2]{\ensuremath{ %
+    #1\brac{(}{#2}{)} %
+}} % function of e.g. \fnof{x}{\xi} => x(xi)
+\newcommand{\fntof}[2]{\ensuremath{ %
+    \transpose{#1}\brac{(}{#2}{)} %
+}} % function transpose of e.g. \fntof{x}{\xi} => x^T(xi)
+\newcommand{\afnof}[2]{\ensuremath{ %
+    #1\brac{<}{#2}{>} %
+}} % angle bracket function of e.g. \afnof{x}{\xi} => x<xi>
+\newcommand{\brfnof}[2]{\ensuremath{ %
+    #1\brac{\{}{#2}{\}} %
+}} % braces function of e.g. \brfnof{x}{\xi} => x{xi}
+\newcommand{\sqfnof}[2]{\ensuremath{ %
+    #1\brac{[}{#2}{]} %
+}} % square function of e.g. \sqfnof{x}{\xi} => x[xi]
+\newcommand{\circcomposition}[2]{%
+  \circcompositiontwo{#1}{#2} %
+} % composition with circ e.g. \circcomposition{A}{B(X)} => A o B(X)
+\newcommand{\circcompositiontwo}[2]{\ensuremath{ %
+    #1 \circ #2 %
+}} % circ composition with two functions e.g. \circcompositiontwo{A}{B(X)} => A o B(X)
+\newcommand{\circcompositionthree}[3]{\ensuremath{ %
+    #1 \circ #2 \circ #3 %
+}} % circ composition with three functions e.g. \circcompositionthree{A}{B}{C(X)} => A o B o C(X)
+\newcommand{\circcompositionfour}[4]{\ensuremath{ %
+    #1 \circ #2 \circ #3 \circ #4 %
+}} % circ composition with four functions e.g. \circcompositionfour{A}{B}{C}{D(X)} => A o B o C o D(X)
+\newcommand{\funccomposition}[2]{%
+  \funccompositiontwo{#1}{#2} %
+} % function composition e.g. \funccomposition{A}{B(X)} => A(B(X))
+\newcommand{\funccompositiontwo}[2]{\ensuremath{ %
+    \fnof{#1}{#2} %
+}} % function composition with two functions e.g. \funccompositiontwo{A}{B(X)} => A(B(X))
+\newcommand{\funccompositionthree}[3]{\ensuremath{ %
+    \fnof{#1}{\fnof{#2}{#3}} %
+}} % function composition with three functions e.g. \funccompositionthree{A}{B}{C(X)} => A(B(C(X)))
+\newcommand{\funccompositionfour}[4]{\ensuremath{ %
+    \fnof{#1}{\fnof{#2}{\fnof{#3}{#4}}} %
+}} % function composition with four functions e.g. \funccompositionfour{A}{B}{C}{D(X)} => A(B(C(D(X))))
+\newcommand{\composition}[2]{%
+  \funccomposition{#1}{#2} %
+} % composition e.g. \composition{A}{B(X)} => A(B(X))
+\newcommand{\compositiontwo}[2]{%
+  \funccompositiontwo{#1}{#2} %
+} % composition with two functions e.g. \compositiontwo{A}{B(X)} => A(B(X))
+\newcommand{\compositionthree}[3]{%
+  \funccompositionthree{#1}{#2}{#3} %
+} % composition with three functions e.g. \compositionthree{A}{B}{C(X)} => A(B(C(X)))
+\newcommand{\compositionfour}[4]{%
+  \funccompositiontfour{#1}{#2}{#3}{#4} %
+} % composition with four functions e.g. \compositiontfour{A}{B}{C}{D(X)} => A(B(C(D(X))))
+
+%
 % Commonly-used Math Symbols and operations
 %
-% Products
-\newcommand{\dotprod}[2]{\dotprodtwo{#1}{#2}} % dot product
-\newcommand{\dotprodtwo}[2]{\ensuremath{#1\cdot#2}} % two times dot product
-\newcommand{\dotprodthree}[3]{\ensuremath{#1\cdot#2\cdot#3}} % three times dot product
-\newcommand{\doubledotprod}[2]{\doubledotprodtwo{#1}{#2}} % double dot product
-\newcommand{\doubledotprodtwo}[2]{\ensuremath{#1:#2}} % two times double dot product
-\newcommand{\doubledotprodthree}[3]{\ensuremath{#1:#2:#3}} % three times double double dot product
-\newcommand{\crossprod}[2]{\crossprodtwo{#1}{#2}} % cross product
-\newcommand{\crossprodtwo}[2]{\ensuremath{#1\times#2}} % two times cross product
-\newcommand{\crossprodthree}[3]{\ensuremath{#1\times#2\times#3}} % three times
-% cross product
-% Brackets
-\newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
-\newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
-\newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
-\newcommand{\pbracl}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
 \newcommand{\transpose}[1]{\ensuremath{{#1}^{T}}} % transpose
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
-\newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % Braces { bracket
 \newcommand{\conjugate}[1]{\ensuremath{ %
     \overline{#1} %                                _
     }} %% complex conjugate e.g. \conjugate{Z} => Z
@@ -400,12 +474,6 @@
 \newcommand{\cuberoot}[1]{\ensuremath{ %
     \sqrt[3]{#1} %
   }} % cube root e.g. \cuberoot{a} = 3\sqrt{a}
-\newcommand{\curl}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\crossprod{\nabla}{#2}}
-  }{
-    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
-  }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
 \newcommand{\derivativeop}[2]{
@@ -423,89 +491,25 @@
 \newcommand{\directionalderiv}[3]{\ensuremath{
     \sqfnof{\derivativeop{#1}{#2}}{#3}
 }} % directional derivative e.g., \directionalderiv{x}{f}{u} => D_x(f)[u]
-\newcommand{\divergence}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\dotprod{\nabla}{#2}}
-  }{
-    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
-  }} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} =>
-     % nabla_{x} . a
-\newcommand{\dint}{\ensuremath{\displaystyle\int}} % display integral
-\newcommand{\dintl}[2]{\ensuremath{ %
-    \displaystyle\int\limits_{#1}^{#2} %
-    }} % display integral with limits
 \newcommand{\dotover}[1]{\ensuremath{ %
     \stackrel{\scriptscriptstyle \bullet}{#1} %
     }} % time derivative
 \newcommand{\ddotover}[1]{\ensuremath{ %
     \stackrel{\scriptscriptstyle \bullet\bullet}{#1} %
     }} % double time derivative
-\newcommand{\dprod}{\ensuremath{\displaystyle\prod}} % display product
-\newcommand{\dprodl}[2]{\ensuremath{ %
-    \displaystyle\prod_{#1}^{#2} %
-    }} % display product with limits
-\newcommand{\dsum}{\ensuremath{\displaystyle\sum}} % display summation
-\newcommand{\dsuml}[2]{\ensuremath{ %
-    \displaystyle\sum_{#1}^{#2} %
-    }} % display summation with limits
 \newcommand{\evalat}[2]{\ensuremath{ %
     \brac{.}{#1}{|}_{#2} %
     }} % Evaluation at e.g. \evalat{x}{1} => x|_1
 \newcommand{\factorial}[1]{\ensuremath{\pbrac{#1}!}} % factorial e.g. \factorial{n} => (n)!
-\newcommand{\fnof}[2]{\ensuremath{ %
-    #1\brac{(}{#2}{)} %
-    }} % function of e.g. \fnof{x}{\xi} => x(xi)
-\newcommand{\fntof}[2]{\ensuremath{ %
-    \transpose{#1}\brac{(}{#2}{)} %
-    }} % function transpose of e.g. \fntof{x}{\xi} => x^T(xi)
-\newcommand{\sqfnof}[2]{\ensuremath{ %
-    #1\brac{[}{#2}{]} %
-    }} % square function of e.g. \fnof{x}{\xi} => x[xi]
-\newcommand{\gegenbauer}[3]{\ensuremath{ %
-    \fnof{C_{#1}^{#2}}{#3} %
-    }} % gegenbauer polynomial e.g. \gengenbauer{1}{2}{x} => C_1^2(x)
 \newcommand{\genlimit}[2]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2}
     }} % general limit e.g. \genlimit{a}{b} => lim a->b
-\newcommand{\gint}[4]{\ensuremath{ %
-    \dintl{#1}{#2}\,#3\,\exteriorderivop#4 %
-    }} % general integral with two limits. e.g.  
-       % \gint{a}{b}{xxx}{c} => int_a^b xxx dc
-\newcommand{\giint}[7]{\ensuremath{ %
-    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
-    }} % general double integral with two limits. e.g.  
-       % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
-\newcommand{\gprod}[3]{\ensuremath{ %
-    \dprodl{#1}{#2}\,#3 %
-    }} % general product e.g. \gprod{a}{b}{c} => prod_a^b c
-\newcommand{\gsum}[3]{\ensuremath{ %
-    \dsuml{#1}{#2}\,#3 %
-    }} % general sum e.g. \gsum{a}{b}{c} => sum_a^b c
-\newcommand{\gssum}[5]{\ensuremath{ %
-    \dsuml{#1}{#2}\dsuml{#3}{#4}\,#5 %
-    }} % general double sum e.g. \gsum{a}{b}{c}{d}{e} => sum_a^b sum_c^d e
-\newcommand{\goneint}[2]{\ensuremath{ %
-    \gint{#2}{}{#1}{#2} %
-    }} % general integral with one limit. eg. \goneint{xxx}{a} => int_a xxx da
-\newcommand{\gonesum}[2]{\ensuremath{ %
-    \gsum{#1}{}{#2} %
-    }} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
 \newcommand{\grad}{\ensuremath{\nabla}} % gradient
 \newcommand{\gradsq}{\ensuremath{\nabla^{2}}} % gradient squared 
-\newcommand{\gradient}[2]{ %
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\grad #2}
-  }{
-    \ensuremath{\grad_{#1} #2} % 
-  }} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x}
-     % u
 \newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
                                 % \functional{f}{a} => f[a]
 \newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
                                 % \functionalderiv{f} => \delta f
-\newcommand{\innerprod}[2]{\ensuremath{ %
-    \left<#1,#2\right> %
-    }} % inner product e.g. \innerprod{a,b} => <a,b>
 \newcommand{\inteval}[3]{\ensuremath{ %
     \displaystyle\sqbrac{#1}_{#2}^{#3} %
     }} % display evaluated integral with limits e.g. 
@@ -517,12 +521,6 @@
 \newcommand{\invtranspose}[1]{\ensuremath{ %
     {#1}^{-T}
 }} % inverse transpose e.g. \invtranspose{A} => A^-T
-\newcommand{\circcomposition}[2]{\ensuremath{ %
-    #1\circ#2
-}} % composition with circ e.g. \circcomposition{A}{B} => A o 
-\newcommand{\funccomposition}[2]{\ensuremath{ %
-    \fnof{#1}{#2}
-}} % composition with function e.g. \funccomposition{A}{B} => A(B)
 \newcommand{\sharpkronecker}[2]{\ensuremath{ %
     \delta^{{#1}{#2}}
 }} % sharp kronecker delta tensor e.g., \sharpkronecker{i}{j} => delta^{ij}
@@ -554,15 +552,10 @@
     \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{\linearisationdir{#3}}} % 
   }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[\Delta u] &
      % \linearisation{f}{x}{u} => L_x(f)[\Delta u]
-\newcommand{\laplacian}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\gradsq #2}
-  }{
-    \ensuremath{\gradsq_{#1} #2} % 
-  }} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} =>
-     % \nabla^2_x u
-\newcommand{\legendre}[3]{\ensuremath{\fnof{P_{#1}^{#2}}{#3}}} % Legendre polynomial
+\newcommand{\liebracket}[2]{\ensuremath{\sqbrac{#1,#2}}} % Lie bracket e.g.,
+                                % \liebracket{X}{Y} => [X,Y]
 \newcommand{\liederiv}[2]{\ensuremath{\mathcal{L}_{#1} #2}} % Lie derivative
+                                % e.g., \liederiv{X}{Y} => L_{X} Y
 \newcommand{\limit}[3]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2} #3 %
     }} % limit e.g. \limit{a}{b}{c} => lim a->b c
@@ -583,28 +576,12 @@
     \pbrac{#1}_{#2} %
 }} % Pochhammer polynomial e.g. \pochhammer{a}{n} => (a)_n n.b. (a)_n =
 % (a,n) where (a,n) is Appell's symbol.
-\newcommand{\sphericalharmonic}[4]{\ensuremath{%
-    \fnof{Y_{{#1}{#2}}^{#3}}{#4} %
-}} % Spherical harmonic e.g. \sphericalharmonic{a}{b}{c}{d} => Y_ab^c(d)
-\newcommand{\set}[1]{\ensuremath{
-    \bbrac{#1}
-}} % e.g. \set{1,2,3} => {1,2,3}
 \newcommand{\spaceprod}[2]{\ensuremath{
     #1\times#2 %
 }} % space product e.g., \spaceprod{A}{B} => A X B
-\newcommand{\sqbrac}[1]{\brac{[}{#1}{]}} % square [ bracket
 \newcommand{\symover}[2]{\ensuremath{
     \stackrel{\scriptscriptstyle #1}{#2} %
 }} % over
-\newcommand{\tento}[1]{\ensuremath{ %
-    10^{#1} %
-}} % e.g. \tento{3} ten to the power of 3
-\newcommand{\ttento}[1]{\ensuremath{ %
-    \times \tento{#1} %
-    }\xspace} % e.g. \ttento{5} => times ten the power of 5
-\newcommand{\nttento}[2]{\ensuremath{ %
-    #1\ttento{#2} %
-    }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
 \newcommand{\variationsymbol}{\ensuremath{ %
     \delta%
     }} % variation symbol => \delta
@@ -616,16 +593,104 @@
     }} % variation e.g. \variation{f}{u} => \delta f[\delta u]
 
 %
+% Sums
+%
+\newcommand{\dsum}{\ensuremath{ %
+    \displaystyle\sum %
+}} % display summation
+\newcommand{\dsuml}[2]{\ensuremath{ %
+    \displaystyle\sum_{#1}^{#2} %
+}} % display summation with limits
+\newcommand{\gsum}[3]{\ensuremath{ %
+    \dsuml{#1}{#2}\,#3 %
+}} % general sum e.g. \gsum{a}{b}{c} => sum_a^b c
+\newcommand{\gssum}[5]{\ensuremath{ %
+    \dsuml{#1}{#2}\dsuml{#3}{#4}\,#5 %
+}} % general double sum e.g. \gsum{a}{b}{c}{d}{e} => sum_a^b sum_c^d e
+\newcommand{\gonesum}[2]{\ensuremath{ %
+    \gsum{#1}{}{#2} %
+}} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
+
+%
+% Products
+%
+\newcommand{\dprod}{\ensuremath{ %
+    \displaystyle\prod %
+}} % display product
+\newcommand{\dprodl}[2]{\ensuremath{ %
+    \displaystyle\prod_{#1}^{#2} %
+}} % display product with limits
+\newcommand{\gprod}[3]{\ensuremath{ %
+    \dprodl{#1}{#2}\,#3 %
+}} % general product e.g. \gprod{a}{b}{c} => prod_a^b c
+
+%
+% Integrals
+%
+\newcommand{\dint}{\ensuremath{ %
+    \displaystyle\int %
+}} % display integral
+\newcommand{\dintl}[2]{\ensuremath{ %
+    \displaystyle\int\limits_{#1}^{#2} %
+}} % display integral with limits
+\newcommand{\gint}[4]{\ensuremath{ %
+    \dintl{#1}{#2}\,#3\,\exteriorderivop#4 %
+    }} % general integral with two limits. e.g.  
+       % \gint{a}{b}{xxx}{c} => int_a^b xxx dc
+\newcommand{\giint}[7]{\ensuremath{ %
+    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
+    }} % general double integral with two limits. e.g.  
+       % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
+\newcommand{\goneint}[2]{\ensuremath{ %
+    \gint{#2}{}{#1}{#2} %
+}} % general integral with one limit. eg. \goneint{xxx}{a} => int_a xxx da
+
+%
+% Special functions and named polynomials
+%
+\newcommand{\firstbesselfn}[2]{\ensuremath{ %
+    \fnof{J_{#1}}{#2} %
+}} % Bessel function of the first kind e.g., \firstbesselfn{1}{x} => J_1(x)
+\newcommand{\secondbesselfn}[2]{\ensuremath{ %
+    \fnof{Y_{#1}}{#2} %
+}} % Bessel function of the second kind e.g., \secondbesselfn{0}{x} => Y_0(x)
+\newcommand{\modfirstbesselfn}[2]{\ensuremath{ %
+    \fnof{I_{#1}}{#2} %
+}} % modified Bessel function of the first kind e.g., \modfirstbesselfn{1}{x} => I_1(x)
+\newcommand{\modsecondbesselfn}[2]{\ensuremath{ %
+    \fnof{K_{#1}}{#2} %
+}} % modified Bessel function of the second kind e.g., \modsecondbesselfn{0}{x} => K_0(x)
+\newcommand{\firstchebyshevpoly}[2]{\ensuremath{ %
+    \fnof{T_{#1}}{#2} %
+}} % Chebyshev polynomail of the first kind e.g., \firstchebyshevpoly{1}{x} => T_1(x)
+\newcommand{\secondchebyshevpoly}[2]{\ensuremath{ %
+    \fnof{U_{#1}}{#2} %
+}} % Chebyshev polynomial of the second kind e.g., \secondchebyshevpoly{0}{x} => U_0(x)
+\newcommand{\gammafn}[1]{\ensuremath{ %
+    \fnof{\Gamma}{#1} %
+}} % Gamma function e.g. \gammafn{z} => \Gamma(x)
+\newcommand{\gegenbauerpoly}[3]{\ensuremath{ %
+    \fnof{C_{#1}^{#2}}{#3} %
+}} % gegenbauer polynomial e.g. \gengenbauerpoly{1}{2}{x} => C_1^2(x)
+\newcommand{\hermitepoly}[3]{\ensuremath{ %
+    \fnof{H_{#1}}{#2} %
+}} % Hermite polynomial e.g., \hermitepoly{2}{x} => H_2(x)
+\newcommand{\laguerrepoly}[3]{\ensuremath{ %
+    \fnof{L_{#1}}{#2} %
+}} % Laguerre polynomial e.g., \laguerrepoly{1}{x} => L_1(x)
+\newcommand{\firstlegendrepoly}[3]{\ensuremath{ %
+    \fnof{P_{#1}^{#2}}{#3} %
+}} % Legendre polynomial of the first kind e.g., \firstlegendrepoly{\lambda}{\mu}{x} => P_\lambda^\mu(x)
+\newcommand{\secondlegendrepoly}[3]{\ensuremath{ %
+    \fnof{Q_{#1}^{#2}}{#3} %
+}} % Legendre polynomial of the second kind e.g., \secondlegendrepoly{\lambda}{\mu}{x} => Q_\lambda^\mu(x)
+\newcommand{\sphericalharmonicfn}[4]{\ensuremath{%
+    \fnof{Y_{{#1}{#2}}^{#3}}{#4} %
+}} % Spherical harmonic function e.g. \sphericalharmonicfn{a}{b}{c}{d} => Y_ab^c(d)
+
+%
 % Operators
 % 
-
-% Vector calculus operators
-\DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
-\DeclareMathOperator{\divop}{div} % divergence operator e.g., div A
-\DeclareMathOperator{\curlop}{curl} % curl operator e.g., curl A
-\DeclareMathOperator{\Gradop}{Grad} % Gradient operator e.g., Grad A
-\DeclareMathOperator{\Divop}{Div} % Divergence operator e.g., Div A
-\DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
 
 % Tensor operators
 \DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
@@ -845,31 +910,128 @@
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
+
+%
+% Products
+%
+\newcommand{\dotprod}[2]{ %
+  \dotprodtwo{#1}{#2} %
+} % dot product e.g., \dotprod{a}{b} => a . b
+\newcommand{\dotprodtwo}[2]{\ensuremath{ %
+    #1 \cdot #2 %
+}} % two times dot product e.g., \dotprodtwo{a}{b} => a . b
+\newcommand{\dotprodthree}[3]{\ensuremath{ %
+    #1 \cdot #2 \cdot#3 %
+}} % three times dot product e.g., \dotprodthree{a}{b}{c} => a . b . c
+\newcommand{\dotprodfour}[4]{\ensuremath{ %
+    #1 \cdot #2 \cdot #3 \cdot #4 %
+}} % four times dot product e.g., \dotprodfour{a}{b}{c}{d} => a . b . c . d
+\newcommand{\doubledotprod}[2]{ %
+  \doubledotprodtwo{#1}{#2} %
+} % double dot product e.g., \doubledotprod{A}{B} => A : B
+\newcommand{\doubledotprodtwo}[2]{\ensuremath{ %
+    #1:#2 %
+}} % two times double dot product e.g., \doubledotprodtwo{A}{B} => A : B
+\newcommand{\doubledotprodthree}[3]{\ensuremath{ %
+    #1:#2:#3 %
+}} % three times double dot product e.g., \doubledotprodthree{A}{B}{C} => A : B : C
+\newcommand{\doubledotprodfour}[4]{\ensuremath{ %
+    #1:#2:#3:#4 %
+}} % four times double dot product e.g., \doubledotprodfour{A}{B}{C}{D} => A : B : C : D
+\newcommand{\crossprod}[2]{ %
+  \crossprodtwo{#1}{#2} %
+} % cross product e.g., \crossprod{a}{b} => a x b
+\newcommand{\crossprodtwo}[2]{\ensuremath{ %
+    #1 \times #2 %
+}} % two times cross product e.g., \crossprodtwo{a}{b} => a x b
+\newcommand{\crossprodthree}[3]{\ensuremath{ %
+    #1 \times #2 \times #3 %
+}} % three times cross product e.g., \crossprodthree{a}{b}{c} => a x b x c
+\newcommand{\crossprodfour}[4]{\ensuremath{ %
+    #1\times#2\times#3\times#4 %
+}} % four times cross product e.g., \crossprodfour{a}{b}{c}{d} => a x b x c x d
+\newcommand{\innerprod}[2]{\ensuremath{ %
+    \abrac{#1,#2} %
+}} % inner product e.g. \innerprod{a,b} => <a,b>
+\newcommand{\tripleprod}[3]{ %
+  \dotprodtwo{#1}{\pbrac{\crossprodtwo{#2}{#3}}} %
+} % triple product e.g., \tripleprod{a}{b}{c} => a . (b x c)
 \newcommand{\tensorprod}[2]{ %
   \tensorprodtwo{#1}{#2} %
-} % tensor product e.g., \tensorprod{a}{b} => a Ox b.
+} % tensor product e.g., \tensorprod{a}{b} => a Ox b
 \newcommand{\tensorprodtwo}[2]{\ensuremath{ %
     #1 \otimes #2 %
-}} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b.
+}} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b
+\newcommand{\tensorprodthree}[3]{\ensuremath{ %
+    #1 \otimes #2 \otimes #3 %
+}} % tensor product three e.g., \tensorprodthree{a}{b}{c} => a Ox b 0x c
 \newcommand{\tensorprodfour}[4]{\ensuremath{ %
     #1 \otimes #2 \otimes #3 \otimes #4 %
-}} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d.
+}} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
 \newcommand{\symtensorprod}[2]{ %
   \symtensorprodtwo{#1}{#2} %
-} % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b.
+} % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b
 \newcommand{\symtensorprodtwo}[2]{\ensuremath{ %
     #1 \odot #2 %
-}} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b.
+}} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b
+\newcommand{\symtensorprodthree}[3]{\ensuremath{ %
+    #1 \odot #2 \odot #3 %
+}} % symmetric tensor product three e.g., \symtensorprodthree{a}{b}{c} => a O. b 0. c
 \newcommand{\symtensorprodfour}[4]{\ensuremath{ %
     #1 \odot #2 \odot #3 \odot #4 %
-}} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a
-% O. b O. c O. d.
-\newcommand{\wedgeprod}[2]{\ensuremath{ %
+}} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a O. b O. c O. d
+\newcommand{\wedgeprod}[2]{ %
+  \wedgeprodtwo{#1}{#2} %
+} % wedge product e.g., \wedgeprod{a}{b} => a ^ b
+\newcommand{\wedgeprodtwo}[2]{\ensuremath{ %
     #1 \wedge #2 %
-}} % wedge product e.g., \wedgeprod{a}{b} => a^b.
+}} % two times wedge product e.g., \wedgeprodtwo{a}{b} => a ^ b
+\newcommand{\wedgeprodthree}[3]{\ensuremath{ %
+    #1 \wedge #2 \wedge #3 %
+}} % three times wedge product e.g., \wedgeprodthree{a}{b}{c} => a ^ b ^ c
+\newcommand{\wedgeprodfour}[4]{\ensuremath{ %
+    #1 \wedge #2 \wedge #3 \wedge #4 %
+}} % four times wedge product e.g., \wedgeprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
 \newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
-}} % exterior product e.g., \exteriorprod{a}{b} => a^b.
+}} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
+
+%
+% Vector Calculus
+%
+
+\newcommand{\curl}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\crossprod{\nabla}{#2}} %
+  }{ %
+    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
+}} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
+\newcommand{\divergence}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\dotprod{\nabla}{#2}} %
+  }{ %
+    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
+}} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} => nabla_{x} . a
+\newcommand{\gradient}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\grad #2} %
+  }{ %
+    \ensuremath{\grad_{#1} #2} % 
+}} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x} u
+\newcommand{\laplacian}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\gradsq #2} %
+  }{ %
+    \ensuremath{\gradsq_{#1} #2} % 
+}} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} => \nabla^2_x u
+
+% Vector calculus operators
+\DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
+\DeclareMathOperator{\divop}{div} % divergence operator e.g., div A
+\DeclareMathOperator{\curlop}{curl} % curl operator e.g., curl A
+\DeclareMathOperator{\Gradop}{Grad} % Gradient operator e.g., Grad A
+\DeclareMathOperator{\Divop}{Div} % Divergence operator e.g., Div A
+\DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
 
 %
 % Matrices and vectors
