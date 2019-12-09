@@ -33,6 +33,14 @@
 \usepackage{url}
 
 %
+% Allow superimposition of symbols
+%
+\makeatletter
+\newcommand{\superimpose}[2]{%
+  {\ooalign{$#1\@firstoftwo#2$\cr\hfil$#1\@secondoftwo#2$\hfil\cr}}}
+\makeatother
+
+%
 % URL commands
 %
 \newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
@@ -462,7 +470,6 @@
 %
 % Commonly-used Math Symbols and operations
 %
-\newcommand{\transpose}[1]{\ensuremath{{#1}^{T}}} % transpose
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
 \newcommand{\conjugate}[1]{\ensuremath{ %
     \overline{#1} %                                _
@@ -518,9 +525,6 @@
 \newcommand{\invsquared}[1]{\ensuremath{ %
     {#1}^{-2}
 }} % inverse squared e.g. \invsquared{A} => A^-2
-\newcommand{\invtranspose}[1]{\ensuremath{ %
-    {#1}^{-T}
-}} % inverse transpose e.g. \invtranspose{A} => A^-T
 \newcommand{\sharpkronecker}[2]{\ensuremath{ %
     \delta^{{#1}{#2}}
 }} % sharp kronecker delta tensor e.g., \sharpkronecker{i}{j} => delta^{ij}
@@ -534,11 +538,26 @@
     \flatkronecker{#1}{#2} %
 }} % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
 \newcommand{\mixedkronecker}[2]{\ensuremath{
-    \delta_{#1}^{#2}
+    \delta^{#1}_{#2}
 }} % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
 \newcommand{\kronecker}[2]{ %
   \covarkronecker{#1}{#2} %
-} % kronecker delta tensor. Default to covariant.
+} % Kronecker delta tensor. Default to covariant.
+\newcommand{\levicitasymbol}{\ensuremath{ %
+    \epsilon %
+}} % Levi-Cita symbol e.g., \levicitasymbol => epsilon
+\newcommand{\sharplevicita}[3]{\ensuremath{ %
+    \levicitasymbol^{{#1}{#2}{#3}}
+}} % sharp Levi-Cita symbol e.g., \sharplevicita{i}{j}{k} => epsilon^{ijk}
+\newcommand{\flatlevicita}[3]{\ensuremath{
+    \levicitasymbol_{{#1}{#2}{#3}}
+}} % flat Levi-Cita symbol e.g., \flatlevicita{i}{j}{k} => epsilon_{ijk}
+\newcommand{\mixedlevicita}[2]{\ensuremath{
+    \levicitasymbol^{#1}_{#2}
+}} % mixed Levi-Cita e.g., \mixedlevicita{i}{j} => epsilon_{i}^{j}
+\newcommand{\levicita}[3]{ %
+  \flatlevicita{#1}{#2}{#3} %
+} % Levi-Cita permutation symbol. Default to covariant.
 \newcommand{\linearisationdirsymbol}{\ensuremath{ %
     \Delta%
     }} % linearisation direction symbol => \Delta
@@ -847,10 +866,10 @@
     \cotangentspacesymbol \manifold{#1} %
 }} % Cotangent bundle e.g., \cotangentbundle{M} => T^*M
 \newcommand{\pushforward}[2]{\ensuremath{ %
-    #1_{*}#2 %
+    #1_{\triangleright}#2 %
 }} % push forward e.g. \pushforward{M}{v} => M_* v
 \newcommand{\pullback}[2]{\ensuremath{ %
-    #1^{*}#2
+    #1^{\triangleleft}#2
 }} % pull back e.g., \pullback{M}{v} => M^* v
 \newcommand{\christoffel}[3]{ %
   \christoffelsecond{#1}{#2}{#3}
@@ -903,52 +922,173 @@
 %\newcommand{\tensor}[1]{\ensuremath{\mathbf{#1}}} % tensor
 \newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
 \newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
+\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\tensortwo}[1]{\ensuremath{\boldsymbol{\mathit{#1}}}} % 2nd order tensor
 \newcommand{\tensorthree}[1]{\ensuremath{\boldsymbol{\mathrm{#1}}}} % 3rd order tensor
 \newcommand{\tensorfour}[1]{\ensuremath{\boldsymbol{\mathsf{#1}}}} % 4th order tensor
-\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
 
 %
+% Transposes
+%
+\newcommand{\transpose}[1]{
+  \fulltranspose{#1}
+} % transpose e.g., \transpose{A} => A^T
+\newcommand{\invtranspose}[1]{ %
+  \invfulltranspose{#1}
+} % inverse transpose e.g. \invtranspose{A} => A^-T
+\newcommand{\fulltransposeop}{\ensuremath{ %
+    \top %
+}} % full transpose op
+\newcommand{\fulltranspose}[1]{\ensuremath{ %
+    {#1}^{\fulltransposeop} %
+}} % full transpose e.g., \fulltranspose{A} => A^H
+\newcommand{\invfulltranspose}[1]{\ensuremath{ %
+    {#1}^{-\fulltransposeop} %
+}} % inverse full transpose e.g., \invfulltranspose{A} => A^-T
+\newcommand{\swaptransposeop}{\ensuremath{ %
+%    \sim %
+    \setminus %
+}} % swap transpose op
+\newcommand{\swaptranspose}[1]{\ensuremath{ %
+    {#1}^{\swaptransposeop} %
+}} % swap transpose e.g., \righttranspose{A} => A^~
+\newcommand{\lefttransposeop}{\ensuremath{ %
+    \vdash %
+}} % left transpose op
+\newcommand{\lefttranspose}[1]{\ensuremath{ %
+    {#1}^{\lefttransposeop} %
+}} % left transpose e.g., \lefttranspose{A} => A^T
+\newcommand{\leftrighttransposeop}{\ensuremath{ %
+    \bot %
+}} % left right transpose op
+\newcommand{\leftrighttranspose}[1]{\ensuremath{ %
+    {#1}^{\leftrighttransposeop} %
+}} % left right transpose e.g., \righttranspose{A} => A^(inv T)
+\newcommand{\righttransposeop}{\ensuremath{ %
+    \dashv %
+}} % right transpose op
+\newcommand{\righttranspose}[1]{\ensuremath{ %
+    {#1}^{\righttransposeop} %
+}} % right transpose e.g., \righttranspose{A} => A^(inv T)
+\newcommand{\innertransposeop}{\ensuremath{ %
+    \rightthreetimes %
+}} % inner transpose op
+\newcommand{\innertranspose}[1]{\ensuremath{ %
+    {#1}^{\innertransposeop} %
+}} % inner transpose e.g., \innertranspose{A} => A^|-
+\newcommand{\outertransposeop}{\ensuremath{ %
+    \leftthreetimes %
+}} % outer transpose op
+\newcommand{\outertranspose}[1]{\ensuremath{ %
+    {#1}^{\outertransposeop} %
+}} % outer transpose e.g., \outertranspose{A} => A^-|
+\newcommand{\xtransposeop}{\ensuremath{ %
+    \times %
+}} % outer transpose op
+\newcommand{\xtranspose}[1]{\ensuremath{ %
+    {#1}^{\xtransposeop} %
+}} % x transpose e.g., \xtranspose{A} => A^X
+\newcommand{\algebraictransposeop}{\ensuremath{ %
+    \top %
+}} % algebraic transpose op
+\newcommand{\algebraictranspose}[1]{\ensuremath{ %
+    {#1}^{\algebraictransposeop} %
+}} % algebraic transpose e.g., \algebraictranspose{A} => A^T
+\newcommand{\metrictransposeop}{\ensuremath{ %
+    t %
+}} % transpose op
+\newcommand{\metrictranspose}[1]{\ensuremath{ %
+    {#1}^{\metrictransposeop} %
+}} % metric transpose
+
+
+%
 % Products
 %
+\newcommand{\directsumop}{\ensuremath{ %
+    \oplus %
+}} % direct sum operator symbol
+\newcommand{\directsum}[2]{ %
+  \directsumtwo{#1}{#2} %
+} % direct sum e.g., \directsum{a}{b} => a 0+ b
+\newcommand{\directsumtwo}[2]{\ensuremath{ %
+    #1 \directsumop #2 %
+}} % two times direct sum e.g., \directsumtwo{a}{b} => a 0+ b
+\newcommand{\directsumthree}[3]{\ensuremath{ %
+    #1 \directsumop #2 \directsumop #3 %
+}} % three times direct sum e.g., \directsumthree{a}{b}{c} => a 0+ b 0+ c
+\newcommand{\directsumfour}[4]{\ensuremath{ %
+    #1 \directsumop #2 \directsumop #3 \directsumop #4 %
+}} % four times direct sum e.g., \directsumfour{a}{b}{c}{d} => a 0+ b 0+ c 0+
+% d
+\newcommand{\dotprodop}{\ensuremath{ %
+    \cdot %
+}} % dot product operator symbol
 \newcommand{\dotprod}[2]{ %
   \dotprodtwo{#1}{#2} %
 } % dot product e.g., \dotprod{a}{b} => a . b
 \newcommand{\dotprodtwo}[2]{\ensuremath{ %
-    #1 \cdot #2 %
+    #1 \dotprodop #2 %
 }} % two times dot product e.g., \dotprodtwo{a}{b} => a . b
 \newcommand{\dotprodthree}[3]{\ensuremath{ %
-    #1 \cdot #2 \cdot#3 %
+    #1 \dotprodop #2 \dotprodop #3 %
 }} % three times dot product e.g., \dotprodthree{a}{b}{c} => a . b . c
 \newcommand{\dotprodfour}[4]{\ensuremath{ %
-    #1 \cdot #2 \cdot #3 \cdot #4 %
+    #1 \dotprodop #2 \dotprodop #3 \dotprodop #4 %
 }} % four times dot product e.g., \dotprodfour{a}{b}{c}{d} => a . b . c . d
+\newcommand{\doubledotprodop}{\ensuremath{ %
+    : %
+}} % double dot product operator symbol
 \newcommand{\doubledotprod}[2]{ %
   \doubledotprodtwo{#1}{#2} %
 } % double dot product e.g., \doubledotprod{A}{B} => A : B
 \newcommand{\doubledotprodtwo}[2]{\ensuremath{ %
-    #1:#2 %
+    #1\doubledotprodop#2 %
 }} % two times double dot product e.g., \doubledotprodtwo{A}{B} => A : B
 \newcommand{\doubledotprodthree}[3]{\ensuremath{ %
-    #1:#2:#3 %
+    #1\doubledotprodop#2\doubledotprodop#3 %
 }} % three times double dot product e.g., \doubledotprodthree{A}{B}{C} => A : B : C
 \newcommand{\doubledotprodfour}[4]{\ensuremath{ %
-    #1:#2:#3:#4 %
+    #1\doubledotprodop#2\doubledotprodop#3\doubledotprodop#4 %
 }} % four times double dot product e.g., \doubledotprodfour{A}{B}{C}{D} => A : B : C : D
+\newcommand{\upperdoubledotprodop}{\ensuremath{ %
+    \, \overline{\cdot\cdot} \, %
+}} % upper double dot product operator symbol
+\newcommand{\upperdoubledotprod}[2]{\ensuremath{ %
+    #1\upperdoubledotprodop#2 %
+}} % upper double dot product e.g., \upperdoubledotprod{A}{B} => A ..- B
+\newcommand{\lowerdoubledotprodop}{\ensuremath{ %
+    \, \underline{\cdot\cdot} \, %
+}} % lower double dot product operator symbol
+\newcommand{\lowerdoubledotprod}[2]{\ensuremath{ %
+    #1\lowerdoubledotprodop#2 %
+}} % lower double dot product e.g., \lowerdoubledotprod{A}{B} => A .._ B
+\newcommand{\quaddotprodop}{\ensuremath{ %
+    :: %
+}} % quadruple dot product operator symbol
+\newcommand{\quaddotprod}[2]{ %
+  \quaddotprodtwo{#1}{#2} %
+} % quadruple dot product e.g., \quaddotprod{A}{B} => A :: B
+\newcommand{\quaddotprodtwo}[2]{\ensuremath{ %
+    #1\quaddotprodop#2 %
+}} % two times quadruple dot product e.g., \quaddotprodtwo{A}{B} => A :: B
+\newcommand{\crossprodop}{\ensuremath{ %
+    \times %
+}} % cross product operator symbol
 \newcommand{\crossprod}[2]{ %
   \crossprodtwo{#1}{#2} %
 } % cross product e.g., \crossprod{a}{b} => a x b
 \newcommand{\crossprodtwo}[2]{\ensuremath{ %
-    #1 \times #2 %
+    #1\crossprodop#2 %
 }} % two times cross product e.g., \crossprodtwo{a}{b} => a x b
 \newcommand{\crossprodthree}[3]{\ensuremath{ %
-    #1 \times #2 \times #3 %
+    #1\crossprodop#2\crossprodop#3 %
 }} % three times cross product e.g., \crossprodthree{a}{b}{c} => a x b x c
 \newcommand{\crossprodfour}[4]{\ensuremath{ %
-    #1\times#2\times#3\times#4 %
+    #1\crossprodop#2\crossprodop#3\crossprodop#4 %
 }} % four times cross product e.g., \crossprodfour{a}{b}{c}{d} => a x b x c x d
 \newcommand{\innerprod}[2]{\ensuremath{ %
     \abrac{#1,#2} %
@@ -956,45 +1096,316 @@
 \newcommand{\tripleprod}[3]{ %
   \dotprodtwo{#1}{\pbrac{\crossprodtwo{#2}{#3}}} %
 } % triple product e.g., \tripleprod{a}{b}{c} => a . (b x c)
+\newcommand{\tensorprodop}{\ensuremath{ %
+    \otimes %
+}} % tensor product operator symbol
 \newcommand{\tensorprod}[2]{ %
   \tensorprodtwo{#1}{#2} %
 } % tensor product e.g., \tensorprod{a}{b} => a Ox b
 \newcommand{\tensorprodtwo}[2]{\ensuremath{ %
-    #1 \otimes #2 %
+    #1\tensorprodop#2 %
 }} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b
 \newcommand{\tensorprodthree}[3]{\ensuremath{ %
-    #1 \otimes #2 \otimes #3 %
+    #1\tensorprodop#2\tensorprodop#3 %
 }} % tensor product three e.g., \tensorprodthree{a}{b}{c} => a Ox b 0x c
 \newcommand{\tensorprodfour}[4]{\ensuremath{ %
-    #1 \otimes #2 \otimes #3 \otimes #4 %
+    #1\tensorprodop#2\tensorprodop#3\tensorprodop#4 %
 }} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\uppertensorprodop}{\ensuremath{ %
+   \, \overline{\otimes} \, %
+}} % upper tensor product operator symbol
+\newcommand{\uppertensorprod}[2]{ %
+  \uppertensorprodtwo{#1}{#2} %
+} % "upper" tensor product e.g., \uppertensorprod{a}{b} => a Ox b
+\newcommand{\uppertensorprodtwo}[2]{\ensuremath{ %
+    #1\uppertensorprodop#2 %
+}} % "upper" tensor product two e.g., \uppertensorprodtwo{a}{b} => a Ox b
+\newcommand{\uppertensorprodthree}[3]{\ensuremath{ %
+    #1\uppertensorprodop#2\uppertensorprodop#3 %
+}} % "upper" tensor product three e.g., \uppertensorprodthree{a}{b}{c} => a Ox b 0x c
+\newcommand{\uppertensorprodfour}[4]{\ensuremath{ %
+    #1\uppertensorprodop#2\uppertensorprodop#3\uppertensorprodop#4 %
+}} % "upper" tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\lowertensorprodop}{\ensuremath{ %
+    \, \underline{\otimes} \, %
+}} % upper tensor product operator symbol
+\newcommand{\lowertensorprod}[2]{ %
+  \lowertensorprodtwo{#1}{#2} %
+} % "lower" tensor product e.g., \lowertensorprod{a}{b} => a Ox b
+\newcommand{\lowertensorprodtwo}[2]{\ensuremath{ %
+    #1\lowertensorprodop#2 %
+}} % "lower" tensor product two e.g., \lowertensorprodtwo{a}{b} => a Ox b
+\newcommand{\lowertensorprodthree}[3]{\ensuremath{ %
+    #1\lowertensorprodop#2\lowertensorprodop#3 %
+}} % "lower" tensor product three e.g., \lowertensorprodthree{a}{b}{c} => a Ox b 0x c
+\newcommand{\lowertensorprodfour}[4]{\ensuremath{ %
+    #1\lowertensorprodop#2\lowertensorprodop#3\lowertensorprodop#4 %
+}} % "lower" tensor product four e.g., \lowerprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\symtensorprodop}{\ensuremath{ %
+    \odot %
+}} % symmetric tensor product operator symbol
 \newcommand{\symtensorprod}[2]{ %
   \symtensorprodtwo{#1}{#2} %
 } % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b
 \newcommand{\symtensorprodtwo}[2]{\ensuremath{ %
-    #1 \odot #2 %
+    #1\symtensorprodop#2 %
 }} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b
 \newcommand{\symtensorprodthree}[3]{\ensuremath{ %
-    #1 \odot #2 \odot #3 %
+    #1\symtensorprodop#2\symtensorprodop#3 %
 }} % symmetric tensor product three e.g., \symtensorprodthree{a}{b}{c} => a O. b 0. c
 \newcommand{\symtensorprodfour}[4]{\ensuremath{ %
-    #1 \odot #2 \odot #3 \odot #4 %
+    #1\symtensorprodop#2\symtensorprodop#3\symtensorprodop#4 %
 }} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a O. b O. c O. d
+\newcommand{\antisymtensorprodop}{\ensuremath{ %
+    \circledast %
+}} % anti symmetric tensor product operator symbol
+\newcommand{\antisymtensorprod}[2]{ %
+  \antisymtensorprodtwo{#1}{#2} %
+} % anti symmetric tensor product e.g., \antisymtensorprod{a}{b} => a O* b
+\newcommand{\antisymtensorprodtwo}[2]{\ensuremath{ %
+    #1\antisymtensorprodop#2 %
+}} % anti symmetric tensor product two e.g., \antisymtensorprodtwo{a}{b} => a O* b
+\newcommand{\antisymtensorprodthree}[3]{\ensuremath{ %
+    #1\antisymtensorprodop#2\antisymtensorprodop#3 %
+}} % anti symmetric tensor product three e.g., \antisymtensorprodthree{a}{b}{c} => a O* b 0* c
+\newcommand{\antisymtensorprodfour}[4]{\ensuremath{ %
+    #1\antisymtensorprodop#2\antisymtensorprodop#3\antisymtensorprodop#4 %
+}} % anti symmetric tensor product four e.g., \antisymtensorprodfour{a}{b}{c}{d} => a O* b O* c O* d
+\newcommand{\wedgeprodop}{\ensuremath{ %
+    \wedge %
+}} % wedge product operator symbol
 \newcommand{\wedgeprod}[2]{ %
   \wedgeprodtwo{#1}{#2} %
 } % wedge product e.g., \wedgeprod{a}{b} => a ^ b
 \newcommand{\wedgeprodtwo}[2]{\ensuremath{ %
-    #1 \wedge #2 %
+    #1\wedgeprodop#2 %
 }} % two times wedge product e.g., \wedgeprodtwo{a}{b} => a ^ b
 \newcommand{\wedgeprodthree}[3]{\ensuremath{ %
-    #1 \wedge #2 \wedge #3 %
+    #1\wedgeprodop#2\wedgeprodop#3 %
 }} % three times wedge product e.g., \wedgeprodthree{a}{b}{c} => a ^ b ^ c
 \newcommand{\wedgeprodfour}[4]{\ensuremath{ %
-    #1 \wedge #2 \wedge #3 \wedge #4 %
+    #1\wedgeprodop#2\wedgeprodop#3\wedgeprodop#4 %
 }} % four times wedge product e.g., \wedgeprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
 \newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
 }} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
+
+
+%
+% Special tensors
+%
+
+% Null tensor
+
+\newcommand{\nulltensorsymbol}{\ensuremath{ %
+    0 %
+}} % null tensor symbol
+
+\newcommand{\nulltensor}{\ensuremath{ %
+    \nulltensortwo %
+}} % null tensor e.g., \nulltensor => 0
+\newcommand{\nulltensorone}{\ensuremath{ %
+    \vectr{\nulltensorsymbol} %
+}} % first order null tensor e.g., \nulltensorone => 0
+\newcommand{\nulltensortwo}{\ensuremath{ %
+    \tensortwo{\nulltensorsymbol} %
+}} % second order null tensor e.g., \nulltensortwo => 0
+\newcommand{\nulltensorthree}{\ensuremath{ %
+    \tensorthree{\nulltensorsymbol} %
+}} % third order null tensor e.g., \nulltensorthree => 0
+\newcommand{\nulltensorfour}{\ensuremath{ %
+    \tensorfour{\nulltensorsymbol} %
+}} % fourth order null tensor e.g., \nulltensorfour => 0
+
+% Identity tensor
+
+\newcommand{\materialidentitytensorsymbol}{\ensuremath{ %
+    I %
+}} % material identity operator symbol
+\newcommand{\spatialidentitytensorsymbol}{\ensuremath{ %
+    i %
+}} % spatial identity operator symbol
+\newcommand{\standardidentitytensorsymbol}{\ensuremath{ %
+    I %
+}} % standard identity operator symbol
+
+\newcommand{\identitytensor}{\ensuremath{ %
+    \genericidentitytensortwo{\standardidentitytensorsymbol} %
+}} % identity tensor e.g., \identitytensor => I
+\newcommand{\identitytensorone}{\ensuremath{ %
+    \vectr{1} %
+}} % first order identity tensor e.g., \identitytensorone => I
+\newcommand{\materialidentitytensortwo}{\ensuremath{ %
+    \generictensortwo{\materialidentitytensorsymbol} %
+}} % material second order identity tensor e.g., \materialidentitytensortwo => I
+\newcommand{\materialidentitytensorfour}{\ensuremath{ %
+    \generictensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order identity tensor e.g., \materialidentitytensorfour => I
+\newcommand{\materialupperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order upper identity tensor e.g., \materialupperidentitytensorfour => I^_
+\newcommand{\materialloweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order upperlower identity tensor e.g., \materialloweridentitytensorfour => I_
+\newcommand{\materialsymidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order symmetric identity tensor e.g., \materialsymidentitytensorfour => I_
+\newcommand{\materialantisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order antisymmetric identity tensor e.g., \materialantisymidentitytensorfour => I~
+
+\newcommand{\spatialidentitytensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialidentitytensorsymbol} %
+}} % spatial second order identity tensor e.g., \spatialidentitytensortwo => i
+\newcommand{\spatialidentitytensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order identity tensor e.g., \spatialidentitytensorfour => i
+\newcommand{\spatialupperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order upper identity tensor e.g., \spatialupperidentitytensorfour => i^_
+\newcommand{\spatialloweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order upperlower identity tensor e.g., \spatialloweridentitytensorfour => i_
+\newcommand{\spatialsymidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order symmetric identity tensor e.g., \spatialsymidentitytensorfour => i_
+\newcommand{\spatialantisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order antisymmetric identity tensor e.g., \spatialantisymidentitytensorfour => i^
+
+\newcommand{\identitytensortwo}{\ensuremath{ %
+    \generictensortwo{\standardidentitytensorsymbol} %
+}} % second order identity tensor e.g., \identitytensortwo => I
+\newcommand{\identitytensorfour}{\ensuremath{ %
+    \generictensorfour{\standardidentitytensorsymbol} %
+}} % fourth order identity tensor e.g., \identitytensorfour => I
+\newcommand{\upperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\standardidentitytensorsymbol} %
+}} % fourth order upper identity tensor e.g., \upperidentitytensorfour => I^_
+\newcommand{\loweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\standardidentitytensorsymbol} %
+}} % fourth order upperlower identity tensor e.g., \loweridentitytensorfour => I_
+\newcommand{\symidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\standardidentitytensorsymbol} %
+}} % fourth order symmetric identity tensor e.g., \symidentitytensorfour => I_
+\newcommand{\antisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\standardidentitytensorsymbol} %
+}} % fourth order antisymmetric identity tensor e.g., \antisymidentitytensorfour => I^
+
+% Deviatoric tensor
+
+\newcommand{\materialdeviatorictensorsymbol}{\ensuremath{ %
+    M %
+}} % material deviatoric tensor symbol
+\newcommand{\spatialdeviatorictensorsymbol}{\ensuremath{ %
+    m %
+}} % spatial deviatoric tensor symbol
+
+\newcommand{\materialdeviatorictensortwo}{\ensuremath{ %
+    \generictensortwo{\materialdeviatorictensorsymbol} %
+}} % material second order deviatoric tensor e.g., \materialdeviatorictensortwo => M
+\newcommand{\materialdeviatorictensorfour}{\ensuremath{ %
+    \generictensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order deviatoric tensor e.g., \materialdeviatorictensorfour => M
+\newcommand{\materialupperdeviatorictensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order upper deviatoric tensor e.g., \materialupperdeviatorictensorfour => M^_
+\newcommand{\materiallowerdeviatorictensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order upperlower deviatoric tensor e.g., \materiallowerdeviatorictensorfour => M_
+\newcommand{\materialsymdeviatorictensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order symmetric deviatoric tensor e.g., \materialsymdeviatorictensorfour => M_
+\newcommand{\materialantisymdeviatorictensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order antisymmetric deviatoric tensor e.g., \materialantisymdeviatorictensorfour => M~
+
+\newcommand{\spatialdeviatorictensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialdeviatorictensorsymbol} %
+}} % spatial second order deviatoric tensor e.g., \spatialdeviatorictensortwo => m
+\newcommand{\spatialdeviatorictensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order deviatoric tensor e.g., \spatialdeviatorictensorfour => m
+\newcommand{\spatialupperdeviatorictensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order upper deviatoric tensor e.g., \spatialupperdeviatorictensorfour => m^_
+\newcommand{\spatiallowerdeviatorictensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order upperlower deviatoric tensor e.g., \spatiallowerdeviatorictensorfour => m_
+\newcommand{\spatialsymdeviatorictensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order symmetric deviatoric tensor e.g., \spatialsymdeviatorictensorfour => m_
+\newcommand{\spatialantisymdeviatorictensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order antisymmetric deviatoric tensor e.g., \spatialantisymdeviatorictensorfour => m^
+
+% Spherical tensor
+
+\newcommand{\materialsphericaltensorsymbol}{\ensuremath{ %
+    K %
+}} % material spherical tensor symbol
+\newcommand{\spatialsphericaltensorsymbol}{\ensuremath{ %
+    k %
+}} % spatial spherical tensor symbol
+
+\newcommand{\materialsphericaltensortwo}{\ensuremath{ %
+    \generictensortwo{\materialsphericaltensorsymbol} %
+}} % material second order spherical tensor e.g., \materialsphericaltensortwo => K
+\newcommand{\materialsphericaltensorfour}{\ensuremath{ %
+    \generictensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order spherical tensor e.g., \materialsphericaltensorfour => K
+\newcommand{\materialuppersphericaltensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order upper spherical tensor e.g., \materialuppersphericaltensorfour => K^_
+\newcommand{\materiallowersphericaltensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order upperlower spherical tensor e.g., \materiallowersphericaltensorfour => K_
+\newcommand{\materialsymsphericaltensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order symmetric spherical tensor e.g., \materialsymsphericaltensorfour => K_
+\newcommand{\materialantisymsphericaltensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order antisymmetric spherical tensor e.g., \materialantisymsphericaltensorfour => K~
+
+\newcommand{\spatialsphericaltensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialsphericaltensorsymbol} %
+}} % spatial second order spherical tensor e.g., \spatialsphericaltensortwo => k
+\newcommand{\spatialsphericaltensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order spherical tensor e.g., \spatialsphericaltensorfour => k
+\newcommand{\spatialuppersphericaltensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order upper spherical tensor e.g., \spatialuppersphericaltensorfour => k^_
+\newcommand{\spatiallowersphericaltensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order upperlower spherical tensor e.g., \spatiallowersphericaltensorfour => k_
+\newcommand{\spatialsymsphericaltensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order symmetric spherical tensor e.g., \spatialsymsphericaltensorfour => k_
+\newcommand{\spatialantisymsphericaltensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order antisymmetric spherical tensor e.g., \spatialantisymsphericaltensorfour => k^
+
+% Generic tensor
+
+\newcommand{\generictensortwo}[1]{\ensuremath{ %
+    \tensortwo{#1} %
+}} % generic second order tensor e.g., \generictensortwo{I} => I
+\newcommand{\generictensorfour}[1]{\ensuremath{ %
+    \tensorfour{#1} %
+}} % generic fourth order tensor e.g., \generictensorfour{I} => I
+\newcommand{\genericuppertensorfour}[1]{\ensuremath{ %
+    \overline{\tensorfour{#1}} %
+}} % generic fourth order upper tensor e.g., \genericuppertensorfour{I} => I^_
+\newcommand{\genericlowertensorfour}[1]{\ensuremath{ %
+    \underline{\tensorfour{#1}} %
+}} % generic fourth order lower tensor e.g., \genericlowertensorfour{I} => I_
+\newcommand{\genericsymtensorfour}[1]{\ensuremath{ %
+    \overline{\underline{\tensorfour{#1}}} %
+}} % generic fourth order symmetric tensor e.g., \genericsymtensorfour{I} => I_
+\newcommand{\genericantisymtensorfour}[1]{\ensuremath{ %
+    \tilde{\tensorfour{#1}} %
+}} % generic fourth order antisymmetric tensor e.g., \genericantisymtensorfour{I} => I^
 
 %
 % Vector Calculus

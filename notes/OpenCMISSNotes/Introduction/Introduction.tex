@@ -1,3 +1,48 @@
 \chapter{Introduction}
-\label{cha:introduction}
+\label{cha:Introduction}
 
+\section{Notation}
+\label{sec:Notation}
+
+ 
+\subsection{Vector and Tensors}
+\label{subsec:VectorTensorNotation}
+
+The following formatting will be used throughout theses notes for scalars, vectors, and tensors.
+\begin{equation}
+  \begin{split}
+    a, b, c, \ldots & \quad\text{Scalars or $0^{th}$ order tensors} \\
+    \vectr{a},\vectr{b},\vectr{c}, \ldots & \quad\text{Vectors or $1^{st}$ order
+      tensors} \\
+    \tensortwo{A},\tensortwo{B},\tensortwo{C}, \ldots & \quad\text{Dyadics or $2^{nd}$ order
+      tensors} \\
+    \tensorthree{A},\tensorthree{B},\tensorthree{C}, \ldots & \quad\text{Triadics or $3^{rd}$
+      order tensors} \\
+    \tensorfour{A},\tensorfour{B},\tensorfour{C}, \ldots & \quad\text{Tetradics or $4^{th}$
+      order tensors}
+  \end{split}
+\end{equation}
+
+\subsection{Summation Notation}
+\label{subsec:SummationNotation}
+
+The following (Einstein) summation notation\index{Summation Notation} will be
+used throughout these notes. In order to eliminate summation symbols repeated
+``dummy'' indices will be used \ie
+\begin{equation}
+  \gsum{i=1}{n}{a^{i}b_{i}}=a^{i}b_{i}
+\end{equation}
+
+To indicate an index that is not summed, parentheses will be used
+\ie $a^{(i)}b_{(i)}$ is talking about the singular expression for $i$ \eg
+$a^{1}b_{1}$, $a^{2}b_{2}$ \etc
+
+In order to indicate a summation the sum must occur over indices that are
+different sub/super-script \ie the sum must be over an ``upper'' and a
+``lower'' index or a ``lower'' and an ``upper'' index. Note that it may be
+useful to remember that if an index appears in the denominator of a fractional
+expression then the index upper- or lower- ness is ``reversed''. 
+
+For some quantities with both upper and lower indices a dot will be used to
+indicate the ``second'' index \eg in the expression $A^{i}_{.j}$ then $i$ can
+be considered the first index and $j$ the second index.

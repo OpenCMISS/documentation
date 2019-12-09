@@ -594,15 +594,15 @@ Now
 \end{equation}
 and so
 \begin{equation}
-  \delby{C_{DE}}{F^{j}_{B}}=\mixedkronecker{D}{B}F^{k}_{E}g_{jk}+F^{l}_{D}\mixedkronecker{E}{B}g_{lj}
+  \delby{C_{DE}}{F^{j}_{B}}=\mixedkronecker{B}{D}F^{k}_{E}g_{jk}+F^{l}_{D}\mixedkronecker{B}{E}g_{lj}
 \end{equation}
 
 Substituting this into the above equation gives
 \begin{equation}
   \begin{split}
-    \delby{P^{iA}}{F^{j}_{B}}&=C^{CADE}\pbrac{\mixedkronecker{D}{B}F^{k}_{E}g_{jk}+
-      F^{l}_{D}\mixedkronecker{E}{B}g_{lj}}F^{i}_{C}+T^{CA}\mixedkronecker{i}{j}\mixedkronecker{C}{B}\\
-    &=C^{CABE}F^{k}_{E}F^{i}_{C}g_{jk}+C^{CADE}F^{l}_{D}F^{i}_{C}g_{lj}+T^{BA}\mixedkronecker{j}{i}
+    \delby{P^{iA}}{F^{j}_{B}}&=C^{CADE}\pbrac{\mixedkronecker{B}{D}F^{k}_{E}g_{jk}+
+      F^{l}_{D}\mixedkronecker{B}{E}g_{lj}}F^{i}_{C}+T^{CA}\mixedkronecker{j}{i}\mixedkronecker{B}{C}\\
+    &=C^{CABE}F^{k}_{E}F^{i}_{C}g_{jk}+C^{CADE}F^{l}_{D}F^{i}_{C}g_{lj}+T^{BA}\mixedkronecker{i}{j}
   \end{split}
 \end{equation}
 
@@ -613,7 +613,7 @@ Now, using the symmetries $C^{CABE}=C^{CAEB}$ and $T^{AB}=T^{BA}$ we have
 \end{equation}
 or
 \begin{equation}
-  A^{iAB}_{j}=2C^{CADB}F^{k}_{D}F^{i}_{C}g_{kj}+T^{AB}\mixedkronecker{j}{i}
+  A^{iAB}_{j}=2C^{CADB}F^{k}_{D}F^{i}_{C}g_{kj}+T^{AB}\mixedkronecker{i}{j}
 \end{equation}
 
 Now, we can also define the \emph{first spatial elasticity tensor}\symbolat{$\tensorfour{a}$}{First spatial
@@ -642,7 +642,7 @@ The relationship between $\tensorfour{a}$ and $\tensorfour{c}$ is given by
 \end{equation}
 or
 \begin{equation}
-  a^{ikl}_{j}=c^{ikml}g_{mj}+\sigma^{kl}\mixedkronecker{j}{i}
+  a^{ikl}_{j}=c^{ikml}g_{mj}+\sigma^{kl}\mixedkronecker{i}{j}
 \end{equation}
 
 There is also a relationship between $\tensorfour{A}$ and $\tensorfour{a}$
@@ -783,12 +783,14 @@ isochoric/deviatoric part and a volumetric/spherical part \ie
   \begin{split}
     \fnof{W}{\tensor{C}} &=
     \fnof{W_{\Devop}}{\tensor{C}}+\fnof{W_{\Sphop}}{\tensor{C}} \\
-    &=\fnof{W_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensor{C}}}+\fnof{W_{\Sphop}}{\fnof{J}{\tensor{C}}}\\
+    &=\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensor{C}}}+\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensor{C}}}\\
     &=\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensor{C}},\fnof{J}{\tensor{C}}}
   \end{split}
 \end{equation}
-where $\fnof{\bar{W}}{\bar{\tensor{C}},J}$ is the \emph{modified strain energy function},
-$\fnof{J}{\tensor{C}}$ is the Jacobian which quantifies volume change and
+where
+$\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}$
+is the \emph{modified strain energy function}, $\fnof{J}{\tensor{C}}$ is the
+Jacobian which quantifies volume change and
 $\fnof{\bar{\tensor{C}}}{\tensor{C}}$, is the modified right Cauchy-Green
 deformation tensor.
 
@@ -796,16 +798,19 @@ The second Piola-Kirchoff stress can now be obtained from
 \begin{equation}
   \begin{split}
     \fnof{\tensor{S}}{\tensor{C}} &= 2\delby{\fnof{W}{\tensor{C}}}{\tensor{C}} \\
-    &=2\delby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{\tensor{C}}\\
-    &=2\doubledotprod{\delby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{\bar{\tensor{C}}}}{\delby{\bar{\tensor{C}}}{\tensor{C}}}+2\delby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{J}\delby{J}{\tensor{C}}
+    &=2\delby{\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\tensor{C}}\\
+    &=2\doubledotprod{
+      \delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}
+    }{\delby{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}{\tensor{C}}}
+      +2\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{J}\delby{\fnof{J}{\tensortwo{C}}}{\tensor{C}}
   \end{split}
 \end{equation}
 or equivalently
 \begin{equation}
   \begin{split}
     \fnof{\tensor{S}}{\tensor{E}} &= \delby{\fnof{W}{\tensor{E}}}{\tensor{E}} \\
-    &=\delby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{\tensor{E}}\\
-    &=\doubledotprod{\delby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{\bar{\tensor{E}}}}{\delby{\bar{\tensor{E}}}{\tensor{E}}}+\delby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{J}\delby{J}{\tensor{E}}
+    &=\delby{\fnof{\bar{W}}{\fnof{\bar{\tensor{E}}}{\tensortwo{E}},\fnof{J}{\tensortwo{E}}}}{\tensor{E}}\\
+    &=\doubledotprod{\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}}{\bar{\tensor{E}}}}{\delby{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}{\tensor{E}}}+\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{E}}}}{J}\delby{\fnof{J}{\tensortwo{E}}}{\tensor{E}}
   \end{split}
 \end{equation}
 
@@ -813,43 +818,125 @@ We now define $\bar{\tensor{S}}$ as the \emph{second Piola-Kirchoff psuedo
   stress tensor}\symbolat{$\bar{\tensortwo{S}}$}{second Piola-Kirchoff
   psuedo stress tensor} \ie 
 \begin{equation}
-  \bar{\tensor{S}}=2\delby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{\bar{\tensor{C}}}=\delby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{\bar{\tensor{E}}}
+  \bar{\tensor{S}}=2\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}}{\bar{\tensor{C}}}=\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}}{\bar{\tensor{E}}}
 \end{equation}
 and
 \begin{equation}
-  p = -\delby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{J}= -\delby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{J}
+  p = -\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{J}= -\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{E}}}}{J}
 \end{equation}
 as the \emph{hydrostatic pressure} to give
 \begin{align}
-  \tensor{S}&=\doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{C}}}{\tensor{C}}}-2p\delby{J}{\tensor{C}}\\
-  &=\doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{E}}}{\tensor{E}}}-p\delby{J}{\tensor{E}}
+  \fnof{\tensor{S}}{\tensortwo{C}}
+  &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}{\tensor{C}}}
+  -2p\delby{\fnof{J}{\tensortwo{C}}}{\tensor{C}}
+  \label{eqn:PK2StressC1} \\
+  \fnof{\tensor{S}}{\tensortwo{E}}
+  &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}}{\delby{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}{\tensor{E}}}
+  -p\delby{\fnof{J}{\tensortwo{E}}}{\tensor{E}}
+  \label{eqn:PK2StressE1}
 \end{align}
- 
-Using 
-\begin{align}
-  \delby{J}{\tensor{C}}&=\dfrac{J}{2}\tensor{B} \\
-  \delby{J}{\tensor{E}}&=J\tensor{B}\\
-  \delby{\bar{\tensor{C}}}{\tensor{C}}&=J^{-\frac{2}{3}}\pbrac{\transpose{\tensorfour{I}}-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}\\
-  \delby{\bar{\tensor{E}}}{\tensor{E}}&=J^{-\frac{2}{3}}\pbrac{\transpose{\tensorfour{I}}-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}\\\end{align}
-we can thus find that
+
+Now, as $\fnof{J}{\tensortwo{C}}=\sqrt{\determinant{\tensortwo{C}}}$ and using
+\eqnref{eqn:DerivDeterminantTensorSecondOrder} we have
 \begin{equation}
   \begin{split}
-    \fnof{\tensor{S}}{\tensor{C}}&=\doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{C}}}{\tensor{C}}}-2p\delby{J}{\tensor{C}}\\
-    &=
-    \doubledotprod{\bar{\tensor{S}}}{J^{-\frac{2}{3}}\pbrac{\transpose{\tensorfour{I}}-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
-    &=\tensor{S}_{\pullback{\Devop}{}}+\tensor{S}_{\pullback{\Sphop}{}}
+    \delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}&=\dfrac{1}{2\sqrt{\determinant{\tensortwo{C}}}}\delby{\pbrac{\determinant{\tensortwo{C}}}}{\tensortwo{C}}\\
+    &=\dfrac{1}{2\sqrt{\determinant{\tensortwo{C}}}}\determinant{\tensortwo{C}}\invtranspose{\tensortwo{C}}\\
+    &=\dfrac{1}{2}\sqrt{\determinant{\tensortwo{C}}}\invtranspose{\tensortwo{C}}\\
+    &=\dfrac{\fnof{J}{\tensortwo{C}}}{2}\invtranspose{\tensortwo{C}}
   \end{split}
-  \label{eqn:decomposedSecondPKinC}
+\end{equation}
+or by using \eqnref{eqn:InverseTransposeInverseTensorTwo} and since
+$\tensortwo{C}$ is symmetric, we have
+\begin{equation}
+  \begin{split}
+    \delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}&=\dfrac{\fnof{J}{\tensortwo{C}}}{2}\inverse{\tensortwo{C}}\\
+    &=\dfrac{\fnof{J}{\tensortwo{C}}}{2}\tensortwo{B}
+  \end{split}
+  \label{eqn:DelJacobianDelC}
+\end{equation}
+
+Now, as
+$\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}=\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\tensortwo{C}$
+we have
+\begin{equation}
+  \delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}=\tensorprod{\delby{\pbrac{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}}}{\tensortwo{C}}}{\tensortwo{C}}+\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\delby{\tensortwo{C}}{\tensortwo{C}}
+  \label{eqn:DelCBarDelCFirst}
+\end{equation}
+
+Similar to above we have
+\begin{equation}
+  \begin{split}
+    \delby{\pbrac{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}}}{\tensortwo{C}}&=\delby{\pbrac{\pbrac{\sqrt{\determinant{\tensortwo{C}}}}^{-\frac{2}{3}}}}{\tensortwo{C}}\\
+    &=\delby{\pbrac{\pbrac{\determinant{\tensortwo{C}}}^{-\frac{1}{3}}}}{\tensortwo{C}}\\
+    &=\dfrac{-1}{3\pbrac{\determinant{\tensortwo{C}}}^{\frac{4}{3}}}\determinant{\tensortwo{C}}\invtranspose{\tensortwo{C}}\\
+    &=\dfrac{-1}{3\pbrac{\determinant{\tensortwo{C}}}^{\frac{1}{3}}}\invtranspose{\tensortwo{C}}\\
+    &=\dfrac{-\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\invtranspose{\tensortwo{C}}}{3}
+  \end{split}
+\end{equation}
+or, as $\tensortwo{C}$ is symmetric
+\begin{equation}
+  \begin{split}
+    \delby{\pbrac{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}}}{\tensortwo{C}}
+    &=\dfrac{-\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\inverse{\tensortwo{C}}}{3}\\
+    &=\dfrac{-\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\tensortwo{B}}{3}
+  \end{split}
+  \label{eqn:DelCBarDelCJacobian}
+\end{equation}
+
+From \eqnref{eqn:DerivSelfSymmetricTensorSecondOrder} we also have
+\begin{equation}
+  \delby{\tensortwo{C}}{\tensortwo{C}}=\symidentitytensorfour
+  \label{eqn:DelCBarDelCDeformation}
+\end{equation}
+
+Now substituting \eqnref{eqn:DelCBarDelCJacobian} and
+\eqnref{eqn:DelCBarDelCDeformation} into \eqnref{eqn:DelCBarDelCFirst} and
+rearranging we obtain
+\begin{equation}
+  \begin{split}
+    \delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}&=\tensorprod{\delby{\pbrac{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}}}{\tensortwo{C}}}{\tensortwo{C}}+\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\delby{\tensortwo{C}}{\tensortwo{C}}\\
+    &=\tensorprod{\dfrac{-\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\tensortwo{B}}{3}}{\tensortwo{C}}+\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\symidentitytensorfour\\
+    &=\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\pbrac{\symidentitytensorfour-\dfrac{\tensorprod{\tensortwo{B}}{\tensortwo{C}}}{3}}
+  \end{split}
+  \label{eqn:DelCBarDelC}
+\end{equation}
+
+Similarily, as $\tensortwo{C}\sim 2\tensortwo{E}$, we have
+\begin{equation}
+  \delby{\fnof{J}{\tensortwo{E}}}{\tensortwo{E}}=\fnof{J}{\tensortwo{E}}\tensortwo{B}
+  \label{eqn:DelJacobianDelE}
+\end{equation}
+and
+\begin{equation}
+  \delby{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}{\tensortwo{E}}=
+  \fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\pbrac{\symidentitytensorfour-\dfrac{\tensorprod{\tensortwo{B}}{\tensortwo{C}}}{3}}
+  \label{eqn:DelEBarDelE}
+\end{equation}
+
+Substituting \eqnref{eqn:DelJacobianDelC} and \eqnref{eqn:DelCBarDelC} into
+\eqnref{eqn:PK2StressC1} and substituting \eqnref{eqn:DelJacobianDelE} and
+\eqnref{eqn:DelEBarDelE} into \eqnref{eqn:PK2StressE1} we can thus find that
+\begin{equation}
+  \begin{split}
+    \fnof{\tensor{S}}{\tensor{C}}
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}{\tensor{C}}}-2p\delby{\fnof{J}{\tensortwo{C}}}{\tensor{C}}\\
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\pbrac{\symidentitytensorfour-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
+    &=\fnof{\tensor{S}_{\pullback{\Devop}{}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}
+    +\fnof{\tensor{S}_{\pullback{\Sphop}{}}}{\fnof{J}{\tensortwo{C}}}
+  \end{split}
+  \label{eqn:DecomposedSecondPKinC}
 \end{equation}
 or
 \begin{equation}
   \begin{split}
-    \fnof{\tensor{S}}{\tensor{E}}&=\doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{E}}}{\tensor{E}}}-p\delby{J}{\tensor{E}}\\
-    &=
-    \doubledotprod{\bar{\tensor{S}}}{J^{-\frac{2}{3}}\pbrac{\transpose{\tensorfour{I}}-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
-    &=\tensor{S}_{\pullback{\Devop}{}}+\tensor{S}_{\pullback{\Sphop}{}}
+    \fnof{\tensor{S}}{\tensor{E}}
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}}{\delby{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}{\tensor{E}}}-p\delby{\fnof{J}{\tensortwo{E}}}{\tensor{E}}\\
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}}{\fnof{J^{-\frac{2}{3}}}{\tensortwo{E}}\pbrac{\symidentitytensorfour-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
+    &=\fnof{\tensor{S}_{\pullback{\Devop}{}}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}
+    +\fnof{\tensor{S}_{\pullback{\Sphop}{}}}{\fnof{J}{\tensortwo{E}}}
   \end{split}
-  \label{eqn:decomposedSecondPKinE}
+  \label{eqn:DecomposedSecondPKinE}
 \end{equation}
 
 It should be noted that $\tensor{S}_{\pullback{\Devop}{}}$ and
@@ -864,234 +951,236 @@ spherical respectively (\ie with respect to the metric $\tensor{g}$).
 
 We can now define for the current configuration (\ie with respect to the
 metric tensor $\tensor{g}$) the fourth order identity,
-$\tensorfour{i}$, spherical, $\tensorfour{k}$, and deviatoric,
-$\tensorfour{m}$, tensors as
+$\spatialidentitytensorfour$, spherical, $\spatialsphericaltensorfour$, and deviatoric,
+$\spatialdeviatorictensorfour$, tensors as
 \begin{align}
-  \tensorfour{i}=\symtensorprod{\tensortwo{i}}{\tensortwo{i}}&=
-  i^{ab}_{cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
+  \spatialsymidentitytensorfour=\symtensorprod{\spatialidentitytensortwo}{\tensortwo{\spatialidentitytensortwo}}&=
+  \spatialidentitytensorsymbol^{ab..}_{..cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
   &=
   \dfrac{1}{2}\pbrac{\mixedkronecker{a}{c}\mixedkronecker{b}{d}+\mixedkronecker{a}{d}\mixedkronecker{b}{c}}\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\
-  \tensorfour{k}=\dfrac{1}{3}\tensorprod{\inverse{\tensor{g}}}{\tensor{g}}&=
-  k^{ab}_{cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
+  \spatialsphericaltensorfour=\dfrac{1}{3}\tensorprod{\sharptensor{\tensor{g}}}{\flattensor{\tensor{g}}}&=
+  \spatialsphericaltensorsymbol^{ab..}_{..cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
   &=
   \dfrac{1}{3}g^{ab}g_{cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\
-  \tensorfour{m}=\tensorfour{i}-\tensorfour{k}&=
-  m^{ab}_{cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
+  \spatialdeviatorictensorfour=\spatialsymidentitytensorfour-\spatialsphericaltensorfour&=
+  \spatialdeviatorictensorsymbol^{ab..}_{..cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}\\ \nonumber
   &=
   \pbrac{\dfrac{1}{2}\pbrac{\mixedkronecker{a}{c}\mixedkronecker{b}{d}+\mixedkronecker{a}{d}\mixedkronecker{b}{c}}-\dfrac{1}{3}g^{ab}g_{cd}}\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
 \end{align}
-where $\tensortwo{i}$ is the spatial identity tensor \ie
-$\tensortwo{i}=\inverse{\tensortwo{g}}\tensortwo{g}$.
+where $\spatialidentitytensortwo$ is the spatial identity tensor \ie
+$\spatialidentitytensortwo=\sharptensor{\tensortwo{g}}\flattensor{\tensortwo{g}}$.
 
 Note that these tensors act on a second order symmetric (contravariant) tensor
-in the current configuration, $\tensortwo{q}$, such that
+in the current configuration, $\sharptensor{\tensortwo{q}}$, such that
 \begin{align}
-  \doubledotprod{\tensorfour{i}}{\tensortwo{q}}&=\tensortwo{q} \\
-  \doubledotprod{\tensorfour{k}}{\tensortwo{q}}&=\dfrac{1}{3}\trop\tensortwo{q}\inverse{\tensortwo{g}} \\
-  \doubledotprod{\tensorfour{m}}{\tensortwo{q}}&=\tensortwo{q}-\dfrac{1}{3}\trop\tensortwo{q}\inverse{\tensortwo{g}}
+  \doubledotprod{\spatialsymidentitytensorfour}{\sharptensor{\tensortwo{q}}}&=\sharptensor{\tensortwo{q}}
+  \\ \doubledotprod{\spatialsphericaltensorfour}{\sharptensor{\tensortwo{q}}}&=\dfrac{1}{3}\trace{}{\sharptensor{\tensortwo{q}}}\sharptensor{\tensortwo{g}}
+  \\ \doubledotprod{\spatialdeviatorictensorfour}{\sharptensor{\tensortwo{q}}}&=\sharptensor{\tensortwo{q}}-\dfrac{1}{3}\trace{}{\sharptensor{\tensortwo{q}}}\sharptensor{\tensortwo{g}}
 \end{align}
-where the trace operator is defined as $\trop\tensortwo{q}=\doubledotprod{\tensortwo{g}}{\tensortwo{q}}$ \ie
-with respect to the current configuration metric tensor, $\tensortwo{g}$.
+where the trace operator is defined as $\trace{\tensortwo{g}}{\sharptensor{\tensortwo{q}}}=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{q}}}$ \ie
+with respect to the current configuration metric tensor, $\flattensor{\tensortwo{g}}$.
 
 The musical isomorphisms of these tensors are
 \begin{align}
-  \sharptensor{\tensorfour{i}}=
-  \symtensorprod{\inverse{\tensortwo{g}}}{\inverse{\tensortwo{g}}} &=
-  i^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
+  \sharptensor{\spatialsymidentitytensorfour}=
+  \symtensorprod{\sharptensor{\tensortwo{g}}}{\sharptensor{\tensortwo{g}}} &=
+  \spatialidentitytensorsymbol^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
   \\ \nonumber
   &=
   \dfrac{1}{2}\pbrac{g^{ac}g^{bd}+g^{ad}g^{bc}}\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
   \\
-  \sharptensor{\tensorfour{k}}=
-  \dfrac{1}{3}\tensorprod{\inverse{\tensor{g}}}{\inverse{\tensor{g}}}&=
-  k^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
+  \sharptensor{\spatialsphericaltensorfour}=
+  \dfrac{1}{3}\tensorprod{\sharptensor{\tensor{g}}}{\sharptensor{\tensor{g}}}&=
+  \spatialsphericaltensorsymbol^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
   \\ \nonumber
   &=\dfrac{1}{3}g^{ab}g^{cd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
   \\
-  \sharptensor{\tensorfour{m}}=
-  \sharptensor{\tensorfour{i}}-\sharptensor{\tensorfour{k}}&=
-  m^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
+  \sharptensor{\spatialdeviatorictensorfour}=
+  \sharptensor{\spatialsymidentitytensorfour}-\sharptensor{\spatialsphericaltensorfour}&=
+  \spatialdeviatorictensorsymbol^{abcd}\,\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
   \\ \nonumber
   &=\pbrac{\dfrac{1}{2}\pbrac{g^{ac}g^{bd}+g^{ad}g^{bc}}-\dfrac{1}{3}g^{ab}g^{cd}}\tensorprodfour{\vectr{g}_{a}}{\vectr{g}_{b}}{\vectr{g}_{c}}{\vectr{g}_{d}}
 \end{align}
 and
 \begin{align}
-  \flattensor{\tensorfour{i}}=
-  \symtensorprod{\tensortwo{g}}{\tensortwo{g}}&=
+  \flattensor{\spatialsymidentitytensorfour}=
+  \symtensorprod{\flattensor{\tensortwo{g}}}{\flattensor{\tensortwo{g}}}&=
   i_{abcd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\ \nonumber
   &=\dfrac{1}{2}\pbrac{g_{ac}g_{bd}+g_{ad}g_{bc}}\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\
-  \flattensor{\tensorfour{k}}=
-  \dfrac{1}{3}\tensorprod{\tensor{g}}{\tensor{g}}&=
-  k_{abcd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
+  \flattensor{\spatialsphericaltensorfour}=
+  \dfrac{1}{3}\tensorprod{\flattensor{\tensor{g}}}{\flattensor{\tensor{g}}}&=
+  \spatialsphericaltensorsymbol_{abcd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\ \nonumber
   &=\dfrac{1}{3}g_{ab}g_{cd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\
-  \flattensor{\tensorfour{m}}=
-  \flattensor{\tensorfour{i}}-\flattensor{\tensorfour{k}}&=
-  m_{abcd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
+  \flattensor{\spatialdeviatorictensorfour}=
+  \flattensor{\spatialsymidentitytensorfour}-\flattensor{\spatialsphericaltensorfour}&=
+  \spatialdeviatorictensorsymbol_{abcd}\,\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
   \\ \nonumber
   &=\pbrac{\dfrac{1}{2}\pbrac{g_{ac}g_{bd}+g_{ad}g_{bc}}-\dfrac{1}{3}g_{ab}g_{cd}}\tensorprodfour{\vectr{g}^{a}}{\vectr{g}^{b}}{\vectr{g}^{c}}{\vectr{g}^{d}}
 \end{align}
 
 We can pull-back these spatial tensors into the material configuration \ie
 \begin{align}
-  \tensorfour{I}&=\pullback{\chi}{\tensorfour{i}}=\symtensorprod{\tensortwo{I}}{\tensortwo{I}}
+  \materialsymidentitytensorfour&=\pullback{\chi}{\spatialsymidentitytensorfour}=\symtensorprod{\materialidentitytensortwo}{\materialidentitytensortwo}
   \\
-  \pullback{\tensorfour{K}}{}&=\pullback{\chi}{\tensorfour{k}}=\dfrac{1}{3}\tensorprod{\tensortwo{B}}{\tensortwo{C}}\\
-  \pullback{\tensorfour{M}}{}&=\pullback{\chi}{\tensorfour{m}}=\tensorfour{I}-\pullback{\tensorfour{K}}{}
+  \pullback{\materialsphericaltensorfour}{}&=\pullback{\chi}{\spatialsphericaltensorfour}=\dfrac{1}{3}\tensorprod{\sharptensor{\tensortwo{B}}}{\flattensor{\tensortwo{C}}}\\
+  \pullback{\materialdeviatorictensorfour}{}&=\pullback{\chi}{\spatialdeviatorictensorfour=\materialsymidentitytensorfour-\pullback}{\materialsphericaltensorfour}
 \end{align}
-where $\tensortwo{I}$ is the material identity tensor \ie
-$\tensortwo{I}=\inverse{\tensortwo{G}}\tensortwo{G}$.
+where $\materialidentitytensortwo$ is the material identity tensor \ie
+$\materialidentitytensortwo=\sharptensor{\tensortwo{G}}\flattensor{\tensortwo{G}}$.
 
 The operation of these tensors on
-$\tensortwo{Q}=\pullback{\chi}{\tensortwo{q}}=\inverse{\tensortwo{F}}\tensortwo{q}\invtranspose{\tensortwo{F}}$
-is given by
+$\sharptensor{\tensortwo{Q}}=\pullback{\chi}{\sharptensor{\tensortwo{q}}}=\inverse{\tensortwo{F}}\sharptensor{\tensortwo{q}}\invtranspose{\tensortwo{F}}$,
+where $\sharptensor{\tensortwo{Q}}$ is a symmetric contravariant tensor, is given by
 \begin{align}
-  \doubledotprod{\tensorfour{I}}{\tensortwo{Q}}&=\tensortwo{Q} \\
-  \doubledotprod{\pullback{\tensorfour{K}}{}}{\tensortwo{Q}}&=\dfrac{1}{3}\pullback{\Trop}{}\tensortwo{Q}\tensortwo{B} \\
-  \doubledotprod{\pullback{\tensorfour{M}}{}}{\tensortwo{Q}}&=\tensortwo{Q}-\dfrac{1}{3}\pullback{\Trop}{}\tensortwo{Q}\tensortwo{B}
+  \doubledotprod{\materialsymidentitytensorfour}{\sharptensor{\tensortwo{Q}}}&=\sharptensor{\tensortwo{Q}} \\
+  \doubledotprod{\pullback{\materialsphericaltensorfour}{}}{\sharptensor{\tensortwo{Q}}}&=\dfrac{1}{3}\pullback{\Trop}{}\sharptensor{\tensortwo{Q}}\sharptensor{\tensortwo{B}} \\
+  \doubledotprod{\pullback{\materialdeviatorictensorfour}{}}{\sharptensor{\tensortwo{Q}}}&=\sharptensor{\tensortwo{Q}}-\dfrac{1}{3}\pullback{\Trop}{}\sharptensor{\tensortwo{Q}}\sharptensor{\tensortwo{B}}
 \end{align}
 where the pulled back trace operator in the reference configuration is defined
 as
-$\pullback{\Trop}{}\tensortwo{Q}=\doubledotprod{\tensortwo{C}}{\tensortwo{Q}}$
+$\pullback{\Trop}{}\sharptensor{\tensortwo{Q}}=\doubledotprod{\flattensor{\tensortwo{C}}}{\sharptensor{\tensortwo{Q}}}$
 \ie with respect to the pulled back current configuration metric tensor,
-$\tensortwo{C}=\pullback{\chi}{\tensortwo{g}}$. In other words
-$\doubledotprod{\pullback{\tensorfour{K}}{}}{\tensortwo{Q}}$ and
-$\doubledotprod{\pullback{\tensorfour{M}}{}}{\tensortwo{Q}}$ are the pulled
-back spherical and deviatoric components of $\tensor{Q}$ with respect to the
-pulled back current configuration metric tensor $\tensortwo{C}=\pullback{\chi}{\tensortwo{g}}$.
+$\flattensor{\tensortwo{C}}=\pullback{\chi}{\flattensor{\tensortwo{g}}}$. In other words
+$\doubledotprod{\pullback{\materialsphericaltensorfour}{}}{\sharptensor{\tensortwo{Q}}}$ and
+$\doubledotprod{\pullback{\materialdeviatorictensorfour}{}}{\sharptensor{\tensortwo{Q}}}$ are the pulled
+back spherical and deviatoric components of $\sharptensor{\tensor{Q}}$ with respect to the
+pulled back current configuration metric tensor $\flattensor{\tensortwo{C}}=\pullback{\chi}{\flattensor{\tensortwo{g}}}$.
 
 The musical isomorphisms of these pulled back tensors are
 \begin{align}
-  \tensorfour{I}^{\sharp *}&=\pullback{\chi}{\sharptensor{\tensorfour{i}}}=\symtensorprod{\tensortwo{B}}{\tensortwo{B}}\\
-  \tensorfour{K}^{\sharp *}&=\pullback{\chi}{\sharptensor{\tensorfour{k}}}=\dfrac{1}{3}\tensorprod{\tensortwo{B}}{\tensortwo{B}}\\
-  \tensorfour{M}^{\sharp
-    *}&=\pullback{\chi}{\sharptensor{\tensorfour{m}}}=\tensorfour{I}^{\sharp *}-\tensorfour{K}^{\sharp *}
+  \materialsymidentitytensorfour^{\sharp *}&=\pullback{\chi}{\sharptensor{\spatialsymidentitytensorfour}}=\symtensorprod{\sharptensor{\tensortwo{B}}}{\sharptensor{\tensortwo{B}}}\\
+  \materialsphericaltensorfour^{\sharp *}&=\pullback{\chi}{\sharptensor{\spatialsphericaltensorfour}}=\dfrac{1}{3}\tensorprod{\sharptensor{\tensortwo{B}}}{\sharptensor{\tensortwo{B}}}\\
+  \materialdeviatorictensorfour^{\sharp
+    *}&=\pullback{\chi}{\sharptensor{\spatialdeviatorictensorfour}}=\materialdeviatorictensorfour^{\sharp *}-\materialsphericaltensorfour^{\sharp *}
 \end{align}
 and
 \begin{align}
-  \tensorfour{I}^{\flat *}&=\pullback{\chi}{\flattensor{\tensorfour{i}}}=\symtensorprod{\tensortwo{C}}{\tensortwo{C}}\\
-  \tensorfour{K}^{\flat *}&=\pullback{\chi}{\flattensor{\tensorfour{k}}}=\dfrac{1}{3}\tensorprod{\tensortwo{C}}{\tensortwo{C}}\\
-  \tensorfour{M}^{\flat
-    *}&=\pullback{\chi}{\flattensor{\tensorfour{m}}}=\tensorfour{I}^{\flat
-    *}-\tensorfour{K}^{\flat *}
+  \materialsymidentitytensorfour^{\flat *}&=\pullback{\chi}{\flattensor{\spatialsymidentitytensorfour}}=\symtensorprod{\flattensor{\tensortwo{C}}}{\flattensor{\tensortwo{C}}}\\
+  \materialsphericaltensorfour^{\flat *}&=\pullback{\chi}{\flattensor{\spatialsphericaltensorfour}}=\dfrac{1}{3}\tensorprod{\flattensor{\tensortwo{C}}}{\flattensor{\tensortwo{C}}}\\
+  \materialdeviatorictensorfour^{\flat
+    *}&=\pullback{\chi}{\flattensor{\spatialdeviatorictensorfour}}=\materialsymidentitytensorfour^{\flat
+    *}-\materialsphericaltensorfour^{\flat *}
 \end{align}
 
 Note that
 \begin{align}
-  \tensorfour{I}^{\sharp
-    *}&=-\delby{\tensortwo{B}}{\tensortwo{C}}=-\delby{\inverse{\tensortwo{C}}}{\tensortwo{C}} \\
-  \tensorfour{I}^{\flat
-    *}&=-\delby{\tensortwo{C}}{\tensortwo{B}}=-\delby{\inverse{\tensortwo{B}}}{\tensortwo{B}} \\
+  \materialsymidentitytensorfour^{\sharp
+    *}&=-\delby{\sharptensor{\tensortwo{B}}}{\flattensor{\tensortwo{C}}}=-\delby{\inverse{\tensortwo{C}}}{\tensortwo{C}} \\
+  \materialsymidentitytensorfour^{\flat
+    *}&=-\delby{\flattensor{\tensortwo{C}}}{\sharptensor{\tensortwo{B}}}=-\delby{\inverse{\tensortwo{B}}}{\tensortwo{B}} \\
 \end{align}
 
 We can now define for the reference configuration (\ie with respect to the
-metric tensor $\tensor{G}$) the fourth order identity,
-$\tensorfour{I}$, spherical, $\tensorfour{K}$, and deviatoric,
-$\tensorfour{M}$, tensors as
+metric tensor $\flattensor{\tensor{G}}$) the fourth order identity,
+$\materialsymidentitytensorfour$, spherical, $\materialsphericaltensorfour$, and deviatoric,
+$\materialdeviatorictensorfour$, tensors as
 \begin{align}
-  \tensorfour{I}= \symtensorprod{\tensortwo{I}}{\tensortwo{I}}&=
-  I^{AB}_{CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \materialsymidentitytensorfour= \symtensorprod{\materialidentitytensortwo}{\materialidentitytensortwo}&=
+  \materialidentitytensorsymbol^{AB..}_{..CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
-  &=\dfrac{1}{2}\pbrac{\mixedkronecker{A}{C}\mixedkronecker{B}{D}+\mixedkronecker{A}{D}\mixedkronecker{B}{C}}\tensorprodfour{\vectr{TG}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  &=\dfrac{1}{2}\pbrac{\mixedkronecker{A}{C}\mixedkronecker{B}{D}+\mixedkronecker{D}{A}\mixedkronecker{C}{B}}\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\
-  \tensorfour{K}=\dfrac{1}{3}\tensorprod{\inverse{\tensor{G}}}{\tensor{G}}&=
-  K^{AB}_{CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \materialsphericaltensorfour=\dfrac{1}{3}\tensorprod{\sharptensor{\tensor{G}}}{\flattensor{\tensor{G}}}&=
+  \materialsphericaltensorsymbol^{AB..}_{..CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
   &=\dfrac{1}{3}G^{AB}G_{CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}\\
-  \tensorfour{M}=\tensorfour{I}-\tensorfour{K}&=
-  M^{AB}_{CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \materialdeviatorictensorfour=\materialsymidentitytensorfour-\materialsphericaltensorfour&=
+  \materialdeviatorictensorsymbol^{AB..}_{..CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
  &= \pbrac{\dfrac{1}{2}\pbrac{\mixedkronecker{A}{C}\mixedkronecker{B}{D}+\mixedkronecker{A}{D}\mixedkronecker{B}{C}}-\dfrac{1}{3}G^{AB}G_{CD}}\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
 \end{align}
 
 Note that these tensors act on a second order symmetric (contravariant) tensor
-in the reference configuration, $\tensortwo{Q}$, such that
+in the reference configuration, $\sharptensor{\tensortwo{Q}}$, such that
 \begin{align}
-  \doubledotprod{\tensorfour{I}}{\tensortwo{Q}}&=\tensortwo{Q} \\
-  \doubledotprod{\tensorfour{K}}{\tensortwo{Q}}&=\dfrac{1}{3}\Trop\tensortwo{Q}\inverse{\tensortwo{G}} \\
-  \doubledotprod{\tensorfour{M}}{\tensortwo{Q}}&=\tensortwo{Q}-\dfrac{1}{3}\Trop\tensortwo{Q}\inverse{\tensortwo{G}}
+  \doubledotprod{\materialsymidentitytensorfour}{\sharptensor{\tensortwo{Q}}}&=\sharptensor{\tensortwo{Q}} \\
+  \doubledotprod{\materialsphericaltensorfour}{\sharptensor{\tensortwo{Q}}}&=\dfrac{1}{3}\Trop\sharptensor{\tensortwo{Q}}\sharptensor{\tensortwo{G}} \\
+  \doubledotprod{\materialdeviatorictensorfour}{\sharptensor{\tensortwo{Q}}}&=\sharptensor{\tensortwo{Q}}-\dfrac{1}{3}\Trop\sharptensor{\tensortwo{Q}}\sharptensor{\tensortwo{G}}
 \end{align}
-where the trace operator is defined as $\Trop\tensortwo{Q}=\doubledotprod{\tensortwo{Q}}{\tensortwo{G}}$ \ie
-with respect to the reference configuration metric tensor, $\tensortwo{G}$.
+where the trace operator is defined as
+$\Trop\sharptensor{\tensortwo{Q}}=\doubledotprod{\flattensor{\tensortwo{G}}}{\sharptensor{\tensortwo{Q}}}$
+\ie with respect to the reference configuration metric tensor,
+$\flattensor{\tensortwo{G}}$.
 
 The musical isomorphisms of these tensors are
 \begin{align}
-  \sharptensor{\tensorfour{I}}=
-  \symtensorprod{\inverse{\tensortwo{G}}}{\inverse{\tensortwo{G}}} &=
-  I^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
+  \sharptensor{\materialsymidentitytensorfour}=
+  \symtensorprod{\sharptensor{\tensortwo{G}}}{\sharptensor{\tensortwo{G}}} &=
+  \materialidentitytensorsymbol^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
   \\ \nonumber
   &=
   \dfrac{1}{2}\pbrac{G^{AC}G^{BD}+G^{AD}G^{BC}}\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
   \\
-  \sharptensor{\tensorfour{K}}=
-  \dfrac{1}{3}\tensorprod{\inverse{\tensor{G}}}{\inverse{\tensor{G}}}&=
-  K^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{B}}{\vectr{G}_{D}}
+  \sharptensor{\materialsphericaltensorfour}=
+  \dfrac{1}{3}\tensorprod{\sharptensor{\tensor{G}}}{\sharptensor{\tensor{G}}}&=
+  \materialsphericaltensorsymbol^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{B}}{\vectr{G}_{D}}
   \\ \nonumber
   &=\dfrac{1}{3}G^{AB}G^{CD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
   \\
-  \sharptensor{\tensorfour{M}}=
-  \sharptensor{\tensorfour{I}}-\sharptensor{\tensorfour{K}}&=
-  M^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
+  \sharptensor{\materialdeviatorictensorfour}=
+  \sharptensor{\materialidentitytensorfour}-\sharptensor{\materialsphericaltensorfour}&=
+  \materialdeviatorictensorsymbol^{ABCD}\,\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
   \\ \nonumber
   &=\pbrac{\dfrac{1}{2}\pbrac{G^{AC}G^{BD}+G^{AD}G^{BC}}-\dfrac{1}{3}G^{AB}G^{CD}}\tensorprodfour{\vectr{G}_{A}}{\vectr{G}_{B}}{\vectr{G}_{C}}{\vectr{G}_{D}}
 \end{align}
 and
 \begin{align}
-  \flattensor{\tensorfour{I}}=
-  \symtensorprod{\tensortwo{G}}{\tensortwo{G}}&=
-  I_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \flattensor{\materialsymidentitytensorfour}=
+  \symtensorprod{\flattensor{\tensortwo{G}}}{\flattensor{\tensortwo{G}}}&=
+  \materialidentitytensorsymbol_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
   &=\dfrac{1}{2}\pbrac{G_{AC}G_{BD}+G_{AD}G_{BC}}\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\
-  \flattensor{\tensorfour{K}}=
-  \dfrac{1}{3}\tensorprod{\tensor{G}}{\tensor{G}}&=
-  K_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \flattensor{\materialsphericaltensorfour}=
+  \dfrac{1}{3}\tensorprod{\flattensor{\tensor{G}}}{\flattensor{\tensor{G}}}&=
+  \materialsphericaltensorfour_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
   &=\dfrac{1}{3}G_{AB}G_{CD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\
-  \flattensor{\tensorfour{M}}=
-  \flattensor{\tensorfour{I}}-\flattensor{\tensorfour{K}}&=
-  M_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
+  \flattensor{\materialdeviatorictensorfour}=
+  \flattensor{\materialsymidentitytensorfour}-\flattensor{\materialsphericaltensorfour}&=
+  \materialdeviatorictensorsymbol_{ABCD}\,\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
   \\ \nonumber
   &=\pbrac{\dfrac{1}{2}\pbrac{G_{AC}G_{BD}+G_{AD}G_{BC}}-\dfrac{1}{3}G_{AB}G_{CD}}\tensorprodfour{\vectr{G}^{A}}{\vectr{G}^{B}}{\vectr{G}^{C}}{\vectr{G}^{D}}
 \end{align}
 
 We can push-forward these material tensors into the spatial configuration \ie
 \begin{align}
-  \tensorfour{i}&=\pushforward{\chi}{\tensorfour{I}}=\symtensorprod{\tensortwo{i}}{\tensortwo{i}}
+  \spatialsymidentitytensorfour&=\pushforward{\chi}{\materialsymidentitytensorfour}=\symtensorprod{\spatialidentitytensortwo}{\spatialidentitytensortwo}
   \\
-  \pushforward{\tensorfour{k}}{}&=\pushforward{\chi}{\tensorfour{K}}=\dfrac{1}{3}\tensorprod{\tensortwo{b}}{\tensortwo{c}}\\
-  \pushforward{\tensorfour{m}}{}&=\pushforward{\chi}{\tensorfour{M}}=\tensorfour{i}-\pushforward{\tensorfour{k}}{}
+  \pushforward{\spatialsphericaltensorfour}{}&=\pushforward{\chi}{\materialsphericaltensorfour}=\dfrac{1}{3}\tensorprod{\sharptensor{\tensortwo{b}}}{\flattensor{\tensortwo{c}}}\\
+  \pushforward{\spatialdeviatorictensorfour}{}&=\pushforward{\chi}{\materialdeviatorictensorfour}=\spatialsymidentitytensorfour-\pushforward{\spatialsphericaltensorfour}{}
 \end{align}
 
 The operation of these tensors on
-$\tensortwo{q}=\pushforward{\chi}{\tensortwo{Q}}=\tensortwo{F}\tensortwo{Q}\transpose{\tensortwo{F}}$
+$\sharptensor{\tensortwo{q}}=\pushforward{\chi}{\sharptensor{\tensortwo{Q}}}=\tensortwo{F}\sharptensor{\tensortwo{Q}}\transpose{\tensortwo{F}}$
 is given by
 \begin{align}
-  \doubledotprod{\tensorfour{i}}{\tensortwo{q}}&=\tensortwo{q} \\
-  \doubledotprod{\pushforward{\tensorfour{k}}{}}{\tensortwo{q}}&=\dfrac{1}{3}\pushforward{\trop}{}\tensortwo{q}\tensortwo{b} \\
-  \doubledotprod{\pushforward{\tensorfour{m}}{}}{\tensortwo{q}}&=\tensortwo{q}-\dfrac{1}{3}\pushforward{\trop}{}\tensortwo{q}\tensortwo{b}
+  \doubledotprod{\spatialsymidentitytensorfour}{\sharptensor{\tensortwo{q}}}&=\sharptensor{\tensortwo{q}} \\
+  \doubledotprod{\pushforward{\spatialsphericaltensorfour}{}}{\sharptensor{\tensortwo{q}}}&=\dfrac{1}{3}\pushforward{\trop}{}\sharptensor{\tensortwo{q}}\sharptensor{\tensortwo{b}} \\
+  \doubledotprod{\pushforward{\spatialdeviatorictensorfour}{}}{\sharptensor{\tensortwo{q}}}&=\sharptensor{\tensortwo{q}}-\dfrac{1}{3}\pushforward{\trop}{}\sharptensor{\tensortwo{q}}\sharptensor{\tensortwo{b}}
 \end{align}
 where the pushed forward trace operator in the current configuration is
 defined as
-$\pushforward{\trop}{}\tensortwo{q}=\doubledotprod{\tensortwo{c}}{\tensortwo{q}}$
+$\pushforward{\trop}{}\sharptensor{\tensortwo{q}}=\doubledotprod{\flattensor{\tensortwo{c}}}{\sharptensor{\tensortwo{q}}}$
 \ie with respect to the pushed forward reference configuration metric tensor,
-$\tensortwo{c}=\inverse{\tensortwo{b}}=\pushforward{\chi}{\tensortwo{G}}$. In other words
-$\doubledotprod{\pushforward{\tensorfour{k}}{}}{\tensortwo{q}}$ and
-$\doubledotprod{\pushforward{\tensorfour{m}}{}}{\tensortwo{q}}$ are the push
-forward spherical and deviatoric components of $\tensor{q}$ with respect to
+$\flattensor{\tensortwo{c}}=\inverse{\sharptensor{\tensortwo{b}}}=\pushforward{\chi}{\flattensor{\tensortwo{G}}}$. In other words
+$\doubledotprod{\pushforward{\spatialsphericaltensorfour}{}}{\sharptensor{\tensortwo{q}}}$ and
+$\doubledotprod{\pushforward{\spatialdeviatorictensorfour}{}}{\sharptensor{\tensortwo{q}}}$ are the push
+forward spherical and deviatoric components of $\sharptensor{\tensor{q}}$ with respect to
 the pushed forward reference configuration metric tensor
-$\tensortwo{c}=\inverse{\tensortwo{b}}=\pushforward{\chi}{\tensortwo{G}}$.
+$\flattensor{\tensortwo{c}}=\inverse{\tensortwo{b}}=\pushforward{\chi}{\flattensor{\tensortwo{G}}}$.
 
 The musical isomorphisms of these pushed forward tensors are
 \begin{align}
-  \tensorfour{i}^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\tensorfour{I}}}=\symtensorprod{\tensortwo{b}}{\tensortwo{b}}\\
-  \tensorfour{k}^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\tensorfour{K}}}=\dfrac{1}{3}\tensorprod{\tensortwo{b}}{\tensortwo{b}}\\
-  \tensorfour{m}^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\tensorfour{M}}}=\tensorfour{i}^{\sharp}_{*}-\tensorfour{k}^{\sharp}_{*}
+  \spatialsymidentitytensorfour^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\materialsymidentitytensorfour}}=\symtensorprod{\sharptensor{\tensortwo{b}}}{\sharptensor{\tensortwo{b}}}\\
+  \spatialsphericaltensorfour^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\materialsphericaltensorfour}}=\dfrac{1}{3}\tensorprod{\sharptensor{\tensortwo{b}}}{\sharptensor{\tensortwo{b}}}\\
+  \spatialdeviatorictensorfour^{\sharp}_{*}&=\pushforward{\chi}{\sharptensor{\materialdeviatorictensorfour}}=\spatialsymidentitytensorfour^{\sharp}_{*}-\spatialsphericaltensorfour^{\sharp}_{*}
 \end{align}
 and
 \begin{align}
@@ -1106,7 +1195,7 @@ Note that
   \tensorfour{i}^{\flat}_{*}&=-\delby{\tensortwo{c}}{\tensortwo{b}}=-\delby{\inverse{\tensortwo{b}}}{\tensortwo{b}} \\
 \end{align}
 
-We are now in a position to reconsider \eqnref{eqn:decomposedSecondPKinC} or \eqnref{eqn:decomposedSecondPKinE} \ie
+We are now in a position to reconsider \eqnref{eqn:DecomposedSecondPKinC} or \eqnref{eqn:DecomposedSecondPKinE} \ie
 using
 $\doubledotprod{\bar{\tensortwo{S}}}{\tensorfour{M}^{*T}}=\doubledotprod{\pullback{\tensorfour{M}}{}}{\bar{\tensortwo{S}}}$
 we can write
@@ -1157,16 +1246,81 @@ being the \emph{Cauchy psuedo stress
   tensor}\symbolat{$\bar{\tensortwo{\sigma}}$}{Cauchy psuedo stress
   tensor}.
 
-We can also use the constitutive law to obtain the elasticity tensor \ie
+We can also use the constitutive law to obtain the elasticity
+tensor. Following \cite{holzapfel:2000} we obtain
 \begin{equation}
-  \fnof{\tensorfour{C}}{\tensor{C}}=\delby{\fnof{\tensor{S}}{\tensor{C}}}{\tensor{C}}=\deltwosqby{\fnof{W}{\tensor{C}}}{\tensor{C}}=\deltwosqby{\fnof{\bar{W}}{\bar{\tensor{C}},J}}{\tensor{C}}
+  \begin{split}
+    \fnof{\tensorfour{C}}{\tensor{C}}&=2\delby{\fnof{\tensor{S}}{\tensor{C}}}{\tensor{C}}\\
+    &=2\delby{\fnof{\tensortwo{S}_{\Devop}}{\tensortwo{C}}}{\tensortwo{C}}+2\delby{\fnof{\tensortwo{S}_{\Sphop}}{\tensortwo{C}}}{\tensortwo{C}}\\
+    &=2\delby{}{\tensortwo{C}}\pbrac{2\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\tensortwo{C}}}+2\delby{}{\tensortwo{C}}\pbrac{2\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{\tensortwo{C}}}\\
+    &=4\deltwosqby{\pbrac{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}}}{\tensor{C}}+4\deltwosqby{\pbrac{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}}{\tensortwo{C}}
+    \\
+    &=\fnof{\tensorfour{C}_{\Devop}}{\tensortwo{C}}+\fnof{\tensorfour{C}_{\Sphop}}{\tensortwo{C}}
+  \end{split}
 \end{equation}
 or
 \begin{equation}
-  \fnof{\tensorfour{C}}{\tensor{E}}=\delby{\fnof{\tensor{S}}{\tensor{E}}}{\tensor{E}}=\deltwosqby{\fnof{W}{\tensor{E}}}{\tensor{E}}=\deltwosqby{\fnof{\bar{W}}{\bar{\tensor{E}},J}}{\tensor{E}}
+  \begin{split}
+    \fnof{\tensorfour{C}}{\tensor{E}}&=\delby{\fnof{\tensor{S}}{\tensor{E}}}{\tensor{E}}\\
+    &=\delby{\fnof{\tensortwo{S}_{\Devop}}{\tensortwo{E}}}{\tensortwo{E}}+\delby{\fnof{\tensortwo{S}_{\Sphop}}{\tensortwo{E}}}{\tensortwo{E}}\\
+    &=\delby{}{\tensortwo{C}}\pbrac{\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}}{\tensortwo{E}}}+\delby{}{\tensortwo{E}}\pbrac{\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{E}}}}{\tensortwo{E}}}\\
+    &=\deltwosqby{\pbrac{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{E}}}{\tensortwo{E}}}}}{\tensor{E}}+\deltwosqby{\pbrac{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{E}}}}}{\tensortwo{E}}
+    \\
+    &=\fnof{\tensorfour{C}_{\Devop}}{\tensortwo{E}}+\fnof{\tensorfour{C}_{\Sphop}}{\tensortwo{E}}
+  \end{split}
 \end{equation}
 
-TODO CHECK THE EXPRESSIONS INVOLVING C AND CHECK FOR THE ``2'' FACTORS?
+\begin{equation}
+  \begin{split}
+    \fnof{\tensorfour{C}}{\tensor{C}}&=2\delby{\fnof{\tensortwo{S}}{\tensortwo{C}}}{\tensortwo{C}}\\
+    &=2\delby{}{\tensortwo{C}}\pbrac{2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}+2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{J}}{\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}}}\\
+    &=2\doubledotprod{\delby{}{\bar{\tensortwo{C}}}\pbrac{2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}+2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{J}}{\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}}}}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}\\
+    &+2\doubledotprod{\delby{}{J}\pbrac{2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}+2\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{J}}{\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}}}}{\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}}\\
+    &=4\doubledotprod{\pbrac{\doubledotprod{\deltwosqby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}
+        +\doubledotprod{\delby{\fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}}{\bar{\tensortwo{C}}}}{\deltwosqby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}
+     }}{\delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}}\\
+    &+4\doubledotprod{
+      \pbrac{
+        \doubledotprod{
+          \deltwoby{
+            \fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}
+          }{
+            \bar{\tensortwo{C}}
+          }{
+            J
+          }
+        }{
+          \delby{
+            \fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}
+          }{
+            \tensortwo{C}
+          }
+        }
+        +\doubledotprod{
+          \delby{
+            \fnof{\bar{W}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}
+          }{
+            \bar{\tensortwo{C}}
+          }
+        }{
+          \deltwosqby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}
+        }
+      }
+            {
+              \delby{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}{\tensortwo{C}}
+            }
+    }
+  \end{split}
+\end{equation}
+
+Now considering $\fnof{\tensorfour{C}_{\Sphop}}{\tensortwo{C}}$ we have
+\begin{equation}
+  \begin{split}
+    \fnof{\tensorfour{C}_{\Sphop}}{\tensortwo{C}}&=2\delby{}{\tensortwo{C}}\pbrac{2\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{\tensortwo{C}}}\\
+    &=2\delby{}{\tensortwo{C}}\pbrac{2\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{J}\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}}\\
+    &=4\deltwoby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{\tensortwo{C}}{J}\delby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}+4\delby{\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensortwo{C}}}}{J}\deltwosqby{\fnof{J}{\tensortwo{C}}}{\tensortwo{C}}
+  \end{split}
+\end{equation}
 
 Now if we decompose the strain energy function into volumetric/spherical and
 isochoric/deviatoric components we have
