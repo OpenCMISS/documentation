@@ -112,6 +112,21 @@
   % e.g. \epstexfigure{figure}{short caption}{long caption}{label}{scale}
   % or \epstexfigure{figure}{}{caption}{label}{}
   
+\newcommand{\epstexsubfigure}[5]{ %
+  \centering %
+  \ifthenelse{\equal{#5}{}}{ %
+    \def\svgwidth{\columnwidth}}{ %
+    \def\svgscale{#5} %
+  } %
+  \ifthenelse{\equal{#2}{}}{ %
+    \subfloat[][#3]{\input{#1}}}{ %
+    \subfloat[#2][#3]{\input{#1}} %
+  } %
+  \label{#4} %
+} % epstex sub figure i.e. inkscape svgs
+  % e.g. \epstexsubfigure{figure}{short caption}{long caption}{label}{scale}
+  % or \epstexsubfigure{figure}{}{caption}{label}{}
+  
 \newcommand{\pstexfigure}[5]{ %
   \begin{figure}[htbp] \centering %
     \ifthenelse{\equal{#5}{}}{ %
@@ -162,6 +177,7 @@
 \newcommand{\appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
 \newcommand{\Appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
 \newcommand{\bref}[1]{(\ref{#1})} % bracketed () reference
+\newcommand{\baubref}[1]{(\subref{#1})} % bracketed () subreference
 \newcommand{\chapref}[1]{Chapter~\ref{#1}} % Chapter reference
 \newcommand{\Chapref}[1]{Chapter~\ref{#1}} % Chapter reference
 \newcommand{\chaprefs}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference
@@ -192,6 +208,12 @@
 \newcommand{\Secrefs}[2]{Sections~\ref{#1} and~\ref{#2}} % Sections reference
 \newcommand{\secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
 \newcommand{\Secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
+\newcommand{\subfigref}[1]{Figure~\subref{#1}} % Subfigure reference
+\newcommand{\Subfigref}[1]{Figure~\subref{#1}} % subfigure reference
+\newcommand{\subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % Subfigures reference
+\newcommand{\Subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % subfigures reference
+\newcommand{\subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
+\newcommand{\Subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
 \newcommand{\tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\Tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\tabrefs}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference
@@ -338,6 +360,34 @@
 \newcommand{\nttento}[2]{\ensuremath{ %
     #1\ttento{#2} %
 }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
+% Non-dimensional numbers
+%
+\newcommand{\brinkmannum}{\ensuremath{ %
+    \textit{Br} % Brinkman number
+}}
+\newcommand{\froudenum}{\ensuremath{ %
+    \textit{Fr} % Froude number
+}}
+\newcommand{\grashofnum}{\ensuremath{ %
+    \textit{Gr} % Grashof number
+}}
+\newcommand{\machnum}{\ensuremath{ %
+    \textit{Ma} % Mach number
+}}
+\newcommand{\nusseltnum}{\ensuremath{ %
+    \textit{Nu} % Nusselt number
+}}
+\newcommand{\pecletnum}{\ensuremath{ %
+    \textit{Pe} % Peclet number
+}}
+\newcommand{\prandtlnum}{\ensuremath{ %
+    \textit{Pr} % Prandtl number
+}}
+\newcommand{\reynoldsnum}{\ensuremath{ %
+    \textit{Re} % Reynolds number
+}}
 
 %
 % Base numbers
@@ -907,12 +957,27 @@
 \newcommand{\mixedderiv}[3]{\ensuremath{ %
     \brac{.}{#1}{|}^{#2}_{#3}
 }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
+\newcommand{\exteriorscalarderivop}[0]{\ensuremath{ %
+    \mathrm{d} %
+}} % Exterior scalar derivative operator e.g., \exteriorscalarderivop => d
 \newcommand{\exteriorderivop}[0]{\ensuremath{ %
-    \boldsymbol{\mathrm{d}}
-  }} % Exterior derivative operator e.g., \exteriorderivop => d7
+    \boldsymbol{\exteriorscalarderivop}
+}} % Exterior derivative operator e.g., \exteriorderivop => d
+\newcommand{\exteriorscalarderiv}[1]{\ensuremath{ %
+    \exteriorscalarderivop#1
+  }} % Exterior scalar derivative e.g., \exteriorscalarderiv{a} => da
 \newcommand{\exteriorderiv}[1]{\ensuremath{ %
     \exteriorderivop#1
-  }} % Exterior derivative e.g., \exteriorderiv{a} => da
+}} % Exterior derivative e.g., \exteriorderiv{a} => da
+\newcommand{\oneform}[2]{\ensuremath{ %
+    #1\,\exteriorderiv{#2}
+}} % one form e.g., \oneform{a}{x} => a.dx
+\newcommand{\twoform}[3]{\ensuremath{ %
+    #1\,\wedgeprod{\exteriorderiv{#2}}{\exteriorderiv{#3}}
+}} % two form e.g., \twoform{a}{x}{y} => a.dx^dy
+\newcommand{\threeform}[4]{\ensuremath{ %
+    #1\,\wedgeprodthree{\exteriorscalarderiv{#2}}{\exteriorscalarderiv{#3}}{\exteriorscalarderiv{#4}}
+}} % three form e.g., \threeform{a}{x}{y}{z} => a.dx^dy^dz
 \newcommand{\sharptensor}[1]{\ensuremath{ %
     #1^{\sharp}
 }} % sharp tensor e.g.,\sharptensor{A} => A^#

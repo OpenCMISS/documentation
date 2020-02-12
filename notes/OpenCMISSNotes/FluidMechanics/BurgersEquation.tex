@@ -8,14 +8,17 @@ For a given velocity $\fnof{u}{x,t}$ and a kinematic viscosity of $\nu$, Burgers
 in one dimension is
 \begin{equation}
   \delby{u}{t}+u\delby{u}{x}=\nu\deltwosqby{u}{x}
-  \label{eqn:Burgersequation}
+  \label{eqn:BurgersEquation}
 \end{equation}
 
-The general form of this equation in \OpenCMISS is7
+The general form of this equation in \OpenCMISS is
 \begin{equation}
-  \fnof{a}{\vectr{x}}\delby{\fnof{\vectr{u}}{\vectr{x},t}}{t}+\fnof{b}{\vectr{x}}\laplacian{}{\fnof{\vectr{u}}{\vectr{x},t}}+
-  \fnof{c}{\vectr{x}}\dotprod{\fnof{\vectr{u}}{\vectr{x},t}}{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}=\vectr{0}
-  \label{eqn:GeneralFormBurgersequation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{a}{\vectr{x}}\delby{\fnof{\vectr{u}}{\vectr{x},t}}{t}+\fnof{b}{\vectr{x}}\laplacian{}{\fnof{\vectr{u}}{\vectr{x},t}}+
+    \fnof{c}{\vectr{x}}\dotprod{\fnof{\vectr{u}}{\vectr{x},t}}{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}=\vectr{0}
+  }
+  \label{eqn:GeneralFormBurgersEquation}
 \end{equation}
 where $\fnof{\vectr{u}}{\vectr{x},t}$ is the velocity vector and
 $\fnof{a}{\vectr{x}}$, $\fnof{b}{\vectr{x}}$ and $\fnof{c}{\vectr{x}}$ are
@@ -49,11 +52,11 @@ specification of an initial value of the solution, $\vectr{f}$ \ie
 
 \subsubsection{Weak formulation:}
 
-The corresponding weak form of \eqnref{eqn:GeneralFormBurgersequation} can be
+The corresponding weak form of \eqnref{eqn:GeneralFormBurgersEquation} can be
 found by integrating over the domain with test functions \ie
 \begin{equation}
   \gint{\Omega}{}{\pbrac{a\delby{\vectr{u}}{t}+
-      b\laplacian{}{7\vectr{u}}+
+      b\laplacian{}{\vectr{u}}+
       c\dotprod{\vectr{u}}{\gradient{}{\vectr{u}}}}\vectr{w}}{\Omega}=\vectr{0}
   \label{eqn:Burgersweakform1}
 \end{equation}

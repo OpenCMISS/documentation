@@ -1,260 +1,380 @@
 \section{Stokes Equations}
+\label{sec:StokesEquations}
 
-\subsection{Governing equations:}
+\subsection{Governing equations}
 
 Stokes flow is a type of fluid flow where advective inertial forces are small
-compared with viscous forces. The Reynolds number is low, i.e.
-$\textit{Re}\ll 1$. For this type of flow, the inertial forces are assumed to
-be negligible and the Navier-Stokes equations simplify to give the Stokes
-equations. In the common case of an incompressible Newtonian fluid, the linear
-Stokes equations (three-dimensional, quasi-static) can be written as:
+compared with viscous forces. The Reynolds number is low, \ie
+$\reynoldsnum\ll 1$. For this type of flow, the flow velocities are small and
+the nonlinear convective accelaration terms are assumed to be negligible. The
+Navier-Stokes equations can thus be simplified to give the Stokes
+equations. In the common case of an incompressible Newtonian fluid, the
+\emph{Stokes equation} can be found by dropping the convective acceleration
+term in \eqnref{eqn:DiffIncompNewtonianNSEMomentum} \ie
 \begin{equation}
-    \vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}=\vectr{0}
-  \label{eqn:Stokesequation1}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{\rho}{\vectr{x}}\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}=
+    \dotprod{-\gradient{}{\fnof{p}{\vectr{x},t}}}{\sharptensor{\tensor{g}}}
+    +\divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}+
+          \transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+    +\fnof{\vectr{s}}{\vectr{x},t}
+  }
+  \label{eqn:StokesEquationMomentum}
 \end{equation}
-accompanied by the conservation of mass
+accompanied by the conservation of mass equation
 \begin{equation}
-  \divergence{}{\vectr{u}}=0
-  \label{eqn:Stokesmasequation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \divergence{}{\fnof{\vectr{v}}{\vectr{x},t}}=0
+  }
+  \label{eqn:StokesEquationMass}
 \end{equation}
-where $\vectr{u}(\vectr{x},t)=\transpose{\sqbrac{u_1,u_2,u_3}}$ is the
-velocity vector depending on spatial coordinates $\vectr{x}=\transpose{\sqbrac{x_1,x_2,x_3}}$
-and the time $t$, $p$ is the scalar pressure, $\vectr{f}$ an applied body
-force, and the material parameter $\mu$ is fluid viscosity,
-respectively. Whereas \eqnref{eqn:Stokesequation1} has been formulated in
-Eulerian form, moving domain approaches often require the ALE modification
-taking an additional term into account, depending on the fluid density $\rho$
-and a correction velocity $\vectr{u}^*$ which yields to:
+where $\vectr{v}(\vectr{x},t)=\transpose{\sqbrac{v_1,v_2,v_3}}$ is the
+velocity vector depending on spatial coordinates
+$\vectr{x}=\transpose{\sqbrac{x_1,x_2,x_3}}$ and the time $t$,
+$\fnof{p}{\vectr{x},t}$ is the scalar pressure field,
+$\fnof{\rho}{\vectr{x}}$ is the material density field,
+$\fnof{\mu}{\vectr{x}}$ is the material viscosity field, and
+$\fnof{\vectr{s}}{\vectr{x},t}$ the applied body force sources respectively.
+
+Whereas \eqnref{eqn:StokesEquationMomentum} has been formulated in Eulerian
+form, moving domain approaches often require the ALE modification taking an
+additional term into account, depending on the fluid density and a correction
+velocity $\fnof{\vectr{v}^*}{\vectr{x},t}$ which yields to the \emph{ALE Stokes
+  equation} \ie
 \begin{equation}
-  \vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}=-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}
-  \label{eqn:StokesequationALE}
-\end{equation}
-Although by definition a Stokes flow has no dependence on time (other than
-through changing boundary conditions), \eqnref{eqn:StokesequationALE} can be
-modified easily towards a dynamic Stokes flow:
-\begin{equation}
-    \rho\delby{\vectr{u}}{t}-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}=\vectr{f}-\gradient{}{p}+\mu\laplacian{}{\vectr{u}}
-  \label{eqn:Stokesequation2}
-\end{equation}
-The following section, however, describes the reordered quasi-static
-formulation of \eqnref{eqn:StokesequationALE}:
-\begin{equation}
-    -\gradient{}{p}+\mu\laplacian{}{\vectr{u}}-\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}=\vectr{f}
-  \label{eqn:StokesequationALE2}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{\rho}{\vectr{x}}\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}
+      -\fnof{\rho}{\vectr{x}}\dotprod{\fnof{\vectr{v}^{*}}{\vectr{x},t}}{
+        \gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}\\
+      =\dotprod{-\gradient{}{\fnof{p}{\vectr{x},t}}}{\sharptensor{\tensor{g}}}
+      +\divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}+
+            \transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+      +\fnof{\vectr{s}}{\vectr{x},t}
+    \end{gathered}
+    }
+  \label{eqn:StokesEquationALEMomentum}
 \end{equation}
 
-\subsection{Weak formulation:}
+In the steady state a Stokes flow has no dependence on time (other than
+through changing boundary conditions). We can thus modify
+\eqnref{eqn:StokesEquationMomentum} to drop the time derivative on the left
+hand side to give the \emph{static Stokes equation} \ie
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \vectr{0}=\dotprod{-\gradient{}{\fnof{p}{\vectr{x},t}}}{\sharptensor{\tensor{g}}}
+    +\divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}+
+          \transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+    +\fnof{\vectr{s}}{\vectr{x},t}
+  }
+  \label{eqn:StokesEquationStaticMomentum}
+\end{equation}
+
+The most general form of
+\eqnthrurefs{eqn:StokesEquationMomentum}{eqn:StokesEquationStaticMomentum}, and
+the form that will be considered for the rest of this section, is
+\begin{multline}
+  \fnof{\rho}{\vectr{x}}\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}
+  -\fnof{\rho}{\vectr{x}}\dotprod{\fnof{\vectr{v}^{*}}{\vectr{x},t}}{
+    \gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}
+  +\dotprod{\gradient{}{\fnof{p}{\vectr{x},t}}}{\sharptensor{\tensor{g}}}\\
+  -\divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}+
+        \transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+  -\fnof{\vectr{s}}{\vectr{x},t}=\vectr{0}
+  \label{eqn:StokesEquationGenMomentum}
+\end{multline}
+and
+\begin{equation}
+  \divergence{}{\fnof{\vectr{v}}{\vectr{x},t}}=0
+  \label{eqn:StokesEquationGenMass}
+\end{equation}
+
+\subsection{Weak formulation}
 
 The corresponding weak form of the equation system consisting of
-\eqnref{eqn:Stokesequation1} and \eqnref{eqn:Stokesmasequation} can be written
-as:
+\eqnref{eqn:StokesEquationGenMomentum} and \eqnref{eqn:StokesEquationGenMass}
+can be found by applying standard Galerkin weight functions $\vectr{w}$ for
+the velocity variables \ie
 \begin{equation}
-  -\gint{\Omega}{}{\gradient{}{p}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\mu\laplacian{}{\vectr{u}}\vectr{v}}{\Omega}
-  -\gint{\Omega}{}{\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}\vectr{v} }{\Omega}
-  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}=
-  \gint{\Omega}{}{\vectr{f}\vectr{v}}{\Omega}  
-  \label{eqn:Stokesweakform}
+  \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{v}}{t}-\rho\dotprod{\vectr{v}^{*}}{\gradient{}{\vectr{v}}}
+      +\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}
+      -\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}
+      -\vectr{s}}{\vectr{w}}}{\Omega} = \vectr{0}
+  \label{eqn:WeakFormStokesGenMomentum}
 \end{equation}
-Applying Green's theorm to \eqnref{eqn:Stokesweakform} gives
+and 
 \begin{equation}
-  \begin{split}
-  \gint{\Omega}{}{\divergence{}{\vectr{v}}p}{\Omega}
-  -\gint{\Omega}{}{\mu\doubledotprod{\gradient{}{\vectr{v}}}{\gradient{\vectr{u}}}}{\Omega}
-  -\gint{\Omega}{}{\rho\dotprod{\vectr{u}^*}{\gradient{}{\vectr{u}}}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\divergence{}{\vectr{u}}q}{\Omega}=\\
-  \gint{\Omega}{}{\vectr{f}\vectr{v}}{\Omega}  
-  +\gint{\Gamma}{}{\dotprod{p}{\vectr{n}\vectr{v}}}{\Gamma}
-  -\gint{\Gamma}{}{\dotprod{\vectr{v}\gradient{}{\vectr{u}}}{\vectr{n}}}{\Gamma}
-  \end{split}
-  \label{eqn:Stokesweakform2}
+  \gint{\Omega}{}{\divergence{}{\vectr{v}}w^{p}}{\Omega} = 0
+ \label{eqn:WeakFormStokesGenMass}
 \end{equation}
-The left-hand side of \eqnref{eqn:Stokesweakform2} represents the unknown
-velocity and pressure field on $\Omega$ whereas the right-hand side represents
-Neumann boundary conditions on $\Gamma$ and source terms (here in form of
-volume or body forces) on $\Omega$. For now we want to neglect the right-hand
-side and continue with the homogeneous form of \eqnref{eqn:Stokesweakform2}
+where $w^{p}$ is the Galerkin weight function for the pressure variable.
+
+Applying the divergence theorem to \eqnref{eqn:WeakFormStokesGenMomentum}
+gives us the weak form of the momentum equations with the associated natural
+boundary conditions at the boundary $\Gamma$ \ie
+\begin{multline}
+  \gint{\Omega}{}{\rho\delby{\vectr{v}}{t}{\vectr{w}}}{\Omega}
+  -\gint{\Omega}{}{\dotprod{\rho\vectr{v}^{*}}{\gradient{}{\vectr{u}}}\vectr{w}}{\Omega}
+  -\gint{\Omega}{}{\dotprod{p\sharptensor{\tensor{g}}}{\gradient{}{\vectr{w}}}}{\Omega}
+  +\gint{\Omega}{}{\doubledotprod{\pbrac{\mu\pbrac{\gradient{}{\vectr{v}}
+          +\gradient{}{\transpose{\vectr{v}}}}}}{\gradient{}{\vectr{w}}}}{\Omega} \\
+  -\gint{\Omega}{}{\vectr{s}\vectr{w}}{\Omega}
+  =\gint{\Gamma}{}{\dotprod{\pbrac{\mu\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+        p\sharptensor{\vectr{g}}}}{\vectr{n}}\vectr{w}}{\Gamma}
+  \label{eqn:GalerkinStokesGenMomentum}
+\end{multline}
+
+Dirichlet boundary conditions on a boundary
+$\Gamma_D$ for velocity will take the form:
 \begin{equation}
-  \begin{split}
-  \gint{\Omega}{}{\grad\cdot\vectr{v}p}{\Omega}
-  -\gint{\Omega}{}{\mu\grad\vectr{v}:\grad\vectr{u}}{\Omega}
-  -\gint{\Omega}{}{\rho(\vectr{u}^*\cdot\grad)\vectr{u}\vectr{v}}{\Omega}
-  +\gint{\Omega}{}{\grad\cdot \vectr{u}q}{\Omega}=0
-  \end{split}
-  \label{eqn:Stokesweakform3}
+  \fnof{\vectr{v}}{\vectr{x},t} = \fnof{\vectr{v}_{D}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
+  \label{eqn:StokesVelocityDirichletBC} 
+\end{equation}
+and for pressure they will take the form
+\begin{equation}
+  \fnof{p}{\vectr{x},t} = \fnof{p_{D}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D}\\
+  \label{eqn:StokesPressureDirichletBC} 
 \end{equation}
 
-\subsection{Tensor notation:}
-If we now consider the integrand of the left hand side of
-\eqnref{eqn:Stokesweakform3} in tensorial form with covariant
-derivatives then
-% \begin{equation}
-%   \tensor{\sigma}\grad\phi = \sigma^{i}_{j}\covarderiv{\phi}{i}
-% \end{equation}
-% and
-% \begin{equation}
-%   \grad w = \covarderiv{w}{i}
-% \end{equation}
-% 
-% Now, both the above equations represent vectors that are covariant and
-% therefore we must convert the first equation to a contravariant vector by 
-% multiplying by the contravariant metric tensor (from \vectr{i} to \vectr{x} 
-% coordinates) so that we can take the dot product. The final tensorial form is
-% \begin{equation}
-%   \dotprod{\pbrac{\tensor{\sigma}\grad\phi}}{\grad w} = G^{jk}\sigma^{i}_{j}\covarderiv{\phi}{i}\covarderiv{w}{k}
-% \end{equation}
-% and thus \eqnref{eqn:Laplaceweightedresidualform} becomes
-% \begin{equation}
-%   \gint{\Omega}{}{G^{jk}\sigma^{i}_{j}\covarderiv{\phi}{i}\covarderiv{w}{k}}{\Omega}=
-%   \gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\grad\phi}}{\vectr{n}w}}{\Gamma}
-%   \label{eqn:Laplaceweightedresidualtensorform}
-% \end{equation}
-% 
-% \subsection{Finite element formulation:}
-% We can now discretise the domain into finite elements \ie $\Omega=
-% \displaystyle{\bigcup_{e=1}^{E}}\Omega_{e}$, the left hand side of
-% \eqnref{eqn:Stokesweakform3} becomes
-% \begin{equation}
-%   \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{G^{jk}\sigma^{i}_{j}\covarderiv{\phi}{i}\covarderiv{w}{k}}{\Omega}
-% \end{equation}
-% 
-% The next step is to approximate the dependent variable, $\phi$, using basis
-% functions. To simplify this for different types of basis functions an
-% \emph{interpolation notation} is adopted. This
-% interpolation is such that $\gbfn{\alpha}{u}{\vectr{\xi}}$ are the appropriate
-% basis functions for the type of element (\eg \bicubicherm, Hermite-sector,
-% \etc) and dimension of the problem (one, two or \threedal). For example if
-% $\vectr{\xi}=\bbrac{\xi}$ and the element is a cubic Hermite element then
-% $\gbfn{\alpha}{u}{\vectr{\xi}}$ are the cubic Hermite basis functions where
-% $\alpha$ ranges from $1$ to $2$ and $u$ ranges from $0$ to $1$. If, however,
-% $\vectr{\xi}=\bbrac{\xione,\xitwo}$ and the element is a \bicubicherm element
-% then $\alpha$ ranges from $1$ to $4$, $u$ ranges from $0$ to $3$ and
-% $\gbfn{\alpha}{u}{\vectr{\xi}}$ is the appropriate basis function for the nodal
-% variable $\nodedof{\phi}{\alpha}{u}$. The nodal variables are defined as
-% follows: $\nodedof{\phi}{\alpha}{0}=\nodept{\phi}{\alpha}$,
-% $\nodedof{\phi}{\alpha}{1}=\delby{\nodept{\phi}{\alpha}}{s_{1}}$,
-% $\nodedof{\phi}{\alpha}{2}=\delby{\nodept{\phi}{\alpha}}{s_{2}}$,
-% $\nodedof{\phi}{\alpha}{3}=\deltwoby{\nodept{\phi}{\alpha}}{s_{1}}{s_{2}}$,
-% \etc Hence for the \bicubicherm element the interpolation function
-% $\gbfn{2}{3}{\vectr{\xi}}$ multiplies the nodal variable
-% $\phi^{2}_{,3}=\deltwoby{\phi^{2}}{s_{1}}{s_{2}}$ and thus the
-% interpolation function is $\chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}$.  The
-% scale factors for the Hermite interpolation are handled by the introduction of
-% an interpolation scale factor $\gsf{\alpha}{u}$ defined as follows:
-% $\gsf{\alpha}{0}=1$, $\gsf{\alpha}{1}=\nsftwo{\alpha}{1}$, $\gsf{\alpha}{2}=
-% \nsftwo{\alpha}{2}$, $\gsf{\alpha}{3}=\nsftwo{\alpha}{1}\nsftwo{\alpha}{2}$,
-% \etc For Lagrangian basis functions the interpolation scale factors are all
-% one. The general form of the interpolation notation for $\phi$ is then
-% \begin{equation}
-%   \fnof{\phi}{\vectr{\xi}}=\gbfn{\alpha}{u}{\vectr{\xi}}\nodedof{\phi}
-%   {\alpha}{u}\gsf{(\alpha)}{(u)}
-%   \label{eqn:phiinterpolation}
-% \end{equation}
-% 
-% \subsection{Spatio-temporal integration:}
-% When dealing with integrals a similar interpolation notation is adopted in
-% that $d\vectr{\xi}$ is the appropriate infinitesimal for the dimension of the
-% problem. The limits of the integral are also written in bold font and indicate
-% the appropriate number of integrals for the dimension of the problem.  For
-% example if $\vectr{\xi}=\bbrac{\xione,\xitwo}$ then
-% $\gint{\vectr{0}}{\vectr{1}}{x}
-% {\vectr{\xi}}=\giint{0}{1}{0}{1}{x}{\xione}{\xitwo}$, but if $\vectr{\xi}=
-% \bbrac{\xione,\xitwo,\xithree}$ then $\gint{\vectr{0}}{\vectr{1}}{x}
-% {\vectr{\xi}}=\dintl{0}{1}\!\dintl{0}{1}\!\dintl{0}{1}\,x\,d\xione d\xitwo
-% d\xithree$.
-% 
-% In order to integrate in $\vectr{\xi}$ coordinates we must convert the spatial
-% derivatives to derivatives with respect to $\vectr{\xi}$. Using the tensor
-% transformation equations for a covariant vector we have
-% \begin{equation}  
-%   \covarderiv{\phi}{i}=\delby{\xi^{r}}{x^{i}}\covarderiv{\phi}{r}=\delby{\xi^{r}}{x^{i}}\delby{\phi}{\xi^{r}}
-% \end{equation}
-% and 
-% \begin{equation}
-%   \covarderiv{w}{k}=\delby{\xi^{s}}{x^{k}}\covarderiv{w}{s}=\delby{\xi^{s}}{x^{k}}\delby{w}{\xi^{s}}
-% \end{equation}
-% 
-% Now as we only know $\tensor{\sigma}^{*}$, the conductivity in the
-% $\vectr{\nu}$ (fibre) coordinate system rather than $\tensor{\sigma}$, the
-% conductivity in the $\vectr{x}$ (geometric) coordinate system we must transform the mixed
-% tensor ${\sigma^{*}}^{a}_{.b}$ from $\vectr{\nu}$ to $\vectr{x}$ coordinates. However, as the
-% fibre coordinate system is defined in terms of $\vectr{\xi}$ coordinates we
-% first transform the conductivity tensor from $\vectr{\nu}$ to $\vectr{\xi}$
-% coordinates \ie
-% \begin{equation}
-%   \sigma^{p}_{.q}=\delby{\xi^{p}}{\nu^{a}}\delby{\nu^{b}}{\xi^{q}}{\sigma^{*}}^{a}_{.b}
-% \end{equation}
-% and then transform the conductivity form $\vectr{\xi}$ coordinates to
-% $\vectr{x}$ coordinates \ie
-% \begin{equation}
-%   \begin{split}
-%     \sigma^{i}_{.j} &= \delby{x^{i}}{\xi^{p}}\delby{\xi^{q}}{x^{j}}{\sigma}^{p}_{.q} \\
-%     &= \delby{x^{i}}{\xi^{p}}\delby{\xi^{q}}{x^{j}}\delby{\xi^{p}} 
-%     {\nu^{a}}\delby{\nu^{b}}{\xi^{q}}{\sigma^{*}}^{a}_{.b}
-%   \end{split}
-% \end{equation}
-% 
-% Now, using an interpolated dependent variable and a Galerkin finite element
-% approach (where the weighting functions are chosen to be the interpolating
-% basis functions \ie $w=\gbfn{\beta}{v}{\vectr{\xi}}\gsf{(\beta)}{(v)}$) yields
-% \begin{equation}
-%   \dsum_{e=1}^{E}\gint{\vectr{0}}{\vectr{1}}{G^{jk}\delby{x^{i}}{\xi^{p}}
-%     \delby{\xi^{q}}{x^{j}}\delby{\xi^{p}} {\nu^{a}}
-%     \delby{\nu^{b}}{\xi^{q}}{\sigma^{*}}^{a}_{.b}\delby{\xi^{r}}{x^{i}}
-%     \delby{\pbrac{\gbfn{\alpha}{u}{\vectr{\xi}}\nodedof{\phi}{\alpha}{u}\gsf{(\alpha)}{(u)}}}{\xi^{r}}
-%     \delby{\xi^{s}}{x^{k}}\delby{\pbrac{\gbfn{\beta}{v}{\vectr{\xi}}\gsf{(\beta)}{(v)}}}{\xi^{s}}
-%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
-% \end{equation}
-% where $\fnof{\matr{J}}{\vectr{\xi}}$ is the \emph{Jacobian} of the
-% transformation from the integration $\vectr{x}$ to $\vectr{\xi}$ coordinates.
-% 
-% Taking the fixed nodal degrees-of-freedom and scale factors outside the integral we have
-% \begin{equation}
-%   \dsum_{e=1}^{E}\nodedof{\phi}{\alpha}{u}\gsf{(\alpha)}{(u)}\gsf{(\beta)}{(v)}
-%   \gint{\vectr{0}}{\vectr{1}}{G^{jk}\delby{x^{i}}{\xi^{p}}
-%     \delby{\xi^{q}}{x^{j}}\delby{\xi^{p}} {\nu^{a}}
-%     \delby{\nu^{b}}{\xi^{q}}{\sigma^{*}}^{a}_{.b}\delby{\xi^{r}}{x^{i}}
-%     \delby{\gbfn{\alpha}{u}{\vectr{\xi}}}{\xi^{r}}
-%     \delby{\xi^{s}}{x^{k}}\delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi^{s}}
-%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
-%   \label{eqn:elementalfemlhs1}
-% \end{equation}
-% or
-% \begin{equation}
-%   \dsum_{e=1}^{E}\nodedof{\phi}{\alpha}{u}\gsf{(\alpha)}{(u)}\gsf{(\beta)}{(v)}
-%   \gint{\vectr{0}}{\vectr{1}}{\delby{\gbfn{\alpha}{u}{\vectr{\xi}}}{\xi^{r}}\delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi^{s}}\gamma^{rs}
-%     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
-%   \label{eqn:elementalfemlhs2}
-% \end{equation}
-% where
-% \begin{equation}
-%   \gamma^{rs}=G^{jk}\delby{x^{i}}{\xi^{p}}
-%     \delby{\xi^{q}}{x^{j}}\delby{\xi^{p}} {\nu^{a}}
-%     \delby{\nu^{b}}{\xi^{q}}{\sigma^{*}}^{a}_{.b}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
-% \end{equation}
-% 
-% Note that for Laplace's equation with no conductivity or fibre fields then we have
-% \begin{equation}
-%   \gamma^{rs}=G^{ik}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
-% \end{equation}
-% and that for rectangular-Cartesian coordinates systems
-% $G^{ik}=\kronecker{i}{k}$ and thus $i=k$. This now gives
-% \begin{equation}
-%   \gamma^{rs}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{i}}=g^{rs}
-%   \label{eqn:contrametrictensor}
-% \end{equation}
-% where $g^{rs}$ is the \emph{contravariant metric tensor} from $\vectr{x}$ to
-% $\vectr{\xi}$ coordinates. It may thus be helpful to think about $\gamma^{rs}$
-% as a scaled/transformed contravariant metric tensor.
-% 
-% \subsection{Coded OpenCMISS formulation:}
-% Finally, we use the Gaussian quadrature rule, usually stated as a weighted sum of function values at specified Gauss points within the domain of integration. An $n$-point Gaussian quadrature rule yields an exact result for polynomials of degree $2n-1$ or less by a suitable choice of the points $x_i$ and weights $g_i$ for $i = 1,...,n$. Consequently, the formulation implemented can be derived from Equation (\ref{eqn:elementalfemlhs2}) as: 
-% \begin{equation}
-%   \boxed{
-%   \dsum_{e=1}^{E}\nodedof{\phi}{\alpha}{u}\gsf{(\alpha)}{(u)}
-%   \dsum_{i=1}^{n}
-%   \left(\delby{\gbfn{\alpha}{u}{\vectr{\xi}}}{\xi^{r}}
-%   \delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi^{s}}\gamma^{rs}\abs{\fnof{\matr{J}}{\vectr{\xi}}}
-%   \right)(x_i)g_i
-%   }
-% \end{equation}
+Neumann boundary conditions will consist of a pressure term and
+viscous stress acting normal to a given boundary.
+\begin{equation}
+  \fnof{\vectr{q}}{\vectr{x},t} =
+  \dotprod{\pbrac{\mu\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}+\transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}-
+      \fnof{p}{\vectr{x},t}\sharptensor{\vectr{g}}}}{\fnof{\vectr{n}}{\vectr{x},t}}  \quad\quad \vectr{x}\in\Gamma_{N}
+  \label{eqn:StokesNeumannBC}  
+\end{equation}
+
+\subsection{Tensor notation}
+
+\Eqnref{eqn:GalerkinStokesGenMomentum} in tensor notation becomes
+\begin{multline}
+  \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
+ -\gint{\Omega}{}{\rho v^{*j}\covarderiv{v^{i}}{j}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\covarderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{{\mu}g^{jk}\covarderiv{v^{i}}{k}\covarderiv{w^{i}}{j}}{\Omega}
+ +\gint{\Omega}{}{{\mu}g^{ik}\covarderiv{v^{j}}{k}\covarderiv{w^{i}}{j}}{\Omega}\\
+ -\gint{\Omega}{}{s^{i}w^{i}}{\Omega}
+ =\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\covarderiv{v^{i}}{k}+g^{ik}\covarderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}
+ \label{eqn:TensorStokesEquation}
+\end{multline}
+or
+\begin{multline}
+  \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
+ -\gint{\Omega}{}{\rho v^{*j}\pbrac{\partialderiv{v^{i}}{j}+\christoffel{i}{j}{h}v^{h}}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{{\mu}g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}
+ +\gint{\Omega}{}{{\mu}g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}\\
+ -\gint{\Omega}{}{s^{i}w^{i}}{\Omega}
+ =\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\pbrac{\partialderiv{v^{i}}{k}+\christoffel{i}{k}{h}v^{h}}+g^{ik}\pbrac{\partialderiv{v^{j}}{k}+\christoffel{j}{k}{h}v^{h}}}-pg^{ij}}n_{j}w^{i}}{\Gamma}
+ \label{eqn:Tensor2StokesEquation}
+\end{multline}
+or
+\begin{multline}
+  \gint{\Omega}{}{\rho\dot{v}^{i}w^{i}}{\Omega}
+ -\gint{\Omega}{}{\rho v^{*j}\partialderiv{v^{i}}{j}w^{i}}{\Omega}
+ -\gint{\Omega}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}\\
+ +\gint{\Omega}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}
+ -\gint{\Omega}{}{s^{i}w^{i}}{\Omega}
+ -\gint{\Omega}{}{\rho v^{*j}\christoffel{i}{j}{h}v^{h}w^{i}}{\Omega}\\
+ +\gint{\Omega}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
+     g^{ik}\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}\\
+ =\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}
+ +\gint{\Gamma_N}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}w^{i}}{\Gamma}
+ \label{eqn:Tensor3StokesEquation}
+\end{multline}
+where $g^{jk}$ is the contravariant metric tensor and $\christoffel{i}{j}{k}$
+is the Christoffel symbol of the second kind for the spatial coordinates.
+
+The conservation of mass equation can be written as
+\begin{equation}
+  \gint{\Omega}{}{\covarderiv{v^{i}}{i}w^{p}}{\Omega}=
+  \gint{}{}{\pbrac{\partialderiv{v^{i}}{i}+\christoffel{i}{i}{j}v^{j}}w^{p}}{\Omega}=
+  \gint{\Omega}{}{\partialderiv{v^{i}}{i}w^{p}}{\Omega}+\gint{\Omega}{}{\christoffel{i}{i}{j}v^{j}w^{p}}{\Omega}=0
+  \label{eqn:TensorStokesMass}
+\end{equation}
+
+\subsection{Finite Element Formulation}
+
+We can now discretise the domain into finite elements \ie
+$\Omega=\displaystyle{\bigcup_{e=1}^{E}}\Omega_{e}$ with
+$\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$. \Eqnref{eqn:Tensor3StokesEquation} now
+becomes:
+\begin{multline}
+  \gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho\dot{v}^{i}w^{i}}{\Omega}}
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho v^{*j}\partialderiv{v^{i}}{j}{w^{i}}}{\Omega}}
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}}\\
+ +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+
+       g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}}
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{s^{i}w^{i}}{\Omega}}\\
+ -\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho
+     v^{*j}\christoffel{i}{j}{h}v^{h}w^{i}}{\Omega}}
+ +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
+     g^{ik}\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}}\\
+ =\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\pbrac{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+
+         g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}}\\
+ +\gsum{f=1}{F}{\gint{\Gamma_{N_{f}}}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
+       g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}w^{i}}{\Gamma}}
+ \label{eqn:FEMStokesEquationMomentum}
+\end{multline}
+
+\Eqnref{eqn:TensorConvOfMass} now becomes
+\begin{equation}
+  \gsum{e=1}{E}{\gint{\Omega_{e}}{}{\partialderiv{v^{i}}{i}w^{p}}{\Omega}}
+  +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\christoffel{i}{i}{j}v^{j}w^{p}}{\Omega}}=0
+  \label{eqn:FEMStokesEquationMass}
+\end{equation}
+
+We will assume that the dependent variables $\vectr{v}$ and $p$ can be
+interpolated separately in space and time \ie
+\begin{gather}
+  \fnof{\vectr{v}}{\vectr{x},t}=\gbfn{n}{}{\vectr{x}}\fnof{\nodept{\vectr{v}}{n}}{t}\\
+  \fnof{p}{\vectr{x},t}=\altgbfn{n}{}{\vectr{x}}\fnof{\nodept{p}{n}}{t}
+\end{gather}
+
+In standard interpolation notation within an element, we transform from
+$\vectr{x}$ to $\vectr{\xi}$ \ie
+\begin{gather}
+  \fnof{v^{i}}{\vectr{\xi},t}=\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}\\
+  \fnof{p}{\vectr{\xi},t}=\altgbfn{n}{\beta}{\vectr{\xi}}
+  \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}
+\end{gather}
+
+
+For the natural boundary, we can separate $q^{i}$ into its component velocity
+and pressure terms as noted in \ref{eqn:StokesNeumannBC} and shown in
+\ref{eqn:FEMStokesEquationMomentum}. For our current treatment, we will also assume the values
+of viscosity $\mu$ and density $\rho$ are constant. These can be interpolated:
+\begin{equation}
+  \begin{split}
+    \fnof{q^{i}}{\vectr{\xi},t} &= \idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+    \fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma} \\
+    \fnof{v^{*i}}{\vectr{\xi},t} &=\idxgbfn{i}{d}{\delta}{\vectr{\xi}}
+    \fnof{\idxnodedof{v}{*i}{d}{\delta}}{t}\idxgsf{i}{d}{\delta} \\
+    \fnof{s^{i}}{\vectr{\xi},t} &=\idxgbfn{i}{e}{\epsilon}{\vectr{\xi}}
+    \fnof{\idxnodedof{s}{i}{e}{\epsilon}}{t}\idxgsf{i}{e}{\epsilon} \\
+    \fnof{\mu}{\vectr{\xi}} &=\gbfn{f}{\zeta}{\vectr{\xi}}
+    \nodedof{\mu}{f}{\zeta}\gsf{f}{\zeta} \\
+    \fnof{\rho}{\vectr{\xi}} &=\gbfn{g}{\eta}{\vectr{\xi}}\nodedof{\rho}{g}{\eta}
+    \gsf{g}{\eta}
+  \end{split}
+\end{equation}
+where $\fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}$,
+$\fnof{\idxnodedof{v}{*i}{d}{\delta}}{t}$, 
+$\fnof{\idxnodedof{s}{i}{e}{\epsilon}}{t}$, $\nodedof{\mu}{f}{\zeta}$
+and $\nodedof{\rho}{g}{\eta}$ are the nodal degrees-of-freedom for the
+variables for component $i$ and time $t$.
+
+The Galerkin weight functions are given by
+\begin{equation}
+  \fnof{w^{i}}{\vectr{\xi}}=\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}
+\end{equation}
+and
+\begin{equation}
+  \fnof{w^{p}}{\vectr{\xi}}=\altgbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}
+\end{equation}
+
+\subsection{Spatial Integration}
+
+Using standard integration notation, we can rewrite our Galerkin FEM
+formulation from \ref{eqn:FEM3StokesEquation}:
+\begin{multline}
+  %time dependence
+  \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %ALE term
+  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+  \fnof{v^{*j}}{\vectr{\xi},t}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{j}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %pressure
+  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{g^{ik}}{\vectr{\xi}}\altgbfn{n}{\beta}{\vectr{\xi}}
+  \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{k}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %viscous stress
+  +\dsuml{e=1}{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+      \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}\right.\\
+    \left.+\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}}{x^{k}}\right)\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
+  %body force
+  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %Christofell terms
+  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+      \fnof{v^{*j}}{\vectr{\xi},t}\fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
+      \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}{\vectr{\xi}}}\\  
+  +\dsuml{e=1}{E} \dintl{\vectr{0}}{\vectr{1}}
+  \fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+  \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right.\\
+  \left.+\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+  \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right)
+  \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}
+  \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}\\
+  +\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}
+      \fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+      \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %boundary terms
+  =\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+      \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}
+  \label{eqn:FEM4StokesEquation}
+\end{multline}
+where the appropriate face bases are used for the surface integrals. Note that
+$\fnof{\matr{J}}{\vectr{\xi}}$ represents the jacobian matrix from $\vectr{x}$
+to $\vectr{\xi}$ coordinates.
+
+Taking constant terms outside the integral signs and converting derivatives
+with respect to $\vectr{x}$ to derivatives with respect to $\vectr{\xi}$ gives
+\begin{multline}
+  %time dependence
+  \gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{\dot{v}}{i}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %ALE term
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{v^{*j}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %pressure
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gsf{n}{\beta}\fnof{\nodedof{p}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}\delby{\xi^{r}}{x^{k}}
+      \altgbfn{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %viscous stress
+  +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{k}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}\fnof{\idxnodedof{v}{j}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{k}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}} \\
+  %body force
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %Christofell terms
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{\idxnodedof{v}{*j}{n}{\beta}}{t}
+      \fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}
+      \idxgbfn{j}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+      \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{j}}
+      \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
+    \gint{}{}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}
+      \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{j}}
+      \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  -\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}
+      \fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{n_{j}}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %boundary terms
+  =\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{o}{\gamma}\fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  \label{eqn:FEM4StokesEquation}
+\end{multline}

@@ -1,1 +1,106 @@
 \section{Advection-Diffusion Equation} 
+
+\subsection{Governing equations}
+
+The form of the \emph{general advection-diffusion equation} with source on a domain $\Omega$ with boundary
+$\Gamma$ in \OpenCMISS can be stated as
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x},t}
+        \gradient{}{\fnof{u}{\vectr{x},t}}}}+\fnof{b}{\vectr{x}}\divergence{}{\pbrac{\fnof{\vectr{v}}{\vectr{x},t}
+        \fnof{u}{\vectr{x},t}}}+\fnof{s}{\vectr{x},t}=0
+  }
+  \label{eqn:GeneralAdvectionDiffusionEquation}
+\end{equation}
+where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{u}{\vectr{x},t}$ is the
+  dependent variable, $\fnof{\tensor{\sigma}}{\vectr{x},t}$ is the
+  conductivity/diffusivity tensor throughout the domain, $\fnof{a}{\vectr{x}}$
+  and $\fnof{b}{\vectr{x}}$ are material coefficients,
+  $\fnof{\vectr{v}}{\vectr{x},t}$ is the advective velocity throughout the
+  domain and $\fnof{s}{\vectr{x},t}$ is a source term in the domain.
+
+Additional forms of Poisson's equation in \OpenCMISS include a \emph{linear
+  source advection-diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x},t}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}+\fnof{b}{\vectr{x}}\divergence{}{\pbrac{\fnof{\vectr{v}}{\vectr{x},t}
+          \fnof{u}{\vectr{x},t}}}\\
+      +\fnof{c}{\vectr{x}}\fnof{u}{\vectr{x},t}+\fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  } 
+  \label{eqn:LinearSourceAdvectionDiffusionEquation}
+\end{equation}
+a \emph{quadratic source advection-diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x},t}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}+\fnof{b}{\vectr{x}}\divergence{}{\pbrac{\fnof{\vectr{v}}{\vectr{x},t}
+          \fnof{u}{\vectr{x},t}}}\\
+      +\fnof{c}{\vectr{x}}\fnof{u}{\vectr{x},t}+\fnof{d}{\vectr{x}}\pbrac{\fnof{u}{\vectr{x},t}}^{2}+
+      \fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  }
+  \label{eqn:QuadraticSourceAdvectionDiffusionEquation}
+\end{equation}
+and an \emph{exponential source advection-diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x},t}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}+\fnof{b}{\vectr{x}}\divergence{}{\pbrac{\fnof{\vectr{v}}{\vectr{x},t}
+          \fnof{u}{\vectr{x},t}}}\\
+      +\fnof{c}{\vectr{x}}e^{\fnof{d}{\vectr{x}}\fnof{u}{\vectr{x},t}}+\fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  }
+  \label{eqn:ExponentialSourceAdvectionDiffusionEquation}
+\end{equation}
+where $\fnof{c}{\vectr{x}}$ and $\fnof{d}{\vectr{x}}$ are material
+coefficients.
+
+We can also formulate these equations in Arbitrary Lagrangian-Eulerian (ALE
+form). For example the \emph{general ALE advection-diffusion equation} is
+given by
+\begin{equation}
+  \addtolength{\fboxsep}{3pt}
+  \boxed{
+    \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x},t}
+        \gradient{}{\fnof{u}{\vectr{x},t}}}}+\fnof{b}{\vectr{x}}\divergence{}{\pbrac{\sqbrac{\fnof{\vectr{v}}{\vectr{x},t}
+          -\fnof{\vectr{w}}{\vectr{x},t}}\fnof{u}{\vectr{x},t}}}+\fnof{s}{\vectr{x},t}=0
+  }
+  \label{eqn:GeneralALEAdvectionDiffusionEquation}
+\end{equation}
+where $\fnof{\vectr{w}}{\vectr{x},t}$ is the mesh velocity.
+
+Appropriate boundary conditions conditions for the advection-diffusion
+equation are specification of Dirichlet boundary conditions on the solution,
+$\fnof{g}{\vectr{x},t}$, \ie
+\begin{equation}
+  \fnof{u}{\vectr{x},t} = \fnof{g}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
+  \label{eqn:AdvectionDiffusionDirichletBC} 
+\end{equation}
+and/or Neumann conditions in terms of the solution flux in the normal
+direction, $\fnof{h}{\vectr{x},t}$ \ie
+\begin{equation}
+  \fnof{q}{\vectr{x},t} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+      \gradient{}{\fnof{u}{\vectr{x},t}}}}{\fnof{\normal}{\vectr{x}}} =
+  \fnof{h}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
+  \label{eqn:AdvectionDiffusionNeumannBC} 
+\end{equation}
+where $\fnof{q}{\vectr{x},t}$, is the flux in the normal direction, $\fnof{\normal}{\vectr{x}}$ is the normal
+vector to the boudary and $\Gamma=\union{\Gamma_{D}}{\Gamma_{N}}$.
+
+Appropriate initial conditions for the advection-diffusion equation are the
+specification of an initial value of the solution, $\fnof{i}{\vectr{x}}$, \ie
+\begin{equation}
+  \fnof{u}{\vectr{x},0} = \fnof{i}{\vectr{x}} \quad \vectr{x}\in\Omega.
+  \label{eqn:AdvectionDiffusionInitialC} 
+\end{equation}
+
+

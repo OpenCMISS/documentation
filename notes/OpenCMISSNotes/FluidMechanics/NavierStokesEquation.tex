@@ -257,7 +257,7 @@ functions $\vectr{w}$ for the velocity variables \ie
   \gint{\Omega}{}{\pbrac{\rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
       +\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}
       -\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}
-      -\vectr{f}}{\vectr{w}}}{\Omega} = 0
+      -\vectr{f}}{\vectr{w}}}{\Omega} = \vectr{0}
  \label{eqn:BasicGalerkinNSEMomentum}
 \end{equation}
 and
@@ -383,7 +383,6 @@ or
  -\gint{\Gamma_N}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+g^{ik}\christoffel{j}{k}{h}v^{h}}n_{j}w^{i}}{\Gamma}=0
  \label{eqn:Tensor3NSE}
 \end{multline}
-
 where $g^{jk}$ is the contravariant metric tensor and $\christoffel{i}{j}{k}$
 is the Christoffel symbol of the second kind for the spatial coordinates.
 
@@ -399,9 +398,8 @@ The conservation of mass equation can be written as
 
 We can now discretise the domain into finite elements \ie
 $\Omega=\displaystyle{\bigcup_{e=1}^{E}}\Omega_{e}$ with
-$\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$. \Eqnref{eqn:Tensor2NSE} now
+$\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$. \Eqnref{eqn:Tensor3NSE} now
 becomes:
-
 \begin{multline}
   \gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho\dot{v}^{i}w^{i}}{\Omega}}
  +\gsum{e=1}{E}{\gint{\Omega_{e}}{}{\rho v^{j}\partialderiv{v^{i}}{j}{w^{i}}}{\Omega}}
@@ -454,7 +452,7 @@ similarly.
 
 For the natural boundary, we can separate $q^{i}$ into its component velocity
 and pressure terms as noted in \ref{eqn:NSENeumannBC} and shown in
-\ref{eqn:FEMNSE2}. For our current treatment, we will also assume the values
+\ref{eqn:FEM3NSE}. For our current treatment, we will also assume the values
 of viscosity $\mu$ and density $\rho$ are constant. These can be interpolated:
 
 \begin{equation}
@@ -523,7 +521,7 @@ formulation from \ref{eqn:NSEFEM2}:
       \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}
   =0
-  \label{eqn:NSEFEM3}
+  \label{eqn:FEM4NSE}
 \end{multline}
 where the appropriate face bases are used for the surface integrals. Note that
 $\fnof{\matr{J}}{\vectr{\xi}}$ represents the jacobian matrix from $\vectr{x}$

@@ -1,50 +1,49 @@
 \section{Diffusion Equations} 
 
-\section{General Diffusion Equation} 
+\subsection{Governing equations}
 
-\subsubsection{Governing equations:}
-
-The general form of the diffusion equation with source on a domain $\Omega$ with boundary
+The \emph{generalised diffusion equation} on a domain $\Omega$ with boundary
 $\Gamma$ in \OpenCMISS can be stated as
 \begin{equation}
+  \addtolength{\fboxsep}{5pt}
   \boxed{
     \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+
     \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x},t}}}}+
-    \fnof{b}{\vectr{x},t}=0  
+    \fnof{s}{\vectr{x},t}=0  
   }
   \label{eqn:diffusionequation}
 \end{equation}
-where $\vectr{x}\in\Omega$, $\fnof{u}{\vectr{x},t}$ is the quatity that diffuses,
-$\fnof{a}{\vectr{x}}$ is a temporal weighting, $\fnof{\tensor{\sigma}}{\vectr{x}}$ is
-the conductivity tensor throughout the domain and $\fnof{b}{\vectr{x},t}$ is a
+where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{u}{\vectr{x},t}$ is the quatity that diffuses,
+$\fnof{a}{\vectr{x}}$ is a material coefficient, $\fnof{\tensor{\sigma}}{\vectr{x}}$ is
+the conductivity/diffusivity tensor throughout the domain and $\fnof{s}{\vectr{x},t}$ is a
 source term.
 
 Appropriate boundary conditions conditions for the diffusion
 equation are specification of Dirichlet boundary conditions on the solution,
-$d$ \ie
+$\fnof{g}{\vectr{x},t}$, \ie
 \begin{equation}
-  \fnof{u}{\vectr{x},t} = \fnof{d}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},
+  \fnof{u}{\vectr{x},t} = \fnof{g}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
   \label{eqn:diffusionDirichletBC} 
 \end{equation}
 and/or Neumann conditions in terms of the solution flux in the normal
-direction, $e$ \ie
+direction, $\fnof{h}{\vectr{x},t}$ \ie
 \begin{equation}
-  \fnof{q}{\vectr{x}} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
-      \gradient{}{\fnof{u}{\vectr{x}}}}}{\normal} =
-  \fnof{e}{\vectr{x}} \quad \vectr{x}\in\Gamma_{N},
+  \fnof{q}{\vectr{x},t} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+      \gradient{}{\fnof{u}{\vectr{x},t}}}}{\fnof{\normal}{\vectr{x}}} =
+  \fnof{h}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
   \label{eqn:diffusionNeumannBC} 
 \end{equation}
-where $\fnof{q}{\vectr{x},t}$ is the flux in the normal direction, $\normal$ is the normal
+where $\fnof{q}{\vectr{x},t}$, is the flux in the normal direction, $\fnof{\normal}{\vectr{x}}$ is the normal
 vector to the boudary and $\Gamma=\union{\Gamma_{D}}{\Gamma_{N}}$.
 
 Appropriate initial conditions for the diffusion equation are the
-specification of an initial value of the solution, $f$ \ie
+specification of an initial value of the solution, $\fnof{i}{\vectr{x}}$, \ie
 \begin{equation}
-  \fnof{u}{\vectr{x},0} = \fnof{f}{\vectr{x}} \quad \vectr{x}\in\Omega.
+  \fnof{u}{\vectr{x},0} = \fnof{i}{\vectr{x}} \quad \vectr{x}\in\Omega.
   \label{eqn:diffusionInitialC} 
 \end{equation}
 
-\subsubsection{Weak formulation:}
+\subsection{Weak formulation}
 
 The corresponding weak form of \eqnref{eqn:diffusionequation} can be found by
 integrating over the spatial domain with a test function \ie
@@ -66,7 +65,7 @@ to \eqnref{eqn:diffusionweakform1} gives
 \end{equation}
 where $\normal$ is the unit outward normal vector to the boundary $\Gamma$.
 
-\subsubsection{Tensor notation:}
+\subsection{Tensor notation}
 
 \Eqnref{eqn:diffusionweakform2} can be written in tensor notation as
 \begin{equation}
@@ -86,7 +85,7 @@ or
 \end{equation}
 where $G^{jk}$ is the contravariant metric tensor for the spatial coordinate system.
 
-\subsubsection{Finite element formulation:}
+\subsection{Finite element formulation}
 
 We can now discretise the spatial domain into finite elements \ie $\Omega=
 \displaystyle{\bigcup_{e=1}^{E}}\Omega_{e}$ with
@@ -141,7 +140,7 @@ function $w$ to be equal to the basis fucntions \ie
   \fnof{w}{\vectr{\xi}}=\gbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}
 \end{equation}
 
-\subsubsection{Spatial integration:}
+\subsection{Spatial integration}
 
 Adopting the standard integration notation we can write the spatial
 integration term in \eqnref{eqn:diffusionfemform} as
