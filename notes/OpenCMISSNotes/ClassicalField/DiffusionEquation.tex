@@ -16,7 +16,48 @@ $\Gamma$ in \OpenCMISS can be stated as
 where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{u}{\vectr{x},t}$ is the quatity that diffuses,
 $\fnof{a}{\vectr{x}}$ is a material coefficient, $\fnof{\tensor{\sigma}}{\vectr{x}}$ is
 the conductivity/diffusivity tensor throughout the domain and $\fnof{s}{\vectr{x},t}$ is a
-source term.
+source term in the domain.
+
+Additional forms of the diffusion equation in \OpenCMISS include a \emph{linear
+  source diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}
+      +\fnof{b}{\vectr{x}}\fnof{u}{\vectr{x},t}+\fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  } 
+  \label{eqn:LinearSourceDiffusionEquation}
+\end{equation}
+a \emph{quadratic source diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}
+      +\fnof{b}{\vectr{x}}\fnof{u}{\vectr{x},t}+\fnof{c}{\vectr{x}}\pbrac{\fnof{u}{\vectr{x},t}}^{2}+
+      \fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  }
+  \label{eqn:QuadraticSourceDiffusionEquation}
+\end{equation}
+and an \emph{exponential source diffusion equation} given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \begin{gathered}
+      \fnof{a}{\vectr{x}}\delby{\fnof{u}{\vectr{x},t}}{t}+\divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+          \gradient{}{\fnof{u}{\vectr{x},t}}}}
+      +\fnof{b}{\vectr{x}}e^{\fnof{c}{\vectr{x}}\fnof{u}{\vectr{x},t}}+\fnof{s}{\vectr{x},t}=0
+    \end{gathered}
+  }
+  \label{eqn:ExponentialSourceDiffusionEquation}
+\end{equation}
+where $\fnof{b}{\vectr{x}}$ and $\fnof{c}{\vectr{x}}$ are material
+coefficients.
 
 Appropriate boundary conditions conditions for the diffusion
 equation are specification of Dirichlet boundary conditions on the solution,

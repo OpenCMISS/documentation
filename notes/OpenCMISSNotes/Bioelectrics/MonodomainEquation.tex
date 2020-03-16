@@ -1,4 +1,3 @@
-
 \section{Monodomain Equation}
  
 
@@ -22,7 +21,7 @@ The monodomain equations are:
 where $V_m$ is the membrane potential, $\vec{D}=\frac{\vec{\sigma}}{\chi C_m}$ is the diffusion coefficient, $\vec{\sigma}$ is the conductivity, $C_m$ the membrane capacitance, $\chi$ the cell's surface area to volume ratio, $\Iion$ the currents across the membrane, and $\Iext$ the external stimulus current.
 
 The numerical method developed to solve the monodomain model uses the idea of operator splitting based on Strang splitting outlined in (Qu \& Garfinkel 1999). The splitting algorithm is used to decouple the cell model from the diffusion part of the monodomain equation. 
-
+ 
 The splitting method enables us to solve:
 \begin{equation}
 \frac{d V_m}{d t} = \nabla \cdot (\mathbf{D}\nabla V)

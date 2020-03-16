@@ -1,1 +1,26 @@
 \section{Helmholtz Equation}
+\label{sec:HelmholtzEquations}
+
+\subsection{Governing equations}
+
+The \emph{standard Helmholtz equation}  on a domain $\Omega$ with boundary $\Gamma$
+in \OpenCMISS can be stated as
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \laplacian{}{\fnof{u}{\vectr{x}}}+k^{2}\fnof{u}{\vectr{x}}=0
+  }
+  \label{eqn:StandardHelmholtzEquation}
+\end{equation}
+where $k$ is wave number and $\fnof{u}{\vectr{x}}$ the wave amplitude.
+
+For general anisotropic domains we can also write the \emph{generalised
+  Helmholtz equation} as
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \divergence{}{\pbrac{\fnof{\tensortwo{\sigma}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x}}}}}+k^{2}\fnof{u}{\vectr{x}}=0
+  }
+  \label{eqn:GeneralisedHelmholtzEquation}
+\end{equation}
+where $\fnof{\tensortwo{\sigma}}{\vectr{x}}$ is the conductivity tensor.
