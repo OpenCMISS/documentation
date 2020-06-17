@@ -364,29 +364,32 @@
 %
 % Non-dimensional numbers
 %
+\newcommand{\nondimnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % formatting for a non-dimensional number
 \newcommand{\brinkmannum}{\ensuremath{ %
-    \textit{Br} % Brinkman number
+    \nondimnumber{Br} % Brinkman number
 }}
 \newcommand{\froudenum}{\ensuremath{ %
-    \textit{Fr} % Froude number
+    \nondimnumber{Fr} % Froude number
 }}
 \newcommand{\grashofnum}{\ensuremath{ %
-    \textit{Gr} % Grashof number
+    \nondimnumber{Gr} % Grashof number
 }}
 \newcommand{\machnum}{\ensuremath{ %
-    \textit{Ma} % Mach number
+    \nondimnumber{Ma} % Mach number
 }}
 \newcommand{\nusseltnum}{\ensuremath{ %
-    \textit{Nu} % Nusselt number
+    \nodimnumber{Nu} % Nusselt number
 }}
 \newcommand{\pecletnum}{\ensuremath{ %
-    \textit{Pe} % Peclet number
+    \nondimnumber{Pe} % Peclet number
 }}
 \newcommand{\prandtlnum}{\ensuremath{ %
-    \textit{Pr} % Prandtl number
+    \nondimnumber{Pr} % Prandtl number
 }}
 \newcommand{\reynoldsnum}{\ensuremath{ %
-    \textit{Re} % Reynolds number
+    \nondimnumber{Re} % Reynolds number
 }}
 
 %
@@ -398,6 +401,9 @@
 \newcommand{\integernums}{\ensuremath{ %
     \mathbb{Z} %
   }} % Integer numbers
+\newcommand{\positiveintnums}{\ensuremath{ %
+    \mathbb{Z}^{+} %
+  }} % Positive integer numbers
 \newcommand{\realnums}{\ensuremath{ %
     \mathbb{R} %
   }} % Real numbers
@@ -430,6 +436,9 @@
 \newcommand{\abrac}[1]{\brac{<}{#1}{>}} % angle <> bracket
 \newcommand{\abracl}[1]{\brac{<}{#1}{.}} % angle < bracket
 \newcommand{\abracr}[1]{\brac{.}{#1}{>}} % angle > bracket
+\newcommand{\dabrac}[1]{\brac{\ll}{#1}{\gg}} % double angle <<>> bracket
+\newcommand{\dabracl}[1]{\brac{\ll}{#1}{.}} % double angle << bracket
+\newcommand{\dabracr}[1]{\brac{.}{#1}{\gg}} % double angle >> bracket
 
 %
 % Sets
@@ -444,23 +453,42 @@
 % Topologies
 %
 \newcommand{\rntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \realnums}{ %
       \realnums^{#1} %
     } %
-  }} % R^n (real) topology
+}} % R^n (real) topology
+\newcommand{\cntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \complexnums}{ %
+      \complexnums^{#1} %
+    } %
+}} % C^n (complex) topology
 \newcommand{\sntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \mathbb{S}}{ %
       \mathbb{S}^{#1} %
     } %
-  }} % S^n (spherical) topology
+}} % S^n (spherical) topology
 \newcommand{\dntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \mathbb{D}}{ %
       \mathbb{D}^{#1} %
     } %
-  }} % D^n (discrete) topology
+}} % D^n (discrete) topology
+\newcommand{\rpntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \realnums P}{ %
+      \realnums P^{#1} %
+    } %
+}} % RP^n (real projective) topology
+\newcommand{\cpntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \complexnums P}{ %
+      \complexnums P^{#1} %
+    } %
+}} % CP^n (complex projective) topology
+
 
 %
 % Functions
@@ -621,10 +649,12 @@
     \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{\linearisationdir{#3}}} % 
   }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[\Delta u] &
      % \linearisation{f}{x}{u} => L_x(f)[\Delta u]
-\newcommand{\liebracket}[2]{\ensuremath{\sqbrac{#1,#2}}} % Lie bracket e.g.,
-                                % \liebracket{X}{Y} => [X,Y]
-\newcommand{\liederiv}[2]{\ensuremath{\mathcal{L}_{#1} #2}} % Lie derivative
-                                % e.g., \liederiv{X}{Y} => L_{X} Y
+\newcommand{\liebracket}[2]{\ensuremath{ %
+    \sqbrac{#1,#2} %
+}} % Lie bracket e.g.,\liebracket{X}{Y} => [X,Y]
+\newcommand{\liederiv}[2]{\ensuremath{ %
+    \mathcal{L}_{#1} #2
+}} % Lie derivative e.g., \liederiv{X}{Y} => L_{X} Y
 \newcommand{\limit}[3]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2} #3 %
     }} % limit e.g. \limit{a}{b}{c} => lim a->b c
@@ -645,9 +675,9 @@
     \pbrac{#1}_{#2} %
 }} % Pochhammer polynomial e.g. \pochhammer{a}{n} => (a)_n n.b. (a)_n =
 % (a,n) where (a,n) is Appell's symbol.
-\newcommand{\spaceprod}[2]{\ensuremath{
-    #1\times#2 %
-}} % space product e.g., \spaceprod{A}{B} => A X B
+\newcommand{\poissonbracket}[2]{\ensuremath{ %
+    \bbrac{#1,#2} %
+}} % Poisson bracket e.g.,\poissonbracket{X}{Y} => {X,Y}
 \newcommand{\symover}[2]{\ensuremath{
     \stackrel{\scriptscriptstyle #1}{#2} %
 }} % over
@@ -662,8 +692,9 @@
     }} % variation e.g. \variation{f}{u} => \delta f[\delta u]
 
 %
-% Sums
+% Sums, unions, intersections
 %
+
 \newcommand{\dsum}{\ensuremath{ %
     \displaystyle\sum %
 }} % display summation
@@ -679,6 +710,18 @@
 \newcommand{\gonesum}[2]{\ensuremath{ %
     \gsum{#1}{}{#2} %
 }} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
+\newcommand{\dunion}{\ensuremath{ %
+    \displaystyle\bigcup %
+}} % display union
+\newcommand{\gunion}[3]{\ensuremath{ %
+    \dunion_{#1}^{#2}\,#3 %
+}} % general union e.g. \gunion{a}{b}{c} => union_a^b c
+\newcommand{\dintersection}{\ensuremath{ %
+    \displaystyle\bigcap %
+}} % display intersection
+\newcommand{\gintersection}[3]{\ensuremath{ %
+    \dintersection_{#1}^{#2}\,#3 %
+}} % general intersection e.g. \gintersection{a}{b}{c} => intersection_a^b c
 
 %
 % Products
@@ -703,9 +746,12 @@
     \displaystyle\int\limits_{#1}^{#2} %
 }} % display integral with limits
 \newcommand{\gint}[4]{\ensuremath{ %
-    \dintl{#1}{#2}\,#3\,\exteriorderivop#4 %
-    }} % general integral with two limits. e.g.  
-       % \gint{a}{b}{xxx}{c} => int_a^b xxx dc
+    \ifthenelse{\equal{#4}{}}{ %
+      \dintl{#1}{#2}\,#3 %
+    }{
+      \dintl{#1}{#2}\,#3\,\exteriorderivop #4 %
+    }
+}} % general integral with two limits. e.g. \gint{a}{b}{xxx}{c} => int_a^b xxx dc
 \newcommand{\giint}[7]{\ensuremath{ %
     \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
     }} % general double integral with two limits. e.g.  
@@ -761,7 +807,7 @@
 % Operators
 % 
 
-% Tensor operators
+% Tensor/matrix operators
 \DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
 \DeclareMathOperator{\Trop}{Tr} % Trace operator e.g., Tr A
 \DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
@@ -773,6 +819,12 @@
 \DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
 \DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
 \DeclareMathOperator{\Sphop}{Sph} % Spherical operator e.g., Sph A
+\DeclareMathOperator{\kerop}{ker} % kernal operator e.g., ker A
+\DeclareMathOperator{\imgop}{im} % image operator e.g., im A
+\DeclareMathOperator{\dimop}{dim} % dimension operator e.g., dim A
+\DeclareMathOperator{\rankop}{rank} % rank operator e.g., rank A
+\DeclareMathOperator{\spanop}{span} % span operator e.g., span A
+\DeclareMathOperator{\volop}{vol} % volume operator e.g., vol A
 
 %
 %  Fractions
@@ -874,6 +926,140 @@
     % del^3/del x^1 del y^2 (u)
 
 %
+% Dynamics
+%
+\newcommand{\hamiltoniandensitysym}{\ensuremath{ %
+    \mathcal{H} %
+}} % Hamiltonian density symbol
+\newcommand{\hamiltoniandensity}[1]{\ensuremath{ %
+    \fnof{\hamiltoniandensitysym}{#1} %
+}} % Hamiltonian density e.g., \hamiltoniandensity{u,v} => H(u,v)
+\newcommand{\hamiltoniansym}{\ensuremath{ %
+    H %
+}} % Hamiltonian symbol
+\newcommand{\hamiltonian}[1]{\ensuremath{ %
+    \fnof{\hamiltoniansym}{#1} %
+}} % Hamiltonian e.g., \hamiltonian{u,v} => H(u,v)
+\newcommand{\dothamiltonian}[1]{\ensuremath{ %
+    \fnof{\dotover{\hamiltoniansym}}{#1} %
+}} % dot Hamiltonian e.g., time derivative of the Hamiltonian
+\newcommand{\lagrangiansym}{\ensuremath{ %
+    L %
+}} % Lagrangian symbol
+\newcommand{\lagrangian}[1]{\ensuremath{ %
+    \fnof{\lagrangiansym}{#1} %
+}} % Lagrangian e.g., \lagrangian{u,v} => L(u,v)
+
+%
+% Spaces
+%
+\newcommand{\vectorspace}[1]{\ensuremath{ %
+    \mathcal{#1} %
+}} % vetor space e.g., \vectirspace{V} => V
+\newcommand{\dualspace}[1]{\ensuremath{ %
+    \vectorspace{#1}^{*} %
+}} % dual space e.g., \dualspace{V} => V^*
+\newcommand{\lebesguespacesym}{\ensuremath{ %
+    L %
+}} % Lebesque space symbol
+\newcommand{\lebesguepspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\lebesguespacesym^{#1}}
+  }{
+    \ensuremath{\lebesguespacesym^{#1}\pbrac{#2}} %  
+}} % Lebesgue p space e.g., \lebesguepspace{2}{M} =>L^2(M)
+\newcommand{\lebesguetwospace}[1]{\ensuremath{ %
+    \lebesquepspace{2}{#1} %  
+}} % Lebesgue 2 space e.g., \lebesgue2space{M} =>L^2(M)
+\newcommand{\sobolevspacesym}{\ensuremath{ %
+    W
+}} % Sobolev space symbol
+\newcommand{\sobolevkpspace}[3]{%
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\sobolevspacesym^{#1,#2}}
+  }{
+    \ensuremath{\sobolevspacesym^{#1,#2}\pbrac{#3}} %  
+}} % Sobolev k,p space e.g., \sobolevkpspace{k,p}{M} =>W^k,p(M)
+\newcommand{\hilbertspacesym}{\ensuremath{ %
+    H
+}} % Hilbert space symbol
+\newcommand{\hilbertpspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\hilbertspacesym^{#1}}
+  }{
+    \ensuremath{\hilbertspacesym^{#1}\pbrac{#2}} %  
+}} % Hilbert p space e.g., \hilbertpspace{1}{M} =>H^1(M)
+\newcommand{\hilbertonespace}[1]{\ensuremath{ %
+    \hilbertpspace{1}{#1} %  
+}} % Hilbert 1 space e.g., \hilbert1space{M} =>H^1(M)
+\newcommand{\hilberttwospace}[1]{\ensuremath{ %
+    \hilbertpspace{2}{#1} %  
+}} % Hilbert 2 space e.g., \hilbert2space{M} =>H^2(M)
+\newcommand{\hilbertthreespace}[1]{\ensuremath{ %
+    \hilbertpspace{3}{#1} %  
+}} % Hilbert 3 space e.g., \hilbert3space{M} =>H^3(M)
+\newcommand{\diffformspacesym}{\ensuremath{ %
+    \bigwedge
+}} % space of differential forms symbol
+\newcommand{\diffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % differential form space e.g., \diffformspace{2}{M} =>^2(M)
+\newcommand{\ltwodiffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\lebesguespacesym^{2}{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{\lebesguespacesym^{2}{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % L^2 differential form space e.g., \ltwodiffformspace{2}{M} =>L^2 ^2(M)
+\newcommand{\honediffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\hilbertspacesym^{1}{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{\hilbertspacesym^{1}{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % H^1 differential form space e.g., \honediffformspace{2}{M} =>H^1 ^2(M)
+\newcommand{\innerform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\pbrac{#1,#2}}
+  }{
+    \ensuremath{\pbrac{#1,#2}_{#3}} %  
+}} % inner form e.g., \innerform{a}{b} => (a,b)
+\newcommand{\bilinearform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\abrac{#1\mid#2}}
+  }{
+    \ensuremath{\abrac{#1\mid#2}_{#3}} %  
+}} % bilinear form e.g., \bilinearform{a}{b} => <a,b>
+\newcommand{\symbilinearform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\dabrac{#1\mid#2}}
+  }{
+    \ensuremath{\dabrac{#1\mid#2}_{#3}} %  
+}} % symbilinear form e.g., \symbilinearform{a}{b} => <<a,b>>
+\newcommand{\dualityform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\abrac{#1\mid#2}}
+  }{
+    \ensuremath{\abrac{#1\mid#2}_{#3}} %  
+}} % duality product form e.g., \exteriorform{a}{b} => <a|b>
+\newcommand{\spaceprodop}{\ensuremath{ %
+    \times %
+}} % space product operator symbol
+\newcommand{\spaceprod}[2]{ %7
+  \spaceprodtwo{#1}{#2} %
+} % space product e.g., \crossprod{A}{B} => A x B
+\newcommand{\spaceprodtwo}[2]{\ensuremath{ %
+    #1\spaceprodop#2 %
+}} % two times space product e.g., \spaceprodtwo{A}{B} => A x B
+\newcommand{\spaceprodthree}[3]{\ensuremath{ %
+    #1\spaceprodop#2\spaceprodop#3 %
+}} % three times space product e.g., \spaceprodthree{A}{B}{C} => A x B x C
+\newcommand{\spaceprodfour}[4]{\ensuremath{ %
+    #1\spaceprodop#2\spaceprodop#3\spaceprodop#4 %
+}} % four times space product e.g., \spaceprodfour{A}{B}{C}{D} => A x B x C x D
+
+%
 % Differential Geometry
 %
 \newcommand{\manifold}[1]{\ensuremath{ %
@@ -957,18 +1143,51 @@
 \newcommand{\mixedderiv}[3]{\ensuremath{ %
     \brac{.}{#1}{|}^{#2}_{#3}
 }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
-\newcommand{\exteriorscalarderivop}[0]{\ensuremath{ %
+\newcommand{\exteriorscalarderivop}{\ensuremath{ %
     \mathrm{d} %
 }} % Exterior scalar derivative operator e.g., \exteriorscalarderivop => d
-\newcommand{\exteriorderivop}[0]{\ensuremath{ %
-    \boldsymbol{\exteriorscalarderivop}
+\newcommand{\exteriorcovectorderivop}{\ensuremath{ %
+    \boldsymbol{\exteriorscalarderivop} %
+}} % Exterior covector derivative operator e.g., \exteriorcovectorderivop => d
+\newcommand{\exteriorderivop}{\ensuremath{ %
+    \exteriorscalarderivop %
 }} % Exterior derivative operator e.g., \exteriorderivop => d
 \newcommand{\exteriorscalarderiv}[1]{\ensuremath{ %
-    \exteriorscalarderivop#1
+    {\exteriorscalarderivop}#1
   }} % Exterior scalar derivative e.g., \exteriorscalarderiv{a} => da
+\newcommand{\exteriorcovectorderiv}[1]{\ensuremath{ %
+    {\exteriorcovectorderivop}#1
+  }} % Exterior covector derivative e.g., \exteriorcovectorderiv{a} => da
 \newcommand{\exteriorderiv}[1]{\ensuremath{ %
-    \exteriorderivop#1
+    \exteriorscalarderiv{#1} %
 }} % Exterior derivative e.g., \exteriorderiv{a} => da
+\newcommand{\exteriorcoderivop}{\ensuremath{ %
+    \mathrm{\delta} %
+}} % Exterior co-derivative operator e.g., \exteriorcoderivop => \delta
+\newcommand{\exteriorscalarcoderiv}[1]{\ensuremath{ %
+    \exteriorcoderivop#1 %
+}} % Scalar exterior co-derivative e.g., \exteriorscalarcoderiv{a} => \delta.a
+\newcommand{\exteriorvectorcoderiv}[1]{\ensuremath{ %
+    \boldsymbol{\exteriorcoderivop}#1 %
+}} % Vector exterior co-derivative e.g., \exteriorvectorcoderiv{a} => \delta.a
+\newcommand{\exteriorcoderiv}[1]{\ensuremath{ %
+    \exteriorscalarcoderiv{#1} %
+}} % Exterior co-derivative e.g., \exteriorcoderiv{a} => \delta.a
+\newcommand{\hodgestarop}{\ensuremath{ %
+    \star %
+}} % Hodge star operator e.g., \hodgestarop => *
+\newcommand{\hodgestar}[1]{\ensuremath{ %
+    \hodgestarop#1 %
+}} % Hodge star e.g., \hodgestar{a} => *a
+\newcommand{\hodgelaplacianop}{\ensuremath{ %
+    \Delta %
+}} % Hodge Laplacian operator
+\newcommand{\hodgelaplacian}[2]{
+    \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\hodgelaplacianop #2} %
+  }{ %
+    \ensuremath{\hodgelaplacianop_{#1} #2} % 
+}} % Hodge-Laplacian e.g. \hodgelaplacian{x}{a} => \Delta_{x} a
 \newcommand{\oneform}[2]{\ensuremath{ %
     #1\,\exteriorderiv{#2}
 }} % one form e.g., \oneform{a}{x} => a.dx
@@ -978,15 +1197,31 @@
 \newcommand{\threeform}[4]{\ensuremath{ %
     #1\,\wedgeprodthree{\exteriorscalarderiv{#2}}{\exteriorscalarderiv{#3}}{\exteriorscalarderiv{#4}}
 }} % three form e.g., \threeform{a}{x}{y}{z} => a.dx^dy^dz
+\newcommand{\volumeform}[1]{%
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\vol}
+  }{
+    \ensuremath{\vol_{#1}} % 
+}} % volume form with optional metric e.g. \volumeform{g} => vol_g
 \newcommand{\sharptensor}[1]{\ensuremath{ %
     #1^{\sharp}
 }} % sharp tensor e.g.,\sharptensor{A} => A^#
 \newcommand{\flattensor}[1]{\ensuremath{#1^{\flat}}} % flat tensor e.g.,
-                                % \flattensor{A} => A^b
+% \flattensor{A} => A^b
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek tensors
 %\newcommand{\tensor}[1]{\ensuremath{\mathbf{#1}}} % tensor
-\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
-\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
+\newcommand{\vectr}[1]{\ensuremath{ %
+    \boldsymbol{#1} %
+}} % vector e.g., \vectr{a} => a
+\newcommand{\dvectr}[1]{\ensuremath{ %
+    \boldsymbol{\mathrm{#1}} %
+}} % vector e.g., \vectr{a} => a
+\newcommand{\covectr}[1]{\ensuremath{ %
+    \boldsymbol{#1} %
+}} % covector e.g., \covectr{a} => a
+\newcommand{\dcovectr}[1]{\ensuremath{ %
+    \boldsymbol{\mathrm{#1}}
+}} % discrete covector e.g. \dcovectr{a} => a
 \newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\tensortwo}[1]{\ensuremath{\boldsymbol{\mathit{#1}}}} % 2nd order tensor
 \newcommand{\tensorthree}[1]{\ensuremath{\boldsymbol{\mathrm{#1}}}} % 3rd order tensor
@@ -1254,7 +1489,6 @@
 \newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
 }} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
-
 
 %
 % Special tensors
@@ -1537,14 +1771,29 @@
     \ensuremath{\Devop_{#1} #2}% 
   }
 }} % deviatoric operator e.g., \Deviatoric{g}{A} = Dev_g A where g is the optional metric
-   % for the deviatoric operator
+% for the deviatoric operator
+\newcommand{\dimension}[1]{\ensuremath{ %
+    \dimop #1 %
+}} % dimension operation e.g., \dimension{A} => dim A
+\newcommand{\image}[1]{\ensuremath{ %
+    \imgop #1 %
+}} % image operation e.g., \image{A} => im A
+\newcommand{\kernel}[1]{\ensuremath{ %
+    \kerop #1 %
+}} % kernel operation e.g., \kernel{A} => ker A
 \newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
+\newcommand{\rank}[1]{\ensuremath{ %
+    \rankop #1 %
+}} % rank operation e.g., \rank{A} => rank A
 \newcommand{\skewsym}[1]{\ensuremath{
     \skewop #1 % skew-symmetric operator i.e., \skewsym{A} = skw A
   }}
 \newcommand{\Skewsym}[1]{\ensuremath{
     \Skewop #1 % skew-symmetric operator i.e., \Skewsym{A} = Skw A
   }}
+\newcommand{\spanspace}[1]{\ensuremath{ %
+    \spanop #1 %
+}} % span operation e.g., \span{A} => span A
 \newcommand{\spherical}[2]{\ensuremath{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\sphop #2}%

@@ -245,7 +245,6 @@ $\vectr{x}$ to $\vectr{\xi}$ \ie
   \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}
 \end{gather}
 
-
 For the natural boundary, we can separate $q^{i}$ into its component velocity
 and pressure terms as noted in \ref{eqn:StokesNeumannBC} and shown in
 \ref{eqn:FEMStokesEquationMomentum}. For our current treatment, we will also assume the values
@@ -283,44 +282,45 @@ and
 
 Using standard integration notation, we can rewrite our Galerkin FEM
 formulation from \ref{eqn:FEM3StokesEquation}:
-\begin{multline}
-  %time dependence
-  \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %ALE term
-  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
-  \fnof{v^{*j}}{\vectr{\xi},t}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{j}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %pressure
-  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{g^{ik}}{\vectr{\xi}}\altgbfn{n}{\beta}{\vectr{\xi}}
-  \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{k}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %viscous stress
-  +\dsuml{e=1}{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-      \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}\right.\\
-    \left.+\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}}{x^{k}}\right)\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
-  %body force
-  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %Christofell terms
-  -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
-      \fnof{v^{*j}}{\vectr{\xi},t}\fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
-      \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
-      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}{\vectr{\xi}}}\\  
-  +\dsuml{e=1}{E} \dintl{\vectr{0}}{\vectr{1}}
-  \fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
-  \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right.\\
-  \left.+\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right)
-  \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}
-  \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}\\
-  +\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}
-      \fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
-      \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
-      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %boundary terms
-  =\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
-      \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}
-  \label{eqn:FEM4StokesEquation}
+ \begin{multline}
+   %time dependence
+   \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+         \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %ALE term
+   -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+       \fnof{v^{*j}}{\vectr{\xi},t}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+         \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{j}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %pressure
+   -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{g^{ik}}{\vectr{\xi}}\altgbfn{n}{\beta}{\vectr{\xi}}
+       \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{k}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %viscous stress
+   +\dsuml{e=1}{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+     \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}\right.\\
+   \left.+\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+     \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}}{x^{k}}\right)\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
+   %body force
+   -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %Christofell terms
+   -\gsum{e=1}{E}{
+     \gint{\vectr{0}}{\vectr{1}}{
+       \fnof{\rho}{\vectr{\xi}}\fnof{v^{*j}}{\vectr{\xi},t}\fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
+       \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
+       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\  
+   +\dsuml{e=1}{E} \dintl{\vectr{0}}{\vectr{1}}
+   \fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+   \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right.\\
+   \left.+\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+   \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right)
+   \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}
+   \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}\\
+   +\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}
+       \fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+       \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
+       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %boundary terms
+   =\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+       \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}
+   \label{eqn:FEM4StokesEquation}
 \end{multline}
 where the appropriate face bases are used for the surface integrals. Note that
 $\fnof{\matr{J}}{\vectr{\xi}}$ represents the jacobian matrix from $\vectr{x}$

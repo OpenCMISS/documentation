@@ -1683,3 +1683,41 @@ or, in component form,
 \end{equation}
 
 
+\section{Exterior Algebra}
+\label{sec:ExteriorAlgebra}
+
+\subsection{Wedge Product}
+\label{subsec:WedgeProduct}
+
+Consider a $n$-dimensional vector space $\vectorspace{V}$ over the real
+numbers $\rntopology{n}$. Recall that the \emph{inner-} or \emph{dot-product}
+of two vectors in this space can be used to measure the angle between these
+vectors. The \emph{exterior-} or \emph{wedge-product} will measure the area of
+the parallelogram spanned by these two vectors. 
+
+\subsection{Hodge Star}
+\label{subsec:HodgeStar}
+
+The Hodge star may be interpreted geometrically as follows. Consider a
+three-dimensional space. Imagine a bivector in this space, \ie two vectors
+$\vectr{a}$ and $\vectr{b}$ that start from the same base point. These two
+vectors will create an oriented parallelogram spanned by the vectors. This
+parallelogram may be interpreted as the two-form
+$\wedgeprod{\vectr{a}}{\vectr{b}}$. The operation of the Hodge star on a
+differential form produces a complementary differential form. For the case
+above we can think of the vector normal to the parallelogram as complementary
+to it. The direction of the normal vector will depend on the orientation of
+the two form. The normal to the bivector, however, only gives a direction. To
+complete the complementary nature we have that
+$\hodgestar{\pbrac{\wedgeprod{\vectr{a}}{\vectr{b}}}}$ will produce a vector
+normal to the paralleogram whose length is equal to the area of paralleogram
+which is given by $\crossprod{\vectr{a}}{\vectr{b}}$.
+
+The opposite of this example also holds. If we consider a vector $\vectr{a}$
+then $\hodgestar{\vectr{a}}$ will produce a bivector whose normal is in the
+direction of $\vectr{a}$ and whose spanned area is equal to the length of
+$\vectr{a}$.
+
+\section{Exterior Calculus}
+\label{sec:ExteriorCalculus}
+

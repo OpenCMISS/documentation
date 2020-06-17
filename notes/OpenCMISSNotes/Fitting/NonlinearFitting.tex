@@ -267,18 +267,26 @@ Substituting \eqnref{eqn:delxdelxiinterp} into \eqnref{eqn:avarclenconstraint}
 and differentiating with respect to the optimisation variables gives the
 constraint gradients: 
 \begin{multline}
-  \delby{c_{l}^{A}}{x^{B}_{j,v}}=\dfrac{1}{2}\left(\kronecker{B}{
-      \fnof{\Delta}{\beta,\fnof{A_{\ominus}}{l}}}\gint{0}{1}{\dfrac{\delby{
-          \gbfn{\beta}{v}{\vectr{\xi}}}{\xi_{l}}\gsf{\beta}{v}
-        \delby{\fnof{x_{j}}{\vectr{\xi}}}{\xi_{l}}}{\norm{\delby{\fnof{
-              \vectr{x}}{\vectr{\xi}}}{\xi_{l}}}}}{\fnof{\xi_{l}}{
-        \fnof{A_{\ominus}}{l}}+\right.\\  
-    \left.\kronecker{B}{\fnof{\Delta}{\beta,\fnof{A_{\oplus}}{l}}}\gint{0}{1}{
-        \dfrac{\delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi_{l}}
-          \gsf{\beta}{v}\delby{\fnof{x_{j}}{
-              \vectr{\xi}}}{\xi_{l}}}{\norm{\delby{\fnof{\vectr{x}}{
-                \vectr{\xi}}}{\xi_{l}}}}}{\fnof{\xi_{l}}{
-          \fnof{A_{\oplus}}{l}}}}\right) 
+  \delby{c_{l}^{A}}{x^{B}_{j,v}}=\dfrac{1}{2}\left(
+  \kronecker{B}{\fnof{\Delta}{\beta,\fnof{A_{\ominus}}{l}}}
+  \gint{0}{1}{\dfrac{
+      \delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi_{l}}\gsf{\beta}{v}
+      \delby{\fnof{x_{j}}{\vectr{\xi}}}{\xi_{l}}}{\norm{\delby{\fnof{
+            \vectr{x}}{\vectr{\xi}}}{\xi_{l}}}
+  }}{
+    \fnof{\xi_{l}}{\fnof{A_{\ominus}}{l}}
+  }
+  +\right.\\  
+  \left.
+  \kronecker{B}{\fnof{\Delta}{\beta,\fnof{A_{\oplus}}{l}}}
+  \gint{0}{1}{\dfrac{
+      \delby{\gbfn{\beta}{v}{\vectr{\xi}}}{\xi_{l}}\gsf{\beta}{v}\delby{\fnof{x_{j}}{
+            \vectr{\xi}}}{\xi_{l}}}{\norm{\delby{\fnof{\vectr{x}}{
+            \vectr{\xi}}}{\xi_{l}}}
+  }}{
+    \fnof{\xi_{l}}{\fnof{A_{\oplus}}{l}}
+  }
+  \right) 
   \label{eqn:arclenjacnode}
 \end{multline}
 and
