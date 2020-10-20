@@ -46,11 +46,13 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "SolidMechanics/LinearElasticity.tex "\
 "SolidMechanics/FiniteElasticity.tex "\
 "FluidMechanics/FluidMechanics.tex "\
+"FluidMechanics/NavierStokesEquation.tex "\
+"FluidMechanics/BoundaryConditions.tex "\
 "FluidMechanics/BurgersEquation.tex "\
 "FluidMechanics/PoiseuilleFlow.tex "\
 "FluidMechanics/StokesEquation.tex "\
 "FluidMechanics/DarcyEquation.tex "\
-"FluidMechanics/NavierStokesEquation.tex "\
+"FluidMechanics/OneDimensionalFlow.tex "\
 "FluidMechanics/PressurePoissonEquation.tex "\
 "FluidMechanics/FiniteVolume.tex "\
 "Bioelectrics/Bioelectrics.tex "\
