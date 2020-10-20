@@ -44,7 +44,7 @@ but as $n$ increases the area of force application decreases and the
 force/unit area increases.
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/unitf.pstex}
+  \input{bem/figs/unitf.pstex}
   \caption{Illustrations of unit force distributions $w_{n}$.}
   \label{fig:unitf}
 \end{figure}
@@ -180,7 +180,7 @@ function. From \eqnref{eqn:Fsoln} we must have
 where $D$ is any domain containing $r = 0$.
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/domused.pstex}
+  \input{bem/figs/domused.pstex}
   \caption{Domain used to evaluate fundamental solution coefficients.}
   \label{fig:domused}
 \end{figure}
@@ -319,7 +319,7 @@ enlarge $\Omega$ to include a disk of radius $\varepsilon$ about $P$
 let $\Gamma^{\prime} = \Gamma_{-\varepsilon} \cup \Gamma_{\varepsilon}$.
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/illus.pstex}
+  \input{bem/figs/illus.pstex}
   \caption{Illustration of enlarged domain when singular point is on the 
     boundary.}
   \label{fig:illus}
@@ -417,7 +417,7 @@ is replaced by $\dfrac{\alpha}{2 \pi}$ where $\alpha$ is the internal angle at
 $P$ (\Figref{fig:intang}).
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/intang.pstex}
+  \input{bem/figs/intang.pstex}
   \caption{Illustration of internal angle $\alpha$.}
   \label{fig:intang}
 \end{figure}
@@ -486,7 +486,7 @@ The first step is to discretise the surface $\Gamma$ into some set of elements
 \end{equation}
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/schemi.pstex}
+  \input{bem/figs/schemi.pstex}
   \caption{Schematic illustration of a boundary element mesh (a) and a finite 
     element mesh (b).}
   \label{fig:schemi}
@@ -679,7 +679,7 @@ must be taken - either by using special quadrature schemes, large numbers of
 Gauss points or other special treatment.
 
 \begin{figure}[htbp] \centering
-  \input{figs/bem/decri.pstex}
+  \input{bem/figs/decri.pstex}
   \caption{Illustration of the decrease in $r_{i}$ as node $i$ approaches 
     element $\Gamma_{j}$.}
   \label{fig:decri}
@@ -995,7 +995,7 @@ Consider the region shown in \Figref{fig:region}, where
     boundary}\\ \Gamma_{I} &= \text{interface boundary}
 \end{align*}
 \begin{figure} \centering
-  \input{figs/bem/region.pstex}
+  \input{bem/figs/region.pstex}
   \caption{Coupled finite element/boundary element solution domain.}
   \label{fig:region}
 \end{figure}
@@ -1163,7 +1163,7 @@ integrals are inexpensive to calculate.
 \section{Symmetry}
 
 \begin{figure} \centering
-  \input{figs/bem/symcirc.pstex}
+  \input{bem/figs/symcirc.pstex}
   \caption{A problem exhibiting symmetry.} 
   \label{fig:symcirc}
 \end{figure}
@@ -1190,7 +1190,7 @@ From symmetry we know that (refer to \Figref{fig:symcirc2}).
   \label{eqn:symmetry}
 \end{equation}
 \begin{figure} \centering
-  \input{figs/bem/symcirc2.pstex}
+  \input{bem/figs/symcirc2.pstex}
   \caption{Illustration of a symmetric mesh.}
   \label{fig:symcirc2}
 \end{figure}
@@ -1261,7 +1261,7 @@ intersection of $\Gamma$ and $\theta=0$ semi-plane (Refer
 \Figref{fig:cylinder}). (\nb $Q$ is a point on the surface being integrated
 over.)
 \begin{figure} \centering
- \input{figs/bem/cylinder.pstex}
+ \input{bem/figs/cylinder.pstex}
  \caption{Illustration of surface $\overline{\Gamma}$ for an 
   axisymmetric problem.}
 \label{fig:cylinder}
@@ -1273,7 +1273,7 @@ For three-dimensional problems governed by Laplace's equation
 \end{equation*}
 where $r_{p}$ is the distance from $P$ to $Q$. From \Figref{fig:rdiag}
 \begin{figure} \centering
-  \input{figs/bem/rdiag.pstex}
+  \input{bem/figs/rdiag.pstex}
   \caption{The distance from the source point ($P$) to the point of 
    interest ($Q$) in terms of cylindrical polar coordinates.}
  \label{fig:rdiag}
@@ -1355,7 +1355,7 @@ Consider the problem of solving $\laplacian{u}=0$ outside some surface
 $\Gamma$.
 
 \begin{figure} \centering
-  \input{figs/bem/symm.pstex}
+  \input{bem/figs/symm.pstex}
   \caption{Derivation of infinite domain boundary integral equations.}
   \label{fig:symm}
 \end{figure}

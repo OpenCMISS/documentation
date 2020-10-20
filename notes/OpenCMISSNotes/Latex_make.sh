@@ -33,31 +33,46 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Maths/VectorCalculus/VectorCalculus.tex "\
 "Maths/Operations/Operations.tex "\
 "EquationSets/EquationSets.tex "\
-"EquationSets/ClassicalFieldClass/AdvectionDiffusionEquation.tex "\
-"EquationSets/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
-"EquationSets/ClassicalFieldClass/BiharmonicEquation.tex "\
-"EquationSets/ClassicalFieldClass/DiffusionEquation.tex "\
-"EquationSets/ClassicalFieldClass/HelmholtzEquation.tex "\
-"EquationSets/ClassicalFieldClass/PoissonEquation.tex "\
-"EquationSets/ClassicalFieldClass/ReactionDiffusionEquation.tex "\
-"EquationSets/ClassicalFieldClass/WaveEquation.tex "\
-"EquationSets/ElasticityClass/LinearElasticity.tex "\
-"EquationSets/ElasticityClass/FiniteElasticity.tex "\
-"EquationSets/FluidMechanicsClass/BurgersEquation.tex "\
-"EquationSets/FluidMechanicsClass/PoiseuilleFlow.tex "\
-"EquationSets/FluidMechanicsClass/StokesEquation.tex "\
-"EquationSets/FluidMechanicsClass/DarcyEquation.tex "\
-"EquationSets/FluidMechanicsClass/NavierStokesEquation.tex "\
-"EquationSets/FluidMechanicsClass/PressurePoissonEquation.tex "\
-"EquationSets/FluidMechanicsClass/FiniteVolume.tex "\
-"EquationSets/MultiphysicsClass/Poroelasticity.tex "\
-"EquationSets/MultiphysicsClass/FSI.tex "\
-"EquationSets/FittingClass/Fitting.tex "\
-"EquationSets/FittingClass/DataProjection.tex "\
+"ClassicalField/ClassicalField.tex "\
+"ClassicalField/AdvectionDiffusionEquation.tex "\
+"ClassicalField/GeneralisedLaplaceEquation.tex "\
+"ClassicalField/BiharmonicEquation.tex "\
+"ClassicalField/DiffusionEquation.tex "\
+"ClassicalField/HelmholtzEquation.tex "\
+"ClassicalField/PoissonEquation.tex "\
+"ClassicalField/ReactionDiffusionEquation.tex "\
+"ClassicalField/WaveEquation.tex "\
+"SolidMechanics/SolidMechanics.tex "\
+"SolidMechanics/LinearElasticity.tex "\
+"SolidMechanics/FiniteElasticity.tex "\
+"FluidMechanics/FluidMechanics.tex "\
+"FluidMechanics/NavierStokesEquation.tex "\
+"FluidMechanics/BoundaryConditions.tex "\
+"FluidMechanics/BurgersEquation.tex "\
+"FluidMechanics/PoiseuilleFlow.tex "\
+"FluidMechanics/StokesEquation.tex "\
+"FluidMechanics/DarcyEquation.tex "\
+"FluidMechanics/OneDimensionalFlow.tex "\
+"FluidMechanics/PressurePoissonEquation.tex "\
+"FluidMechanics/FiniteVolume.tex "\
+"Bioelectrics/Bioelectrics.tex "\
+"Bioelectrics/BidomainEquation.tex "\
+"Bioelectrics/MonodomainEquation2.tex "\
+"MagnetoElectrics/MagnetoElectrics.tex "\
+"MagnetoElectrics/ElectrostaticEquations.tex "\
+"MagnetoElectrics/MagnetostaticEquations.tex "\
+"MagnetoElectrics/MaxwellEquations.tex "\
+"Multiphysics/Multiphysics.tex "\
+"Multiphysics/Poroelasticity.tex "\
+"Multiphysics/FSI.tex "\
+"Fitting/Fitting.tex "\
+"Fitting/LinearFitting.tex "\
+"Fitting/NonlinearFitting.tex "\
 "AnalyticSolutions/AnalyticSolutions.tex "\
 "AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
 "AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
+"PortHamiltonian/PortHamiltonian.tex "\
 "Appendices/Appendices.tex "\
 "Appendices/CoordinateSystems.tex "\
 "References/References.tex "\
@@ -69,15 +84,17 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 # more than one source quotation (") marks must be used around the
 # individual sources seperated by spaces.
 
-MY_EPS_SRC="epsfiles/Modules/*.eps"
-MY_FIG_SRC=figs/BasisFunctions/*.fig
-MY_SVG_SRC="svgs/BasisFunctions/*.svg "\
-    "svgs/DifferentialGeometry/*.svg "\
-    "svgs/Analytic/*.svg "\
-    "svgs/EquationsSets/Elasticity/FiniteElasticity/*.svg "\
-    "svgs/EquationsSets/FluidMechanics/NavierStokes/*.svg "\
-    "svgs/EquationsSets/Fitting/*.svg "
-MY_PLOT_SRC="plots/BasisFunctions/*.gnu plots/BasisFunctions/*.gnu8"
+MY_EPS_SRC=
+MY_FIG_SRC="BasisFunctions/figs/*.fig"
+MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
+"DifferentialGeometry/svgs/*.svg "\
+"AnalyticSolutions/ClassicalFieldClass/svgs/*.svg "\
+"SolidMechanics/svgs/*.svg "\
+"FluidMechanics/svgs/*.svg "\
+"Fitting/svgs/*.svg "\
+"PortHamiltonian/svgs/*.svg "
+MY_PLOT_SRC="BasisFunctions/plots/*.gnu "\
+"BasisFunctions/plots/*.gnu8"
 
 #
 # The name of the directory to place the html version of the document.

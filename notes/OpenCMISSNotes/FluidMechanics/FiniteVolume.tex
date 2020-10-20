@@ -1,0 +1,443 @@
+\section{Finite Volumes for Navier Stokes}
+
+Here we give a brief introduction to the process of solving the Navier-Stokes
+equations using finite volumes. This section is not intended to cover the
+multitude of different solution methods. For further details the reader should
+consult the literature.
+
+\subsection{Governing equations:}
+
+Consider the generalised transport (which arises from the Reynolds transport
+theorem) equation for a scalar quatity for a control volume. The generalised
+transport thereom comes from the conservation principle which states that the
+time rate of increase of the scalar inside the control volume plus thr net rate
+of decrease of the the scalar due to convection across the control volume
+boundary is equal to the net rate of increase of the scalar quantity due to
+diffusion across the control volume boundary plus the net rate of the creation
+of the scalar inside the control volume. Mathematically for a scalar quantity
+$\Phi$ this can be written as
+\begin{equation}
+  \delby{}{t}\gint{\Omega}{}{\rho\Phi}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\Phi\vectr{v}}{\vectr{n}}}{\Gamma}=\gint{\Gamma}{}{\dotprod{\vectr{q}_{\Phi}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}
+  \label{eqn:integralgenscalartransport}
+\end{equation}
+where the control volume is $\Omega$ which has a boundary
+$\Gamma=\boundary{\Omega}$ with a normal $\vectr{n}$, $\vectr{v}$ is the
+convection velocity, $\vectr{q}_{\Phi}$ is the flux across the control volume
+boundary associated with $\Phi$, and $\dot{q}_{\Phi}$ is the volumetric
+generation (or source) term. The flux vector can often be related to $\Phi$ by
+a gradient law \ie $\vectr{q}_{\Phi}=\gamma\gradient{}{\Phi}$ where $\gamma$
+is a proportionality scalar. 
+
+The equivalent differential form of the scalar transport equation by
+rearranging \Eqnref{eqn:integralgenscalartransport} and using the Green-Gauss
+theorem \ie
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\Phi}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\Phi\vectr{v}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{\dotprod{\pbrac{\gamma\gradient{}{\Phi}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}\\
+    \gint{\Omega}{}{\delby{\pbrac{\rho\Phi}}{t}}{\Omega}+\gint{\Omega}{}{\divergence{}{\pbrac{\rho\Phi\vectr{v}}}}{\Omega}
+    &=\gint{\Omega}{}{\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}}{\Omega}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}
+    \\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}}}{\Omega}
+    &=\gint{\Omega}{}{\pbrac{\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}+\dot{q}_{\Phi}}}{\Omega}
+    \\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}-\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}-\dot{q}_{\Phi}}}{\Omega}
+    &= 0
+  \end{split}
+\end{equation}
+Now for the integral to vanish the integrand must vanish \ie
+\begin{equation}
+  \delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}
+  -\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}-\dot{q}_{\Phi}=0
+\end{equation}
+or
+\begin{equation}
+  \delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}=\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}+\dot{q}_{\Phi}
+  \label{eqn:differentialgenscalartransport}
+\end{equation}
+
+The Navier-Stokes equations consist of an equation concerning conservation of
+momentum and an equation concerning conservation of mass. These can be thought
+of as special cases of the generalised transport theorem. For the conservation
+of mass equation we have
+\begin{equation}
+  \delby{}{t}\gint{\Omega}{}{\rho}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}=0
+  \label{eqn:integralconservationofmass}
+\end{equation}
+
+And the differential form for the conservation of mass is given by
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}&=0
+    \\
+    \gint{\Omega}{}{\delby{\rho}{t}}{\Omega}+\gint{\Omega}{}{\divergence{}{\pbrac{\rho\vectr{v}}}}{\Omega}&=0\\
+    \gint{\Omega}{}{\pbrac{\delby{\rho}{t}+\divergence{}{\pbrac{\rho\vectr{v}}}}}{\Omega}&=0
+  \end{split}
+\end{equation}
+which gives us
+\begin{equation}
+  \delby{\rho}{t}+\divergence{}{\pbrac{\rho\vectr{v}}}=0
+  \label{eqn:differentialconservationofmass}
+\end{equation}
+
+For the conservation of momentum we have
+\begin{equation}
+  \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+\end{equation}
+where $\tensor{T}$ is a stress tensor and $\vectr{f}$ is the body force vector. For Newtonian fluids we have
+\begin{equation}
+  \begin{split}
+    \tensor{T}&=\pbrac{-p+\lambda\divergence{}{\vectr{v}}}\tensor{I}+2\mu\tensor{D} \\
+    \tensor{T}&=-p\tensor{I}+\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+      \frac{2}{3}\divergence{}{\vectr{v}}\tensor{I}}\\
+    \tensor{T}&=-p\tensor{I}+\tensor{\tau}
+  \end{split}
+\end{equation}
+where $p$ is the pressure, $\tensor{D}$ is the deformation tensor given by
+\begin{equation}
+  \tensor{D}=\frac{1}{2}\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}
+\end{equation}
+and $\mu$ is
+the viscosity and $\tensor{\tau}$ is the shear stress tensor \ie
+\begin{equation}
+  \tensor{\tau}=\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}-
+    \frac{2}{3}\divergence{}{\vectr{v}}\tensor{I}}
+\end{equation}
+
+Rearranging the integral conservation of momentum equation gives us
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{\dotprod{\tensor{T}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\mu\pbrac{\gradient{}{\vectr{v}}+\transpose{\gradient{}{\vectr{v}}}}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+  \end{split}
+  \label{eqn:integralconservationofmomentum}
+\end{equation}
+
+The differential form for the conservation of momentum is given by
+\begin{equation}
+  \begin{split}
+    \delby{}{t}\gint{\Omega}{}{\rho\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\tensorprod{\rho\vectr{v}}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega} \\
+    \gint{\Omega}{}{\delby{\pbrac{\rho\vectr{v}}}{t}}{\Omega}
+    +\gint{\Omega}{}{\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}}{\Omega}
+    &=\gint{\Omega}{}{-\gradient{}{p}}{\Omega}+\gint{\Omega}{}{\divergence{}{\tensor{\tau}}}{\Omega}
+    +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}\\
+    \gint{\Omega}{}{\pbrac{\delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}-\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}}}{\Omega}&=0
+  \end{split}
+\end{equation}
+and thus we have
+\begin{equation}
+  \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}-\divergence{}{\tensor{\tau}}+\gradient{}{p}-\rho\vectr{f}=0
+\end{equation}
+or
+\begin{equation}
+  \delby{\pbrac{\rho\vectr{v}}}{t}+\divergence{}{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}=\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}=0
+  \label{eqn:differentialconservationofmomentum}
+\end{equation}
+
+For incompressible flows the density doesn't change and so the
+integral forms of the conservation of mass and momentum are given by
+\begin{equation}
+  \gint{\Gamma}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}=0
+\end{equation}
+and
+\begin{equation}
+  \rho\delby{}{t}\gint{\Omega}{}{\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}{\vectr{n}}}{\Gamma}
+  =\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+  +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+\end{equation}
+
+The differential form for the conservation of mass and momentum for
+incompressible flows is given by
+\begin{equation}
+  \divergence{}{\vectr{v}}=0
+\end{equation}
+and
+\begin{equation}
+  \rho\delby{\vectr{v}}{t}+\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}=\divergence{}{\tensor{\tau}}-\gradient{}{p}+\rho\vectr{f}
+\end{equation}
+
+\subsection{Finite volume discretisation:}
+
+A geometry can be discretised into a number of polygonal cells with polygonal
+faces forming the boundary of the cells as shown in \Figref{fig:staggeredgrid}.
+
+\epstexfigure{FluidMechanics/svgs/staggeredgrid.eps_tex}{2D
+  staggered grid with control volume.}{Diagram of a two-dimensional staggered
+  grid with a control volume $\Omega$ with boundary
+  $\Gamma$.}{fig:staggeredgrid}{0.75}
+
+For conservation of mass consider the control volume shown in
+\Figref{fig:pressurecv}. Note that a two-dimensional incompressible flow problem will be
+considered here for clarity but this is easily extendable to three-dimensions.
+
+\epstexfigure{FluidMechanics/svgs/pressurecv.eps_tex}{2D
+  control volume centered at a pressure point.}{Diagram of a two-dimensional control volume $\Omega$ with boundary
+  $\Gamma$ centered at a pressure point.}{fig:pressurecv}{0.75}
+
+The integral form of the conservation of mass statement is
+\begin{equation}
+  \gint{\Gamma_{p}}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}=0
+\end{equation}
+thus integrating of the boundary gives
+\begin{equation}
+  \gint{\Gamma_{p}}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}\approx hv^{1,n}_{i+\frac{1}{2},j}-hv^{1,n}_{i-\frac{1}{2},j}+hv^{2,n}_{i+\frac{1}{2},j}-hv^{2,n}_{i-\frac{1}{2},j}=0
+\end{equation}
+and dividing through by $h$ gives
+\begin{equation}
+  \gint{\Gamma_{p}}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}\approx v^{1,n}_{i+\frac{1}{2},j}-v^{1,n}_{i-\frac{1}{2},j}+v^{2,n}_{i+\frac{1}{2},j}-v^{2,n}_{i-\frac{1}{2},j}=0
+\end{equation}
+
+For the conservation of momentum in the $x$ direction consider a control
+volume centered on a $v^{1}$ velocity point as shown in \Figref{fig:v1cv}
+
+\epstexfigure{FluidMechanics/svgs/v1cv.eps_tex}{2D
+  control volume centered at a $v^{1}$ velocity point.}{Diagram of a two-dimensional control volume $\Omega$ with boundary
+  $\Gamma$ centered at a $v^{1}$ velocity point.}{fig:v1cv}{0.75}
+
+The rate of change of momentum in the $x$ direction is thus given by
+\begin{equation}
+  \rho\delby{}{t}\gint{\Omega_{v^{1}}}{}{v^{1}}{\Omega}\approx\rho h^{2}\dfrac{v^{1,n+1}_{i+\frac{1}{2},j}-v^{1,n}_{i+\frac{1}{2},j}}{\Delta
+  t}
+\end{equation}
+
+For the conservation of momentum in the $y$ direction consider a control
+volume centered on a $v^{2}$ velocity point as shown in
+\Figref{fig:v2cv}. Note that there are many different ways of discretising the
+momentum equation depending on the degree of accuracy and upwinding etc. 
+
+\epstexfigure{FluidMechanics/svgs/v2cv.eps_tex}{2D
+  control volume centered at a $v^{2}$ velocity point.}{Diagram of a two-dimensional control volume $\Omega$ with boundary
+  $\Gamma$ centered at a $v^{2}$ velocity point.}{fig:v2cv}{0.75}
+
+The rate of change of momentum in the $y$ direction is thus given by
+\begin{equation}
+  \rho\delby{}{t}\gint{\Omega_{v^{2}}}{}{v^{2}}{\Omega}\approx\rho h^{2}\dfrac{v^{2,n+1}_{i,j+\frac{1}{2}}-v^{2,n}_{i,j+\frac{1}{2}}}{\Delta
+  t}
+\end{equation}
+
+Now, the flow of momentum in the $x$ direction is given by
+\begin{equation}
+  \gint{\Gamma_{v^{1}}}{}{\dotprod{\pbrac{\rho
+        v^{1}\vectr{v}}}{\vectr{n}}}{\Gamma}\approx\rho h
+  \pbrac{\pbrac{v^{1,n}_{i+1,j}}^{2}-\pbrac{v^{1,n}_{i,j}}^{2}
+  +v^{1,n}_{i+\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j+\frac{1}{2}}
+  -v^{1,n}_{i+\frac{1}{2},j-\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j-\frac{1}{2}}}
+\end{equation}
+where we can find the terms on the right hand side by interpolation \ie
+\begin{equation}
+  \begin{split}
+    \pbrac{v^{1,n}_{i+1,j}}^{2}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{3}{2},j}+v^{1,n}_{i+\frac{1}{2},j}}}^{2}\\
+    \pbrac{v^{1,n}_{i,j}}^{2}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i-\frac{1}{2},j}}}^{2}\\
+    v^{1,n}_{i+\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j+\frac{1}{2}}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j+1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i+1,j+\frac{1}{2}}}}\\
+    v^{1,n}_{i+\frac{1}{2},j-\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j-\frac{1}{2}}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j-1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j-\frac{1}{2}}+v^{2,n}_{i+1,j-\frac{1}{2}}}}
+  \end{split}
+\end{equation}
+
+Similarily, the flow of momentum in the $y$ direction is given by
+\begin{equation}
+  \gint{\Gamma_{v^{2}}}{}{\dotprod{\pbrac{\rho
+        v^{2}\vectr{v}}}{\vectr{n}}}{\Gamma}\approx\rho h\pbrac{
+  v^{1,n}_{i+\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j+\frac{1}{2}}
+  -v^{1,n}_{i-\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i-\frac{1}{2},j+\frac{1}{2}}
+  +\pbrac{v^{2,n}_{i,j+1}}^{2}-\pbrac{v^{2,n}_{i,j}}^{2}}
+\end{equation}
+where we can find the terms on the right hand side by interpolation \ie
+\begin{equation}
+  \begin{split}
+    \pbrac{v^{2,n}_{i,j+1}}^{2}&=\pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{3}{2}}+v^{2,n}_{i,j+\frac{1}{2}}}}^{2}\\
+    \pbrac{v^{2,n}_{i,j}}^{2}&=\pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i,j-\frac{1}{2}}}}^{2}\\
+    v^{1,n}_{i+\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i+\frac{1}{2},j+\frac{1}{2}}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j+1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i+1,j+\frac{1}{2}}}}\\
+    v^{1,n}_{i-\frac{1}{2},j+\frac{1}{2}}v^{2,n}_{i-\frac{1}{2},j+\frac{1}{2}}&=\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i-\frac{1}{2},j}+v^{1,n}_{i-\frac{1}{2},j+1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i-1,j+\frac{1}{2}}}}
+  \end{split}
+\end{equation}
+
+The pressure force in the $x$ direction is given by
+\begin{equation}
+  \gint{\Gamma_{v^{1}}}{}{pn^{1}}{\Gamma}\approx h\pbrac{p^{n}_{i+1,j}-p^{n}_{i,j}}
+\end{equation}
+and the pressure force in the $y$ direction is given by
+\begin{equation}
+  \gint{\Gamma_{v^{2}}}{}{pn^{2}}{\Gamma}\approx h\pbrac{p^{n}_{i,j+1}-p^{n}_{i,j}}
+\end{equation}
+
+Now, the viscous diffusion of momentum in the $x$ direction is given by
+\begin{equation}
+  \begin{split}
+    \gint{\Gamma_{v^{1}}}{}{\dotprod{\mu\gradient{}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+    &=\gint{\Gamma_{v^{1}}}{}{\mu\pbrac{\delby{v^{1}}{x}n^{1}+\delby{v^{1}}{y}n^{2}}}{\Gamma} \\
+    &\approx\mu h\pbrac{\pbrac{\delby{v^{1}}{x}}^{n}_{i+1,j}-\pbrac{\delby{v^{1}}{x}}^{n}_{i,j}
+      +\pbrac{\delby{v^{1}}{y}}^{n}_{i+\frac{1}{2},j+\frac{1}{2}}-
+      \pbrac{\delby{v^{1}}{y}}^{n}_{i+\frac{1}{2},j-\frac{1}{2}}}\\
+    &\approx \mu\pbrac{v^{1,n}_{i+\frac{3}{2},j}+v^{1,n}_{i-\frac{1}{2},j}
+      +v^{1,n}_{i+\frac{1}{2},j+1}+v^{1,n}_{i+\frac{1}{2},j-1}-4v^{1,n}_{i+\frac{1}{2},j}}
+  \end{split}
+\end{equation}
+
+Similarily, the viscous diffusion of momentum in the $y$ direction is given by
+\begin{equation}
+  \gint{\Gamma_{v^{2}}}{}{\dotprod{\mu\gradient{}{\vectr{v}}}{\vectr{n}}}{\Gamma}
+  \approx \mu\pbrac{v^{2,n}_{i,j+\frac{3}{2}}+v^{2,n}_{i,j-\frac{1}{2}}
+    +v^{2,n}_{i+1,j+\frac{1}{2}}+v^{2,n}_{i-1,j+\frac{1}{2}}-4v^{2,n}_{i,j+\frac{1}{2}}}
+\end{equation}
+
+Combining all terms we have that the integral forms of the incompressible Navier-Stokes
+equations (ignoring body forces) for a control volume is given by
+\begin{equation}
+  \begin{split}
+    \gint{\Gamma}{}{\dotprod{\vectr{v}}{\vectr{n}}}{\Gamma}&=0 \\
+    \rho\delby{}{t}\gint{\Omega}{}{\vectr{v}}{\Omega}+\gint{\Gamma}{}{\dotprod{\pbrac{\tensorprod{\rho\vectr{v}}{\vectr{v}}}}{\vectr{n}}}{\Gamma}
+  &=\gint{\Gamma}{}{-p\vectr{n}}{\Gamma}+\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}
+  +\gint{\Omega}{}{\rho\vectr{f}}{\Omega}
+  \end{split}
+\end{equation}
+become
+\begin{equation}
+  \begin{split}
+    v^{1,n+1}_{i+\frac{1}{2},j}-v^{1,n+1}_{i-\frac{1}{2},j}+v^{2,n+1}_{i+\frac{1}{2},j}-v^{2,n+1}_{i-\frac{1}{2},j}&=0
+    \\
+    \dfrac{v^{1,n+1}_{i+\frac{1}{2},j}-v^{1,n}_{i+\frac{1}{2},j}}{\Delta
+      t}&=-\dfrac{1}{h}
+    \left(\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{3}{2},j}+v^{1,n}_{i+\frac{1}{2},j}}}^{2}
+    -\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i-\frac{1}{2},j}}}^{2}\right. \\
+    &\quad+\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j+1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i+1,j+\frac{1}{2}}}} \\
+    &\quad\left.-\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j-1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j-\frac{1}{2}}+v^{2,n}_{i+1,j-\frac{1}{2}}}}\right)\\
+    &\quad+\dfrac{1}{\rho h}\pbrac{p^{n}_{i+1,j}-p^{n}_{i,j}}\\
+    &\quad+\dfrac{\mu}{\rho h^{2}}\pbrac{v^{1,n}_{i+\frac{3}{2},j}+v^{1,n}_{i-\frac{1}{2},j}
+      +v^{1,n}_{i+\frac{1}{2},j+1}+v^{1,n}_{i+\frac{1}{2},j-1}-4v^{1,n}_{i+\frac{1}{2},j}}
+    \\
+    \dfrac{v^{2,n+1}_{i,j+\frac{1}{2}}-v^{2,n}_{i,j+\frac{1}{2}}}{\Delta
+      t}&=-\dfrac{1}{h}\left(\pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{3}{2}}+v^{2,n}_{i,j+\frac{1}{2}}}}^{2}
+    -\pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i,j-\frac{1}{2}}}}^{2}\right. \\
+    &\quad+\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i+\frac{1}{2},j}+v^{1,n}_{i+\frac{1}{2},j+1}}}
+    \frac{1}{2}\pbrac{v^{1,n}_{i-\frac{1}{2},j}+v^{1,n}_{i-\frac{1}{2},j+1}} \\
+    &\quad\left.-\pbrac{\frac{1}{2}\pbrac{v^{1,n}_{i-\frac{1}{2},j}+v^{1,n}_{i-\frac{1}{2},j+1}}}
+    \pbrac{\frac{1}{2}\pbrac{v^{2,n}_{i,j+\frac{1}{2}}+v^{2,n}_{i-1,j+\frac{1}{2}}}}\right)\\
+    &\quad +\dfrac{1}{\rho h}\pbrac{p_{i,j+1}-p_{i,j}}\\
+    &\quad +\dfrac{\mu}{\rho h^{2}}\pbrac{v^{2,n}_{i,j+\frac{3}{2}}+v^{2,n}_{i,j-\frac{1}{2}}
+    +v^{2,n}_{i+1,j+\frac{1}{2}}+v^{2,n}_{i-1,j+\frac{1}{2}}-4v^{2,n}_{i,j+\frac{1}{2}}}
+  \end{split}
+\end{equation}
+
+These equations can be written in vector form as
+\begin{equation}
+  \begin{split}
+    \divergence{\Omega^{p}}{\vectr{u}^{n+1}_{i,j}}&=0\\
+    \dfrac{\vectr{u}^{n+1}_{i,j}-\vectr{u}^{n}_{i,j}}{\Delta
+      t}&=\vectr{h}^{n}_{i,j}-\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}
+  \end{split}
+\end{equation}
+where $\vectr{h}^{n}_{ij}$ contains the advective, diffusive and body momentum
+terms.
+
+The divergence operator, $\divergence{\Omega^{p}}{\sqbrac{\cdot}}$, is defined as
+\begin{equation}
+  \divergence{\Omega^{p}}{\vectr{u}^{n}_{i,j}}=v^{1,n}_{i+\frac{1}{2},j}-v^{1,n}_{i-\frac{1}{2},j}+v^{2,n}_{i+\frac{1}{2},j}-v^{2,n}_{i-\frac{1}{2},j}
+\end{equation}
+where $V_{\Omega}$ is the volume of the control volume $\Omega^{p}$.
+
+The gradient operator, $\gradient{\Omega^{\vectr{u}}}{\sqbrac{\cdot}}$, is
+defined as
+\begin{equation}
+  \gradient{\Omega^{\vectr{u}}}{p^{n}_{i,j}}=\dfrac{\Delta p^{n}_{i,j}}{\rho h}
+\end{equation}
+where $\Delta p^{n}_{i,j}$ is the appropriate change in pressure in the $x$ or
+$y$ directions as appropriate.
+
+\subsection{Pressure based solutions:}
+
+For incompressible flows density variations are not linked to pressure and
+thus the mass convervation is a constraint on the velocity field. The momentum
+equation can thus be interpreted as a evolution equation for velocity. Now, if we
+discretise in time and consider time point $n$ and $n+1$ we can introduce
+another velocity field, $\vectr{u}^{*}_{i,j}$, and split the evolution
+equation for velocity
+\begin{equation}
+  \dfrac{\vectr{u}^{n+1}_{i,j}-\vectr{u}^{n}_{i,j}}{\Delta
+    t}=\vectr{h}^{n}_{i,j}-\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}
+\end{equation}
+into
+\begin{equation}
+  \dfrac{\vectr{u}^{*}_{i,j}-\vectr{u}^{n}_{i,j}}{\Delta t}=\vectr{h}^{n}_{i,j}
+\end{equation}
+and
+\begin{equation}
+  \dfrac{\vectr{u}^{n+1}_{i,j}-\vectr{u}^{*}_{i,j}}{\Delta t}=-\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}
+\end{equation}
+
+Or, rewriting, the split is
+\begin{equation}
+  \vectr{u}^{*}_{i,j}=\vectr{u}^{n}_{i,j}+\Delta t\vectr{h}^{n}_{i,j}
+\end{equation}
+and
+\begin{equation}
+  \vectr{u}^{n+1}_{i,j}=\vectr{u}^{*}_{i,j}-\Delta t\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}
+\end{equation}
+
+Now, if we take the divergence of the last equation we obtain
+\begin{equation}
+  \begin{split}
+    \divergence{\Omega^{p}}{\vectr{u}^{n+1}_{i,j}}
+    &=\divergence{\Omega^{p}}{\vectr{u}^{*}_{i,j}-\Delta
+      t\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}}\\
+    &=\divergence{\Omega^{p}}{\vectr{u}^{*}_{i,j}}-\divergence{\Omega^{p}}{\Delta
+      t\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}}
+  \end{split}
+\end{equation}
+
+Now, the discretised conservation of mass equation states
+\begin{equation}
+  \divergence{\Omega^{p}}{\vectr{u}^{n+1}_{i,j}}=0
+\end{equation}
+and so we have
+\begin{equation}
+  0=\divergence{\Omega^{p}}{\vectr{u}^{*}_{i,j}}-\divergence{\Omega^{p}}{\Delta
+      t\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}}
+\end{equation}
+or, rearranging, we obtain
+\begin{equation}
+  \divergence{\Omega^{p}}{\gradient{\Omega^{\vectr{u}}}{\vectr{p}^{n}_{i,j}}}=\dfrac{\divergence{\Omega^{p}}{\vectr{u}^{*}_{i,j}}}{\Delta
+    t}
+\end{equation}
+  
+The pressure based solutions for incompressible flow thus proceed by
+integrating the velocity evolution equation and computing the pressure field
+that is required to ensure mass conservation. Because the equations are
+non-linear and coupled for implicit methods directly solving the implicit
+methods is computationally expensive. Thus for an implicit (or semi-implicit
+methods) velocity and pressure correction methods are often used (especially
+for the steady or slower flows that are found in arteries) in which an
+approximate velocity and pressure field is used and then correction terms are
+applied to find the real velocity and pressure fields at the new time step.
+
+For example consider the SIMPLE (Semi-Implicit Method for Pressure Linked
+Equations) algorithm.
+
+The algorithm can be stated as
+\begin{enumerate}
+\item Guess an initial pressure field $p^{*}$.
+\item Use the conservation of momentum and mass to compute a velocity field
+  $\vectr{u}^{*}$.
+\item Find a correction to the pressure field $p^{'}$ such that
+  $p^{**}=p^{*}+p^{'}$.
+\item Find a correction to the velocity field $\vectr{u}^{'}$ such that mass
+  is conserved and 
+  $\vectr{u}^{n+1}=\vectr{u}^{*}+\vectr{u}^{'}$.
+\item Iterate for convergence using under-relaxation \ie $p^{n+1}=\alpha
+  p^{**}+\pbrac{1-\alpha} p^{n}$ where $\alpha$ is the relaxation parameter.
+\end{enumerate}
+
+Note there are other solution algorithms including SIMPLEC (SIMPLE +
+Consistent) and PISO (Pressure Implict with Spliting Operators).
+

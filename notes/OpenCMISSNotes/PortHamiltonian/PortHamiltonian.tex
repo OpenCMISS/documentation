@@ -1,0 +1,619 @@
+\clearemptydoublepage
+\chapter{Port Hamiltonian}
+\label{cha:PortHamiltonian}
+
+In order to extend the \emph{Bond Graph} ideas to multi-dimensional space we
+consider a physical space called the \emph{Bond space}, $\vectorspace{B}$, which
+is made up from a \emph{Flow space}, $\vectorspace{F}$, and its dual space
+called an \emph{Effort space}, $\vectorspace{E}=\dualspace{F}$, \ie
+\begin{equation}
+  \vectorspace{B}=\spaceprod{\vectorspace{F}}{\vectorspace{E}}=\spaceprod{\vectorspace{F}}{\dualspace{F}}
+\end{equation}
+
+\section{Wave Equation}
+\label{sec:PHWaveEquation}
+
+\subsection{Vector Calculus Port Hamiltonian Approach}
+
+Consider the wave equation in a domain, $\Omega\subset\rntopology{n}$,
+$n=1,2,3$ with boundary $\boundary{\Omega}$ \ie
+\begin{equation}
+  \deltwosqby{\fnof{z}{\vectr{x},t}}{t}=c^{2}\laplacian{}{\fnof{z}{\vectr{x},t}}
+\end{equation}
+where $\fnof{z}{\vectr{x},t}$ is the wave amplitude and $c$ is the wave speed.
+
+The \emph{state} (or \emph{energy}) variables of this equation are
+\begin{align}
+    \fnof{u}{\vectr{x},t}&=\delby{\fnof{z}{\vectr{x},t}}{t}\in\rntopology{} \\
+    \fnof{\vectr{v}}{\vectr{x},t}&=\gradient{}{\fnof{z}{\vectr{x},t}}\in\rntopology{n}
+\end{align}
+
+To formulate the wave equation in a port Hamiltonian form we need to define
+three sets of equations. The first set called the \emph{structure} equations
+relate the \emph{dual power variables} \ie the relationship between the
+\emph{flows} and the \emph{efforts}. The second set of relationships is called
+the \emph{dynamics} equations and relates state (or energy) variables and the
+flow variables. The final set is called the \emph{constituative} equations and
+relates the efforts (or \emph{co-energy} or \emph{co-state} variables) and the
+the \emph{energy} or \emph{Hamiltonian} functional.
+
+The dynamics equations for the flow variables are
+\begin{align}
+  \fnof{f^{u}}{\vectr{x},t}&=-\delby{\fnof{u}{\vectr{x},t}}{t}\in\rntopology{} \\
+  \fnof{\vectr{f}^{\vectr{v}}}{\vectr{x},t}&=-\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}\in\rntopology{n}
+\end{align}
+
+For the linear wave equation the (quadratic) Hamiltonian density function,
+$\mapping{\hamiltoniandensitysym}{\spaceprodfour{\rntopology{}}{\rntopology{n}}{\rntopology{n}}{\rntopology{}}}{\rntopology{}}$
+is given by
+\begin{equation}
+  \hamiltoniandensity{u,\vectr{v},\vectr{x},t}=\dfrac{1}{2}\fnof{u^{2}}{\vectr{x},t}+\dfrac{1}{2}c^{2}\dotprod{\fnof{\vectr{v}}{\vectr{x},t}}{\fnof{\vectr{v}}{\vectr{x},t}}
+\end{equation}
+and thus the Hamiltonian function is given by
+\begin{equation}
+  \hamiltonian{u,\vectr{v},t}=\gint{\Omega}{}{\hamiltoniandensity{u,\vectr{v},\vectr{x},t}}{\Omega}
+\end{equation}
+where $\exteriorderiv{\Omega}$ is the volume form.
+
+The variation of the Hamiltonian is given by
+\begin{equation}
+  \hamiltonian{u+\variationdir{u},\vectr{v}+\variationdir{\vectr{u}},t}=\hamiltonian{u,\vectr{v},t}+\gint{\Omega}{}{\pbrac{\variation{\hamiltonian{u,\vectr{v},t}}{u}\variationdir{u}+\dotprod{\variation{\hamiltonian{u,\vectr{v},t}}{\vectr{v}}}{\variationdir{\vectr{v}}}+\orderof{\variationdir{u},\variationdir{\vectr{v}}}}}{\Omega}
+\end{equation}
+where $\variation{\hamiltonian{u,\vectr{v},t}}{u}$ is the variation in the $u$
+direction and $\variation{\hamiltonian{u,\vectr{v},t}}{\vectr{v}}$ is the
+variation in the $\vectr{v}$ direction.
+
+The constitutive equations for the efforts is thus given by
+\begin{align}
+  \fnof{e^{u}}{u,\vectr{v},t}&=\variation{\hamiltonian{u,\vectr{v},t}}{u}=\delby{\hamiltoniandensity{u,\vectr{v},\vectr{x},t}}{u}\in\rntopology{}\\
+  \fnof{\vectr{e}^{\vectr{v}}}{u,\vectr{v},t}&=\variation{\hamiltonian{u,\vectr{v},t}}{\vectr{v}}=\delby{\hamiltoniandensity{u,\vectr{v},\vectr{x},t}}{\vectr{v}}\in\rntopology{n}
+\end{align}
+
+The constituative equations mean that the enerby balance for the system can be
+written as
+\begin{equation}
+  \begin{aligned}
+    \dothamiltonian{u,\vectr{v},t}&=\gint{\Omega}{}{\pbrac{\delby{\hamiltoniandensity{u,\vectr{v},\vectr{x},t}}{u}\delby{\fnof{u}{\vectr{x},t}}{t}+\dotprod{\delby{\hamiltoniandensity{u,\vectr{v},\vectr{x},t}}{\vectr{v}}}{\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}}}}{\Omega}\\
+    &=-\gint{\Omega}{}{\pbrac{\fnof{e^{u}}{u,\vectr{v},t}\fnof{f^{u}}{\vectr{x},t}+\dotprod{\fnof{\vectr{e}^{\vectr{v}}}{u,\vectr{v},t}}{\fnof{\vectr{f}^{\vectr{v}}}{\vectr{x},t}}}}{\Omega}
+  \end{aligned}
+\end{equation}
+
+If we now apply the divergence theorem we obtain
+\begin{equation}
+  \begin{aligned}
+    -\gint{\Omega}{}{\pbrac{e^{u}f^{u}+\dotprod{\vectr{e}^{\vectr{v}}}{\vectr{f}^{\vectr{v}}}}}{\Omega}
+    &=-\gint{\Omega}{}{\pbrac{e^{u}\divop
+    \vectr{e}^{\vectr{v}}+\dotprod{\vectr{e}^{\vectr{v}}}{\gradop
+      e^{u}}}}{\Omega}\\
+    &=-\gint{\Omega}{}{\divop\pbrac{e^{u}\vectr{e}^{\vectr{v}}}}{\Omega}\\
+    &=-\gint{\boundary{\Omega}}{}{e^{u}\dotprod{\vectr{e}^{\vectr{v}}}{\vectr{n}}}{\Gamma}
+  \end{aligned}
+\end{equation}
+where $\vectr{n}$ is the normal to the boundary $\boundary{\Omega}=\Gamma$.
+
+This can be written as a \emph{power balance equation}
+\begin{equation}
+  \innerform{e^{u}}{f^{u}}{\Omega}+\innerform{\vectr{e}^{\vectr{v}}}{\vectr{f}^{\vectr{v}}}{\Omega}+\innerform{e^{u}}{-\dotprod{\vectr{e}^{\vectr{v}}}{\vectr{n}}}{\boundary{\Omega}}=0
+\end{equation}
+where the functional form $\innerform{\cdot}{\cdot}{\Omega}$ and
+$\innerform{\cdot}{\cdot}{\boundary{\Omega}}$ are the standard inner products
+on the space. 
+
+The wave equation can thus be written in Port-Hamiltonian form as
+\begin{equation}
+  \begin{aligned}
+    \begin{bmatrix}
+      \fnof{f^{u}}{\vectr{x},t} \\
+      \fnof{\vectr{f}^{\vectr{v}}}{\vectr{x},t}
+    \end{bmatrix}&=\begin{bmatrix}
+    0 & \divop \\
+    \gradop & \vectr{0}
+    \end{bmatrix}\begin{bmatrix}
+      \fnof{e^{u}}{\vectr{x},t} \\
+      \fnof{\vectr{e}^{\vectr{v}}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Structure equations}\\
+    \begin{bmatrix}
+      \delby{\fnof{u}{\vectr{x},t}}{t} \\
+      \delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}      
+    \end{bmatrix}&=\begin{bmatrix}
+      -\fnof{f^{u}}{\vectr{x},{t}} \\
+      -\fnof{\vectr{f}^{\vectr{v}}}{\vectr{x},{t}} \\          
+    \end{bmatrix}&\qquad&\text{Dynamics equations}\\
+    \begin{bmatrix}
+      \fnof{e^{u}}{\vectr{x},t}\\
+      \fnof{\vectr{e}^{\vectr{u}}}{\vectr{x},t}\\
+    \end{bmatrix}&=\begin{bmatrix}
+    \variation{\hamiltonian{\fnof{u}{\vectr{x},t},\fnof{\vectr{v}}{\vectr{x},t},t}}{\fnof{u}{\vectr{x},t}}\\
+    \transpose{\pbrac{\variation{\hamiltonian{\fnof{u}{\vectr{x},t},\fnof{\vectr{v}}{\vectr{x},t},t}}{\fnof{\vectr{v}}{\vectr{x},t}}}}
+    \end{bmatrix}&\qquad&\text{Constitutive equations}
+  \end{aligned}
+\end{equation}
+
+\subsection{Exterior Calculus Port Hamiltonian Approach}
+
+Now, in terms of differential forms we have the \emph{co-state} variables as
+\begin{equation}
+  \begin{aligned}
+    \fnof{p}{\vectr{x},t}&=\hodgestar{u}\in\diffformspace{k_{p}}{\Omega} \\
+    \fnof{\covectr{q}}{\vectr{x},t}&=\flattensor{\vectr{v}}\in\diffformspace{k_{q}}{\Omega}
+  \end{aligned}
+\end{equation}
+where $k_{p}=\dimop p$ and $k_{q}=\dimop \covectr{q}$ are the dimensions of the spaces of $p$ and $\covectr{q}$ and
+that $k_{p}+k_{q}=n+1$. For the wave equation $k_{p}=n$ and $k_{q}=1$.
+
+Similarily the \emph{co-flow} and \emph{co-effort} variables are given by
+\begin{equation}
+  \begin{aligned}
+    \fnof{f^{p}}{\vectr{x},t}&=\hodgestar{\fnof{f^{u}}{\vectr{x},t}}\in\ltwodiffformspace{k_{p}}{\Omega}\\
+    \fnof{\covectr{f}^{\covectr{q}}}{\vectr{x},t}&=\flattensor{\pbrac{\vectr{f}^{\vectr{v}}}}\in\ltwodiffformspace{k_{q}}{\Omega}\\
+    \fnof{e^{p}}{\vectr{x},t}&=\fnof{e^{u}}{\vectr{x},t}\in\honediffformspace{n-k_{p}}{\Omega}\\
+    \fnof{\covectr{e}^{\covectr{q}}}{\vectr{x},t}&=\pbrac{-1}^{n-k_{q}}\hodgestar{\flattensor{\pbrac{\fnof{\vectr{e}^{\vectr{v}}}{\vectr{x},t}}}}\in\honediffformspace{n-k_{q}}{\Omega}
+  \end{aligned} 
+\end{equation}
+
+The Hamiltonian is given by
+\begin{equation}
+  \hamiltonian{p,\covectr{q},t}=\dfrac{1}{2}\dualityform{p}{\hodgestar{p}}{\Omega}+\dfrac{1}{2}c^{2}\dualityform{\covectr{q}}{\hodgestar{\covectr{q}}}{\Omega}
+\end{equation}
+where the \emph{duality} product
+$\dualityform{\covectr{\alpha}}{\covectr{\beta}}{\Omega}$ between the differential
+forms $\covectr{\alpha}\in\diffformspace{k}{\Omega}$ and
+$\covectr{\beta}\in\diffformspace{n-k}{\Omega}$ is given by
+\begin{equation}
+  \dualityform{\covectr{\alpha}}{\covectr{\beta}}{\Omega}=\gint{\Omega}{}{\wedgeprod{\covectr{\alpha}}{\covectr{\beta}}}{\Omega}
+\end{equation}
+and for $\dualityform{\covectr{\alpha}}{\covectr{\beta}}{\boundary{\Omega}}$
+between the differential forms $\covectr{\alpha}\in\diffformspace{k}{\boundary{\Omega}}$ and
+$\covectr{\beta}\in\diffformspace{n-1-k}{\boundary{\Omega}}$ is given by
+\begin{equation}
+  \dualityform{\covectr{\alpha}}{\covectr{\beta}}{\boundary{\Omega}}=\gint{\boundary{\Omega}}{}{\wedgeprod{\covectr{\alpha}}{\covectr{\beta}}}{\Gamma}
+\end{equation}
+
+The differential engery balance is given by
+\begin{equation}
+  \begin{aligned}
+    \dothamiltonian{p,\covectr{q},t}&=\gint{\Omega}{}{\pbrac{\wedgeprod{\delby{\hamiltoniandensity{p,\covectr{q},\vectr{x},t}}{p}}{\delby{\fnof{p}{\vectr{x},t}}{t}}+\wedgeprod{\delby{\hamiltoniandensity{p,\covectr{q},\vectr{x},t}}{\covectr{q}}}{\delby{\fnof{\covectr{q}}{\vectr{x},t}}{t}}}}{\Omega}\\
+    &=-\dualityform{\variation{\hamiltonian{p,\covectr{q},t}}{p}}{-\delby{\fnof{p}{\vectr{x},t}}{t}}{\Omega}-\dualityform{\variation{\hamiltonian{p,\covectr{q},t}}{\covectr{q}}}{-\delby{\fnof{\covectr{q}}{\vectr{x},t}}{t}}{\Omega}
+  \end{aligned}
+\end{equation}
+
+We note that
+\begin{equation}
+  \dothamiltonian{p,\covectr{q},t}=(-1)^{n}\dualityform{\trace{}{
+    \covectr{e}^{\covectr{q}}}}{\trace{}{e^{p}}}{\boundary{\Omega}}
+\end{equation}
+that is, the rate of change in the energy of the system equals the power
+supplied through the boundary. 
+
+The wave equation can be expressed in port hamiltonian form using differential
+forms as
+\begin{equation}
+  \begin{aligned}
+    \begin{bmatrix}
+      \fnof{f^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{f}^{\vectr{q}}}{\vectr{x},t}
+    \end{bmatrix}&=\begin{bmatrix}
+    0 & (-1)^{k_{r}}\exteriorderivop \\
+    \exteriorderivop & \vectr{0}
+    \end{bmatrix}\begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{e}^{\vectr{q}}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Structure equations}\\
+    \begin{bmatrix}
+      \delby{\fnof{p}{\vectr{x},t}}{t} \\
+      \delby{\fnof{\vectr{q}}{\vectr{x},t}}{t}      
+    \end{bmatrix}&=\begin{bmatrix}
+      -\fnof{f^{p}}{\vectr{x},{t}} \\
+      -\fnof{\vectr{f}^{\vectr{q}}}{\vectr{x},{t}} \\          
+    \end{bmatrix}&\qquad&\text{Dynamics equations}\\
+    \begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t}\\
+      \fnof{\vectr{e}^{\vectr{q}}}{\vectr{x},t}\\
+    \end{bmatrix}&=\begin{bmatrix}
+    \variation{\hamiltonian{\fnof{p}{\vectr{x},t},\fnof{\vectr{q}}{\vectr{x},t},t}}{\fnof{p}{\vectr{x},t}}\\
+    \variation{\hamiltonian{\fnof{p}{\vectr{x},t},\fnof{\vectr{q}}{\vectr{x},t},t}}{\fnof{\vectr{q}}{\vectr{x},t}}
+    \end{bmatrix}&\qquad&\text{Constitutive equations}
+  \end{aligned}
+\end{equation}
+where $\exteriorderivop$ is \emph{exterior derivative} and $k_{r}=k_{p}k_{q}+1$.
+
+The equivalent power balance equation is given by
+\begin{equation}
+  \dualityform{e^{p}}{f^{p}}{\Omega}+\dualityform{\vectr{e}^{\vectr{q}}}{\vectr{f}^{\vectr{q}}}{\Omega}+(-1)^{n}\dualityform{\trace{}{
+  \covectr{e}^{\covectr{q}}}}{\trace{}{e^{p}}}{\boundary{\Omega}}=0
+\end{equation}
+where $\trop$ extends the differential form to the boundary. Note that
+$\trace{}{e^{p}}\in\ltwodiffformspace{n-k_{p}}{\boundary{\Omega}}$ and
+$\trace{}{\covectr{e}^{\covectr{q}}}\in\ltwodiffformspace{n-k_{q}}{\boundary{\Omega}}$.
+
+\subsection{Weak Form}
+
+The \emph{weak form} of the equations is obtain from \emph{duality pairing} of
+the co-flows and co-efforts with \emph{test forms} of an appropriate degree
+that does not vanish on the boundary.
+
+To allow for different boundary conditions with different causalities consider
+partitioning the domain $\Omega$ into a number of subsets
+$\Omega_{i},i=1,...,n_{\Omega}$ and
+$\hat{\Omega}_{j},j=1,...,n_{\hat{\Omega}}$ such that
+$\Omega=\union{\gunion{i=1}{n_{\Omega}}{\Omega_{i}}}{\gunion{j=1}{n_{\hat{\Omega}}}{\hat{\Omega}_{j}}}$. Similarily
+the boundary $\boundary{\Omega}$ is partitioned into a number of subsets
+$\Gamma_{i},i=1,...,n_{\Gamma}$ and
+$\hat{\Gamma}_{j},j=1,...,n_{\hat{\Gamma}}$ such that
+$\boundary{\Omega}=\union{\gunion{i=1}{n_{\Gamma}}{\Gamma_{i}}}{\gunion{j=1}{n_{\hat{\Gamma}}}{\hat{\Gamma}_{j}}}$
+with $\intersection{\Gamma_{i}}{\hat{\Gamma}_{j}}=\emptyset$ for any $i$ and
+$j$. The boundary flows and efforts can be written as
+\begin{align}
+  f^{\Gamma}_{i}&=\evalat{\trace{}{e^{p}}}{\Gamma_{i}}\in\ltwodiffformspace{n-k_{p}}{\boundary{\Omega}} \\
+  \covectr{e}^{\Gamma}_{i}&=(-1)^{k_{p}}\evalat{\trace{}{\covectr{e}^{\covectr{q}}}}{\Gamma_{i}}\in\ltwodiffformspace{n-k_{q}}{\boundary{\Omega}}\\
+  \hat{\covectr{f}}^{\Gamma}_{j}&=(-1)^{k_{p}}\evalat{\trace{}{\covectr{e}^{\covectr{q}}}}{\hat{\Gamma}_{j}}\in\ltwodiffformspace{n-k_{q}}{\boundary{\Omega}}\\
+  \hat{e}^{\Gamma}_{j}&=\evalat{\trace{}{e^{p}}}{\hat{\Gamma}_{j}}\in\ltwodiffformspace{n-k_{p}}{\boundary{\Omega}}
+\end{align}
+
+With the boundary flows and efforts defined as such the power balance equation
+becomes
+\begin{equation}
+  \dualityform{e^{p}}{f^{p}}{\Omega}+\dualityform{\covectr{e}^{\covectr{q}}}{\covectr{f}^{\covectr{q}}}{\Omega}+\gsum{i=1}{n_{\Gamma}}{\dualityform{\covectr{e}^{\Gamma}_{i}}{f^{\Gamma}_{i}}{\Gamma_{i}}}+\gsum{j=1}{n_{\hat{\Gamma}}}{\dualityform{\hat{\covectr{f}}^{\Gamma}_{j}}{\hat{e}^{\Gamma}_{j}}{\hat{\Gamma}_{j}}}=0
+\end{equation}
+
+Consider now some \emph{test forms} $v^{p}$ and $\covectr{v}^{\covectr{q}}$. We have from the
+structural equations
+\begin{align}
+  \dualityform{v^{p}}{f^{p}}{\Omega}&=\dualityform{v^{p}}{(-1)^{k_{r}}\exteriorderiv{\covectr{e}^{\covectr{q}}}}{\Omega}&\qquad&\forall
+  v^{p}\in\honediffformspace{n-k_{p}}{\Omega}\\ \dualityform{\covectr{v}^{\covectr{q}}}{\covectr{f}^{\covectr{q}}}{\Omega}&=\dualityform{\covectr{v}^{\covectr{q}}}{\exteriorderiv{e^{p}}}{\Omega}&\qquad&\forall
+  \covectr{v}^{\covectr{q}}\in\honediffformspace{n-k_{q}}{\Omega}
+\end{align}
+
+The energy balance equations are then
+\begin{equation}
+  \dualityform{v^{p}}{f^{p}}{\Omega}=(-1)^{k_{r}+k_{q}}\dualityform{\exteriorderiv{v^{p}}}{\covectr{e}^{\covectr{q}}}{\Omega}-(-1)^{k_{r}+k_{q}}\gsum{i=1}{n_{\Gamma}}{\dualityform{\trace{}{v^{p}}}{\covectr{e}^{\Gamma}_{i}}{\Gamma_{i}}}-(-1)^{k_{r}+k_{q}}\gsum{j=1}{n_{\hat{\Gamma}}}{\dualityform{\trace{}{v^{p}}}{\hat{\covectr{f}}^{\Gamma}_{j}}{\hat{\Gamma}_{j}}}
+\end{equation}
+and
+\begin{equation}
+  \dualityform{\covectr{v}^{\covectr{q}}}{\covectr{f}^{\covectr{q}}}{\Omega}=(-1)^{k_{p}}\dualityform{\exteriorderiv{\covectr{v}^{\covectr{q}}}}{e^{p}}{\Omega}-(-1)^{k_{p}}\gsum{i=1}{n_{\Gamma}}{\dualityform{\trace{}{\covectr{v}^{\covectr{q}}}}{f^{\Gamma}_{i}}{\Gamma_{i}}}-(-1)^{k_{p}}\gsum{j=1}{n_{\hat{\Gamma}}}{\dualityform{\trace{}{\covectr{v}^{\covectr{q}}}}{\hat{e}^{\Gamma}_{j}}{\hat{\Gamma}_{j}}}  
+\end{equation}
+
+The flow differential forms and test forms will be taken from linear
+combinations of the basis forms \ie
+$\covectr{\psi}^{p}_{h}\subset\ltwodiffformspace{k_{p}}{\Omega}$ and
+$\covectr{\psi}^{\covectr{q}}_{h}\subset\ltwodiffformspace{k_{q}}{\Omega}$. Note that
+  there are $N_{p}$ bases for $\covectr{\psi}^{p}_{h}$ and $N_{q}$ for
+  $\covectr{\psi}^{\covectr{q}}_{h}$ and $h$ is the discretisation parameter.
+The effort differential forms and test forms will also be taken from the
+linear combinations of the basis forms \ie
+$\covectr{\phi}^{p}_{h}\subset\honediffformspace{n-k_{p}}{\Omega}$ and
+$\covectr{\phi}^{\covectr{q}}_{h}\subset\honediffformspace{n-k_{q}}{\Omega}$. Note that
+  there are $M_{p}$ bases for $\covectr{\phi}^{p}_{h}$ and $M_{q}$ for
+  $\covectr{\phi}^{\covectr{q}}_{h}$.
+  
+We can now interpolate the flow and effort forms \ie
+\begin{align}
+  \fnof{f^{p}_{h}}{\vectr{x},t}&=\gsum{k=1}{N_{p}}{\fnof{f^{p}_{k}}{t}\fnof{\psi^{p}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{f}^{p}}{t}}{\fnof{\covectr{\psi}^{p}}{\vectr{x}}}{\Omega}\in\covectr{\psi}^{p}_{h}\\
+  \fnof{\covectr{f}^{\covectr{q}}_{h}}{\vectr{x},t}&=\gsum{k=1}{N_{q}}{\fnof{\covectr{f}^{\covectr{q}}_{k}}{t}\fnof{\covectr{\psi}^{\covectr{q}}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{f}^{\covectr{q}}}{t}}{\fnof{\covectr{\psi}^{\covectr{q}}}{\vectr{x}}}{\Omega}\in\covectr{\psi}^{\covectr{q}}_{h}\\
+  \fnof{e^{p}_{h}}{\vectr{x},t}&=\gsum{k=1}{M_{p}}{\fnof{e^{p}_{k}}{t}\fnof{\phi^{p}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{e}^{p}}{t}}{\fnof{\covectr{\phi}^{p}}{\vectr{x}}}{\Omega}\in\covectr{\phi}^{p}_{h}\\
+  \fnof{\covectr{e}^{\covectr{q}}_{h}}{\vectr{x},t}&=\gsum{k=1}{M_{q}}{\fnof{\covectr{e}^{\covectr{q}}_{k}}{t}\fnof{\covectr{\phi}^{\covectr{q}}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{e}^{\covectr{q}}}{t}}{\fnof{\covectr{\phi}^{\covectr{q}}}{\vectr{x}}}{\Omega}\in\covectr{\phi}^{\covectr{q}}_{h}
+\end{align}
+where the discrete flow and effort vectors are
+\begin{alignat}{3}
+  \fnof{\dcovectr{f}^{p}}{t}=\transpose{\sqbrac{\fnof{f^{p}_{1}}{t},\ldots,\fnof{f^{p}_{N_{p}}}{t}}}&&\qquad\qquad&&\fnof{\covectr{\psi}^{p}}{\vectr{x}}=\transpose{\sqbrac{\fnof{\psi^{p}_{1}}{\vectr{x}},\ldots,\fnof{\psi^{p}_{N_{p}}}{\vectr{x}}}} \\
+  \fnof{\dcovectr{f}^{\covectr{q}}}{t}=\transpose{\sqbrac{\fnof{\covectr{f}^{\covectr{q}}_{1}}{t},\ldots,\fnof{\covectr{f}^{\covectr{q}}_{N_{q}}}{t}}}&&\qquad\qquad&&\fnof{\covectr{\psi}^{\covectr{q}}}{\vectr{x}}=\transpose{\sqbrac{\fnof{\psi^{\covectr{q}}_{1}}{\vectr{x}},\ldots,\fnof{\psi^{\covectr{q}}_{N_{q}}}{\vectr{x}}}} \\
+  \fnof{\dcovectr{e}^{p}}{t}=\transpose{\sqbrac{\fnof{e^{p}_{1}}{t},\ldots,\fnof{e^{p}_{M_{p}}}{t}}}&&\qquad\qquad&&\fnof{\covectr{\phi}^{p}}{\vectr{x}}=\transpose{\sqbrac{\fnof{\phi^{p}_{1}}{\vectr{x}},\ldots,\fnof{\phi^{p}_{M_{p}}}{\vectr{x}}}}  \\
+  \fnof{\dcovectr{e}^{\covectr{q}}}{t}=\transpose{\sqbrac{\fnof{\covectr{e}^{\covectr{q}}_{1}}{t},\ldots,\fnof{\covectr{e}^{\covectr{q}}_{M_{q}}}{t}}}&&\qquad\qquad&&\fnof{\covectr{\phi}^{\covectr{q}}}{\vectr{x}}=\transpose{\sqbrac{\fnof{\phi^{\covectr{q}}_{1}}{\vectr{x}},\ldots,\fnof{\phi^{\covectr{q}}_{M_{q}}}{\vectr{x}}}}
+\end{alignat}
+
+The co-state variables can also be interpolated \ie
+\begin{align}
+  \fnof{p_{h}}{\vectr{x},t}&=\gsum{k=1}{N_{p}}{\fnof{p_{k}}{t}\fnof{\psi^{p}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{p}}{t}}{\fnof{\covectr{\psi}^{p}}{\vectr{x}}}{\Omega}\in\covectr{\psi}^{p}_{h} \\
+  \fnof{\covectr{q}_{h}}{\vectr{x},t}&=\gsum{k=1}{N_{q}}{\fnof{\covectr{q}_{k}}{t}\fnof{\psi^{\covectr{q}}_{k}}{\vectr{x}}}=\dualityform{\fnof{\dcovectr{q}}{t}}{\fnof{\covectr{\psi}^{\covectr{q}}}{\vectr{x}}}{\Omega}\in\covectr{\psi}^{\covectr{q}}_{h}
+\end{align}
+where
+\begin{align}
+  \fnof{\dcovectr{p}}{t}=\transpose{\sqbrac{\fnof{p_{1}}{t},\ldots,\fnof{p_{N_{p}}}{t}}}&\qquad\fnof{\dcovectr{q}}{t}=\transpose{\sqbrac{\fnof{\covectr{q}_{1}}{t},\ldots,\fnof{\covectr{q}_{N_{q}}}{t}}}
+\end{align}
+
+The discretised balance of power equations become
+\begin{multline}
+  \dualityform{\dualityform{\dcovectr{v}^{p}}{\covectr{\phi}^{p}}{}}{\dualityform{\dcovectr{f}^{p}}{\covectr{\psi}^{p}}{}}{\Omega}-(-1)^{k_{r}+k_{q}}\dualityform{\dualityform{\dcovectr{v}^{p}}{\exteriorderiv{\covectr{\phi}^{p}}}{}}{\dualityform{\dcovectr{e}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\Omega}\\
+  +(-1)^{k_{r}+k_{q}}\gsum{\mu=1}{n_{\Gamma}}{\dualityform{\dualityform{\dcovectr{v}^{p}}{\covectr{\phi}^{p}}{}}{\dualityform{\dcovectr{e}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\Gamma_{\mu}}}+(-1)^{k_{r}+k_{q}}\gsum{\nu=1}{n_{\hat{\Gamma}}}{\dualityform{\dualityform{\dcovectr{v}^{p}}{\covectr{\phi}^{p}}{}}{\dualityform{\dcovectr{e}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\hat{\Gamma}_{\nu}}}=0
+\end{multline}
+and
+\begin{multline}
+  \dualityform{\dualityform{\dcovectr{v}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\dualityform{\dcovectr{f}^{\covectr{q}}}{\covectr{\psi}^{\covectr{q}}}{}}{\Omega}-(-1)^{k_{p}}\dualityform{\dualityform{\dcovectr{v}^{\covectr{q}}}{\exteriorderiv{\covectr{\phi}^{\covectr{q}}}}{}}{\dualityform{\dcovectr{e}^{p}}{\covectr{\phi}^{p}}{}}{\Omega}\\
+  +(-1)^{k_{p}}\gsum{\mu=1}{n_{\Gamma}}{\dualityform{\dualityform{\dcovectr{v}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\dualityform{\dcovectr{e}^{p}}{\covectr{\phi}^{p}}{}}{\Gamma_{\mu}}}+(-1)^{k_{p}}\gsum{\nu=1}{n_{\hat{\Gamma}}}{\dualityform{\dualityform{\dcovectr{v}^{\covectr{q}}}{\covectr{\phi}^{\covectr{q}}}{}}{\dualityform{\dcovectr{e}^{p}}{\covectr{\phi}^{p}}{}}{\hat{\Gamma}_{\nu}}}=0
+\end{multline}
+
+Integrating the products of basis forms gives us systems of equations \ie
+\begin{align}
+  \dualityform{\dcovectr{v}^{p}}{\matr{M}_{p}\dcovectr{f}^{p}}{}+\dualityform{\dcovectr{v}^{p}}{\pbrac{\matr{K}_{p}+\gsum{\mu=1}{n_{\Gamma}}{\matr{L}^{\mu}_{p}}+\gsum{\nu=1}{n_{\hat{\Gamma}}}{\hat{\matr{L}}^{\nu}_{p}}}\dcovectr{e}^{\covectr{q}}}{}&=0 \\
+  \dualityform{\dcovectr{v}^{\covectr{q}}}{\matr{M}_{\covectr{q}}\dcovectr{f}^{\covectr{q}}}{}+\dualityform{\dcovectr{v}^{\covectr{q}}}{\pbrac{\matr{K}_{\covectr{q}}+\gsum{\mu=1}{n_{\Gamma}}{\matr{L}^{\mu}_{\covectr{q}}}+\gsum{\nu=1}{n_{\hat{\Gamma}}}{\hat{\matr{L}}^{\nu}_{\covectr{q}}}}\dcovectr{e}^{p}}{}&=0
+\end{align}
+where
+\begin{alignat}{3}
+  \sqbrac{\matr{M}_{p}}_{ik}=\dualityform{\phi^{p}_{i}}{\psi^{p}_{k}}{\Omega}&&\qquad&&\sqbrac{\matr{M}_{\covectr{q}}}_{jl}=\dualityform{\phi^{\covectr{q}}_{j}}{\psi^{\covectr{q}}_{l}}{\Omega} \\
+  \sqbrac{\matr{K}_{p}}_{ij}=-(-1)^{k_{r}+k_{q}}\dualityform{\exteriorderiv{\phi^{p}_{i}}}{\phi^{\covectr{q}}_{j}}{\Omega}&&\qquad&&\sqbrac{\matr{K}_{\covectr{q}}}_{ji}=-(-1)^{k_{p}}\dualityform{\exteriorderiv{\phi^{\covectr{q}}_{j}}}{\phi^{p}_{i}}{\Omega} \\
+  \sqbrac{\matr{L}^{\mu}_{p}}_{ij}=(-1)^{k_{r}+k_{q}}\dualityform{\phi^{p}_{i}}{\phi^{\covectr{q}}_{j}}{\Gamma_{\mu}}&&\qquad&&\sqbrac{\matr{L}^{\mu}_{\covectr{q}}}_{ji}=(-1)^{k_{p}}\dualityform{\phi^{\covectr{q}}_{j}}{\phi^{p}_{i}}{\Gamma_{\mu}} \\
+  \sqbrac{\hat{\matr{L}}^{\nu}_{p}}_{ij}=(-1)^{k_{r}+k_{q}}\dualityform{\phi^{p}_{i}}{\phi^{\covectr{q}}_{j}}{\hat{\Gamma}_{\nu}}&&\qquad&&\sqbrac{\hat{\matr{L}}^{\nu}_{\covectr{q}}}_{ji}=(-1)^{k_{p}}\dualityform{\phi^{\covectr{q}}_{j}}{\phi^{p}_{i}}{\hat{\Gamma}_{\nu}}
+\end{alignat}
+and $\matr{M}_{p}\in\rntopology{M_{p}\times N_{p}}$,
+$\matr{M}_{\covectr{q}}\in\rntopology{M_{q}\times N_{q}}$,
+$\matr{K}_{p},\matr{L}^{\mu}_{p},\hat{\matr{L}}^{\nu}_{p}\in\rntopology{M_{p}\times
+  M_{q}}$, and
+$\matr{K}_{\covectr{q}},\matr{L}^{\mu}_{\covectr{q}},\hat{\matr{L}}^{\nu}_{\covectr{q}}\in\rntopology{M_{q}\times
+  M_{p}}$. We note that by the skew-symmetry of the edge product we have that
+$\sqbrac{\matr{L}^{\mu}_{p}}_{ij}=\sqbrac{\matr{L}^{\mu}_{\covectr{q}}}_{ji}$
+and
+$\sqbrac{\hat{\matr{L}}^{\nu}_{p}}_{ij}=\sqbrac{\hat{\matr{L}}^{\nu}_{\covectr{q}}}_{ji}$
+\ie $\matr{L}^{\mu}_{p}=\transpose{\pbrac{\matr{L}^{\mu}_{\covectr{q}}}}$ and
+$\hat{\matr{L}}^{\nu}_{p}=\transpose{\pbrac{\hat{\matr{L}}^{\nu}_{\covectr{q}}}}$.
+
+Now the equations above need to hold for arbitrary
+$\dcovectr{v}^{p}\in\rntopology{M_{p}}$ and
+$\dcovectr{v}^{\covectr{q}}\in\rntopology{M_{q}}$ which gives the following
+equations
+\begin{align}
+  \matr{M}_{p}\dcovectr{f}^{p}+\pbrac{\matr{K}_{p}+\matr{L}_{p}}\dcovectr{e}^{\covectr{q}}&=\vectr{0}\\
+  \matr{M}_{\covectr{q}}\dcovectr{f}^{\covectr{q}}+\pbrac{\matr{K}_{\covectr{q}}+\matr{L}_{\covectr{q}}}\dcovectr{e}^{p}&=\vectr{0}
+\end{align}
+where
+\begin{align}
+  \matr{L}_{p}&=\gsum{\mu=1}{n_{\Gamma}}{\matr{L}^{\mu}_{p}}+\gsum{\nu=1}{n_{\hat{\Gamma}}}{\hat{\matr{L}}}^{\nu}_{p}\in\rntopology{M_{p}\times
+  M_{q}}\\
+  \matr{L}_{\covectr{q}}&=\gsum{\mu=1}{n_{\Gamma}}{\matr{L}^{\mu}_{\covectr{q}}}+\gsum{\nu=1}{n_{\hat{\Gamma}}}{\hat{\matr{L}}}^{\nu}_{\covectr{q}}\in\rntopology{M_{q}\times
+  M_{p}}
+\end{align}
+where $\matr{L}_{p}=\transpose{\matr{L}_{\covectr{q}}}$.
+
+We now define pairs of \emph{discrete boundary port variables} that can be used for input
+or output. The variables $\dcovectr{e}^{b,\mu}$, $\dcovectr{f}^{b,\mu_{0}}$
+$\in\rntopology{M^{\mu}_{b}}$ associated with the boundary port
+$\Gamma_{\mu}\subset\boundary{\Omega}$ and the variables
+$\hat{\dcovectr{e}}^{b,\nu}$, $\hat{\dcovectr{f}}^{b,\nu}_{0}$
+$\in\rntopology{\hat{M}^{\nu}_{b}}$ associated with the boundary port
+$\hat{\Gamma}_{\nu}\subset\boundary{\Omega}$ satsify
+\begin{align}
+  \dualityform{\dcovectr{e}^{\covectr{q}}}{\matr{L}^{\mu}_{\covectr{q}}\dcovectr{e}^{p}}{}&=\dualityform{\dcovectr{e}^{b,\mu}}{\dcovectr{f}^{b,\mu}_{o}}{}\\
+  \dualityform{\dcovectr{e}^{p}}{\hat{\matr{L}}^{\nu}_{p}\dcovectr{e}^{\covectr{q}}}{}&=\dualityform{\hat{\dcovectr{e}}^{b,\nu}}{\hat{\dcovectr{f}}^{b,\nu}_{o}}{}    
+\end{align}
+
+We now decompose th boundry power matrices for each boundary subdomain \ie
+\begin{align}
+  \matr{L}^{\mu}_{\covectr{q}}&=\transpose{\pbrac{\matr{T}^{\mu}_{\covectr{q}}}}\matr{S}^{\mu}_{p,0}\\
+  \hat{\matr{L}}^{\nu}_{p}&=\transpose{\pbrac{\hat{\matr{T}}^{\nu}_{p}}}\hat{\matr{S}}^{\nu}_{\covectr{q},0}
+\end{align}
+where the \emph{boundary trace matrices}
+$\matr{T}^{\mu}_{\covectr{q}}\in\rntopology{M^{\mu}_{b}\times M_{q}}$ and
+$\hat{\matr{T}}^{\nu}_{p}\in\rntopology{M^{\nu}_{b}\times M_{p}}$ define the
+boundary effort degrees-of-freedom \ie
+\begin{align}
+  \dcovectr{e}^{b,\mu}&=\matr{T}^{\mu}_{\covectr{q}}\dcovectr{e}^{\covectr{q}}\\
+  \hat{\dcovectr{e}}^{b,\nu}&=\hat{\matr{T}}^{\nu}_{p}\dcovectr{e}^{p} 
+\end{align}
+that are the \emph{input variables}. The entries of $\matr{T}^{\mu}_{\covectr{q}}$
+and $\hat{\matr{T}}^{\nu}_{p}$ are typically either $0$, $+1$ or $-1$
+depending on the orientation of the boundary.
+
+The matrices $\matr{S}^{\mu}_{p,0}\in\rntopology{M^{\mu}_{b}\times M_{p}}$ and
+$\hat{\matr{S}}^{\nu}_{\covectr{q},0}\in\rntopology{\hat{M}^{\nu}_{b}\times
+  M_{q}}$ are the \emph{collocated boundary output matrices} we define the
+boundary flow variables \ie
+\begin{align}
+  \dcovectr{f}^{b,\mu}_{0}&=\matr{S}^{\mu}_{p,0}\dcovectr{e}^{p}\\
+  \hat{\dcovectr{f}}^{b,\nu}_{0}&=\hat{\matr{S}}^{\nu}_{\covectr{q},0}\dcovectr{e}^{\covectr{q}}
+\end{align}
+
+Summation over the boundary ports $\Gamma_{\mu}$ and $\hat{\Gamma}_{\nu}$
+gives us
+\begin{equation}
+  \matr{L}_{p}=\transpose{\matr{S}_{p,0}}\matr{T}_{\covectr{q}}+\transpose{\hat{\matr{T}}_{p}}\hat{\matr{S}}_{\covectr{q},0}=\transpose{\matr{L}_{\covectr{q}}}
+\end{equation}
+where
+\begin{align}
+  \matr{T}_{\covectr{q}}&=\transpose{\sqbrac{\matr{T}^{1}_{\covectr{q}},\ldots,\matr{T}^{n_{\Gamma}}_{\covectr{q}}}}\\
+  \matr{S}_{p,0}&=\transpose{\sqbrac{\matr{S}^{1}_{p,0},\ldots,\matr{S}^{n_{\Gamma}}_{p,0}}}\\
+  \hat{\matr{T}}_{p}&=\transpose{\sqbrac{\hat{\matr{T}}^{1}_{p},\ldots,\hat{\matr{T}}^{n_{\hat{\Gamma}}}_{p}}}\\
+  \hat{\matr{S}}_{\covectr{q},0}&=\transpose{\sqbrac{\hat{\matr{S}}^{1}_{\covectr{q},0},\ldots,\hat{\matr{S}}^{n_{\hat{\Gamma}}}_{\covectr{q},0}}}
+\end{align}
+such that
+\begin{align}
+  \dcovectr{e}^{b}&=\matr{T}_{\covectr{q}}\dcovectr{e}^{\covectr{q}}\\
+  \dcovectr{f}^{b}_{0}&=\matr{S}_{p,0}\dcovectr{e}^{p}\\
+  \hat{\dcovectr{e}}^{b}&=\hat{\matr{T}}_{p}\dcovectr{e}^{p}\\
+  \hat{\dcovectr{f}}^{b}_{0}&=\hat{\matr{S}}_{\covectr{q},0}\dcovectr{e}^{\covectr{q}}  
+\end{align}
+where
+\begin{align}
+  \dcovectr{e}^{b}&=\transpose{\sqbrac{\dcovectr{e}^{b,1},\ldots,\dcovectr{e}^{b,n_{\Gamma}}}}\\
+  \dcovectr{f}^{b}_{0}&=\transpose{\sqbrac{\dcovectr{f}^{b,1}_{0},\ldots,\dcovectr{f}^{b,n_{\Gamma}}_{0}}}\\
+  \hat{\dcovectr{e}}^{b}&=\transpose{\sqbrac{\dcovectr{e}^{b,1},\ldots,\dcovectr{e}^{b,n_{\hat{\Gamma}}}}}\\
+  \hat{\dcovectr{f}}^{b}_{0}&=\transpose{\sqbrac{\hat{\dcovectr{f}}^{b,1}_{0},\ldots,\hat{\dcovectr{f}}^{b,n_{\hat{\Gamma}}}_{0}}}
+\end{align}
+
+The discrete power balance equation is now
+\begin{equation}
+  \dualityform{\dcovectr{e}^{p}}{\matr{M}_{p}\dcovectr{f}^{p}}{}+
+  \dualityform{\dcovectr{e}^{\covectr{q}}}{\matr{M}_{\covectr{q}}\dcovectr{f}^{\covectr{q}}}{}+
+  \dualityform{\dcovectr{e}^{b}}{\dcovectr{f}^{b}_{0}}{}+
+  \dualityform{\hat{\dcovectr{e}}^{b}}{\hat{\dcovectr{f}}^{b}_{0}}{}=0
+\end{equation}
+
+The problem with the power balance above is that it is, in general,
+\emph{degenerate} in that it can be zero for non-zero discrete flows/efforts
+that lie in $\kernel{\matr{M}_{p}}$ or $\kernel{\matr{M}_{\covectr{q}}}$. In
+order to avoid this problem \emph{power-preserving mappings} are introduced.
+
+On the assumption that the factorisation
+\begin{align}
+  \matr{K}_{p}+\matr{L}_{p}&=-(-1)^{k_{r}}\matr{M}_{p}\dcovectr{d}_{p}\\
+  \matr{K}_{\covectr{q}}+\matr{L}_{\covectr{q}}&=-\matr{M}_{\covectr{q}}\dcovectr{d}_{\covectr{q}}
+\end{align}
+exists then we can write
+\begin{equation}
+  \begin{bmatrix}
+    \dcovectr{f}^{p} \\
+    \dcovectr{f}^{\covectr{q}}
+  \end{bmatrix} = \begin{bmatrix}
+    \dcovectr{0} & (-1)^{k_{r}}\dcovectr{d}_{p} \\
+    \dcovectr{d}_{\covectr{q}} & \dcovectr{0}
+  \end{bmatrix} \begin{bmatrix}
+    \dcovectr{e}^{p} \\
+    \dcovectr{e}^{\covectr{q}}
+  \end{bmatrix}
+\end{equation}
+where $\dcovectr{d}_{p}\in\rntopology{N_{p}\times M_{q}}$ and
+$\dcovectr{d}_{\covectr{q}}\in\rntopology{N_{q}\times M_{p}}$ are the
+\emph{discrete derivative matrices} that replace the exterior derivative in
+the distributed parameter setting. The matrices $\dcovectr{d}_{p}$ and
+$\dcovectr{d}_{\covectr{q}}$ are the transposed incidence matrices.
+
+\subsection{Power-preserving mappings}
+
+In order to overcome the degeneracy in the discrete power balance
+\emph{power-preserving} mappings of the discrete flow and effort vectors are
+used. In general the bilinear form
+$\dualityform{\dcovectr{e}}{\matr{M}\dcovectr{f}}{}$ is degenerate. If
+$\dcovectr{e}\in\rntopology{n_{e}}$ and $\dcovectr{f}\in\rntopology{n_{f}}$
+where $n_{e}\neq n_{f}$ then $\matr{M}$ will be of reduced rank $r_{M}\leq
+\min \pbrac{n_{e},n_{f}}$.
+
+Now consider the vectors $\dcovectr{w}_{i}=\matr{M}\dcovectr{f}_{i}$ and
+$\dcovectr{v}_{i}=\transpose{\matr{M}}\dcovectr{e}_{i}$ which span
+$\image{\matr{M}}$ and $\image{\transpose{\matr{M}}}$ respectively where
+$i=1,\ldots,r_{M}$.
+
+Now suppose that the matrix $\matr{M}$ can be decomposed as
+\begin{equation}
+  \matr{M}=\transpose{\matr{P}_{e}}\matr{P}_{f}
+\end{equation}
+where
+\begin{equation}
+  \matr{P}_{e}=\begin{bmatrix}
+  \transpose{\dcovectr{w}_{1}} \\
+  \vdots \\
+  \transpose{\dcovectr{w}_{r_{M}}}
+  \end{bmatrix}\qquad\matr{P}_{f}\begin{bmatrix}
+    \transpose{\dcovectr{v}_{1}} \\
+    \vdots \\
+    \transpose{\dcovectr{v}_{r_{M}}}
+  \end{bmatrix}
+\end{equation}
+ 
+The degenerate duality form can now be replaced with a \emph{non-degenerate}
+duality form $\dualityform{\tilde{\dcovectr{e}}}{\tilde{\dcovectr{f}}}{}$
+where $\tilde{\dcovectr{e}}=\matr{P}_{e}\dcovectr{e}$ and
+$\tilde{\dcovectr{f}}=\matr{P}_{f}\dcovectr{f}$. $\tilde{\dcovectr{e}},\tilde{\dcovectr{f}}\in\rntopology{\tilde{N}}$
+are the \emph{minimal discrete power variables} with $\tilde{N}=r_{M}$.
+
+If we have
+\begin{equation}
+  \tilde{\dcovectr{e}}^{p}=\matr{P}_{ep}\dcovectr{e}^{p}\qquad\tilde{\dcovectr{e}}^{\covectr{q}}=\matr{P}_{eq}\dcovectr{e}^{\covectr{q}}\qquad\tilde{\dcovectr{f}}^{p}=\matr{P}_{fp}\dcovectr{f}^{p}\qquad\tilde{\dcovectr{f}}^{\covectr{q}}=\matr{P}_{fq}\dcovectr{f}^{\covectr{q}}
+\end{equation}
+such that
+\begin{equation}
+  \tilde{N}_{p}=\dimension{\tilde{\dcovectr{e}}^{p}}=\dimension{\tilde{\dcovectr{f}}^{p}}\leq\rank{\matr{M}_{p}}\qquad
+  \tilde{N}_{q}=\dimension{\tilde{\dcovectr{e}}^{\covectr{q}}}=\dimension{\tilde{\dcovectr{f}}^{\covectr{q}}}\leq\rank{\matr{M}_{\covectr{q}}}
+\end{equation}
+
+The vectors $\tilde{\dcovectr{f}}^{p},
+\tilde{\covectr{e}}^{p}\in\rntopology{\tilde{N}_{p}}$ and $\tilde{\dcovectr{f}}^{\covectr{q}},
+\tilde{\covectr{e}}^{\covectr{q}}\in\rntopology{\tilde{N}_{q}}$ are the
+\emph{minimual discrete flows and efforts}. These discrete flows and efforts
+are called \emph{power preserving} if that satisfy the discrete power balance
+\begin{equation}
+  \dualityform{\tilde{\dcovectr{e}}^{p}}{\tilde{\dcovectr{f}}^{p}}{}+\dualityform{\tilde{\dcovectr{e}}^{\covectr{q}}}{\tilde{\dcovectr{f}}^{\covectr{q}}}{}+\dualityform{\dcovectr{e}^{b}}{\dcovectr{f}^{b}}{}+\dualityform{\hat{\dcovectr{e}}^{b}}{\hat{\dcovectr{f}}^{b}}{}=0
+\end{equation}
+
+\subsection{Finite-Dimensional Port-Hamiltonian Model}
+
+The unconstrained input-output representation of the Dirac structure is
+\begin{align}
+  \begin{bmatrix}
+    -\tilde{\dcovectr{f}}^{p} \\
+    -\tilde{\dcovectr{f}}^{\covectr{q}}
+  \end{bmatrix} &= \begin{bmatrix}
+    \dcovectr{0} & \matr{J}_{p} \\
+    \matr{J}_{\covectr{q}} & \dcovectr{0}
+  \end{bmatrix}\begin{bmatrix}
+    \tilde{\dcovectr{e}}^{p} \\
+    \tilde{\dcovectr{e}}^{\covectr{q}}
+  \end{bmatrix}+\begin{bmatrix}
+  \dcovectr{0} & \matr{B}_{p} \\
+  \matr{B}_{\covectr{q}} & \dcovectr{0}
+  \end{bmatrix}\begin{bmatrix}
+    \hat{\dcovectr{e}}^{b} \\
+    \dcovectr{e}^{b}
+  \end{bmatrix} \\
+  \begin{bmatrix}
+    \hat{\dcovectr{f}}^{b} \\
+    \dcovectr{f}^{b}
+  \end{bmatrix} &= \begin{bmatrix}
+    \dcovectr{0} & \matr{C}_{\covectr{q}} \\
+    \matr{C}_{p} & \dcovectr{0}
+  \end{bmatrix}\begin{bmatrix}
+    \tilde{\dcovectr{e}}^{p} \\
+    \tilde{\dcovectr{e}}^{\covectr{q}}
+  \end{bmatrix}+\begin{bmatrix}
+  \dcovectr{0} & \matr{D}_{\covectr{q}} \\
+  \matr{D}_{p} & \dcovectr{0}
+  \end{bmatrix}\begin{bmatrix}
+    \hat{\dcovectr{e}}^{b} \\
+    \dcovectr{e}^{b}
+  \end{bmatrix}
+\end{align}
+where $\matr{J}_{p}=-\transpose{\matr{J}_{\covectr{q}}}$,
+$\matr{C}_{\covectr{q}}=\transpose{\matr{B}_{\covectr{q}}}$,
+$\matr{C}_{p}=\transpose{\matr{B}_{p}}$, and
+$\matr{D}_{\covectr{q}}=-\transpose{\matr{D}_{p}}$.
+
+MORE
+
+\subsection{Whitney Finite Elements}
+
+\subsubsection{Whitney Forms in 1D}
+
+For a one-dimensional domain $\Omega=\pbrac{0,L}\subset\rntopology{}$ which is
+divided into equidistant nodes (step size $h=\frac{L}{N}$)
+$x_{i}=\pbrac{i-1}h, i=1,\ldots,N+1$ \ie $N$ intervals
+$I_{k}=\pbrac{\pbrac{k-1}h,kh}, k=1,\ldots,N$ then the Whitney 0-forms
+(node-forms) over the intervals are
+\begin{equation}
+  \fnof{w^{n_{i}}}{x} = \begin{cases}
+    \frac{1}{h}\pbrac{x-x_{i-1}}, & x\in I_{i=1}, i>1 \\
+    1-\frac{1}{h}\pbrac{x-x_{i}}, & x\in I_{i},i<N+1 \\
+    0, & \text{otherwise}
+  \end{cases}
+\end{equation}
+
+The Whitney 1-forms (edge forms) are
+\begin{equation}
+  \fnof{w^{e_{k}}}{x} = \begin{cases}
+    \frac{1}{h}\oneform{x}, & x\in I_{k} \\
+    0, & \text{otherwise}
+  \end{cases}
+\end{equation}
+
+\subsubsection{Whitney Forms in 2D}
+
+For a triangle $f_{1}=\bbrac{\pbrac{x,y}\vert x,y\ge 0, 0\leq x+y \leq h}$
+with vertices $n_{1}=\pbrac{0,0}$, $n_{2}=\pbrac{h,0}$, and
+$n_{3}=\pbrac{0,h}$ and orientated edges $e_{1}$, $e_{2}$, and $e_{3}$. The
+Whitney 0-forms (node-forms) are
+\begin{align}
+  \fnof{w^{n_{1}}}{x,y} &= 1-\frac{x}{h}-\frac{y}{h} \\
+  \fnof{w^{n_{2}}}{x,y} &= \frac{x}{h} \\
+  \fnof{w^{n_{3}}}{x,y} &= \frac{y}{h}  
+\end{align}
+and the 1-forms (edge-forms) are
+\begin{align}
+  \fnof{w^{e_{1}}}{x,y}&=\oneform{\frac{h-y}{h^{2}}}{x}+\oneform{\frac{x}{h^{2}}}{y}\\
+  \fnof{w^{e_{2}}}{x,y}&=\oneform{\frac{-y}{h^{2}}}{x}+\oneform{\frac{x}{h^{2}}}{y}\\
+  \fnof{w^{e_{3}}}{x,y}&=\oneform{\frac{-y}{h^{2}}}{x}+\oneform{\frac{x-h}{h^{2}}}{y}
+\end{align}
+and the 2-form (face-forms) are
+\begin{equation}
+  \fnof{w^{f_{1}}}{x,y}=\twoform{\frac{2}{h^{2}}}{x}{y}
+\end{equation}
+
+\epstexfigure{PortHamiltonian/svgs/fourelemsimplex.eps_tex}{Four element
+  simplex mesh.}{$2\times 1$ mesh to solve the 2D wave equation
+  on.}{fig:FourElementSimplex}{0.75}
+ 

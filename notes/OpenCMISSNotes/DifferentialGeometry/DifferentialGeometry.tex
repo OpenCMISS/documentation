@@ -196,6 +196,25 @@ coordinate indices in the larger manifold, $g_{\mu\nu}$ are the components of
 the metric tensor in the larger manifold and $g_{ab}$ are the components of
 the induced metric in the submanifold.
 
+\subsubsection{Arc length}
+
+\subsubsection{Angle between vectors}
+
+The angle between two vectors $\vectr{u}$ and $\vectr{v}$ is given by
+\begin{equation}
+  \cos\theta=\dfrac{\dotprod{\vectr{u}}{\vectr{v}}}{\norm{\vectr{u}}\norm{\vectr{v}}}=
+  \dfrac{g_{ij}u^{i}v^{j}}{\sqrt{g_{pq}u^{p}v^{q}}\sqrt{g_{rs}u^{r}v^{s}}}
+  \label{eqn:AngleBetweenVectors}
+\end{equation}
+
+\subsubsection{Properties of the metric tensor}
+
+A metric tensor $\tensor{g}$ has the following properties
+\begin{align}
+  \divergence{}{\sharptensor{\tensor{g}}}=0
+  \label{eqn:DivergenceSharpMetricTensor}
+\end{align}
+
 \subsection{Transformations}
 
 The transformation rules for tensors in going from a $\vectr{\nu}$ coordinate
@@ -424,9 +443,1281 @@ and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
   \laplacian{}{\vectr{\phi}}=\pbrac{\laplacian{}{\phi_{k}}-2g^{ij}\christoffel{h}{j}{k}\delby{\phi_{h}}{x^{i}}+\phi_{h}g^{ij}\delby{\christoffel{h}{i}{j}}{x^{i}}}\vectr{e}_{k}
 \end{equation}
 
+\section{Lie Derivatives}
+
+\epstexfigure{DifferentialGeometry/svgs/lie_derivative.eps_tex}{Lie
+  Derivative.}{Lie derivative.}{fig:LieDerivative}{0.5}
+
 \section{Curves}
 
-\epstexfigure{svgs/DifferentialGeometry/curve.eps_tex}{A curve in space.}{A
+\epstexfigure{DifferentialGeometry/svgs/curve.eps_tex}{A curve in space.}{A
   parametised curve in space. The position, $\fnof{\vectr{r}}{\xi}$ is given in
   terms of the curve parameter $\xi$. $\vectr{t}$ is the tangent vector to the
   curve and $\vectr{n}$ is the normal vector to the curve.}{fig:curve}{1.0}
+
+\section{Tensor Algebra}
+\label{sec:TensorAlgebra}
+
+\subsection{First Order Tensors}
+\label{subsec:TensorAlgebraFirstOrder}
+
+\subsubsection{Identity Vector}
+\label{subsubsec:IdentityTensorFirstOrder}
+
+The first order \emph{identity vector}, $\identitytensorone$, is defined by
+\begin{equation}
+  \dotprod{\identitytensorone}{\vectr{a}}=\vectr{a}
+  \label{eqn:DefinitionIdentityFirstOrder}
+\end{equation}
+for all vectors $\vectr{a}$.
+
+\subsubsection{Null Vector}
+\label{subsubsec:NullTensorFirstOrder}
+
+The first order \emph{null vector}, $\nulltensorone$, is defined by
+\begin{equation}
+  \dotprod{\nulltensorone}{\vectr{a}}=\nulltensorone
+  \label{eqn:DefinitionNullFirstOrder}
+\end{equation}
+for all vectors $\vectr{a}$.
+
+\subsubsection{Norm of a Vector}
+\label{subsubsec:NormTensorFirstOrder}
+
+The \emph{norm} of a first order tensor, or vectror, $\vectr{a}$, is denoted as
+$\norm{\vectr{a}}$ defined as
+\begin{equation}
+  \norm{\vectr{a}}=\sqrt{\dotprod{\vectr{a}}{\vectr{a}}}
+\end{equation}
+
+\subsection{Second Order Tensors}
+\label{sec:TensorAlgebraSecondOrder}
+
+\subsubsection{Tensor or Outer Product}
+\label{subsubsec:TensorProductSecondOrder}
+
+Given two vectors, $\vectr{a}$ and $\vectr{b}$ we can form the \emph{tensor or outer
+product} as
+\begin{equation}
+  \tensortwo{A}=\tensorprod{\vectr{a}}{\vectr{b}}=\vectr{a}\transpose{\vectr{b}}
+\end{equation}
+where $\tensortwo{A}$ is a second order tensor.
+
+In component form we have
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{A}&=\tensorprod{a^{i}\vectr{g}_{i}}{b^{j}\vectr{g}_{j}}\\
+    &=a^{i}b^{j}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}\\
+    &=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+  \end{aligned}
+\end{equation}
+
+\subsubsection{Identity Tensor}
+\label{subsubsec:IdentityTensorSecondOrder}
+
+The second order \emph{identity tensor}, $\identitytensortwo$, is defined by
+\begin{equation}
+  \dotprod{\identitytensortwo}{\vectr{a}}=\vectr{a}
+  \label{eqn:DefinitionIdentitySecondOrder}
+\end{equation}
+for all vectors $\vectr{a}$. Now if a general second order tensor is defined
+as
+\begin{equation}
+  \tensortwo{A}=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=A_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=A^{i}_{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=A^{.i}_{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}
+\end{equation}
+then the components of this tensor are given by
+\begin{equation}
+  \begin{aligned}
+    A^{ij}&=\vectr{g}^{i}\tensortwo{A}\vectr{g}^{j} \\
+    A_{ij}&=\vectr{g}_{i}\tensortwo{A}\vectr{g}_{j} \\
+    A^{i}_{.j}&=\vectr{g}^{i}\tensortwo{A}\vectr{g}_{j} \\
+    A^{.i}_{j}&=\vectr{g}_{j}\tensortwo{A}\vectr{g}^{i}    
+  \end{aligned}
+\end{equation}
+
+From \eqnref{eqn:DefinitionIdentitySecondOrder}, the definition of the components of the identity tensor are thus given by
+\begin{equation}
+  \begin{aligned}
+    I^{ij}&=\vectr{g}^{i}\tensortwo{I}\vectr{g}^{j}=\dotprod{\vectr{g}^{i}}{\vectr{g}^{j}}=g^{ij} \\
+    I_{ij}&=\vectr{g}_{i}\tensortwo{I}\vectr{g}_{j}=\dotprod{\vectr{g}_{i}}{\vectr{g}_{j}}=g_{ij}  \\
+    I^{i}_{.j}&=\vectr{g}^{i}\tensortwo{I}\vectr{g}_{j}=\dotprod{\vectr{g}^{i}}{\vectr{g}_{j}}=\mixedkronecker{i}{.j} \\
+    I^{.i}_{j}&=\vectr{g}_{j}\tensortwo{I}\vectr{g}^{i}=\dotprod{\vectr{g}_{j}}{\vectr{g}^{i}}=\mixedkronecker{.i}{j}    
+  \end{aligned}
+\end{equation}
+
+The second order \emph{identity tensor} is thus given by
+\begin{equation}
+  \begin{aligned}
+    \identitytensortwo&=\tensorprod{\vectr{g}_{i}}{\vectr{g}^{i}}=\tensorprod{\vectr{g}^{i}}{\vectr{g}_{i}}\\
+    &=\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}\\
+    &=I^{i}_{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=I^{.i}_{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}
+  \end{aligned}
+\end{equation}
+
+We also have
+\begin{equation}
+  \begin{aligned}
+    \flattensor{\identitytensortwo}&=g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}} \\
+    &=I_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}} \\
+    &=\flattensor{\tensortwo{g}}
+  \end{aligned}
+\end{equation}
+and
+\begin{equation}
+  \begin{aligned}
+    \sharptensor{\identitytensortwo}&=g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}  \\
+    &=I^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
+    &=\sharptensor{\tensortwo{g}}
+  \end{aligned}
+\end{equation}
+
+\subsubsection{Null Tensor}
+\label{subsubsec:NullTensorSecondOrder}
+
+The second order \emph{null tensor}, $\nulltensortwo$, is defined by
+\begin{equation}
+  \dotprod{\nulltensortwo}{\vectr{a}}=\nulltensorone
+  \label{eqn:DefinitionNullSecondOrder}
+\end{equation}
+for all vectors $\vectr{a}$.
+
+\subsubsection{Inverse Tensor}
+\label{subsubsec:InverseTensorSecondOrder}
+
+The second order \emph{inverse tensor} for a second order tensor
+$\tensortwo{A}$ is defined such that
+\begin{equation}
+  \dotprod{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\dotprod{\tensortwo{A}}{\inverse{\tensortwo{A}}}=\identitytensortwo
+\end{equation}
+
+The inverse of a tensor on exists if the tensor is not \emph{singular} that is
+$\determinant{\tensortwo{A}}\neq 0$.
+
+If $\phi$ is a scalar and $\tensortwo{A}$ and $\tensortwo{B}$ are second order tensors then some
+properties of the inverse operator include
+\begin{align}
+  \inverse{\pbrac{\phi\tensortwo{A}}}&=\dfrac{\inverse{\tensortwo{A}}}{\phi}
+  label{eqn:ScaleInverseTensorTwo} \\
+  \inverse{\pbrac{\inverse{\tensortwo{A}}}}&=\tensortwo{A}
+  \label{eqn:InverseInverseTensorTwo} \\
+  \inverse{\pbrac{\tensortwo{A}\tensortwo{B}}}&=\inverse{\tensortwo{B}}\inverse{\tensortwo{A}}
+  \label{eqn:ProductInverseTensorTwo} \\
+  \invtranspose{\tensortwo{A}}&=\transpose{\pbrac{\inverse{\tensortwo{A}}}}=
+  \inverse{\pbrac{\transpose{\tensortwo{A}}}}
+  \label{eqn:InverseTransposeInverseTensorTwo}
+\end{align}
+
+\subsubsection{Tensor Transpose}
+\label{subsubsec:TensorTransposeSecondOrder}
+
+A coordinate free definition of a tensor tranpose can be given as
+\begin{equation}
+  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
+\end{equation}
+
+For the second order tensor
+$\tensortwo{A}=A^{ij}\tensorprodtwo{\vectr{g}_{i}}{\vectr{g}_{j}}$ then we
+have
+\begin{equation}
+  \transpose{\tensortwo{A}}=A^{ji}\tensorprodtwo{\vectr{g}_{i}}{\vectr{g}_{j}}
+\end{equation}
+
+In component form the defintion of the transpose is
+\begin{equation}
+  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a^{i}\vectr{g}_{i}}{A_{ij}\tensorprod{\vectr{g^{i}}}{\vectr{g^{j}}}}b^{j}\vectr{g}_{j}=a^{i}A_{ij}b^{j}=b^{j}\pbrac{\transpose{A}}_{ji}a^{i}=\dotprod{b^{j}\vectr{g}_{j}}{\pbrac{\transpose{A}}_{ji}\tensorprod{\vectr{g^{j}}}{\vectr{g^{i}}}}a^{i}\vectr{g}_{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
+\end{equation}
+for $\sharptensor{\tensortwo{A}}$ and
+\begin{equation}
+  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a_{i}\vectr{g}^{i}}{A^{ij}\tensorprod{\vectr{g_{i}}}{\vectr{g_{j}}}}b_{j}\vectr{g}^{j}=a_{i}A^{ij}b_{j}=b_{j}\pbrac{\transpose{A}}^{ji}a_{i}=\dotprod{b_{j}\vectr{g}^{j}}{\pbrac{\transpose{A}}^{ji}\tensorprod{\vectr{g_{j}}}{\vectr{g_{i}}}}a_{i}\vectr{g}^{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
+\end{equation}
+for $\flattensor{\tensortwo{A}}$.
+
+If $\tensortwo{A}=\transpose{\tensortwo{A}}$ then the tensor is said to be
+symmetric. 
+
+\subsubsection{Tensor contraction}
+\label{subsubsec:TensorContractionSecondOrder}
+
+\subsubsection{Trace of a Tensor}
+\label{subsubsec:TraceTensorSecondOrder}
+
+A scalar called the trace of a second order tensor, $\tensortwo{A}$, denoted as
+$\trace{}{\tensor{A}}$, is given by 
+\begin{equation}
+  \trace{}{\tensortwo{A}}=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}
+\end{equation}
+
+Or, in component form
+\begin{equation}
+  \begin{aligned}
+    \trace{}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{I}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}}{A^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}}=g_{ij}A^{ij}\\
+    &=\doubledotprod{\sharptensor{\tensortwo{I}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}{A_{kl}\tensorprod{\vectr{g}^{k}}{\vectr{g}^{l}}}=g^{ij}A_{ij}\\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}{A^{k}_{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}}{A^{.k}_{l}\tensorprod{\vectr{g}^{l}}{\vectr{g}_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
+  \end{aligned}
+\end{equation}
+
+To indicate what metric tensor the trace is repsect to the following notation
+is used
+\begin{equation}
+  \begin{aligned}
+    \trace{\tensortwo{g}}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}}{A^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}}=g_{ij}A^{ij}\\
+    &=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}{A_{kl}\tensorprod{\vectr{g}^{k}}{\vectr{g}^{l}}}=g^{ij}A_{ij}\\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}{A^{k}_{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}}{A^{.k}_{l}\tensorprod{\vectr{g}^{l}}{\vectr{g}_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
+  \end{aligned}
+\end{equation}
+
+For tensors $\tensor{A}$ and $\tensor{B}$ and a scalar $\phi$, some properties of the trace operator include:
+\begin{align}
+  \trace{}{\pbrac{\tensor{A}+\tensor{B}}}&=\trace{}{\tensor{A}}+\trace{}{\tensor{B}}\\
+  \trace{}{\pbrac{\phi\tensor{A}}}&=\phi\trace{}{\tensor{A}} \\
+  \trace{}{\tensor{A}}&=\trace{}{\transpose{\tensor{A}}} \\
+  \trace{}{\pbrac{\tensor{A}\tensor{B}}}&=\trace{}{\pbrac{\tensor{B}\tensor{A}}}\\
+  \trace{}{\pbrac{\tensorprod{\tensor{A}}{\tensor{B}}}}&=\trace{}{\tensor{A}}\trace{}{\tensor{B}}\\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\trace{}{\pbrac{\transpose{\tensor{A}}\tensor{B}}}=\trace{}{\pbrac{\tensor{A}\transpose{\tensor{B}}}}=\trace{}{\pbrac{\transpose{\tensor{B}}\tensor{A}}}=\trace{}{\pbrac{\tensor{B}\transpose{\tensor{A}}}}
+\end{align}
+
+
+\subsubsection{Norm of a Tensor}
+\label{subsubsec:NormTensorSecondOrder}
+
+The \emph{norm} of a second order tensor, $\tensortwo{A}$, is denoted as
+$\norm{\tensortwo{A}}$ defined as
+\begin{equation}
+  \norm{\tensortwo{A}}=\sqrt{\doubledotprod{\tensortwo{A}}{\tensortwo{A}}}
+\label{eqn:DefinitionNormTensorSecondOrder}
+\end{equation}
+
+\subsubsection{Determinant of a Tensor}
+\label{subsubsec:DeterminantTensorSecondOrder}
+
+A scalar called the determinant of a second order tensor, $\tensortwo{A}$, denoted as
+$\determinant{\tensor{A}}$, is defined as the determinant of the matrix of
+tensor components \ie
+\begin{equation}
+  \begin{aligned}
+    \determinant{\tensortwo{A}}&=\determinant{\begin{bmatrix}
+        A_{11} & A_{12} & A_{13} \\
+        A_{21} & A_{22} & A_{23} \\
+        A_{31} & A_{32} & A_{33}
+    \end{bmatrix}}\\
+    &=A_{11}A_{22}A_{33}+A_{12}A_{23}A_{31}+A_{13}A_{21}A_{32}-A_{31}A_{22}A_{13}-A_{32}A_{23}A_{11}-A_{33}A_{21}A_{12}\\
+    &=\sharplevicita{i}{j}{k}A_{i1}A_{j2}A_{k3}\\
+    &=\sharplevicita{i}{j}{k}A_{1i}A_{2j}A_{3k}
+  \end{aligned}
+  \label{eqn:DefinitionDeterminantTensorSecondOrder}
+\end{equation}
+
+For a scalar $\phi$, vectors $\vectr{a}$ and $\vect{b}$ and second order
+tensors $\tensortwo{A}$ and $\tensortwo{B}$, some properties of the determinant operator include:
+\begin{align}
+  \determinant{\tensorprod{\vectr{a}}{\vectr{b}}}&=0 \\
+  \determinant{\phi\tensortwo{A}}&=\phi^{3}\determinant{\tensortwo{A}} \\
+  \determinant{\tensortwo{A}\tensortwo{B}}&=\determinant{\tensortwo{A}}\determinant{\tensortwo{B}}\\
+  \determinant{\transpose{\tensortwo{A}}}&=\determinant{\tensortwo{A}} \\
+  \flatlevicita{l}{m}{n}\determinant{\tensortwo{A}}&=\sharplevicita{i}{j}{k}A_{il}A_{jm}A_{kn}
+\end{align}
+
+\subsubsection{Symmetric and Skew-symmetric}
+\label{subsubsec:SymmetricSkew}
+
+Consider a second order tensor, $\tensor{A}$. Any second order tensor can be
+split into two parts \ie
+\begin{align}
+  \tensor{A}&=\frac{1}{2}\pbrac{\tensor{A}+\transpose{\tensor{A}}}+\frac{1}{2}\pbrac{\tensor{A}-\transpose{\tensor{A}}}
+  \notag \\
+  &=\symmetric{\tensor{A}}+\skewsym{\tensor{A}}
+\end{align}
+as first part of $\dfrac{1}{2}\pbrac{\tensor{A}+\transpose{\tensor{A}}}$ is a
+strictly symmetric tensor and the second part of
+$\dfrac{1}{2}\pbrac{\tensor{A}-\transpose{\tensor{A}}}$ is a strictly
+skew-symmetric tensor. Here $\symmetric{}$ is the symmetric operation and $\skewsym{}$ the
+skew-symmetric operator.
+
+For second order tensors $\tensor{A}$ and $\tensor{B}$, some properties of a symmetric and skew-symmetric decomposition include:
+\begin{align}
+  \transpose{\pbrac{\symmetric{\tensor{A}}}}&=\symmetric{\tensor{A}} \\
+  \transpose{\pbrac{\skewsym{\tensor{A}}}}&=-\skewsym{\tensor{A}} \\
+  \determinant{\pbrac{\skewsym{\tensor{A}}}}&=0 \\
+  \trace{}{\pbrac{\symmetric{\tensor{A}}\skewsym{\tensor{A}}}}&=0\\
+  \doubledotprod{\symmetric{\tensor{A}}}{\skewsym{\tensor{A}}}&=0\\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\symmetric{\tensor{A}}+\skewsym{\tensor{A}}}}{\pbrac{\symmetric{\tensor{B}}+\skewsym{\tensor{B}}}} \\
+  &=\doubledotprod{\symmetric{\tensor{A}}}{\symmetric{\tensor{B}}}+\doubledotprod{\skewsym{\tensor{A}}}{\skewsym{\tensor{B}}}
+\end{align}
+as the double contraction of a symmetric and skew-symmetric tensor is zero.
+
+\subsubsection{Deviatoric and Spherical}
+\label{subsubsec:DeviatoricSpherical}
+
+Consider a second order tensor, $\tensor{A}$, on a manifold with a metric,
+$\tensor{g}$. Any second order tensor can be split into two parts \ie
+\begin{align}
+  \tensor{A}&=\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}+\pbrac{\tensor{A}-\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}}
+  \notag \\
+  &=\spherical{\tensor{g}}{\tensor{A}}+\deviatoric{\tensor{g}}{\tensor{A}}
+\end{align}
+
+The spherical and deviatoric operators may also be written without the
+optional metric \ie $\spherical{}{\tensor{A}}$ and $\deviatoric{}{\tensor{A}}$.
+
+For tensors $\tensor{A}$ and $\tensor{B}$ and a scalar $c$, some properties of
+the spherical and deviatoric operators include:
+\begin{align}
+  \determinant{\pbrac{\deviatoric{}{\tensor{A}}}}&=1\\
+  \trace{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
+  \spherical{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
+  \doubledotprod{\deviatoric{}{\tensor{A}}}{\spherical{}{\tensor{B}}}&=0 \\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\spherical{}{\tensor{A}}+\deviatoric{}{\tensor{A}}}}{\pbrac{\spherical{}{\tensor{B}}+\deviatoric{}{\tensor{B}}}}
+  \notag \\
+  &=\doubledotprod{\spherical{}{\tensor{A}}}{\spherical{}{\tensor{B}}}+\doubledotprod{\deviatoric{}{\tensor{A}}}{\deviatoric{}{\tensor{B}}}
+\end{align}
+as the double contraction of a spherical and deviatoric tensor is zero.
+
+\subsubsection{Special Orthogonal Tensors}
+\label{subsubsec:SpecialOrthogonalTensorTwo}
+
+A second order tensor, $\tensortwo{A}$ is a special orthogonal tensor if
+\begin{equation}
+  \transpose{\tensortwo{A}}\tensortwo{A}=\identitytensorfour
+\end{equation}
+or
+\begin{equation}
+  \inverse{\tensortwo{A}}=\transpose{\tensortwo{A}}
+\end{equation}
+which implies that $\determinant{\tensortwo{A}}=\pm 1$.
+
+\subsubsection{Cayley-Hamilton Theorem}
+\label{subsubsec:CayleyHamiltonTheorem}
+
+Any second order tensor, $\tensor{A}$ will satisfy its own characteristic equation \ie
+\begin{equation}
+  \tensor{A}^{3}-\fnof{I_{1}}{\tensor{A}}\tensor{A}^{2}+\fnof{I_{2}}{\tensor{A}}-\fnof{I_{3}}{\tensor{A}}=0
+  \label{eqn:CharacteristicEquationSecondOrder}
+\end{equation}
+
+\subsubsection{Invariants}
+\label{subsubsec:InvariantsSecondOrder}
+
+The relationships between invariants of a second order tensor, $\tensortwo{A}$,
+and its inverse, $\inverse{\tensortwo{A}}$, are given by
+\begin{equation}
+  \fnof{I_1}{\inverse{\tensortwo{A}}}=\dfrac{\fnof{I_{2}}{\tensortwo{A}}}{\fnof{I_{3}}{\tensortwo{A}}}\quad\quad
+  \fnof{I_2}{\inverse{\tensortwo{A}}}=\dfrac{\fnof{I_{1}}{\tensortwo{A}}}{\fnof{I_{3}}{\tensortwo{A}}}\quad\quad
+  \fnof{I_3}{\inverse{\tensortwo{A}}}=\dfrac{1}{\fnof{I_{3}}{\tensortwo{A}}}
+\end{equation}
+
+\subsection{Fourth Order Tensors}
+\label{subsec:TensorAlgebraFourthOrder}
+
+
+\subsubsection{Tensor Product}
+\label{subsubsec:TensorProductFourthOrder}
+
+The tensor product of two second order tensors, $\tensortwo{A}=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}$, and,
+$\tensortwo{B}=B^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}$, will result in
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}&=\tensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    &=C^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+  \end{aligned}
+\end{equation}
+where $\tensorfour{C}$ is a fourth order tensor.
+
+Other tensor products can be defined
+\cite{del_piero_properties_1979,curnier_conewise_1994,itskov_theory_2000,kintzel_fourth-order_2006}
+such as the \emph{upper tensor product} \ie
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}&=\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}_{l}}{\vectr{g}_{j}}\\
+    &=C^{iklj}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+  \end{aligned}
+\end{equation}
+and the \emph{lower tensor product} \ie
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}&=\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}_{j}}{\vectr{g}_{l}}\\
+    &=C^{ikjl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+  \end{aligned}
+\end{equation}
+
+A \emph{symmetric tensor product} can also be defined by combining the upper
+and lower tensor products \ie
+\begin{equation}
+   \tensorfour{C}=\symtensorprod{\tensortwo{A}}{\tensortwo{B}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}
+      +\uppertensorprod{\tensortwo{B}}{\tensortwo{A}}}
+\end{equation}
+
+Similarily, an \emph{anti-symmetric tensor product} can also be defined by combining the upper
+and lower tensor products \ie
+\begin{equation}
+   \tensorfour{C}=\antisymtensorprod{\tensortwo{A}}{\tensortwo{B}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}
+      -\uppertensorprod{\tensortwo{B}}{\tensortwo{A}}}
+\end{equation}
+
+Tensor products (where here $\circ = \tensorprodop,
+\uppertensorprodop, \lowertensorprodop$) obey the \emph{associative law}
+\begin{equation}
+  \alpha\pbrac{\tensortwo{A}\circ\tensortwo{B}}=\pbrac{\alpha\tensortwo{A}}\circ\pbrac{\alpha\tensortwo{B}}
+\end{equation}
+and obey the \emph{distributive law}
+\begin{equation}
+  \tensortwo{A}\circ\pbrac{\tensortwo{B}+\tensortwo{C}}=\tensortwo{A}\circ\tensortwo{B}+\tensortwo{A}\circ\tensortwo{C}
+\end{equation}
+but, in general, they do not obey the \emph{commutative rule}
+\begin{equation}
+  \tensortwo{A}\circ\tensortwo{B}\neq\tensortwo{B}\circ\tensortwo{A}
+\end{equation}
+
+The lower tensor product $\lowertensorprodop$ is sometimes written $\boxtimes$
+\cite{del_piero_properties_1979,kintzel_fourth-order_2006,kintzel_fourth-order2_2006,steinmann:2015}
+or $\times$ \cite{itskov_theory_2000}, the upper tensor produce
+$\uppertensorprodop$ is sometimes written $\times$
+\cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006} or $\boxdot$
+\cite{steinmann:2015}, and the symmetric tensor product $\symtensorprodop$ is
+sometimes written $\, \overline{\underline{\otimes}} \,$ \cite{federico:2012}.
+
+\subsubsection{Tensor Contraction}
+\label{subsubsec:TensorContractionFourthOrder}
+
+A number of additional double contractions can be defined. For example if
+$\tensorfour{A}$ and $\tensorfour{B}$ are fourth order tensors then we can
+define the standard \emph{double contraction} \ie
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}
+    &=\doubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
+    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
+    &=A^{ijkl}B_{klrs}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{r}}{\vectr{g}^{s}}\\
+    &=C^{ij}_{rs}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{r}}{\vectr{g}^{s}}
+  \end{aligned}
+\end{equation}
+  
+We can also define an \emph{over double contraction} \ie
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}
+    &=\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
+    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
+    &=A^{ijkl}B_{mils}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}\\
+    &=C^{jk}_{ms}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}
+  \end{aligned}
+\end{equation}
+and an \emph{under double contraction} \ie
+\begin{equation}
+  \begin{aligned}
+    \tensorfour{C}
+    &=\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
+    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
+    &=A^{ijkl}B_{jnrk}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}\\
+    &=C^{il}_{nr}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}_{k}}
+  \end{aligned}
+\end{equation}
+
+The double contractions of a fourth order tensor $\tensorfour{A}$ and a second
+order tensor $\tensortwo{B}$ results in a second order tensor
+$\tensortwo{C}$. The different double contractions are given by
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\doubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
+    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
+    &=A^{ijkl}B_{kl}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}\\
+    &=C^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}              
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\upperdoubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
+    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
+    &=A^{ijkl}B_{il}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}\\
+    &=C^{jk}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}              
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\lowerdoubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
+    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
+    &=A^{ijkl}B_{jk}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
+    &=C^{il}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}              
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\doubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
+    &=\doubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{g^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
+    &=B_{ij}A^{ijkl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    &=C^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}              
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\upperdoubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
+    &=\upperdoubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
+    &=B_{jk}A^{ijkl}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
+    &=C^{il}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
+    &=\lowerdoubledotprod{\tensorfour{A}}{\tensortwo{B}}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \tensortwo{C}&=\lowerdoubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
+    &=\lowerdoubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
+    &=B_{il}A^{ijkl}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}\\
+    &=C^{jk}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}} \\        
+    &=\upperdoubledotprod{\tensorfour{A}}{\tensortwo{B}}
+  \end{aligned}
+\end{equation}
+
+The double contraction of two second order tensors produce the same result \ie
+\begin{equation}
+  \doubledotprod{\tensortwo{A}}{\tensortwo{B}}=\upperdoubledotprod{\tensortwo{A}}{\tensortwo{B}}=\lowerdoubledotprod{\tensortwo{A}}{\tensortwo{B}}
+\end{equation}
+
+Tensor double contractions (where here $\circ = \doubledotprodop,
+\upperdoubledotprodop, \lowerdoubledotprodop$) obey the \emph{associative law}
+\begin{equation}
+  \pbrac{\tensorfour{A}\circ\tensorfour{B}}\circ\tensorfour{C}=\tensorfour{A}\circ\pbrac{\tensorfour{B}\circ\tensorfour{C}}
+\end{equation}
+and obey the \emph{distributive law}
+\begin{equation}
+  \pbrac{\tensorfour{A}+\tensorfour{B}}\circ\tensorfour{C}=\tensorfour{A}\circ\tensorfour{C}+\tensorfour{B}\circ\tensorfour{C}
+\end{equation}
+
+For two fourth order tensors a double double or \emph{quadruple dot product}
+contraction can be defined i.e., 
+\begin{equation}
+  \begin{aligned}
+    c&=\quaddotprod{\tensorfour{A}}{\tensorfour{B}}\\
+    &=\quaddotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
+    &=A^{ijkl}B_{ijkl}
+  \end{aligned}
+\end{equation}
+
+Note that the \emph{trace} of a fourth order tensor can be defined as
+\begin{equation}
+  \trace{}{\tensorfour{A}}=\quaddotprod{\identitytensorfour}{\tensorfour{A}}=\quaddotprod{\tensorfour{A}}{\identitytensorfour}
+\end{equation}
+where $\identitytensorfour$ is the fourth order identity tensor defined below.
+
+In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+$\upperdoubledotprodop$ is denoted $\circ\bullet$ and $\lowerdoubledotprodop$ is denoted $\bullet\circ$.
+
+\subsubsection{Identity Tensor}
+\label{subsubsec:IdentityTensorFourthOrder}
+
+A number of fourth order identity tensors can be defined using a tensor
+product of two second order identity tensors. We have
+\begin{equation}
+  \begin{aligned}
+    \identitytensorfour&=\tensorprod{\identitytensortwo}{\identitytensortwo}\\
+    &=\tensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \upperidentitytensorfour&=\uppertensorprod{\identitytensortwo}{\identitytensortwo}\\
+    &=\uppertensorprod{\pbrac{\mixedkronecker{i}{j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}^{l}}{\vectr{g}^{j}}\\
+    &=\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \loweridentitytensorfour&=\lowertensorprod{\identitytensortwo}{\identitytensortwo}\\
+    &=\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}^{j}}{\vectr{g}^{l}}\\
+    &=\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+[FOR $\loweridentitytensorfour$ WHY IS THE MIXED KRONECKER SHARP (FLAT) WHEN WE HAVE
+  NOT USED THE METRIC TO RAISE (LOWER) THE INDICES?]
+
+We can also form the fully \emph{symmetric identity tensor},
+$\symidentitytensorfour$, and the fully \emph{anti-symmetric identity tensor},
+$\antisymidentitytensorfour$, can be found from the symmetric and
+anti-symmetric tensor products \ie
+\begin{equation}
+  \begin{aligned}
+    \symidentitytensorfour&=\symtensorprod{\tensortwo{I}}{\tensortwo{I}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{I}}{\tensortwo{I}}+\uppertensorprod{\tensortwo{I}}{\tensortwo{I}}}=\dfrac{1}{2}\pbrac{\loweridentitytensorfour+\upperidentitytensorfour}\\
+    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}+\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{j}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \antisymidentitytensorfour&=\antisymtensorprod{\tensortwo{I}}{\tensortwo{I}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{I}}{\tensortwo{I}}-\uppertensorprod{\tensortwo{I}}{\tensortwo{I}}}=\dfrac{1}{2}\pbrac{\loweridentitytensorfour-\upperidentitytensorfour}\\
+    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}-\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{i}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+
+We also the sharp fourth order identity tensors
+\begin{equation}
+  \begin{aligned}
+    \sharptensor{\identitytensorfour}&=g^{ij}g^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    \sharptensor{\upperidentitytensorfour}&=g^{il}g^{jk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    \sharptensor{\loweridentitytensorfour}&=g^{ik}g^{jl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    \sharptensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}+g^{il}g^{jk}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+    \sharptensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}-g^{il}g^{jk}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+  \end{aligned}
+\end{equation}
+and the flat fourth order identity tensors
+\begin{equation}
+  \begin{aligned}
+    \flattensor{\identitytensorfour}&=g_{ij}g_{kl}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
+    \flattensor{\upperidentitytensorfour}&=g_{il}g_{jk}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
+    \flattensor{\upperidentitytensorfour}&=g_{ik}g_{jl}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
+    \flattensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}+g_{il}g_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
+    \flattensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}-g_{il}g_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+  \end{aligned}
+\end{equation}
+
+The differences between the identity tensors can
+be observed when they are contracted with a second order tensor,
+$\tensortwo{A}$, \ie
+\begin{align}
+  \doubledotprod{\identitytensorfour}{\tensortwo{A}}&=\doubledotprod{\tensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\pbrac{\trace{}{\tensortwo{A}}}\identitytensortwo \\
+  \doubledotprod{\upperidentitytensorfour}{\tensortwo{A}}&=\doubledotprod{\uppertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\transpose{\tensortwo{A}} \\
+  \doubledotprod{\loweridentitytensorfour}{\tensortwo{A}}&=\doubledotprod{\lowertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\tensortwo{A}\\
+  \doubledotprod{\symidentitytensorfour}{\tensortwo{A}}&=\doubledotprod{\symtensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\symmetric{\tensortwo{A}}\\
+  \doubledotprod{\antisymidentitytensorfour}{\tensortwo{A}}&=\doubledotprod{\antisymtensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\skewsym{\tensortwo{A}}
+\end{align}
+and
+\begin{align}
+  \upperdoubledotprod{\identitytensorfour}{\tensortwo{A}}&=\upperdoubledotprod{\tensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\tensortwo{A} \\
+  \upperdoubledotprod{\upperidentitytensorfour}{\tensortwo{A}}&=\upperdoubledotprod{\uppertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\pbrac{\trace{}{\tensortwo{A}}}\identitytensortwo \\
+  \upperdoubledotprod{\loweridentitytensorfour}{\tensortwo{A}}&=\upperdoubledotprod{\lowertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\transpose{\tensortwo{A}}\\
+  \lowerdoubledotprod{\identitytensorfour}{\tensortwo{A}}&=\lowerdoubledotprod{\tensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\tensortwo{A} \\
+  \lowerdoubledotprod{\upperidentitytensorfour}{\tensortwo{A}}&=\lowerdoubledotprod{\uppertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\pbrac{\trace{}{\tensortwo{A}}}\identitytensortwo \\
+  \lowerdoubledotprod{\loweridentitytensorfour}{\tensortwo{A}}&=\lowerdoubledotprod{\lowertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\transpose{\tensortwo{A}}\\
+\end{align}
+
+In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+$\identitytensorfour$ is denoted $\tensorfour{I}$, $\upperidentitytensorfour$
+is denoted $\tensorfour{I}^{L}$, and $\loweridentitytensorfour$ is denoted
+$\tensorfour{I}^{R}$.
+
+\subsubsection{Tensor Inverse}
+\label{subsubsec:TensorInverseFourthOrder}
+
+The inverse, $\inverse{\tensorfour{A}}$ of a fourth order tensor
+$\tensorfour{A}$ is defined with respect to the double dot product such that
+\begin{equation}
+  \doubledotprod{\inverse{\tensorfour{A}}}{\tensorfour{A}}=\doubledotprod{\tensorfour{A}}{\inverse{\tensorfour{A}}}=\loweridentitytensorfour
+\end{equation}
+
+Note that for the upper and lower double dot products we have
+\begin{equation}
+  \upperdoubledotprod{\inverse{\tensorfour{A}}}{\tensorfour{A}}=\upperdoubledotprod{\tensorfour{A}}{\inverse{\tensorfour{A}}}=\lowerdoubledotprod{\inverse{\tensorfour{A}}}{\tensorfour{A}}=\lowerdoubledotprod{\tensorfour{A}}{\inverse{\tensorfour{A}}}=\identitytensorfour
+\end{equation}
+
+\subsubsection{Tensor Transpose}
+\label{subsubsec:TensorTransposeFourthOrder}
+
+The definition of a tensor tranpose for a fourth order tensor, $\tensorfour{C}$ is
+\begin{equation}
+  \doubledotprodthree{\tensortwo{A}}{\tensorfour{C}}{\tensortwo{B}}=\doubledotprodthree{\tensortwo{B}}{\transpose{\tensorfour{C}}}{\tensortwo{A}}
+\end{equation}
+where $\tensortwo{A}$ and $\tensortwo{B}$ are two second order tensors.
+
+Depending on what indicies are transposed/swapped a number of different
+transpose operations can occur with fourth order tensors \ie consider a fourth
+order tensor
+$\tensorfour{A}=A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}$
+then we have
+\begin{align}
+  \fulltranspose{\tensorfour{A}}&=A^{lkji}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \leftrighttranspose{\tensorfour{A}}&=A^{jilk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \swaptranspose{\tensorfour{A}}&=A^{klij}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \lefttranspose{\tensorfour{A}}&=A^{jikl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \righttranspose{\tensorfour{A}}&=A^{ijlk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \innertranspose{\tensorfour{A}}&=A^{ikjl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \outertranspose{\tensorfour{A}}&=A^{ljki}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
+  \xtranspose{\tensorfour{A}}&=A^{iljk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+\end{align}
+
+Note that if $\tensorfour{A}=\swaptranspose{\tensorfour{A}}$ then
+$\tensorfour{A}$ is said to have \emph{diagonal symmetry} or \emph{major
+  symmetry}. If
+$\tensorfour{A}=\lefttranspose{\tensorfour{A}}=\righttranspose{\tensorfour{A}}$
+then $\tensorfour{A}$ is said to have \emph{pair symmetry} or \emph{minor
+  symmetry}. If a tensor has both major and minor symmetry then the tensor is
+said to have \emph{full symmetry} \ie
+$\tensorfour{A}=\fulltranspose{\tensorfour{A}}$.
+
+In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+$\fulltranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{t}$,
+$\leftrighttranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{T}=\tensorfour{A}^{d}$, $\swaptranspose{\tensorfour{A}}$ is
+denoted $\tensorfour{A}^{D}$, $\lefttranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{dl}$, $\righttranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{dr}$, $\xtranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{L}$, $\innertranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{ti}$, and $\outertranspose{\tensorfour{A}}$ is denoted
+$\tensorfour{A}^{to}$. In \cite{itskov_theory_2000}
+$\leftrighttranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{T}$,
+$\innertranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{t}$, and
+$\xtranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{R}$.
+
+\subsubsection{Tensor Properties}
+\label{subsubsec:TensorPropertiesFourthOrder}
+
+From \cite{kintzel_fourth-order_2006} we can obtain a number of tensor
+property relationships.
+
+Single contraction of a fourth order tensor with a second order tensor
+\begin{align}
+  \dotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensorprod{\tensortwo{A}}{\pbrac{\dotprod{\tensortwo{B}}{\tensortwo{C}}}}\\
+  \dotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\uppertensorprod{\pbrac{\dotprod{\tensortwo{A}}{\tensortwo{C}}}}{\tensortwo{B}}\\
+  \dotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\lowertensorprod{\tensortwo{A}}{\pbrac{\dotprod{\tensortwo{B}}{\tensortwo{C}}}}\\
+  \dotprod{\tensortwo{C}}{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\pbrac{\dotprod{\tensortwo{C}}{\tensortwo{A}}}}{\tensortwo{B}}\\
+  \dotprod{\tensortwo{C}}{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\pbrac{\dotprod{\tensortwo{C}}{\tensortwo{A}}}}{\tensortwo{B}}\\
+  \dotprod{\tensortwo{C}}{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\pbrac{\dotprod{\tensortwo{C}}{\tensortwo{A}}}}{\tensortwo{B}}
+\end{align}
+
+Double contraction of a fourth order tensor with a second order tensor for a
+double dot product
+\begin{align}
+  \doubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{A}\pbrac{\doubledotprod{\tensortwo{B}}{\tensortwo{C}}}\\
+  \doubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{A}\transpose{\tensortwo{C}}\transpose{\tensortwo{B}}\\
+  \doubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{A}\tensortwo{C}\transpose{\tensortwo{B}}\\
+  \doubledotprod{\tensortwo{C}}{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\pbrac{\doubledotprod{\tensortwo{C}}{\tensortwo{A}}}\tensortwo{B}\\
+  \doubledotprod{\tensortwo{C}}{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\transpose{\tensortwo{B}}\transpose{\tensortwo{C}}\tensortwo{A}\\
+  \doubledotprod{\tensortwo{C}}{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\transpose{\tensortwo{A}}\tensortwo{C}\tensortwo{B}
+\end{align}
+and for an upper double dot product
+\begin{align}
+  \upperdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\transpose{\tensortwo{A}}\tensortwo{C}\transpose{\tensortwo{B}}\\
+  \upperdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\pbrac{\doubledotprod{\tensortwo{A}}{\tensortwo{C}}}\tensortwo{B}\\
+  \upperdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{B}\transpose{\tensortwo{C}}\tensortwo{A}\\
+  \upperdoubledotprod{\tensortwo{C}}{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensortwo{A}\tensortwo{C}\tensortwo{B}\\
+  \upperdoubledotprod{\tensortwo{C}}{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\pbrac{\doubledotprod{\tensortwo{C}}{\tensortwo{B}}}\tensortwo{A}\\
+  \upperdoubledotprod{\tensortwo{C}}{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensortwo{A}\transpose{\tensortwo{C}}\tensortwo{B}
+\end{align}
+and for an lower double dot product
+\begin{align}
+  \lowerdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{A}\tensortwo{C}\tensortwo{B}\\
+  \lowerdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\pbrac{\doubledotprod{\tensortwo{B}}{\tensortwo{C}}}\tensortwo{A}\\
+  \lowerdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\tensortwo{C}}&=\tensortwo{A}\transpose{\tensortwo{C}}\tensortwo{B}\\
+  \lowerdoubledotprod{\tensortwo{C}}{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\transpose{\tensortwo{A}}\tensortwo{C}\transpose{\tensortwo{B}}\\
+  \lowerdoubledotprod{\tensortwo{C}}{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\pbrac{\doubledotprod{\tensortwo{A}}{\tensortwo{C}}}\tensortwo{B}\\
+  \lowerdoubledotprod{\tensortwo{C}}{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensortwo{B}\transpose{\tensortwo{C}}\tensortwo{A}
+\end{align}
+
+Double contraction of two fourth order tensors for a double dot product
+\begin{align}
+  \doubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\doubledotprod{\tensortwo{B}}{\tensortwo{C}}}\tensortwo{A}}{\tensortwo{D}}\\
+  \doubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\tensortwo{A}}{\pbrac{\transpose{\tensortwo{D}}\transpose{\tensortwo{B}}\tensortwo{C}}}\\
+  \doubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{A}\transpose{\tensortwo{C}}\transpose{\tensortwo{B}}}}{\tensortwo{D}}\\
+  \doubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\tensortwo{A}}{\pbrac{\transpose{\tensortwo{C}}\tensortwo{B}\tensortwo{D}}}\\
+  \doubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{A}\tensortwo{C}\transpose{\tensortwo{B}}}}{\tensortwo{D}}\\
+  \doubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{A}\tensortwo{D}}}{\pbrac{\tensortwo{B}\tensortwo{C}}}\\
+  \doubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{A}\tensortwo{D}}}{\pbrac{\tensortwo{B}\tensortwo{C}}}\\
+  \doubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{A}\tensortwo{C}}}{\pbrac{\tensortwo{B}\tensortwo{D}}}\\
+  \doubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{A}\tensortwo{C}}}{\pbrac{\tensortwo{B}\tensortwo{D}}}
+\end{align}
+and for an upper double dot product
+\begin{align}
+  \upperdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{C}{\tensortwo{A}}}}{\pbrac{\tensortwo{B}{\tensortwo{D}}}}\\
+  \upperdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\tensortwo{C}}{\pbrac{\transpose{\tensortwo{A}}\tensortwo{D}\transpose{\tensortwo{B}}}}\\
+  \upperdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{C}\tensortwo{A}\tensortwo{D}}}{\tensortwo{B}}\\
+  \upperdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{C}\transpose{\tensortwo{B}}}}{\pbrac{\transpose{\tensortwo{A}}\tensortwo{D}}}\\
+  \upperdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{C}\tensortwo{A}}}{\pbrac{\tensortwo{B}\tensortwo{D}}}\\
+  \upperdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\doubledotprod{\tensortwo{A}}{\tensortwo{D}}}\tensortwo{C}}{\tensortwo{B}}\\
+  \upperdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{C}\transpose{\tensortwo{A}}\tensortwo{D}}}{\tensortwo{B}}\\
+  \upperdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\tensortwo{C}}{\pbrac{\tensortwo{B}\transpose{\tensortwo{D}}\tensortwo{A}}}\\
+  \upperdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{C}\transpose{\tensortwo{B}}}}{\pbrac{\transpose{\tensortwo{A}}\tensortwo{D}}}
+\end{align}
+and for an lower double dot product
+\begin{align}
+  \lowerdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{A}{\tensortwo{C}}}}{\pbrac{\tensortwo{D}{\tensortwo{B}}}}\\
+  \lowerdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{A}\tensortwo{C}\tensortwo{B}}}{\tensortwo{D}}\\
+  \lowerdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\tensortwo{A}}{\pbrac{\transpose{\tensortwo{C}}\tensortwo{B}\transpose{\tensortwo{D}}}}\\
+  \lowerdoubledotprod{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{A}\tensortwo{C}}}{\pbrac{\tensortwo{D}\tensortwo{B}}}\\
+  \lowerdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\tensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\lowertensorprod{\pbrac{\tensortwo{A}\transpose{\tensortwo{D}}}}{\pbrac{\transpose{\tensortwo{C}}\tensortwo{B}}}\\
+  \lowerdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\doubledotprod{\tensortwo{B}}{\tensortwo{C}}}\tensortwo{A}}{\tensortwo{D}}\\
+  \lowerdoubledotprod{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\tensortwo{A}}{\pbrac{\tensortwo{D}\transpose{\tensortwo{B}}\tensortwo{C}}}\\
+  \lowerdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\uppertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\uppertensorprod{\pbrac{\tensortwo{A}\transpose{\tensortwo{C}}\tensortwo{B}}}{\tensortwo{D}}\\
+  \lowerdoubledotprod{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}{\pbrac{\lowertensorprod{\tensortwo{C}}{\tensortwo{D}}}}&=\tensorprod{\pbrac{\tensortwo{A}\transpose{\tensortwo{D}}}}{\pbrac{\transpose{\tensortwo{C}}\tensortwo{B}}}
+\end{align}
+
+Transposition of a fourth order tensor obtained from the standard tensor
+product of two second order tensors gives
+\begin{align}
+  \fulltranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\transpose{\tensortwo{B}}}{\transpose{\tensortwo{A}}}\\
+  \leftrighttranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\transpose{\tensortwo{A}}}{\transpose{\tensortwo{B}}}\\
+  \swaptranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\tensortwo{B}}{\tensortwo{A}}\\
+  \innertranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}\\
+  \outertranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\transpose{\tensortwo{B}}}{\transpose{\tensortwo{A}}}\\
+  \lefttranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\transpose{\tensortwo{A}}}{\tensortwo{B}}\\
+  \righttranspose{\pbrac{\tensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\tensortwo{A}}{\transpose{\tensortwo{B}}}
+\end{align}
+and for an upper tensor product
+\begin{align}
+  \fulltranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\transpose{\tensortwo{A}}}{\transpose{\tensortwo{B}}}\\
+  \leftrighttranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\tensortwo{B}}{\tensortwo{A}}\\
+  \swaptranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\transpose{\tensortwo{B}}}{\transpose{\tensortwo{A}}}\\
+  \innertranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\tensortwo{A}}{\transpose{\tensortwo{B}}}\\
+  \outertranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\transpose{\tensortwo{A}}}{\tensortwo{B}}\\
+  \lefttranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\tensortwo{B}}{\tensortwo{A}}\\
+  \righttranspose{\pbrac{\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}
+\end{align}
+and for an lower tensor product
+\begin{align}
+  \fulltranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\transpose{\tensortwo{B}}}{\transpose{\tensortwo{A}}}\\
+  \leftrighttranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\tensortwo{B}}{\tensortwo{A}}\\
+  \swaptranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\lowertensorprod{\transpose{\tensortwo{A}}}{\transpose{\tensortwo{B}}}\\
+  \innertranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\tensortwo{A}}{\tensortwo{B}}\\
+  \outertranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\tensorprod{\transpose{\tensortwo{B}}}{\transpose{\tensortwo{A}}}\\
+  \lefttranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\tensortwo{B}}{\tensortwo{A}}\\
+  \righttranspose{\pbrac{\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}}}&=\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}
+\end{align}
+
+Transposition of the contraction of two fourth order tensors for the double
+dot product gives
+\begin{align}
+  \fulltranspose{\pbrac{\doubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\doubledotprod{\leftrighttranspose{\swaptranspose{\tensorfour{B}}}}{\leftrighttranspose{\swaptranspose{\tensorfour{A}}}}\\
+  \leftrighttranspose{\pbrac{\doubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\doubledotprod{\leftrighttranspose{\tensorfour{A}}}{\leftrighttranspose{\tensorfour{B}}}\\
+  \swaptranspose{\pbrac{\doubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\doubledotprod{\swaptranspose{\tensorfour{B}}}{\swaptranspose{\tensorfour{A}}}\\
+  \lefttranspose{\pbrac{\doubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\doubledotprod{\lefttranspose{\tensorfour{A}}}{\tensorfour{B}}\\
+  \righttranspose{\pbrac{\doubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\doubledotprod{\tensorfour{A}}{\righttranspose{\tensorfour{B}}}
+\end{align}
+and for an upper double dot product
+\begin{align}
+  \fulltranspose{\pbrac{\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\upperdoubledotprod{\fulltranspose{\tensorfour{A}}}{\fulltranspose{\tensorfour{B}}}\\
+  \leftrighttranspose{\pbrac{\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\upperdoubledotprod{\leftrighttranspose{\tensorfour{B}}}{\leftrighttranspose{\tensorfour{A}}}\\
+  \swaptranspose{\pbrac{\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\upperdoubledotprod{\leftrighttranspose{\outertranspose{\tensorfour{B}}}}{\leftrighttranspose{\innertranspose{\tensorfour{A}}}}\\
+  \innertranspose{\pbrac{\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\upperdoubledotprod{\innertranspose{\tensorfour{A}}}{\tensorfour{B}}\\
+  \outertranspose{\pbrac{\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\upperdoubledotprod{\tensorfour{A}}{\outertranspose{\tensorfour{B}}}
+\end{align}
+and for an lower double dot product
+\begin{align}
+  \fulltranspose{\pbrac{\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\lowerdoubledotprod{\fulltranspose{\tensorfour{A}}}{\fulltranspose{\tensorfour{B}}}\\
+  \leftrighttranspose{\pbrac{\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\lowerdoubledotprod{\leftrighttranspose{\tensorfour{B}}}{\leftrighttranspose{\tensorfour{A}}}\\
+  \swaptranspose{\pbrac{\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\lowerdoubledotprod{\leftrighttranspose{\innertranspose{\tensorfour{B}}}}{\leftrighttranspose{\outertranspose{\tensorfour{A}}}}\\
+  \innertranspose{\pbrac{\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\lowerdoubledotprod{\tensorfour{A}}{\innertranspose{\tensorfour{B}}}\\
+  \outertranspose{\pbrac{\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}}}&=\lowerdoubledotprod{\outertranspose{\tensorfour{A}}}{\tensorfour{B}}
+\end{align}
+
+
+\section{Tensor Calculus}
+\label{sec:TensorCalculus}
+
+\subsection{Directional derivative}
+\label{subsec:DirectionalDerivativeTensorCalculus}
+
+The directional derivative of a scalar function of a vector,
+$\fnof{f}{\vectr{x}}$, with respect to $\vectr{x}$ along the vector direction
+$\vectr{u}$ is defined by the limit
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\vectr{u}}
+    &=\genlimit{\epsilon}{0}\dfrac{\fnof{f}{\vectr{x}+\epsilon\vectr{u}}-\fnof{f}{\vectr{x}}}{\epsilon}\\
+    &=\evalat{\dfrac{d}{d\epsilon}\fnof{f}{\vectr{x}+\epsilon\vectr{u}}}{\epsilon=0}\\
+    &=\dotprod{\gradient{\vectr{x}}{\fnof{f}{\vectr{x}}}}{\vectr{u}} \\
+    &=\dotprod{\delby{\fnof{f}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}
+  \end{split} 
+\end{equation} 
+ 
+Some properties of directional derivatives of a scalar function of a vector include
+\begin{align}
+  \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}+\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}
+  &=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}
+  +\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}
+  \nonumber \\
+  &=\dotprod{\pbrac{\delby{\fnof{f_{1}}{\vectr{x}}}{\vectr{x}}
+      +\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}}{\vectr{u}}
+  \label{eqn:AdditionRuleDirectDerivScalarValueVectorFunction} \\
+  \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}
+  &=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}\fnof{f_{2}}{\vectr{x}}
+  +\fnof{f_{1}}{\vectr{x}}\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}
+  \nonumber \\
+  &=\pbrac{\dotprod{\delby{\fnof{f_{1}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}\fnof{f_{2}}{\vectr{x}}
+  +\fnof{f_{1}}{\vectr{x}}\pbrac{\dotprod{\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}
+  \label{eqn:ProductRuleDirectDerivScalarValueVectorFunction}\\
+  \directionalderiv{\vectr{x}}{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\vectr{u}}
+  &=\directionalderiv{f_{2}}{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}}
+  \nonumber \\
+  &=\delby{\fnof{f_{1}}{\fnof{f_{2}}{\vectr{x}}}}{\fnof{f_{2}}{\vectr{x}}}\pbrac{\dotprod{\delby{\fnof{f_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}
+  \label{eqn:ChainRuleDirectDerivScalarValueVectorFunction}
+\end{align}
+
+Note that the normal derivative of a function is just the directional
+derivative in the normal direction \ie
+\begin{equation}
+  \delby{\fnof{f}{\vectr{x}}}{\vectr{n}}=\dotprod{\gradient{}{\fnof{f}{\vectr{x}}}}{\vectr{n}}=\directionalderiv{\vectr{x}}{\fnof{f}{\vectr{x}}}{\vectr{n}}
+\end{equation}
+
+For a vector valued function of a vector, $\fnof{\vectr{f}}{\vectr{x}}$, the
+directional derivative in the direction of a vector $\vectr{u}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\vectr{x}}{\fnof{\vectr{f}}{\vectr{x}}}{\vectr{u}}
+    &=\evalat{\dfrac{d}{d\epsilon}\fnof{\vectr{f}}{\vectr{x}+\epsilon\vectr{u}}}{\epsilon=0}\\
+    &=\dotprod{\gradient{\vectr{x}}{\fnof{\vectr{f}}{\vectr{x}}}}{\vectr{u}}\\
+    &=\dotprod{\delby{\fnof{\vectr{f}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}\\
+  \end{split}
+\end{equation}
+
+Some properties of directional derivatives of a vector function of a vector include
+\begin{align}
+  \directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}
+    +\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}
+  &=\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{u}}
+  +\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}
+  \nonumber \\
+  &=\dotprod{\pbrac{\delby{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{x}}
+      +\delby{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{x}}}}{\vectr{u}}
+  \label{eqn:AdditionRuleDirectDerivVectorValueVectorFunction} \\
+  \directionalderiv{\vectr{x}}{\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\vectr{u}}
+  &=\crossprod{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{u}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}
+  +\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}
+  \nonumber \\
+  &=\crossprod{\pbrac{\dotprod{\delby{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}
+  +\crossprod{\fnof{\vectr{f}_{1}}{\vectr{x}}}{\pbrac{\dotprod{\delby{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{x}}}{\vectr{u}}}}
+  \label{eqn:ProductRuleDirectDerivVectorValueVectorFunction} \\
+  \directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\vectr{u}}
+  &=\directionalderiv{\vectr{f}_{2}}{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\directionalderiv{\vectr{x}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}
+  \nonumber \\
+  &=\dotprod{\delby{\fnof{\vectr{f}_{1}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\fnof{\vectr{f}_{2}}{\vectr{x}}}}{\pbrac{\dotprod{\delby{\vectr{f}_{2}}{\vectr{x}}}{\vectr{u}}}}
+  \label{eqn:ChainRuleDirectDerivVectorValueVectorFunction} 
+\end{align}
+
+For a scalar valued function of a second order tensor, $\fnof{f}{\tensor{A}}$,
+the directional derivative in the the direction of a second order tensor
+$\tensor{U}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{f}{\tensor{A}}}{\vectr{U}}
+    &=\evalat{\dfrac{d}{d\epsilon}\fnof{f}{\tensor{A}+\epsilon\tensor{U}}}{\epsilon=0}\\
+    &=\doubledotprod{\gradient{\tensor{A}}{\fnof{f}{\tensor{A}}}}{\tensor{U}}\\
+    &=\doubledotprod{\delby{\fnof{f}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}\\
+  \end{split}  
+\end{equation}
+
+Some properties of directional derivatives of a scalar function of a second
+order tensor include
+\begin{align}
+  \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}+\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}
+  &=\directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}}{\tensor{U}}
+  +\directionalderiv{\tensor{A}}{\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}
+  \nonumber \\
+  &=\doubledotprod{\pbrac{\delby{\fnof{f_{1}}{\tensor{A}}}{\tensor{A}}
+      +\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}}{\tensor{U}}
+  \label{eqn:AdditionRuleDirectDerivScalarValueTensorFunction} \\
+  \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\tensor{A}}\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}
+  &=\directionalderiv{\vectr{x}}{\fnof{f_{1}}{\vectr{x}}}{\vectr{u}}\fnof{f_{2}}{\vectr{x}}
+  +\fnof{f_{1}}{\vectr{x}}\directionalderiv{\vectr{x}}{\fnof{f_{2}}{\vectr{x}}}{\vectr{u}}
+  \nonumber \\
+  &=\pbrac{\doubledotprod{\delby{\fnof{f_{1}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}\fnof{f_{2}}{\tensor{A}}
+  +\fnof{f_{1}}{\tensor{A}}\pbrac{\doubledotprod{\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}
+  \label{eqn:ProductRuleDirectDerivScalarValueTensorFunction} \\
+  \directionalderiv{\tensor{A}}{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\tensor{U}}
+  &=\directionalderiv{f_{2}}{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\directionalderiv{\tensor{A}}{\fnof{f_{2}}{\tensor{A}}}{\tensor{U}}}
+  \nonumber \\
+  &=\delby{\fnof{f_{1}}{\fnof{f_{2}}{\tensor{A}}}}{\fnof{f_{2}}{\tensor{A}}}\pbrac{\doubledotprod{\delby{\fnof{f_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}
+    \label{eqn:ChainRuleDirectDerivScalarValueTensorFunction}
+\end{align}
+
+For a second order tensor valued function of a second order tensor, $\fnof{F}{\tensor{A}}$,
+the directional derivative in the the direction of a second order tensor
+$\tensor{U}$ is
+\begin{equation}
+  \begin{split}
+    \directionalderiv{\tensor{A}}{\fnof{\tensor{F}}{\tensor{A}}}{\vectr{U}}
+    &=\evalat{\dfrac{d}{d\epsilon}\fnof{\tensor{F}}{\tensor{A}+\epsilon\tensor{U}}}{\epsilon=0}\\
+    &=\doubledotprod{\gradient{\tensor{A}}{\fnof{\tensor{F}}{\tensor{A}}}}{\tensor{U}}\\
+    &=\doubledotprod{\delby{\fnof{\tensor{F}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}\\
+  \end{split}  
+\end{equation}
+
+Some properties of directional derivatives of a second order tensor function
+of a second order tensor include
+\begin{align}
+  \directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}
+    +\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}
+  &=\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{U}}
+  +\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}
+  \nonumber \\
+  &=\doubledotprod{\pbrac{\delby{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{A}}
+      +\delby{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{A}}}}{\tensor{U}}
+  \label{eqn:AdditionRuleDirectDerivTensorValueTensorFunction}\\
+  \directionalderiv{\tensor{A}}{\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\tensor{A}}
+  &=\dotprod{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{U}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}
+  +\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}
+   \nonumber \\
+  &=\dotprod{\pbrac{\doubledotprod{\delby{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}
+  +\dotprod{\fnof{\tensor{F}_{1}}{\tensor{A}}}{\pbrac{\doubledotprod{\delby{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{A}}}{\tensor{U}}}}
+  \label{eqn:ProductRuleDirectDerivTensorValueTensorFunction}\\
+  \directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\tensor{U}}
+  &=\directionalderiv{\tensor{F}_{2}}{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\directionalderiv{\tensor{A}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}
+   \nonumber \\ 
+  &=\doubledotprod{\delby{\fnof{\tensor{F}_{1}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\fnof{\tensor{F}_{2}}{\tensor{A}}}}{\pbrac{\doubledotprod{\delby{\tensor{F}_{2}}{\tensor{A}}}{\tensor{U}}}}
+  \label{eqn:ChainRuleDirectDerivTensorValueTensorFunction}
+\end{align}
+
+\subsection{Second Order Tensors}
+\label{subsec:TensorCalculusSecondOrder}
+
+\subsubsection{Derivatives of the Identity Tensor}
+\label{subsubsec:IdentityDerivativeSecondOrder}
+
+The derivative of a second order identity tensor is fourth order null tensor \ie
+\begin{equation}
+  \delby{\identitytensortwo}{\tensortwo{A}}=\nulltensorfour
+  \label{eqn:DerivIdentityTensorSecondOrder}
+\end{equation}
+where $\tensortwo{A}$ is a second order tensor.
+
+This also leads to the relationship
+\begin{equation}
+  \doubledotprod{\delby{\identitytensortwo}{\tensortwo{A}}}{\tensortwo{B}}=\doubledotprod{\nulltensorfour}{\tensortwo{B}}=0
+\end{equation}
+for a second order tensor $\tensortwo{B}$.
+
+\subsubsection{Derivatives of a Tensor with Respect to Itself}
+\label{subsubsec:SelfDerivativeSecondOrder}
+
+If $\tensortwo{A}$ and $\tensortwo{B}$ are second order tensors then
+\begin{equation}
+  \doubledotprod{\delby{\tensortwo{A}}{\tensortwo{A}}}{\tensortwo{B}}=\evalat{\dby{}{\epsilon}\pbrac{\tensortwo{A}+\epsilon\tensortwo{B}}}{\epsilon=0}=\tensortwo{B}=\doubledotprod{\loweridentitytensorfour}{\tensortwo{B}}
+\end{equation}
+and thus
+\begin{equation}
+  \delby{\tensortwo{A}}{\tensortwo{A}}=\loweridentitytensorfour
+  \label{eqn:DerivSelfTensorSecondOrder}
+\end{equation}
+
+Note that we also have
+If $\tensortwo{A}$ and $\tensortwo{B}$ are second order tensors then
+\begin{equation}
+  \doubledotprod{\delby{\transpose{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{B}}=\transpose{\tensortwo{B}}=\doubledotprod{\upperidentitytensorfour}{\tensortwo{B}}
+\end{equation}
+and thus
+\begin{equation}
+  \delby{\transpose{\tensortwo{A}}}{\tensortwo{A}}=\upperidentitytensorfour
+  \label{eqn:DerivSelfTransposeTensorSecondOrder}
+\end{equation}
+
+This implies that if $\tensortwo{A}$ is a symmetric tensor \ie
+$\tensortwo{A}=\transpose{\tensortwo{A}}$ then we have
+\begin{equation}
+  \delby{\tensortwo{A}}{\tensortwo{A}}=\dfrac{1}{2}\pbrac{\loweridentitytensorfour+\upperidentitytensorfour}=\symidentitytensorfour
+  \label{eqn:DerivSelfSymmetricTensorSecondOrder}
+\end{equation}
+
+
+\subsubsection{Derivatives of the Determinant}
+\label{subsubsec:DeterminantDerivativeSecondOrder}
+
+Consider the directional derivative of the determinant of a tensor,
+$\tensor{A}$ in the direction of another tensor, $\tensor{U}$
+\begin{equation}
+  \begin{split}
+    \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}
+    &=\evalat{\dby{}{\epsilon}\pbrac{\determinant{\tensor{A}+\epsilon\tensor{U}}}}{\epsilon=0}\\
+    &=\evalat{\dby{}{\epsilon}\pbrac{\determinant{\tensor{A}\pbrac{\tensor{I}
+          +\epsilon\inverse{\tensor{A}}\tensor{U}}}}}{\epsilon=0}\\
+    &=\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\pbrac{\determinant{\pbrac{\tensor{I}
+          +\epsilon\inverse{\tensor{A}}\tensor{U}}}}}{\epsilon=0}
+  \end{split}
+\end{equation}
+
+Now, the characteristic equation for a tensor, $\tensor{B}$ is
+\begin{equation}
+  \determinant{\pbrac{\tensor{B}-\lambda\tensor{I}}}
+  =\pbrac{\lambda_{1}-\lambda}\pbrac{\lambda_{2}-\lambda}\pbrac{\lambda_{3}-\lambda}
+\end{equation}
+where $\lambda_{i}$ is the $\nth{i}$ eigenvalue of $\tensor{B}$.
+
+We thus have
+\begin{equation}
+  \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}
+  =\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\determinant{\pbrac{\pbrac{1+\epsilon\lambda_{1}}\pbrac{1+\epsilon\lambda_{2}}\pbrac{1+\epsilon\lambda_{3}}}}}{\epsilon=0}
+\end{equation}
+where $\lambda_{i}$ is the $\nth{i}$ eigenvalue of
+$\inverse{\tensor{A}}\tensor{U}$. Now
+\begin{equation}
+  \begin{split}
+    \directionalderiv{}{\determinant{\tensor{A}}}{\tensor{U}}
+    &=\determinant{\tensor{A}}\evalat{\dby{}{\epsilon}\determinant{\pbrac{\pbrac{1+\epsilon\lambda_{1}}\pbrac{1+\epsilon\lambda_{2}}\pbrac{1+\epsilon\lambda_{3}}}}}{\epsilon=0}\\
+    &=\determinant{\tensor{A}}\pbrac{\lambda_{1}+\lambda_{2}+\lambda_{3}}\\
+    &=\determinant{\tensor{A}}\trace{}{\pbrac{\inverse{\tensor{A}}\tensor{U}}}\\
+    &=\determinant{\tensor{A}}\doubledotprod{\invtranspose{\tensor{A}}}{\tensor{U}}
+  \end{split}
+\end{equation}
+
+Now, as $\tensortwo{U}$ is arbitrary, we have
+\begin{equation}
+  \delby{\pbrac{\determinant{\tensortwo{A}}}}{\tensortwo{A}}=\determinant{\tensortwo{A}}\invtranspose{\tensortwo{A}}
+  \label{eqn:DerivDeterminantTensorSecondOrder}
+\end{equation}
+
+
+\subsubsection{Derivatives of the Trace}
+\label{subsubsec:TraceDerivativeSecondOrder}
+
+Consider the derivative of the trace of a second order tensor
+$\trace{}{\tensortwo{A}}$ with respect to the tensor $\tensortwo{A}$ \ie
+\begin{equation}
+  \begin{split}
+    \delby{\pbrac{\trace{\tensortwo{g}}{\tensortwo{A}}}}{\tensortwo{A}}
+    &=\delby{\pbrac{g_{ij}A^{ij}}}{\tensortwo{A}}\\
+    &=\delby{\pbrac{g_{11}A^{11}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{12}A^{12}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{13}A^{13}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
+    &\quad\delby{\pbrac{g_{21}A^{21}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{22}A^{22}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{23}A^{23}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
+    &\quad\delby{\pbrac{g_{31}A^{31}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{32}A^{32}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    +\delby{\pbrac{g_{33}A^{33}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
+    &=g_{11}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{1}}
+    +g_{12}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{2}}
+    +g_{13}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{3}}\\
+    &\quad g_{21}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{1}}
+    +g_{22}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{2}}
+    +g_{23}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{3}}\\
+    &\quad g_{31}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{1}}
+    +g_{32}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{2}}
+    +g_{33}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{3}}\\
+    &=\sharptensor{\tensortwo{g}}\\
+    &=\sharptensor{\identitytensortwo}
+  \end{split}
+\end{equation}
+
+[WHY DO WE HAVE FLAT g COMPONENTS BUT SHARP BASE VECTORS ABOVE???]
+    
+Thus we have
+\begin{equation}
+  \delby{\pbrac{\trace{}{\tensortwo{A}}}}{\tensortwo{A}}=\identitytensortwo
+  \label{eqn:DerivTraceTensorSecondOrder}
+\end{equation}
+
+\subsubsection{Derivatives of the Inverse}
+\label{subsubsec:InverseDerivativeSecondOrder}
+
+Consider two second order tensors, $\tensortwo{A}=A_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}$ and $\tensortwo{U}$. To
+find the derivative of $\inverse{\tensortwo{A}}$ with respect to
+$\tensortwo{A}$ in the direction of $\tensortwo{U}$ consider
+\begin{equation}
+  \doubledotprod{\delby{\identitytensortwo}{\tensortwo{A}}}{\tensortwo{U}}
+  =\doubledotprod{\delby{\pbrac{\dotprod{\inverse{\tensortwo{A}}}{\tensortwo{A}}}}{\tensortwo{A}}}{\tensortwo{U}}=0
+\end{equation}
+
+Now, by \eqnref{eqn:ProductRuleDirectDerivTensorValueTensorFunction} we have
+\begin{equation}
+  \doubledotprod{\delby{\pbrac{\dotprod{\inverse{\tensortwo{A}}}{\tensortwo{A}}}}{\tensortwo{A}}}{\tensortwo{U}}=
+  \dotprod{\doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}}{\tensortwo{A}}
+  +\dotprod{\inverse{\tensortwo{A}}}{\doubledotprod{\delby{\tensortwo{A}}{\tensortwo{A}}}{\tensortwo{U}}}=0
+\end{equation}
+or, rearranging, we have
+\begin{equation}
+  \dotprod{\doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}}{\tensortwo{A}}=-\dotprod{\inverse{\tensortwo{A}}}{\doubledotprod{\delby{\tensortwo{A}}{\tensortwo{A}}}{\tensortwo{U}}}
+\end{equation}
+or
+\begin{equation}
+  \dotprod{\doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}}{\tensortwo{A}}=-\dotprod{\inverse{\tensortwo{A}}}{\tensortwo{U}}
+\end{equation}
+
+Post multipliying by $\inverse{\tensortwo{A}}$ gives
+\begin{equation}
+  \dotprodthree{\doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}}{\tensortwo{A}}{\inverse{\tensortwo{A}}}=-\dotprodthree{\inverse{\tensortwo{A}}}{\tensortwo{U}}{\inverse{\tensortwo{A}}}
+\end{equation}
+or
+\begin{equation}
+  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=-\dotprodthree{\inverse{\tensortwo{A}}}{\tensortwo{U}}{\inverse{\tensortwo{A}}}
+\end{equation}
+
+We thus have
+\begin{equation}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\lowertensorprod{-\inverse{\tensortwo{A}}}{\inverse{\tensortwo{A}}}
+  \label{eqn:DerivInverseTensorSecondOrder}
+\end{equation}
+
+In component form we have
+\begin{equation}
+  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ij}}}{A_{kl}}U_{kl}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=-\inverse{A_{ik}}U_{kl}\inverse{A_{lj}}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+\end{equation}
+or
+\begin{equation}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=-\inverse{A_{ik}}\inverse{A_{lj}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+\end{equation}
+
+We also have
+\begin{equation}
+  \doubledotprod{\delby{\invtranspose{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=-\dotprodthree{\invtranspose{\tensortwo{A}}}{\transpose{\tensortwo{U}}}{\invtranspose{\tensortwo{A}}}
+\end{equation}
+that is
+\begin{equation}
+  \delby{\invtranspose{\tensortwo{A}}}{\tensortwo{A}}=\uppertensorprod{-\invtranspose{\tensortwo{A}}}{\invtranspose{\tensortwo{A}}}
+  \label{eqn:DerivInverseTransposeTensorSecondOrder}
+\end{equation}
+
+In component form this is
+\begin{equation}
+  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ji}}}{A_{kl}}U_{kl}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=-\inverse{A_{jk}}U_{lk}\inverse{A_{li}}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+\end{equation}
+or
+\begin{equation}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ji}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=-\inverse{A_{li}}\inverse{A_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+\end{equation}
+
+This implies that if $\tensortwo{A}$ is symmetric \ie
+$\tensortwo{A}=\transpose{\tensortwo{A}}$ then
+\begin{equation}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\symtensorprod{-\inverse{\tensortwo{A}}}{\inverse{\tensortwo{A}}}
+  \label{eqn:DerivInverseSymmetricTensorSecondOrder}
+\end{equation}
+or, in component form,
+\begin{equation}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=\dfrac{-1}{2}\pbrac{\inverse{A_{ik}}\inverse{A_{jl}}+\inverse{A_{il}}\inverse{A_{jk}}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+\end{equation}
+
+
+\section{Exterior Algebra}
+\label{sec:ExteriorAlgebra}
+
+\subsection{Wedge Product}
+\label{subsec:WedgeProduct}
+
+Consider a $n$-dimensional vector space $\vectorspace{V}$ over the real
+numbers $\rntopology{n}$. Recall that the \emph{inner-} or \emph{dot-product}
+of two vectors in this space can be used to measure the angle between these
+vectors. The \emph{exterior-} or \emph{wedge-product} will measure the area of
+the parallelogram spanned by these two vectors. 
+
+\subsection{Hodge Star}
+\label{subsec:HodgeStar}
+
+The Hodge star may be interpreted geometrically as follows. Consider a
+three-dimensional space. Imagine a bivector in this space, \ie two vectors
+$\vectr{a}$ and $\vectr{b}$ that start from the same base point. These two
+vectors will create an oriented parallelogram spanned by the vectors. This
+parallelogram may be interpreted as the two-form
+$\wedgeprod{\vectr{a}}{\vectr{b}}$. The operation of the Hodge star on a
+differential form produces a complementary differential form. For the case
+above we can think of the vector normal to the parallelogram as complementary
+to it. The direction of the normal vector will depend on the orientation of
+the two form. The normal to the bivector, however, only gives a direction. To
+complete the complementary nature we have that
+$\hodgestar{\pbrac{\wedgeprod{\vectr{a}}{\vectr{b}}}}$ will produce a vector
+normal to the paralleogram whose length is equal to the area of paralleogram
+which is given by $\crossprod{\vectr{a}}{\vectr{b}}$.
+
+The opposite of this example also holds. If we consider a vector $\vectr{a}$
+then $\hodgestar{\vectr{a}}$ will produce a bivector whose normal is in the
+direction of $\vectr{a}$ and whose spanned area is equal to the length of
+$\vectr{a}$.
+
+\section{Exterior Calculus}
+\label{sec:ExteriorCalculus}
+

@@ -5,11 +5,11 @@
 # MPN 22-feb-2006 	Removing \color for fig2dev (transfig) 3.2.4
 #
 
-## prefix filename with 'figs/' (subdirectory)
-s%file=%file=figs/CUR_DIR/%
+## prefix filename with current (subdirectory)
+s%file=%file=CUR_DIR/%
 
-## prefix includegraphics filename with 'figs/' (subdirectory)
-s%\includegraphics{%\includegraphics{figs/CUR_DIR/%
+## prefix includegraphics filename with cuurent (subdirectory)
+s%\includegraphics{%\includegraphics{CUR_DIR/%
 
 # remove group definition
 /\\begingroup/,/\\fi\\endgroup/d

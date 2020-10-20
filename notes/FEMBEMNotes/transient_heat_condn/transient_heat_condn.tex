@@ -103,7 +103,7 @@ values of $u$ at the $\nth{n}$ time step
 \end{equation}
  
 \begin{figure} \centering
- \input{figs/transient_heat_condn/findiff.pstex}
+ \input{transient_heat_condn/figs/findiff.pstex}
  \caption{A finite difference grid for the solution of the transient 1D 
    heat equation. The equation is centred at grid point $\pbrac{i,n}$ shown by the
    $\mathbf{O}$. The lightly shaded region shows where the solution is known at
@@ -223,7 +223,7 @@ equations for the new time step are now coupled in that $u_{i}^{n+1}$ depends
 on the neighbouring terms $u_{i+1}^{n+1}$ and $u_{i-1}^{n+1}$. Thus each new
 time step requires the solution of a system of coupled equations.
 \begin{figure} \centering
- \input{figs/transient_heat_condn/impfd.pstex}
+ \input{transient_heat_condn/figs/impfd.pstex}
  \caption{An implicit finite difference scheme based
    on central differences in $t$, as well as $x$, which tie together the 6
    points shown by $\mathbf{x}$. The equation is centred at the point
@@ -444,7 +444,7 @@ where the one-dimensional diffusion equation
 is solved for various time increments ($\Delta t$) and element lengths
 ($\Delta x$) for both linear and cubic Hermite elements.
 \begin{figure} \centering
- \input{figs/transient_heat_condn/annumsol.pstex}
+ \input{transient_heat_condn/figs/annumsol.pstex}
  \caption{Analytical and numerical solutions of the
    transient 1D heat equation showing the effects of element size $\Delta x$
    and time step size $\Delta t$. The top graph shows the exact and
@@ -528,7 +528,7 @@ equation \bref{eqn:lpe} with $V =$ \nunit{5}{\mps}, $D = 0.1$
 of an initial unit mass pulse at $x = 0$. The length of the solution domain is
 sufficient to avoid reflected end effects.
 \begin{figure} \centering
- \input{figs/transient_heat_condn/advection.pstex}
+ \input{transient_heat_condn/figs/advection.pstex}
  \caption{Advection-diffusion of a unit mass pulse. The finite element
    solutions (at $t$=\nunit{0.01}{\s}, \nunit{0.05}{\s}, \nunit{0.2}{\s} and
    \nunit{0.4}{\s}) and finite difference solutions (at $t$=\nunit{0.4}{\s}

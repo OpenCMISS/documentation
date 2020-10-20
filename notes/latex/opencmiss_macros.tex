@@ -33,6 +33,14 @@
 \usepackage{url}
 
 %
+% Allow superimposition of symbols
+%
+\makeatletter
+\newcommand{\superimpose}[2]{%
+  {\ooalign{$#1\@firstoftwo#2$\cr\hfil$#1\@secondoftwo#2$\hfil\cr}}}
+\makeatother
+
+%
 % URL commands
 %
 \newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
@@ -104,6 +112,21 @@
   % e.g. \epstexfigure{figure}{short caption}{long caption}{label}{scale}
   % or \epstexfigure{figure}{}{caption}{label}{}
   
+\newcommand{\epstexsubfigure}[5]{ %
+  \centering %
+  \ifthenelse{\equal{#5}{}}{ %
+    \def\svgwidth{\columnwidth}}{ %
+    \def\svgscale{#5} %
+  } %
+  \ifthenelse{\equal{#2}{}}{ %
+    \subfloat[][#3]{\input{#1}}}{ %
+    \subfloat[#2][#3]{\input{#1}} %
+  } %
+  \label{#4} %
+} % epstex sub figure i.e. inkscape svgs
+  % e.g. \epstexsubfigure{figure}{short caption}{long caption}{label}{scale}
+  % or \epstexsubfigure{figure}{}{caption}{label}{}
+  
 \newcommand{\pstexfigure}[5]{ %
   \begin{figure}[htbp] \centering %
     \ifthenelse{\equal{#5}{}}{ %
@@ -154,6 +177,7 @@
 \newcommand{\appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
 \newcommand{\Appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
 \newcommand{\bref}[1]{(\ref{#1})} % bracketed () reference
+\newcommand{\baubref}[1]{(\subref{#1})} % bracketed () subreference
 \newcommand{\chapref}[1]{Chapter~\ref{#1}} % Chapter reference
 \newcommand{\Chapref}[1]{Chapter~\ref{#1}} % Chapter reference
 \newcommand{\chaprefs}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference
@@ -184,6 +208,12 @@
 \newcommand{\Secrefs}[2]{Sections~\ref{#1} and~\ref{#2}} % Sections reference
 \newcommand{\secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
 \newcommand{\Secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
+\newcommand{\subfigref}[1]{Figure~\subref{#1}} % Subfigure reference
+\newcommand{\Subfigref}[1]{Figure~\subref{#1}} % subfigure reference
+\newcommand{\subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % Subfigures reference
+\newcommand{\Subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % subfigures reference
+\newcommand{\subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
+\newcommand{\Subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
 \newcommand{\tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\Tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\tabrefs}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference
@@ -212,7 +242,6 @@
     }} % concentration e.g. \conc{Na}{o} => [Na]_o
 \newcommand{\ion}[2]{\ensuremath{\mathrm{{#1}^{#2}}}\xspace} % ion
 \newcommand{\ionCa}{\ion{Ca}{2+}} % calcium ion
-
 \newcommand{\ionCl}{\ion{Cl}{-}} % chloride ion
 \newcommand{\ionH}{\ion{H}{+}} % hydrogen ion
 \newcommand{\ionK}{\ion{K}{+}} % potassium ion
@@ -232,6 +261,7 @@
     #1\text{--}#2~#3 %
     }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
 
+\newcommand{\ug}{\units{\mu g}} % micrograms
 \newcommand{\mg}{\units{mg}} % milligrams
 \newcommand{\g}{\units{g}} % grams
 \newcommand{\kg}{\units{kg}} % kilograms
@@ -246,7 +276,8 @@
 %\newcommand{\L}{\units{L}} % litres
 \newcommand{\Hz}{\units{Hz}} % Hertz
 \newcommand{\kHz}{\units{kHz}} % kilohertz
-\newcommand{\MHz}{\units{MHz}} % Megahertz
+\newcommand{\MHz}{\units{MHz}} % megahertz
+\newcommand{\GHz}{\units{GHz}} % gigahertz
 \newcommand{\nm}{\units{nm}} % nanometres
 \newcommand{\um}{\units{\mu m}} % micrometres
 \newcommand{\mm}{\units{mm}} % millimetres
@@ -274,6 +305,8 @@
 \newcommand{\kB}{\units{kB}} % kilobyte
 \newcommand{\MB}{\units{MB}} % megabyte
 \newcommand{\GB}{\units{GB}} % gigabyte
+\newcommand{\TB}{\units{TB}} % terabyte
+\newcommand{\PB}{\units{PB}} % petabyte
 
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
@@ -316,6 +349,50 @@
 \newcommand{\mgpkg}{\units{\mg\unitseparator\kg^{-1}}} % milligram/kilogram
 
 %
+% Numbers
+%
+\newcommand{\tento}[1]{\ensuremath{ %
+    10^{#1} %
+}} % e.g. \tento{3} ten to the power of 3
+\newcommand{\ttento}[1]{\ensuremath{ %
+    \times \tento{#1} %
+  }\xspace} % e.g. \ttento{5} => times ten the power of 5
+\newcommand{\nttento}[2]{\ensuremath{ %
+    #1\ttento{#2} %
+}} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
+% Non-dimensional numbers
+%
+\newcommand{\nondimnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % formatting for a non-dimensional number
+\newcommand{\brinkmannum}{\ensuremath{ %
+    \nondimnumber{Br} % Brinkman number
+}}
+\newcommand{\froudenum}{\ensuremath{ %
+    \nondimnumber{Fr} % Froude number
+}}
+\newcommand{\grashofnum}{\ensuremath{ %
+    \nondimnumber{Gr} % Grashof number
+}}
+\newcommand{\machnum}{\ensuremath{ %
+    \nondimnumber{Ma} % Mach number
+}}
+\newcommand{\nusseltnum}{\ensuremath{ %
+    \nodimnumber{Nu} % Nusselt number
+}}
+\newcommand{\pecletnum}{\ensuremath{ %
+    \nondimnumber{Pe} % Peclet number
+}}
+\newcommand{\prandtlnum}{\ensuremath{ %
+    \nondimnumber{Pr} % Prandtl number
+}}
+\newcommand{\reynoldsnum}{\ensuremath{ %
+    \nondimnumber{Re} % Reynolds number
+}}
+
+%
 % Base numbers
 %
 \newcommand{\naturalnums}{\ensuremath{ %
@@ -324,6 +401,9 @@
 \newcommand{\integernums}{\ensuremath{ %
     \mathbb{Z} %
   }} % Integer numbers
+\newcommand{\positiveintnums}{\ensuremath{ %
+    \mathbb{Z}^{+} %
+  }} % Positive integer numbers
 \newcommand{\realnums}{\ensuremath{ %
     \mathbb{R} %
   }} % Real numbers
@@ -340,9 +420,32 @@
     \mathbb{I} %
   }} % Irrational numbers
 
+% 
+% Brackets
+%
+\newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
+\newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
+\newcommand{\pbracl}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
+\newcommand{\pbracr}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
+\newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % braces {} bracket
+\newcommand{\bbracl}[1]{\brac{\{}{#1}{.}} % braces { bracket
+\newcommand{\bbracr}[1]{\brac{.}{#1}{\}}} % braces } bracket
+\newcommand{\sqbrac}[1]{\brac{[}{#1}{]}} % square [] bracket
+\newcommand{\sqbracl}[1]{\brac{[}{#1}{.}} % square [ bracket
+\newcommand{\sqbracr}[1]{\brac{.}{#1}{]}} % square ] bracket
+\newcommand{\abrac}[1]{\brac{<}{#1}{>}} % angle <> bracket
+\newcommand{\abracl}[1]{\brac{<}{#1}{.}} % angle < bracket
+\newcommand{\abracr}[1]{\brac{.}{#1}{>}} % angle > bracket
+\newcommand{\dabrac}[1]{\brac{\ll}{#1}{\gg}} % double angle <<>> bracket
+\newcommand{\dabracl}[1]{\brac{\ll}{#1}{.}} % double angle << bracket
+\newcommand{\dabracr}[1]{\brac{.}{#1}{\gg}} % double angle >> bracket
+
 %
 % Sets
 %
+\newcommand{\set}[1]{\ensuremath{
+    \bbrac{#1}
+}} % e.g. \set{1,2,3} => {1,2,3}
 \newcommand{\union}[2]{\ensuremath{#1\cup#2}} % Union
 \newcommand{\intersection}[2]{\ensuremath{#1\cap#2}} % Intersection
 
@@ -350,46 +453,102 @@
 % Topologies
 %
 \newcommand{\rntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \realnums}{ %
       \realnums^{#1} %
     } %
-  }} % R^n (real) topology
+}} % R^n (real) topology
+\newcommand{\cntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \complexnums}{ %
+      \complexnums^{#1} %
+    } %
+}} % C^n (complex) topology
 \newcommand{\sntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \mathbb{S}}{ %
       \mathbb{S}^{#1} %
     } %
-  }} % S^n (spherical) topology
+}} % S^n (spherical) topology
 \newcommand{\dntopology}[1]{\ensuremath{ %
-   \ifthenelse{\equal{#1}{}}{ %
+    \ifthenelse{\equal{#1}{}}{ %
       \mathbb{D}}{ %
       \mathbb{D}^{#1} %
     } %
-  }} % D^n (discrete) topology
+}} % D^n (discrete) topology
+\newcommand{\rpntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \realnums P}{ %
+      \realnums P^{#1} %
+    } %
+}} % RP^n (real projective) topology
+\newcommand{\cpntopology}[1]{\ensuremath{ %
+    \ifthenelse{\equal{#1}{}}{ %
+      \complexnums P}{ %
+      \complexnums P^{#1} %
+    } %
+}} % CP^n (complex projective) topology
+
+
+%
+% Functions
+%
+\newcommand{\fnof}[2]{\ensuremath{ %
+    #1\brac{(}{#2}{)} %
+}} % function of e.g. \fnof{x}{\xi} => x(xi)
+\newcommand{\fntof}[2]{\ensuremath{ %
+    \transpose{#1}\brac{(}{#2}{)} %
+}} % function transpose of e.g. \fntof{x}{\xi} => x^T(xi)
+\newcommand{\afnof}[2]{\ensuremath{ %
+    #1\brac{<}{#2}{>} %
+}} % angle bracket function of e.g. \afnof{x}{\xi} => x<xi>
+\newcommand{\brfnof}[2]{\ensuremath{ %
+    #1\brac{\{}{#2}{\}} %
+}} % braces function of e.g. \brfnof{x}{\xi} => x{xi}
+\newcommand{\sqfnof}[2]{\ensuremath{ %
+    #1\brac{[}{#2}{]} %
+}} % square function of e.g. \sqfnof{x}{\xi} => x[xi]
+\newcommand{\circcomposition}[2]{%
+  \circcompositiontwo{#1}{#2} %
+} % composition with circ e.g. \circcomposition{A}{B(X)} => A o B(X)
+\newcommand{\circcompositiontwo}[2]{\ensuremath{ %
+    #1 \circ #2 %
+}} % circ composition with two functions e.g. \circcompositiontwo{A}{B(X)} => A o B(X)
+\newcommand{\circcompositionthree}[3]{\ensuremath{ %
+    #1 \circ #2 \circ #3 %
+}} % circ composition with three functions e.g. \circcompositionthree{A}{B}{C(X)} => A o B o C(X)
+\newcommand{\circcompositionfour}[4]{\ensuremath{ %
+    #1 \circ #2 \circ #3 \circ #4 %
+}} % circ composition with four functions e.g. \circcompositionfour{A}{B}{C}{D(X)} => A o B o C o D(X)
+\newcommand{\funccomposition}[2]{%
+  \funccompositiontwo{#1}{#2} %
+} % function composition e.g. \funccomposition{A}{B(X)} => A(B(X))
+\newcommand{\funccompositiontwo}[2]{\ensuremath{ %
+    \fnof{#1}{#2} %
+}} % function composition with two functions e.g. \funccompositiontwo{A}{B(X)} => A(B(X))
+\newcommand{\funccompositionthree}[3]{\ensuremath{ %
+    \fnof{#1}{\fnof{#2}{#3}} %
+}} % function composition with three functions e.g. \funccompositionthree{A}{B}{C(X)} => A(B(C(X)))
+\newcommand{\funccompositionfour}[4]{\ensuremath{ %
+    \fnof{#1}{\fnof{#2}{\fnof{#3}{#4}}} %
+}} % function composition with four functions e.g. \funccompositionfour{A}{B}{C}{D(X)} => A(B(C(D(X))))
+\newcommand{\composition}[2]{%
+  \funccomposition{#1}{#2} %
+} % composition e.g. \composition{A}{B(X)} => A(B(X))
+\newcommand{\compositiontwo}[2]{%
+  \funccompositiontwo{#1}{#2} %
+} % composition with two functions e.g. \compositiontwo{A}{B(X)} => A(B(X))
+\newcommand{\compositionthree}[3]{%
+  \funccompositionthree{#1}{#2}{#3} %
+} % composition with three functions e.g. \compositionthree{A}{B}{C(X)} => A(B(C(X)))
+\newcommand{\compositionfour}[4]{%
+  \funccompositiontfour{#1}{#2}{#3}{#4} %
+} % composition with four functions e.g. \compositiontfour{A}{B}{C}{D(X)} => A(B(C(D(X))))
 
 %
 % Commonly-used Math Symbols and operations
 %
-% Products
-\newcommand{\dotprod}[2]{\dotprodtwo{#1}{#2}} % dot product
-\newcommand{\dotprodtwo}[2]{\ensuremath{#1\cdot#2}} % two times dot product
-\newcommand{\dotprodthree}[3]{\ensuremath{#1\cdot#2\cdot#3}} % three times dot product
-\newcommand{\doubledotprod}[2]{\doubledotprodtwo{#1}{#2}} % double dot product
-\newcommand{\doubledotprodtwo}[2]{\ensuremath{#1:#2}} % two times double dot product
-\newcommand{\doubledotprodthree}[3]{\ensuremath{#1:#2:#3}} % three times double double dot product
-\newcommand{\crossprod}[2]{\crossprodtwo{#1}{#2}} % cross product
-\newcommand{\crossprodtwo}[2]{\ensuremath{#1\times#2}} % two times cross product
-\newcommand{\crossprodthree}[3]{\ensuremath{#1\times#2\times#3}} % three times
-% cross product
-% Brackets
-\newcommand{\brac}[3]{\ensuremath{\left#1 #2 \right#3}} % bracket
-\newcommand{\pbrac}[1]{\brac{(}{#1}{)}} % parenthesis () bracket
-\newcommand{\pbracr}[1]{\brac{(}{#1}{.}} % parenthesis ( bracket
-\newcommand{\pbracl}[1]{\brac{.}{#1}{)}} % parenthesis ) bracket
-\newcommand{\transpose}[1]{\ensuremath{{#1}^{T}}} % transpose
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
-\newcommand{\bbrac}[1]{\brac{\{}{#1}{\}}} % Braces { bracket
 \newcommand{\conjugate}[1]{\ensuremath{ %
     \overline{#1} %                                _
     }} %% complex conjugate e.g. \conjugate{Z} => Z
@@ -400,12 +559,6 @@
 \newcommand{\cuberoot}[1]{\ensuremath{ %
     \sqrt[3]{#1} %
   }} % cube root e.g. \cuberoot{a} = 3\sqrt{a}
-\newcommand{\curl}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\crossprod{\nabla}{#2}}
-  }{
-    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
-  }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign
 \newcommand{\del}{\ensuremath{\partial}} % partial derivative sign
 \newcommand{\derivativeop}[2]{
@@ -423,89 +576,25 @@
 \newcommand{\directionalderiv}[3]{\ensuremath{
     \sqfnof{\derivativeop{#1}{#2}}{#3}
 }} % directional derivative e.g., \directionalderiv{x}{f}{u} => D_x(f)[u]
-\newcommand{\divergence}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\dotprod{\nabla}{#2}}
-  }{
-    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
-  }} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} =>
-     % nabla_{x} . a
-\newcommand{\dint}{\ensuremath{\displaystyle\int}} % display integral
-\newcommand{\dintl}[2]{\ensuremath{ %
-    \displaystyle\int\limits_{#1}^{#2} %
-    }} % display integral with limits
 \newcommand{\dotover}[1]{\ensuremath{ %
     \stackrel{\scriptscriptstyle \bullet}{#1} %
     }} % time derivative
 \newcommand{\ddotover}[1]{\ensuremath{ %
     \stackrel{\scriptscriptstyle \bullet\bullet}{#1} %
     }} % double time derivative
-\newcommand{\dprod}{\ensuremath{\displaystyle\prod}} % display product
-\newcommand{\dprodl}[2]{\ensuremath{ %
-    \displaystyle\prod_{#1}^{#2} %
-    }} % display product with limits
-\newcommand{\dsum}{\ensuremath{\displaystyle\sum}} % display summation
-\newcommand{\dsuml}[2]{\ensuremath{ %
-    \displaystyle\sum_{#1}^{#2} %
-    }} % display summation with limits
 \newcommand{\evalat}[2]{\ensuremath{ %
     \brac{.}{#1}{|}_{#2} %
     }} % Evaluation at e.g. \evalat{x}{1} => x|_1
 \newcommand{\factorial}[1]{\ensuremath{\pbrac{#1}!}} % factorial e.g. \factorial{n} => (n)!
-\newcommand{\fnof}[2]{\ensuremath{ %
-    #1\brac{(}{#2}{)} %
-    }} % function of e.g. \fnof{x}{\xi} => x(xi)
-\newcommand{\fntof}[2]{\ensuremath{ %
-    \transpose{#1}\brac{(}{#2}{)} %
-    }} % function transpose of e.g. \fntof{x}{\xi} => x^T(xi)
-\newcommand{\sqfnof}[2]{\ensuremath{ %
-    #1\brac{[}{#2}{]} %
-    }} % square function of e.g. \fnof{x}{\xi} => x[xi]
-\newcommand{\gegenbauer}[3]{\ensuremath{ %
-    \fnof{C_{#1}^{#2}}{#3} %
-    }} % gegenbauer polynomial e.g. \gengenbauer{1}{2}{x} => C_1^2(x)
 \newcommand{\genlimit}[2]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2}
     }} % general limit e.g. \genlimit{a}{b} => lim a->b
-\newcommand{\gint}[4]{\ensuremath{ %
-    \dintl{#1}{#2}\,#3\,\exteriorderivop#4 %
-    }} % general integral with two limits. e.g.  
-       % \gint{a}{b}{xxx}{c} => int_a^b xxx dc
-\newcommand{\giint}[7]{\ensuremath{ %
-    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
-    }} % general double integral with two limits. e.g.  
-       % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
-\newcommand{\gprod}[3]{\ensuremath{ %
-    \dprodl{#1}{#2}\,#3 %
-    }} % general product e.g. \gprod{a}{b}{c} => prod_a^b c
-\newcommand{\gsum}[3]{\ensuremath{ %
-    \dsuml{#1}{#2}\,#3 %
-    }} % general sum e.g. \gsum{a}{b}{c} => sum_a^b c
-\newcommand{\gssum}[5]{\ensuremath{ %
-    \dsuml{#1}{#2}\dsuml{#3}{#4}\,#5 %
-    }} % general double sum e.g. \gsum{a}{b}{c}{d}{e} => sum_a^b sum_c^d e
-\newcommand{\goneint}[2]{\ensuremath{ %
-    \gint{#2}{}{#1}{#2} %
-    }} % general integral with one limit. eg. \goneint{xxx}{a} => int_a xxx da
-\newcommand{\gonesum}[2]{\ensuremath{ %
-    \gsum{#1}{}{#2} %
-    }} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
 \newcommand{\grad}{\ensuremath{\nabla}} % gradient
 \newcommand{\gradsq}{\ensuremath{\nabla^{2}}} % gradient squared 
-\newcommand{\gradient}[2]{ %
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\grad #2}
-  }{
-    \ensuremath{\grad_{#1} #2} % 
-  }} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x}
-     % u
 \newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
                                 % \functional{f}{a} => f[a]
 \newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
                                 % \functionalderiv{f} => \delta f
-\newcommand{\innerprod}[2]{\ensuremath{ %
-    \left<#1,#2\right> %
-    }} % inner product e.g. \innerprod{a,b} => <a,b>
 \newcommand{\inteval}[3]{\ensuremath{ %
     \displaystyle\sqbrac{#1}_{#2}^{#3} %
     }} % display evaluated integral with limits e.g. 
@@ -514,15 +603,6 @@
 \newcommand{\invsquared}[1]{\ensuremath{ %
     {#1}^{-2}
 }} % inverse squared e.g. \invsquared{A} => A^-2
-\newcommand{\invtranspose}[1]{\ensuremath{ %
-    {#1}^{-T}
-}} % inverse transpose e.g. \invtranspose{A} => A^-T
-\newcommand{\circcomposition}[2]{\ensuremath{ %
-    #1\circ#2
-}} % composition with circ e.g. \circcomposition{A}{B} => A o 
-\newcommand{\funccomposition}[2]{\ensuremath{ %
-    \fnof{#1}{#2}
-}} % composition with function e.g. \funccomposition{A}{B} => A(B)
 \newcommand{\sharpkronecker}[2]{\ensuremath{ %
     \delta^{{#1}{#2}}
 }} % sharp kronecker delta tensor e.g., \sharpkronecker{i}{j} => delta^{ij}
@@ -536,11 +616,26 @@
     \flatkronecker{#1}{#2} %
 }} % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
 \newcommand{\mixedkronecker}[2]{\ensuremath{
-    \delta_{#1}^{#2}
+    \delta^{#1}_{#2}
 }} % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
 \newcommand{\kronecker}[2]{ %
   \covarkronecker{#1}{#2} %
-} % kronecker delta tensor. Default to covariant.
+} % Kronecker delta tensor. Default to covariant.
+\newcommand{\levicitasymbol}{\ensuremath{ %
+    \epsilon %
+}} % Levi-Cita symbol e.g., \levicitasymbol => epsilon
+\newcommand{\sharplevicita}[3]{\ensuremath{ %
+    \levicitasymbol^{{#1}{#2}{#3}}
+}} % sharp Levi-Cita symbol e.g., \sharplevicita{i}{j}{k} => epsilon^{ijk}
+\newcommand{\flatlevicita}[3]{\ensuremath{
+    \levicitasymbol_{{#1}{#2}{#3}}
+}} % flat Levi-Cita symbol e.g., \flatlevicita{i}{j}{k} => epsilon_{ijk}
+\newcommand{\mixedlevicita}[2]{\ensuremath{
+    \levicitasymbol^{#1}_{#2}
+}} % mixed Levi-Cita e.g., \mixedlevicita{i}{j} => epsilon_{i}^{j}
+\newcommand{\levicita}[3]{ %
+  \flatlevicita{#1}{#2}{#3} %
+} % Levi-Cita permutation symbol. Default to covariant.
 \newcommand{\linearisationdirsymbol}{\ensuremath{ %
     \Delta%
     }} % linearisation direction symbol => \Delta
@@ -554,15 +649,12 @@
     \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{\linearisationdir{#3}}} % 
   }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[\Delta u] &
      % \linearisation{f}{x}{u} => L_x(f)[\Delta u]
-\newcommand{\laplacian}[2]{
-  \ifthenelse{\equal{#1}{}}{ %
-    \ensuremath{\gradsq #2}
-  }{
-    \ensuremath{\gradsq_{#1} #2} % 
-  }} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} =>
-     % \nabla^2_x u
-\newcommand{\legendre}[3]{\ensuremath{\fnof{P_{#1}^{#2}}{#3}}} % Legendre polynomial
-\newcommand{\liederiv}[2]{\ensuremath{\mathcal{L}_{#1} #2}} % Lie derivative
+\newcommand{\liebracket}[2]{\ensuremath{ %
+    \sqbrac{#1,#2} %
+}} % Lie bracket e.g.,\liebracket{X}{Y} => [X,Y]
+\newcommand{\liederiv}[2]{\ensuremath{ %
+    \mathcal{L}_{#1} #2
+}} % Lie derivative e.g., \liederiv{X}{Y} => L_{X} Y
 \newcommand{\limit}[3]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2} #3 %
     }} % limit e.g. \limit{a}{b}{c} => lim a->b c
@@ -583,28 +675,12 @@
     \pbrac{#1}_{#2} %
 }} % Pochhammer polynomial e.g. \pochhammer{a}{n} => (a)_n n.b. (a)_n =
 % (a,n) where (a,n) is Appell's symbol.
-\newcommand{\sphericalharmonic}[4]{\ensuremath{%
-    \fnof{Y_{{#1}{#2}}^{#3}}{#4} %
-}} % Spherical harmonic e.g. \sphericalharmonic{a}{b}{c}{d} => Y_ab^c(d)
-\newcommand{\set}[1]{\ensuremath{
-    \bbrac{#1}
-}} % e.g. \set{1,2,3} => {1,2,3}
-\newcommand{\spaceprod}[2]{\ensuremath{
-    #1\times#2 %
-}} % space product e.g., \spaceprod{A}{B} => A X B
-\newcommand{\sqbrac}[1]{\brac{[}{#1}{]}} % square [ bracket
+\newcommand{\poissonbracket}[2]{\ensuremath{ %
+    \bbrac{#1,#2} %
+}} % Poisson bracket e.g.,\poissonbracket{X}{Y} => {X,Y}
 \newcommand{\symover}[2]{\ensuremath{
     \stackrel{\scriptscriptstyle #1}{#2} %
 }} % over
-\newcommand{\tento}[1]{\ensuremath{ %
-    10^{#1} %
-}} % e.g. \tento{3} ten to the power of 3
-\newcommand{\ttento}[1]{\ensuremath{ %
-    \times \tento{#1} %
-    }\xspace} % e.g. \ttento{5} => times ten the power of 5
-\newcommand{\nttento}[2]{\ensuremath{ %
-    #1\ttento{#2} %
-    }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
 \newcommand{\variationsymbol}{\ensuremath{ %
     \delta%
     }} % variation symbol => \delta
@@ -616,18 +692,122 @@
     }} % variation e.g. \variation{f}{u} => \delta f[\delta u]
 
 %
+% Sums, unions, intersections
+%
+
+\newcommand{\dsum}{\ensuremath{ %
+    \displaystyle\sum %
+}} % display summation
+\newcommand{\dsuml}[2]{\ensuremath{ %
+    \displaystyle\sum_{#1}^{#2} %
+}} % display summation with limits
+\newcommand{\gsum}[3]{\ensuremath{ %
+    \dsuml{#1}{#2}\,#3 %
+}} % general sum e.g. \gsum{a}{b}{c} => sum_a^b c
+\newcommand{\gssum}[5]{\ensuremath{ %
+    \dsuml{#1}{#2}\dsuml{#3}{#4}\,#5 %
+}} % general double sum e.g. \gsum{a}{b}{c}{d}{e} => sum_a^b sum_c^d e
+\newcommand{\gonesum}[2]{\ensuremath{ %
+    \gsum{#1}{}{#2} %
+}} % general sum with one limit e.g. \gonesum{a}{b} => sum_a b
+\newcommand{\dunion}{\ensuremath{ %
+    \displaystyle\bigcup %
+}} % display union
+\newcommand{\gunion}[3]{\ensuremath{ %
+    \dunion_{#1}^{#2}\,#3 %
+}} % general union e.g. \gunion{a}{b}{c} => union_a^b c
+\newcommand{\dintersection}{\ensuremath{ %
+    \displaystyle\bigcap %
+}} % display intersection
+\newcommand{\gintersection}[3]{\ensuremath{ %
+    \dintersection_{#1}^{#2}\,#3 %
+}} % general intersection e.g. \gintersection{a}{b}{c} => intersection_a^b c
+
+%
+% Products
+%
+\newcommand{\dprod}{\ensuremath{ %
+    \displaystyle\prod %
+}} % display product
+\newcommand{\dprodl}[2]{\ensuremath{ %
+    \displaystyle\prod_{#1}^{#2} %
+}} % display product with limits
+\newcommand{\gprod}[3]{\ensuremath{ %
+    \dprodl{#1}{#2}\,#3 %
+}} % general product e.g. \gprod{a}{b}{c} => prod_a^b c
+
+%
+% Integrals
+%
+\newcommand{\dint}{\ensuremath{ %
+    \displaystyle\int %
+}} % display integral
+\newcommand{\dintl}[2]{\ensuremath{ %
+    \displaystyle\int\limits_{#1}^{#2} %
+}} % display integral with limits
+\newcommand{\gint}[4]{\ensuremath{ %
+    \ifthenelse{\equal{#4}{}}{ %
+      \dintl{#1}{#2}\,#3 %
+    }{
+      \dintl{#1}{#2}\,#3\,\exteriorderivop #4 %
+    }
+}} % general integral with two limits. e.g. \gint{a}{b}{xxx}{c} => int_a^b xxx dc
+\newcommand{\giint}[7]{\ensuremath{ %
+    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
+    }} % general double integral with two limits. e.g.  
+       % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
+\newcommand{\goneint}[2]{\ensuremath{ %
+    \gint{#2}{}{#1}{#2} %
+}} % general integral with one limit. eg. \goneint{xxx}{a} => int_a xxx da
+
+%
+% Special functions and named polynomials
+%
+\newcommand{\firstbesselfn}[2]{\ensuremath{ %
+    \fnof{J_{#1}}{#2} %
+}} % Bessel function of the first kind e.g., \firstbesselfn{1}{x} => J_1(x)
+\newcommand{\secondbesselfn}[2]{\ensuremath{ %
+    \fnof{Y_{#1}}{#2} %
+}} % Bessel function of the second kind e.g., \secondbesselfn{0}{x} => Y_0(x)
+\newcommand{\modfirstbesselfn}[2]{\ensuremath{ %
+    \fnof{I_{#1}}{#2} %
+}} % modified Bessel function of the first kind e.g., \modfirstbesselfn{1}{x} => I_1(x)
+\newcommand{\modsecondbesselfn}[2]{\ensuremath{ %
+    \fnof{K_{#1}}{#2} %
+}} % modified Bessel function of the second kind e.g., \modsecondbesselfn{0}{x} => K_0(x)
+\newcommand{\firstchebyshevpoly}[2]{\ensuremath{ %
+    \fnof{T_{#1}}{#2} %
+}} % Chebyshev polynomail of the first kind e.g., \firstchebyshevpoly{1}{x} => T_1(x)
+\newcommand{\secondchebyshevpoly}[2]{\ensuremath{ %
+    \fnof{U_{#1}}{#2} %
+}} % Chebyshev polynomial of the second kind e.g., \secondchebyshevpoly{0}{x} => U_0(x)
+\newcommand{\gammafn}[1]{\ensuremath{ %
+    \fnof{\Gamma}{#1} %
+}} % Gamma function e.g. \gammafn{z} => \Gamma(x)
+\newcommand{\gegenbauerpoly}[3]{\ensuremath{ %
+    \fnof{C_{#1}^{#2}}{#3} %
+}} % gegenbauer polynomial e.g. \gengenbauerpoly{1}{2}{x} => C_1^2(x)
+\newcommand{\hermitepoly}[3]{\ensuremath{ %
+    \fnof{H_{#1}}{#2} %
+}} % Hermite polynomial e.g., \hermitepoly{2}{x} => H_2(x)
+\newcommand{\laguerrepoly}[3]{\ensuremath{ %
+    \fnof{L_{#1}}{#2} %
+}} % Laguerre polynomial e.g., \laguerrepoly{1}{x} => L_1(x)
+\newcommand{\firstlegendrepoly}[3]{\ensuremath{ %
+    \fnof{P_{#1}^{#2}}{#3} %
+}} % Legendre polynomial of the first kind e.g., \firstlegendrepoly{\lambda}{\mu}{x} => P_\lambda^\mu(x)
+\newcommand{\secondlegendrepoly}[3]{\ensuremath{ %
+    \fnof{Q_{#1}^{#2}}{#3} %
+}} % Legendre polynomial of the second kind e.g., \secondlegendrepoly{\lambda}{\mu}{x} => Q_\lambda^\mu(x)
+\newcommand{\sphericalharmonicfn}[4]{\ensuremath{%
+    \fnof{Y_{{#1}{#2}}^{#3}}{#4} %
+}} % Spherical harmonic function e.g. \sphericalharmonicfn{a}{b}{c}{d} => Y_ab^c(d)
+
+%
 % Operators
 % 
 
-% Vector calculus operators
-\DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
-\DeclareMathOperator{\divop}{div} % divergence operator e.g., div A
-\DeclareMathOperator{\curlop}{curl} % curl operator e.g., curl A
-\DeclareMathOperator{\Gradop}{Grad} % Gradient operator e.g., Grad A
-\DeclareMathOperator{\Divop}{Div} % Divergence operator e.g., Div A
-\DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
-
-% Tensor operators
+% Tensor/matrix operators
 \DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
 \DeclareMathOperator{\Trop}{Tr} % Trace operator e.g., Tr A
 \DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
@@ -639,6 +819,12 @@
 \DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
 \DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
 \DeclareMathOperator{\Sphop}{Sph} % Spherical operator e.g., Sph A
+\DeclareMathOperator{\kerop}{ker} % kernal operator e.g., ker A
+\DeclareMathOperator{\imgop}{im} % image operator e.g., im A
+\DeclareMathOperator{\dimop}{dim} % dimension operator e.g., dim A
+\DeclareMathOperator{\rankop}{rank} % rank operator e.g., rank A
+\DeclareMathOperator{\spanop}{span} % span operator e.g., span A
+\DeclareMathOperator{\volop}{vol} % volume operator e.g., vol A
 
 %
 %  Fractions
@@ -740,6 +926,140 @@
     % del^3/del x^1 del y^2 (u)
 
 %
+% Dynamics
+%
+\newcommand{\hamiltoniandensitysym}{\ensuremath{ %
+    \mathcal{H} %
+}} % Hamiltonian density symbol
+\newcommand{\hamiltoniandensity}[1]{\ensuremath{ %
+    \fnof{\hamiltoniandensitysym}{#1} %
+}} % Hamiltonian density e.g., \hamiltoniandensity{u,v} => H(u,v)
+\newcommand{\hamiltoniansym}{\ensuremath{ %
+    H %
+}} % Hamiltonian symbol
+\newcommand{\hamiltonian}[1]{\ensuremath{ %
+    \fnof{\hamiltoniansym}{#1} %
+}} % Hamiltonian e.g., \hamiltonian{u,v} => H(u,v)
+\newcommand{\dothamiltonian}[1]{\ensuremath{ %
+    \fnof{\dotover{\hamiltoniansym}}{#1} %
+}} % dot Hamiltonian e.g., time derivative of the Hamiltonian
+\newcommand{\lagrangiansym}{\ensuremath{ %
+    L %
+}} % Lagrangian symbol
+\newcommand{\lagrangian}[1]{\ensuremath{ %
+    \fnof{\lagrangiansym}{#1} %
+}} % Lagrangian e.g., \lagrangian{u,v} => L(u,v)
+
+%
+% Spaces
+%
+\newcommand{\vectorspace}[1]{\ensuremath{ %
+    \mathcal{#1} %
+}} % vetor space e.g., \vectirspace{V} => V
+\newcommand{\dualspace}[1]{\ensuremath{ %
+    \vectorspace{#1}^{*} %
+}} % dual space e.g., \dualspace{V} => V^*
+\newcommand{\lebesguespacesym}{\ensuremath{ %
+    L %
+}} % Lebesque space symbol
+\newcommand{\lebesguepspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\lebesguespacesym^{#1}}
+  }{
+    \ensuremath{\lebesguespacesym^{#1}\pbrac{#2}} %  
+}} % Lebesgue p space e.g., \lebesguepspace{2}{M} =>L^2(M)
+\newcommand{\lebesguetwospace}[1]{\ensuremath{ %
+    \lebesquepspace{2}{#1} %  
+}} % Lebesgue 2 space e.g., \lebesgue2space{M} =>L^2(M)
+\newcommand{\sobolevspacesym}{\ensuremath{ %
+    W
+}} % Sobolev space symbol
+\newcommand{\sobolevkpspace}[3]{%
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\sobolevspacesym^{#1,#2}}
+  }{
+    \ensuremath{\sobolevspacesym^{#1,#2}\pbrac{#3}} %  
+}} % Sobolev k,p space e.g., \sobolevkpspace{k,p}{M} =>W^k,p(M)
+\newcommand{\hilbertspacesym}{\ensuremath{ %
+    H
+}} % Hilbert space symbol
+\newcommand{\hilbertpspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\hilbertspacesym^{#1}}
+  }{
+    \ensuremath{\hilbertspacesym^{#1}\pbrac{#2}} %  
+}} % Hilbert p space e.g., \hilbertpspace{1}{M} =>H^1(M)
+\newcommand{\hilbertonespace}[1]{\ensuremath{ %
+    \hilbertpspace{1}{#1} %  
+}} % Hilbert 1 space e.g., \hilbert1space{M} =>H^1(M)
+\newcommand{\hilberttwospace}[1]{\ensuremath{ %
+    \hilbertpspace{2}{#1} %  
+}} % Hilbert 2 space e.g., \hilbert2space{M} =>H^2(M)
+\newcommand{\hilbertthreespace}[1]{\ensuremath{ %
+    \hilbertpspace{3}{#1} %  
+}} % Hilbert 3 space e.g., \hilbert3space{M} =>H^3(M)
+\newcommand{\diffformspacesym}{\ensuremath{ %
+    \bigwedge
+}} % space of differential forms symbol
+\newcommand{\diffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % differential form space e.g., \diffformspace{2}{M} =>^2(M)
+\newcommand{\ltwodiffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\lebesguespacesym^{2}{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{\lebesguespacesym^{2}{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % L^2 differential form space e.g., \ltwodiffformspace{2}{M} =>L^2 ^2(M)
+\newcommand{\honediffformspace}[2]{%
+  \ifthenelse{\equal{#2}{}}{ %
+    \ensuremath{\hilbertspacesym^{1}{\diffformspacesym}^{#1}}
+  }{
+    \ensuremath{\hilbertspacesym^{1}{\diffformspacesym}^{#1}\pbrac{#2}} %  
+}} % H^1 differential form space e.g., \honediffformspace{2}{M} =>H^1 ^2(M)
+\newcommand{\innerform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\pbrac{#1,#2}}
+  }{
+    \ensuremath{\pbrac{#1,#2}_{#3}} %  
+}} % inner form e.g., \innerform{a}{b} => (a,b)
+\newcommand{\bilinearform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\abrac{#1\mid#2}}
+  }{
+    \ensuremath{\abrac{#1\mid#2}_{#3}} %  
+}} % bilinear form e.g., \bilinearform{a}{b} => <a,b>
+\newcommand{\symbilinearform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\dabrac{#1\mid#2}}
+  }{
+    \ensuremath{\dabrac{#1\mid#2}_{#3}} %  
+}} % symbilinear form e.g., \symbilinearform{a}{b} => <<a,b>>
+\newcommand{\dualityform}[3]{ %
+  \ifthenelse{\equal{#3}{}}{ %
+    \ensuremath{\abrac{#1\mid#2}}
+  }{
+    \ensuremath{\abrac{#1\mid#2}_{#3}} %  
+}} % duality product form e.g., \exteriorform{a}{b} => <a|b>
+\newcommand{\spaceprodop}{\ensuremath{ %
+    \times %
+}} % space product operator symbol
+\newcommand{\spaceprod}[2]{ %7
+  \spaceprodtwo{#1}{#2} %
+} % space product e.g., \crossprod{A}{B} => A x B
+\newcommand{\spaceprodtwo}[2]{\ensuremath{ %
+    #1\spaceprodop#2 %
+}} % two times space product e.g., \spaceprodtwo{A}{B} => A x B
+\newcommand{\spaceprodthree}[3]{\ensuremath{ %
+    #1\spaceprodop#2\spaceprodop#3 %
+}} % three times space product e.g., \spaceprodthree{A}{B}{C} => A x B x C
+\newcommand{\spaceprodfour}[4]{\ensuremath{ %
+    #1\spaceprodop#2\spaceprodop#3\spaceprodop#4 %
+}} % four times space product e.g., \spaceprodfour{A}{B}{C}{D} => A x B x C x D
+
+%
 % Differential Geometry
 %
 \newcommand{\manifold}[1]{\ensuremath{ %
@@ -782,10 +1102,10 @@
     \cotangentspacesymbol \manifold{#1} %
 }} % Cotangent bundle e.g., \cotangentbundle{M} => T^*M
 \newcommand{\pushforward}[2]{\ensuremath{ %
-    #1_{*}#2 %
+    #1_{\triangleright}#2 %
 }} % push forward e.g. \pushforward{M}{v} => M_* v
 \newcommand{\pullback}[2]{\ensuremath{ %
-    #1^{*}#2
+    #1^{\triangleleft}#2
 }} % pull back e.g., \pullback{M}{v} => M^* v
 \newcommand{\christoffel}[3]{ %
   \christoffelsecond{#1}{#2}{#3}
@@ -823,53 +1143,605 @@
 \newcommand{\mixedderiv}[3]{\ensuremath{ %
     \brac{.}{#1}{|}^{#2}_{#3}
 }} % mixed derivative e.g. \mixedderiv{i}{j}{k} => i | ^{j}_{k}
-\newcommand{\exteriorderivop}[0]{\ensuremath{ %
-    \boldsymbol{\mathrm{d}}
-  }} % Exterior derivative operator e.g., \exteriorderivop => d7
+\newcommand{\exteriorscalarderivop}{\ensuremath{ %
+    \mathrm{d} %
+}} % Exterior scalar derivative operator e.g., \exteriorscalarderivop => d
+\newcommand{\exteriorcovectorderivop}{\ensuremath{ %
+    \boldsymbol{\exteriorscalarderivop} %
+}} % Exterior covector derivative operator e.g., \exteriorcovectorderivop => d
+\newcommand{\exteriorderivop}{\ensuremath{ %
+    \exteriorscalarderivop %
+}} % Exterior derivative operator e.g., \exteriorderivop => d
+\newcommand{\exteriorscalarderiv}[1]{\ensuremath{ %
+    {\exteriorscalarderivop}#1
+  }} % Exterior scalar derivative e.g., \exteriorscalarderiv{a} => da
+\newcommand{\exteriorcovectorderiv}[1]{\ensuremath{ %
+    {\exteriorcovectorderivop}#1
+  }} % Exterior covector derivative e.g., \exteriorcovectorderiv{a} => da
 \newcommand{\exteriorderiv}[1]{\ensuremath{ %
-    \exteriorderivop#1
-  }} % Exterior derivative e.g., \exteriorderiv{a} => da
+    \exteriorscalarderiv{#1} %
+}} % Exterior derivative e.g., \exteriorderiv{a} => da
+\newcommand{\exteriorcoderivop}{\ensuremath{ %
+    \mathrm{\delta} %
+}} % Exterior co-derivative operator e.g., \exteriorcoderivop => \delta
+\newcommand{\exteriorscalarcoderiv}[1]{\ensuremath{ %
+    \exteriorcoderivop#1 %
+}} % Scalar exterior co-derivative e.g., \exteriorscalarcoderiv{a} => \delta.a
+\newcommand{\exteriorvectorcoderiv}[1]{\ensuremath{ %
+    \boldsymbol{\exteriorcoderivop}#1 %
+}} % Vector exterior co-derivative e.g., \exteriorvectorcoderiv{a} => \delta.a
+\newcommand{\exteriorcoderiv}[1]{\ensuremath{ %
+    \exteriorscalarcoderiv{#1} %
+}} % Exterior co-derivative e.g., \exteriorcoderiv{a} => \delta.a
+\newcommand{\hodgestarop}{\ensuremath{ %
+    \star %
+}} % Hodge star operator e.g., \hodgestarop => *
+\newcommand{\hodgestar}[1]{\ensuremath{ %
+    \hodgestarop#1 %
+}} % Hodge star e.g., \hodgestar{a} => *a
+\newcommand{\hodgelaplacianop}{\ensuremath{ %
+    \Delta %
+}} % Hodge Laplacian operator
+\newcommand{\hodgelaplacian}[2]{
+    \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\hodgelaplacianop #2} %
+  }{ %
+    \ensuremath{\hodgelaplacianop_{#1} #2} % 
+}} % Hodge-Laplacian e.g. \hodgelaplacian{x}{a} => \Delta_{x} a
+\newcommand{\oneform}[2]{\ensuremath{ %
+    #1\,\exteriorderiv{#2}
+}} % one form e.g., \oneform{a}{x} => a.dx
+\newcommand{\twoform}[3]{\ensuremath{ %
+    #1\,\wedgeprod{\exteriorderiv{#2}}{\exteriorderiv{#3}}
+}} % two form e.g., \twoform{a}{x}{y} => a.dx^dy
+\newcommand{\threeform}[4]{\ensuremath{ %
+    #1\,\wedgeprodthree{\exteriorscalarderiv{#2}}{\exteriorscalarderiv{#3}}{\exteriorscalarderiv{#4}}
+}} % three form e.g., \threeform{a}{x}{y}{z} => a.dx^dy^dz
+\newcommand{\volumeform}[1]{%
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\vol}
+  }{
+    \ensuremath{\vol_{#1}} % 
+}} % volume form with optional metric e.g. \volumeform{g} => vol_g
 \newcommand{\sharptensor}[1]{\ensuremath{ %
     #1^{\sharp}
 }} % sharp tensor e.g.,\sharptensor{A} => A^#
 \newcommand{\flattensor}[1]{\ensuremath{#1^{\flat}}} % flat tensor e.g.,
-                                % \flattensor{A} => A^b
+% \flattensor{A} => A^b
 % cpb 19/9/96 Changing from \mathbf to \boldsymbol to allow bold greek tensors
 %\newcommand{\tensor}[1]{\ensuremath{\mathbf{#1}}} % tensor
-\newcommand{\vectr}[1]{\ensuremath{\boldsymbol{#1}}} % vector
-\newcommand{\covectr}[1]{\ensuremath{\boldsymbol{#1}}} % covector
+\newcommand{\vectr}[1]{\ensuremath{ %
+    \boldsymbol{#1} %
+}} % vector e.g., \vectr{a} => a
+\newcommand{\dvectr}[1]{\ensuremath{ %
+    \boldsymbol{\mathrm{#1}} %
+}} % vector e.g., \vectr{a} => a
+\newcommand{\covectr}[1]{\ensuremath{ %
+    \boldsymbol{#1} %
+}} % covector e.g., \covectr{a} => a
+\newcommand{\dcovectr}[1]{\ensuremath{ %
+    \boldsymbol{\mathrm{#1}}
+}} % discrete covector e.g. \dcovectr{a} => a
+\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\tensortwo}[1]{\ensuremath{\boldsymbol{\mathit{#1}}}} % 2nd order tensor
 \newcommand{\tensorthree}[1]{\ensuremath{\boldsymbol{\mathrm{#1}}}} % 3rd order tensor
 \newcommand{\tensorfour}[1]{\ensuremath{\boldsymbol{\mathsf{#1}}}} % 4th order tensor
-\newcommand{\tensor}[1]{\tensortwo{#1}} % tensor
 \newcommand{\covartensor}[3]{\ensuremath{{#1}_{#2#3}}} % covariant tensor
 \newcommand{\contratensor}[3]{\ensuremath{{#1}^{#2#3}}} % contravariant tensor
 \newcommand{\mixedtensor}[3]{\ensuremath{{#1}_{#2}^{#3}}} % mixed tensor
+
+%
+% Transposes
+%
+\newcommand{\transpose}[1]{
+  \fulltranspose{#1}
+} % transpose e.g., \transpose{A} => A^T
+\newcommand{\invtranspose}[1]{ %
+  \invfulltranspose{#1}
+} % inverse transpose e.g. \invtranspose{A} => A^-T
+\newcommand{\fulltransposeop}{\ensuremath{ %
+    \top %
+}} % full transpose op
+\newcommand{\fulltranspose}[1]{\ensuremath{ %
+    {#1}^{\fulltransposeop} %
+}} % full transpose e.g., \fulltranspose{A} => A^H
+\newcommand{\invfulltranspose}[1]{\ensuremath{ %
+    {#1}^{-\fulltransposeop} %
+}} % inverse full transpose e.g., \invfulltranspose{A} => A^-T
+\newcommand{\swaptransposeop}{\ensuremath{ %
+%    \sim %
+    \setminus %
+}} % swap transpose op
+\newcommand{\swaptranspose}[1]{\ensuremath{ %
+    {#1}^{\swaptransposeop} %
+}} % swap transpose e.g., \righttranspose{A} => A^~
+\newcommand{\lefttransposeop}{\ensuremath{ %
+    \vdash %
+}} % left transpose op
+\newcommand{\lefttranspose}[1]{\ensuremath{ %
+    {#1}^{\lefttransposeop} %
+}} % left transpose e.g., \lefttranspose{A} => A^T
+\newcommand{\leftrighttransposeop}{\ensuremath{ %
+    \bot %
+}} % left right transpose op
+\newcommand{\leftrighttranspose}[1]{\ensuremath{ %
+    {#1}^{\leftrighttransposeop} %
+}} % left right transpose e.g., \righttranspose{A} => A^(inv T)
+\newcommand{\righttransposeop}{\ensuremath{ %
+    \dashv %
+}} % right transpose op
+\newcommand{\righttranspose}[1]{\ensuremath{ %
+    {#1}^{\righttransposeop} %
+}} % right transpose e.g., \righttranspose{A} => A^(inv T)
+\newcommand{\innertransposeop}{\ensuremath{ %
+    \rightthreetimes %
+}} % inner transpose op
+\newcommand{\innertranspose}[1]{\ensuremath{ %
+    {#1}^{\innertransposeop} %
+}} % inner transpose e.g., \innertranspose{A} => A^|-
+\newcommand{\outertransposeop}{\ensuremath{ %
+    \leftthreetimes %
+}} % outer transpose op
+\newcommand{\outertranspose}[1]{\ensuremath{ %
+    {#1}^{\outertransposeop} %
+}} % outer transpose e.g., \outertranspose{A} => A^-|
+\newcommand{\xtransposeop}{\ensuremath{ %
+    \times %
+}} % outer transpose op
+\newcommand{\xtranspose}[1]{\ensuremath{ %
+    {#1}^{\xtransposeop} %
+}} % x transpose e.g., \xtranspose{A} => A^X
+\newcommand{\algebraictransposeop}{\ensuremath{ %
+    \top %
+}} % algebraic transpose op
+\newcommand{\algebraictranspose}[1]{\ensuremath{ %
+    {#1}^{\algebraictransposeop} %
+}} % algebraic transpose e.g., \algebraictranspose{A} => A^T
+\newcommand{\metrictransposeop}{\ensuremath{ %
+    t %
+}} % transpose op
+\newcommand{\metrictranspose}[1]{\ensuremath{ %
+    {#1}^{\metrictransposeop} %
+}} % metric transpose
+
+
+%
+% Products
+%
+\newcommand{\directsumop}{\ensuremath{ %
+    \oplus %
+}} % direct sum operator symbol
+\newcommand{\directsum}[2]{ %
+  \directsumtwo{#1}{#2} %
+} % direct sum e.g., \directsum{a}{b} => a 0+ b
+\newcommand{\directsumtwo}[2]{\ensuremath{ %
+    #1 \directsumop #2 %
+}} % two times direct sum e.g., \directsumtwo{a}{b} => a 0+ b
+\newcommand{\directsumthree}[3]{\ensuremath{ %
+    #1 \directsumop #2 \directsumop #3 %
+}} % three times direct sum e.g., \directsumthree{a}{b}{c} => a 0+ b 0+ c
+\newcommand{\directsumfour}[4]{\ensuremath{ %
+    #1 \directsumop #2 \directsumop #3 \directsumop #4 %
+}} % four times direct sum e.g., \directsumfour{a}{b}{c}{d} => a 0+ b 0+ c 0+
+% d
+\newcommand{\dotprodop}{\ensuremath{ %
+    \cdot %
+}} % dot product operator symbol
+\newcommand{\dotprod}[2]{ %
+  \dotprodtwo{#1}{#2} %
+} % dot product e.g., \dotprod{a}{b} => a . b
+\newcommand{\dotprodtwo}[2]{\ensuremath{ %
+    #1 \dotprodop #2 %
+}} % two times dot product e.g., \dotprodtwo{a}{b} => a . b
+\newcommand{\dotprodthree}[3]{\ensuremath{ %
+    #1 \dotprodop #2 \dotprodop #3 %
+}} % three times dot product e.g., \dotprodthree{a}{b}{c} => a . b . c
+\newcommand{\dotprodfour}[4]{\ensuremath{ %
+    #1 \dotprodop #2 \dotprodop #3 \dotprodop #4 %
+}} % four times dot product e.g., \dotprodfour{a}{b}{c}{d} => a . b . c . d
+\newcommand{\doubledotprodop}{\ensuremath{ %
+    : %
+}} % double dot product operator symbol
+\newcommand{\doubledotprod}[2]{ %
+  \doubledotprodtwo{#1}{#2} %
+} % double dot product e.g., \doubledotprod{A}{B} => A : B
+\newcommand{\doubledotprodtwo}[2]{\ensuremath{ %
+    #1\doubledotprodop#2 %
+}} % two times double dot product e.g., \doubledotprodtwo{A}{B} => A : B
+\newcommand{\doubledotprodthree}[3]{\ensuremath{ %
+    #1\doubledotprodop#2\doubledotprodop#3 %
+}} % three times double dot product e.g., \doubledotprodthree{A}{B}{C} => A : B : C
+\newcommand{\doubledotprodfour}[4]{\ensuremath{ %
+    #1\doubledotprodop#2\doubledotprodop#3\doubledotprodop#4 %
+}} % four times double dot product e.g., \doubledotprodfour{A}{B}{C}{D} => A : B : C : D
+\newcommand{\upperdoubledotprodop}{\ensuremath{ %
+    \, \overline{\cdot\cdot} \, %
+}} % upper double dot product operator symbol
+\newcommand{\upperdoubledotprod}[2]{\ensuremath{ %
+    #1\upperdoubledotprodop#2 %
+}} % upper double dot product e.g., \upperdoubledotprod{A}{B} => A ..- B
+\newcommand{\lowerdoubledotprodop}{\ensuremath{ %
+    \, \underline{\cdot\cdot} \, %
+}} % lower double dot product operator symbol
+\newcommand{\lowerdoubledotprod}[2]{\ensuremath{ %
+    #1\lowerdoubledotprodop#2 %
+}} % lower double dot product e.g., \lowerdoubledotprod{A}{B} => A .._ B
+\newcommand{\quaddotprodop}{\ensuremath{ %
+    :: %
+}} % quadruple dot product operator symbol
+\newcommand{\quaddotprod}[2]{ %
+  \quaddotprodtwo{#1}{#2} %
+} % quadruple dot product e.g., \quaddotprod{A}{B} => A :: B
+\newcommand{\quaddotprodtwo}[2]{\ensuremath{ %
+    #1\quaddotprodop#2 %
+}} % two times quadruple dot product e.g., \quaddotprodtwo{A}{B} => A :: B
+\newcommand{\crossprodop}{\ensuremath{ %
+    \times %
+}} % cross product operator symbol
+\newcommand{\crossprod}[2]{ %
+  \crossprodtwo{#1}{#2} %
+} % cross product e.g., \crossprod{a}{b} => a x b
+\newcommand{\crossprodtwo}[2]{\ensuremath{ %
+    #1\crossprodop#2 %
+}} % two times cross product e.g., \crossprodtwo{a}{b} => a x b
+\newcommand{\crossprodthree}[3]{\ensuremath{ %
+    #1\crossprodop#2\crossprodop#3 %
+}} % three times cross product e.g., \crossprodthree{a}{b}{c} => a x b x c
+\newcommand{\crossprodfour}[4]{\ensuremath{ %
+    #1\crossprodop#2\crossprodop#3\crossprodop#4 %
+}} % four times cross product e.g., \crossprodfour{a}{b}{c}{d} => a x b x c x d
+\newcommand{\innerprod}[2]{\ensuremath{ %
+    \abrac{#1,#2} %
+}} % inner product e.g. \innerprod{a,b} => <a,b>
+\newcommand{\tripleprod}[3]{ %
+  \dotprodtwo{#1}{\pbrac{\crossprodtwo{#2}{#3}}} %
+} % triple product e.g., \tripleprod{a}{b}{c} => a . (b x c)
+\newcommand{\tensorprodop}{\ensuremath{ %
+    \otimes %
+}} % tensor product operator symbol
 \newcommand{\tensorprod}[2]{ %
   \tensorprodtwo{#1}{#2} %
-} % tensor product e.g., \tensorprod{a}{b} => a Ox b.
+} % tensor product e.g., \tensorprod{a}{b} => a Ox b
 \newcommand{\tensorprodtwo}[2]{\ensuremath{ %
-    #1 \otimes #2 %
-}} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b.
+    #1\tensorprodop#2 %
+}} % tensor product two e.g., \tensorprodtwo{a}{b} => a Ox b
+\newcommand{\tensorprodthree}[3]{\ensuremath{ %
+    #1\tensorprodop#2\tensorprodop#3 %
+}} % tensor product three e.g., \tensorprodthree{a}{b}{c} => a Ox b 0x c
 \newcommand{\tensorprodfour}[4]{\ensuremath{ %
-    #1 \otimes #2 \otimes #3 \otimes #4 %
-}} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d.
+    #1\tensorprodop#2\tensorprodop#3\tensorprodop#4 %
+}} % tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\uppertensorprodop}{\ensuremath{ %
+   \, \overline{\otimes} \, %
+}} % upper tensor product operator symbol
+\newcommand{\uppertensorprod}[2]{ %
+  \uppertensorprodtwo{#1}{#2} %
+} % "upper" tensor product e.g., \uppertensorprod{a}{b} => a Ox b
+\newcommand{\uppertensorprodtwo}[2]{\ensuremath{ %
+    #1\uppertensorprodop#2 %
+}} % "upper" tensor product two e.g., \uppertensorprodtwo{a}{b} => a Ox b
+\newcommand{\uppertensorprodthree}[3]{\ensuremath{ %
+    #1\uppertensorprodop#2\uppertensorprodop#3 %
+}} % "upper" tensor product three e.g., \uppertensorprodthree{a}{b}{c} => a Ox b 0x c
+\newcommand{\uppertensorprodfour}[4]{\ensuremath{ %
+    #1\uppertensorprodop#2\uppertensorprodop#3\uppertensorprodop#4 %
+}} % "upper" tensor product four e.g., \tensorprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\lowertensorprodop}{\ensuremath{ %
+    \, \underline{\otimes} \, %
+}} % upper tensor product operator symbol
+\newcommand{\lowertensorprod}[2]{ %
+  \lowertensorprodtwo{#1}{#2} %
+} % "lower" tensor product e.g., \lowertensorprod{a}{b} => a Ox b
+\newcommand{\lowertensorprodtwo}[2]{\ensuremath{ %
+    #1\lowertensorprodop#2 %
+}} % "lower" tensor product two e.g., \lowertensorprodtwo{a}{b} => a Ox b
+\newcommand{\lowertensorprodthree}[3]{\ensuremath{ %
+    #1\lowertensorprodop#2\lowertensorprodop#3 %
+}} % "lower" tensor product three e.g., \lowertensorprodthree{a}{b}{c} => a Ox b 0x c
+\newcommand{\lowertensorprodfour}[4]{\ensuremath{ %
+    #1\lowertensorprodop#2\lowertensorprodop#3\lowertensorprodop#4 %
+}} % "lower" tensor product four e.g., \lowerprodfour{a}{b}{c}{d} => a Ox b Ox c Ox d
+\newcommand{\symtensorprodop}{\ensuremath{ %
+    \odot %
+}} % symmetric tensor product operator symbol
 \newcommand{\symtensorprod}[2]{ %
   \symtensorprodtwo{#1}{#2} %
-} % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b.
+} % symmetric tensor product e.g., \symtensorprod{a}{b} => a O. b
 \newcommand{\symtensorprodtwo}[2]{\ensuremath{ %
-    #1 \odot #2 %
-}} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b.
+    #1\symtensorprodop#2 %
+}} % symmetric tensor product two e.g., \symtensorprodtwo{a}{b} => a O. b
+\newcommand{\symtensorprodthree}[3]{\ensuremath{ %
+    #1\symtensorprodop#2\symtensorprodop#3 %
+}} % symmetric tensor product three e.g., \symtensorprodthree{a}{b}{c} => a O. b 0. c
 \newcommand{\symtensorprodfour}[4]{\ensuremath{ %
-    #1 \odot #2 \odot #3 \odot #4 %
-}} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a
-% O. b O. c O. d.
-\newcommand{\wedgeprod}[2]{\ensuremath{ %
-    #1 \wedge #2 %
-}} % wedge product e.g., \wedgeprod{a}{b} => a^b.
+    #1\symtensorprodop#2\symtensorprodop#3\symtensorprodop#4 %
+}} % symmetric tensor product four e.g., \symtensorprodfour{a}{b}{c}{d} => a O. b O. c O. d
+\newcommand{\antisymtensorprodop}{\ensuremath{ %
+    \circledast %
+}} % anti symmetric tensor product operator symbol
+\newcommand{\antisymtensorprod}[2]{ %
+  \antisymtensorprodtwo{#1}{#2} %
+} % anti symmetric tensor product e.g., \antisymtensorprod{a}{b} => a O* b
+\newcommand{\antisymtensorprodtwo}[2]{\ensuremath{ %
+    #1\antisymtensorprodop#2 %
+}} % anti symmetric tensor product two e.g., \antisymtensorprodtwo{a}{b} => a O* b
+\newcommand{\antisymtensorprodthree}[3]{\ensuremath{ %
+    #1\antisymtensorprodop#2\antisymtensorprodop#3 %
+}} % anti symmetric tensor product three e.g., \antisymtensorprodthree{a}{b}{c} => a O* b 0* c
+\newcommand{\antisymtensorprodfour}[4]{\ensuremath{ %
+    #1\antisymtensorprodop#2\antisymtensorprodop#3\antisymtensorprodop#4 %
+}} % anti symmetric tensor product four e.g., \antisymtensorprodfour{a}{b}{c}{d} => a O* b O* c O* d
+\newcommand{\wedgeprodop}{\ensuremath{ %
+    \wedge %
+}} % wedge product operator symbol
+\newcommand{\wedgeprod}[2]{ %
+  \wedgeprodtwo{#1}{#2} %
+} % wedge product e.g., \wedgeprod{a}{b} => a ^ b
+\newcommand{\wedgeprodtwo}[2]{\ensuremath{ %
+    #1\wedgeprodop#2 %
+}} % two times wedge product e.g., \wedgeprodtwo{a}{b} => a ^ b
+\newcommand{\wedgeprodthree}[3]{\ensuremath{ %
+    #1\wedgeprodop#2\wedgeprodop#3 %
+}} % three times wedge product e.g., \wedgeprodthree{a}{b}{c} => a ^ b ^ c
+\newcommand{\wedgeprodfour}[4]{\ensuremath{ %
+    #1\wedgeprodop#2\wedgeprodop#3\wedgeprodop#4 %
+}} % four times wedge product e.g., \wedgeprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
 \newcommand{\exteriorprod}[2]{\ensuremath{ %
     \wedgeproduct{#1}{#2} %
-}} % exterior product e.g., \exteriorprod{a}{b} => a^b.
+}} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
+
+%
+% Special tensors
+%
+
+% Null tensor
+
+\newcommand{\nulltensorsymbol}{\ensuremath{ %
+    0 %
+}} % null tensor symbol
+
+\newcommand{\nulltensor}{\ensuremath{ %
+    \nulltensortwo %
+}} % null tensor e.g., \nulltensor => 0
+\newcommand{\nulltensorone}{\ensuremath{ %
+    \vectr{\nulltensorsymbol} %
+}} % first order null tensor e.g., \nulltensorone => 0
+\newcommand{\nulltensortwo}{\ensuremath{ %
+    \tensortwo{\nulltensorsymbol} %
+}} % second order null tensor e.g., \nulltensortwo => 0
+\newcommand{\nulltensorthree}{\ensuremath{ %
+    \tensorthree{\nulltensorsymbol} %
+}} % third order null tensor e.g., \nulltensorthree => 0
+\newcommand{\nulltensorfour}{\ensuremath{ %
+    \tensorfour{\nulltensorsymbol} %
+}} % fourth order null tensor e.g., \nulltensorfour => 0
+
+% Identity tensor
+
+\newcommand{\materialidentitytensorsymbol}{\ensuremath{ %
+    I %
+}} % material identity operator symbol
+\newcommand{\spatialidentitytensorsymbol}{\ensuremath{ %
+    i %
+}} % spatial identity operator symbol
+\newcommand{\standardidentitytensorsymbol}{\ensuremath{ %
+    I %
+}} % standard identity operator symbol
+
+\newcommand{\identitytensor}{\ensuremath{ %
+    \genericidentitytensortwo{\standardidentitytensorsymbol} %
+}} % identity tensor e.g., \identitytensor => I
+\newcommand{\identitytensorone}{\ensuremath{ %
+    \vectr{1} %
+}} % first order identity tensor e.g., \identitytensorone => I
+\newcommand{\materialidentitytensortwo}{\ensuremath{ %
+    \generictensortwo{\materialidentitytensorsymbol} %
+}} % material second order identity tensor e.g., \materialidentitytensortwo => I
+\newcommand{\materialidentitytensorfour}{\ensuremath{ %
+    \generictensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order identity tensor e.g., \materialidentitytensorfour => I
+\newcommand{\materialupperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order upper identity tensor e.g., \materialupperidentitytensorfour => I^_
+\newcommand{\materialloweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order upperlower identity tensor e.g., \materialloweridentitytensorfour => I_
+\newcommand{\materialsymidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order symmetric identity tensor e.g., \materialsymidentitytensorfour => I_
+\newcommand{\materialantisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialidentitytensorsymbol} %
+}} % material fourth order antisymmetric identity tensor e.g., \materialantisymidentitytensorfour => I~
+
+\newcommand{\spatialidentitytensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialidentitytensorsymbol} %
+}} % spatial second order identity tensor e.g., \spatialidentitytensortwo => i
+\newcommand{\spatialidentitytensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order identity tensor e.g., \spatialidentitytensorfour => i
+\newcommand{\spatialupperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order upper identity tensor e.g., \spatialupperidentitytensorfour => i^_
+\newcommand{\spatialloweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order upperlower identity tensor e.g., \spatialloweridentitytensorfour => i_
+\newcommand{\spatialsymidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order symmetric identity tensor e.g., \spatialsymidentitytensorfour => i_
+\newcommand{\spatialantisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialidentitytensorsymbol} %
+}} % spatial fourth order antisymmetric identity tensor e.g., \spatialantisymidentitytensorfour => i^
+
+\newcommand{\identitytensortwo}{\ensuremath{ %
+    \generictensortwo{\standardidentitytensorsymbol} %
+}} % second order identity tensor e.g., \identitytensortwo => I
+\newcommand{\identitytensorfour}{\ensuremath{ %
+    \generictensorfour{\standardidentitytensorsymbol} %
+}} % fourth order identity tensor e.g., \identitytensorfour => I
+\newcommand{\upperidentitytensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\standardidentitytensorsymbol} %
+}} % fourth order upper identity tensor e.g., \upperidentitytensorfour => I^_
+\newcommand{\loweridentitytensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\standardidentitytensorsymbol} %
+}} % fourth order upperlower identity tensor e.g., \loweridentitytensorfour => I_
+\newcommand{\symidentitytensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\standardidentitytensorsymbol} %
+}} % fourth order symmetric identity tensor e.g., \symidentitytensorfour => I_
+\newcommand{\antisymidentitytensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\standardidentitytensorsymbol} %
+}} % fourth order antisymmetric identity tensor e.g., \antisymidentitytensorfour => I^
+
+% Deviatoric tensor
+
+\newcommand{\materialdeviatorictensorsymbol}{\ensuremath{ %
+    M %
+}} % material deviatoric tensor symbol
+\newcommand{\spatialdeviatorictensorsymbol}{\ensuremath{ %
+    m %
+}} % spatial deviatoric tensor symbol
+
+\newcommand{\materialdeviatorictensortwo}{\ensuremath{ %
+    \generictensortwo{\materialdeviatorictensorsymbol} %
+}} % material second order deviatoric tensor e.g., \materialdeviatorictensortwo => M
+\newcommand{\materialdeviatorictensorfour}{\ensuremath{ %
+    \generictensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order deviatoric tensor e.g., \materialdeviatorictensorfour => M
+\newcommand{\materialupperdeviatorictensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order upper deviatoric tensor e.g., \materialupperdeviatorictensorfour => M^_
+\newcommand{\materiallowerdeviatorictensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order upperlower deviatoric tensor e.g., \materiallowerdeviatorictensorfour => M_
+\newcommand{\materialsymdeviatorictensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order symmetric deviatoric tensor e.g., \materialsymdeviatorictensorfour => M_
+\newcommand{\materialantisymdeviatorictensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialdeviatorictensorsymbol} %
+}} % material fourth order antisymmetric deviatoric tensor e.g., \materialantisymdeviatorictensorfour => M~
+
+\newcommand{\spatialdeviatorictensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialdeviatorictensorsymbol} %
+}} % spatial second order deviatoric tensor e.g., \spatialdeviatorictensortwo => m
+\newcommand{\spatialdeviatorictensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order deviatoric tensor e.g., \spatialdeviatorictensorfour => m
+\newcommand{\spatialupperdeviatorictensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order upper deviatoric tensor e.g., \spatialupperdeviatorictensorfour => m^_
+\newcommand{\spatiallowerdeviatorictensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order upperlower deviatoric tensor e.g., \spatiallowerdeviatorictensorfour => m_
+\newcommand{\spatialsymdeviatorictensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order symmetric deviatoric tensor e.g., \spatialsymdeviatorictensorfour => m_
+\newcommand{\spatialantisymdeviatorictensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialdeviatorictensorsymbol} %
+}} % spatial fourth order antisymmetric deviatoric tensor e.g., \spatialantisymdeviatorictensorfour => m^
+
+% Spherical tensor
+
+\newcommand{\materialsphericaltensorsymbol}{\ensuremath{ %
+    K %
+}} % material spherical tensor symbol
+\newcommand{\spatialsphericaltensorsymbol}{\ensuremath{ %
+    k %
+}} % spatial spherical tensor symbol
+
+\newcommand{\materialsphericaltensortwo}{\ensuremath{ %
+    \generictensortwo{\materialsphericaltensorsymbol} %
+}} % material second order spherical tensor e.g., \materialsphericaltensortwo => K
+\newcommand{\materialsphericaltensorfour}{\ensuremath{ %
+    \generictensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order spherical tensor e.g., \materialsphericaltensorfour => K
+\newcommand{\materialuppersphericaltensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order upper spherical tensor e.g., \materialuppersphericaltensorfour => K^_
+\newcommand{\materiallowersphericaltensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order upperlower spherical tensor e.g., \materiallowersphericaltensorfour => K_
+\newcommand{\materialsymsphericaltensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order symmetric spherical tensor e.g., \materialsymsphericaltensorfour => K_
+\newcommand{\materialantisymsphericaltensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\materialsphericaltensorsymbol} %
+}} % material fourth order antisymmetric spherical tensor e.g., \materialantisymsphericaltensorfour => K~
+
+\newcommand{\spatialsphericaltensortwo}{\ensuremath{ %
+    \generictensortwo{\spatialsphericaltensorsymbol} %
+}} % spatial second order spherical tensor e.g., \spatialsphericaltensortwo => k
+\newcommand{\spatialsphericaltensorfour}{\ensuremath{ %
+    \generictensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order spherical tensor e.g., \spatialsphericaltensorfour => k
+\newcommand{\spatialuppersphericaltensorfour}{\ensuremath{ %
+    \genericuppertensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order upper spherical tensor e.g., \spatialuppersphericaltensorfour => k^_
+\newcommand{\spatiallowersphericaltensorfour}{\ensuremath{ %
+    \genericlowertensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order upperlower spherical tensor e.g., \spatiallowersphericaltensorfour => k_
+\newcommand{\spatialsymsphericaltensorfour}{\ensuremath{ %
+    \genericsymtensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order symmetric spherical tensor e.g., \spatialsymsphericaltensorfour => k_
+\newcommand{\spatialantisymsphericaltensorfour}{\ensuremath{ %
+    \genericantisymtensorfour{\spatialsphericaltensorsymbol} %
+}} % spatial fourth order antisymmetric spherical tensor e.g., \spatialantisymsphericaltensorfour => k^
+
+% Generic tensor
+
+\newcommand{\generictensortwo}[1]{\ensuremath{ %
+    \tensortwo{#1} %
+}} % generic second order tensor e.g., \generictensortwo{I} => I
+\newcommand{\generictensorfour}[1]{\ensuremath{ %
+    \tensorfour{#1} %
+}} % generic fourth order tensor e.g., \generictensorfour{I} => I
+\newcommand{\genericuppertensorfour}[1]{\ensuremath{ %
+    \overline{\tensorfour{#1}} %
+}} % generic fourth order upper tensor e.g., \genericuppertensorfour{I} => I^_
+\newcommand{\genericlowertensorfour}[1]{\ensuremath{ %
+    \underline{\tensorfour{#1}} %
+}} % generic fourth order lower tensor e.g., \genericlowertensorfour{I} => I_
+\newcommand{\genericsymtensorfour}[1]{\ensuremath{ %
+    \overline{\underline{\tensorfour{#1}}} %
+}} % generic fourth order symmetric tensor e.g., \genericsymtensorfour{I} => I_
+\newcommand{\genericantisymtensorfour}[1]{\ensuremath{ %
+    \tilde{\tensorfour{#1}} %
+}} % generic fourth order antisymmetric tensor e.g., \genericantisymtensorfour{I} => I^
+
+%
+% Vector Calculus
+%
+
+\newcommand{\curl}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\crossprod{\nabla}{#2}} %
+  }{ %
+    \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
+}} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
+\newcommand{\divergence}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\dotprod{\nabla}{#2}} %
+  }{ %
+    \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
+}} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} => nabla_{x} . a
+\newcommand{\gradient}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\grad #2} %
+  }{ %
+    \ensuremath{\grad_{#1} #2} % 
+}} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x} u
+\newcommand{\laplacian}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\gradsq #2} %
+  }{ %
+    \ensuremath{\gradsq_{#1} #2} % 
+}} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} => \nabla^2_x u
+
+% Vector calculus operators
+\DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
+\DeclareMathOperator{\divop}{div} % divergence operator e.g., div A
+\DeclareMathOperator{\curlop}{curl} % curl operator e.g., curl A
+\DeclareMathOperator{\Gradop}{Grad} % Gradient operator e.g., Grad A
+\DeclareMathOperator{\Divop}{Div} % Divergence operator e.g., Div A
+\DeclareMathOperator{\Curlop}{Curl} % Curl operator e.g., Curl A
 
 %
 % Matrices and vectors
@@ -899,14 +1771,29 @@
     \ensuremath{\Devop_{#1} #2}% 
   }
 }} % deviatoric operator e.g., \Deviatoric{g}{A} = Dev_g A where g is the optional metric
-   % for the deviatoric operator
+% for the deviatoric operator
+\newcommand{\dimension}[1]{\ensuremath{ %
+    \dimop #1 %
+}} % dimension operation e.g., \dimension{A} => dim A
+\newcommand{\image}[1]{\ensuremath{ %
+    \imgop #1 %
+}} % image operation e.g., \image{A} => im A
+\newcommand{\kernel}[1]{\ensuremath{ %
+    \kerop #1 %
+}} % kernel operation e.g., \kernel{A} => ker A
 \newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
+\newcommand{\rank}[1]{\ensuremath{ %
+    \rankop #1 %
+}} % rank operation e.g., \rank{A} => rank A
 \newcommand{\skewsym}[1]{\ensuremath{
     \skewop #1 % skew-symmetric operator i.e., \skewsym{A} = skw A
   }}
 \newcommand{\Skewsym}[1]{\ensuremath{
     \Skewop #1 % skew-symmetric operator i.e., \Skewsym{A} = Skw A
   }}
+\newcommand{\spanspace}[1]{\ensuremath{ %
+    \spanop #1 %
+}} % span operation e.g., \span{A} => span A
 \newcommand{\spherical}[2]{\ensuremath{
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\sphop #2}%
@@ -955,12 +1842,12 @@
 }} % Nodal DOF e.g., \nodedof{\psi}{n}{u} => nodal dof of \psi at node n
   % derivative u.
 \newcommand{\idxnodedof}[4]{\ensuremath{ %
-  \nodept{#1}{#3}_{#2,#4} %
+  \nodept{#1}{#2#3}_{,#4} %
 }} % Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
    % component of \psi at node n derivative u.
-\newcommand{\uidxnodedof}[4]{\ensuremath{ %
-  \nodept{#1}{#2#3}_{,#4} %
-}} % "Upper" Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
+\newcommand{\coidxnodedof}[4]{\ensuremath{ %
+  \nodept{#1}{#3}_{#2,#4} %
+}} % "Covector" Indexed nodal DOF e.g., \nodedof{\psi}{i}{n}{u} => nodal dof of ith
    % component of \psi at node n derivative u.
 \newcommand{\elementdof}[2]{\ensuremath{ %
   #1_{#2} %
@@ -1005,17 +1892,17 @@
     \phi_{#1}^{#2} %
     }} % Alternate generic basis function symbol
 \newcommand{\idxgbfnsymb}[3]{\ensuremath{ %
-    \psi_{#1#2}^{#3} %
+    \psi_{#2}^{#1#3} %
     }} % Indexed generic basis function symbol
 \newcommand{\altidxgbfnsymb}[3]{\ensuremath{ %
-    \phi_{#1#2}^{#3} %
-    }} % Alternate indexed generic basis function symbol
-\newcommand{\uidxgbfnsymb}[3]{\ensuremath{ %
-    \psi_{#2}^{#1#3} %
-    }} % "Upper" indexed generic basis function symbol
-\newcommand{\altuidxgbfnsymb}[3]{\ensuremath{ %
     \phi_{#2}^{#1#3} %
-    }} % Alternate "Upper" indexed generic basis function symbol
+    }} % Alternate indexed generic basis function symbol
+\newcommand{\coidxgbfnsymb}[3]{\ensuremath{ %
+    \psi_{#1#2}^{#3} %
+    }} % "Covector" indexed generic basis function symbol
+\newcommand{\altcoidxgbfnsymb}[3]{\ensuremath{ %
+    \phi_{#1#2}^{#3} %
+    }} % Alternate "covector" indexed generic basis function symbol
 \newcommand{\gbfn}[3]{\ensuremath{ %
     \fnof{\gbfnsymb{#1}{#2}}{#3} %
     }} % \gbfn{n}{i}{xi} => Generic bais function at n,i evaluated at xi
@@ -1028,8 +1915,8 @@
 \newcommand{\altidxgbfn}[4]{\ensuremath{ %
     \fnof{\altidxgbfnsymb{#1}{#2}{#3}}{#4} %
     }} % \altidxgbfn{j}{n}{i}{xi} => Alternate indexed j'th generic bais function at n,i evaluated at xi
-\newcommand{\uidxgbfn}[4]{\ensuremath{ %
-    \fnof{\uidxgbfnsymb{#1}{#2}{#3}}{#4} %
+\newcommand{\coidxgbfn}[4]{\ensuremath{ %
+    \fnof{\coidxgbfnsymb{#1}{#2}{#3}}{#4} %
     }} % \uidxbfn{j}{n}{i}{xi} => "Upper" indexed j'th generic bais function at n,i evaluated at xi
 \newcommand{\altuidxgbfn}[4]{\ensuremath{ %
     \fnof{\altuidxgbfnsymb{#1}{#2}{#3}}{#4} %

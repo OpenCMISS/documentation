@@ -7,7 +7,7 @@ represent a one-dimensional field \eg measurements of temperature $u$
 against distance $x$ along a bar, as shown in \figref{fig:1Dfield}a.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/1Dfield.pstex}
+  \input{fem_basis_fns/figs/1Dfield.pstex}
   \caption{(a) Temperature distribution $\fnof{u}{x}$ along a bar. 
     The points are the measured temperatures. (b) A least-squares polynomial
     fit to the data, showing the unacceptable oscillation between data points.}
@@ -36,7 +36,7 @@ least-squares separately to the data in each element.
 %(we return to least-squares data fitting in \Chapref{cha:datafitting}).
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Tempmeas.pstex}
+  \input{fem_basis_fns/figs/Tempmeas.pstex}
   \caption{(a) Temperature measurements replotted against arclength 
     parameter $s$. (b) The $s$ domain is divided into three subdomains,
     \emph{elements}, and linear polynomials are independently fitted to the data
@@ -75,7 +75,7 @@ $\lbfn{1}{\xi}$ and $\lbfn{2}{\xi}$ are straight lines varying between $0$ and $
 as shown in \figref{fig:Linearbf}.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Linearbf.pstex}
+  \input{fem_basis_fns/figs/Linearbf.pstex}
   \caption{Linear basis functions $\lbfn{1}{\xi}=1-\xi$ and 
     $\lbfn{2}{\xi}=\xi$.}
   \label{fig:Linearbf}
@@ -96,7 +96,7 @@ This has the advantage that the interpolation
 holds for any element provided that $u_{1}$ and $u_{2}$ are correctly identified
 with their global counterparts, as shown in \figref{fig:Relationship}.
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Relationship.pstex}
+  \input{fem_basis_fns/figs/Relationship.pstex}
   \caption{The relationship between global nodes and element nodes.}
   \label{fig:Relationship}
 \end{figure}
@@ -125,7 +125,7 @@ temperature field defined by the three interpolations
 \bref{eqn:1stelement}--\bref{eqn:3rdelement}. \index{Basis functions!Lagrange!linear|)}
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Tmfit.pstex}
+  \input{fem_basis_fns/figs/Tmfit.pstex}
   \caption{Temperature measurements fitted with nodal parameters and linear 
     basis functions.  The fitted temperature field is now continuous across
     element boundaries.}
@@ -170,7 +170,7 @@ $w_{n}$ associated with global node $n$ is constructed from the basis functions
 in the elements adjacent to that node.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Weighting.pstex}
+  \input{fem_basis_fns/figs/Weighting.pstex}
   \caption{(a) $\ldots$ (d) The weighting functions $w_{n}$ associated with 
     the global nodes $n=1\ldots4$, respectively. Notice the linear fall off 
     in the elements adjacent to a node.  Outside the immediately adjacent 
@@ -203,7 +203,7 @@ mathematical space $0 \leq \xi \leq 1$ and the physical space $x_{1} \leq x \leq
 x_{2}$, as illustrated in \figref{fig:xandurel}.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/xandurel.pstex}
+  \input{fem_basis_fns/figs/xandurel.pstex}
   \caption{Illustrating how $x$ and $u$ are related through the normalized 
     element coordinate $\xi$. The values of $\fnof{x}{\xi}$ and $\fnof{u}{\xi}$ are 
     obtained from a linear interpolation of the nodal variables and then 
@@ -234,7 +234,7 @@ we have $\lbfn{1}{\xi} = 2\pbrac{\xi-1}\pbrac{\xi-0.5}$.  Similarly for the
 other two basis functions.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/1DQbf.pstex}
+  \input{fem_basis_fns/figs/1DQbf.pstex}
   \caption{One-dimensional quadratic basis functions.}
   \label{fig:1DQbf}
 \end{figure}
@@ -271,7 +271,7 @@ functions. Similarly, \lbfn{2}{\xione,\xitwo} =
 
 These four bilinear basis functions are illustrated in \figref{fig:2Dbbf}.
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/2Dbbf.pstex}
+  \input{fem_basis_fns/figs/2Dbbf.pstex}
   \caption{Two-dimensional bilinear basis functions.}
   \label{fig:2Dbbf}
 \end{figure}
@@ -301,12 +301,12 @@ which provide the mapping between the mathematical space $\pbrac{\xione, \xitwo}
 %  \figref{fig:example111_elem}
 
 %  \begin{figure}[htbp] \centering
-%    \input{figs/fem_basis_fns/egdiag1.pstex}
+%    \input{fem_basis_fns/figs/egdiag1.pstex}
 %    \caption{Node positions for example $111$.}
 %    \label{fig:example111_node}
 %  \end{figure}
 %   \begin{figure}[hbtp] \centering
-%    \input{figs/fem_basis_fns/egdiag2.pstex}
+%    \input{fem_basis_fns/figs/egdiag2.pstex}
 %    \caption{2D bilinear finite element mesh for example $111$.}
 %    \label{fig:example111_elem}
 %  \end{figure} 
@@ -318,7 +318,7 @@ which provide the mapping between the mathematical space $\pbrac{\xione, \xitwo}
 %  To refine a mesh run the CMISS example $113$. After the first refine the
 %  mesh should appear like the one shown in \figref{fig:example113}.  
 %\begin{figure}[htbp] \centering
-%    \input{figs/fem_basis_fns/egdiag3.pstex}
+%    \input{fem_basis_fns/figs/egdiag3.pstex}
 %    \caption{Refined mesh.}
 %    \label{fig:example113}
 %  \end{figure}
@@ -351,7 +351,7 @@ where
 
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/6node.pstex}
+  \input{fem_basis_fns/figs/6node.pstex}
   \caption{A $6$-node quadratic-linear element (node numbers circled).}
   \label{fig:6node}
 \end{figure} 
@@ -374,7 +374,7 @@ element basis has eight nodes (see \figref{fig:8nte}) with basis functions
 
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/8nte.pstex}
+  \input{fem_basis_fns/figs/8nte.pstex}
   \caption{An $8$-node trilinear element.}
   \label{fig:8nte}
 \end{figure}
@@ -442,7 +442,7 @@ or, rearranging,
 where the four cubic Hermite basis functions are drawn in \figref{fig:cubic}.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/cubic.pstex}
+  \input{fem_basis_fns/figs/cubic.pstex}
   \caption{Cubic Hermite basis functions.}
   \label{fig:cubic}
 \end{figure}
@@ -483,7 +483,7 @@ $\pbrac{\deltwoby{u}{\xione}{\xitwo}}_{1}$ and
 $\pbrac{\deltwoby{u}{\xione}{\xitwo}}_{3}$.
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/interpol.pstex}
+  \input{fem_basis_fns/figs/interpol.pstex}
   \caption{Interpolation of nodal derivative $\delby{u}{\xione}$ along side 
     1--3.}
   \label{fig:interpol}
@@ -559,7 +559,7 @@ surface in 3D space where each node has the following twelve parameters
 \end{equation*}
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/surface.pstex}
+  \input{fem_basis_fns/figs/surface.pstex}
   \caption{A surface formed by four bicubic Hermite elements.}
   \label{fig:surface}
 \end{figure}
@@ -583,7 +583,7 @@ triangles are based on area ratios and are called \emph{Area Coordinates}
 Consider the ratio of the area formed from the points $2$, $3$ and 
  $\fnof{P}{x,y}$ in \figref{fig:areacoord} to the total area of the triangle
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/areacoord.pstex}
+  \input{fem_basis_fns/figs/areacoord.pstex}
   \caption{Area coordinates for a triangular element.}
   \label{fig:areacoord}
 \end{figure}
@@ -645,7 +645,7 @@ where $\lbfnsymb{1} = L_{1}$, $\lbfnsymb{2} = L_{2}$ and $\lbfnsymb{3} = L_{3}
 Six node quadratic triangular elements are constructed as shown in 
 \figref{fig:6nodeqt}.
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/6nodeqt.pstex}
+  \input{fem_basis_fns/figs/6nodeqt.pstex}
   \caption{Basis functions for a six node quadratic triangular element.}
   \label{fig:6nodeqt}
 \end{figure}
@@ -653,7 +653,7 @@ Six node quadratic triangular elements are constructed as shown in
 %\begin{example}{Defining a triangular element mesh}
 %  {Defining a triangular element mesh}
 %  \begin{figure}[htbp] \centering
-%    \input{figs/fem_basis_fns/egdiag5.pstex}
+%    \input{fem_basis_fns/figs/egdiag5.pstex}
 %    \label{fig:egdiag5}
 %  \end{figure} 
 %  \label{sec:Deftem} 
@@ -671,7 +671,7 @@ the annular plate in \figref{fig:dca}a has two global nodes, the first with
 $r=r_{1}$ and the second with $r=r_{2}$.
 
 \begin{figure}[htbp] \centering
- \input{figs/fem_basis_fns/defca.pstex}
+ \input{fem_basis_fns/figs/defca.pstex}
   \caption{Defining a circular annulus with one cylindrical polar element. 
     Notice that element vertices $1$ and $2$ in $\pbrac{r,\theta}$-space or
     $\pbrac{\xione,\xitwo}$-space, as shown in (b) and (c), respectively, map onto
@@ -734,7 +734,7 @@ later sections.
 
 
 \begin{figure}[htbp] \centering
-  \input{figs/fem_basis_fns/Psc.pstex}
+  \input{fem_basis_fns/figs/Psc.pstex}
   \caption{Prolate spheroidal coordinates.}
   \label{fig:psc}
 \end{figure}
@@ -746,7 +746,7 @@ $\pbrac{\xione,\xitwo,\xithree}$.  Only four global nodes are required provided
 the four global nodes map to eight element nodes as shown in \figref{fig:spse}.
 
 \begin{figure}[h] \centering
-  \input{figs/fem_basis_fns/spse.pstex}
+  \input{fem_basis_fns/figs/spse.pstex}
   \caption{A single prolate spheroidal element, shown (a) in 
     $\pbrac{x,y,z}$-coordinates, (c) in $\pbrac{\lambda, \mu,
       \theta}$-coordinates and (d) in
@@ -767,13 +767,13 @@ the four global nodes map to eight element nodes as shown in \figref{fig:spse}.
   \figref{fig:example111_elem}.
 
   \begin{figure}[htbp] \centering
-    \input{figs/fem_basis_fns/egdiag1.pstex}
+    \input{fem_basis_fns/figs/egdiag1.pstex}
     \caption{Node positions for example $111$.}
     \label{fig:example111_node}
   \end{figure}
 
    \begin{figure}[hbtp] \centering
-    \input{figs/fem_basis_fns/egdiag2.pstex}
+    \input{fem_basis_fns/figs/egdiag2.pstex}
     \caption{2D bilinear finite element mesh for example $111$.}
     \label{fig:example111_elem}
   \end{figure} 
@@ -782,12 +782,12 @@ the four global nodes map to eight element nodes as shown in \figref{fig:spse}.
 \item  To refine a mesh run the CMISS example $113$. After the first refine the
   mesh should appear like the one shown in \figref{fig:example113}.  
   \begin{figure}[htbp] \centering
-    \input{figs/fem_basis_fns/egdiag3.pstex}
+    \input{fem_basis_fns/figs/egdiag3.pstex}
     \caption{First refined mesh for example $113$}
     \label{fig:example113}
   \end{figure}
   \begin{figure}[htbp] \centering
-    \input{figs/fem_basis_fns/egdiag4.pstex}
+    \input{fem_basis_fns/figs/egdiag4.pstex}
     \caption{Second refined mesh for example $113$}
     \label{fig:example113b}
   \end{figure}
@@ -800,7 +800,7 @@ the four global nodes map to eight element nodes as shown in \figref{fig:spse}.
 
 \item  To define a triangular element mesh run CMISS example $116$ (see \figref{fig:example116}).
   \begin{figure}[htbp] \centering
-    \input{figs/fem_basis_fns/egdiag5.pstex}
+    \input{fem_basis_fns/figs/egdiag5.pstex}
     \label{fig:egdiag5}
     \caption{Defining a triangular mesh for example $116$}
     \label{fig:example116}

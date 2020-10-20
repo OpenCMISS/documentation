@@ -1,0 +1,101 @@
+\section{Linear Elasticity}
+\label{sec:LinearElasticity}
+
+
+\subsection{Linearisation of Finite Elasticity}
+
+\subsection{Equations of Linear Elasticity}
+
+The equations of \emph{linear (classical) elasticity} are given by
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{\rho}{\vectr{x}}\fnof{\ddot{\vectr{u}}}{\vectr{x},t}=\fnof{\rho}{\vectr{x}}\fnof{\vectr{b}}{\vectr{x}}+
+    \divergence{}{\pbrac{\dotprod{\fnof{\tensorfour{c}}{\vectr{x}}}{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}}}
+  }
+  \label{eqn:LinearElasticityEquation}
+\end{equation}
+where $\fnof{\rho}{\vectr{x}}$ is the mass density,
+$\fnof{\vectr{b}}{\vectr{x},t}$ is the body force field,
+$\fnof{\tensorfour{c}}{\vectr{x}}$ is the fourth-order elasticity tensor
+field, and $\fnof{\vectr{u}}{\vect{x},t}$ is the is the displacement field.
+
+In component form \eqnref{eqn:LinearElasticityEquation} can be written as
+\begin{equation}
+  \rho{\ddot{u}}^{i}=\rho b^{i} + \covarderiv{\pbrac{c^{ijkl}\covarderiv{u_{k}}{l}}}{j}
+\end{equation}
+
+The elasticity tensor is subject to the following symmetry conditions
+\begin{equation}
+  c^{ijkl}=c^{jikl}=c^{ijlk}=c^{klij}
+\end{equation}
+
+Note that for \emph{linear elastostatics} the
+$\fnof{\rho}{\vectr{x}}\fnof{\ddot{\vectr{u}}}{\vectr{x},t}$ term is zero and
+is dropped. 
+ 
+The boundary conditions for linear elasticity are Dirichlet conditions on
+displacement \ie
+\begin{equation}
+  \fnof{\vectr{u}}{\vectr{x},t} = \fnof{\vectr{g}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
+  \label{eqn:LinearElasticityDirichletBC} 
+\end{equation}
+or, in component form,
+\begin{equation}
+  u^{i}=g^{i} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
+\end{equation}
+and Neumann conditions on traction \ie
+\begin{equation}
+  \fnof{\vectr{t}}{\vectr{x},t} =\dotprod{\pbrac{\dotprod{\fnof{\tensorfour{c}}{\vectr{x}}}
+        {\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}}}{\fnof{\normal}{\vectr{x}}}
+  = \fnof{\vectr{h}}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
+  \label{eqn:LinearElasticityNeumannBC} 
+\end{equation}
+or, in component form,
+\begin{equation}
+  t^{i}=c^{ijkl}\covarderiv{u_{k}}{l}n_{j}=h^{i} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
+\end{equation}
+where $\fnof{t}{\vectr{x},t}$ is the boundary traction, $\fnof{\normal}{\vectr{x}}$ is the normal
+vector to the boundary and $\Gamma = \Gamma_D \cup \Gamma_N$.
+
+The \emph{small strain tensor} is given by a linearisation of the Lagrangian
+strain tensor $\tensortwo{E}=\frac{1}{2}\pbrac{\tensortwo{C}-\tensortwo{G}}$
+and can be written as
+\begin{equation}
+  \tensortwo{e}=\frac{1}{2}\liederiv{\vectr{u}}{\tensortwo{g}}=\frac{1}{2}\pbrac{\gradient{}{\vectr{u}}+\transpose{\gradient{}{\vectr{u}}}}
+\end{equation}
+or, in component form,
+\begin{equation}
+  e_{ij}=\frac{1}{2}\pbrac{\covarderiv{u_{i}}{j}+\covarderiv{u_{j}}{i}}
+\end{equation}
+
+The \emph{stress tensor} is given by
+\begin{equation}
+  \tensortwo{s}=\dotprod{\tensorfour{c}}{\gradient{}{\vectr{u}}}
+\end{equation}
+or, in component form,
+\begin{equation}
+  s^{ij}=c^{ijkl}\covarderiv{u_{k}}{l}
+\end{equation}
+
+Note that $\tensortwo{s}$ is symmetric and so $s^{ij}=s^{ji}$. The stress
+tensor, through the symmetry of the elasticity tensor, also follows the
+constitutive relationship
+\begin{equation}
+  \tensortwo{s}=\doubledotprod{\tensorfour{c}}{\tensortwo{e}}
+\end{equation}
+
+Similarily to hyperelastic materials the stored energy function for linear
+elasticity is given by
+\begin{equation}
+  \varepsilon=\frac{1}{2}\dotprodthree{\tensortwo{e}}{\tensorfour{c}}{\tensortwo{e}}=\frac{1}{2}e_{ij}c^{ijkl}e_{kl}
+\end{equation}
+
+The stress tensor is thus given by
+\begin{equation}
+  \tensortwo{s}=s^{ij}=\delby{\varepsilon}{\tensortwo{e}}=\delby{\varepsilon}{e_{ij}}
+\end{equation}
+and the elasticity tensor is given by
+\begin{equation}
+  \tensorfour{c}=c^{ijkl}=\delby{\tensortwo{s}}{\tensortwo{e}}=\deltwoby{\varepsilon}{\tensortwo{e}}{\tensortwo{e}}=\deltwoby{\varepsilon}{e_{ij}}{e_{kl}}
+\end{equation}

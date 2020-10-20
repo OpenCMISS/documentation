@@ -1,0 +1,22 @@
+\section{Reaction-Diffusion Equation} 
+\label{sec:ReactionDiffusionEquations}
+
+\subsection{Governing equations}
+The \emph{generalised reaction-diffusion equation} on a domain $\Omega$ with boundary
+$\Gamma$ in \OpenCMISS can be stated as
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{a}{\vectr{x}}\delby{\fnof{\vectr{u}}{\vectr{x},t}}{t}+
+    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}}+
+    \fnof{b}{\vectr{x}}\fnof{\vectr{r}}{\fnof{\vectr{u}}{\vectr{x},t}}+\fnof{\vectr{s}}{\vectr{x},t}=\vectr{0}  
+  }
+  \label{eqn:GeneralisedReactionDiffusionEquation}
+\end{equation}
+where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{\vectr{u}}{\vectr{x},t}$
+  is the vector quatity that diffuses and reacts,
+  $\fnof{\vectr{r}}{\fnof{\vectr{u}}{\vectr{x},t}}$ is the reaction vector,
+  $\fnof{a}{\vectr{x}}$ and $\fnof{b}{\vectr{x}}$ are material coefficients,
+  $\fnof{\tensor{\sigma}}{\vectr{x}}$ is the conductivity/diffusivity tensor
+  throughout the domain and $\fnof{s}{\vectr{x},t}$ is a source term in the
+  domain.
