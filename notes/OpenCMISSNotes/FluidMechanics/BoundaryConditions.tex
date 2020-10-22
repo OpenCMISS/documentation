@@ -3,8 +3,26 @@
 
 \subsection{Inlet and Outlet Conditions}
 
-\subsection{No-slip Conditions}
+\subsection{Impermeable Wall Conditions}
+
+Consider an impermable solid wall with velocity $\vectr{w}$. If the wall is stationary then $\vectr{w}=\vectr{0}$.
+
+\subsubsection{Inviscid Flow}
+
+Since there is no friction in inviscid flow then fluid can \emph{slip} or flow over the surface of an impermeable wall. This means that the fluid velocity vector must be tangential to the impermeable wall surface. This is equivalent to say that the component of fluid velocity in the normal direction to the wall must be equal to the normal component of the wall velocity \ie
+\begin{equation}
+  \dotprod{\vectr{v}}{\covectr{n}}=\dotprod{\vectr{w}}{\covectr{n}}
+\end{equation}
+
+\subsubsection{Viscous Flow}
+
+For viscous flow the fluid \emph{sticks} to the wall and there is no relative motion between the fluid and the wall. This is known as \emph{no-slip} of the fluid with the wall. In this case the fluid velocity will be the same as the wall velocity \ie
+\begin{equation}
+  \vectr{v}=\vectr{w}
+\end{equation}
 
 \subsection{Free-surface Conditions}
+
+\subsection{Far-field Conditions}
 
 
