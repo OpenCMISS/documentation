@@ -38,6 +38,30 @@ $\fnof{\rho}{\vectr{x}}$ is the material density field,
 $\fnof{\mu}{\vectr{x}}$ is the material viscosity field, and
 $\fnof{\vectr{s}}{\vectr{x},t}$ the applied body force sources respectively.
 
+Note that \eqnref{eqn:StokesEquationMomentum} uses the full divergence form of the cauchy stress form. For this form the deviatoric part of the cauchy stress for a Newtonian fluid is given by
+\begin{equation}
+  \divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}
+        +\transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+\end{equation}
+The above expression can be simplified using \eqnref{eqn:StokesEquationMass} such that
+\begin{equation}
+  \divergence{}{\fnof{\mu}{\vectr{x}}\pbrac{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}
+       +\transpose{\gradient{}{\fnof{\vectr{v}}{\vectr{x},t}}}}}}
+      =\fnof{\mu}{\vectr{x}}\laplacian{}{\fnof{\vectr{v}}{\vectr{x},t}}
+\end{equation}
+which gives a momentum equation of the form
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \fnof{\rho}{\vectr{x}}\delby{\fnof{\vectr{v}}{\vectr{x},t}}{t}=
+    \dotprod{-\gradient{}{\fnof{p}{\vectr{x},t}}}{\sharptensor{\tensor{g}}}
+    +\fnof{\mu}{\vectr{x}}\laplacian{}{\fnof{\vectr{v}}{\vectr{x},t}}
+    +\fnof{\vectr{s}}{\vectr{x},t}
+  }
+  \label{eqn:StokesEquationLaplaceMomentum}
+\end{equation}
+which is known as the \emph{Laplace Stokes equation}.
+
 Whereas \eqnref{eqn:StokesEquationMomentum} has been formulated in Eulerian
 form, moving domain approaches often require the ALE modification taking an
 additional term into account, depending on the fluid density and a correction
@@ -179,8 +203,8 @@ or
  -\gint{\Omega}{}{\rho v^{*j}\partialderiv{v^{i}}{j}w^{i}}{\Omega}
  -\gint{\Omega}{}{pg^{ik}\partialderiv{w^{i}}{k}}{\Omega}\\
  +\gint{\Omega}{}{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}\partialderiv{w^{i}}{j}}{\Omega}
- -\gint{\Omega}{}{s^{i}w^{i}}{\Omega}
- -\gint{\Omega}{}{\rho v^{*j}\christoffel{i}{j}{h}v^{h}w^{i}}{\Omega}\\
+ -\gint{\Omega}{}{s^{i}w^{i}}{\Omega} \\
+ -\gint{\Omega}{}{\rho v^{*j}\christoffel{i}{j}{h}v^{h}w^{i}}{\Omega}
  +\gint{\Omega}{}{\mu\pbrac{g^{jk}\christoffel{i}{k}{h}v^{h}+
      g^{ik}\christoffel{j}{k}{h}v^{h}}\partialderiv{w^{i}}{j}}{\Omega}\\
  =\gint{\Gamma_N}{}{\pbrac{\mu\pbrac{g^{jk}\partialderiv{v^{i}}{k}+g^{ik}\partialderiv{v^{j}}{k}}-pg^{ij}}n_{j}w^{i}}{\Gamma}
@@ -285,7 +309,7 @@ formulation from \ref{eqn:FEM3StokesEquation}:
  \begin{multline}
    %time dependence
    \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-         \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+         \fnof{\idxnodedof{\dot{v}}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
    %ALE term
    -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
        \fnof{v^{*j}}{\vectr{\xi},t}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
@@ -294,32 +318,34 @@ formulation from \ref{eqn:FEM3StokesEquation}:
    -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{g^{ik}}{\vectr{\xi}}\altgbfn{n}{\beta}{\vectr{\xi}}
        \fnof{\nodedof{p}{n}{\beta}}{t}\gsf{n}{\beta}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{k}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
    %viscous stress
-   +\dsuml{e=1}{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-     \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}\right.\\
-   \left.+\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
-     \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}}{x^{k}}\right)\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
+   +\dsuml{e=1}{E}\dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\pbrac{\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+     \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{x^{k}}
+     +\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+     \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}}{x^{k}}} \\ \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
    %body force
    -\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-   %Christofell terms
+   %boundary terms
+   -\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+       \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}=0
+   %ALE Christoffel
    -\gsum{e=1}{E}{
      \gint{\vectr{0}}{\vectr{1}}{
        \fnof{\rho}{\vectr{\xi}}\fnof{v^{*j}}{\vectr{\xi},t}\fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}
        \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
-       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\  
+       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+   %Viscous Christoffel
    +\dsuml{e=1}{E} \dintl{\vectr{0}}{\vectr{1}}
-   \fnof{\mu}{\vectr{\xi}}\left(\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
-   \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right.\\
-   \left.+\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
-   \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\right)
+   \fnof{\mu}{\vectr{\xi}}\pbrac{\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
+   \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}
+   +\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+   \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}}\\
    \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}}{x^{j}}
    \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}\\
+   %boundary Christoffel
    +\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}
        \fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
        \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
-       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-   %boundary terms
-   =\gsum{f=1}{F}{\gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
-       \fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}
+       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}==0
    \label{eqn:FEM4StokesEquation}
 \end{multline}
 where the appropriate face bases are used for the surface integrals. Note that
@@ -355,11 +381,16 @@ with respect to $\vectr{x}$ to derivatives with respect to $\vectr{\xi}$ gives
   %body force
   -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}
       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %Christofell terms
+  %boundary terms
+  -\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{o}{\gamma}\fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %ALE Christoffel
   -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
     \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{\idxnodedof{v}{*j}{n}{\beta}}{t}
       \fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}
       \idxgbfn{j}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %Viscous Christoffel
   -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
     \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}
       \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{j}}
@@ -368,13 +399,238 @@ with respect to $\vectr{x}$ to derivatives with respect to $\vectr{\xi}$ gives
     \gint{}{}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{ik}}{\vectr{\xi}}\fnof{\christoffel{j}{k}{h}}{\vectr{\xi}}
       \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{j}}
       \idxgbfn{h}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %Boundary Christoffel
   -\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{h}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
     \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}
       \fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}\fnof{n_{j}}{\vectr{\xi}}
-      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
-  %boundary terms
-  =\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{o}{\gamma}\fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}
-    \gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
-      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}=0
   \label{eqn:FEM4StokesEquation}
+\end{multline}
+
+If we assume a rectangular cartesian coordinate system, this simplifies
+significantly, as the metric tensor $g^{jk}$ will become $\delta^{jk}$ and the
+Christoffel symbols $\christoffel{i}{j}{k}$ will all be zero. This gives:
+\begin{multline}
+  %time dependence
+  \gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{\dot{v}}{i}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %ALE term
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{v^{*j}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %pressure
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gsf{n}{\beta}\fnof{\nodedof{p}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{\delta^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}\delby{\xi^{r}}{x^{k}}
+      \altgbfn{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %viscous stress
+  +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{\mu}{\vectr{\xi}}\fnof{\delta^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{k}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  +\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}\fnof{\idxnodedof{v}{j}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{\delta^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{k}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}} \\
+  %body force
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %boundary terms
+  -\gsum{f=1}{F}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{o}{\gamma}\fnof{\idxnodedof{\bar{q}}{i}{o}{\gamma}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}=0\\
+  \label{eqn:FEM4StokesEquation}
+\end{multline}
+
+\subsection{General form}
+
+We now seek to assemble this into the corresponding general form for
+dynamic equations, as outlined in \secref{sec:dynamicequations}:
+
+\begin{equation}
+  \matr{M}\fnof{\ddot{\vectr{d}}}{t}+\matr{C}\fnof{\dot{\vectr{d}}}{t}+\matr{K}\fnof{\vectr{d}}{t}+
+  \fnof{\vectr{s}}{t}+\fnof{\vectr{f}}{t}=\vectr{0}
+  \label{eqn:SEGeneralDynamic}
+\end{equation}
+where $\dot{\vectr{d}}(t)$ and $\ddot{\vectr{d}}(t)$ represent the first and
+second derivatives (respectively) of the degrees of freedom vector
+$\vectr{d}(t)$, which consists of the dependent variables
+$\vectr{v}(\vectr{x},t)$ and $p(\vectr{x},t)$. $\matr{M}$ is the mass matrix, which
+provides the shape function based weights and $\matr{C}$ is the transient
+damping matrix. $\matr{K}$ represents the stiffness matrix, and $\fnof{\vectr{f}}{t}$ is the forcing vector.
+
+We will assume cartesian coordinates $\vectr{x}=\transpose{\sqbrac{x^{1},x^{2},x^{3}}}$ and denote the
+corresponding velocity components $\vectr{v}=\transpose{\sqbrac{v^{1},v^{2},v^{3}}}$, with $N$
+representing the number of velocity DOFs and $M$ the number of pressure
+DOFs. The vector $\fnof{\vectr{d}}{t}$ then becomes:
+\begin{equation}
+  \fnof{\vectr{d}}{t}=\begin{bmatrix}
+  \fnof{\vectr{v}^{1}}{t} \\
+  \fnof{\vectr{v}^{2}}{t} \\
+  \fnof{\vectr{v}^{3}}{t} \\
+  \fnof{\vectr{p}}{t}
+  \end{bmatrix}
+\end{equation}
+and the vector $\fnof{\dot{\vectr{d}}}{t}$ then becomes:
+\begin{equation}
+  \fnof{\dot{\vectr{d}}}{t}=\begin{bmatrix}
+  \fnof{\dot{\vectr{v}}^{1}}{t} \\
+  \fnof{\dot{\vectr{v}}^{2}}{t} \\
+  \fnof{\dot{\vectr{v}}^{3}}{t} \\
+  \fnof{\dot{\vectr{p}}}{t}
+  \end{bmatrix}
+\end{equation}
+
+All the components of \ref{eqn:SEGeneralDynamic} will depend on the number of dimensions, $n_{dim}$.
+
+Returning to the general case, the Navier-Stokes equations do not have a mass
+matrix $\matr{M}$ and so 
+\begin{equation}
+  \matr{M}=\matr{0}
+\end{equation}
+
+The elemental damping matrix $\matr{C}$ is given by
+\begin{equation}
+  %dynamic term
+  C^{i\alpha\beta}_{mn}=\matr{C}^{i}=\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}
+  \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}
+    \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
+    \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
+\end{equation}
+for $i=1,\ldots,n_{dim}$ and $\matr{C}^{n_{dim}+1}\equiv\matr{0}$.
+
+For the stiffness matrix $\matr{K}$ we can combine the momentum a mass equations to give a matrix of the form
+\begin{equation}
+  \matr{K}=
+   \begin{bmatrix}
+     \matr{A}^{1}+\matr{D}^{11} & \matr{D}^{12} & \matr{D}^{13} & \matr{B}^{1}\\
+     \matr{D}^{21} & \matr{A}^{2}+\matr{D}^{22} & \matr{D}^{23} & \matr{B}^{2}\\
+     \matr{D}^{31} & \matr{D}^{32} & \matr{A}^{3}+\matr{D}^{13} & \matr{B}^{3}\\
+     -\transpose{\matr{B}^{1}} & -\transpose{\matr{B}^{2}} & -\transpose{\matr{B}^{3}} & \matr{0}
+   \end{bmatrix}
+\end{equation}
+where
+\begin{multline}
+  %ALE term
+  A^{i\alpha\beta}_{mn}=\matr{A}^{i}= 
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{v^{*j}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
+      \delby{\xi^{r}}{x^{j}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}} \\
+  %Viscous stress  
+  +\idxgsf{i}{m}{\alpha}\idxgsf{i}{n}{\beta}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{\mu}{\vectr{\xi}}\fnof{g^{jk}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}
+      \delby{\xi^{s}}{x^{j}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}\delby{\xi^{r}}{x^{k}}
+      \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}\\
+\end{multline}
+where $i=1,\dots,n_{dim}$ and $\matr{A}^{n_{dim}+1}\equiv\matr{0}$.
+
+Also,
+\begin{equation}
+  %Pressure term  
+  B^{i\alpha\beta}_{mn}=\matr{B}^{i}=\idxgsf{i}{m}{\alpha}\gsf{n}{\beta}\gint{\vectr{0}}{\vectr{1}}{
+      \fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{r}}\delby{\xi^{r}}{x^{k}}
+      \altgbfn{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
+\end{equation}
+where $i=1,\dots,n_{dim}$ and $\matr{B}^{n_{dim}+1}\equiv\matr{0}$.
+
+Now
+\begin{equation}
+  D^{ij\alpha\beta}_{mn}=\matr{D}^{ij}=\bar{D}^{ij\alpha\beta}_{mn}+\tilde{D}^{ij\alpha\beta}_{mn}=\bar{\matr{D}}^{ij}+\tilde{\matr{D}}^{ij}
+\end{equation}
+where
+\begin{equation}
+  \bar{D}^{ij\alpha\beta}_{mn}=\bar{\matr{D}}^{ij}=\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}
+  \gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}\fnof{g^{ik}}{\vectr{\xi}}\delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}
+    \delby{\xi^{s}}{x^{j}}\delby{\idxgbfn{j}{n}{\beta}{\vectr{\xi}}}{\xi^{r}}\delby{\xi^{r}}{x^{k}}
+    \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}\\
+\end{equation}
+and
+\begin{multline}
+  %ALE term
+  \tilde{D}^{ij\alpha\beta}_{mn}=\tilde{\matr{D}}^{ij}=
+  -\gsum{e=1}{E}{\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}\fnof{\idxnodedof{v}{h}{n}{\beta}}{t}
+    \gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\fnof{\idxnodedof{v}{*j}{n}{\beta}}{t}
+      \fnof{\christoffel{i}{j}{h}}{\vectr{\xi}}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}
+      \idxgbfn{j}{n}{\beta}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  %Viscous terms  
+  +\idxgsf{i}{m}{\alpha}\idxgsf{j}{n}{\beta}
+  \dintl{\vectr{0}}{\vectr{1}}\fnof{\mu}{\vectr{\xi}}\pbrac{\fnof{g^{hk}}{\vectr{\xi}}
+  \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{h}}
+  \fnof{\christoffel{i}{k}{j}}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
+  +\fnof{g^{ik}}{\vectr{\xi}}
+  \delby{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}\delby{\xi^{s}}{x^{h}}
+  \fnof{\christoffel{h}{k}{j}}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}} 
+  \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}}
+\end{multline}
+where $i,j=1,\dots,n_{dim}$ and $\matr{D}^{ij}\equiv\matr{0}\quad\forall\quad i,j=n_{dim}+1$.
+
+The source vector is given by
+\begin{equation}
+  s^{i\alpha}_{m}=\vectr{s}^{i}=-\idxgsf{i}{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{s^{i}}{\vectr{\xi},t}
+      \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
+\end{equation}
+where $i=1,\dots,n_{dim}$ and $\vectr{s}^{n_{dim}+1}\equiv\vectr{0}$.
+
+The boundary traction vector is given by
+\begin{equation}
+  f^{i\alpha}_{m}=\bar{f}^{i\alpha}_{m}+\tilde{f}^{i\alpha}_{m}
+\end{equation}
+where
+\begin{equation}
+  \bar{f}^{i\alpha}_{m}=\bar{\vectr{f}}^{i}=-\idxgsf{i}{m}{\alpha}
+  \gint{\vectr{0}}{\vectr{1}}{\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgbfn{i}{o}{\gamma}{\vectr{\xi}}\fnof{\idxnodedof{q}{i}{o}{\gamma}}{t}\idxgsf{i}{o}{\gamma}
+    \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
+\end{equation}
+and
+\begin{equation}
+  \tilde{f}^{i\alpha}_{m}=\tilde{\vectr{f}}^{i}=-\gint{\vectr{0}}{\vectr{1}}{\fnof{\mu}{\vectr{\xi}}
+       \fnof{g^{jk}}{\vectr{\xi}}\fnof{\christoffel{i}{k}{h}}{\vectr{\xi}}\idxgbfn{h}{n}{\beta}{\vectr{\xi}}
+       \fnof{\idxnodedof{v}{h}{n}{\beta}}{t}\idxgsf{h}{n}{\beta}\fnof{n_{j}}{\vectr{\xi}}
+       \idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
+\end{equation}
+where $i=1,\dots,n_{dim}$ and $\vectr{f}^{n_{dim}+1}\equiv\vectr{0}$.
+
+The final system is given by
+\begin{multline}
+  \begin{bmatrix}
+    \matr{C}^{1} & \matr{0} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{C}^{2} & \matr{0} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{C}^{3} & \matr{0} \\
+    \matr{0} & \matr{0} & \matr{0} & \matr{0}
+  \end{bmatrix}\begin{bmatrix}
+      \fnof{\dot{\vectr{v}}^{1}}{t} \\
+      \fnof{\dot{\vectr{v}}^{2}}{t} \\
+      \fnof{\dot{\vectr{v}}^{3}}{t} \\
+      \vectr{0}
+  \end{bmatrix}\\
+  +\begin{bmatrix}
+     \matr{A}^{1}+\matr{D}^{11} & \matr{D}^{12} & \matr{D}^{13} & \matr{B}^{1}\\
+     \matr{D}^{21} & \matr{A}^{2}+\matr{D}^{22} & \matr{D}^{23} & \matr{B}^{2}\\
+     \matr{D}^{31} & \matr{D}^{32} & \matr{A}^{3}+\matr{D}^{13} & \matr{B}^{3}\\
+     -\transpose{\matr{B}^{1}} & -\transpose{\matr{B}^{2}} & -\transpose{\matr{B}^{3}} & \matr{0}
+  \end{bmatrix}\begin{bmatrix}
+    \fnof{\vectr{v}^{1}}{t} \\
+    \fnof{\vectr{v}^{2}}{t} \\
+    \fnof{\vectr{v}^{3}}{t} \\
+    \fnof{\vectr{p}}{t}
+  \end{bmatrix}\\
+  +\begin{bmatrix}
+    \fnof{\vectr{s}^{1}}{t} \\
+    \fnof{\vectr{s}^{2}}{t} \\
+    \fnof{\vectr{s}^{3}}{t} \\
+    \vectr{0}
+  \end{bmatrix}+\begin{bmatrix}
+    \fnof{\vectr{f}^{1}}{t} \\
+    \fnof{\vectr{f}^{2}}{t} \\
+    \fnof{\vectr{f}^{3}}{t} \\
+    \vectr{0}
+  \end{bmatrix}=\begin{bmatrix}
+  \vectr{0} \\
+  \vectr{0} \\
+  \vectr{0} \\
+  \vectr{0}
+  \end{bmatrix}
 \end{multline}

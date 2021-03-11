@@ -715,7 +715,7 @@ formulation from \ref{eqn:NSEFEM2}:
 \begin{multline}
   %time dependence
   \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  \fnof{\idxnodedof{\dot{v}}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %convective term
   +\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
   \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
@@ -1002,7 +1002,7 @@ The final system is given by
       \fnof{\dot{\vectr{v}}^{1}}{t} \\
       \fnof{\dot{\vectr{v}}^{2}}{t} \\
       \fnof{\dot{\vectr{v}}^{3}}{t} \\
-      \vectr{0}
+      \fnof{\dot{\vectr{p}}}{t}
   \end{bmatrix}+\begin{bmatrix}
      \matr{A}^{1}+\matr{D}^{11} & \matr{D}^{12} & \matr{D}^{13} & \matr{B}^{1}\\
      \matr{D}^{21} & \matr{A}^{2}+\matr{D}^{22} & \matr{D}^{23} & \matr{B}^{2}\\

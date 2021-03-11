@@ -50,6 +50,10 @@ of them is not a vector at all but rather it is a \emph{covector}.
 
 \subsection{Covariant Differentiation}
 
+Consider transforming a constant vector $\vectr{a}$ by moving it through $\Delta\theta$ in polar coordinates to the vector $\hat{\vectr{a}}$ as shown in \figref{fig:CovariantDerivativeConstantVector}.
+
+\epstexfigure{DifferentialGeometry/svgs/covariantderivvector.eps_tex}{Changes of a vector due to changes in the coordinate system.}{Transformation of a constant vector $\vectr{a}$ to $\hat{\vectr{a}}$ by moving it through $\Delta\theta$ in a polar coordinate system. The transformation shows that $\delby{a^{r}}{\theta}$ is non-zero even though the physical vector $\vectr{a}$ is constant.}{fig:CovariantDerivativeConstantVector}{0.5}
+
 A covariant derivative is a derivative along a tangent vector of a
 manifold. It is a generalisation of a directional derivative to manifolds. It
 is a derivative that under a coordinate transforms covariantly \ie linearly
@@ -425,13 +429,16 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The Laplacian of a scalar using covariant derivatives is
 \begin{equation}
-  \laplacian{}{\phi}=\divop\pbrac{\gradop\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}
+  \begin{aligned}
+    \laplacian{}{\phi}&=\divop\pbrac{\gradop\phi}=\divergence{}{\gradient{}{\phi}}=\mixedderiv{\phi}{i}{i}=\frac{1}{\sqrt{g}}\partialderiv{\pbrac{\sqrt{g}g^{ij}\partialderiv{\phi}{j}}}{i}\\
+    &=g^{ij}\pbrac{\deltwoby{\phi}{x^{i}}{x^{j}}-\christoffel{k}{i}{j}\delby{\phi}{x^{k}}}
+  \end{aligned}
 \end{equation}
-where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
+where $g$ is the determinant of the covariant metric tensor $g_{ij}$ \ie $g=\determinant{\flattensor{\tensortwo{g}}}$.
 
 The Laplacian of a vector using covariant derivatives is
 \begin{equation}
-  \laplacian{}{\vectr{\phi}}=\gradop\pbrac{\divop\vectr{\phi}}-\curlop \pbrac{\curlop\vectr{\phi}}==\mixedderiv{\vectr{\phi}}{i}{i}
+  \laplacian{}{\vectr{\phi}}=\gradop\pbrac{\divop\vectr{\phi}}-\curlop \pbrac{\curlop\vectr{\phi}}=\mixedderiv{\vectr{\phi}}{i}{i}
 \end{equation}
 
 The Laplacian of a contravariant (rank (0,1)) tensor $\phi^{k}$ is
