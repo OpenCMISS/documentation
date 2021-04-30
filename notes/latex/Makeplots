@@ -87,7 +87,7 @@ all_pstexs:
 	@${OPENCMISS_ROOT}/documentation/notes/latex/call_makefile.sh ${OPENCMISS_ROOT}/documentation/notes/latex/Makeplots pstex `find . -name "*.gnus*" -print` 
 
 clean:
-	find . -name "*.eps" -exec rm -f {} \;
+	find . -name "*.eps" -not -path "*/epsfiles/*" -exec rm -f {} \;
 	find . -name "*.pstex" -exec rm -f {} \;
 	find . -name "*.eepic" -exec rm -f {} \;
 	find . -name "*.ps" -exec rm -f {} \;

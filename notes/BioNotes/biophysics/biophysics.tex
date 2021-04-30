@@ -1,0 +1,1124 @@
+\chapter{Biophysics of Nerve and Muscle}
+
+\section{Nerves}
+
+\subsection{Cable Theory}
+
+\subsubsection{Cable equation}
+We will consider a nerve as a special case of a conducting cable.
+Consider a cable as is shown in \figref{fig:cable}.
+\pstexfigure{biophysics/figs/cable.pstex}{}{A standard cable with axial
+  current, $i_{a}$ (\mA), membrane current, $i_{m}$ (\mA/unit length of
+  current), axial resistance $r_{a}$ (\ohm/unit length), and cable potential,
+  $\fnof{V}{x,t}$ (\mV).}{fig:cable}
+
+Ohm's law for the cable is
+\begin{equation*}
+  \delby{V}{x}=-r_{a}i_{a}
+\end{equation*}
+and continuity of current is given by
+\begin{equation*}
+  i_{m}=-\delby{i_{a}}{x}
+\end{equation*}
+Hence
+\begin{equation*}
+  \deltwosqby{V}{x}=-r_{a}\delby{i_{a}}{x}=r_{a}i_{m}
+\end{equation*}
+Now $i_{m}$ can be broken into a capacitive current, $i_{c}$, and an ionic
+current $i_{i}$. For nerves and other biological cables the capacitive current
+arises as a consequence of a bilipid membrane layer in cells as shown in
+\figref{fig:bilipidmembrane}\nocite{zzz-berne:1988}.
+
+The capacitive current arises from the separation of charge $Q$ across the
+bilipid membrane, that is
+\begin{equation*}
+  Q=cV=\goneint{i_{c}}{t} \quad \text{or} \quad i_{c} = c\dby{V}{t}
+\end{equation*}
+where $c$ is the capacitance of the membrane (typically $c$ is about
+1\uFpcmpcm for bilipid membranes).
+
+\incgrfigure{width=10cm}{biophysics/epsfiles/cellmembrane.eps}{}{Structure
+  of a phospholipid bilayer. From Physiology by R.M. Berne and M.N. Levy.}
+{fig:bilipidmembrane}
+
+The ionic current component of the membrane current comes about due to the 
+transport of ions through an ionic channel in the membrane as shown in
+\figref{fig:ionicchannel}.
+
+\pstexfigure{biophysics/figs/ionicchannel.pstex}{}{Ionic channel in a cell
+  membrane.}{fig:ionicchannel}
+
+Substituting the capacitive current we obtain the cable theory equation (Note
+that $i_{i}$ would be a leakage current in a normal cable).
+\begin{equation}
+  \dfrac{1}{r_{a}}\deltwosqby{V}{x}=c\delby{V}{t}+i_{i}
+  \label{eqn:cabletheoryequation}
+\end{equation}
+Two special cases of cable conduction will now be considered:
+\subsubsection{1. Steady State Passive Current}
+Consider a steady state passive current given by $i_{i}=\dfrac{V}{r_{m}}$. The
+cable equation now becomes
+\begin{equation*}
+  \dtwosqby{V}{x}=\dfrac{r_{a}}{r_{m}}V=\dfrac{V}{\lambda^{2}}\quad\text{where}
+  \quad\lambda=\sqrt{\dfrac{r_{m}}{r_{a}}}
+\end{equation*}
+The solution to this equation is
+\begin{equation}
+  V(x)=Ae^{-x/\lambda}+Be^{x/\lambda}
+  \label{eqn:longsscable}
+\end{equation}
+Note: for a long cable $B=0$ and this can be approximated as
+$V(x)=Ae^{-x/\lambda}$ which gives the relationship shown in
+\figref{fig:longcable}. In this case $\lambda$ can be interpreted as a {\em
+  space constant}.
+
+\pstexfigure{biophysics/figs/longcable.pstex}{}{Voltage relationship for a long
+  cable with a steady state passive leakage current.}{fig:longcable}
+
+\subsubsection{2. Constant Conduction Velocity}
+If $\theta$ is the constant conduction velocity of the cable we look for
+solutions of the form
+\begin{equation*}
+  \fnof{V}{x,t}=\fnof{f}{x-\theta t}
+\end{equation*}
+Therefore
+\begin{equation*}
+  \deltwosqby{V}{x}=f^{''}=\dfrac{1}{\theta^{2}}\deltwosqby{V}{t}
+\end{equation*}
+The cable equation hence becomes
+\begin{equation*}
+  \dfrac{1}{r_{a}\theta^{2}}\deltwosqby{V}{t}=c\delby{V}{t}+i_{i}
+\end{equation*}
+Now let the axial resistance, $r_{a}=\dfrac{R_{i}}{\pi r^{2}}$, where
+$r$ is the radius and $R_{i}$ is the specific resistivity of the intra-cellular
+fluid. Similarly let the ionic current, $i_{i}=2\pi r I_{i}$, where
+$I_{i}$ is the ionic current per unit area of membrane, and let the
+capacitance, $c=2\pi r C$, where $C$ is the capacitance per unit area of
+membrane. The equation now becomes
+\begin{equation}
+  \dfrac{r}{2 R_{i} \theta^{2}}\dtwosqby{V}{t}=C\dby{V}{t}+I_{i}
+  \label{eqn:constvelocitycable}
+\end{equation}
+Since $R_{i}, C$ and $I_{i}$ are independent of radius $r$ then
+$\theta^{2}$ varies as $r$ or $\theta$ varies as $\sqrt{r}$. This dependence
+is shown in \figref{fig:velocityradiusdependance}.
+
+\pstexfigure{biophysics/figs/radiusdependance.pstex}{}{Dependence of conduction
+  velocity, $\theta$, on cable radius, $r$.}{fig:velocityradiusdependance}
+
+The implication of this dependence is that you can make signals travel faster
+by increasing cable radius but at a diminishing rate (see
+\figref{fig:velocityradiusdependance}). Typical conduction velocities are: AV
+node $\sim$ $0.2$ \mps ($7$ \um fibres); Purkinje fibres $\sim$ $4$ \mps
+($50$ \um fibres). Further increases in $\theta$ for large fibres 
+require an increase in $r_{m}$. In nerves nature does this by introducing
+insulation called myelin on the main fast conducting nerves. This is shown in
+\figref{fig:myelinsheath}.  Multiple Sclerosis is characterised by the
+destruction of these myelin sheaths.
+
+\incgrfigure{width=10cm}{biophysics/epsfiles/myelinsheath.eps}{}{Myelin
+  sheaths around nerves. (a) Schematic drawing of Schwann cells wrapping
+  around an axon to form myelin. (b) Cross-section through a myelinated axon
+  near a node of Ranvier. From Physiology by R.M. Berne and M.N.
+  Levy.}{fig:myelinsheath}
+
+\subsection{Ionic Currents}
+
+\subsubsection{Membrane potential and current flow}
+Ionic currents result from the transfer of ions through the cell membrane
+between the intra-cellular and extra-cellular fluid as shown in
+\figref{fig:cellspace}.
+
+\pstexfigure{biophysics/figs/cellspace.pstex}{}{The cell membrane separating
+  the intra- and extra-cellular spaces.}{fig:cellspace}
+
+In general the cell-membrane will be permeable only to certain ions in certain
+directions. Hence, in general the intra-cellular concentration for an ion will
+be different from the extra-cellular concentration for the ion. The
+concentrations of common ions in the different cell spaces for different
+tissues are given in
+\tabrefs{tab:ionconcentrations_skeletal}{tab:ionconcentrations_cardiac}. The
+different concentrations set up an electro-chemical potential across the cell
+membrane. This potential is given by the Nernst equation
+\begin{equation}
+  \begin{split}
+    E &=  \dfrac{RT}{ZF}\ln\dfrac{\conc{C}{o}}{\conc{C}{i}} \\
+    &=  2.303\dfrac{RT}{ZF}\log\dfrac{\conc{C}{o}}{\conc{C}{i}}
+  \end{split}
+  \label{eqn:nernst}
+\end{equation}
+where $R$ is the gas constant, $T$ the absolute temperature, $Z$ the valency
+of the ion involved and $F$ is Faraday's constant. Note that at $37$ \degC
+$\dfrac{RT}{F}$ is approximately $26$ \mV. Hence $2.303\dfrac{RT}{F}$=$60$ \mV
+(i.e. $60$ \mV change for a $10$ fold change in concentration). Equilibrium
+potentials for various ions are shown in
+\tabrefs{tab:ionconcentrations_skeletal}{tab:ionconcentrations_cardiac}.
+
+\begin{table} \centering
+  \begin{tabular}{|c|c|c|c|} \hline
+    & \emph{Intra-cellular} & \emph{Extra-Cellular} & \emph{Equilibrium} \\
+    & \emph{concentration} & \emph{concentration} & \emph{potential} \\ \hline
+    \ion{Na}{+} & $12$ \mM & $145$ \mM & $E_{\ion{Na}{+}}=+65$ \mV \\
+    \ion{K}{+} & $155$ \mM & $4$ \mM & $E_{\ion{K}{+}}=-95$ \mV \\
+    \ion{Ca}{2+} & $<\tento{-7}$ \mM & $1.5$ \mM & $E_{\ion{Ca}{2+}}=+128$ \mV\\
+    \ion{Cl}{-} & $4.2$ \mM & $123$ \mM & $E_{\ion{Cl}{-}}=-88$ \mV \\ \hline
+  \end{tabular}
+  \caption{Intra- and Extra- cellular ion concentrations and equilibrium
+    potentials for mammalian skeletal muscle.}
+  \label{tab:ionconcentrations_skeletal}
+\end{table}
+
+\begin{table} \centering
+  \begin{tabular}{|c|c|c|c|} \hline
+    & \emph{Intra-cellular} & \emph{Extra-Cellular} & \emph{Equilibrium} \\
+    & \emph{concentration} & \emph{concentration} & \emph{potential} \\ \hline
+    \ion{Na}{+} & $5$--$34$ \mM & $140$ \mM & $E_{\ion{Na}{+}}=+51$ \mV \\
+    \ion{K}{+} & $104$--$180$ \mM & $5.4$ \mM & $E_{\ion{K}{+}}=-85$ \mV \\
+    \ion{Ca}{2+} & $0.0003$--$0.001$ \mM & $3$ \mM & $E_{\ion{Ca}{2+}}=+133$ 
+    \mV \\
+    \ion{Cl}{-} & $8$--$79$ \mM & $100$ \mM & $E_{\ion{Cl}{-}}=-22$ \mV \\ 
+    \hline
+  \end{tabular}
+  \caption{Intra- and Extra- cellular ion concentrations and equilibrium
+    potentials for mammalian cardiac muscle.}
+  \label{tab:ionconcentrations_cardiac}
+\end{table}
+
+Now from Ohm's law the ionic current through a membrane for say, potassium,
+will be given by
+\begin{equation*}
+  \begin{split}
+    i_{K} &= \dfrac{1}{R}\Delta V \\
+    &= g_{K}(V_{m} - E_{K})
+  \end{split}
+\end{equation*}
+where $g_{K}$ is the membrane \emph{conductance} for potassium ions and $V_{m}$
+is the \emph{membrane potential} (difference in potential between the
+intra-cellular and extra-cellular spaces). This equation is represented
+graphically in \figref{fig:membranecurrent}.
+
+\pstexfigure{biophysics/figs/membranecurrent.pstex}{}{Potassium ionic current
+  vs. membrane potential.}{fig:membranecurrent}
+
+We should note here that by definition an outward current (from intra- to
+extra-cellular space) is defined as a positive current. It should also be
+noted that electrical current flows in the direction that the positive charge
+carriers move. Hence the potassium current (in which the positive \ion{K}{+}
+ions move from inside the cell to outside the cell) is a positive current.
+Consider now \figref{fig:membranecurrent}. As the membrane potential increases
+above $E_{K}$ the membrane current changes from a negative current to a
+positive current, or in order words, the membrane current changes from an
+inward current to an outward current. The point $E_{K}$ is hence known as the
+\emph{reversal potential} as it is at this point that the current reverses its
+direction.
+
+Membrane conductance for an ion depends on the number of conducting channels
+(see \figref{fig:ionicchannel}) and their properties or \emph{gating}.
+
+\subsubsection{Gating mechanism}
+
+When a conducting channel is fully open (i.e. all the gates are fully open)
+the membrane current is given by
+\begin{equation}
+  \overline{i_{K}}=\overline{g_{K}}\pbrac{V_{m} - E_{K}}
+\end{equation}
+where $\overline{g_{K}}$ is constant (i.e. can be used in Ohm's law). Now
+consider an intermediate state. If the fraction of gates open (or in their
+$\alpha$ state) is $y$ then the fraction of gates closed (or in their
+$\beta$ state) is $1-y$. The membrane conductance is hence given by
+\begin{equation}
+  g_{K}=\overline{g_{K}}y
+\end{equation}
+and the membrane current by
+\begin{equation}
+  i_{K}=\overline{i_{K}}y
+\end{equation}
+Now if the opening rate coefficient is $\alpha_{y}$, and the closing rate
+coefficient is $\beta_{y}$ then the gating mechanism can be depicted as in
+\figref{fig:gatingmechanism}.
+
+\pstexfigure{biophysics/figs/gatingmechanism.pstex}{}{Gating
+  mechanism.}{fig:gatingmechanism}
+
+The change in the fraction of gates open is hence governed by
+\begin{equation}
+  \dby{y}{t}=\alpha_{y}\pbrac{1-y}-\beta_{y}y
+\end{equation}
+The processes of opening and closing of the gates is called \emph{gate
+  kinetics}. The steady state for the gates for this form of gating kinetics
+is given by
+\begin{equation}
+  \dby{y}{t}=\alpha_{y}\pbrac{1-y_{\infty}}-\beta_{y}y_{\infty}\quad
+  \Rightarrow\quad y_{\infty}=\dfrac{\alpha_{y}}{\alpha_{y}+\beta_{y}}
+\end{equation}
+
+From experiment it has been found that both $\alpha_{y}$ and $\beta_{y}$
+depend on the membrane voltage e.g. on depolarisation (increasing membrane
+voltage) $\alpha_{y}$ might increase and $\beta_{y}$ might decrease (as is the
+case for \ion{K}{+} ions). This is shown graphically in
+\figref{fig:voltdepgates}.
+
+\pstexfigure{biophysics/figs/voltdepgates.pstex}{}{Dependence of the gating
+  rate constants on membrane voltage for a typical \ion{K}{+} type
+  channel.}{fig:voltdepgates}
+
+The behaviour of the gates (and hence channel conductance) for a membrane
+voltage step is shown in \figref{fig:gatevoltstep}.
+
+\pstexfigure{biophysics/figs/gatevoltstep.pstex}{}{Behaviour of open gates
+  (and hence channel conductance) for a membrane voltage clamp step
+  experiment.}{fig:gatevoltstep}
+
+\subsection{The Squid Axon and Hodgkin-Huxley Equations}
+
+\subsubsection{The squid action potential}
+
+In 1952 A.L. Hodgkin and A.F. Huxley performed voltage clamp experiments (like
+the one shown in \figref{fig:gatevoltstep}) on giant squid axons
+\cite{hodgkin:1952}. They found that the onset of the \ion{K}{+} current was
+sigmoidal in shape not exponential as in \figref{fig:gatevoltstep}. To explain
+this the membrane current had to depend on the gates in a non-linear way, i.e.
+\begin{equation}
+  i_{y}=\overline{i_{y}}y^{\gamma}
+\end{equation}
+where $\gamma$ is the number of gates (in series) per channel.
+
+For example consider two gates ($\gamma=2$) with $y=\dfrac{1}{2}$ (i.e. half the
+gates open). In this case we can average all the gates into one of the four
+possible states that the two gates can be in, namely (open, open), (open,
+closed), (closed, open) and (closed, closed). For conduction through the
+channel both gates have to be in the open state, that is the fraction of
+conducting gates is $\dfrac{1}{4}=\pbrac{\dfrac{1}{2}}^{2}=y^{\gamma}$.
+
+Hodgkin and Huxley found that you need $\gamma=4$ gates for \ion{K}{+}. These
+gates were called the $n$ gates (or potassium activation variables) and were
+found to open with increasing membrane potential. Hence the equation for the
+potassium current is
+\begin{equation}
+  i_{K}=n^{4}\overline{g_{K}}\pbrac{V_{m} - E_{K}}
+\end{equation}
+
+For the sodium channels the gating mechanisms and kinetics were found to be a
+bit more complicated. It was found that you needed gates which open with
+increasing membrane potential \emph{and} gates which close with increasing
+membrane potential. The gates which open with increasing potential were called
+the $m$ gates (or sodium activation variables) and the gates which close with
+increasing potential were called the $h$ gates (or sodium inactivation
+variables). The equation for the sodium current is
+\begin{equation}
+  i_{Na}=m^{3}h\overline{g_{Na}}\pbrac{V_{m} - E_{Na}}
+\end{equation}
+and the sodium gate voltage relationship for a voltage step is shown in
+\figref{fig:sodiumgatevoltstep}.
+
+\pstexfigure{biophysics/figs/sodiumgatevoltstep.pstex}{}{Behaviour of the
+  sodium gates (and hence channel conductance) for a voltage clamp step
+  experiment.}{fig:sodiumgatevoltstep}
+
+It should be noted that the mechanisms for the shutting off of the sodium and
+potassium channels are different. For the potassium channels the process is
+called \emph{deactivation}. This is characterised by the gates closing only
+when the membrane potential drops. For the sodium channels the process is
+called \emph{inactivation}. This is characterised by an inactivation gate that
+closes when the potential rises. Thus the channel closes even when the
+membrane potential does not drop. These two processes are shown in
+\figref{fig:de-inactivation}.
+
+\pstexfigure{biophysics/figs/de-inactivation.pstex}{}{(a) Deactivation and (b)
+  inactivation of a channel with membrane potential
+  changes.}{fig:de-inactivation}
+
+Putting the \ion{Na}{+} and \ion{K}{+} channels together we obtain the nerve
+\emph{action potential} shown in \figref{fig:squidactionpot}.
+
+\pstexfigure{biophysics/figs/squidactionpot.pstex}{}{The squid action
+  potential with the
+  sodium and potassium channel conductances.}{fig:squidactionpot}
+
+\subsubsection{Propagating action potentials}
+
+When this process happens at one end of a nerve we get a \emph{propagating}
+action potential. By raising the membrane potential of one end of the nerve
+(or by injecting current) we generate an axial current along the nerve from
+the high potential end to the low potential end in accordance with Ohm's law.
+This current raises the membrane potential (depolarises) to a point whereby
+the sodium channels open.  The point is known as the \emph{threshold voltage}.
+Once the sodium channels open the sodium ions flood in and cause an inward
+current which raises the membrane potential even higher. This causes further
+axial current and a resultant action potential is hence propagated down the
+nerve. This process is shown in \figref{fig:propactionpot}. It should be noted
+that this process requires ion pumps in the membrane to restore the intra- and
+extra-cellular ion concentrations to their resting levels. These pumps require
+energy (ATP - adenosine tri-phosphate) to operate. Until the ionic
+concentrations in an area of nerve have been returned to their resting states
+an action potential will not propagate in this area of nerve. This period
+after an action potential has passed when the nerve cannot be activated is
+called the \emph{refractory period}.
+
+\pstexfigure{biophysics/figs/propactionpot.pstex}{}{Propagating action
+  potential. (a) The nerve is initially at rest at -'ve membrane potential
+  with the cell membrane permeable to \ion{K}{+}.  (b) The membrane potential
+  is raised (or current is injected into the cell) at the left hand end which
+  depolarises (raises the membrane potential of) the cell. (c) The raised
+  membrane potential opens the \ion{Na}{+} $m$ gates at the threshold
+  potential and further raises the membrane potential to further increase the
+  axial current. (d) the action potential is propagated via local current
+  loops.}{fig:propactionpot}
+
+\subsubsection{The Hodgkin-Huxley equations}
+
+%\enlargethispage{\baselineskip}
+The work of Hodgkin and Huxley\footnote{Alan Hodgkin, Andrew Huxley and
+  Sir John Eccles were awarded the 1963 Noble prize for Physiology or Medicine
+  for the study of the transmission of nerve impulses along a nerve fibre.} can
+be summarised in the Hodgkin-Huxley equations for the action potential.
+\begin{equation}
+  \begin{split}
+    \dfrac{1}{r_{a}}\deltwosqby{V_{m}}{x} &= C \delby{V_{m}}{t} + i_{K} 
+    + i_{Na} \\
+    i_{K} &= n^{4}\overline{g_{K}}\pbrac{V_{m} - E_{K}} \\
+    i_{Na} &= m^{3}h\overline{g_{Na}}\pbrac{V_{m} - E_{Na}} \\
+    \dby{n}{t} &= \alpha_{n}\pbrac{1-n}+\beta_{n}n \\
+    \dby{m}{t} &= \alpha_{m}\pbrac{1-m}+\beta_{m}m \\
+    \dby{h}{t} &= \alpha_{h}\pbrac{1-h}+\beta_{h}h
+  \end{split}
+  \label{eqn:hodgkin-huxley}
+\end{equation}
+where $\alpha_{n},\beta_{n},\alpha_{m},\beta_{m},\alpha_{h}$ and $\beta_{h}$
+are all voltage dependent.
+
+\section{Muscle}
+
+There are three main kinds of muscle found in the body, namely skeletal
+muscle, cardiac (heart) muscle and smooth muscle (used, for example, in the
+constriction of the arteries).
+
+\subsection{Anatomy}
+
+\subsubsection{Gross anatomy}
+
+The gross structure of skeletal muscle is best though of in terms of a
+hierarchy. From the organ down to the cellular level there are three levels in
+this hierarchy. These levels are defined by connective tissue (made up of
+mainly collagen) that encases each muscle level. The first level is that of the
+whole \emph{muscle organ} which is encased by the \emph{epimysium}. The next
+level down is called the \emph{fascicle} of the muscle and is encased by the
+\emph{perimysium}. The final level is that of the \emph{muscle fibre} or
+muscle cell. This level is encased by the \emph{endomysium}. This hierarchy is
+shown in \figref{fig:smgrossanatomy}.
+
+\incgrfigure{width=15cm}{biophysics/epsfiles/smgrossanatomy.eps}{}{Gross
+  anatomy of skeletal muscle. (a) The hierarchy of internal muscle structures
+  and connective tissue that encloses them. (b) Photomicrograph of a cross
+  section of skeletal muscle (64 x). From Human Anatomy and Physiology by E.
+  N.  Marieb.}{fig:smgrossanatomy}
+
+\subsubsection{Cellular anatomy}
+The muscle cell differs a little from the idealised cells of the axons or
+nerves. Firstly the terminology applied to muscle cells is a little different.
+In muscle cells the cell membrane is known as the sarcolemma. This word
+comes from the Greek base word \emph{sarc-} which means flesh. A second
+difference is that muscle cells are \emph{multinuclear}, which means they have
+more than one nucleus per cell.
+
+\enlargethispage{-\baselineskip}
+\enlargethispage{-\baselineskip}
+\enlargethispage{-\baselineskip}
+\enlargethispage{-\baselineskip}
+The anatomy of the muscle is organised in another hierarchy. Each muscle
+fibre is made up of a number of smaller units called \emph{myofibrils}. These
+myofibrils are in turn made up two different proteins called
+\emph{myofilaments}. The two proteins are distinguished by their size and
+called the thick and thin filaments. The thick filament is made up of a
+protein called \emph{myosin}. The thin filament is made up predominately of a
+protein called \emph{actin}. This hierarchy is shown in
+\figref{fig:smcellanatomy}\nocite{marieb:1992}.
+
+\incgrfigure{width=15cm}{biophysics/epsfiles/smcellanatomy.eps}{}{Anatomy of
+  a muscle cell (fibre). (a) Photomicrograph (x 250) (b) Diagram of muscle
+  fibre (c) Portion of a myofibril (d) Enlargement of a sarcomere (e)
+  Arrangement of the thick and thin filaments. From Human Anatomy and
+  Physiology by E. N.  Marieb.}{fig:smcellanatomy}
+
+Within each myofibril a further part of muscle can be identified. The proteins
+actin and myosin are arranged in a regular fashion both longitudinally and
+radially throughout the myofibril. In the longitudinal direction these
+filaments are arranged so that they overlap in a regular fashion. When viewed
+under the microscope this regular overlap generates a series of light and dark
+bands. This pattern of light and dark bands gives muscle a striped appearance.
+Both skeletal and cardiac (but not smooth) muscle exhibit this striped pattern
+and are hence known as \emph{striated} (meaning striped) muscle. These
+striations are shown in \figref{fig:smcellanatomy}a.
+
+Looking more closely at each band a line can be seen in the middle of
+each band. The line is named the $Z$-line in the light (or $I$-band) and the
+$M$-line in the dark (or $A$-band). As these structure are regular and
+repeating a further part of muscle can be identified. This unit is known as
+the \emph{sarcomere} and is defined as the unit of muscle between two
+consecutive $Z$-lines. The typical sarcomere length in resting skeletal muscle
+is $2.2$ \um. These bands, lines and the sarcomere are shown in
+\figref{fig:smcellanatomy}c--e.
+
+The complete anatomical hierarchy of muscle is shown in
+\figref{fig:smorganisation}.
+
+\incgrfigure{height=18cm}{biophysics/epsfiles/smorganisation.eps}{}
+{Organisation of skeletal muscle. From Human Anatomy and Physiology by E. N.
+  Marieb.}{fig:smorganisation}
+
+\subsubsection{The myofilaments}
+
+We will now look in more detail at the individual myofilaments as the
+structures at this level are important when we look at how muscle contracts in
+\secref{sec:excitationcontraction}. The thick filament is made of a number of
+myosin molecules. Each myosin molecule consists of a long ``tail'' and a large
+``head'' as shown in \figref{fig:myofilaments}a. These heads are also known as
+\emph{cross-bridges}, the meaning of which will become clear later.
+
+\incgrfigure{height=18cm}{biophysics/epsfiles/smfilaments.eps}{}{Structure
+  of the myofilaments. From Human Anatomy and Physiology by E. N. Marieb.}
+{fig:myofilaments}
+
+
+Each myosin molecule is about $12$ \nm in diameter and about $1.6$ \um long.
+Groups of myosin molecules arrange themselves so that in the longitudinal
+direction of the thick filament the molecules are tail to tail and in the
+radial direction the heads are in a helical pattern with a pitch of $42.9$ \nm.
+This is shown in \figref{fig:myofilaments}b.
+
+The thin filament is more complicated than the thick filament in that it
+contains three main components. The main component is actin. Actin is a
+protein that forms a double stranded helix. The overall molecule is about $5$
+\nm in diameter and extends $1$ \um either side of the $Z$-line. Within the
+groove defined by the double stranded actin helix runs the second component of
+the thin filament, a molecule called \emph{tropomyosin}. The final component
+of the thin filament is a complex called the \emph{troponin} complex. This
+complex is attached along the tropomyosin molecule at regular intervals. The
+arrangement of the thin filament is shown in \figref{fig:myofilaments}c and
+the overall arrangement of the myofibril in \figref{fig:myofilaments}d.
+
+\subsection{Properties of muscle contraction}
+\label{sec:musclecontraction}
+
+\subsubsection{Twitch and tetanus}
+
+When a muscle is stimulated (electrically) it contracts and generates
+force. If the muscle is fixed in such a way as then ends cannot move the
+muscle is said to be contracting \emph{isometrically}, that is contracting at
+constant length. Another mode of contraction is if the muscle contracts
+against a constant load. Here the muscle is said to be contracting
+\emph{isotonically}, that is contracting at constant tension.
+
+For isometric contraction the way force is developed depends on the mode of
+stimulation. A single stimulus produces a \emph{twitch}, in which tension
+increases rapidly and then declines. If a second stimulus is applied before
+the first twitch has fallen to zero, the peak tension for the second twitch is
+higher than that of the first. As the frequency of stimulation is increased
+the tension generated rises smoothly and the muscle is said to be in
+\emph{tetanus}.  This is shown in \figref{fig:twitchtetanus}.
+
+\pstexfigure{biophysics/figs/twitchtetanus.pstex}{}{Isometric force generation
+  in response to stimulus.}{fig:twitchtetanus}
+
+The critical frequency for tetanus is about $10$ stimulations per second. The
+maximum force developed in tetanus is about $2$--$3$ times greater than that
+of a twitch.
+
+\subsubsection{Isometric force-length relationship}
+
+For isometric contraction an experiment can be performed whereby the amount of
+force a muscle generates is measured for a number of different lengths of
+muscle.  The results for this experiment are shown in the top solid line of
+\figref{fig:isometricforcelength}.
+
+\pstexfigure{biophysics/figs/isometricforcelength.pstex}{}{Isometric force
+  generation as a result of muscle length.}{fig:isometricforcelength}
+
+In addition to this passive muscle (that is muscle that is not contracting)
+resists extension beyond the normal resting length for the muscle. It is hence
+possible in this experiment to also measure the passive force-length behaviour
+of muscle. This is shown in the bottom solid line in
+\figref{fig:isometricforcelength}. By subtracting the passive tension from the
+total tension we can estimate the amount of tension developed in the muscle
+through contraction. This is the dashed line in
+\figref{fig:isometricforcelength}. As can be seen this active tension is
+maximum for lengths close to the resting length and declines if the muscle
+length is either increased or decreased.
+
+\subsubsection{Isometric quick release}
+
+When a muscle in isometric tetanus is suddenly shortened and clamped at a new
+fixed length, the tension falls abruptly and sub-sequentially rises to a new
+maximum level determined by the isometric force-length relationship.
+
+\pstexfigure{biophysics/figs/isometricquickrel.pstex}{}{Isometric quick release
+  experiment.}{fig:isomemtricquickrel}
+
+The extent of the shortening (or length step) determines the extent of the
+initial fall in tension and, in part, the time course of the subsequent
+recovery.
+
+\subsubsection{Isotonic force-velocity relationships}
+
+In an isotonic contraction the muscle is allowed to shorten against a constant
+force or load. This experiment is normally performed with the muscle attached
+to one end of a lever with a fixed amount of weight on the other end of the
+lever. The muscle is then allowed to contract at constant length (i.e.
+initially isometric contraction) and generate force. When the force generated
+is equal to the applied weight (known as the afterload) the muscle begins to
+shorten. It has been found that the velocity of this shortening is constant
+for a given afterload and that the magnitude of this velocity depends on the
+magnitude of the afterload. This is shown in \figref{fig:isotonic}.
+
+\pstexfigure{biophysics/figs/isotonic.pstex}{}{Isotonic force-length
+  relationship.}{fig:isotonic}
+
+An experiment can be done whereby the velocity of shortening is measured for a
+varying amount of afterload. The results of this experiment are known as the
+isotonic force-velocity relationship and are shown in
+\figref{fig:isotonicforcevel}. This curve has a characteristic hyperbolic
+shape. The maximum force generated occurs when the muscle is contracting
+isometrically (hence at zero velocity) and is denoted $T_{0}$. The maximum
+velocity occurs when there is no after-load and is denoted $V_{\text{max}}$
+(experimentally this is found from extrapolating the curve from low values of
+afterload).
+
+\pstexfigure{biophysics/figs/isotonicforcevel.pstex}{}{Isotonic force-velocity
+  relationship.}{fig:isotonicforcevel}
+
+\Figref{fig:isotonicforcevel} represents what we would expect from experience
+with our own muscles. Our muscles are designed to lift small loads quickly or
+large loads slowly.
+
+\subsubsection{Isotonic quick release}
+
+With this technique the muscle is first caused to contract isometrically and
+is then abruptly released to shorten against constant afterload. Typical
+results are shown in \figref{fig:isotonicquickrel}.
+
+\pstexfigure{biophysics/figs/isotonicquickrel.pstex}{}{Isotonic quick release
+  experiment.}{fig:isotonicquickrel}
+
+One release, the tension falls rapidly to the level of the new
+afterload. Initially there is an abrupt shortening which coincides with the
+change in tension. Subsequentally, a slower isotonic shortening occurs at a
+velocity which is inversely related to the new afterload.
+
+\subsection{Hill model of muscle contraction}
+
+\subsubsection{Hill's three component model}
+
+\citeasnoun{hill:1938} proposed a simple mechanical model that was empirically
+based.  Hill's three component model lumps the mechanical behaviour of muscle
+into three elements:
+\begin{enumerate}
+\item \textbf{The parallel elastic element}: This represents the potential
+  energy stored in relaxed skeletal muscle when it is stretched beyond its
+  resting length. It is assumed that this element represents the passive
+  elastic structures such as connective tissue.
+\item \textbf{The series elastic element}: This is represented as an undamped
+  spring. It was assumed that the length of this element is dependent only on
+  the force in the muscle and is therefore independent of the kinetics of
+  contraction.
+\item \textbf{The contractile element}: In this element all the active features
+  of contraction are lumped in a ``black-box'' approach. It is assumed that
+  this component was freely extensible in the relaxed state and that is was
+  ``switched on'' at the onset of contraction. Once fully activated the force
+  generated by this contractile element was assumed to be dependent only on its
+  instantaneous length and velocity and independent of time.
+\end{enumerate}
+
+This model is shown in \figref{fig:Hillmodel}.
+
+\pstexfigure{biophysics/figs/Hillmodel.pstex}{}{Hill model of
+  muscle}{fig:Hillmodel}
+
+A.V. Hill proposed the following relationship for the force-velocity
+relationship for contraction.
+\begin{equation}
+  \pbrac{V+b}\pbrac{T+a}=b\pbrac{T_{0}+a}
+  \label{eqn:Hillforcevelocity}
+\end{equation}
+where $V$ is the velocity of shortening, $T$ the tension, $T_{0}$ the
+isometric tension (at zero velocity) and $a$ and $b$ are parameters. This
+equation can be rewritten as
+\begin{equation}
+  V=\dfrac{b\pbrac{T_{0}-T}}{T+a}
+  \label{eqn:Hillvelocity}
+\end{equation}
+From experiment it has been found that $\dfrac{a}{T_{0}}=0.28$ and $b=0.4$
+muscle lengths/second $\sim 12$ \mmps. Hence the maximum velocity of
+shortening can be found at the point where $T=0$, i.e.
+\begin{equation}
+  V_{0}=V_{\text{max}}=\dfrac{bT_{0}}{a}=\dfrac{0.4}{0.28}\sim 1.43 l_{0}/s
+\end{equation}
+where $l_{0}$ is the resting length of the muscle.
+
+\subsubsection{Limitations of Hill's model}
+
+Hill's model for muscle formed the basis of the understanding of muscle for
+about twenty years. It was eventually discarded because the predictions of the
+model and experiment differed for two key experiments:
+\begin{enumerate}
+\item The Hill model failed to predict accurately the time course of the rise
+  in force during isometric contraction.
+\item The Hill model does not predict the transients following quick isometric
+  and isotonic release.
+\end{enumerate}
+
+\subsection{Sliding filament theory}
+
+\subsubsection{Sarcomere force-length relation}
+
+In 1954 H.E. Huxley observed that during contraction the size of the $I$-band
+diminishes.  They proposed that this could be explained by allowing the
+relative sliding of the thick and thin filaments. The myofilaments, themselves
+were found not to shorten. This process explains the sarcomere force-length
+relation shown in the top part of \figref{fig:sarcoforcelength}. This theory
+was known as the \emph{sliding filament theory}.
+
+\pstexfigure{biophysics/figs/sarcoforcelength.pstex}{}{Sarcomere force-length
+  relationship.}{fig:sarcoforcelength}
+
+The shape of the curve in \figref{fig:sarcoforcelength} can be explained by
+the different degree of interaction between the thick and thin filaments (also
+shown schematically in the bottom part of \figref{fig:sarcoforcelength}). At
+point (a) no force is generated in the sarcomere as there is no interaction
+between the thick and thin filaments. At point (b) there is maximum force as
+there is maximum interaction. This continues up to point (c) when the thin
+filaments start to interact. At point (d) there is steric interference of
+the thin filaments limiting the interaction between them and the thick
+filaments. At point (e) there is interference of both the thick and thin
+filaments resulting in no force production.
+
+\subsubsection{Excitation-Contraction of muscle}
+\label{sec:excitationcontraction}
+
+We will now look in a bit more detail as to how muscle contracts in response
+to a stimulus. First consider the schematic of the muscle cell as shown in
+\figref{fig:smsarcolemma}.
+
+\incgrfigure{width=15cm}{biophysics/epsfiles/smsarcolemma.eps}{}{The muscle
+  cell showing cell membrane details. From Human Anatomy and Physiology by E.
+  N. Marieb.}{fig:smsarcolemma}
+
+What should be noted here is the network of ``tubes'' called the
+\emph{sarcoplasmic reticulum} just under the sarcolemma (cell membrane). This
+sarcoplasmic reticulum is ``connected'' to the sarcolemma through the
+T-tubules (or transverse tubules) at the \emph{terminal cisterna}. This is
+shown schematically in \figref{fig:excitationcontract}.
+
+\pstexfigure{biophysics/figs/excitcontract.pstex}{}{Excitation contraction
+  coupling in skeletal muscle.}{fig:excitationcontract}
+
+The method of contraction for a muscle twitch is then as follows: An action
+potential propagates along the sarcolemma from a neuro-muscular junction and
+down the T-tubule to the terminal cisterna of the sarcoplasmic reticulum.  The
+change in the membrane potential from the action potential opens voltage
+dependent gates and allows a small amount of \ion{Ca}{2+} ions to enter the
+sarcoplasmic reticulum. This triggers a much greater release of \ion{Ca}{2+}
+into the sarcoplasm (the inside of the cell).  Calcium then interacts with
+troponin in the thin filament which then undergoes steric rearrangement.  This
+rearrangement allows a myosin head (cross-bridge) to bind to actin in a
+reaction that causes the muscle to contract. At the same time the muscle is
+contracting the intra-cellular calcium also activates pumps in the
+sarcoplasmic reticulum.  These pumps take the calcium out from the cell and
+back into the sarcoplasmic reticulum. As the level of intra-cellular calcium
+drops the cross-bridges can not re-attach once they (eventually) detach and the
+muscle relaxes.
+
+\subsection{Muscle energetics}
+
+\subsubsection{Cross-bridge cycling}
+
+When muscle contracts it does work. This work hence requires a supply of
+energy. The main ``currency'' of energy in the cell is adenosine
+tri-phosphate or ATP. The equilibrium equation by which ATP generates energy
+is 
+\begin{equation}
+  \text{ATP} \rightleftharpoons \text{ADP} + \text{P} + \text{energy} 
+\end{equation}
+where P is free phosphate and ADP is adenosine di-phosphate. 
+
+As explained in \secref{sec:excitationcontraction} a muscle twitch occurs
+when a myosin cross-bridge attaches to actin and stops when the cross-bridge
+detaches. For a tetanised muscle, however, the story is a slightly
+different. During tetanus the cross-bridges are continually attaching,
+detaching and then re-attaching. This process is known as \emph{cross-bridge
+  cycling} and is shown in \figref{fig:smxbridgecycle}.
+
+\incgrfigure{width=15cm}{biophysics/epsfiles/smxbridgecycle.eps}{}
+{Cross-bridge energy cycle. From Human Anatomy and Physiology by E. N.
+  Marieb.}{fig:smxbridgecycle}
+
+The cross-bridge cycle starts at point (1) in \figref{fig:smxbridgecycle} when
+the myosin cross-bridge (with ADP and P) attaches to actin. At this point the
+myosin-head is in it's \emph{high-energy} configuration. The myosin head then
+rotates to its \emph{intermediate-energy} configuration causing the actin
+molecule to slide resulting in contraction. As the myosin head rotates the
+myosin tail is stretched generating force. ADP and P are released from the
+myosin head during this process.  This is point (2) in
+\figref{fig:smxbridgecycle}.  ATP now attaches to the myosin head causing the
+cross-bridge to deattach from the actin molecule.  The myosin molecule is now
+it's \emph{low-energy} configuration as shown in point (3). Hydrolysis of the
+ATP bound to the myosin head now occurs and the cross-bridge cycle moves to
+point (4). The cycle is completed when the cross-bridge re-attaches to the
+actin molecule. Recalling \figref{fig:isotonicforcevel} we can now interpret
+$V_{0}$ as the maximum turnover rate of cross-bridges.
+
+It should be noted that energy (ATP) is required for \emph{relaxation} not
+contraction of muscle. This is the reason why \emph{rigor mortis} occurs on
+death. With death the body ceases the manufacture of ATP. As the stores of
+ATP run down muscles that are contracted cannot be relaxed and hence the
+muscle stays in its contracted state.
+
+\subsubsection{Muscle Power}
+We will return now to Hill's model of contraction to consider muscle power.
+Recall \Eqnref{eqn:Hillvelocity} for velocity, i.e.
+\begin{equation*}
+  V=\dfrac{b\pbrac{T_{0}-T}}{T+a}
+\end{equation*}
+Now power=force x velocity, hence
+\begin{equation}
+  P=Tb\dfrac{T_{0}-T}{T+a}
+\end{equation}
+Maximum power will occur when $\dby{P}{T}=0$, therefore
+\begin{equation*}
+  \begin{split}
+    0 &= b\dfrac{T_{0}-T}{T+a}+Tb\dfrac{\pbrac{T+a}.1-\pbrac{T_{0}-T}}
+    {\pbrac{T+a}^{2}} \\
+    &= \dfrac{b\pbrac{T+a}{T_{0}-T}-T\pbrac{T_{0}+a}}{\pbrac{T+a}^{2}}
+  \end{split}
+\end{equation*}
+\begin{equation*}
+  \Rightarrow -T^{2}-2aT+aT_{0}=0 \quad \text{or} \quad T^{2}+2aT-aT_{0}=0
+\end{equation*}
+hence
+\begin{equation*}
+  \begin{split}
+    T &= \dfrac{-2a \pm \sqrt{4a^{2}-4aT_{0}}}{2} \\
+    &= \sqrt{a^{2}-aT_{0}}-a \\
+    &= 0.32T_{0} \quad \text{with}\quad \dfrac{a}{T_{0}}=0.28
+  \end{split}
+\end{equation*}
+that is maximum power occurs when $T \approx \dfrac{1}{3}T_{0}$ and similarly
+maximum velocity occurs when $V \approx \dfrac{1}{3}V_{0}$.
+
+\subsubsection{Heat production}
+
+Consider now the heat produced during isometric tension, as shown in
+\figref{fig:isometricheat}.
+
+\pstexfigure{biophysics/figs/isometricheat.pstex}{}{Heat production during
+  isometric tension.}{fig:isometricheat}
+
+Heat production in muscle can be broken into the following components.
+\begin{enumerate}
+\item \textbf{Heat production due to isometric contraction}: The heat production
+  during isometric tetanus can be further broken into fast and slow, or
+  \emph{labile} and \emph{stable} components. Stable heat rate is maximum at
+  the normal resting length of the muscle and falls either side of this length
+  (i.e. the same trend and the force-length relationship). Stable heat
+  production is due to ATP splitting by two-processes: actin-myosin
+  interaction (which is proportional to filament overlap) and calcium pumping
+  by the sarcoplasmic reticulum. Labile heat, on the other hand, is
+  independent of length and hence it is not associated with actin-myosin
+  interaction. It is thought labile heat production is due to processes
+  associated with the initiation of contraction.
+\item \textbf{Heat production due to activation}: When muscle is stretched to a
+  length such that there is no actin-myosin interaction stable heat production
+  is not zero (in fact it is about 30\% of the stable heat production at
+  resting length). This non-zero stable heat production can not be due to
+  actin-myosin interaction (as there is no filament interaction) and is
+  thought to be due to activation and excitation-contraction coupling.
+\item \textbf{Heat production due to shortening}: A.V. Hill\footnote{Archibald
+    Hill was awarded the 1922 Nobel prize for Physiology or Medicine for the
+    discovery relating to heat production in muscles.} showed that if a muscle
+  is allowed to shorten more heat is produced than if the muscle was held at a
+  fixed length. Hill showed that this \emph{shortening heat} is dependent only
+  on the extent of shortening and is independent of the time during which
+  shortening occurs, and the load under which the shortening took place. This
+  extra shortening heat is due to the increased velocity of the muscle which
+  increases the turnover of cross-bridges and hence increases the amount of
+  ATP split and energy/heat produced.
+\item \textbf{Relaxation heat}: As shown in \figref{fig:isometricheat} as force
+  declines at the termination of a tetanus heat production falls then rises
+  again to a shortlived peak. This secondary rise in heat production is termed
+  \emph{relaxation heat} and is thought to be due to: (1) dissipation in the
+  muscle of work performed on it by external series elasticity; (2)
+  dissipation of work on one region of the muscle as it extended by shortening
+  in another region; (3) thermoelastic effects.
+\item \textbf{Recovery heat}: Hill described this heat around 1922. He showed
+  that the initial heat from contraction was followed by a \emph{recovery
+    heat} of similar magnitude over the next $20$--$30$ minutes. It is generally
+  accepted that this recovery heat is associated with the resynthesis of
+  phosphocretaine and restoration of glycogen stores. For muscles which are
+  specialised for sustainted activity (e.g. heart muscle) initial and recovery
+  heat occurs almost synchronously and cannot be distinguished.
+\item \textbf{Resting heat production}: The heat produced by resting (passive)
+  muscle is appreciable with the resting heat production of skeletal muscle
+  accounting for half of the total body basal metabolic rate. Further, the
+  rate of heat production for cardiac muscle is five times greater than that
+  of an equivalent mass of skeletal muscle. Resting heat production is
+  increased with a muscle is stretched. This is known as the \emph{Feng}
+  effect. It is unclear the exact cause of this resting heat but the activity
+  of the background sodium-potassium pump has been shown to contribute only a
+  small amount to this resting heat production. It is argued that resting heat
+  production may be due to protein synthesis.
+\end{enumerate}
+
+\section{Fading Memory Model}
+
+We will now move away from biophysical models of muscle (e.g.
+\citeasnoun{huxley:1957} or \citeasnoun{huxley:1971}) and investigate a
+continuum model of muscle mechanics. For the moment we will only be concerned
+with tetanised muscle.
+
+Under steady state conditions muscle has a tension-length relationship as
+shown in \figrefs{fig:isometricforcelength}{fig:sarcoforcelength}. We define
+now the length ratio $\lambda$ as the actual muscle length divided by the
+resting length i.e. $\lambda$ is $1.0$ at the muscle resting length. We will
+derive the model from the point of view of a isometric quick release
+experiment i.e. a change in the length of muscle whilst at steady state.
+
+Let $\fnof{Q}{T,T_{0}}$ be some, as yet unspecified, non-linear function of
+$T,T_{0}$ such that $\fnof{Q}{T_{0},T_{0}}=0$. Consider now the effect of a
+change in length, $\Delta\lambda$, at a time $\tau (< t)$ on the current
+response at time $t$. The change in $Q$ (at time $t$) resulting from this length
+step (at time $\tau$) is
+\begin{equation*}
+  \begin{split}
+    \Delta Q &= \fnof{\Phi}{t-\tau}\Delta\lambda \\
+    &= \fnof{\Phi}{t-\tau}\dby{\fnof{\lambda}{\tau}}{t}dt
+  \end{split}
+\end{equation*}
+where $\fnof{\Phi}{t}$ is the material response function, that is
+$\fnof{\Phi}{t-\tau}$ is the response at time $t$ to a stimulus at time
+$\tau$. Integrating we have
+\begin{equation}
+  \fnof{Q}{t}=\gint{-\infty}{t}{\fnof{\Phi}{t-\tau}\fnof{\dot{\lambda}}{\tau}}
+  {t}
+  \label{eqn:hereditaryintegral}
+\end{equation}
+This type of integral is known as a hereditary integral.
+
+Now if we assume that the overall response depends more on recent events that
+earlier events --- that is the material has a ``fading memory'' --- and if we
+assume superposition (i.e. linearity) it is customary to put the material
+responds function to be
+\begin{equation}
+  \fnof{\Phi}{t-\tau}=\dsum_{i=1}^{N}A_{i}e^{-\alpha_{i}t}
+\end{equation}
+where $\alpha_{i}$ are the rate constants for the
+material. \Eqnref{eqn:hereditaryintegral} now becomes
+\begin{equation}
+  \fnof{Q}{\fnof{T}{t},T_{0}}=\dsum_{i=1}^{N}A_{i}\gint{-\infty}{t}{
+    e^{-\alpha_{i}\pbrac{t-\tau}}\fnof{\dot{\lambda}}{\tau}}{\tau}
+\end{equation}
+We need to use experimental results to determine what form $Q$ has, how many
+$N$'s are needed and what the values of $A_{i}$ and $\alpha_{i}$ are. There
+are four types of tests that can be used to reveal $Q,\alpha_{i}$ and $A_{i}$:
+\begin{enumerate}
+\item Step changes in length --- relaxation test (transient response test)
+\item Step changes in tension --- creep test (transient response test)
+\item Frequency response test
+\item Wave propagation test
+\end{enumerate}
+
+As the length step is the most common in the literature for single fibre
+experiments we will use this to define the model then we can use other tests to
+verify the model. 
+
+Consider two length step experiments as shown in \figref{fig:fmlengthstep}.
+\pstexfigure{biophysics/figs/fmlengthstep.pstex}{}{Two step-length experiments.}
+{fig:fmlengthstep}
+By using a Heavyside and Dirac delta functions we can put
+$\lambda=\Delta\lambda \fnof{H_{0}}{\tau}+\lambda_{0}$ and
+$\dot{\lambda}=\Delta\lambda\fnof{\delta}{\tau}$. 
+
+Substituting this into
+\Eqnref{eqn:hereditaryintegral} we obtain
+\begin{equation*}
+  \fnof{Q}{\fnof{T}{t},T_{0}}=\Delta\lambda\dsum_{i=1}^{N}A_{i}\gint{-\infty}{t}
+  {e^{-\alpha_{i}\pbrac{t-\tau}}\fnof{\delta}{\tau}}{\tau}
+\end{equation*}
+Now defining $t=0$ as the instance of the length step we have
+\begin{equation*}
+  \fnof{Q}{\fnof{T}{t},T_{0}}=\Delta\lambda\dsum_{i=1}^{N}A_{i}e^{-\alpha_{i}t}
+\end{equation*}
+
+At $t=0$ (immediately after the step) $T=T_{1_{j}}$, that is minimum tension
+is reached. Hence
+\begin{equation}
+  \fnof{Q}{T_{1_{j}},T_{0}}=\Delta\lambda_{j}\dsum_{i=1}^{N}A_{i}
+\end{equation}
+
+Experimentally we find the result as shown in \figref{fig:fmresults}.
+
+\pstexfigure{biophysics/figs/fmresults.pstex}{}{Experimental results of step
+  length experiments.}{fig:fmresults}
+
+It is found that all these curves superimpose if the isometric points are 
+the same (that is all curves are scaled by $T_{0}$). This is a consequence of
+the number of available cross-bridges at different lengths (i.e. each
+crossbridge is an independent force generator so tension is proportional to
+the number of active cross-bridges). We can therefore put
+\begin{equation*}
+  \fnof{Q}{T_{1},T_{0}}=\fnof{Q}{\dfrac{T_{1}}{T_{0}}}
+\end{equation*}
+From the experimental data we find we can fit the results with
+\begin{equation*}
+  \fnof{Q}{T_{1},T_{0}}=\dfrac{T_{1}/T_{0}-1}{T_{1}/T_{0}+a}
+\end{equation*}
+where $a$ is a parameter (the curvature of the curve). Hence the general form
+for the $Q$ function is
+\begin{equation}
+  \fnof{Q}{T,T_{0}}=\dfrac{T/T_{0}-1}{T/T_{0}+a}  
+  \label{eqn:Qdefinition}
+\end{equation}
+Fitting to data from Huxley and Simmons we find that $a=2$ and $\dsum
+A_{i}=81$ (both non-dimensional). 
+
+With $Q$ defined in \Eqnref{eqn:Qdefinition}, the complete tension recovery
+following the length step is given by
+\begin{equation}
+  \dfrac{T/T_{0}-1}{T/T_{0}+a} =\Delta\lambda\dsum_{i=1}^{N} A_{i}
+  e^{-\alpha_{i}t}
+  \label{eqn:tensionrecovery}
+\end{equation}
+Consider now a length step of $\Delta\lambda=-0.007$ (i.e. a $0.7$\%
+shortening). The results of this experiment are shown in
+\figref{fig:fmtimeresponse}.
+
+\pstexfigure{biophysics/figs/fmtimeresponse.pstex}{}{Time response of tension
+  recovery following a length step.}{fig:fmtimeresponse}
+
+From \figref{fig:fmtimeresponse} the slow recovery is modelled by
+\Eqnref{eqn:tensionrecovery} with $\alpha_{1}=32$ \mps and $A_{1}=17$.
+The slow recovery phase is associated with cross-bridge cycling. This gives
+good agreement with the experimental results for $t>20$ \ms.
+
+For $t<20$ \ms we need a $2^{\text{nd}}$ order process (i.e.
+$\alpha_{2},\alpha_{3},A_{2}$ and $A_{3}$), with $\alpha_{2}=1$ \mps,
+$A_{2}=26$, $\alpha_{3}=5$ \mps and $A_{3}=42$. This fast recovery phase is
+associated with attached cross-bridge head dynamics (head rotation etc.).  The
+final model is hence
+\begin{equation}
+  \dfrac{T/T_{0}-1}{T/T_{0}+a}=\dsum_{i=1}^{3} A_{i}\gint{-\infty}{t}
+  {e^{-\alpha_{i}\pbrac{t-\tau}}\fnof{\dot{\lambda}}{\tau}}{\tau}
+  \label{eqn:fadingmemory}
+\end{equation}
+This model gives good agreement with experiment for a large range of
+$\Delta\lambda$ (but not too large or fast).
+
+\subsection{Finite duration length step}
+
+In practice the time take for the tension to fall to $T_{1}$ following a
+length step is not zero. We will consider now the case when the muscle takes a
+finite duration ($\Delta t$) for the tension to drop. The velocity of
+shortening is now given by
+\begin{equation*}
+  \dot{\lambda}=\begin{cases} 
+        0 & t < 0 \\
+        \Delta\lambda/\Delta t & 0 < t < \Delta t \\
+        0 & t > \Delta t
+      \end{cases}
+\end{equation*}
+\Eqnref{eqn:fadingmemory} now becomes
+\begin{equation*}
+  \begin{split}
+    \dfrac{T/T_{0}-1}{T/T_{0}+a} &= \dsum_{i=1}^{3} A_{i}
+    \gint{-\infty}{\Delta t}{e^{-\alpha_{i}\pbrac{t-\tau}}
+      \dfrac{\Delta\lambda}{\Delta t}}{\tau} \\
+    &=\Delta\lambda\dsum_{i=1}^{3}A_{i}e^{-\alpha_{i}t}\dfrac{\pbrac{
+        e^{\alpha_{i}\Delta t}-1}}{\alpha_{i}}\Delta t
+  \end{split}
+\end{equation*}
+At $t=\Delta t$ this becomes
+\begin{equation}
+  \dfrac{T/T_{0}-1}{T/T_{0}+a}=\Delta\lambda\dsum_{i=1}^{3}A_{i}
+  \dfrac{\pbrac{1-e^{-\alpha_{i}\Delta t}}}{\alpha_{i}}\Delta t
+\end{equation}
+The effects of $\Delta t$ on the tension response are shown in
+\figref{fig:fmfinitedurationresponse}.
+
+\pstexfigure{biophysics/figs/fmfinitedurationresponse.pstex}{}{Effects of the
+  time taken for a length step.}{fig:fmfinitedurationresponse}
+
+\subsection{Force step response}
+\enlargethispage{\baselineskip}
+Consider now the response to a force step. For the moment we will consider the
+case were we are initially at the plateau of the force-length relationship
+(i.e. $\lambda\approx$1 and $\fnof{T}{\lambda}\approx$constant). The
+experimental results are shown in \figref{fig:fmforcestepresponse1}.
+
+\pstexfigure{biophysics/figs/fmforcestepresponse1.pstex}{}{Effects of the time
+  taken for a force step.}{fig:fmforcestepresponse1}
+
+Consider one time constant only (i.e. $N$=1) and the region where
+$\dot{\lambda}$ constant. Hence
+\begin{equation}
+  \begin{split}
+    \dfrac{T/T_{0}-1}{T/T_{0}+a} &= A_{1}\gint{-\infty}{t}
+    {e^{-\alpha_{1}\pbrac{t-\tau}}\dot{\lambda}}{\tau} \\
+    &=A_{1}e^{-\alpha_{1}t}\dot{\lambda}\gint{-\infty}{t}
+    {e^{\alpha_{1}\tau}}{\tau} \\
+    &=\dfrac{A_{1}}{\alpha_{1}}\dot{\lambda}
+  \end{split}
+  \label{eqn:fmtransresponse1}
+\end{equation}
+This is shown in \figref{fig:fmforcevelocity1}.
+
+\pstexfigure{biophysics/figs/fmforcevelocity1.pstex}{}{Force-velocity
+  relationship for the fading memory model.}{fig:fmforcevelocity1}
+
+Now if we let $\hat{a}=aT_{0}$ and $\hat{b}=-\dfrac{\alpha_{1}}{A_{1}}$ then
+\Eqnref{eqn:fmtransresponse1} becomes
+\begin{equation*}
+  V=\dfrac{\hat{b}(T_{0}-T)}{T+\hat{a}}
+\end{equation*}
+which is the same as Hill's equation for velocity, \Eqnref{eqn:Hillvelocity}.
+
+Consider now the case when isometric tension $\fnof{T_{0}}{\lambda}$ varies
+with length in the region of interest (i.e. we are on the ascendening or
+descending limb of the force-length relationship). We will consider only one
+time constant (i.e. $N=1$) and start with
+\begin{equation*}
+   \dfrac{T/T_{0}-1}{T/T_{0}+a}=A_{1}\gint{-\infty}{t}{e^{-\alpha_{1}
+       \pbrac{t-\tau}}\dot{\lambda}}{\tau}
+\end{equation*}
+We now differentiate with respect to $t$, holding $T$ constant to extract an
+expression for $\dot{\lambda}$. To do this we must make use of \emph{Leibnitz's
+  rule} for differentiating and integral with respect to one of its
+limits. Leibnitz's rule is
+\begin{equation*}
+  \dby{ }{t}\bbrac{\gint{\fnof{g}{t}}{\fnof{h}{t}}{\fnof{f}{x,t}}{x}}=
+  \gint{\fnof{g}{t}}{\fnof{h}{t}}{\delby{\fnof{f}{x,t}}{t}}{x}+
+  \fnof{f}{\fnof{h}{t},t}\dby{h}{t}-\fnof{f}{\fnof{g}{t},t}\dby{g}{t}
+\end{equation*}
+hence
+\begin{equation*}
+  \dfrac{\pbrac{T/T_{0}+a}.1-\pbrac{T/T_{0}-1}.1}{\pbrac{T/T_{0}+a}^{2}}.
+  \dfrac{-T}{T_{0}^{2}}\dby{T_{0}}{\lambda}\dot{\lambda}=\alpha_{1}
+  \dfrac{T/T_{0}-1}{T/T_{0}+a} + A_{1}\dot{\lambda}
+\end{equation*}
+therefore
+\begin{equation}
+  \dot{\lambda}=\dfrac{\alpha_{1}\dfrac{T/T_{0}-1}{T/T_{0}+a}}
+  {A_{1}+\dfrac{1+a}{\pbrac{T/T_{0}+a}^{2}}\dfrac{T}{T_{0}^{2}}
+    \dby{T_{0}}{\lambda}}
+  \label{eqn:fmtransresponse2}
+\end{equation}
+Note that \Eqnref{eqn:fmtransresponse2} collapses to
+\Eqnref{eqn:fmtransresponse1} when $\dby{T_{0}}{\lambda}=0$. This result is
+shown in \figref{fig:fmforcestepresponse2}.
+
+\pstexfigure{biophysics/figs/fmforcestepresponse2.pstex}{}{Effects of the time
+  taken for a force step.}{fig:fmforcestepresponse2}
+
+It should be noted now that the force-velocity curve depends on $\lambda$ as
+shown in \figref{fig:fmforcevelocity2}.
+
+\pstexfigure{biophysics/figs/fmforcevelocity2.pstex}{}{Fading memory
+  force-velocity relationship for different extension
+  ratios.}{fig:fmforcevelocity2}

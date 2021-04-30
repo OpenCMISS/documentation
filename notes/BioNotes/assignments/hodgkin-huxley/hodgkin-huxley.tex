@@ -1,0 +1,83 @@
+\documentclass[12pt,dvips,fleqn]{article} 
+
+\input{opencmiss_macros} %define new commands etc.
+\input{opencmiss_defns} %define pagesetup and std. packages etc.
+\input{opencmiss_abbreviations} %define abbreviations etc.
+
+\usepackage{styles/mypaper}
+\usepackage{verbatim}
+
+\setmargrb{20mm}{20mm}{20mm}{20mm}
+
+\usepackage{times} %use the times font
+
+\title{Bioengineering Assignment 1: Hodgkin-Huxley equations}
+\date{Due: 5th May 1997}
+
+\begin{document}
+
+\maketitle
+
+\section{Report}
+
+A computer program called \texttt{hh.f} which solves the Hodgkin-Huxley
+equations (see next section) can be found in the directory
+\texttt{PRODUCT\_1:[PRODUCT.CLASS.BIO.ASSIGNMENT1]}. A command file to compile
+and link the FORTRAN code is also in this directory and is called
+\texttt{hh.com}. Copy this files to your local disk and edit the FORTRAN code
+as needed.
+
+\vspace{\baselineskip}
+\noindent Investigate and comment on the following properties of nerve:
+\begin{enumerate}
+\item The presence of a critical \emph{threshold voltage} beyond which the
+  nerve produces a rapid depolarisation.
+\item The rapid repolarisation once the peak depolarisation is reached.
+\item The \emph{refractory period} of a nerve (Shortly after generating an
+  impulse, a second impulse cannot be generated --- \emph{absolute} refractory
+  period --- or is more difficult to generate --- \emph{relative} refractory
+  period).
+\item The \emph{accommodation} of a nerve to slowly increasing stimulus
+  (accommodation can be observed as an increase in the threshold voltage for
+  initiation of an action potential when such a stimulus is applied).
+\end{enumerate}
+
+\vspace{\baselineskip}
+\noindent Write a report on the above points. Be sure to include your
+final code and to display your results appropriately (\ie don't forget to
+properly label any graphs).
+
+\section{Hodgkin-Huxley equations}
+
+Note: all times are in \ms and all voltages are in \mV.
+
+\begin{equation*}
+  \begin{split}
+    \dby{V}{t}&=\dfrac{1}{C}\sqbrac{I_{\text{stim}}-\pbrac{g_{\ion{Na}{}}m^{3}h
+        \pbrac{V-E_{\ion{Na}{}}}+g_{\ion{K}{}}n^{4}\pbrac{V-E_{\ion{K}{}}}+
+        g_{\ion{L}{}}\pbrac{V-E_{\ion{L}{}}}}} \\
+    \dby{m}{t}&=\fnof{\alpha_{m}}{V}\pbrac{1-m}-\fnof{\beta_{m}}{V}m \\ 
+    \dby{h}{t}&=\fnof{\alpha_{h}}{V}\pbrac{1-h}-\fnof{\beta_{h}}{V}h \\ 
+    \dby{n}{t}&=\fnof{\alpha_{n}}{V}\pbrac{1-n}-\fnof{\beta_{n}}{V}n 
+  \end{split}
+\end{equation*}
+where $V$ is the membrane voltage, $I_{\text{stim}}$ is a stimulus current,
+$\ion{L}{}$ is the ``ion'' that carries the ``leakage'' current and where
+\begin{equation*}
+  \begin{split}
+    \fnof{\alpha_{m}}{V}&=\dfrac{0.1\pbrac{-V-50}}{e^{0.1\pbrac{-V-50}}-1} \\
+    \fnof{\beta_{m}}{V}&=4e^{\pbrac{-V-75}/18} \\
+    \fnof{\alpha_{h}}{V}&=0.07e^{\pbrac{-V-75}/20}\\
+    \fnof{\beta_{h}}{V}&=\dfrac{1}{e^{0.1\pbrac{-V-45}}+1} \\
+    \fnof{\alpha_{n}}{V}&=\dfrac{0.01\pbrac{-V-65}}{e^{0.1\pbrac{-V-65}}-1} \\
+    \fnof{\beta_{n}}{V}&=0.125e^{\pbrac{-V-75}/80}
+  \end{split}
+\end{equation*}
+with $g_{\ion{Na}{}}=120$, $g_{\ion{K}{}}=36$ and $g_{\ion{L}{}}=0.3$ (all in 
+$\mohm^{-1}\cm^{-2}$); $E_{\ion{Na}{}}=40$, $E_{\ion{K}{}}=-87$ and
+$E_{\ion{L}{}}=-64.4011$ (all in $\mV$); $C=1$ $\uFpcmpcm$ and at time zero
+$V=-75$ $\mV$ (resting voltage), $m=0$, $h=1$ and $n=0$.
+
+\end{document}
+
+
