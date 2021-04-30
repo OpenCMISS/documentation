@@ -1,0 +1,61 @@
+\documentclass[12pt,twoside,a4paper]{book}
+
+
+%\includeonly{biophysics/biophysics}
+%\includeonly{cardiac_electrophysiology/cardiac_electrophysiology}
+%\includeonly{electrophysiology/electrophysiology}
+
+\input{opencmiss_macros} %define new commands etc.
+\input{opencmiss_defns} %define packages etc.
+\input{opencmiss_abbreviations} %define abbreviations etc.
+\input{mymacros.tex}
+\input{myabbrev.tex}
+\input{macros.tex}
+
+\usepackage{styles/mybook} %define book style
+\usepackage{times} %fonts
+\usepackage[dvips,colorlinks=true]{hyperref} %make links
+%\usepackage{mathptm}
+\setmargrb{25mm}{20mm}{25mm}{20mm}
+
+\renewcommand{\baselinestretch}{1.24}
+\normalsize
+
+\begin{document}
+
+\include{titlepage}
+\clearemptydoublepage 
+
+\pagenumbering{roman}
+\tableofcontents
+\clearemptydoublepage
+%\listoffigures
+%\clearemptydoublepage
+\pagenumbering{arabic}
+
+\setlength{\parskip}{\baselineskip} % these two lines for
+\setlength{\parindent}{0mm}         % no paragraph indents
+
+\include{biophysics/biophysics}
+\clearemptydoublepage
+\include{cardiac_electrophysiology/cardiac_electrophysiology}
+\clearemptydoublepage
+\include{electrocardiology/electrocardiology}
+\clearemptydoublepage
+%
+%the tissue mechanics chapter is not yet written
+%
+%\include{tissue_mechanics/tissue_mechanics}
+%\clearemptydoublepage
+%
+%\include{instrumentation/instrumentation}
+%\clearemptydoublepage
+
+\include{references}
+\clearemptydoublepage
+
+\addcontentsline{toc}{chapter}{\numberline{}Index}
+\printindex
+
+\end{document}
+

@@ -1,0 +1,196 @@
+%
+% mymacros.tex
+%
+
+
+\newcommand{\vertnum}[1]{\makebox(0,0)[t]{\footnotesize{$#1$}}}
+
+
+
+%%
+%% Shortcuts
+%%
+
+%\renewcommand{\exp}[1]{\ensuremath{\negmedspace\times\negmedspace\tento{#1}}\xspace} 
+
+\newcommand{\ital}[1]{\text{\emph{#1}}}
+\newcommand{\fe}{finite element\xspace}
+\newcommand{\FE}{Finite element\xspace }
+
+\newcommand{\rd}[1]{\ensuremath{#1^{\text{rd}}}} %^rd eg\nrd{n} => n^rd
+\newcommand{\nd}[1]{\ensuremath{#1^{\text{nd}}}} %^nd eg\nnd{n} => n^nd
+\newcommand{\st}[1]{\ensuremath{#1^{\text{st}}}} %^st eg\nst{n} => n^st
+
+\newcommand{\dof}{degrees of freedom\xspace}
+
+%% max. absolute potential diff
+%% min. absolute potential diff.
+%% max. absolute percentage potential difference   
+%% min. absolut  percentage potential difference   
+\newcommand{\maxpotdiff}{Max. $\abs{\triangle \Phi}$}
+\newcommand{\minpotdiff}{Min. $\abs{\triangle \Phi}$}
+\newcommand{\maxpercpotdiff}{Max. $\triangle \Phi \%$} 
+\newcommand{\minpercpotdiff}{Min. $\triangle \Phi \%$}
+
+
+%%
+%% Note: the $ symbols is used to turn OFF the math font
+%%
+\newcommand{\scft}{$\sc\footnotesize$}
+\newcommand{\mvup}{\vspace{-2.5mm}}
+\newcommand{\mvupb}{\vspace{-0.3mm}}
+\newcommand{\mvdwn}{\xspace\smallskip}
+\newcommand{\mvdwnb}{\xspace\medskip}
+\newcommand{\mynegsp}{-2.5mm}
+\newcommand{\spacetables}{\vspace{10mm}}
+\newcommand{\spaceheading}{\vspace{3mm}}
+\newcommand{\mvleft}{\hspace{-3.2mm}}
+
+
+
+\newcommand{\txtscft}[1]{\vspace{-2mm}$\textsc{\footnotesize\begin{spacing}{0.5}{#1}\end{spacing}}$}
+\newcommand{\txtscftN}[1]{\vspace{-2mm}\textsc{\footnotesize{#1}}}
+\newcommand{\txttable}[1]{\footnotesize{#1}}
+
+\newcommand{\tableheading}[1]{\subsubsection{#1}\spaceheading}
+
+
+
+%%
+%% Maths Macros
+%%
+
+\newcommand{\evdelby}[3]{\ensuremath{
+    \brac{.}{\dfrac{\del{#1}}{\del{#2}}}{|}_{#3}
+    }} %e.g. \evdelby{a}{b}{c}  \delby{a}{b}|_{c}
+
+\newcommand{\evdeltwoby}[4]{\ensuremath{ 
+    \brac{.}{\dfrac{\del^{2} #1}{\del #2 \del #3}}{|}_{#4}
+    }} % e.g. \delnby{a}{b}{c}{d} => del^2 a / del b del c |d
+
+\newcommand{\delntwonby}[6]{\ensuremath{ %
+    \dfrac{ \del^{#1} #2}
+    {\del^#3 {#4} \medspace\del^#5 {#6}} %
+    }} % e.g. \delntwoby{a}{u}{x}{b}{y}{c} => del^a u / del^x b del^y c
+
+
+%%
+%% Boolean Macros
+%%
+
+
+\newcommand{\printquality}[2]{
+  \ifthenelse{\boolean{@printdraft}}
+  {#1}{#2}
+  }
+% Logical switch to determine print quality 
+%  (should be generalised for diff variables?)
+
+
+\newcommand{\iftwoside}[1]{
+  \ifthenelse{\boolean{@twoside}}
+  {#1}{}
+  }
+% Logical. Only does #1 if printing two sided. 
+%   ie. gaps between chapters
+
+
+
+%%
+%% Floats Macros
+%%
+
+\newcommand{\mypstexfigure}[5]{ %
+  \begin{figure}[{#2}] \centering %
+    \input{#1} %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#4}}{ %
+      \caption[#3]{#4} %
+      } %
+    \label{#5} %
+  \end{figure} %
+  } 
+%  \pstexfigure{figure}
+%              {htbp}
+%              {short caption}
+%              {long caption}
+%              {fig:blah}
+%
+
+
+%
+% boxed equation - with no numbering or numbering inside the box
+% Lookup ...
+%       Subject: Re: How to frame a formula defined in multline environment ?  
+%       Author: Michael John Downes <epsmjd@epsilon.ams.org>
+%       Date: 2000/01/31
+%       Forum: comp.text.tex
+% for more info.
+% \newcommand{\boxedeqn}[1]{%
+%   \[\fbox{%
+%       \addtolength{\linewidth}{-2\fboxsep}%
+%       \addtolength{\linewidth}{-2\fboxrule}%
+%       \begin{minipage}{\linewidth}%
+%       \begin{equation}#1\end{equation}%
+%       \end{minipage}%
+%     }\]%
+%
+%
+% Usage: 
+%\boxedeqn{0.6\linewidth}
+%               {\begin{equation}
+%                       x=y
+%               \end{equation}}
+
+
+\newcommand{\boxedeqn}[2]{
+        \begin{center}
+                \fbox
+                {
+                        \addtolength{\linewidth}{-2\fboxsep}
+                        \addtolength{\linewidth}{-2\fboxrule}
+                        \begin{minipage}{#1}
+                        #2
+                        \end{minipage}
+                }
+        \end{center}
+}
+
+
+
+
+
+
+
+\newcommand{\twopicts}[7]{\begin{figure}[ht] \centering
+  \mbox{\subfigure[{#3}]
+    {\input{#1}}\quad
+    \subfigure[{#4}]
+    {\input{#2}}}\caption[#5]{#6}\label{#7}
+  \end{figure}}
+% eg \twopicts{pic1}{pic2}{subcap1}{subcap2}{shortcap}{longcap}{fig:blah}
+
+
+\newcommand{\fourpicts}[9]{\begin{figure}[ht] \centering
+  \mbox{\subfigure[]
+      {\epsfig{file=#1,height=#5,width=#6}}\qquad\qquad
+      \subfigure[]
+      {\epsfig{file=#2,height=#5,width=#6}}
+    } \vspace{3pt} 
+    \mbox{
+      \subfigure[]
+      {\epsfig{file=#3,height=#5,width=#6}}\qquad\qquad
+      \subfigure[]
+      {\epsfig{file=#4,height=#5,width=#6}}
+    }
+    \caption[#7]{#8}
+    \label{#9}
+  \end{figure}}
+%eg \fourpicts{pic1}{pic2}{pic3}{pic4}{height}{width}{shortcap}{longcap}{fig:}
+
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 

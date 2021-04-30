@@ -41,7 +41,7 @@
 %
 
 \def\symboltocformat{\hbox to \@tempdima{\hfil}}
-\def\listofsymbolsname{List of Symbols}
+\def\listsymbolsname{List of Symbols}
 \def\symbolatstring{Defined at page}
 
 \newlength{\lostopsep}
@@ -107,9 +107,9 @@
   }
 
 \def\listofsymbols{ %
-  \chapter*{\listofsymbolsname}%
-  \addcontentsline{toc}{chapter}{\symboltocformat\listofsymbolsname} %
-  \markboth{\listofsymbolsname}{\listofsymbolsname} %
+  \chapter*{\listsymbolsname}%
+  %\addcontentsline{toc}{chapter}{\symboltocformat\listsymbolsname} %
+  \markboth{\listsymbolsname}{\listsymbolsname} %
   \@startsym %
   }
 

@@ -1,0 +1,143 @@
+%
+% abbreviations.tex
+%
+% This file contains the list of common words and phrases and their tex
+% abbreviations.
+%
+% Created:
+%   10 September 1996
+%
+% Updated:
+%   Leo Cheng 31 May 1998 Moved \CMISS to macros.tex
+%
+
+
+
+%
+% Points, Surfaces & Volumes
+%
+\newcommand{\ptheart}{\ensuremath{\vect{x}}\xspace} %point on heart surface
+\newcommand{\pttorso}{\ensuremath{\vect{y}}\xspace} %point on torso surface
+
+\newcommand{\dv}{\ensuremath{\Omega}\xspace} %vol domain
+\newcommand{\ds}{\ensuremath{\Gamma}\xspace} %vol surf
+\newcommand{\dvheart}{\ensuremath{\Omega_H}\xspace} %heart vol domain
+\newcommand{\dsheart}{\ensuremath{\Gamma\negthinspace_H}\xspace} %heart vol surf
+
+\newcommand{\dstorso}{\ensuremath{\Gamma\negthinspace_B}\xspace} %heart vol surf
+
+
+%%
+\newcommand{\bempt}{\ensuremath{\vect{x}}\xspace}
+\newcommand{\bemsingpt}{\ensuremath{\bempt_{0}}\xspace}
+
+%
+% Conductivities
+%
+%\newcommand{\incond}{\ensuremath{\bar{G_i}}\xspace}  %intracell conduc
+%\newcommand{\excond}{\ensuremath{\bar{G_e}}\xspace}  %extracell conduc
+\newcommand{\incond}{\ensuremath{\sigma_i}\xspace}  %intracell conduc
+\newcommand{\excond}{\ensuremath{\sigma_e}\xspace}  %extracell conduc
+
+\newcommand{\incondt}{\ensuremath{\matr{\sigma}_i}\xspace}  %intracell conduc
+\newcommand{\excondt}{\ensuremath{\matr{\sigma}_e}\xspace}  %extracell conduc
+
+
+\newcommand{\inexcond}{\ensuremath{\incond+\excond}\xspace}
+\newcommand{\cond}{\ensuremath{\sigma}\xspace}
+
+%
+% Potentials
+%
+\newcommand{\refpot}{\ensuremath{\pot_{\text{ref}}}\xspace}     %reference pot
+\newcommand{\inpot}{\ensuremath{\pot_i}\xspace}     %intracell pot
+\newcommand{\expot}{\ensuremath{\pot_e}\xspace}     %extracell pot
+\newcommand{\outpot}{\ensuremath{\pot_o}\xspace}     %pot outside heart
+
+\newcommand{\vinpot}{\ensuremath{\vect{\pot}_i}\xspace}     %intracell pot vectors
+\newcommand{\vexpot}{\ensuremath{\vect{\pot}_e}\xspace}     %extracell pot vectors
+
+
+
+\newcommand{\expotin}{\ensuremath{\pot_e^{in}}\xspace}     %extracell pot
+\newcommand{\expotout}{\ensuremath{\pot_e^{out}}\xspace}     %extracell pot
+
+\newcommand{\tranpot}{\ensuremath{\pot_m}\xspace}   %transmemb pot
+\newcommand{\vtranpot}{\ensuremath{\vect{\pot}_m}\xspace}   %transmemb pot
+
+
+\newcommand{\recpot}{\ensuremath{\vect{\pot}_B}\xspace}       %recorded pot
+\newcommand{\estpot}{\ensuremath{\hat{\vect{\pot}_B}}\xspace} %est potential
+\newcommand{\heartpot}{\ensuremath{\vect{\pot}_H}\xspace} 
+\newcommand{\estheartpot}{\ensuremath{\hat{\vect{\pot}_H}}\xspace} 
+\newcommand{\bodypot}{\ensuremath{\vect{\pot}_B}\xspace}
+
+\newcommand{\estbodypotm}{\ensuremath{\matr{\hat{\Phi}}_B}\xspace}
+\newcommand{\bodypotm}{\ensuremath{\matr{\Phi}_B}\xspace}
+\newcommand{\heartpotm}{\ensuremath{\matr{\Phi}_H}\xspace}
+\newcommand{\potm}{\ensuremath{\matr{\Phi}}\xspace}
+
+\newcommand{\recpott}{\ensuremath{\pot_t}\xspace}       %recorded pot
+\newcommand{\estpott}{\ensuremath{\widehat{\pot_t}}\xspace} %est potential
+
+\newcommand{\pot}{\ensuremath{\phi}\xspace} %potentials
+\newcommand{\flux}{\ensuremath{q}\xspace} %fluxes
+
+\newcommand{\exncurrent}{\ensuremath{q_e}\xspace} %fluxes
+\newcommand{\vexncurrent}{\ensuremath{\vect{q}_e}\xspace} %fluxes
+
+
+%
+% Numerical/analytic activation/potentails
+%
+\newcommand{\numpot}{\ensuremath{\phi_{\text{numeric}}}\xspace}  %numerical potns
+\newcommand{\analpot}{\ensuremath{\phi_{\text{analytic}}}\xspace} %analytic potns
+\newcommand{\numtime}{\ensuremath{\widehat{\tau_x}}\xspace}    %numerical
+\newcommand{\analtime}{\ensuremath{\tau_x}\xspace}    %analytic
+
+
+\newcommand{\reg}{\ensuremath{\lambda}\xspace}    %analytic
+\newcommand{\tbhn}{\ensuremath{A}\xspace}  %transfer matr name
+\newcommand{\tbh}{\ensuremath{\matr{A}}\xspace}  %transfer matr
+\newcommand{\ctbh}{\ensuremath{\vect{a}}\xspace}  %column of tbh
+
+\newcommand{\tbhpinv}[1]
+	{\ensuremath{\tbh^{\dagger}_{\reg_{#1}}}\xspace}
+	%transfer matr pseudo inverse regularised at time t
+% \newcommand{\tbhpinv}
+% 	{\ensuremath{\tbh^{\dagger}}\xspace}  
+% 	%transfer matr pseudo inverse regularised
+
+\newcommand{\tbhinv}{\ensuremath{\tbh^{T}}\xspace}  %transfer matr
+\newcommand{\transfer}{\ensuremath{\fnof{\tbh}{\ptheart,\pttorso}}\xspace}
+\newcommand{\transfernorm}
+	{\ensuremath{\fnof{\overline a}{\ptheart,\pttorso}}\xspace}
+
+
+
+
+\newcommand{\window}{\ensuremath{\omega}\xspace}  %activation window
+
+
+\newcommand{\lapl}{\ensuremath{\frak{L}}\xspace} %Surface Laplacian
+\newcommand{\activ}{\ensuremath{\tau}\xspace}    %Activation field
+
+\newcommand{\activepi}{\ensuremath{\tau_{\text{epi}}}\xspace}    %Activation field
+\newcommand{\activlv}{\ensuremath{\tau_{\text{lv}}}\xspace}    %Activation field
+\newcommand{\activrv}{\ensuremath{\tau_{\text{rv}}}\xspace}    %Activation field
+
+\newcommand{\activfn}[1]{\ensuremath{\fnof{\activ}{#1}\xspace}}
+\newcommand{\resid}{\ensuremath{\fnof{f}{\activ}\xspace}} %optimisation residual fn
+
+
+\newcommand{\ZCROSS}{\ensuremath{\fnof{Z}{\ptheart,t}}\xspace}
+\newcommand{\PHI}{\ensuremath{\fnof{\Phi}{\pttorso,t}}\xspace}	%body phi
+\newcommand{\PHIH}{\ensuremath{\fnof{\Phi}{\ptheart,t}}\xspace} %heart phi
+\newcommand{\critpoint}{\ensuremath{x'}\xspace}
+
+
+%\newcommand{\activ}{\ensuremath{\tau}\xspace}
+%\newcommand{\heartsurf}{\ensuremath{\del_H}\xspace}
+
+
+

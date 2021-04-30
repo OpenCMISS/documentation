@@ -1,0 +1,1205 @@
+\chapter{Biomedical Instrumentation}
+
+\section{Introduction}
+
+Control combines measurement and actuation in a feedback loop.
+
+Issues to consider when making measurements include:
+
+\begin{tabular}{ll}
+  \textit{Accuracy:} & How well measurements conform to the true value.\\ 
+  \textit{Precision:} & A measure of the reproducibility of measurements.\\ 
+  \textit{Sensitivity:} & Ratio of the output signal to a change in the
+  input.\\ \textit{Resolution:} & Smallest measureable change.\\ 
+  \textit{Error:} & Deviation from the true value.\\ \textit{Range:} & The
+  interval between the largest and smallest values of interest.\\ 
+  \textit{Linearity:} & Degree to which outputs linearly follow inputs.\\ 
+  \textit{Hysteresis:} & Degree to which measurements depend upon direction.\\ 
+  \textit{Signal to noise ratio:} & The ratio between measurements and
+  error.\\ \textit{Frequency response:} & Variation in sensitivity over the
+  frequency range.
+\end{tabular}
+
+\section{Systems}
+
+\subsection{Origins of biological signals}
+
+\subsubsection{Bioelectric}
+
+\textbf{Membrane potentials}
+ 
+A potential is developed across a membrane that provides a semipermeable
+interface for certain ions. After equilibrium has been established, the
+potential is proportional to the logarithm of the ratio of the concentrations
+of the ion to which the membrane is selectively permeable. For very dilute
+solutions the potential is given by the Nernst equation
+
+\begin{equation*}
+  E=-\dfrac{RT}{F}\ln \pbrac{\dfrac{\dsum\pbrac{P_{x}\conc{X}{o}}^{
+        \dfrac{1}{N_{x}}}}{\dsum\pbrac{P_{x}\conc{X}{i}}^{\dfrac{1}{N_{x}}}}}
+\end{equation*}
+
+where
+ 
+\begin{tabular}{lcl}
+  $R$ & = & gas constant ($8.315$ ´ 107 J mol$^{-1}$ K$^{-1}$) \\ 
+  $T$ & = & absolute temperature ($K$) \\
+  $F$ & = & Faraday constant ($96487$ \A\s) \\ 
+  $N_{X}$ & = & valence of the ion $X$ \\ 
+  $P_{X}$ & = & permeability of the resting potential to the ion $X$ \\
+  $\conc{X}{o}$ & = & concentration of the ion $X$ on the outside of the 
+  membrane \\ 
+  $[\conc{X}{i}$ & = & concentration of the ion $X$ on the inside of the 
+  membrane
+\end{tabular}
+
+Some membranes are excitable. When stimulated the relative permeability of the
+membrane to some ions alters causing the transmembrane potential to change. As
+the permeabilities return to their normal values the membrane repolarises to
+its normal resting potential.
+
+The above diagram represents a typical action potential waveform, begining at
+resting potential, depolarising, and returning to resting potential after
+repolarisation. The time scale for the action potential depend upon the type
+of cell producing the potential. In nerve and muscle cells repolarisation
+occurs rapidly after depolarisation so that the action potential lasts from
+$0.4$ \ms to $2$ \ms. Heart muscle repolarises much more slowly, with the action
+potential lasting from $150$ \ms to $300$ \ms.
+
+\textbf{Electroencephalogram (EEG)}
+
+The electrical activity of the brain may be recorded with scalp electrodes. A
+scalp electrode is a large distance away from the action potential sources. It
+records the integrated activity of millions of nerve cells. With scalp
+electrodes attached to a normal relaxed human the measured signals have a
+dominant (alpha) frequency of around $10$ \Hz and a maximum amplitude between 
+$20$ \uV and $200$ \uV. Other signals (beta, delta, theta, etc) of lower
+amplitude, ranging in frequency between $1$ \Hz to $60$ \Hz, are also present.
+
+\textbf{Electrocardiogram (ECG)}
+
+The ECG records the potential difference between a pair of electrodes on the
+surface of the body. These biopotentials are produced by the muscles of the
+heart. The ECG results from the integrated activity of the heart muscle fibres
+firing in synchrony.
+
+ECG signals are typically $1$ \mV in amplitude.
+
+Typical values for ECG signals are
+\begin{tabular}{ll}
+ P wave: & $0.25$ \mV\\
+ R wave: & $1.5$ \mV\\
+ T wave: & $0.5$ \mV\\
+ P interval: & $0.11$ \s\\
+ QRS interval: & $0.9$ \s
+\end{tabular}
+
+The heart muscle action potential has a much longer period than that of nerve
+fibre. A bandwidth of several hundred Hz is required to adequately measure ECG
+signals.
+
+\textbf{Electromyogram (EMG)}
+
+Skeletal muscle fibres generate action potentials when excited by motor
+neurons via the motor end plates. The action potentials of individual skeletal
+muscle fibres are of much shorter duration than those of cardiac muscle. The
+EMG potentials from a muscle or a group of muscles produces a noiselike
+waveform that varies in amplitude with the degree of muscular activity. Peak
+amplitudes vary from $50$ \uV to about $1$ \mV depending on the location of the
+recording electrode and the activity of the muscle. A frequency response from
+several \Hz to over $5000$ \Hz is required for measurement of EMG signals.
+
+\textbf{Blood flow}
+
+Blood flow is pulsatile with freqency components up to several hundred \Hz. The
+maximum instananeous veocity is usually less than $1$ \mps. Since blood vessels
+are often of small size it is desirable to be able to localise flow
+measurements to within fractions of a millimeter.
+
+\textbf{Blood pressure}
+
+Blood pressures typically range from $0$ \kPa to $40$ \kPa ($300$ \mm
+\ion{Hg}{}) in the arterial system, and $0$ \kPa to $2$ \kPa in the venous
+system.  Frequency components of pressure range from $0$ \Hz to $500$ \Hz.
+
+\textbf{Body temperature}
+
+Body temperatures at the core range from $35$ \degC to $44$ \degC. Peripheral
+temperatures range from $26$ \degC to $38$ \degC. It is desirable that
+temperature sensors be of small size for fast response time and measurement
+localisation.
+
+\textbf{Breathing flow and rate}
+
+Breathing rates typically range from $0.1$ to $2$ breaths per second. Flow
+rates range from $0.05$ to $4$ litres per second. Sensors must be able to
+withstand high humidity and have a frequency response ranging from $0$ \Hz to
+$50$ \Hz.
+
+\subsection{Linear time invariant systems}
+
+The output, $\fnof{h}{x}$, of a linear time invariant system is given by the
+convolution of the input, $\fnof{f}{x}$, and the impulse response function,
+$\fnof{g}{x}$.
+\begin{equation*}
+  \fnof{h}{x} = \fnof{f}{x}*\fnof{g}{x} =
+  \gint{0}{x}{\fnof{f}{x-x'}\fnof{g}{x}}{x'}
+\end{equation*}
+
+The impulse response function, $\fnof{g}{x}$, is the output of the system when
+a unit impulse is applied at the input (a signal of infinite amplitude and
+zero duration having an amplitude integral with respect to time equal to $1$).
+
+Linear systems satify the following relationship:
+\begin{eqnarray*}
+  f(x) & = & a_{1}f_{1}(x) +  a_{2}f_{2}(x) + \ldots a_{n}f_{n}(x)
+  \Longrightarrow h(x) = a_{1}h_{1}(x)+a_{2}h_{2}(x)+\ldots 
+  a_{n}h_{n}(x)\\
+  \mbox{where}  \\
+  h_{i}(x) & = & f_{i}(x)*g(x) = \int_{0}^{x}f_{i}(x-x')g(x)dx' 
+\end{eqnarray*}
+
+Time invariant systems have impulse response functions, $\fnof{g}{x}$, which do
+not change with time.
+
+Linear time invariant systems may be characterised by their impulse response,
+step response, or (steady state) frequency and phase characteristics. Since a
+unit step function is the integral of the unit impulse function, a linear
+system's step response is simply the integral of its impulse response.
+
+Linear time invariant systems are relatively easy to analyse. It is thus
+important to determine the range of conditions over which a system is
+essentially linear and time invariant. Many systems and transducers may be
+adequately modeled as linear time invariant systems using linear first or
+second order ordinary differential equations with constant coefficients.
+ 
+Linear systems may sometimes consist of a number of linear subsystems.
+
+\begin{equation*}
+  \fnof{h}{x} = \fnof{f}{x}*\fnof{g_{1}}{x}+f(x)*g_{2}(x)+f(x)*\ldots g_{n}(x)
+\end{equation*}
+ 
+Consider a linear system consisting of n linear subsystems connected in
+series.
+
+If the impulse response of subsystem i is gi(x), the output, h(x), of the
+system is given by the convolution of the input with the impulse response
+functions of the subsystems
+
+Consider the Laplace transform of a linear time invariant system.
+
+\begin{eqnarray*}
+ F(X) & = & \int_{0}^{\infty}e^{-Xx}f(x)dx\\
+   \\
+ G(X) & = & \int_{0}^{\infty}e^{-Xx}g(x)dx\\
+   \\
+ H(X) & = & \int_{0}^{\infty}e^{-Xx}h(x)dx
+\end{eqnarray*}
+
+Since convolutions of functions in the function domain transform to products
+of transforms in the transform domain, the Laplace transform description can
+thus offer a simplified descriptio n of the system.
+
+\begin{equation*}
+ H(X) = F(X)G(X)
+\end{equation*}
+
+A similar approach may be taken with a system consisting of $n$ linear
+subsystems
+
+\begin{equation*}
+ H(X) = F(X)G_{1}(X)G_{2}(X)\ldots G_{n}(X)
+\end{equation*}
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{First order system}}
+
+\begin{equation*}
+ Q\frac{dh(x)}{dx} + Kh(x) = f(x)
+\end{equation*}
+
+where
+
+\begin{tabular}{lcl}
+ $Q$ & = & damping constant\\
+ $K$ & = & spring constant\\
+ $f(x)$ & = & excitation function
+\end{tabular}
+
+The unit step response function for this system is given by
+
+\begin{equation*}
+ h(x) = \frac{1}{K}\left(1-e^{\frac{Kx}{Q}}\right)
+\end{equation*}
+
+Consider a system excited by a sinusoidal input of constant amplitude and
+frequency
+
+\begin{equation*}
+ f(x) = a\sin(\omega x)
+\end{equation*}
+
+The magnitude and phase response of the system is given by
+
+\begin{eqnarray*}
+ |f(x)| & = & \frac{a}{K}\frac{1}
+  {\sqrt{1+\left(\frac{\omega Q}{K}\right)^{2}}}\\
+ <f(x) & = & -\tan^{-1}\left(\frac{\omega Q}{K}\right)
+\end{eqnarray*}
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Second order system}}
+
+\begin{equation*}
+ M\frac{d^{2}x}{dt^{2}} + Q\frac{dx}{dt} + Kx = f(x)
+\end{equation*}
+
+where
+
+\begin{tabular}{lcl}
+ $M$ & = & mass\\
+ $Q$ & = & damping constant\\
+ $K$ & = & spring constant\\
+ $f(t)$ & = & excitation function
+\end{tabular}
+
+The unit step response function for this system is given by
+
+\begin{equation*}
+ h(x) = \frac{1}{K}\left(
+  1-e^{\frac{Qx}{2M}}\left(
+   \frac{Q}{\sqrt{4KM-Q^{2}}}\sin \left(
+    \frac{\sqrt{4KM-Q^{2}}}{2M}x\right)+\cos\left(
+    \frac{\sqrt{4KM-Q^{2}}}{2M}x\right)\right)\right)
+\end{equation*}
+ 
+Consider a system excited by a sinusoidal input of constant amplitude and
+frequency
+
+\begin{equation*}
+ f(x) = a\sin(\omega x)
+\end{equation*}
+
+The magnitude and phase response of the system is given by
+\begin{eqnarray*}
+ |f(\omega)| & = & \frac{a}{K}\frac{1}
+  {\sqrt{\left(1-\omega^{2}\frac{M}{K}\right)^{2}} 
+  + \left(\frac{\omega Q}{K}\right)^{2}}\\
+ <f(x) & = & -\tan^{-1}\left(\frac{\frac{\omega Q}{K}}
+  {1-\omega^{2}\frac{M}{K}}\right)
+\end{eqnarray*}
+
+\section{Transducers}
+\subsection{Thermoresistors}
+
+\vspace{\baselineskip} \noindent
+\underline{Resistance thermometer:}
+
+The resistivity of most metals varies with temperature. A resistance
+thermometer may be constructed using this principle. Over a moderate
+temperature range the resistance can be approximated by
+
+\begin{equation*}
+ R_{1} = R_{0}\left(1+\alpha (T_{1} - T_{0})\right)
+\end{equation*}
+
+where
+
+\begin{tabular}{lcl}
+ $R_{1}$ & = &  resistance at temperature $T_{1}$\\
+ $R_{0}$ & = & resistance at temperature $T_{0}$\\
+ $a$ & = & temperature coefficient of resistivity at $T_{0}$
+\end{tabular}
+
+Most metals exhibit a positive temperature coefficient of 0.003 to 0.005 per
+degree Celcius (e.g. for platinum a = 0.00377). Small resistance thermometers
+with low thermal capacity and stable output are available.
+
+\vspace{\baselineskip} \noindent
+\underline{Thermistor:}
+
+Thermistors are hard ceramic devices made from sintered metal oxides. They
+have a high negative temperature coefficient (decreasing resistance with
+increasing temperature). The resistance-temperature relationship is
+exponential
+
+\begin{equation*}
+ R_{1} = R_{0}e^{\beta\left(\frac{1}{T_{1}}-\frac{1}{T_{0}}\right)}
+\end{equation*}
+
+where
+
+\begin{tabular}{lcl}
+ $R_{1}$ & = & resistance at temperature $T_{1}$ (¡K)\\
+ $R_{0}$ & = & resistance at temperature $T_{0}$ (¡K)\\
+ $\beta$ & = & temperature coefficient (typically 3000 to 4000)
+\end{tabular}
+
+Thermistors can be made very small, minimising thermal mass and response time.
+If power dissipation in the thermistor is kept small enough temperature
+differences of less than 0á01 ¡K can be resolved. Linearisation
+techniques can be used to decrease the highly nonlinear output of thermistors.
+
+\vspace{\baselineskip} \noindent
+\underline{Biomedical uses:}
+
+\begin{itemize}
+\item Measurement of body temperature.
+\item Measurement of flow by thermal dillution.
+\item Measurement of thermal perfusion of tissue.
+\end{itemize}
+
+\subsection{Strain gauge}
+
+The DC resistance of a conductor is given by
+
+\begin{equation*}
+ R=\frac{pl}{A}
+\end{equation*}
+
+where
+
+\begin{tabular}{lcr}
+ $r$ & = & resistivity\\
+ $l$ & = & length of the conductor\\
+ $A$ & = & cross-sectional area of the conductor
+\end{tabular}
+
+Taking logarithms of this equation and differentiating gives
+
+\begin{equation*}
+ \frac{\Delta R}{R} = \frac{\Delta\rho}{\rho} + \frac{\Delta l}{l} 
+  - \frac{\Delta A}{A}
+\end{equation*}
+
+Resistivity increases as tensile stress is applied to a wire, so
+$\frac{\Delta\rho}{\rho}$ is positive. The change in wire area is related to
+the change in diameter by $\frac{\Delta A}{A}\approx 2\frac{\Delta d}{d}$. The
+relative change in diameter is related to the relative change in length by
+$\frac{\Delta d}{d} = -\sigma \frac{\Delta l}{l}$, where $\sigma $ is
+Poisson's ratio. For incompressible materials $\sigma $ is 0á5. Most solids
+exhibit an increase in volume when tensile stress is applied, so $0 \leq
+\sigma \leq 0.5$ (typically 0.3). Combining the above equations we get
+
+\begin{equation*}
+ \frac{\Delta R}{R} = \frac{\Delta l}{l}(1+2\sigma) + 
+  \frac{\Delta\rho}{\rho}
+\end{equation*}
+ 
+We can define a gauge factor, $G=\frac{\frac{\Delta R}{R}} {\frac{\Delta
+    l}{l}}$, so $G=1+2\sigma + \frac{\frac{\Delta \rho}{\rho}}{\frac{\Delta
+    l}{l}}$.  Gauge factors for constantan, platinum, and silicon are 2.0,
+6.0, and 120, respectively.
+
+Unfortunately, while platinum and silicon have high gauge factors, they also
+have relatively high temperature dependence, resulting in errors in
+temperature varying environments. Pairs of gauges may be used in bridge
+circuits to reduce such errors.
+
+\vspace{\baselineskip} \noindent
+\underline{Biomedical applications:}
+
+\begin{itemize}
+\item Strain gauges bonded directly to bone.
+\item Strain gauge pressure transducers.
+\end{itemize}
+
+\subsection{Elastic resistors}
+
+Elastic resistors are constructed by filling a compliant elactic tube with a
+conductive fluid. Commonly used conductive fluids include aqueous electrolytes
+and mercury.
+
+Consider a mercury in rubber strain gauge. Mercury has a resistivity, $\rho$,
+of 9.59$\times10^{-7} \Omega$m. Let the elastic tube have an inner diameter
+$d$ and length $l$.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+The resistance, $r$,  of the gauge is given by
+
+\begin{equation*}
+ r=\frac{l\rho}{A}
+\end{equation*}
+
+where $A$ is the cross sectional area of the tube. For incompressible fluids,
+such as mercury, the volume, $V$, of the conductor remains constant as the
+gauge length changes.
+
+\begin{equation*}
+ lA = V \Rightarrow A+\frac{V}{l}
+\end{equation*}
+
+Thus $r=\frac{l^{2}\rho}{V}$, and the resistance of the gauge varies with the
+square of the gauge length.
+
+Note that the gauge produces a force which depends upon the elastic properties
+and geometry of the elastic tubing. These gauges must be kept in compression
+to avoid buckling the tube. They are, however, inexpensive and simple to
+construct. Care must be taken to avoid leakage of fluid from, and leakage of
+air into, the tube.
+
+\subsection{Linear variable differential transformer (LVDT)}
+
+A differential transformer is a transformer with variable coupling producedby
+moving a ferromagnetic core within the coils. The transformer consists of a
+primary coil of length $l_{p}$ and two secondary coils of length $l_{s}$
+symmetrically spaced from the primary. The ferromagnetic core has length
+$l_{c}$ and can move axially within the coils. The core centre displacement is
+$x$. A ferromagnetic sleeve is placed around the outside of the coil assembly.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+The primary coil is excited by an alternating current, usually between 50 Hz
+and 50 KHz, which produces a magnetic field that induces voltages in the two
+secondary coils. The secondary coils are connected in series opposition so
+that, when the movable ferite core displacement is zero, the voltage generated
+in one secondary coil cancels the other. When the ferrite core is displaced
+the voltages induced in the secondary cores are no longer equal resulting in a
+nonzero output voltage $V_{out}$.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+The output voltage is related to the core displacement by the following formula
+\begin{equation*}
+ \frac{V_{out}}{V_{in}} = \frac{3N_{s}}{l_{s}N_{p}}
+  \left(\frac{x\left(l_{c}^{2} - l_{p}^{2}\right)-4x^{3}}
+  {l_{c}\left(3l_{c} -2l_{p}\right)-12x^{2}}\right)
+\end{equation*}
+
+LVDTs can be made for a wide variety of scales. They are relatively
+insensitive to temperature and aging. The maximum frequency reponse is limited
+to well below the frequency of the excitation voltage. The moving core can add
+significant inertia to the item under test.
+
+\subsection{Capacitive}
+A capacitor consists of two conducting surfaces separated by a dielectric
+(insulator). The capacitance depends upon the proerties of the dielectric, is
+proportional to the area of the conducting surfaces, $A$, and inversely
+proportional to their separation, $l$.
+
+\begin{equation*}
+ C=\frac{\varepsilon_{0}KA}{l}
+\end{equation*}
+
+where $K$ is the dielectric constant (1 for vacuum, 1á00054 for air) and is
+the permittivity of vacuum.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+The capacitance of the above device is made up of contributions from the
+dielectric and air gap
+
+\begin{eqnarray*}
+ C_{d} & = & \frac{\varepsilon_{0}KA}{l_{d}}\\
+ C_{g} & = & \frac{\varepsilon_{0}KA}{l_{g}}
+\end{eqnarray*}
+
+Since the capacitances are in series the total capacitance is given by
+
+\begin{equation*}
+ C= \frac{1}{\frac{1}{C_{d}} + {1}{C_{g}}} 
+  = \frac{\varepsilon_{0}A}{\frac{l_{d}}{K} + l_{g}}
+\end{equation*}
+
+If we specify displacements about a nominal air gap, $l_{g} = l_{g0} + \Delta
+l_{g}$ , we get
+
+\begin{eqnarray*}
+ C_{0} & = & \frac{\varepsilon_{0}A}{\frac{l_{d}}{K} + l_{g0}}\\
+ \frac{dC}{C_{0}} & = & -\left(\frac{1}{1+\frac{l_{d}}{Kl_{g0}}}\right)
+  \frac{dl_{g}}{l_{g0}} + \ldots
+\end{eqnarray*}
+
+Instead of measuring capacitance, $C$, one can convert the capacitance change
+into a voltage change. Assuming that the average capacitance remains constant,
+the charge, $q$, on each capacitor plate is given by
+
+\begin{equation*}
+ q=C_{0}V
+\end{equation*}
+
+If $R_{l}$ is large enough so that the charge doesn't change appreciably then
+
+\begin{eqnarray*}
+ V_{c} & = & \frac{q}{C} = \frac{C_{0}V}{C}\\
+ V_{o} & = & V- V_{c} = V\left(1-\frac{C_{0}}{C}\right) 
+  = \frac{V\Delta C}{C_{0}}
+\end{eqnarray*}
+
+Thus
+
+\begin{equation*}
+ V_{o} = \frac{V\Delta l_{g}}{l_{g0} + \frac{l_{d}}{K}}
+\end{equation*}
+
+and $V_{o}$ is approximately linear with $\Delta l_{g}$.
+
+\subsection{Force}
+Force measurements may be made by:
+
+\begin{itemize}
+\item using a displacement transducer coupled to an elastic element or;
+\item using a feedback device to maintain a sensor at a fixed position.
+\end{itemize}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Cantilever beam force transducer
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Spring loaded capacitance force transducer
+
+The above force transducers are constructed from displacement transducers
+coupled to elastic elements. They are simple designs but exhibit displacements
+when a force is applied. If a stiff elastic element is used to minimise the
+displacement the force transducer will have low sensitivity and low signal to
+noise ratio. If a compliant elastic element is used to maximise sensitivity
+large displacements will result and the structure will have a low resonant
+frequency.
+
+An alternative approach is to use a position sensor with active feedback.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+With this arrangement the position of the force sensor is kept fixed (apart
+from transients due to high frequency limitations of the feedback and
+actuator). Force is measured by monitoring the input to the force actuator
+balancing the applied force. The mechanical characteristics of the device,
+such as its stiffness and damping, may be controlled dynamically by the
+feedback circuit.
+
+\subsection{Photomultiplier}
+
+Photomultipliers are used for low light level detection and measurement.
+Photons strike a photosensitive alkali metal photocathode (e.g. cesium,
+antimony, silver, bismuth). If the energy of the photon is greater than the
+work function of the photoemitter a single electron is ejected. This electron
+is accelerated to the first dynode through vacuum by an electric field. On
+striking the first dynode further electrons are released. These electrons are
+accelerated to the next dynode where more electrons are ejected. For each
+electron striking a dynode approximately two electrons are released. With 10
+dynodes approximately 1000 electrons are produced per incident photon.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Photomultipliers have a typical dark current of about 10$^{-7}$ A. Their
+response time is in the order of 10$^{-9}$ s to 10$^{-8}$ s. The spectral
+sensitivity depends upon the properties of the photoemitter ($<$950nm for
+AgO-Cs, $<$200nm for Cs-I) and the transmittence of the enclosing glass
+($>$100nm for LiF glass, $>$350nm for lime glass). Photomultipliers are thus
+most sensitive to light in the near ultraviolet, visible, and near infrared
+region.
+
+\section{Analog processing}
+
+Analogue processing provides control over signals in the analog domain. Simple
+functions such as removing offsets, linearisation, amplification, and
+filtering are often performed on analog signals.
+
+\subsection{Bridge circuits}
+
+Many transducers exhibit small changes upon a large offset. For example, a
+0.1\% elongation of a platinum strain gauge results in a resistance change of
+0.6\%. A Wheatstone bridge may be used to remove the offset.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Wheatstone bridge and its Th$\acute{\mbox{e}}$venan equivalent circuit.
+
+\begin{eqnarray*}
+ V_{TH} & = & V\left(\frac{Z_{1}}{Z_{1} + Z_{2}} 
+  -\frac{Z_{3}}{Z_{3}+Z_{4}}\right)(\mbox{i.e. when }Z_{L}=\infty)\\
+ Z_{TH} & = & \frac{Z_{1}Z_{2}}{Z_{1} + Z_{2}} + 
+  \frac{Z_{3}Z_{4}}{Z_{3} + Z_{4}}
+  (\mbox{i.e. when $V$ is replaced by a short circuit})
+\end{eqnarray*}
+
+Let $Z_{1} = R(1 + \Delta), Z_{2} = Z_{3} = Z_{4} = R$
+
+\begin{equation*}
+\begin{array}{llcrcr}
+ \mbox{Then } & V_{TH} & = & \frac{V\Delta}{2(2 + \Delta)} & 
+  = & \frac{v\Delta}{4}\\
+ \mbox{and } & R_{TH} & = & \frac{R(4+3\Delta)}{2(2+\Delta)} & = & R
+\end{array}
+\end{equation*}
+
+where $\Delta$ is small.
+
+Let $Z_{1} = R(1 + \Delta), Z_{2} = R(1 - Æ), Z_{3} = Z_{4} = R$
+
+\begin{equation*}
+\begin{array}{llcrcr}
+ \mbox{Then } & V_{TH} & = & \frac{V\Delta}{2}\\
+ \mbox{and } & R_{TH} & = & R\left(1-\frac{\Delta^{2}}{2}\right)
+\end{array}
+\end{equation*}
+
+where $\Delta$ is small.
+
+Let $Z_{1} = Z_{4} = R(1 + \Delta), Z_{2} = Z_{3} = R(1 - \Delta)$
+ 
+\begin{equation*}
+\begin{array}{llcrcr}
+ \mbox{Then } & V_{TH} & = & V\Delta\\
+ \mbox{and } & R_{TH} & = & R(1-\frac{\Delta^{2}}{2})
+\end{array}
+\end{equation*}
+
+where $\Delta$ is small.
+
+Thus one can achieve 2, and 4, times the voltage output with 2, and 4, active
+arms, respectively.
+
+\subsection{Linearisation}
+Analogue circuitry can be used to linearise nonlinear transducers.
+
+For example, a thermistor has a nonlinear resistance change over its usable
+temperature range.
+
+However, with the following circuit, one can get 3\% linearity from
+-10$^{\circ}$C to 50$^{\circ}$C, and $<$1\% from 0$^{\circ}$C to
+40$^{\circ}$C.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Even better linearisation can be achieved with matched thermistors.  e.g.
+0.2\% linearity in voltage versus temperature from 0$^{\circ}$C to
+100$^{\circ}$C
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\subsection{Operational Amplifiers}
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Operational Amplifier Characteristics}}
+
+\vspace{\baselineskip} \noindent
+\underline{Ideal Operational Amplifier Characteristics}
+
+\begin{itemize}
+ \item Infinite input impedance
+ \item Zero output impedance
+ \item Infinite voltage gain
+ \item Zero common mode voltage gain
+ \item Zero offset voltage
+ \item Infinite slew rate
+ \item Characteristics independent of temperature
+\end{itemize}
+
+\vspace{\baselineskip} \noindent
+\underline{Real Operational Amplifier Characteristics}
+
+\vspace{\baselineskip} \noindent
+\emph{Input Current}
+
+Input terminals sink a small current called the input bias current, $I_{B}$.
+$I_{B}$ is defined as half the sum of the input currents with both inputs tied
+together. Input currents are $\sim$10nA and $\sim$10pA for BJT input and FET
+input op amps respectively. Input current causes a voltage drop across the
+resistors of the feedback network, bias network, or source impedance.
+
+\vspace{\baselineskip} \noindent \emph{Input Offset Current}
+
+$I_{offset}$ is defined as the difference in the input current between the two inputs. When driven by identical source impedances the op amp sees different voltages between the inputs. Input offset currents are usually 0.1 to 0.5 times the input current.
+
+\vspace{\baselineskip} \noindent
+\emph{Input Impedance}
+
+$Z_{in}$ is defined as the input impedance looking into one input with the other grounded. Input impedances are $\sim$1M$\Omega$ and 1T$\Omega$ (10$^{12}\omega$) for BJT input and FET input op amps respectively.
+
+\vspace{\baselineskip} \noindent
+\emph{Input Range}
+
+The inputs to an op amp must be kept within a certain voltage range for proper operation, typically less than the supply range. Outside of this range the amplifier may exhibit phase reversal and output saturation.
+
+\vspace{\baselineskip} \noindent
+\emph{Output Impedance}
+
+$R_{o}$ is defined as the intrinsic output impedance without feedback. Feedback lowers the output impedance to insignificance. More important, then, is the maximum output current. Maximum output current is typically 1mA to 100mA, but can be as high as 30A.
+
+\vspace{\baselineskip} \noindent
+\emph{Voltage Gain}
+
+$A_{vo}$ at dc is typically 10$^{5}$ to 10$^{6}$ (100 to 120dB), dropping to 1 at a frequency of $f_{T}$, typically 1MHz to 10MHz. Usually given as a graph of open loop voltage gain as a function of frequency. For internally compensated op amps the rolloff is 6dB/octave begining at around 10Hz. Results in a constant 90$^{\circ}$ lagging phase shift (open loop) at all frequencies above the begining of rolloff, increasing to 120$^{\circ}$ to 160$^{\circ}$ as the open loop gain approaches 1.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\emph{Input Offset Voltage}
+
+If both inputs of an op amp are connected together the output will usually saturate to $V_{CC}$ or $V_{EE}$. The voltage difference required to bring the output to zero is called the input offset voltage, $V_{os}$. Often op amps provide trimming to set the offset voltage to zero. Unfortunately offset voltages often drift with temperature and time.
+
+\vspace{\baselineskip} \noindent
+\emph{Slew Rate}
+
+Defined as the maximum rate at which the output can change. Typically in range of 1V/$\mu$s to 100V/$\mu$s. Slew rate limits the amplitude of an undistorted sine wave above a cert
+ain frequency (a sine wave of frequency $F$ Hertz and amplitude $A$ Volts $h$ as a maximum slew rate of 2$\pi$AF Volts per second).
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Operational Amplifier Applications}}
+
+There are two 'Golden Rules' for determining approximate op amp behaviour:
+ 
+\begin{enumerate}
+\item The output does whatever it can to make the voltage difference 
+ between the inputs zero;
+\item The inputs draw no current.
+\end{enumerate}
+
+\vspace{\baselineskip} \noindent
+\underline{Basic Operational Amplifier Circuits}
+
+\vspace{\baselineskip} \noindent
+\emph{Inverting Amplifier}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+The noninverting input is at ground so rule (1) implies that the inverting input is at ground too. Thus the voltage across $R1$ is $V_{i}$ and the voltage across $R2$ is $V_{o}$. By rule (2) $\frac{V_{o}}{R2} = -\frac{V_{i}}{R1}$. Thus Voltage gain = $\frac{V_{o}}{V_{i}} = -\frac{R2}{R1}$. Since the inverting input is at ground the input iompedance is simply $R1$.
+
+\vspace{\baselineskip} \noindent
+\emph{Noninverting Amplifier}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Let $V'$ be the Voltage at inverting input of op amp.
+
+\begin{eqnarray*}
+ V_{i} & = & V'\\
+ V' & = & V_{o} \frac{R1}{(R1+R2)}
+\end{eqnarray*}
+
+Thus Voltage gain = $\frac{V_{o}}{V_{i}} = 1 + \frac{R2}{R1}$. Since inputs draw no current the input impedance is infinite
+
+\vspace{\baselineskip} \noindent
+\emph{Follower}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Simply a noninverting amplifier with R1 infinite and R2 zero. Thus Voltage gain is 1.
+
+\vspace{\baselineskip} \noindent
+\emph{Differential Amplifier}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Voltage gain = $\frac{R2}{R1}$. Requires precise matching of resistors.
+
+\vspace{\baselineskip} \noindent
+\emph{Summing Amplifier}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Inverting input of op amp is a virtual ground. Input current is
+ $\frac{V_{i}}{R1} +\frac{ V_{i}'}{R1'} + \frac{V_{i}"}{R1"}$.
+
+So $V_{o} = -V_{i}(\frac{R2}{R1}) - V_{i}'(\frac{R2}{R1'}) 
+ - V_{i}"(\frac{R2}{R1"})$. i.e. Weighted sum of inputs.
+
+\vspace{\baselineskip} \noindent
+\emph{Integrator}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Inverting input of op amp is a virtual ground. Input current is $\frac{V_{i}}{R}$ which must flow through $C$. Thus 
+
+\begin{eqnarray*}
+ \frac{V_{i}}{R} & = & -C\left(\frac{dV_{o}}{dt}\right)\\
+ V_{o} & = & \frac{\left(\int V_{i} dt\right)}{RC} + \mbox{constant}
+\end{eqnarray*}
+
+Op amp offset and bias current causes output to wander when input is grounded. Thus best to use FET input op amps, trim input offset current and Voltage, and use large values for R and C.
+
+\vspace{\baselineskip} \noindent
+\emph{Differentiator}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Rate of change of input Voltage produces current at virtual ground. Thus $V_{o} = -RC\left(\frac{dV_{i}}{dt}\right)$. Very sensitive to noise and instabilities at high frequencies. Therefore need to roll off differentiator above some frequency.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+At high frequencies the circuit becomes an integrator.
+
+\subsection{Active Filters}
+
+Filters are used to modify signals to ensure that they have any undesirable elements removed. These undesirable elements are usually expressed as components of the Fourier spectrum within certain frequency bands.
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Filter performance criteria}}
+
+\vspace{\baselineskip} \noindent
+\underline{Frequency domain}
+
+Filters are often characterised by their gain and phase versus frequency
+
+\vspace{\baselineskip} \noindent
+\emph{Gain Versus Frequency}
+
+\begin{itemize}
+\item The \emph{passband} is the region of frequencies relatively unattenuated by the filter, usually considered to extend to the -3dB points.
+\item The \emph{stopband} is the region of frequencies with significant attenuation.
+\item The \emph{transition band} is the region of frequencies between the passband and stopband.
+\end{itemize}
+
+\vspace{\baselineskip} \noindent
+\emph{Low Pass}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\emph{High Pass}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\emph{Band Pass}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\emph{Band Reject}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+
+\vspace{\baselineskip} \noindent
+\emph{Phase Versus Frequency}
+
+The phase response refers to the phase shift of the output signal relative to the input signal. To have a signal undistorted by a filter all frequencies within the passband must experience a constant time delay, corresponding to a phase shift linear with frequency.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+
+\vspace{\baselineskip} \noindent
+\underline{Time domain}
+
+Filters may also be characterised by their time domain characteristics. Usually expressed with respect to a step input:
+
+\begin{tabular}{l}
+\emph{Rise time} is the time required to rise to some fraction, usually 0.9, of the final value;\\
+\emph{Settling time} is the time required to settle to some fraction of the final value and stay there;\\
+\emph{Overshoot} is the proportion by which the signal rises beyond its final value;\\
+\emph{Ringing} refers to oscillations of the signal before settling to its final value.
+\end{tabular}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Filter Types}}
+
+Ideal filter characteristics are impossible to achieve because of conflicting requirements, violation of causality, and practical constraints.
+
+Filters may be designed by optimising one of the following criteria:
+\begin{enumerate}
+ \item Flatness of the passband response;
+ \item Distortion of the waveform.
+ \item Speed of transition from passband to stopband;
+ \item Risetime, overshoot, and settling time.
+\end{enumerate}
+
+\vspace{\baselineskip} \noindent
+\underline{Butterworth}
+
+Butterworth low pass filters have maximally flat amplitude characteristics at the origin. i.e. as many derivatives of the magnitude response as possible are zero at the origin. Thus optimising (1) at zero frequency.
+
+\vspace{\baselineskip} \noindent
+\underline{Bessel}
+
+Bessel lowpass filters have maximally flat group delay at the origin. Optimising (2) The step response exhibits very low overshoot.
+
+\vspace{\baselineskip} \noindent
+\underline{Chebyschev}
+
+Over a prescribed band of frequencies the peak magnitude of the approximation error is minimised. Type I and type II filters refer to the error being minimised over the passband or stopband respectively. Optimising (1) over passband or stopband.
+
+\vspace{\baselineskip} \noindent
+\underline{Elliptic}
+
+ Elliptic filters have equiripple magnitude response in both the passband and stopband.For a given order and ripple specifications no other filter achieves a faster transition between the passband and stopband  i.e. it has a narrower transition bandwidth. Thus optimising (3).
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Filter Comparison}}
+
+6th order filters
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\newpage
+
+\begin{tabular}{ccccccccc}
+ \textbf{Type} & \textbf{$f_{-3dB}$} & \textbf{Poles} & \textbf{Step} &
+  \textbf{Over-} & \multicolumn{2}{c}{\textbf{Settling Time(s)}} &
+  \multicolumn{2}{c}{\textbf{Attenuation (dB)}}\\
+ & & & \textbf{Rise} & \textbf{shoot}\\
+ & & & \textbf{Time}\\
+ & & & \textbf{(s)}\\
+ & & & to 0.9 & & to 0.01 & to 0.01 & @@2$f_{c}$ & @@10$f_{c}$\\
+ \\
+ \textbf{Bessel} & 1.00 & 2 & 0.4 & 0.004 & 0.6 & 1.1 & 10 & 36\\
+ ($f_{c}$ = 1.0Hz) & 1.00 & 4 & 0.5 & 0.008 & 0.7 & 1.2 & 13 & 66\\
+                & 1.00 & 6 & 0.6 & 0.006 & 0.7 & 1.2 & 14 & 92\\
+                & 1.00 & 8 & 0.7 & 0.003 & 0.8 & 1.2 & 14 & 114\\
+ \\
+ \textbf{Butterworth} & 1.00 & 2 & 0.4 & 0.04 & 0.8 & 1.7 & 12 & 40\\
+                & 1.00 & 4 & 0.6 & 0.11 & 1.0 & 2.8 & 24 & 80\\
+                & 1.00 & 6 & 0.9 & 0.14 & 1.3 & 3.9 & 36 & 120\\
+                & 1.00 & 8 & 1.1 & 0.16 & 1.6 & 5.1 & 48 & 160
+ \\
+ \textbf{Chebyshev} & 1.39 & 2 & 0.4 & 0.11 & 1.1 & 1.6 & 8 & 37\\
+ ($f_{c}$ = 1.0Hz  & 1.09 & 4 & 0.7 & 0.18 & 3.0 & 5.4 & 31 & 89\\
+ 0.5dB ripple)     & 1.04 & 6 & 1.1 & 0.21 & 5.9 & 10.4 & 54 & 141
+\end{tabular}
+
+\vspace{\baselineskip} \noindent
+\underline{\textbf{Circuits}}
+
+\vspace{\baselineskip} \noindent
+\underline{VCVS}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Voltage controlled Voltage source filter. The resistors at the output create a noninverting Voltage amplifierof Voltage gain K. The remaining Rs and Cs determine the frequency response. 2 pole filter.
+
+Higher order filters are generated by cascading 2 pole sections. In this case the sections are generally not identical.
+
+Advantages: 2 poles per op amp; Noninvertig gain; Low output impedance; Small spread in component values; Simple gain adjustment; Can operate with high gain and high Q.
+
+Disadvantages: High sensitivity to component values and amplifier gain; Not very suitable for tunable filters.
+
+\newpage
+
+\begin{tabular}{cccccc}
+ \textbf{Poles} & \textbf{Butterworth} & 
+  \multicolumn{2}{c}{\textbf{Bessel}} &
+  \multicolumn{2}{c}{\textbf{Chebyschev(0.5dB)}}\\
+ \\
+  \textbf{$K$} & \textbf{$f_{n}$} & \textbf{$K$} & \textbf{$f_{n}$}
+ & \textbf{$K$}  & \textbf{$f_{n}$}\\
+ \textbf{2} & 1.586 & 1.272 & 1.268 & 1.231 & 1.842\\
+ \textbf{4} & 1.152 & 1.432 & 1.084 & 0.597 & 1.582\\
+           & 2.235 & 1.606 & 1.759 & 1.031 & 2.660\\
+ \textbf{6} & 1.068 & 1.607 & 1.040 & 0.396 & 1.537\\
+           & 1.586 & 1.692 & 1.364 & 0.768 & 2.448\\
+           & 2.483 & 1.908 & 2.023 & 1.011 & 2.846\\
+ \textbf{8} & 1.038 & 1.781 & 1.024 & 0.297 & 1.522\\
+           & 1.337 & 1.835 & 1.213 & 0.599 & 2.379\\
+           & 1.889 & 1.956 & 1.593 & 0.861 & 2.711\\
+           & 2.610 & 2.192 & 2.184 & 1.006 & 2.913
+\end{tabular}
+
+\vspace{\baselineskip} \noindent
+\emph{Butterworth}
+
+All sections have same $R$ and $C$ given by $RC=\frac{1}{(2\pi f_{c})}$ where $f_{c}$ is the desired -3dB point.
+
+\vspace{\baselineskip} \noindent
+\emph{Bessel And Chebyschev}
+As above but $RC=\frac{1}{(2\pi f_{n}f_{c})}$ where $f_{c}$ is the desired -3dB point and fn is a normalising factor given in the table.
+
+\vspace{\baselineskip} \noindent
+\underline{State Variable Biquad}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+2 pole.
+
+Can be purchased as a module with all components except $R_{g}, R_{q}$, and $R_{f}$ built in. Have high pass, low pass, and band pass outputs from the same circuit. Frequency may be tuned while maintaining constant damping (or constant bandwidth). Can generate higher order filters by cascading stages.
+
+\vspace{\baselineskip} \noindent
+\underline{Switched Capacitor}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+$S1$ and $S2$ are MOS switches clocked from an externally applied high
+frequency square wave ($\approx$100 times analog signals of interest). When
+$S1$ is closed, $S2$ is open, $C1$ charges to $Vi$. When $S1$ is open, $S1$ is
+closed, $C1$ discharges into the virtual ground, transfering charge to
+$C2$. The Voltage across $C2$ thus changes by $\Delta V=\frac{\Delta Q}{C2}=\frac{ViC1}{C2}$. i.e. the Voltage change during each cycle is proportional to $Vi$.
+
+Advantages: Switched capacitor filters are easy to make on silicon; Can tune filter's frequency simply by changing the input clock frequency.
+
+Disadvantages: Output experiences some clock feedthrough; High frequency signals at the input will be aliased into the passband; Switches cause noise thus lowering the signal to noise ratio.
+
+\section{A/D and D/A conversion}
+\subsection{Multiplexer}
+\subsection{Sample and hold}
+\subsection{D/A conversion}
+\subsection{Issues}
+
+linearity, missing codes, sample rate, latency
+
+\section{Digital processing}
+\subsection{Time domain}
+
+\begin{itemize}
+\item filtering
+\item convolution
+\item cross correlation
+\end{itemize}
+
+\subsection{Frequency domain}
+
+
+\begin{itemize}
+\item filtering
+\item convolution
+\item cross correlation
+\end{itemize}
+
+\section{A/D Converters}
+
+\subsection{Parallel encoded (flash) A/D converter:}
+
+Input signal, $Vi$, is fed simultaneously into negative inputs of each of $m-1$ comparators. The positive comparator inputs are connected to $m-1$ equally spaced reference voltager. A priority encoder generator on $n$ bit ($m\leq 2^{n}$) digital output corresponding to the highest comparator activated by the input voltage. Parallel encoding is the fastest method of A/D conversion. Delay time equals the sum of comparator and encoder delays. Available with 16 to 1024 (4 bit to 10 bit) levels. Speeds range from 15 to 300 Megasampler per second.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\subsection{Successive approximation A/D converter:}
+
+Output coder are fed into a D/A converter. D/A output is compared with the analogue input. Usually achieved by setting all bits to zero. Beginning with most significant bit, eqch bit in turn is set to 1. 
+
+If the D/A output is $< Vi$, bit is left at 1. If the D/A output is $> Vi$, bit is set back to 0. 
+
+For $n$ bit A/D, $n$ such steps are required ie $n$-level binary search. Availabel with 256 to 1048576 levels (8 to 20 bit resolution). Speeds range from 5 to 400 K samples/sec.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\subsection{Single slope integration:}
+
+An internal ramp generator os started to begin conversion. At the same time a converter is enabled to count pulses from a stable clock.  When the ramp voltage equals the input voltage the comparator stops the counter.  The count is proportional to the input voltage. At the end of conversion the ramp and counter are reset. Simple but not very accurate.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\subsection{Delta-sigma converters:}
+
+Input voltage driver and integrator. Output of integrator is fed into a comparator with one input grounded. Depending upon output of the comparator, current power of fixed length (ie fixed charge) are switched into the summin junction or to ground to maintain zero average current into the swimming junction. A counter keeps track of the number of charge pulses switched into the summing junction.  For a fixed time interval the count is proportional to the average input voltage.  ie uses a 1 bit A/D (comparator), at very high sampling rates, in a feedback configuration. Available with 16384 to 16777216 levels (14 to 24 bits). Speeds range from 10 samples/sec to 100K samples/sec.
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\section{Sampling Errors}
+\subsection{Aliasing}
+
+At least 2 samples per cycle of the data bondwidth are required to reproduce sampled data without information loss (Nyquist sampling theorem).
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+Accuracy of sampled data may be improved by:
+\begin{enumerate}
+\item increasing the number of samples per cycle
+\item presampling filtering
+\item filtering the D/A converter output
+\end{enumerate}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\subsection{Transfer Function for A/D and D/A Converter}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\end{figure}
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-master: "~/documents/notes/bionotes/bionotes"
+%%% End: `

@@ -226,6 +226,166 @@ where $\trop$ extends the differential form to the boundary. Note that
 $\trace{}{e^{p}}\in\ltwodiffformspace{n-k_{p}}{\boundary{\Omega}}$ and
 $\trace{}{\covectr{e}^{\covectr{q}}}\in\ltwodiffformspace{n-k_{q}}{\boundary{\Omega}}$.
 
+\subsection{Elastic wave case}
+
+We can now consider a specific example of waves in a linearly elastic
+material. The specific form of the wave equation in a domain,
+$\Omega\subset\rntopology{n}$, $n=1,2,3$ with boundary
+$\boundary{\Omega}$ is given by
+\begin{equation}
+  \fnof{\rho}{\vectr{x}}\deltwosqby{\fnof{z}{\vectr{x},t}}{t}=\divergence{}{\pbrac{\fnof{E}{\vectr{x}}\gradient{}{\fnof{z}{\vectr{x},t}}}}
+\end{equation}
+where $\fnof{z}{\vectr{x},t}$ is the wave amplitude,
+$\fnof{\rho}{\vectr{x}}$ is the material density and
+$\fnof{E}{\vectr{x}}$ is the Young's modulus.
+
+\subsubsection{Vector Calculus Derivation}
+
+The \emph{state} or \emph{energy} variables are given by
+\begin{align}
+    \fnof{p}{\vectr{x},t}&=\delby{\fnof{z}{\vectr{x},t}}{t}\in\rntopology{} \\
+    \fnof{\vectr{\epsilon}}{\vectr{x},t}&=\gradient{}{\fnof{z}{\vectr{x},t}}\in\rntopology{n}
+\end{align}
+where $\fnof{p}{\vectr{x},t}$ is the \emph{momentum} and
+$\fnof{\vectr{\epsilon}}{\vectr{x},t}$ is the \emph{elastic
+strain}.
+
+The flow variables are 
+\begin{align}
+  \fnof{f^{p}}{\vectr{x},t}&=-\delby{\fnof{p}{\vectr{x},t}}{t}\in\rntopology{} \\
+  \fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}&=-\delby{\fnof{\vectr{\epsilon}}{\vectr{x},t}}{t}\in\rntopology{n}
+\end{align}
+where $\fnof{f^{p}}{\vectr{x},t}$ is the flow variable associated with the momentum energy variable $p$ and $\fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}$ is the flow variable associated with the strain energy variable $\vectr{\epsilon}$.
+
+The Hamiltonian density function is thus given by
+\begin{equation}
+  \hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}=\dfrac{1}{2}\pbrac{\dfrac{\fnof{p^{2}}{\vectr{x},t}}{\fnof{\rho}{\vectr{x}}}+\fnof{E}{\vectr{x}}\dotprod{\fnof{\vectr{\epsilon}}{\vectr{x},t}}{\fnof{\vectr{\epsilon}}{\vectr{x},t}}}
+\end{equation}
+and thus the Hamiltonian function is given by
+\begin{equation}
+  \hamiltonian{p,\vectr{\epsilon},t}=\gint{\Omega}{}{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{\Omega}
+\end{equation}
+where $\exteriorderiv{\Omega}$ is the volume form.
+
+The consitutive equations for the \emph{efforts} or \emph{co-energy} variables are given by
+\begin{align}
+  \fnof{v}{\vectr{x},t}&=\fnof{e^{p}}{p,\vectr{\epsilon},t}=\variation{\hamiltonian{p,\vectr{\epsilon},t}}{p}=\delby{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{p}\in\rntopology{}\\
+  &=\dfrac{\fnof{p}{\vectr{x},t}}{\fnof{\rho}{\vectr{x}}}\\
+  \fnof{\tensor{\sigma}}{\vectr{x},t}&=\fnof{\vectr{e}^{\vectr{\epsilon}}}{p,\vectr{\epsilon},t}=\variation{\hamiltonian{p,\vectr{\epsilon},t}}{\vectr{\epsilon}}=\delby{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{\vectr{\epsilon}}\in\rntopology{n}\\
+  &=\fnof{E}{\vectr{x}}\fnof{\vectr{\epsilon}}{\vectr{x},t}
+\end{align}
+where $\fnof{v}{\vectr{x},t}$ or $\fnof{e^{p}}{p,\vectr{\epsilon},t}$ is the velocity or the effort associated with the momentum and $\fnof{\tensor{\sigma}}{\vectr{x},t}$ or $\fnof{\vectr{e}^{\vectr{\epsilon}}}{p,\vectr{\epsilon},t}$ is the stress or the effort associated with the strain.
+
+The wave equation can thus be written in Port-Hamiltonian form as
+\begin{equation}
+  \begin{aligned}
+    \begin{bmatrix}
+      \fnof{f^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}
+    \end{bmatrix}&=\begin{bmatrix}
+    0 & \divop \\
+    \gradop & \vectr{0}
+    \end{bmatrix}\begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{e}^{\vectr{\epsilon}}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Structure equations}\\
+    \begin{bmatrix}
+      \delby{\fnof{p}{\vectr{x},t}}{t} \\
+      \delby{\fnof{\vectr{\epsilon}}{\vectr{x},t}}{t}      
+    \end{bmatrix}&=\begin{bmatrix}
+      -\fnof{f^{p}}{\vectr{x},{t}} \\
+      -\fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},{t}} \\          
+    \end{bmatrix}&\qquad&\text{Dynamics equations}\\
+    \begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t}\\
+      \fnof{\vectr{e}^{\vectr{\epsilon}}}{\vectr{x},t}\\
+    \end{bmatrix}&=\begin{bmatrix}
+    \dfrac{\fnof{p}{\vectr{x},t}}{\fnof{\rho}{\vectr{x}}}\\
+    \fnof{E}{\vectr{x}}\fnof{\vectr{\epsilon}}{\vectr{x},t}
+    \end{bmatrix}=\begin{bmatrix}
+    \fnof{v}{\vectr{x},t}\\
+    \fnof{\tensortwo{\sigma}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Constitutive equations}
+  \end{aligned}
+\end{equation}
+
+
+\subsubsection{Exterior Calculus Derivation}
+
+The \emph{state} or \emph{energy} variables are given by
+\begin{align}
+    \fnof{p}{\vectr{x},t}&=\delby{\fnof{z}{\vectr{x},t}}{t}\in\diffformspace{n}{\Omega} \\
+    \fnof{\vectr{\epsilon}}{\vectr{x},t}&=\gradient{}{\fnof{z}{\vectr{x},t}}\in\diffformspace{1}{\Omega}
+\end{align}
+where $\fnof{p}{\vectr{x},t}$ is the \emph{momentum} $n$-form and
+$\fnof{\vectr{\epsilon}}{\vectr{x},t}$ is the \emph{elastic
+strain} $1$-form.
+
+The flow variables are 
+\begin{align}
+  \fnof{f^{p}}{\vectr{x},t}&=-\delby{\fnof{p}{\vectr{x},t}}{t}\in\diffformspace{n}{\Omega} \\
+  \fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}&=-\delby{\fnof{\vectr{\epsilon}}{\vectr{x},t}}{t}\in\diffformspace{1}{\Omega}
+\end{align}
+where $\fnof{f^{p}}{\vectr{x},t}$ is the flow variable associated with the momentum energy variable $p$ and $\fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}$ is the flow variable associated with the strain energy variable $\vectr{\epsilon}$.
+
+The Hamiltonian density function is thus given by
+\begin{equation}
+  \hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}=\dfrac{1}{2}\pbrac{\wedgeprod{\fnof{p}{\vectr{x},t}}{\fnof{v}{\vectr{x},t}}+\wedgeprod{\fnof{\covectr{\epsilon}}{\vectr{x},t}}{\fnof{\covectr{\sigma}}{\vectr{x},t}}}
+\end{equation}
+where $\wedgeprodop$ is the wedge (or exterior) product operator,
+$\fnof{v}{\vectr{x},t}$ is the \emph{velocity} $0$-form and
+$\fnof{\covectr{\sigma}}{\vectr{x},t}$ is the \emph{stress}
+$\pbrac{n-1}$-form.
+
+The Hamiltonian function is given by
+\begin{equation}
+  \hamiltonian{p,\vectr{\epsilon},t}=\gint{\Omega}{}{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{\Omega}
+\end{equation}
+where $\exteriorderiv{\Omega}$ is the volume form.
+
+The \emph{co-state} or \emph{co-energy} variables are given by the constitutive equations
+\begin{align}
+  \fnof{v}{\vectr{x},t}&=\fnof{e^{p}}{p,\vectr{\epsilon},t}=\variation{\hamiltonian{p,\vectr{\epsilon},t}}{p}=\delby{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{p}\in\diffformspace{0}{\Omega}\\
+  &=\dfrac{\hodgestar{\fnof{p}{\vectr{x},t}}}{\fnof{\rho}{\vectr{x}}}\\
+  \fnof{\tensor{\sigma}}{\vectr{x},t}&=\fnof{\vectr{e}^{\vectr{\epsilon}}}{p,\vectr{\epsilon},t}=\variation{\hamiltonian{p,\vectr{\epsilon},t}}{\vectr{\epsilon}}=\delby{\hamiltoniandensity{p,\vectr{\epsilon},\vectr{x},t}}{\vectr{\epsilon}}\in\diffformspace{n-1}{\Omega}\\
+  &=\fnof{E}{\vectr{x}}\hodgestar{\fnof{\vectr{\epsilon}}{\vectr{x},t}}
+\end{align}
+where $\hodgestarop$ is the Hodge star operator.
+
+
+The wave equation can thus be written in Port-Hamiltonian form as
+\begin{equation}
+  \begin{aligned}
+    \begin{bmatrix}
+      \fnof{f^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},t}
+    \end{bmatrix}&=\begin{bmatrix}
+    0 & (-1)^{n+1}\exteriorderivop \\
+    \exteriorderivop & \vectr{0}
+    \end{bmatrix}\begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t} \\
+      \fnof{\vectr{e}^{\vectr{\epsilon}}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Structure equations}\\
+    \begin{bmatrix}
+      \delby{\fnof{p}{\vectr{x},t}}{t} \\
+      \delby{\fnof{\vectr{\epsilon}}{\vectr{x},t}}{t}      
+    \end{bmatrix}&=\begin{bmatrix}
+      -\fnof{f^{p}}{\vectr{x},{t}} \\
+      -\fnof{\vectr{f}^{\vectr{\epsilon}}}{\vectr{x},{t}} \\          
+    \end{bmatrix}&\qquad&\text{Dynamics equations}\\
+    \begin{bmatrix}
+      \fnof{e^{p}}{\vectr{x},t}\\
+      \fnof{\vectr{e}^{\vectr{\epsilon}}}{\vectr{x},t}\\
+    \end{bmatrix}&=\begin{bmatrix}
+    \dfrac{\hodgestar{\fnof{p}{\vectr{x},t}}}{\fnof{\rho}{\vectr{x}}}\\
+    \fnof{E}{\vectr{x}}\hodgestar{\fnof{\vectr{\epsilon}}{\vectr{x},t}}
+    \end{bmatrix}=\begin{bmatrix}
+    \fnof{v}{\vectr{x},t}\\
+    \fnof{\covectr{\sigma}}{\vectr{x},t}
+    \end{bmatrix}&\qquad&\text{Constitutive equations}
+  \end{aligned}
+\end{equation}
+
 \subsection{Weak Form}
 
 The \emph{weak form} of the equations is obtain from \emph{duality pairing} of
@@ -617,3 +777,43 @@ and the 2-form (face-forms) are
   simplex mesh.}{$2\times 1$ mesh to solve the 2D wave equation
   on.}{fig:FourElementSimplex}{0.75}
  
+\clearemptydoublepage
+
+\subsection{Definitions}
+
+The zero and one junctions in bond graphs are just examples of the
+general concept of a (constant) Dirac structure.
+
+Dirac structures are called modulated by the state variables if the
+state variables are part of the Dirac structure (e.g., the J matrix).
+
+Canonical form of a port Hamiltonian is one in which the Dirac
+structure is constant. If coordinates exist that make the Dirac
+structure constant then these coordinates are called canonical
+coordinates. For a non-constant Dirac structure on a manifold it is
+possible to construct canonical coordinates locally around a point of
+the Dirac structure if and only if the Diract structure is integrable.
+
+Loosely, Dirac structures are integratable if a Dirac structure
+expressed in canonical coordinates is constant \ie that it is not
+modulated by the state variables.
+
+Dirac structures that do not satisfy the integrability condition are
+called \emph{pseduo-Dirac} structures.
+
+For port Hamiltonian formulations on distributed parameter systems on
+a bounded spatial domain you need to make use of Stokes' theorem on
+suitable spaces of differential forms on the spatial domain and
+boundary. These are known as \emph{Stokes-Dirac structures}.
+
+For boundary ports there are is a pair of power variables (flow and
+effort). One of these power variables is considered as an input that
+is imposed on the boundary. The other variable is then refered to as
+the \emph{dual} variable that is the \emph{collocated} or
+{power-conjugated} output variable. The choice of which power variable
+is an input and which is an output is known as the \emph{causality} of
+the boundary port.
+
+
+
+

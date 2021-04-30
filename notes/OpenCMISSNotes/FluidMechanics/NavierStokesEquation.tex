@@ -236,6 +236,236 @@ include mixed element methods, penalty methods, generalized petrov-galerkin
 methods using pressure poisson correction, operator splitting, and
 semi-implicit pressure correction \cite{chung:2010}.
 
+\subsection{Non-dimensional form}
+\label{subsec:NonDimensionalNavierStokes}
+
+For an incompressible Newtonian fluid the Navier-Stokes equations are
+\begin{align}
+  \rho\delby{\vectr{v}}{t}
+  +\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
+  &=\dotprod{-\gradient{}{p}}{\sharptensor{\tensor{g}}}
+  +\divergence{}{\mu\pbrac{\gradient{}{\vectr{v}+\transpose{\gradient{}{\vectr{v}}}}}}
+  +\rho\vectr{a}_{g} \label{eqn:DiffIncompNSEMomentumNonDim} \\
+  \divergence{}{\pbrac{\rho\vectr{v}}}&=0 \label{eqn:DiffIncompNSEMassNonDim}
+\end{align}
+where $\rho$ is the density, $\vectr{v}$ is the fluid velocity, $p$ is
+the pressure, $\mu$ is the viscosity and $\vectr{a}_{g}$ is the
+acceleration due to gravity.
+
+To obtain a non-dimensional form of the Navier-Stokes equations we
+need to determine a scale parameter for each of the base units
+involved in the equations. For some base units there may be multiple
+choices for the scale parameter and it is important to consider the
+type of physics and forces involved in order to make the correct
+choice. We will now consider the different scale parameters for the
+various base units.
+
+\subsubsection{Length}
+The scale parameter for length can be chosen as $L$. The exact value
+of the characteristic length $L$ will depend on the geometry of the
+flow. Some choices of $L$ include the pipe diameter $D$ for pipe flow,
+the length of a plate or aerofoil $L$ for flow over a solid surface,
+the depth of a channel for channel flow \etc The scaled length variables are given by
+\begin{equation}
+  \nondim{x}_{i}=\dfrac{x_{i}}{L}
+\end{equation}
+
+Note that the scale parameter for length will also affect differential operators in space \ie
+\begin{equation}
+  \gradnondim = \grad L
+\end{equation}
+and
+\begin{equation}
+  \gradsqnondim = \gradsq L^{2}
+\end{equation}
+
+\subsubsection{Velocity}
+In terms of primative variables the flow velocity is of importance in
+fluid flows. The scale parameter for fluid velocity can be chosen as
+$V$. The scaled velocity variables are given by
+\begin{equation}
+  \nondim{v}_{i}=\dfrac{v_{i}}{V}
+\end{equation}
+
+\subsubsection{Time}
+For some problems a natural time scale may be available \eg for
+dynamic boundary conditions there may be a natural frequency or period
+of variation. If such a natural time scale is not available then there
+are two time scales that can be formed in terms of the other scale
+parameters. The first time scale called the \emph{dynamic time scale},
+$T_{d}$, is the time that it takes for a parcel of fluid to cover the
+length scale parameter \ie
+\begin{equation}
+  T_{d}=\dfrac{L}{V}
+\end{equation}
+
+The second time scale can be found if the fluid is viscous. This time
+scale known as the \emph{viscous diffusion time}, $T_{v}$, is given by
+\begin{equation}
+  T_{v}=\dfrac{\rho L^{2}}{\mu}=\dfrac{L^{2}}{\nu}
+\end{equation}
+where $\mu$ is the kinematic viscosity and $\nu$ is the dynamic viscosity.
+
+The scaled time variable is given by
+\begin{equation}
+  \nondim{t}_{d}=\dfrac{t}{T_{d}}
+\end{equation}
+or
+\begin{equation}
+  \nondim{t}_{v}=\dfrac{t}{T_{v}}
+\end{equation}
+
+\subsubsection{Acceleration due to gravity}
+For the acceleration due to gravity we can pick the gravitational scale factor, $A_{g}$, based on the magnitude of the accerlation vector \ie
+\begin{equation}
+  A_{g}=\norm{\vectr{a}_{g}}=a_{g}
+\end{equation}
+
+The scaled acceleration due to gravity variable is given by
+\begin{equation}
+  \nondim{a}_{gi}=\dfrac{a_{gi}}{A_{g}}
+\end{equation}
+
+\subsubsection{Pressure}
+For pressure there is no real natural scale parameter. The parameter
+chosen will depend on the physics of the problem. For example, if we
+have high velocity flows then dynamic effects will be dominant and
+thus we can chose the pressure scale parameter to be based on the
+\emph{dynamic pressure}, $P_{d}$, \ie
+\begin{equation}
+  P_{d}=\rho V^{2}
+\end{equation}
+
+However if we have, for example, large viscosity with low flow
+velocities then the viscous effects will be dominant. In this case it
+is better to scale the pressure using the \emph{viscous pressure}, $P_{v}$, \ie
+\begin{equation}
+  P_{v}=\dfrac{\mu V}{L}
+\end{equation}
+
+The scaled pressure variable is given by
+\begin{equation}
+  \nondim{p}_{d}=\dfrac{p}{P_{d}}
+\end{equation}
+or
+\begin{equation}
+  \nondim{p}_{v}=\dfrac{p}{P_{v}}
+\end{equation}
+
+\subsubsection{Non-dimensional numbers}
+
+A number of important non-dimensional numbers can be found in fluid mechanics. These numbers are given in \tabref{tab:NonDimensionalNumbersFluids}
+
+\begin{table}[htb] \centering
+  {\renewcommand{\arraystretch}{2.5}
+  \begin{tabular}{|c|c|c|c|} \hline
+    Name & Symbol & Formula & Interpretation \\ \hline\hline
+    Froude Number & $\froudenum$ & $\froudenum = \dfrac{V}{\sqrt{a_{g}L}}$ &
+    $\dfrac{\text{Inertial forces}}{\text{Gravitational forces}}$ \\ \hline
+    Mach Number & $\machnum$ & $\machnum = \dfrac{V}{c}$ &
+    $\dfrac{\text{Flow velocity}}{\text{Speed of sound}}$ \\ \hline
+    Reynolds Number & $\reynoldsnum$ & $\reynoldsnum = \dfrac{\rho L V}{\mu} = \dfrac{L V}{\nu}$ &
+    $\dfrac{\text{Inertial forces}}{\text{Viscous forces}}$ \\
+    & & $\reynoldsnum = \dfrac{T_{d}}{T_{v}}$ &
+    $\dfrac{\text{Dynamic time scale}}{\text{Viscous time scale}}$ \\ \hline
+    Schmidt Number & $\schmidtnum$ & $\schmidtnum=\dfrac{\mu}{\rho D}=\dfrac{\nu}{D}$ &
+    $\dfrac{\text{Viscous diffusion rate}}{\text{Mass diffusion rate}}$ \\ \hline
+    Strouhal Number & $\strouhalnum$ & $\strouhalnum=\dfrac{L}{U T}=\dfrac{f L}{U}$ &
+    $\dfrac{\text{Eulerian inertia}}{\text{Convective inertia}}$ \\ \hline
+  \end{tabular}}
+  \caption{Important non-dimensional numbers in fluid mechanics.}
+  \label{tab:NonDimensionalNumbersFluids}
+\end{table}
+
+\subsubsection{Non-dimensional Derivation}
+We can non-dimensionalise the Navier-Stokes equations by substituting the normalised variables. For inviscid flow we substitute
+\begin{align}
+  x_{i} &= \nondim{x}_{i}L \\
+  \grad &= \dfrac{\gradnondim}{L} \\
+  v_{i} &= \nondim{v}_{i}V \\
+  t &= \nondim{t}T_{d}=\dfrac{\nondim{t}L}{V}\\
+  a_{gi} &= \nondim{a}_{gi}A_{g}=\nondim{a}_{gi}a_{g}\\
+  p &= \nondim{p}P_{d}=\nondim{p}\rho V^{2}
+\end{align}
+into \eqnref{eqn:DiffIncompNSEMomentumNonDim} and \eqnref{eqn:DiffIncompNSEMassNonDim} we obtain
+\begin{equation}
+  \dfrac{\rho V^{2}}{L}\delby{\nondim{\vectr{v}}}{\nondim{t}}
+  +\dotprod{\dfrac{\rho V^{2}}{L}\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{\dfrac{-\rho V^{2}}{L}\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}
+  +\dfrac{1}{L}\divergencenondim{}{\dfrac{\mu V}{L}\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\rho a_{g}\nondim{\vectr{a}}_{g}
+\end{equation}
+
+If we now multiply the equation above by $\dfrac{L}{\rho V^{2}}$ we obtain
+\begin{equation}
+  \delby{\nondim{\vectr{v}}}{\nondim{t}}+\dotprod{\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{-\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}
+  +\dfrac{\mu}{\rho L V}\divergencenondim{}{\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\dfrac{a_{g}L}{V^{2}}\nondim{\vectr{a}}_{g}
+\end{equation}
+
+After substitution with non-dimensional numbers we obtain
+\begin{equation}
+  \delby{\nondim{\vectr{v}}}{\nondim{t}}+\dotprod{\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{-\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}+
+  \dfrac{1}{\reynoldsnum}\divergencenondim{}{\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\dfrac{1}{\froudenum^{2}}\nondim{\vectr{a}}_{g}
+\end{equation}
+
+For viscous flow we substitute
+\begin{align}
+  x_{i} &= \nondim{x}_{i}L \\
+  \grad &= \gradnondim L \\
+  v_{i} &= \nondim{v}_{i}V \\
+  t &= \nondim{t}T_{d}=\dfrac{\nondim{t}L}{V}\\
+  a_{gi} &= \nondim{a}_{gi}A_{g}=\nondim{a}_{gi}a_{g}\\
+  p &= \nondim{p}P_{v}=\dfrac{\nondim{p}\mu V}{L}
+\end{align}
+[WHY DO WE USE $T_{d}$ here and not $T_{v}$ ???]into
+\eqnref{eqn:DiffIncompNSEMomentumNonDim} and
+\eqnref{eqn:DiffIncompNSEMassNonDim} we obtain
+\begin{equation}
+  \dfrac{\rho V^{2}}{L}\delby{\nondim{\vectr{v}}}{\nondim{t}}
+  +\dotprod{\dfrac{\rho V^{2}}{L}\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{\dfrac{-\mu V}{L^{2}}\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}
+  +\dfrac{1}{L}\divergencenondim{}{\dfrac{\mu V}{L}\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\rho a_{g}\nondim{\vectr{a}}_{g}
+\end{equation}
+
+If we now multiply the equation above by $\dfrac{L^{2}}{\mu V}$ we obtain
+\begin{equation}
+  \dfrac{\rho L V}{\mu}\delby{\nondim{\vectr{v}}}{\nondim{t}}+
+  \dfrac{\rho L V}{\mu}\dotprod{\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{-\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}
+  +\divergencenondim{}{\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\dfrac{\rho a_{g}L^{3}}{\mu V^{3}}\nondim{\vectr{a}}_{g}
+\end{equation}
+
+After substitution with non-dimensional numbers we obtain
+\begin{equation}
+  \reynoldsnum\delby{\nondim{\vectr{v}}}{\nondim{t}}
+  +\reynoldsnum\dotprod{\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}
+  =\dotprod{-\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}+
+  \divergencenondim{}{\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\dfrac{\rho a_{g}L^{3}}{\mu V^{3}}\nondim{\vectr{a}}_{g}
+\end{equation}
+or
+\begin{equation}
+  \reynoldsnum\pbrac{\delby{\nondim{\vectr{v}}}{\nondim{t}}
+  +\dotprod{\nondim{\vectr{v}}}{\gradientnondim{}{\nondim{\vectr{v}}}}}
+  =\dotprod{-\gradientnondim{}{\nondim{p}}}{\sharptensor{\tensor{g}}}+
+  \divergencenondim{}{\pbrac{\gradientnondim{}{\nondim{\vectr{v}}+
+        \transpose{\gradientnondim{}{\nondim{\vectr{v}}}}}}}
+  +\dfrac{\rho a_{g}L^{3}}{\mu V^{3}}\nondim{\vectr{a}}_{g}
+\end{equation}
+    [FACTOR ON THE GRAVITATIONAL ACCELERATION TERM LOOKS A BIT FUNNY???]
+    
 \subsection{Finite element formulation}
 
 Using a classic Galerkin formulation, mixed methods are perhaps conceptually
@@ -485,7 +715,7 @@ formulation from \ref{eqn:NSEFEM2}:
 \begin{multline}
   %time dependence
   \gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
-  \fnof{\idxnodedof{v}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
+  \fnof{\idxnodedof{\dot{v}}{i}{n}{\beta}}{t}\idxgsf{i}{n}{\beta}}{t}\idxgbfn{i}{m}{\alpha}{\vectr{\xi}}\idxgsf{i}{m}{\alpha}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}}\\
   %convective term
   +\gsum{e=1}{E}{\gint{\vectr{0}}{\vectr{1}}{\fnof{\rho}{\vectr{\xi}}\idxgbfn{j}{n}{\beta}{\vectr{\xi}}
   \fnof{\idxnodedof{v}{j}{n}{\beta}}{t}\idxgsf{j}{n}{\beta}\delby{\idxgbfn{i}{n}{\beta}{\vectr{\xi}}
@@ -772,7 +1002,7 @@ The final system is given by
       \fnof{\dot{\vectr{v}}^{1}}{t} \\
       \fnof{\dot{\vectr{v}}^{2}}{t} \\
       \fnof{\dot{\vectr{v}}^{3}}{t} \\
-      \vectr{0}
+      \fnof{\dot{\vectr{p}}}{t}
   \end{bmatrix}+\begin{bmatrix}
      \matr{A}^{1}+\matr{D}^{11} & \matr{D}^{12} & \matr{D}^{13} & \matr{B}^{1}\\
      \matr{D}^{21} & \matr{A}^{2}+\matr{D}^{22} & \matr{D}^{23} & \matr{B}^{2}\\

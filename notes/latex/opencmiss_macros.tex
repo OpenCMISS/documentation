@@ -51,13 +51,14 @@
 %
 % Software and systmes
 %
-\newcommand{\OpenCMISS} {\textsf{OpenCMISS}\xspace}
-\newcommand{\CMISS} {\textsf{CMISS}\xspace}
-\newcommand{\CM}    {\textsf{CM}\xspace}       %note upper case to distinguish from centimeters
-\newcommand{\CMGUI} {\textsf{CMGUI}\xspace}
+\newcommand{\OpenCMISS}{\textsf{OpenCMISS}\xspace}
+\newcommand{\CMISS}{\textsf{CMISS}\xspace}
+\newcommand{\CM}{\textsf{CM}\xspace}       %note upper case to distinguish from centimeters
+\newcommand{\CMGUI}{\textsf{CMGUI}\xspace}
 \newcommand{\UNEMAP}{\textsf{UnEmap}\xspace}
 \newcommand{\FieldML}{\textsf{FieldML}\xspace}
 \newcommand{\CellML}{\textsf{CellML}\xspace}
+\newcommand{\FAROARM}{\textsf{FARO ARM\xspace}}
 
 %
 % New commands
@@ -391,6 +392,12 @@
 \newcommand{\reynoldsnum}{\ensuremath{ %
     \nondimnumber{Re} % Reynolds number
 }}
+\newcommand{\schmidtnum}{\ensuremath{ %
+    \nondimnumber{Sc} % Schmidt number
+}}
+\newcommand{\strouhalnum}{\ensuremath{ %
+    \nondimnumber{St} % Strouhal number
+}}
 
 %
 % Base numbers
@@ -589,8 +596,18 @@
 \newcommand{\genlimit}[2]{\ensuremath{ %
     \operatornamewithlimits{\lim}_{#1\rightarrow#2}
     }} % general limit e.g. \genlimit{a}{b} => lim a->b
-\newcommand{\grad}{\ensuremath{\nabla}} % gradient
-\newcommand{\gradsq}{\ensuremath{\nabla^{2}}} % gradient squared 
+\newcommand{\grad}{\ensuremath{ %
+    \nabla %
+}} % gradient
+\newcommand{\gradnondim}{\ensuremath{ %
+    \nondim{\nabla} %
+}} % gradient non dimensional
+\newcommand{\gradsq}{\ensuremath{ %
+    \nabla^{2} %
+}} % gradient squared 
+\newcommand{\gradsqnondim}{\ensuremath{ %
+    \nondimsup{\nabla}{2} %
+}} % gradient non dimensional squared 
 \newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
                                 % \functional{f}{a} => f[a]
 \newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
@@ -667,8 +684,15 @@
 \newcommand{\lnorm}[2]{\ensuremath{ %
     {\brac{\|}{#2}{\|}_{#1}} %
     }} % l-n norm e.g. \lnorm{x}{3} => ||x||_3
-\newcommand{\mapping}[3]{\ensuremath{#1:#2\rightarrow#3}} % mapping
-                                % e.g. \mapping{a}{b}{c} => a:b->c
+\newcommand{\mapping}[3]{\ensuremath{ %
+    #1:#2\rightarrow#3 %
+}} % mapping e.g. \mapping{a}{b}{c} => a:b->c
+\newcommand{\nondim}[1]{\ensuremath{ %
+    {#1}^{'} %
+}} % non dimensional e.g.,\nondim{X} => X'
+\newcommand{\nondimsup}[2]{\ensuremath{ %
+    {#1}^{'#2} %
+}} % non dimensional with superscript e.g.,\nondimsup{X}{2} => X^{'2}
 \newcommand{\nth}[1]{\ensuremath{{#1}^{\text{th}}}} % ^th e.g. \nth{n} => n^th
 \newcommand{\orderof}[1]{\ensuremath{\fnof{\mathrm{O}}{#1}}} % order e.g. O(n)
 \newcommand{\pochhammer}[2]{\ensuremath{ %
@@ -1716,24 +1740,48 @@
   }{ %
     \ensuremath{\crossprod{\nabla_{#1}}{#2}} % 
 }} % curl e.g. \curl{}{a} => nabla x a & \curl{x}{a} => nabla_{x} x a
+\newcommand{\curlnondim}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\crossprod{\gradnondim}{#2}} %
+  }{ %
+    \ensuremath{\crossprod{\gradnondim_{#1}}{#2}} % 
+}} % curl non dimensional e.g. \curlnondim{}{a} => nabla' x a & \curlnondim{x}{a} => nabla'_{x} x a
 \newcommand{\divergence}[2]{ %
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\dotprod{\nabla}{#2}} %
   }{ %
     \ensuremath{\dotprod{\nabla_{#1}}{#2}} % 
 }} % divergence e.g. \divergence{}{a} => nabla . a & \divergence{x}{a} => nabla_{x} . a
+\newcommand{\divergencenondim}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\dotprod{\gradnondim}{#2}} %
+  }{ %
+    \ensuremath{\dotprod{\gradnondim_{#1}}{#2}} % 
+}} % divergence non dimensional e.g. \divergencenondim{}{a} => nabla' . a & \divergencenondim{x}{a} => nabla'_{x} . a
 \newcommand{\gradient}[2]{ %
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\grad #2} %
   }{ %
     \ensuremath{\grad_{#1} #2} % 
 }} % gradient e.g. \gradient{}{u} => \grad u & \gradient{x}{u} => \grad_{x} u
+\newcommand{\gradientnondim}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\gradnondim #2} %
+  }{ %
+    \ensuremath{\gradnondim_{#1} #2} % 
+}} % gradient non dimensional e.g. \gradientnondim{}{u} => \grad' u & \gradientnondim{x}{u} => \grad'_{x} u
 \newcommand{\laplacian}[2]{ %
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\gradsq #2} %
   }{ %
     \ensuremath{\gradsq_{#1} #2} % 
 }} % laplacian e.g. \laplacian{}{u} => \nabla^2 u & \laplacian{x}{u} => \nabla^2_x u
+\newcommand{\laplaciannondim}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\gradsqnondim #2} %
+  }{ %
+    \ensuremath{\gradsqnondim_{#1} #2} % 
+}} % laplacian non dimensional e.g. \laplaciannondim{}{u} => \nabla'^2 u & \laplaciannondim{x}{u} => \nabla'^2_x u
 
 % Vector calculus operators
 \DeclareMathOperator{\gradop}{grad} % gradient operator e.g., grad A
