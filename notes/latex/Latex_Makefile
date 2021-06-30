@@ -79,11 +79,11 @@ MAKEPLOTS	=	make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makeplots
 
 .PRECIOUS:	$(MAINFILE).dvi
 
-LATEX_CHECK	=	latex '\def\inputfigure{\input}' \\syntax \\input
-LATEX_DVI	=	latex '\def\inputfigure{\input}' \\input
-LATEX_DVIQ	=	latex \\batchmode '\def\inputfigure{\input}' \\input
-LATEX_PS	=	latex '\def\inputfigure\#1{\psfig{figure=\#1.ps,silent=}}' \\input
-LATEX_PSQ	=	latex \\batchmode \
+LATEX_CHECK	=	latex --shell-escape '\def\inputfigure{\input}' \\syntax \\input
+LATEX_DVI	=	latex --shell-escape '\def\inputfigure{\input}' \\input
+LATEX_DVIQ	=	latex --shell-escape \\batchmode '\def\inputfigure{\input}' \\input
+LATEX_PS	=	latex --shell-escape '\def\inputfigure\#1{\psfig{figure=\#1.ps,silent=}}' \\input
+LATEX_PSQ	=	latex --shell-escape \\batchmode \
 			'\def\inputfigure\#1{\psfig{figure=\#1.ps}}' \
 			\\input
 

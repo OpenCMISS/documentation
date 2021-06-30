@@ -26,9 +26,15 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{calc}
+\usepackage{keyval}
 \usepackage{graphicx}
 \usepackage{epsfig}
 \usepackage{ifthen}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{latexsym}
+\usepackage{moreverb}
+\usepackage{gnuplottex}[cleanup]
 \usepackage{xspace}
 \usepackage{url}
 
@@ -128,6 +134,21 @@
   % e.g. \epstexsubfigure{figure}{short caption}{long caption}{label}{scale}
   % or \epstexsubfigure{figure}{}{caption}{label}{}
   
+\newcommand{\gnuplotsubfigure}[8]{ %
+  \begin{subfigure}[b]{#5}
+    \centering %
+    \ifthenelse{\equal{#8}{}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #7,#7 #6}]{#1}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #7,#8 #6}]{#1} %
+    } %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#3}}{ %
+      \caption[#2]{#3} %
+    } %
+    \label{#4} %
+  \end{subfigure}
+} % gnuplot subfigure e.g. \gnuplotsubfigure{file}{short caption}{long caption}{label}{subfigurescale}{fontsize}{gnuplotxsize}{gnuplotysize}
+  
 \newcommand{\pstexfigure}[5]{ %
   \begin{figure}[htbp] \centering %
     \ifthenelse{\equal{#5}{}}{ %
@@ -142,8 +163,21 @@
     \label{#4} %
   \end{figure} %
   } % pstex figure i.e. inkscape, xfig or gnuplot
-    % e.g. \pstexfigure{figure}{short caption}{long caption}{label}{scale}
-    % or \pstexfigure{figure}{}{caption}{label}{}
+    % e.g. \pstexsubfigure{figure}{short caption}{long caption}{label}{scale}
+    % or \pstexsubfigure{figure}{}{caption}{label}{}
+
+\newcommand{\pstexsubfigure}[5]{ %
+  \begin{subfigure}[b]{0.45\columnwidth} \centering %
+    \setkeys{Gin}{width=\columnwidth}
+    \input{#1} %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#3}}{ %
+      \caption[#2]{#3} %
+    } %
+    \label{#4} %
+  \end{subfigure} %
+} % pstex subfigure i.e. inkscape, xfig or gnuplot
+    % e.g. \pstexsubfigure{figure}{short caption}{long caption}{label}{scale}
 
 \newcommand{\epsfigure}[4]{ %
   \incgrfigure{}{#1}{#2}{#3}{#4}
@@ -275,6 +309,7 @@
 \newcommand{\kN}{\units{kN}} % kilonewtons
 \newcommand{\ml}{\units{ml}} % millilitres
 %\newcommand{\L}{\units{L}} % litres
+\newcommand{\J}{\units{J}} % Joule
 \newcommand{\Hz}{\units{Hz}} % Hertz
 \newcommand{\kHz}{\units{kHz}} % kilohertz
 \newcommand{\MHz}{\units{MHz}} % megahertz
@@ -361,6 +396,22 @@
 \newcommand{\nttento}[2]{\ensuremath{ %
     #1\ttento{#2} %
 }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
+% Number formats
+%
+\newcommand{\nodenumber}[1]{\ensuremath{ %
+    \textbf{#1} %
+}} % format a node number to differentiate it
+\newcommand{\elementnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format an element number to differentiate it
+\newcommand{\datanumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format a data point number to differentiate it
+\newcommand{\dofnumber}[1]{\ensuremath{ %
+    \textrm{#1} %
+}} % format a DOF number to differentiate it
 
 %
 % Non-dimensional numbers

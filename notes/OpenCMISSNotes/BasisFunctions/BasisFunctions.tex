@@ -47,11 +47,9 @@ field is equal to the known nodal values at each node and is thus continuous
 between elements. A schematic of this
 scheme is shown in \figref{fig:nodesandelements}.
 
-\epstexfigure{BasisFunctions/svgs/nodesandelements.eps_tex}{A schematic of the
-  relationship between local and global nodes, elements and the parametric
-  elemental $\xi$ coordinate.} {A schematic of the relationship between local
-  and global nodes, elements and the parametric elemental $\xi$
-  coordinate.}{fig:nodesandelements}{0.3}
+\epstexfigure{BasisFunctions/svgs/nodesandelements.eps_tex}
+{A schematic of the relationship between local and global nodes, elements and the parametric elemental $\xi$
+  coordinate.}{Relationship between local and global nodes and elements.}{fig:nodesandelements}{0.3}
 
 \subsection{Lagrangian Basis Functions}
 \label{sec:lagrangebasisfunctions}
@@ -195,8 +193,24 @@ nodes with the basis functions given by
 
 The four \twodal bilinear Lagrange basis functions are shown in \figref{fig:bilinlagrangebfuns}.
 
-\pstexfigure{BasisFunctions/plots/bilinlagrangebfuns.pstex}{Bilinear Lagrange basis functions.}
-            {Bilinear Lagrange basis functions.}{fig:bilinlagrangebfuns}
+%\pstexfigure{BasisFunctions/plots/bilinlagrangebfuns.pstex}{Bilinear Lagrange basis functions.}
+%            {Bilinear Lagrange basis functions.}{fig:bilinlagrangebfuns}
+
+\begin{figure}[hbtp]
+   \centering
+   \gnuplotsubfigure{BasisFunctions/plots/bilinlagrangebfuns1.gnuplot}{Bilinear Lagrange basis function $1$.}
+     {Bilinear Lagrange basis function $1$, $\lbfn{1}{\xione,\xitwo}$.}{subfig:bilinlagrangebfuns1}{0.45\linewidth}{10}{3}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bilinlagrangebfuns2.gnuplot}{Bilinear Lagrange basis function $2$.}
+     {Bilinear Lagrange basis function $2$, $\lbfn{2}{\xione,\xitwo}$.}{subfig:bilinlagrangebfuns2}{0.45\linewidth}{10}{3}{}
+   \gnuplotsubfigure{BasisFunctions/plots/bilinlagrangebfuns3.gnuplot}{Bilinear Lagrange basis function $3$.}
+     {Bilinear Lagrange basis function $3$, $\lbfn{3}{\xione,\xitwo}$.}{subfig:bilinlagrangebfuns3}{0.45\linewidth}{10}{3}{}
+   \hfil  
+   \gnuplotsubfigure{BasisFunctions/plots/bilinlagrangebfuns4.gnuplot}{Bilinear Lagrange basis function $4$.}
+     {Bilinear Lagrange basis function $4$, $\lbfn{4}{\xione,\xitwo}$.}{subfig:bilinlagrangebfuns4}{0.45\linewidth}{10}{3}{}
+   \caption[Bilinear Lagrange basis functions.]{Bilinear Lagrange basis functions.}
+   \label{fig:bilinlagrangebfuns}
+\end{figure}
             
 The multi-dimensional interpolation formula is still a sum of the products of
 the nodal basis function and the field value at the node. For example the
@@ -240,10 +254,137 @@ with the basis functions given by
   \end{split}
 \end{equation}
 
-The four \twodal biquadratic Lagrange basis functions are shown in \figref{fig:biquadlagrangebfuns}.
+The nine \twodal biquadratic Lagrange basis functions are shown in \figref{fig:biquadlagrangebfuns}.
 
-\pstexfigure{BasisFunctions/plots/biquadlagrangebfuns.pstex}{Biquadratic Lagrange basis functions.}
-            {Biquadratic Lagrange basis functions.}{fig:biquadlagrangebfuns}
+%\pstexfigure{BasisFunctions/plots/biquadlagrangebfuns.pstex}{Biquadratic Lagrange basis functions.}
+%            {Biquadratic Lagrange basis functions.}{fig:biquadlagrangebfuns}
+
+\begin{figure}[hbtp]
+   \centering
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns1.gnuplot}{Biquadratic Lagrange basis function $1$.}
+     {Biquadratic Lagrange basis function $1$, $\lbfn{1}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns1}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns2.gnuplot}{Biquadratic Lagrange basis function $2$.}
+     {Biquadratic Lagrange basis function $2$, $\lbfn{2}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns2}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns3.gnuplot}{Biquadratic Lagrange basis function $3$.}
+     {Biquadratic Lagrange basis function $3$, $\lbfn{3}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns3}{0.30\linewidth}{9}{2.5}{}
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns4.gnuplot}{Biquadratic Lagrange basis function $4$.}
+     {Biquadratic Lagrange basis function $4$, $\lbfn{4}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns4}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns5.gnuplot}{Biquadratic Lagrange basis function $5$.}
+     {Biquadratic Lagrange basis function $5$, $\lbfn{5}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns5}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns6.gnuplot}{Biquadratic Lagrange basis function $6$.}
+     {Biquadratic Lagrange basis function $6$, $\lbfn{6}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns6}{0.30\linewidth}{9}{2.5}{}
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns7.gnuplot}{Biquadratic Lagrange basis function $7$.}
+     {Biquadratic Lagrange basis function $7$, $\lbfn{7}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns7}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns8.gnuplot}{Biquadratic Lagrange basis function $8$.}
+     {Biquadratic Lagrange basis function $8$, $\lbfn{8}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns8}{0.30\linewidth}{9}{2.5}{}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/biquadlagrangebfuns9.gnuplot}{Biquadratic Lagrange basis function $9$.}
+     {Biquadratic Lagrange basis function $9$, $\lbfn{9}{\xione,\xitwo}$.}{subfig:biquadlagrangebfuns9}{0.30\linewidth}{9}{2.5}{}
+   \caption[Biquadratic Lagrange basis functions.]{Biquadratic Lagrange basis functions.}
+   \label{fig:biquadlagrangebfuns}
+\end{figure}
+
+
+\subsubsection{Bicubic Lagrange basis functions}
+
+The two-dimensional bicubic Lagrange basis functions have sixteen local nodes
+with the basis functions given by
+\begin{equation}
+  \begin{split}
+    \lbfn{1}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{1}{\xitwo}=
+    \frac14\pbrac{3\xione-1}\pbrac{3\xione-2}\pbrac{1-\xione}\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{2}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{1}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-2}\pbrac{\xione-1}\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{3}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{1}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-1}\pbrac{1-\xione}\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{4}{\xione,\xitwo}&=\lbfn{4}{\xione}\lbfn{1}{\xitwo}=
+    \frac14\xione\pbrac{3\xione-1}\pbrac{3\xione-2}\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{5}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{2}{\xitwo}=
+    \frac94\pbrac{3\xione-1}\pbrac{3\xione-2}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-2}\pbrac{\xitwo-1} \\
+    \lbfn{6}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{2}{\xitwo}=
+    \frac{81}{4}\xione\pbrac{3\xione-2}\pbrac{\xione-1}\xitwo\pbrac{3\xitwo-2}\pbrac{\xitwo-1} \\
+    \lbfn{7}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{2}{\xitwo}=
+    \frac{81}{4}\xione\pbrac{3\xione-1}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-2}\pbrac{\xitwo-1} \\
+    \lbfn{8}{\xione,\xitwo}&=\lbfn{4}{\xione}\lbfn{2}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-1}\pbrac{3\xione-2}\xitwo\pbrac{3\xitwo-2}\pbrac{\xitwo-1} \\
+    \lbfn{9}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{3}{\xitwo}=
+    \frac94\pbrac{3\xione-1}\pbrac{3\xione-2}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{10}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{3}{\xitwo}=
+    \frac{81}{4}\xione\pbrac{3\xione-2}\pbrac{\xione-1}\xitwo\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{11}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{3}{\xitwo}=
+    \frac{81}{4}\xione\pbrac{3\xione-1}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{12}{\xione,\xitwo}&=\lbfn{4}{\xione}\lbfn{3}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-1}\pbrac{3\xione-2}\xitwo\pbrac{3\xitwo-2}\pbrac{1-\xitwo} \\
+    \lbfn{13}{\xione,\xitwo}&=\lbfn{1}{\xione}\lbfn{4}{\xitwo}=
+    \frac14\pbrac{3\xione-1}\pbrac{3\xione-2}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}\\
+    \lbfn{14}{\xione,\xitwo}&=\lbfn{2}{\xione}\lbfn{4}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-2}\pbrac{\xione-1}\xitwo\pbrac{3\xitwo-1}\pbrac{3\xitwo-2} \\
+    \lbfn{15}{\xione,\xitwo}&=\lbfn{3}{\xione}\lbfn{4}{\xitwo}=
+    \frac94\xione\pbrac{3\xione-1}\pbrac{1-\xione}\xitwo\pbrac{3\xitwo-1}\pbrac{3\xitwo-2} \\
+    \lbfn{16}{\xione,\xitwo}&=\lbfn{4}{\xione}\lbfn{4}{\xitwo}=
+    \frac14\xione\pbrac{3\xione-1}\pbrac{3\xione-2}\xitwo\pbrac{3\xitwo-1}\pbrac{3\xitwo-2}
+  \end{split}
+\end{equation}
+
+The sixteen \twodal bicubic Lagrange basis functions are shown in \figref{fig:bicubiclagrangebfuns}.
+
+%\pstexfigure{BasisFunctions/plots/bicubiclagrangebfuns.pstex}{Bicubic Lagrange basis functions.}
+%            {Bicubic Lagrange basis functions.}{fig:bicubiclagrangebfuns}
+            
+\begin{figure}[hbtp]
+   \centering
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns1.gnuplot}{Bicubic Lagrange basis function $1$.}
+     {Bicubic Lagrange basis function $1$, $\lbfn{1}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns1}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns2.gnuplot}{Bicubic Lagrange basis function $2$.}
+     {Bicubic Lagrange basis function $2$, $\lbfn{2}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns2}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns3.gnuplot}{Bicubic Lagrange basis function $3$.}
+     {Bicubic Lagrange basis function $3$, $\lbfn{3}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns3}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns4.gnuplot}{Bicubic Lagrange basis function $4$.}
+     {Bicubic Lagrange basis function $4$, $\lbfn{4}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns4}{0.20\linewidth}{6}{1.75}{1.5}
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns5.gnuplot}{Bicubic Lagrange basis function $5$.}
+     {Bicubic Lagrange basis function $5$, $\lbfn{5}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns5}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns6.gnuplot}{Bicubic Lagrange basis function $6$.}
+     {Bicubic Lagrange basis function $6$, $\lbfn{6}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns6}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns7.gnuplot}{Bicubic Lagrange basis function $7$.}
+     {Bicubic Lagrange basis function $7$, $\lbfn{7}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns7}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns8.gnuplot}{Bicubic Lagrange basis function $8$.}
+     {Bicubic Lagrange basis function $8$, $\lbfn{8}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns8}{0.20\linewidth}{6}{1.75}{1.5}
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns9.gnuplot}{Bicubic Lagrange basis function $9$.}
+     {Bicubic Lagrange basis function $9$, $\lbfn{9}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns9}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns10.gnuplot}{Bicubic Lagrange basis function $10$.}
+     {Bicubic Lagrange basis function $10$, $\lbfn{10}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns10}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns11.gnuplot}{Bicubic Lagrange basis function $11$.}
+     {Bicubic Lagrange basis function $11$, $\lbfn{11}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns11}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns12.gnuplot}{Bicubic Lagrange basis function $12$.}
+     {Bicubic Lagrange basis function $12$, $\lbfn{12}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns12}{0.20\linewidth}{6}{1.75}{1.5}
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns13.gnuplot}{Bicubic Lagrange basis function $13$.}
+     {Bicubic Lagrange basis function $13$, $\lbfn{13}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns13}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns14.gnuplot}{Bicubic Lagrange basis function $14$.}
+     {Bicubic Lagrange basis function $14$, $\lbfn{14}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns14}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns15.gnuplot}{Bicubic Lagrange basis function $15$.}
+     {Bicubic Lagrange basis function $15$, $\lbfn{15}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns15}{0.20\linewidth}{6}{1.75}{1.5}
+   \hfil
+   \gnuplotsubfigure{BasisFunctions/plots/bicubiclagrangebfuns16.gnuplot}{Bicubic Lagrange basis function $16$.}
+     {Bicubic Lagrange basis function $16$, $\lbfn{16}{\xione,\xitwo}$.}{subfig:bicubiclagrangebfuns16}{0.20\linewidth}{6}{1.75}{1.5}
+   \caption[Bicubic Lagrange basis functions.]{Bicubic Lagrange basis functions.}
+   \label{fig:bicubiclagrangebfuns}
+\end{figure}
 
 \subsection{Hermitian Basis Functions}
 \label{sec:Hermitianbasisfunctions}
