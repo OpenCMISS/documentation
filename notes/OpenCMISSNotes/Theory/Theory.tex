@@ -905,20 +905,34 @@ equation we use Newton's method \ie
   \end{split}
 \end{equation}
 where $\fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}$ is the Jacobian and is given by
-\begin{equation}
-  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
-  \dfrac{\theta_{p-1}{\Delta
+  \begin{align}
+    \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}&=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
       t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
-  \dfrac{\theta_{1}{\Delta t}^{p}}{p!}
+  \theta_{1}
   \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
           t}^{p}}{p!}
-      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
-\end{equation}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}\\
+      &=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \theta_{1}\delby{\vectr{u}}{\vectr{\alpha}^{p}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}\\
+      &=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \dfrac{\theta_{1}\Delta t^{p}}{p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}
+  \end{align}
 or
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\theta_{1}{\Delta
       t}^{p}}{p!}
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{u}}
 \end{equation}
 for a first order approximation or by
 \begin{equation}
@@ -928,13 +942,13 @@ for a first order approximation or by
   \dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{p}}{2p!}
   \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
           t}^{p}}{p!}
-      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}
 \end{equation}
 or
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta
       t}^{p}}{2p!}
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{u}}
 \end{equation}
 for a second order approximation or by
 \begin{equation}
@@ -1054,7 +1068,7 @@ The nonlinear function is given by
 The Jacobian matrix is given by
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{1}_{n}}=\matr{A}+\theta_{1}\Delta t
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\Delta t\vectr{\alpha}^{1}_{n}}}{\vectr{\alpha}^{1}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\Delta t\vectr{\alpha}^{1}_{n}}}{\vectr{u}}
 \end{equation}
 
 And the time step update is given by
@@ -1107,7 +1121,7 @@ The nonlinear function is given by
 The Jacobian matrix is given by
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{2}}{4}
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{\alpha}^{2}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{u}}
 \end{equation}
 
 And the time step update is given by
@@ -1159,7 +1173,7 @@ The nonlinear function is given by
 The Jacobian matrix is given by
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{2}}{4}
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{\alpha}^{2}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{u}}
 \end{equation}
 
 And the time step update is given by
@@ -1221,7 +1235,7 @@ The nonlinear function is given by
 The Jacobian matrix is given by
 \begin{equation}
   \fnof{\matr{J}}{\vectr{\alpha}^{3}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}{\Delta t}^{3}}{36}
-  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n}}}{\vectr{\alpha}^{3}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n}}}{\vectr{u}}
 \end{equation}
 
 And the time step update is given by

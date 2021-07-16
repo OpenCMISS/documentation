@@ -244,3 +244,254 @@ integration term in \eqnref{eqn:Burgersfemform} as
 %   \abs{\fnof{\matr{J}}{\vectr{\xi}}}d\vectr{\xi}=\vectr{0}
 %   \label{eqn:Burgersfemform1}
 % \end{multline}
+
+\subsubsection{Worked example}
+
+Consider the \onedal generalised Burger's equation
+\begin{equation}
+  a\delby{\fnof{u}{x,t}}{t}+b\deltwosqby{\fnof{u}{x,t}}{x}+c\fnof{u}{x,t}\delby{\fnof{u}{x,t}}{x}=0
+  \label{eqn:onedgenburgersexample}
+\end{equation}
+on the \onedal domain of length $L$ andwith $E$ elements and $N=E+1$ nodes as shown in \figref{fig:Burgers1DDomain}.
+
+\epstexfigure{FluidMechanics/svgs/burgersoneddomain.eps_tex}{One
+  dimensional domain for the generalised Burger's equation.}{One
+  dimensional domain for the generalised Burger's equation. The domain
+  of length $L$ has $E$ elements and $N=E+1$ nodes. The length of each
+  element is $L/E$.}{fig:Burgers1DDomain}{1.0}
+
+The weighted residual form of \eqnref{eqn:onedgenburgersexample} is given by
+\begin{equation}
+  \gint{\Omega}{}{\pbrac{a\delby{\fnof{u}{x,t}}{t}+b\deltwosqby{\fnof{u}{x,t}}{x}+
+      c\fnof{u}{x,t}\delby{\fnof{u}{x,t}}{x}}\fnof{w}{x}}{\Omega}=0
+\end{equation}
+
+Applying the divergence theorem gives
+\begin{equation}
+  \begin{split}
+    \gint{\Omega}{}{\pbrac{a\delby{\fnof{u}{x,t}}{t}\fnof{w}{x}-b\delby{\fnof{u}{x,t}}{x}\delby{\fnof{w}{x}}{x}+
+        c\fnof{u}{x,t}\delby{\fnof{u}{x,t}}{x}\fnof{w}{x}}}{\Omega}\\
+    +\gint{\Gamma}{}{\pbrac{\dotprod{b\delby{\fnof{u}{x,t}}{x}}{n}}\fnof{w}{x}}{\Gamma}=0
+  \end{split}
+\end{equation}
+or
+\begin{equation}
+  \begin{split}
+    \gsum{e=1}{E}{\gint{0}{1}{\pbrac{a\delby{\fnof{u}{\xi,t}}{t}\fnof{w}{\xi}
+          -b\delby{\fnof{u}{\xi,t}}{\xi}\delby{\xi}{x}\delby{\fnof{w}{\xi}}{\xi}\delby{\xi}{x}
+          +c\fnof{u}{\xi,t}\delby{\fnof{u}{\xi,t}}{\xi}\delby{\xi}{x}\fnof{w}{\xi}}\abs{\fnof{J}{\xi}}}{\xi}} \\
+    +\gsum{f=1}{F}{\gint{0}{1}{\pbrac{\dotprod{b\delby{\fnof{u}{\xi,t}}{\xi}\delby{\xi}{x}}{n}}\fnof{w}{\xi}
+        \abs{\fnof{J}{\xi}}}{\xi}}=0
+  \end{split}
+\end{equation}
+
+Upon integration the resultant system of equations can be written as
+\begin{equation}
+  \matr{C}\dotover{\vectr{u}}+\matr{K}\vectr{u}+\fnof{\vectr{g}}{\vectr{u}}=\vectr{f}
+\end{equation}
+
+Considering element $i$ we can derive expressions for the elemental
+stiffness matrices. Assuming linear basis functions the interpolation
+expression for $\fnof{u}{\xi}$ can be written as
+\begin{equation}
+  \fnof{u}{\xi}=\xi u_{i}+\pbrac{1-\xi}u_{i+1}
+\end{equation}
+also we have
+\begin{align}
+  \delby{x}{\xi}&=\dfrac{L}{E} \\
+  \delby{\xi}{x}&=\dfrac{E}{L} \\
+  \abs{\fnof{J}{\xi}}&=\dfrac{L}{E}
+\end{align}
+
+The element damping matrix can be written as
+\begin{align}
+  C_{i,i}&=\gint{0}{1}{a\delby{\pbrac{\xi \dotover{u}_{i}+\pbrac{1-\xi}\dotover{u}_{i+1}}}{t}\xi\dfrac{L}{E}}{\xi} \\
+  &=\dfrac{aL}{E}\gint{0}{1}{\pbrac{\xi\dotover{u}_{i}+\pbrac{1-\xi}\dotover{u}_{i+1}}\xi}{\xi} \\
+  &=\dfrac{aL}{E}\gint{0}{1}{\pbrac{\xi^{2}\dotover{u}_{i}+\pbrac{\xi-\xi^{2}}\dotover{u}_{i+1}}}{\xi} \\
+  &=\dfrac{aL}{E}\sqbrac{\dfrac{\xi^{3}}{3}\dotover{u}_{i}+\pbrac{\dfrac{\xi^{2}}{2}-\dfrac{\xi^{3}}{3}}\dotover{u}_{i+1}}_{0}^{1}\\
+  &=\dfrac{aL}{E}\pbrac{\dfrac{\dotover{u}_{i}}{3}+\dfrac{\dotover{u}_{i+1}}{2}-\dfrac{\dotover{u}_{i+1}}{3}}\\
+  &=\dfrac{aL\pbrac{2\dotover{u}_{i}+\dotover{u}_{i+1}}}{6E}  
+\end{align}
+
+Similarily
+\begin{align}
+  C_{i+1,i}&=\gint{0}{1}{a\delby{\pbrac{\xi \dotover{u}_{i}+\pbrac{1-\xi}\dotover{u}_{i+1}}}{t}\pbrac{1-\xi}\dfrac{L}{E}}{\xi} \\
+  &=\dfrac{aL}{E}\gint{0}{1}{\pbrac{\xi\dotover{u}_{i}+\pbrac{1-\xi}\dotover{u}_{i+1}}\pbrac{1-\xi}}{\xi} \\
+  &=\dfrac{aL}{E}\gint{0}{1}{\pbrac{\pbrac{\xi-\xi^{2}}\dotover{u}_{i}+\pbrac{1-2\xi+\xi^{2}}\dotover{u}_{i+1}}}{\xi} \\
+  &=\dfrac{aL}{E}\sqbrac{\pbrac{\dfrac{\xi^{2}}{2}-\dfrac{\xi^{3}}{3}}\dotover{u}_{i}+\pbrac{\xi-\xi^{2}+
+      \dfrac{\xi^{3}}{3}}\dotover{u}_{i+1}}_{0}^{1}\\
+  &=\dfrac{aL}{E}\pbrac{\dfrac{\dotover{u}_{i}}{2}-\dfrac{\dotover{u}_{i}}{3}+\dotover{u}_{i+1}-\dotover{u}_{i+1}+
+    \dfrac{\dotover{u}_{i+1}}{3}}\\
+  &=\dfrac{aL\pbrac{\dotover{u}_{i}+2\dotover{u}_{i+1}}}{6E}  
+\end{align}
+
+The element damping matrix for element $i$ is thus
+\begin{equation}
+  \begin{bmatrix}
+    C_{i,i} & C_{i,i+1} \\
+    C_{i+1,i} & C_{i+1,i+1}
+  \end{bmatrix}\begin{bmatrix}
+    \dotover{u}_{i} \\
+    \dotover{u}_{i+1}
+  \end{bmatrix} = \begin{bmatrix}
+    \frac{aL}{3E} & \frac{aL}{6E} \\
+    \frac{aL}{6E} & \frac{aL}{3E}
+   \end{bmatrix}\begin{bmatrix}
+    \dotover{u}_{i} \\
+    \dotover{u}_{i+1}
+  \end{bmatrix}
+\end{equation}
+
+The element stiffness matrix can be written as
+\begin{align}
+  K_{i,i}&=\gint{0}{1}{-b\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\dfrac{E}{L}\delby{\xi}{\xi}\dfrac{E}{L}\dfrac{L}{E}}{\xi} \\
+  &=\dfrac{-bE\pbrac{u_{i}-u_{i+1}}}{L}\gint{0}{1}{}{\xi}\\
+  &=\dfrac{-bE\pbrac{u_{i}-u_{i+1}}}{L}\sqbrac{\xi}_{0}^{1}\\
+  &=\dfrac{-bE\pbrac{u_{i}-u_{i+1}}}{L}
+\end{align}
+
+Similarily
+\begin{align}
+  K_{i+1,i}&=\gint{0}{1}{-b\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\dfrac{E}{L}\delby{\pbrac{1-\xi}}{\xi}\dfrac{E}{L}\dfrac{L}{E}}{\xi} \\
+  &=\dfrac{bE\pbrac{u_{i}-u_{i+1}}}{L}\gint{0}{1}{}{\xi}\\
+  &=\dfrac{bE\pbrac{u_{i}-u_{i+1}}}{L}\sqbrac{\xi}_{0}^{1}\\
+  &=\dfrac{bE\pbrac{u_{i}-u_{i+1}}}{L}
+\end{align}
+
+
+The element stiffness matrix for element $i$ is thus
+\begin{equation}
+  \begin{bmatrix}
+    K_{i,i} & K_{i,i+1} \\
+    K_{i+1,i} & K_{i+1,i+1}
+  \end{bmatrix}\begin{bmatrix}
+    u_{i} \\
+    u_{i+1}
+  \end{bmatrix} = \begin{bmatrix}
+    \frac{-bE}{L} & \frac{bE}{L} \\
+    \frac{bE}{L} & \frac{-bE}{L}
+   \end{bmatrix}\begin{bmatrix}
+    u_{i} \\
+    u_{i+1}
+  \end{bmatrix}
+\end{equation}
+
+The nonlinear vector can be written as
+\begin{align}
+  g_{i}&=\gint{0}{1}{c\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\dfrac{E}{L}\xi\dfrac{L}{E}}{\xi} \\
+  &=c\gint{0}{1}{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\xi}{\xi} \\
+  &=c\pbrac{u_{i}-u_{i+1}}\gint{0}{1}{\pbrac{\xi^{2} u_{i}+\pbrac{\xi-\xi^{2}}u_{i+1}}}{\xi} \\
+  &=c\pbrac{u_{i}-u_{i+1}}\sqbrac{\dfrac{\xi^{3}}{3}u_{i}+\dfrac{\xi^{2}}{2}u_{i+1} - \dfrac{\xi^{3}}{3}u_{i+1}}_{0}^{1}\\
+  &=\dfrac{c\pbrac{u_{i}-u_{i+1}}}{6}\pbrac{2 u_{i}+u_{i+1}}\\
+  &=\dfrac{c\pbrac{2 u_{i}^{2}-u_{i}u_{i+1}-u_{i+1}^{2}}}{6}
+\end{align}
+
+Similarily
+\begin{align}
+  g_{i+1}&=\gint{0}{1}{c\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\dfrac{E}{L}\pbrac{1-\xi}\dfrac{L}{E}}{\xi} \\
+  &=c\gint{0}{1}{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}\delby{\pbrac{\xi u_{i}+\pbrac{1-\xi}u_{i+1}}}{\xi}\pbrac{1-\xi}}{\xi} \\
+  &=c\pbrac{u_{i}-u_{i+1}}\gint{0}{1}{\pbrac{\pbrac{\xi-\xi^{2}}u_{i}+\pbrac{1-2\xi+\xi^{2}}u_{i+1}}}{\xi} \\
+  &=c\pbrac{u_{i}-u_{i+1}}\sqbrac{\dfrac{\xi^{2}}{2}u_{i}-\dfrac{\xi^{3}}{3}u_{i}+\xi u_{i+1}-\xi^{2}u_{i+1}+\dfrac{\xi^{3}}{3}u_{i+1}}_{0}^{1}\\
+  &=\dfrac{c\pbrac{u_{i}-u_{i+1}}}{6}\pbrac{u_{i}+2u_{i+1}}\\
+  &=\dfrac{c\pbrac{u_{i}^{2}+u_{i}u_{i+1}-2u_{i+1}^{2}}}{6}
+\end{align}
+
+The element residual vector for element $i$ is thus
+\begin{equation}
+  \begin{bmatrix}
+    g_{i}  \\
+    g_{i+1} 
+  \end{bmatrix} = \begin{bmatrix}
+    \frac{c\pbrac{2 u_{i}^{2}-u_{i}u_{i+1}-u_{i+1}^{2}}}{6} \\
+    \frac{c\pbrac{u_{i}^{2}+u_{i}u_{i+1}-2u_{i+1}^{2}}}{6}
+   \end{bmatrix}
+\end{equation}
+
+The element Jacobian matrix for element $i$ is thus
+\begin{equation}
+  \begin{bmatrix}
+    J_{i,i} & J_{i,i+1} \\
+    J_{i+1,i} & J_{i+1,i+1} 
+  \end{bmatrix} = \begin{bmatrix}
+    \delby{g_{i}}{u_{i}} & \delby{g_{i}}{u_{i+1}} \\
+    \delby{g_{i+1}}{u_{i}} & \delby{g_{i+1}}{u_{i+1}}
+   \end{bmatrix} = \begin{bmatrix}
+    \frac{c\pbrac{4 u_{i}-u_{i+1}}}{6} & \frac{c\pbrac{-u_{i}-2 u_{i+1}}}{6} \\
+    \frac{c\pbrac{2 u_{i}+u_{i+1}}}{6} & \frac{c\pbrac{u_{i}-4u_{i+1}}}{6}
+   \end{bmatrix}
+\end{equation}
+
+The matrix system for the domain shown in \figref{fig:Burgers1DDomain} with no flux conditions is thus
+\begin{multline}
+  \begin{bmatrix}
+    \frac{aL}{3E} & \frac{aL}{6E} & 0 & 0 & 0 & \cdots & 0 & 0 \\
+    \frac{aL}{6E} & \frac{2aL}{6E} &  \frac{aL}{6E} & 0 & 0 & \cdots & 0 & 0 \\
+    0 & \frac{aL}{6E} & \frac{2aL}{6E} &  \frac{aL}{6E} & 0 & \cdots & 0 & 0 \\
+    0 & 0 & \frac{aL}{6E} & \frac{2aL}{6E} &  \frac{aL}{6E} & \cdots & 0 & 0 \\
+    0 & 0 & 0 & \frac{aL}{6E} & \frac{2aL}{6E} & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{2aL}{6E} & \frac{aL}{6E} \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{aL}{6E} & \frac{2aL}{6E} \\
+  \end{bmatrix} \begin{bmatrix}
+    \dotover{u}_{1} \\
+    \dotover{u}_{2} \\
+    \dotover{u}_{3} \\
+    \dotover{u}_{4} \\
+    \dotover{u}_{5} \\
+    \vdots \\
+    \dotover{u}_{N-1} \\
+    \dotover{u}_{N} \\
+  \end{bmatrix} \\
+  + \begin{bmatrix}
+    \frac{-bE}{L} & \frac{bE}{L} & 0 & 0 & 0 & \cdots & 0 & 0 \\
+    \frac{bE}{L} & \frac{-2bE}{L} &  \frac{bE}{L} & 0 & 0 & \cdots & 0 & 0 \\
+    0 & \frac{bE}{L} & \frac{-2bE}{L} &  \frac{bE}{L} & 0 & \cdots & 0 & 0 \\
+    0 & 0 & \frac{bE}{L} & \frac{-2bE}{L} &  \frac{bE}{L} & \cdots & 0 & 0 \\
+    0 & 0 & 0 & \frac{bE}{L} & \frac{-2bE}{L} & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{-2bE}{L} & \frac{bE}{L} \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{bE}{L} & \frac{-bE}{L} \\
+  \end{bmatrix} \begin{bmatrix}
+    u_{1} \\
+    u_{2} \\
+    u_{3} \\
+    u_{4} \\
+    u_{5} \\
+    \vdots \\
+    u_{N-1} \\
+    u_{N}
+  \end{bmatrix} \\
+  + \begin{bmatrix}
+    \frac{c\pbrac{2 u_{1}^{2}-u_{1}u_{2}-u_{2}^{2}}}{6} \\
+    \frac{c\pbrac{u_{1}^{2}+u_{1}u_{2}-u_{2}u_{3}-u_{3}^{2}}}{6} \\
+    \frac{c\pbrac{u_{2}^{2}+u_{2}u_{3}-u_{3}u_{4}-u_{4}^{2}}}{6} \\
+    \frac{c\pbrac{u_{3}^{2}+u_{3}u_{4}-u_{4}u_{5}-u_{5}^{2}}}{6} \\
+    \frac{c\pbrac{u_{4}^{2}+u_{4}u_{5}-u_{5}u_{6}-u_{6}^{2}}}{6} \\
+    \vdots \\
+    \frac{c\pbrac{u_{N-2}^{2}+u_{N-2}u_{N-1}-u_{N-1}u_{N}-u_{N}^{2}}}{6} \\
+    \frac{c\pbrac{u_{N-1}^{2}+u_{N-1}u_{N}-2u_{N}^{2}}}{6}    
+  \end{bmatrix} = \begin{bmatrix}
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    0 \\
+    \vdots \\
+    0 \\
+    0 \\
+  \end{bmatrix}
+\end{multline}
+
+And the Jacobian matrix is
+\begin{equation}
+  \begin{bmatrix}
+    \frac{c\pbrac{4u_{1}-u_{2}}}{6} & \frac{c\pbrac{-u_{1}-2u_{2}}}{6} & 0 & 0 & 0 & \cdots & 0 & 0 \\
+    \frac{c\pbrac{2u_{1}+u_{2}}}{6} & \frac{c\pbrac{u_{1}-u_{3}}}{6} &  \frac{c\pbrac{-u_{2}-2u_{3}}}{6} & 0 & 0 & \cdots & 0 & 0 \\
+    0 & \frac{c\pbrac{2u_{2}+u_{3}}}{6} & \frac{c\pbrac{u_{2}-u_{4}}}{6} &  \frac{c\pbrac{-u_{3}-2u_{4}}}{6} & 0 & \cdots & 0 & 0 \\
+    0 & 0 & \frac{c\pbrac{2u_{3}+u_{4}}}{6} & \frac{c\pbrac{u_{3}-u_{5}}}{6} &  \frac{c\pbrac{-u_{4}-2u_{5}}}{6} & \cdots & 0 & 0 \\
+    0 & 0 & 0 & \frac{c\pbrac{2u_{4}+u_{5}}}{6} & \frac{c\pbrac{u_{4}-u_{6}}}{6} & \cdots & 0 & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{c\pbrac{u_{N-2}-u_{N}}}{6} & \frac{c\pbrac{-u_{N-1}-2u_{N}}}{6} \\
+    0 & 0 & 0 & 0 & 0 & \cdots & \frac{c\pbrac{2u_{N-1}+u_{N}}}{6} & \frac{c\pbrac{u_{N-1}-4u_{N}}}{6}
+  \end{bmatrix}
+\end{equation}

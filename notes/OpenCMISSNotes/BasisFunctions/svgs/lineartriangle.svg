@@ -2,22 +2,21 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   xmlns:ns0="http://www.iki.fi/pav/software/textext/"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="210mm"
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
    id="svg8"
-   inkscape:version="0.92+devel unknown"
-   sodipodi:docname="lineartriangle.svg">
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="lineartriangle.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:ns0="http://www.iki.fi/pav/software/textext/">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -25,18 +24,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="400"
-     inkscape:cy="867.55047"
+     inkscape:zoom="0.39431577"
+     inkscape:cx="381.6738"
+     inkscape:cy="461.55902"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1696"
-     inkscape:window-height="954"
-     inkscape:window-x="86"
-     inkscape:window-y="56"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1920"
+     inkscape:window-height="979"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:pagecheckerboard="0" />
   <defs
      id="defs2">
     <g
@@ -237,7 +237,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -245,169 +245,209 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       style="fill:#a9a9a9;fill-opacity:1;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 41.129194,110.32302 c 113.688756,0.87673 113.688756,0.87673 113.688756,0.87673 L 110.09678,45.356302 Z"
-       id="path19356"
-       inkscape:connector-curvature="0" />
     <g
-       transform="matrix(1.25,0,0,1.25,-51.983556,-77.483714)"
-       ns0:text="1"
-       ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
-       ns0:page_width=""
-       style="stroke-width:0.0000001"
-       id="g7621">
-      <defs
-         id="defs7614">
-        <g
-           id="g7612">
-          <symbol
-             overflow="visible"
-             id="textext-931a7237-0">
-            <path
-               inkscape:connector-curvature="0"
-               style="stroke:none"
-               d=""
-               id="path7606" />
-          </symbol>
-          <symbol
-             overflow="visible"
-             id="textext-931a7237-1">
-            <path
-               inkscape:connector-curvature="0"
-               style="stroke:none"
-               d="m 2.9375,-6.375 c 0,-0.25 0,-0.265625 -0.234375,-0.265625 C 2.078125,-6 1.203125,-6 0.890625,-6 v 0.3125 c 0.203125,0 0.78125,0 1.296875,-0.265625 v 5.171875 c 0,0.359375 -0.03125,0.46875 -0.921875,0.46875 h -0.3125 V 0 c 0.34375,-0.03125 1.203125,-0.03125 1.609375,-0.03125 0.390625,0 1.265625,0 1.609375,0.03125 v -0.3125 h -0.3125 c -0.90625,0 -0.921875,-0.109375 -0.921875,-0.46875 z m 0,0"
-               id="path7609" />
-          </symbol>
-        </g>
-      </defs>
+       id="g2597"
+       transform="translate(3.7632701,-19.615191)">
+      <path
+         style="fill:#00ffff;fill-opacity:1;stroke:#000000;stroke-width:0.529167"
+         inkscape:label="Triangle"
+         d="M 54.397226,210.15088 H 147.00139 L 100.69931,129.95332 Z"
+         id="path1735" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path7566-7-8-9-7-3-1-2"
+         cx="54.711906"
+         cy="210.12875"
+         rx="1.5018117"
+         ry="1.4185585" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path7566-7-8-9-7-3"
+         cx="147.02036"
+         cy="210.06076"
+         rx="1.5018117"
+         ry="1.4185585" />
+      <ellipse
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="path7566-7-8"
+         cx="100.69724"
+         cy="129.87213"
+         rx="1.5018117"
+         ry="1.4185585" />
       <g
-         id="textext-931a7237-2">
+         transform="matrix(0.881945,0,0,0.881945,48.912019,208.51311)"
+         ns0:version="1.4.0"
+         ns0:texconverter="pdflatex"
+         ns0:pdfconverter="inkscape"
+         ns0:text="\\nodenumber{1}"
+         ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
+         ns0:scale="2.0"
+         ns0:alignment="middle center"
+         ns0:inkscapeversion="0.92+devel"
+         ns0:jacobian_sqrt="0.881945"
+         style="stroke-width:0"
+         id="g7621">
+        <defs
+           id="id-acd1dd8f-787c-45ae-8abf-05930aacb97f"
+           style="stroke-width:0">
+          <g
+             id="id-766609cc-0231-454e-a822-f86ea54441d6"
+             style="stroke-width:0">
+            <symbol
+               overflow="visible"
+               id="id-d7200f4d-2e51-4f9b-bf29-58dbc1bf09b3"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d=""
+                 id="id-2967ab24-b3c8-4552-b4cf-82b3bf57c41f" />
+            </symbol>
+            <symbol
+               overflow="visible"
+               id="id-9e266086-0616-4fa2-8dfb-c4b65aa8c841"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d="m 3.53125,-6.203125 c 0,-0.234375 0,-0.328125 -0.265625,-0.328125 -0.109375,0 -0.125,0 -0.21875,0.078125 -0.765625,0.5625 -1.796875,0.5625 -2,0.5625 H 0.84375 v 0.46875 H 1.046875 C 1.203125,-5.421875 1.75,-5.4375 2.34375,-5.625 v 5.15625 H 0.953125 V 0 c 0.4375,-0.03125 1.5,-0.03125 1.984375,-0.03125 0.484375,0 1.546875,0 1.984375,0.03125 V -0.46875 H 3.53125 Z m 0,0"
+                 id="id-8ba5bb97-9397-4c8d-8e17-44605d35c379" />
+            </symbol>
+          </g>
+        </defs>
         <g
-           style="fill:#000000;fill-opacity:1"
-           id="g7618">
-          <use
-             height="100%"
-             width="100%"
-             xlink:href="#textext-931a7237-1"
-             x="70.865997"
-             y="158.289"
-             id="use7616" />
+           id="id-abf188ed-4a00-4a73-9b66-e24d71978691"
+           transform="translate(-58.3078,-109.238)"
+           style="stroke-width:0">
+          <g
+             style="fill:#000000;stroke-width:0"
+             id="id-ce9f4d6a-0107-4dba-852e-8ca15c171372">
+            <g
+               id="id-dafa1f36-e215-4518-bff3-5ddbf9c14c7d"
+               transform="translate(57.464,115.769)"
+               style="stroke-width:0">
+              <path
+                 style="color:#000000;stroke-width:0;-inkscape-stroke:none"
+                 d="m 3.53125,-6.203125 c 0,-0.234375 0,-0.328125 -0.265625,-0.328125 -0.109375,0 -0.125,0 -0.21875,0.078125 -0.765625,0.5625 -1.796875,0.5625 -2,0.5625 H 0.84375 v 0.46875 H 1.046875 C 1.203125,-5.421875 1.75,-5.4375 2.34375,-5.625 v 5.15625 H 0.953125 V 0 c 0.4375,-0.03125 1.5,-0.03125 1.984375,-0.03125 0.484375,0 1.546875,0 1.984375,0.03125 V -0.46875 H 3.53125 Z m 0,0"
+                 id="id-6ec29c7f-3e18-476a-beff-053027be6b7c" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.881945,0,0,0.881945,149.51005,208.51311)"
+         ns0:version="1.4.0"
+         ns0:texconverter="pdflatex"
+         ns0:pdfconverter="inkscape"
+         ns0:text="\\nodenumber{2}"
+         ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
+         ns0:scale="2.0"
+         ns0:alignment="middle center"
+         ns0:inkscapeversion="0.92+devel"
+         ns0:jacobian_sqrt="0.881945"
+         style="stroke-width:0"
+         id="g7873">
+        <defs
+           id="id-c5842bef-0dfa-48bc-8166-464922ec80c5"
+           style="stroke-width:0">
+          <g
+             id="id-7edc2725-3870-490a-a6b0-fcb7529862f9"
+             style="stroke-width:0">
+            <symbol
+               overflow="visible"
+               id="id-dd7b5183-d3a9-4de5-b84f-ee4e7bd8684d"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d=""
+                 id="id-7497f741-6558-45a6-8f10-abdec0025937" />
+            </symbol>
+            <symbol
+               overflow="visible"
+               id="id-75033f03-03de-490e-860b-4ac8e3330065"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d="M 5.15625,-2.21875 H 4.6875 C 4.65625,-2.015625 4.5625,-1.375 4.421875,-1.3125 4.3125,-1.25 3.5625,-1.25 3.40625,-1.25 H 1.9375 c 0.46875,-0.390625 1,-0.8125 1.4375,-1.140625 1.140625,-0.84375 1.78125,-1.3125 1.78125,-2.25 0,-1.15625 -1.046875,-1.890625 -2.4375,-1.890625 -1.21875,0 -2.15625,0.625 -2.15625,1.515625 0,0.59375 0.484375,0.734375 0.71875,0.734375 C 1.609375,-4.28125 2,-4.5 2,-5 2,-5.515625 1.578125,-5.671875 1.4375,-5.71875 1.71875,-5.953125 2.109375,-6.0625 2.46875,-6.0625 c 0.84375,0 1.3125,0.671875 1.3125,1.421875 0,0.6875 -0.375,1.375 -1.078125,2.078125 l -2,2.046875 C 0.5625,-0.40625 0.5625,-0.375 0.5625,-0.171875 V 0 h 4.28125 z m 0,0"
+                 id="id-dd343153-4af2-4d7e-a60e-c943a0e63dd9" />
+            </symbol>
+          </g>
+        </defs>
+        <g
+           id="id-90c6107c-83b4-474b-b9aa-873018ab485d"
+           transform="translate(-58.0265,-109.238)"
+           style="stroke-width:0">
+          <g
+             style="fill:#000000;stroke-width:0"
+             id="id-76abc54a-6cfa-4646-940f-5a7ebbcafba8">
+            <g
+               id="id-c0482f84-35e6-48a5-92b3-ea5969325b58"
+               transform="translate(57.464,115.769)"
+               style="stroke-width:0">
+              <path
+                 style="color:#000000;stroke-width:0;-inkscape-stroke:none"
+                 d="M 5.15625,-2.21875 H 4.6875 C 4.65625,-2.015625 4.5625,-1.375 4.421875,-1.3125 4.3125,-1.25 3.5625,-1.25 3.40625,-1.25 H 1.9375 c 0.46875,-0.390625 1,-0.8125 1.4375,-1.140625 1.140625,-0.84375 1.78125,-1.3125 1.78125,-2.25 0,-1.15625 -1.046875,-1.890625 -2.4375,-1.890625 -1.21875,0 -2.15625,0.625 -2.15625,1.515625 0,0.59375 0.484375,0.734375 0.71875,0.734375 C 1.609375,-4.28125 2,-4.5 2,-5 2,-5.515625 1.578125,-5.671875 1.4375,-5.71875 1.71875,-5.953125 2.109375,-6.0625 2.46875,-6.0625 c 0.84375,0 1.3125,0.671875 1.3125,1.421875 0,0.6875 -0.375,1.375 -1.078125,2.078125 l -2,2.046875 C 0.5625,-0.40625 0.5625,-0.375 0.5625,-0.171875 V 0 h 4.28125 z m 0,0"
+                 id="id-45b26336-135c-4a39-bc06-085cc4183bd3" />
+            </g>
+          </g>
+        </g>
+      </g>
+      <g
+         transform="matrix(0.881945,0,0,0.881945,98.59782,121.95751)"
+         ns0:version="1.4.0"
+         ns0:texconverter="pdflatex"
+         ns0:pdfconverter="inkscape"
+         ns0:text="\\nodenumber{3}"
+         ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
+         ns0:scale="2.0"
+         ns0:alignment="middle center"
+         ns0:inkscapeversion="0.92+devel"
+         ns0:jacobian_sqrt="0.881945"
+         style="stroke-width:0"
+         id="g8014">
+        <defs
+           id="id-dd93dfca-5672-40a5-aec2-62271a84d55a"
+           style="stroke-width:0">
+          <g
+             id="id-e7db97c2-aecc-4edc-8055-1b9e0ca34e73"
+             style="stroke-width:0">
+            <symbol
+               overflow="visible"
+               id="id-7de2b0e0-e41f-494e-9d54-f9e253f30c27"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d=""
+                 id="id-71e7a447-35fc-465e-817d-369cd4fa8a68" />
+            </symbol>
+            <symbol
+               overflow="visible"
+               id="id-7b7c9ac9-1a02-4eb6-aabb-dff0a2b31977"
+               style="stroke-width:0">
+              <path
+                 style="stroke:none;stroke-width:0"
+                 d="m 3.515625,-3.515625 c 0.6875,-0.203125 1.40625,-0.765625 1.40625,-1.625 0,-0.765625 -0.75,-1.390625 -2.15625,-1.390625 -1.1875,0 -1.96875,0.640625 -1.96875,1.4375 0,0.421875 0.3125,0.703125 0.6875,0.703125 0.453125,0 0.703125,-0.328125 0.703125,-0.6875 0,-0.578125 -0.546875,-0.6875 -0.578125,-0.703125 0.34375,-0.28125 0.78125,-0.359375 1.09375,-0.359375 0.828125,0 0.859375,0.640625 0.859375,0.96875 0,0.125 -0.015625,1.4375 -1.046875,1.5 -0.40625,0.015625 -0.4375,0.015625 -0.484375,0.03125 -0.09375,0.015625 -0.125,0.109375 -0.125,0.171875 0,0.171875 0.109375,0.171875 0.28125,0.171875 H 2.625 c 1.09375,0 1.09375,0.984375 1.09375,1.5 0,0.46875 0,1.484375 -1.03125,1.484375 -0.265625,0 -0.78125,-0.046875 -1.265625,-0.34375 C 1.75,-0.75 2,-1 2,-1.40625 c 0,-0.453125 -0.3125,-0.75 -0.75,-0.75 -0.421875,0 -0.765625,0.265625 -0.765625,0.765625 0,0.90625 0.96875,1.5 2.25,1.5 1.78125,0 2.515625,-1 2.515625,-1.90625 0,-0.546875 -0.296875,-1.40625 -1.734375,-1.71875 z m 0,0"
+                 id="id-b340fc43-ecc3-4c7f-a1a8-3bd799e5804a" />
+            </symbol>
+          </g>
+        </defs>
+        <g
+           id="id-ffde281c-4936-43a3-9d35-80991af4f475"
+           transform="translate(-57.9484,-109.238)"
+           style="stroke-width:0">
+          <g
+             style="fill:#000000;stroke-width:0"
+             id="id-76657d94-47c7-41fb-ae24-639d055020ff">
+            <g
+               id="id-ef2d2f50-86e3-4021-a473-6bef385408b7"
+               transform="translate(57.464,115.769)"
+               style="stroke-width:0">
+              <path
+                 style="color:#000000;stroke-width:0;-inkscape-stroke:none"
+                 d="m 3.515625,-3.515625 c 0.6875,-0.203125 1.40625,-0.765625 1.40625,-1.625 0,-0.765625 -0.75,-1.390625 -2.15625,-1.390625 -1.1875,0 -1.96875,0.640625 -1.96875,1.4375 0,0.421875 0.3125,0.703125 0.6875,0.703125 0.453125,0 0.703125,-0.328125 0.703125,-0.6875 0,-0.578125 -0.546875,-0.6875 -0.578125,-0.703125 0.34375,-0.28125 0.78125,-0.359375 1.09375,-0.359375 0.828125,0 0.859375,0.640625 0.859375,0.96875 0,0.125 -0.015625,1.4375 -1.046875,1.5 -0.40625,0.015625 -0.4375,0.015625 -0.484375,0.03125 -0.09375,0.015625 -0.125,0.109375 -0.125,0.171875 0,0.171875 0.109375,0.171875 0.28125,0.171875 H 2.625 c 1.09375,0 1.09375,0.984375 1.09375,1.5 0,0.46875 0,1.484375 -1.03125,1.484375 -0.265625,0 -0.78125,-0.046875 -1.265625,-0.34375 C 1.75,-0.75 2,-1 2,-1.40625 c 0,-0.453125 -0.3125,-0.75 -0.75,-0.75 -0.421875,0 -0.765625,0.265625 -0.765625,0.765625 0,0.90625 0.96875,1.5 2.25,1.5 1.78125,0 2.515625,-1 2.515625,-1.90625 0,-0.546875 -0.296875,-1.40625 -1.734375,-1.71875 z m 0,0"
+                 id="id-21c82933-c60b-4bda-bf43-98002704c400" />
+            </g>
+          </g>
         </g>
       </g>
     </g>
-    <g
-       id="g7873"
-       style="stroke-width:0.0000001"
-       ns0:page_width=""
-       ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
-       ns0:text="2"
-       transform="matrix(1.25,0,0,1.25,67.183685,-77.394417)">
-      <defs
-         id="defs7866">
-        <g
-           id="g7864">
-          <symbol
-             id="textext-b56a5c39-0"
-             overflow="visible">
-            <path
-               id="path7858"
-               d=""
-               style="stroke:none"
-               inkscape:connector-curvature="0" />
-          </symbol>
-          <symbol
-             id="textext-b56a5c39-1"
-             overflow="visible">
-            <path
-               id="path7861"
-               d="m 1.265625,-0.765625 1.0625,-1.03125 c 1.546875,-1.375 2.140625,-1.90625 2.140625,-2.90625 0,-1.140625 -0.890625,-1.9375 -2.109375,-1.9375 -1.125,0 -1.859375,0.921875 -1.859375,1.8125 0,0.546875 0.5,0.546875 0.53125,0.546875 0.171875,0 0.515625,-0.109375 0.515625,-0.53125 0,-0.25 -0.1875,-0.515625 -0.53125,-0.515625 -0.078125,0 -0.09375,0 -0.125,0.015625 0.21875,-0.65625 0.765625,-1.015625 1.34375,-1.015625 0.90625,0 1.328125,0.8125 1.328125,1.625 C 3.5625,-3.90625 3.078125,-3.125 2.515625,-2.5 l -1.90625,2.125 C 0.5,-0.265625 0.5,-0.234375 0.5,0 H 4.203125 L 4.46875,-1.734375 H 4.234375 C 4.171875,-1.4375 4.109375,-1 4,-0.84375 3.9375,-0.765625 3.28125,-0.765625 3.0625,-0.765625 Z m 0,0"
-               style="stroke:none"
-               inkscape:connector-curvature="0" />
-          </symbol>
-        </g>
-      </defs>
-      <g
-         id="textext-b56a5c39-2">
-        <g
-           id="g7870"
-           style="fill:#000000;fill-opacity:1">
-          <use
-             id="use7868"
-             y="158.289"
-             x="70.865997"
-             xlink:href="#textext-b56a5c39-1"
-             width="100%"
-             height="100%" />
-        </g>
-      </g>
-    </g>
-    <g
-       transform="matrix(1.25,0,0,1.25,18.244841,-156.20003)"
-       ns0:text="3"
-       ns0:preamble="/data/OpenCMISS/documentation/notes/latex/texTextPreamble.ini"
-       ns0:page_width=""
-       style="stroke-width:0.0000001"
-       id="g8014">
-      <defs
-         id="defs8007">
-        <g
-           id="g8005">
-          <symbol
-             overflow="visible"
-             id="textext-bbff0f72-0">
-            <path
-               style="stroke:none"
-               d=""
-               id="path7999"
-               inkscape:connector-curvature="0" />
-          </symbol>
-          <symbol
-             overflow="visible"
-             id="textext-bbff0f72-1">
-            <path
-               style="stroke:none"
-               d="m 2.890625,-3.515625 c 0.8125,-0.265625 1.390625,-0.953125 1.390625,-1.75 0,-0.8125 -0.875,-1.375 -1.828125,-1.375 -1,0 -1.765625,0.59375 -1.765625,1.359375 0,0.328125 0.21875,0.515625 0.515625,0.515625 0.296875,0 0.5,-0.21875 0.5,-0.515625 0,-0.484375 -0.46875,-0.484375 -0.609375,-0.484375 0.296875,-0.5 0.953125,-0.625 1.3125,-0.625 0.421875,0 0.96875,0.21875 0.96875,1.109375 0,0.125 -0.03125,0.703125 -0.28125,1.140625 C 2.796875,-3.65625 2.453125,-3.625 2.203125,-3.625 2.125,-3.609375 1.890625,-3.59375 1.8125,-3.59375 c -0.078125,0.015625 -0.140625,0.03125 -0.140625,0.125 0,0.109375 0.0625,0.109375 0.234375,0.109375 h 0.4375 c 0.8125,0 1.1875,0.671875 1.1875,1.65625 0,1.359375 -0.6875,1.640625 -1.125,1.640625 -0.4375,0 -1.1875,-0.171875 -1.53125,-0.75 0.34375,0.046875 0.65625,-0.171875 0.65625,-0.546875 0,-0.359375 -0.265625,-0.5625 -0.546875,-0.5625 -0.25,0 -0.5625,0.140625 -0.5625,0.578125 0,0.90625 0.921875,1.5625 2.015625,1.5625 1.21875,0 2.125,-0.90625 2.125,-1.921875 0,-0.8125 -0.640625,-1.59375 -1.671875,-1.8125 z m 0,0"
-               id="path8002"
-               inkscape:connector-curvature="0" />
-          </symbol>
-        </g>
-      </defs>
-      <g
-         id="textext-bbff0f72-2">
-        <g
-           style="fill:#000000;fill-opacity:1"
-           id="g8011">
-          <use
-             xlink:href="#textext-bbff0f72-1"
-             x="70.865997"
-             y="158.289"
-             id="use8009"
-             width="100%"
-             height="100%" />
-        </g>
-      </g>
-    </g>
-    <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:1.05999996, 1.05999996;stroke-dashoffset:0;stroke-opacity:1"
-       id="path7566-7-8"
-       cx="109.95082"
-       cy="45.214851"
-       rx="1.5018117"
-       ry="1.4185585" />
-    <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:1.05999999, 1.05999999;stroke-dashoffset:0;stroke-opacity:1"
-       id="path7566-7-8-9-7-3"
-       cx="154.50838"
-       cy="111.44932"
-       rx="1.5018117"
-       ry="1.4185585" />
-    <ellipse
-       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.26499999;stroke-miterlimit:4;stroke-dasharray:1.06000001, 1.06000001;stroke-dashoffset:0;stroke-opacity:1"
-       id="path7566-7-8-9-7-3-1-2"
-       cx="41.932312"
-       cy="109.8881"
-       rx="1.5018117"
-       ry="1.4185585" />
   </g>
 </svg>
