@@ -88,7 +88,7 @@ MY_EPS_SRC=
 MY_FIG_SRC="BasisFunctions/figs/*.fig"
 MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
 "DifferentialGeometry/svgs/*.svg "\
-"AnalyticSolutions/ClassicalFieldClass/svgs/*.svg "\
+"ClassicalField/svgs/*.svg "\
 "SolidMechanics/svgs/*.svg "\
 "FluidMechanics/svgs/*.svg "\
 "Fitting/svgs/*.svg "\
