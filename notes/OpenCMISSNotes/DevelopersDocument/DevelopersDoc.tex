@@ -1,10 +1,9 @@
-\raggedbottom
 \clearemptydoublepage
 \chapter{Developers' Document}
-\label{cha:developers}
+\label{cha:DevelopersDocumentation}
 
 \section{Introduction}
-\label{sec:devel_intro}
+\label{sec:DevelopersIntroduction}
 
 This chapter is intended for new and existing developers of OpenCMISS. It contains tips
 from the developers who previously encountered the learning curve, and are now trying to 
@@ -17,6 +16,252 @@ may at times appear to lack rigor, but after reading this chapter developers wil
 empowered to answer their own questions. In addition, existing developers of OpenCMISS 
 will find that this chapter may serve as a reference to assist day-to-day development work, 
 and to keep up-to-date with extensions that are made in the core library functionalities.
+
+\section{Parallel Computation}
+\label{sec:ParallelComputation}
+
+An abstration of a single processor computer system can be seen
+in \figref{fig:SingleProcessorSystem}. The abstraction of a single
+processor computer system contains a single Central Processing Unit
+(CPU) with a high speed memory cache. The CPU is connected to the main
+system memory and network sybsystem via a data bus.
+
+\epstexfigure{DevelopersDocument/svgs/singleprocessor.eps_tex}{Single processor computer system.}{An abstraction of a single processor computer system. Here a single Central Processing Unit (CPU) with a cache is connected to the main computer memory and network sybsystem via a data bus.}{fig:SingleProcessorSystem}{1.0}
+
+In order to reduce the computation time required to solve a problem
+multiple CPUs can be used to perform calculations in parallel. A
+simple way to achieve this is to have multiple CPU units connected to
+the central system bus. This is shown
+in \figref{fig:SharedMemMultiprocessor}. The \emph{OpenMP} standard is
+typically used to coordiante computation between CPUs. Information on
+the OpenMP standard can be found at \url{https://www.openmp.org/}.
+
+\epstexfigure{DevelopersDocument/svgs/sharedmemmultiprocessor.eps_tex}{Shared memory multi-processor computer system.}{An abstraction of a multiple processor computer system. Here a multiple Central Processing Unit (CPU) with caches are connected to the main computer memory and network sybsystem via a data bus. This is known as a \emph{shared memory multi-processor system} as the multiple CPUs share the main system memory via a bus.}{fig:SharedMemMultiprocessor}{0.75}
+
+Shared memory multi-processor systems are relatively easy to program
+as each CPU has the same view of the global memory address space
+although care needs to be taken to ensure that memory reads and writes
+do not clash between different CPUs. Shared memory systems also need
+to ensure that cached copies of data from the main memory are
+kept \emph{conherent} between CPUs. Shared memory systems, however,
+suffer from a major problem in that there can be a bottleneck with the
+bus that connects the CPUs to main memory. This is shown
+in \figref{fig:SharedMemMultiProcessorBlock}. In practice the bus
+bottleneck limits the number of CPUs in the system to approximately
+16-32 processor units. Indeed, most parallel performance limitations
+in shared memory multi-processor systems are due to limitations in
+reading from and writting to the main shared system memory.
+
+\epstexfigure{DevelopersDocument/svgs/sharedmemmultiprocessorblock.eps_tex}{Shared memory multi-processor computer system with a bus bottlenect.}{An illustration of a bus bottleneck in a shared memory multi-processor system. The bus can become saturated by multiple CPUs trying to read from or write to main memory.}{fig:SharedMemMultiProcessorBlock}{0.75}
+
+Another system architecture that can be used for parallel computation
+is to have multiple system nodes. The nodes are then connected via the
+network or some other high speed interconnect. This system achitecture
+is shown in \figref{fig:DistribMemMultiProcessor}. This architecture
+is known as a \emph{distributed memory multi-processor system} as the
+total system memory is distributed over multiple system nodes. In
+order to coordinate data changes between system nodes data
+is \emph{sent} by nodes and \emph{recieved} by other nodes. In order
+to simplify this process libraries are used to abstract the inter- and
+intra- communication process between nodes. The \emph{de facto}
+standard library for this is the Message Passing Interface (MPI)
+standard. Further information on the MPI standard can be found
+at \url{https://www.mpi-forum.org/}. Distributed memory computer
+systems are typically much harder to program than shared memory
+computer systems.
+
+\epstexfigure{DevelopersDocument/svgs/distribmemmultiprocessor.eps_tex}{Distributed memory multi-processor computer system.}{An abstraction of a single processor computer system. Here multiple system nodes (consisting of a single Central Processing Unit (CPU) with a cache connected to the main node memory and network sybsystem via a data bus) are connected together via a network or some other high speed interconnect hardware. In order to coordiante computation data is sent from nodes and recieved from other nodes.}{fig:DistribMemMultiProcessor}{0.60}
+
+In practice, modern computer systems typically combine elements of a
+shared memory system and a distributed memory system. In addition,
+computational accelerators (specialised hardware to perform certain
+calculations extremely fast) such as \emph{Graphical Processing Units
+(GPUs)} or \emph{Floating Point Gate Arrays (FPGAs)} can be
+incorporated into the computer system. These accelerators can be
+programmed using standard directives such as the \emph{Compute Unified
+Device Architecture (CUDA)} for nVidia GPUs or \emph{Open Accelerator
+(OpenACC)}. Further information on CUDA can be found
+at \url{https://developer.nvidia.com/cuda-zone} and further
+information on OpenACC can be found
+at \url{https://www.openacc.org/}. In \OpenCMISS an abstraction of
+the \emph{Generalised Parallel Environment} can be seen
+in \figref{fig:GeneralParallelEnviron}.
+
+\epstexfigure{DevelopersDocument/svgs/generalparallelenviron.eps_tex}{Generalised parallel environment used in \OpenCMISS.}{An abstraction of the generalised parallel environment used in \OpenCMISS. Here a node with one or more CPUs (with one or more cores each), together with a number of accerlators (each with multiple computing elements) is connected to the main memory and network subsystem via a bus. Multiple nodes are then connected to each other through a network or other fast interconnect hardware.}{fig:GeneralParallelEnviron}{0.66}
+
+\section{Domain Decomposition}
+\label{sec:DomainDecomposition}
+
+One major step in the domain decomposition parallel strategy is how to
+break up a mesh into a number of domains. To optimally break up the
+mesh we need to consider two objectives. The first objective is that
+we require roughly equal ``sizes'' of each domain. If we had one
+domain that was, say, twice as big as the other domains then
+computational time on the computer node for this domain would be
+higher than that on the other computer nodes. This would result in
+a \emph{load imbalance} in that the computer nodes with the smaller
+domains would finish their computations and be forced to wait for the
+computer node with the larger domain to finish. This is extremely
+inefficient. Note that each domain may need to \emph{weighted} by the
+computational work required in that domain. The second objective is
+that we wish to minimise the number of ``cuts'', or breaks in the
+mesh, as this will minimise the amount of communication between the
+different domains of the broken mesh. As communication between
+computational nodes is, in general, much slower than a CPU clock cycle
+then maximising the computational work to communication ratio by
+minimising communication will result in a higher parallel efficiency.
+
+The process of breaking up a mesh is known mathematically
+as \emph{graph partitioning}. To see how graph partitioning works
+consider decomposing the mesh shown
+in \figref{fig:MeshDecomposition} into $5$ domains.
+
+\epstexfigure{DevelopersDocument/svgs/meshdecomposition.eps_tex}{Computational mesh to decompose.}{A computational mesh to decompose into $5$ domains. The $6\times 6$ mesh contains $36$ bilinear elements and $49$ nodes.}{fig:MeshDecomposition}{0.50}
+
+The first step in the graph partitioning algorithm is to form
+the \emph{dual} of the mesh. In a standard mesh the nodes are at the
+vertices of each element. In the dual of a mesh the elements form the
+vertices of the dual mesh. The dual of the mesh
+in \figref{fig:MeshDecomposition} is shown
+in \figref{fig:DualMeshDecomposition}.
+
+\epstexfigure{DevelopersDocument/svgs/dualmeshdecomposition.eps_tex}{Dual of the computational mesh to decompose.}{The dual (red) of the computational mesh (black) to decompose. For a computational mesh the nodes are at the vertices of each element. For the dual the elements are at the vertices of the dual mesh.}{fig:DualMeshDecomposition}{0.50}
+
+The next step in the graph partitioning algorithm is two make a number of \emph{cuts} in the dual mesh. The graph partitioning algorithm will try to minimise the number of cuts in the dual whilst trying to make sure the number of vertices of the dual (elements) in each domain is approximately equal. The cuts in the dual mesh are shown in \figref{fig:CutDualMeshDecomposition}.
+
+\epstexfigure{DevelopersDocument/svgs/cutdualmeshdecomposition.eps_tex}{Cuts in the dual of the computational mesh.}{Cuts in the dual mesh as a result of the graph partitioning algorithm. The algorithm will try to minimise the total number of cuts in the dual whilst trying to ensure that the number of nodes of the dual (elements in the original mesh) are approximately equal in each domain.}{fig:CutDualMeshDecomposition}{0.50}
+
+The final step in the graph partitioning algorithm is to join the cuts to form the domains. The final decomposed mesh is shown in \figref{fig:DomainMeshDecomposition}. Common graph partitioning software packages include ParMETIS \url{http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview} and Scotch \url{https://www.labri.fr/perso/pelegrin/scotch/}.
+
+\epstexfigure{DevelopersDocument/svgs/domainmeshdecomposition.eps_tex}{Domains in the decomposed computational mesh.}{Domains of the decomposed mesh found by joining the cuts in the dual mesh.}{fig:DomainMeshDecomposition}{0.50}
+
+\section{Decomposition Numbering Schemes}
+\label{sec:DecompositionNumberingSchemes}
+
+The process of decomposing a mesh introduces a number of different
+ways to number objects in a mesh. The first numbering scheme is
+called \emph{user numbering} and allows the user of \OpenCMISS to give
+each mesh object any unique number. For example consider the mesh
+shown in \figref{fig:MeshDecomposition} with a user defined numbering
+scheme as shown in \figref{fig:UserMeshNumbering}. For \OpenCMISS the
+user numbering is used for all external API calls.
+
+\epstexfigure{DevelopersDocument/svgs/usermeshnumbering.eps_tex}{User mesh numbering of elements in a computational mesh.}{User numbering for elements in a $6\times 6$ mesh. The user numbers can be anything positive provided they are unique.}{fig:UserMeshNumbering}{0.50}
+
+The next numbering scheme that can be defined is \emph{global numbering}. In this numbering scheme mesh objects are numbered continuously from $1$ to the number of objects in the mesh. The global numbering scheme for the mesh shown in \figref{fig:UserMeshNumbering} is shown in \figref{fig:GlobalMeshNumbering}.
+
+\epstexfigure{DevelopersDocument/svgs/globalmeshnumbering.eps_tex}{Global mesh numbering of elements in a computational mesh.}{Global numbering for elements in a $6\times 6$ mesh. The global numbering scheme goes from $1$ to the number of objects(elements) in the mesh.}{fig:GlobalMeshNumbering}{0.50}
+
+For the next numbering scheme the objects in each domain of the decomposed mesh are renumbered so that they range from $1$ to the number of objects in each domain of the decomposed mesh. This is known as \emph{local numbering}. For the decomposition shown in \figref{fig:DomainMeshDecomposition} the local numbering scheme for each domain is shown in \figref{fig:LocalMeshNumbering}.
+
+\epstexfigure{DevelopersDocument/svgs/localmeshnumbering.eps_tex}{Local numbering of elements in each domain of a decomposed computational mesh.}{Local numbering for elements in each domain of a decomposed mesh. The local numbering scheme goes from $1$ to the number of objects(elements) in the domain.}{fig:LocalMeshNumbering}{0.50}
+
+With a local numbering scheme we can also allow for ghost numbering. In \OpenCMISS the domain objects that are owned by the domain are numbered first and then the ghost objects are appended in the local numbering scheme. The local and ghost numbers for the cyan domain in \figref{fig:LocalMeshNumbering} are shown in \figref{fig:LocalGhostMeshNumbering}
+
+\epstexfigure{DevelopersDocument/svgs/localghostmeshnumbering.eps_tex}{Local and ghost numbering of elements in a domain of a decomposed computational mesh.}{Local and ghost numbering for elements in one domain of a decomposed mesh. The local numbering scheme goes from $1$ to the total number of objects(elements) in the domain. The local objects that are owned by the domain (cyan) are numbered first and then the ghost objects (blue) are appended to the local scheme.}{fig:LocalGhostMeshNumbering}{0.50}
+
+\section{Matrix and Vector Distribution}
+\label{sec:MatrixVectorDistribution}
+
+\subsection{Vector Distribution}
+\label{sec:VectorDistribution}
+
+\subsection{Matrix Distribution}
+\label{sec:MatrixDistribution}
+
+Due to memory limitations it is desirable to distribute a matrix data structure. To illustrate how matrices are distributed in \OpenCMISS consider the $5\times 5$ bilinear mesh decomposed into four domains as shown in \figref{fig:MatrixDistributionMesh}. For bilinear elements and assuming that there is only one \DoF per node then a finite element matrix for this mesh will be of size $36\times 36$.
+
+\epstexfigure{DevelopersDocument/svgs/matrixdistributionmesh.eps_tex}{A $5\times 5$ element mesh decomposed into four domains to illustrate matrix distribution.}{A $5\times 5$ element mesh decomposed into four domains to illustrate matrix distribution. For one \DoF per node the global matrix will be of size $36\times 36$. Here the four domains are shown as different colours. The domain ownership of the nodes of the mesh is shown by the colour of the node circle.}{fig:MatrixDistributionMesh}{0.75}
+
+The global and local \DoF numbering for each domain is shown in \figref{fig:MatrixDistributionDomain}.
+
+
+\begin{figure}[hbtp]
+   \centering
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistributionmesh0.eps_tex}{Domain
+   $0$.}{Global and Local \DoF numbering for domain $0$.}{subfig:MatrixDistributionDomain0}{0.45}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistributionmesh1.eps_tex}{Domain
+   $1$.}{Global and Local \DoF numbering for domain $1$.}{subfig:MatrixDistributionDomain1}{0.45}
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistributionmesh2.eps_tex}{Domain
+   $2$.}{Global and Local \DoF numbering for domain $2$.}{subfig:MatrixDistributionDomain2}{0.45}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistributionmesh3.eps_tex}{Domain
+   $3$.}{Global and Local \DoF numbering for domain $3$.}{subfig:MatrixDistributionDomain3}{0.45}
+   \caption[Matrix global and local numbering for each domain.]{Matrix global and local \DoF numbering for each domain. The global numbers are indicated by darker colours and the local numbers are indicated by lighter colours and italic numbers.}
+   \label{fig:MatrixDistributionDomain}
+\end{figure}
+
+For a standard finite element problem we can see which entries in the
+matrix would be populated by filling in the matrix squares. Using a
+global numbering scheme for the row and column \DoFs we can see how
+each domain would populate the matrix
+in \figref{fig:GlobalMatrixDistributionDomain}.
+
+\begin{figure}[hbtp]
+   \centering
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution0a.eps_tex}{Domain
+   $0$.}{Matrix population for domain $0$ using global \DoF numbering for the rows and columns.}
+   {subfig:MatrixDistributionDomain0a}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution1a.eps_tex}{Domain
+   $1$.}{Matrix population for domain $1$ using global \DoF numbering for the rows and columns.}
+   {subfig:MatrixDistributionDomain1a}{0.375}
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution2a.eps_tex}{Domain
+   $2$.}{Matrix population for domain $2$ using global \DoF numbering for the rows and columns.}
+   {subfig:MatrixDistributionDomain2a}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution3a.eps_tex}{Domain
+   $3$.}{Matrix population for domain $3$ using global \DoF numbering for the rows and columns.}
+   {subfig:MatrixDistributionDomain3a}{0.375}
+   \caption[Matrix population for each domain using global row and column numbering.]{Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system using global row and column numbering. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}
+   \label{fig:GlobalMatrixDistributionDomain}
+\end{figure}
+
+If we now use local row numbering and global column numbering for each
+matrix system we obtain matrix systems for each domain as shown
+in \figref{fig:LocalGlobalMatrixDistributionDomain}.
+
+\begin{figure}[hbtp]
+   \centering
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution0b.eps_tex}{Domain
+   $0$.}{Matrix population for domain $0$ using local \DoF numbering for the rows and global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain0b}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution1b.eps_tex}{Domain
+   $1$.}{Matrix population for domain $1$ using local \DoF numbering for the rows and global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain1b}{0.375}
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution2b.eps_tex}{Domain
+   $2$.}{Matrix population for domain $2$ using local \DoF numbering for the rows and global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain2b}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution3b.eps_tex}{Domain
+   $3$.}{Matrix population for domain $3$ using local \DoF numbering for the rows and global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain3b}{0.375}
+   \caption[Matrix population for each domain using local row numbering and global column numbering.]{Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system using local row numbering and global column numbering. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}
+   \label{fig:LocalGlobalMatrixDistributionDomain}
+\end{figure}
+
+If we now reorder the global column numbers so that the lower numbered domains have the lower column numbers we obtain matrix systems for each domain as shown in \figref{fig:ReordLocalGlobalMatrixDistributionDomain}.
+
+\begin{figure}[hbtp]
+   \centering
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution0c.eps_tex}{Domain
+   $0$.}{Matrix population for domain $0$ using local \DoF numbering for the rows and reordered global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain0c}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution1c.eps_tex}{Domain
+   $1$.}{Matrix population for domain $1$ using local \DoF numbering for the rows and reordered global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain1c}{0.375}
+   \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution2c.eps_tex}{Domain
+   $2$.}{Matrix population for domain $2$ using local \DoF numbering for the rows and reordered global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain2c}{0.375}
+   \hfil \epstexsubfigure{DevelopersDocument/svgs/matrixdistribution3c.eps_tex}{Domain
+   $3$.}{Matrix population for domain $3$ using local \DoF numbering for the rows and reordered global \DoF numbering for the columns.}
+   {subfig:MatrixDistributionDomain3c}{0.375}
+   \caption[Matrix population for each domain using local row numbering and reordered global column numbering.]{Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system using local row numbering and reordered global column numbering. The global column numbers are reordered so that the lower numbered domains have the lower numbered columns. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}
+   \label{fig:ReordLocalGlobalMatrixDistributionDomain}
+\end{figure}
+
+Finally, if we now discard the local rows that correspond to ghost \DoFs we can obtain the final distributed matrix system as shown in \figref{fig:MatrixDistributionFinal}.
+
+\epstexfigure{DevelopersDocument/svgs/matrixdistributionfinal.eps_tex}{Final distributed matrix system.}{Final distributed Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}{fig:MatrixDistributionFinal}{0.66}
+
+\clearemptydoublepage
+
 
 \section{The Anatomy of an Example File}
 
@@ -289,7 +534,6 @@ structure above separates data from bookkeeping.
 
 
 %FIELD,BASIS,MESH,DOMAIN
-
 
 \section{Solver Object}
 \label{sec:devel_solver}
