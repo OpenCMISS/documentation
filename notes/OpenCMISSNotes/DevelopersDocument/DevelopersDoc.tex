@@ -166,6 +166,20 @@ With a local numbering scheme we can also allow for ghost numbering. In \OpenCMI
 \subsection{Vector Distribution}
 \label{sec:VectorDistribution}
 
+\epstexfigure{DevelopersDocument/svgs/globaldofvector.eps_tex}{Global parameter \DoF vector for a field with two components.}{Global \DoF vector, $\vectr{x}$ for a field variable $\vectr{u}$ with two components $u_{1}$ and $u_{2}$. The component $u_{1}$ is interpolated with biquadratic Lagrange elements and the component $u_{2}$ is interpolated with bilinear Lagrange elements.}{fig:GlobalDOFVector}{0.75}
+
+\begin{figure}[hbtp]
+   \centering
+   \epstexsubfigure{DevelopersDocument/svgs/proc0localdofvector.eps_tex}{Processor
+   $0$.}{Global and Local \DoF vectors for processor $0$.}{subfig:Proc0LocalDOFVector}{0.50} \hfil
+   \epstexsubfigure{DevelopersDocument/svgs/proc1localdofvector.eps_tex}{Processor
+   $0$.}{Global and Local \DoF vectors for processor $1$.}{subfig:Proc1LocalDOFVector}{0.50} 
+   \caption[Global and Local \DoF vectors for two processors.]{Global and local \DoF vectors for a two component field variable on a mesh that has been decomposed into two domains. The ghost \DoFs are indicated by darker colours and the local \DoFs are indicated by lighter colours.}
+   \label{fig:LocalDOFVectors}
+\end{figure}
+
+\epstexfigure{DevelopersDocument/svgs/proc0localdofvectorupdate.eps_tex}{Update of a ghost \DoF value on processor $1$ after a change to a local \DoF value on processor $0$.}{Update of a ghost \DoF value on processor $1$ after a change to a local \DoF value on process $0$. The changed \DoF is shown in magenta. The ghost \DoF values are shown in a darker colour and the local \DoF values are shown in a lighter colour.}{fig:Proc0LocalDOFVectorUpdate}{0.60}
+
 \subsection{Matrix Distribution}
 \label{sec:MatrixDistribution}
 
