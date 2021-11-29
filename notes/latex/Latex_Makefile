@@ -96,7 +96,7 @@ IS_FIGS = $(findstring .fig,$(FIG_SRC))
 IS_SVGS = $(findstring .svg,$(SVG_SRC))
 IS_PLOTS = $(findstring .gnu,$(PLOT_SRC))
 
-$(MAINFILE).dvi	:	$(MAINFILE).tex $(TEX_SRC) $(BIBS) $(EPS_SRC) $(FIG_SRC) $(SVG_SRC) $(PLOT_SRC) \
+$(MAINFILE).dvi	:	$(MAINFILE).tex $(TEX_SRC) $(BIBS) $(EPS_SRC) $(FIG_SRC) $(SVG_SRC) $(PLOT_SRC) $(GNUPLOT_SRC) \
 			$(OPENCMISS_MACROS)  $(OPENCMISS_ABBREV) $(OPENCMISS_ACRONY) $(OPENCMISS_DEFNS)
 	@if test -z $(IS_FIGS) ; \
 		then : ; \

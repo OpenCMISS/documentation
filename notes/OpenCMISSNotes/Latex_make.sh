@@ -97,6 +97,7 @@ MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
 "DevelopersDocument/svgs/*.svg "
 MY_PLOT_SRC="BasisFunctions/plots/*.gnu "\
 "BasisFunctions/plots/*.gnu8"
+MY_GNUPLOT_SRC="BasisFunctions/plots/*.gnuplot "
 
 #
 # The name of the directory to place the html version of the document.
@@ -135,6 +136,7 @@ make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Latex_Makefile $* \
 	FIG_SRC="$MY_FIG_SRC" \
 	SVG_SRC="$MY_SVG_SRC" \
 	PLOT_SRC="$MY_PLOT_SRC" \
+	GNUPLOT_SRC="$MY_GNUPLOT_SRC" \
 	HTMLUPDATE_DIR=$MY_HTMLUPDATE_DIR \
 	HTMLIDXTYPE=$MY_HTMLIDXTYPE \
 	BIBS=$MY_BIBS \
