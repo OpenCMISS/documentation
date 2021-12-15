@@ -25,7 +25,7 @@ $\Phi$ this can be written as
 \begin{equation}
   \delby{}{t}\gint{\Omega}{}{\rho\Phi}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\Phi\vectr{v}}{\vectr{n}}}{\Gamma}=
   \gint{\Gamma}{}{\dotprod{\vectr{q}_{\Phi}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\dot{q}_{\Phi}}{\Omega}
-  \label{eqn:integralgenscalartransport}
+  \label{eqn:NSEIntegralGenScalarTransport}
 \end{equation}
 where the control volume is $\Omega$ which has a boundary
 $\Gamma=\boundary{\Omega}$ with a normal $\vectr{n}$, $\vectr{v}$ is the
@@ -36,7 +36,7 @@ a gradient law \ie $\vectr{q}_{\Phi}=\gamma\gradient{}{\Phi}$ where $\gamma$
 is a proportionality scalar.
 
 The equivalent differential form of the scalar transport equation by
-rearranging \Eqnref{eqn:integralgenscalartransport} and using the Green-Gauss
+rearranging \Eqnref{eqn:NSEIntegralGenScalarTransport} and using the Green-Gauss
 theorem \ie
 \begin{equation}
   \begin{split}
@@ -61,7 +61,7 @@ Now for the integral to vanish the integrand must vanish \ie
 or
 \begin{equation}
   \delby{\pbrac{\rho\Phi}}{t}+\divergence{}{\pbrac{\rho\Phi\vectr{v}}}=\divergence{}{\pbrac{\gamma\gradient{}{\Phi}}}+\dot{q}_{\Phi}
-  \label{eqn:differentialgenscalartransport}
+  \label{eqn:NSEDifferntialGenScalarTransport}
 \end{equation}
 
 The Navier-Stokes equations can formulated in terms of the 'primitive
@@ -116,7 +116,7 @@ Rearranging the integral conservation of momentum equation gives us
     &=\gint{\Gamma}{}{\dotprod{-p\sharptensor{\tensor{g}}}{\vectr{n}}}{\Gamma}
     +\gint{\Gamma}{}{\dotprod{\tensor{\tau}}{\vectr{n}}}{\Gamma}+\gint{\Omega}{}{\vectr{f}}{\Omega}\\
   \end{split}
-  \label{eqn:integralconservationofmomentum}
+  \label{eqn:NSEIntegralConservationOfMomentum}
 \end{equation}
 
 The differential form for the conservation of momentum is given by
@@ -158,13 +158,13 @@ or
   =-\dotprod{\gradient{}{p}}{\sharptensor{\tensor{g}}}+\divergence{}{\mu\pbrac{\pbrac{\gradient{}{\vectr{v}}
         +\transpose{\gradient{}{\vectr{v}}}}-\frac{2}{3}\divergence{}{\vectr{v}}
       \sharptensor{\tensor{g}}}}+\vectr{f}=0
-  \label{eqn:differentialconservationofmomentum}
+  \label{eqn:NSEDifferentialConservationOfMomentum}
 \end{equation}
 
 For the conservation of mass equation we have
 \begin{equation}
   \delby{}{t}\gint{\Omega}{}{\rho}{\Omega}+\gint{\Gamma}{}{\dotprod{\rho\vectr{v}}{\vectr{n}}}{\Gamma}=0
-  \label{eqn:integralconservationofmass}
+  \label{eqn:NSEIntegralConservationOfMass}
 \end{equation}
 
 And the differential form for the conservation of mass is given by
@@ -179,7 +179,7 @@ And the differential form for the conservation of mass is given by
 which gives us
 \begin{equation}
   \delby{\rho}{t}+\divergence{}{\pbrac{\rho\vectr{v}}}=0
-  \label{eqn:differentialconservationofmass}
+  \label{eqn:NSEDifferentialConservationOfMass}
 \end{equation}
 
 For incompressible flows the density doesn't change and so the integral forms
@@ -209,7 +209,7 @@ and
   \label{eqn:DiffIncompNSEMass}
 \end{equation}
 
-For a Newtonian fluid \Eqnref{eqn:DiffIncompNSEMomentum} becomes
+For a Newtonian fluid \eqnref{eqn:DiffIncompNSEMomentum} becomes
 \begin{equation}
   \rho\delby{\vectr{v}}{t}
   +\dotprod{\rho\vectr{v}}{\gradient{}{\vectr{v}}}
@@ -219,15 +219,15 @@ For a Newtonian fluid \Eqnref{eqn:DiffIncompNSEMomentum} becomes
   \label{eqn:DiffIncompNewtonianNSEMomentum}
 \end{equation}
 
-The first term on the left hand side of \Eqnref{eqn:DiffIncompNSEMomentum}
+The first term on the left hand side of \eqnref{eqn:DiffIncompNSEMomentum}
 represents unsteady accelerative inertial contributions, the second term on
 the left hand side represents the nonlinear convective acceleration terms. The
-first term on the right hand side of \Eqnref{eqn:DiffIncompNSEMomentum}
+first term on the right hand side of \eqnref{eqn:DiffIncompNSEMomentum}
 represents the viscous stresses in the system, the second term represents the
 pressure source and the last term represents the body force.
 
 As with Stokes flow, the incompressibility condition in
-\Eqnref{eqn:DiffIncompNSEMass} creates restrictions on the formulation of
+\eqnref{eqn:DiffIncompNSEMass} creates restrictions on the formulation of
 the velocity and pressure spaces using finite elements known as the
 Ladyzhenkaya, Babuska, and Brezzi (LBB) or inf-sup consistency
 condition. Several methods have been devised to define a pressure function

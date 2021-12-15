@@ -67,9 +67,9 @@ PRINT           =       lpr
 PSNUP           =       psnup -2 -d0.1
 
 # plot, figure and svg files
-MAKEFIGS	=	make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makefigs
-MAKESVGS	=	make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makesvgs
-MAKEPLOTS	=	make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makeplots
+MAKEFIGS	=	make -i -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makefigs
+MAKESVGS	=	make -i -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makesvgs
+MAKEPLOTS	=	make -i -f ${OPENCMISS_ROOT}/documentation/notes/latex/Makeplots
 
 #
 # Standard TeX makefile follows

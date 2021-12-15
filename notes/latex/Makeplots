@@ -24,7 +24,7 @@
 
 SHELL=/bin/bash
 
-.SUFFIXES:	.pstex .gnu .gnu6 .gnu8 .gnu10 .gnu12 .gnuc .gnucs .gnus .ps .eepic
+.SUFFIXES:	.pstex .gnu .gnu6 .gnu8 .gnu10 .gnu12 .gnuc .gnucs .gnus .gnuplot .ps .eepic
 
 all	:	all_pstex all_pstexc all_pstexcs all_pstexs
 
@@ -67,6 +67,8 @@ all	:	all_pstex all_pstexc all_pstexcs all_pstexs
 	( cd ${@D} ; echo "set terminal pslatex rotate auxfile" > Output_pstex.gnus_tmp ; echo "set output \""${*F}.pstex"\"" >> Output_pstex.gnus_tmp ; echo "set size 0.55,0.55" >> Output_pstex.gnus_tmp ; sed -e s%'\\\([A-Za-z#\]\)'%'\\\\\1'%g ${*F}.gnus  | sed -e s%'title '\"'\\'%"title "\"%g | sed -e s%'title '\"'$$\\'%"title "\"$$%g > ${*F}.gnus_tmp ; gnuplot Output_pstex.gnus_tmp ${*F}.gnus_tmp ; rm -f Output_pstex.gnus_tmp ; rm -f ${*F}.gnus_tmp )
 	( cd ${@D} ; grep -v showpage ${*F}.ps > ${*F}.eps ; rm -f ${*F}.ps ; echo '\\begin{picture}(-5,0)' > ${*F}.pstex_tmp ; echo '\\epsfig{file='${*F}.eps"}" >> ${*F}.pstex_tmp ; echo '\\end{picture}' >> ${*F}.pstex_tmp ; grep -v "special{psfile=" ${*F}.pstex >> ${*F}.pstex_tmp ; mv ${*F}.pstex_tmp ${*F}.pstex )
 	( cd ${@D} ; sed -f ${OPENCMISS_ROOT}/documentation/notes/latex/Strip_pstex_gnuplot ${*F}.pstex | sed s%CUR_DIR%${@D}% | sed s%=plots/./%=plots/% | sed s%=plots//%=plots/% > ${@F}_tmp ; mv ${@F}_tmp ${@F} )
+
+.gnuplot.pstex: ;
 
 .gnu.eepic:
 	( cd ${@D} ; gnuplot ${OPENCMISS_ROOT}/documentation/notes/latex/Output_eepic.gnu ${*F}.gnu > ${@F} )

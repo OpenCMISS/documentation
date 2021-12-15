@@ -1,12 +1,55 @@
 \section{Poiseuille Flow Equations}
+\label{sec:PoiseuilleFlow}
 
 \subsection{Governing equations:}
+\label{subsec:PoiseuilleGoverningEquations}
 
-The Poiseuille equation describes the pressure drop that occurs due to viscous
-friction from laminar fluid flow over a straight pipe. Poiseuille flow can be
-derived from the Navier-Stokes equationsin cylindrical coordinates
-($\vectr{u}=\pbrac{u_{r},u_{\theta},u_{x}}$) by assuming that the flow
-is: \begin{enumerate} \setlength{\itemsep}{1pt} \setlength{\parskip}{0pt}
+The Poiseuille equation describes the pressure drop that occurs due to
+viscous friction from laminar fluid flow over a straight
+pipe. Consider the flow domain shown in
+\figref{fig:PoiseuilleStraightPipe} and adopting a cylindrical polar
+coordinate system.
+
+\epstexfigure{FluidMechanics/svgs/cylindricaldomain.eps_tex}{Cylindrical
+  domain of a straight pipe.}{Cylindrical domain of a straight pipe
+  for Poiseuille flow. The pipe is of radius $r=R$ and length $z=L$. A
+  cylindrical polar coordinate system $\pbrac{r,\theta,z}$ can be
+  adopted with the fluid velocity is given by
+  $\vectr{v}=\pbrac{v_{r},v_{\theta},v_{z}}$}{fig:PoiseuilleStraightPipe}{0.75}
+
+In cylindrical coordinates the Navier-Stokes momentum equations for an incompressible Newtonian fluid are
+\begin{multline}
+  \rho\pbrac{\delby{v_{r}}{t}+v_{r}\delby{v_{r}}{r}+\dfrac{v_{\theta}}{r}\delby{v_{r}}{\theta}-\dfrac{v_{\theta}^{2}}{r}+
+    v_{z}\delby{v_{r}}{z}}\\
+  =-\delby{p}{r}+\mu\pbrac{\dfrac{1}{r}\delby{}{r}\pbrac{r\delby{v_{r}}{r}}-\dfrac{v_{r}}{r^{2}}+
+    \dfrac{1}{r^{2}}\deltwosqby{v_{r}}{\theta}-\dfrac{2}{r^{2}}\delby{v_{\theta}}{\theta}+\deltwosqby{v_{r}}{z}}+
+  \rho a_{g_{r}}
+  \label{eqn:PoiseuilleRCylindricalNavierStokesMomentum}
+\end{multline}
+\begin{multline}
+  \rho\pbrac{\delby{v_{\theta}}{t}+v_{r}\delby{v_{\theta}}{r}+\dfrac{v_{\theta}}{r}\delby{v_{\theta}}{\theta}-\dfrac{v_{r}v_{\theta}}{r}+
+    v_{z}\delby{v_{\theta}}{z}}\\
+  =-\dfrac{1}{r}\delby{p}{\theta}+\mu\pbrac{\dfrac{1}{r}\delby{}{r}\pbrac{r\delby{v_{\theta}}{r}}-
+    \dfrac{v_{\theta}}{r^{2}}+\dfrac{1}{r^{2}}\deltwosqby{v_{\theta}}{\theta}+\dfrac{2}{r^{2}}\delby{v_{r}}{\theta}+
+    \deltwosqby{v_{\theta}}{z}}+\rho a_{g_{\theta}}
+  \label{eqn:PoiseuilleThetaCylindricalNavierStokesMomentum}
+\end{multline}
+\begin{multline}
+  \rho\pbrac{\delby{v_{z}}{t}+v_{r}\delby{v_{z}}{r}+\dfrac{v_{\theta}}{r}\delby{v_{z}}{\theta}+v_{z}\delby{v_{z}}{z}}\\
+  =-\delby{p}{z}+\mu\pbrac{\dfrac{1}{r}\delby{}{r}\pbrac{r\delby{v_{z}}{r}}+
+   \dfrac{1}{r^{2}}\deltwosqby{v_{z}}{\theta}+\deltwosqby{u_{z}}{z}}+\rho a_{g_{z}}
+  \label{eqn:PoiseuilleZCylindricalNavierStokesMomentum}
+\end{multline}
+and the Navier-Stokes conservation of mass equation for an incompressible Newtonian fluid in cylindrical coordinates is
+\begin{equation}
+  \dfrac{1}{r}\delby{\pbrac{rv_{r}}}{r}+\dfrac{1}{r}\delby{v_{\theta}}{\theta}+\delby{v_{z}}{z}=0
+  \label{eqn:PoiseuilleCylindricalNavierStokesMass}
+\end{equation}
+
+Poiseuille flow can be derived from the Navier-Stokes equations in
+cylindrical coordinates ($\vectr{u}=\pbrac{u_{r},u_{\theta},u_{x}}$)
+by assuming that the flow is: \begin{enumerate}
+  \setlength{\itemsep}{1pt} \setlength{\parskip}{0pt}
   \setlength{\parsep}{0pt}
 \item Steady \ie $\delby{\vectr{u}}{t}=0$
 \item The radial and swirl components of fluid velocity are zero \ie

@@ -26,6 +26,7 @@ MY_MAINFILE=OpenCMISSNotes
 MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Introduction/Introduction.tex "\
 "BasisFunctions/BasisFunctions.tex "\
+"FiniteElementMethod/FiniteElementMethod.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
 "Maths/Maths.tex "\
@@ -88,6 +89,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 MY_EPS_SRC=
 MY_FIG_SRC="BasisFunctions/figs/*.fig"
 MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
+"FiniteElementMethod/svgs/*.svg "\
 "DifferentialGeometry/svgs/*.svg "\
 "ClassicalField/svgs/*.svg "\
 "SolidMechanics/svgs/*.svg "\
@@ -97,7 +99,7 @@ MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
 "DevelopersDocument/svgs/*.svg "
 MY_PLOT_SRC="BasisFunctions/plots/*.gnu "\
 "BasisFunctions/plots/*.gnu8"
-MY_GNUPLOT_SRC="BasisFunctions/plots/*.gnuplot "
+MY_GNUPLOT_SRC="BasisFunctions/gnuplots/*.gnuplot "
 
 #
 # The name of the directory to place the html version of the document.

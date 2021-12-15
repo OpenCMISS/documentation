@@ -2,9 +2,49 @@
 \label{sec:OneDNavierStokesEquations}
 
 \subsection{Governing equations}
+\label{subsec:OneDNSGoverningEquations}
 
+For blood flow in the vascular system we can make some simplifying
+assumptions. If we adopt a cylindrical coordinate system
+$\pbrac{r,\theta,x}$ where the $x$ direction is aligned with axial
+direction of the vessel then the flow velocity is given by
+$\vectr{v}=\pbrac{v_{r},v_{\theta},v_{x}}$. Two assumptions are that
+flow in the axial direction of the vascular is large compared to blood
+flow in non-axial directions and that for fully dependent flow there
+is no variation of flow in the circumfrential $\theta$
+direction. These assumptions simplify the Navier-Stokes momentum
+equation for incompressible Newtonian fluids in
+\eqnref{eqn:DiffIncompNewtonianNSEMomentum} to
+\begin{equation}
+  \rho\delby{v_{x}}{t}+\rho\pbrac{v_{x}\delby{v_{x}}{x}+v_{r}\delby{v_{x}}{r}}=
+  -\delby{p}{x}+\dfrac{\mu}{r}\delby{}{r}\pbrac{r\delby{v_{x}}{r}}
+  \label{eqn:OneDNSIncompNewtonianMomentum}
+\end{equation}
+and simply the conservation of mass equation in \eqnref{eqn:DiffIncompNSEMass} to
+\begin{equation}
+  \delby{v_{x}}{x}+\dfrac{1}{r}\delby{\pbrac{r v_{r}}}{r}
+  \label{eqn:OneDNSIncompMass}
+\end{equation}
+
+We can now reformulate the \onedal Navier-Stokes equations in terms of
+flow, $Q$, cross-sectional area, $A$, and pressure, $p$. Integrating
+\eqnref{eqn:OneDNSIncompNewtonianMomentum} over the cross-sectional
+area of the vessel gives
+
+
+\epstexfigure{FluidMechanics/svgs/branchingtopology.eps_tex}{One
+  dimensional branching topology.}{Branching topology for a \onedal
+  flow domain. The parent domain, $\Omega_{p}$ branches into two
+  daughter vessels, $\Omega_{d_{1}}$ and $\Omega_{d_{2}}$. The
+  non-branching nodes $\nodenumber{1}$, $\nodenumber{3}$ and
+  $\nodenumber{4}$ have one flow and one area \DoF. The branching
+  node, $\nodenumber{2}$ has a number of versions of the flow and area
+  \DoFs, one version for the parent, $Q_{2,v_{1}}$ and $A_{2,v_{1}}$,
+  and one version for each daughter, $Q_{2,v_{2}}$, $Q_{2,v_{3}}$ and
+  $A_{2,v_{2}}$, $A_{2,v_{3}}$.}{fig:OneDNSBranchingTopology}{0.75}
 
 \subsection{Terminal impedances}
+\label{subsec:OneDNSTerminalImpedances}
 
 
 \begin{figure*}[t!]
