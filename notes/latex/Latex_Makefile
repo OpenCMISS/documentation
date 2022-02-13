@@ -48,12 +48,11 @@ SHELL		=	/bin/sh
 BIBTEX          =       bibtex
 
 # This cannot be found on esu1 - using ps2pdf now
-#DVIPDF          =       dvipdf
-#DVIPDF_OPTS     =       
+DVI2PDF          =       dvipdfm
+DVI2PDF_OPTS     =       -p a4
 
 PS2PDF		=	ps2pdf
 PS2PDF_OPTS	=	
-
 
 DVIPS           =       dvips
 DVIPS_OPTS      =        -Z -n 500 -t a4 -K0 -N0

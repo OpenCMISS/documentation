@@ -34,7 +34,7 @@ simple way to achieve this is to have multiple CPU units connected to
 the central system bus. This is shown
 in \figref{fig:SharedMemMultiprocessor}. The \emph{OpenMP} standard is
 typically used to coordiante computation between CPUs. Information on
-the OpenMP standard can be found at \url{https://www.openmp.org/}.
+the OpenMP standard can be found at \urllink{https://www.openmp.org/}.
 
 \epstexfigure{DevelopersDocument/svgs/sharedmemmultiprocessor.eps_tex}{Shared memory multi-processor computer system.}{An abstraction of a multiple processor computer system. Here a multiple Central Processing Unit (CPU) with caches are connected to the main computer memory and network sybsystem via a data bus. This is known as a \emph{shared memory multi-processor system} as the multiple CPUs share the main system memory via a bus.}{fig:SharedMemMultiprocessor}{0.75}
 
@@ -66,7 +66,7 @@ to simplify this process libraries are used to abstract the inter- and
 intra- communication process between nodes. The \emph{de facto}
 standard library for this is the Message Passing Interface (MPI)
 standard. Further information on the MPI standard can be found
-at \url{https://www.mpi-forum.org/}. Distributed memory computer
+at \urllink{https://www.mpi-forum.org/}. Distributed memory computer
 systems are typically much harder to program than shared memory
 computer systems.
 
@@ -81,9 +81,9 @@ incorporated into the computer system. These accelerators can be
 programmed using standard directives such as the \emph{Compute Unified
 Device Architecture (CUDA)} for nVidia GPUs or \emph{Open Accelerator
 (OpenACC)}. Further information on CUDA can be found
-at \url{https://developer.nvidia.com/cuda-zone} and further
+at \urllink{https://developer.nvidia.com/cuda-zone} and further
 information on OpenACC can be found
-at \url{https://www.openacc.org/}. In \OpenCMISS an abstraction of
+at \urllink{https://www.openacc.org/}. In \OpenCMISS an abstraction of
 the \emph{Generalised Parallel Environment} can be seen
 in \figref{fig:GeneralParallelEnviron}.
 
@@ -131,7 +131,7 @@ The next step in the graph partitioning algorithm is two make a number of \emph{
 
 \epstexfigure{DevelopersDocument/svgs/cutdualmeshdecomposition.eps_tex}{Cuts in the dual of the computational mesh.}{Cuts in the dual mesh as a result of the graph partitioning algorithm. The algorithm will try to minimise the total number of cuts in the dual whilst trying to ensure that the number of nodes of the dual (elements in the original mesh) are approximately equal in each domain.}{fig:CutDualMeshDecomposition}{0.50}
 
-The final step in the graph partitioning algorithm is to join the cuts to form the domains. The final decomposed mesh is shown in \figref{fig:DomainMeshDecomposition}. Common graph partitioning software packages include ParMETIS \url{http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview} and Scotch \url{https://www.labri.fr/perso/pelegrin/scotch/}.
+The final step in the graph partitioning algorithm is to join the cuts to form the domains. The final decomposed mesh is shown in \figref{fig:DomainMeshDecomposition}. Common graph partitioning software packages include ParMETIS \urllink{http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview} and Scotch \urllink{https://www.labri.fr/perso/pelegrin/scotch/}.
 
 \epstexfigure{DevelopersDocument/svgs/domainmeshdecomposition.eps_tex}{Domains in the decomposed computational mesh.}{Domains of the decomposed mesh found by joining the cuts in the dual mesh.}{fig:DomainMeshDecomposition}{0.50}
 
@@ -273,6 +273,607 @@ If we now reorder the global column numbers so that the lower numbered domains h
 Finally, if we now discard the local rows that correspond to ghost \DoFs we can obtain the final distributed matrix system as shown in \figref{fig:MatrixDistributionFinal}.
 
 \epstexfigure{DevelopersDocument/svgs/matrixdistributionfinal.eps_tex}{Final distributed matrix system.}{Final distributed Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}{fig:MatrixDistributionFinal}{0.66}
+
+\section{Dependencies}
+\label{sec:DevelopersDependencies}
+
+\subsection{CellML-API}
+\label{subsec:DevelopersDependenciesCellMLAPI}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & The CellML API is an application programming interface and implementation for working with CellML models. \\
+    Homepage & \urllink{https://www.cellml.org/tools/api} \\
+    License & \link{https://github.com/cellmlapi/cellml-api/blob/master/COPYING}{MPL1.1/GPL2/LGPL2.1} \\
+    Repository & \urllink{https://github.com/cellmlapi/cellml-api} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/cellml-api} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{CellML-API dependency information.}
+  \label{tab:CellMLAPIDependencyInformation}
+\end{table}
+
+\subsection{CSim}
+\label{subsec:DevelopersDependenciesCSim}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & A framework for modelling software development and model interchange for the
+    bioengineering and engineering communities. \\
+    Homepage & \urllink{???} \\
+    License & \link{https://github.com/nickerso/csim/blob/devel/LICENSE}{Apache-2.0} \\
+    Repository & \urllink{https://github.com/nickerso/csim} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/csim} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{CSim dependency information.}
+  \label{tab:CSimDependencyInformation}
+\end{table}
+
+\subsection{Cube-4}
+\label{subsec:DevelopersDependenciesCube4}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & Cube, which is used as performance report explorer for Scalasca and Score-P, is a
+    generic tool for displaying a multi-dimensional performance space
+    consisting of the dimensions (i) performance metric, (ii) call
+    path, and (iii) system resource. Each dimension can be represented
+    as a tree, where non-leaf nodes of the tree can be collapsed or
+    expanded to achieve the desired level of granularity. In addition,
+    Cube can display multi-dimensional Cartesian process
+    topologies. \\    
+    Homepage & \urllink{https://www.scalasca.org/} \\
+    License & \link{http://scalasca.org/scalasca/front\_content.php?idart=1094}{BSD 3-Clause} \\
+    Download & \urllink{https://www.scalasca.org/scalasca/software/cube-4.x/download.html} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/cube4} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Cube-4 dependency information.}
+  \label{tab:Cube4DependencyInformation}
+\end{table}
+
+\subsection{FieldML-API}
+\label{subsec:DevelopersDependenciesFieldMLAPI}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & A framework for modelling software development and model interchange for the
+    bioengineering and engineering communities. \\
+    Homepage & \urllink{http://physiomeproject.org/software/fieldml} \\
+    License & \link{???}{MPL 1.1/GPL 2.0/LGPL 2.1} \\
+    Repository & \urllink{https://github.com/FieldML/FieldML-API} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/FieldML-API} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{FieldML-API dependency information.}
+  \label{tab:FieldMLAPIDependencyInformation}
+\end{table}
+
+\subsection{HDF5}
+\label{subsec:DevelopersDependenciesHDF5}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & High-performance data management and storage suite. High
+    performance data software library and file format to manage,
+    process, and store your heterogeneous data. HDF5 is built for fast
+    I/O processing and storage.\\
+    Homepage & \urllink{https://www.hdfgroup.org/} \\
+    License & \link{https://github.com/HDFGroup/hdf5/blob/develop/COPYING}{HDF license} \\
+    Repository & \urllink{https://github.com/HDFGroup/hdf5} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/hdf5} \\
+    Used by & \OpenCMISS, \namelink{subsec:DevelopersDependenciesPETSc} \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{HDF5 dependency information.}
+  \label{tab:HDF5DependencyInformation}
+\end{table}
+
+\subsection{Hypre}
+\label{subsec:DevelopersDependenciesHypre}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & HYPRE library of linear solvers makes possible larger, more detailed simulations
+    by solving problems faster than traditional methods at large scales. It offers a comprehensive suite of scalable solvers for
+    large-scale scientific simulation, featuring parallel multigrid methods for both structured and unstructured grid problems.\\
+    Homepage & \urllink{https://computing.llnl.gov/projects/hypre-scalable-linear-solvers-multigrid-methods/} \\
+    License & \link{http://www.apache.org/licenses/LICENSE-2.0}{Apache license 2} or
+    \link{http://opensource.org/licenses/MIT}{MIT license} \\
+    Repository & \urllink{https://github.com/hypre-space/hypre} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/hypre} \\
+    Used by & \OpenCMISS, \namelink{subsec:DevelopersDependenciesPETSc} \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Hypre dependency information.}
+  \label{tab:HypreDependencyInformation}
+\end{table}
+
+\subsection{LAPACK/BLAS}
+\label{subsec:DevelopersDependenciesLAPACKBLAS}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline Function & LAPACK is
+    written in Fortran 90 and provides routines for solving systems of
+    simultaneous linear equations, least-squares solutions of linear
+    systems of equations, eigenvalue problems, and singular value
+    problems. The associated matrix factorizations (LU, Cholesky, QR,
+    SVD, Schur, generalized Schur) are also provided, as are related
+    computations such as reordering of the Schur factorizations and
+    estimating condition numbers. Dense and banded matrices are
+    handled, but not general sparse matrices. In all areas, similar
+    functionality is provided for real and complex matrices, in both
+    single and double precision.\\    
+    Homepage & \urllink{http://www.netlib.org/lapack/} \\
+    License & \link{http://www.netlib.org/lapack/LICENSE.txt}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/Reference-LAPACK/lapack} \\    
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/lapack} \\
+    Used by & \OpenCMISS, \namelink{subsec:DevelopersDependenciesPETSc} \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{LAPACK/BLAS dependency information.}
+  \label{tab:LAPACKBLASDependencyInformation}
+\end{table}
+
+\subsection{LibCellML}
+\label{subsec:DevelopersDependenciesLibCellML}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & libCellML is an easy-to-use library aiming to be useful to developers of CellML
+    applications.  The purpose of CellML is to store and exchange
+    computer-based mathematical models, allowing scientists to share
+    models even if they are using different model-building
+    software. The purpose of libCellML is to create, manipulate,
+    serialise, deserialise, validate and instantiate CellML
+    models. Alongside that, libCellML offers functionality for
+    annotation support, model debugging, mathematical analysis and
+    code generation. \\
+    Homepage & \urllink{https://libcellml.org/} \\
+    License & \link{https://github.com/cellml/libcellml/blob/main/LICENSE}{Apache 2.0} \\
+    Repository & \urllink{https://github.com/cellml/libcellml} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/libcellml} \\
+    Used by & \OpenCMISS \\ 
+    Uses & \namelink{subsec:DevelopersDependenciesLibXML2} \\ \hline
+  \end{tabularx}
+  \caption{LibCellML dependency information.}
+  \label{tab:LibCellMLDependencyInformation}
+\end{table}
+
+\subsection{LibXML2}
+\label{subsec:DevelopersDependenciesLibXML2}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & Libxml2 is the XML C parser and toolkit developed for the Gnome project (but
+    usable outside of the Gnome platform), it is free software
+    available under the MIT License. XML itself is a metalanguage to
+    design markup languages, i.e. text language where semantic and
+    structure are added to the content using extra "markup"
+    information enclosed between angle brackets. \\    
+    Homepage & \urllink{http://xmlsoft.org/} \\
+    License & \link{https://opensource.org/licenses/mit-license.html}{MIT license} \\
+    Repository & \urllink{https://github.com/GNOME/libxml2} a read-only mirror of \urllink{https://gitlab.gnome.org/GNOME/libxml2} \\ 
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/libxml2} \\
+    Used by & \OpenCMISS \\ 
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{LibXML2 dependency information.}
+  \label{tab:LibXML2DependencyInformation}
+\end{table}
+
+\subsection{LLVM}
+\label{subsec:DevelopersDependenciesLLVM}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & The LLVM Project: a collection of modular and reusable compiler and toolchain technologies. \\
+    Homepage & \urllink{https://llvm.org/} \\ 
+    License & \link{https://releases.llvm.org/13.0.0/LICENSE.TXT}{Apache license 2 with LLVM exceptions} \\
+    Repository & \urllink{https://github.com/llvm} \\ 
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/llvm-project} \\
+    Used by & \OpenCMISS \\ 
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{LLVM dependency information.}
+  \label{tab:PETScDependencyInformation}
+\end{table}
+
+\subsection{METIS}
+\label{subsec:DevelopersDependenciesMETIS}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & METIS is a set of serial programs for partitioning graphs, partitioning finite
+    element meshes, and producing fill reducing orderings for sparse
+    matrices. The algorithms implemented in METIS are based on the
+    multilevel recursive-bisection, multilevel k-way, and
+    multi-constraint partitioning schemes developed in the Karypis
+    lab. \\    
+    Homepage & \urllink{http://glaros.dtc.umn.edu/gkhome/metis/metis/overview} \\
+    License & \link{https://github.com/KarypisLab/METIS/blob/master/LICENSE}{Apache-2.0???} \\
+    Repository & \urllink{https://github.com/KarypisLab/METIS} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/METIS} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{METIS dependency information.}
+  \label{tab:METISDependencyInformation}
+\end{table}
+
+\subsection{MPICH}
+\label{subsec:DevelopersDependenciesMPICH}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & MPICH is a high performance and widely portable implementation of the
+    Message Passing Interface (MPI) standard. \\
+    Homepage & \urllink{https://www.mpich.org/} \\
+    License & \link{https://github.com/pmodels/mpich/blob/main/COPYRIGHT}{MPICH license (BSD-like)} \\
+    Repository & \urllink{https://github.com/pmodels/mpich} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/mpich} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{MPICH dependency information.}
+  \label{tab:MPICHDependencyInformation}
+\end{table}
+
+\subsection{MUMPS}
+\label{subsec:DevelopersDependenciesMUMPS}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & MUMPS: MUltifrontal Massively Parallel sparse direct Solver. \\
+    Homepage & \urllink{http://mumps.enseeiht.fr/} \\
+    License & \link{https://cecill.info/licences/Licence\_CeCILL-C\_V1-en.html}{CeCILL-C 1} \\
+    Download & \urllink{http://mumps.enseeiht.fr/index.php?page=dwnld} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/mumps} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{MUMPS dependency information.}
+  \label{tab:MUMPSDependencyInformation}
+\end{table}
+
+\subsection{OPARI2}
+\label{subsec:DevelopersDependenciesOPARI2}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & OPARI2 is a source-to-source instrumentation tool for OpenMP and hybrid
+    codes. It surrounds OpenMP directives and runtime library calls
+    with calls to the POMP2 measurement interface. \\
+    Homepage & \urllink{https://www.vi-hps.org/projects/score-p} \\
+    License & \link{https://opensource.org/licenses/BSD-3-Clause}{BSD 3-Clause} \\
+    Download & \urllink{https://perftools.pages.jsc.fz-juelich.de/cicd/opari2/} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/opari2} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{OPARI-2 dependency information.}
+  \label{tab:OPARI2DependencyInformation}
+\end{table}
+
+\subsection{Open MPI}
+\label{subsec:DevelopersDependenciesOpenMPI}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & The Open MPI Project is an open source Message Passing Interface implementation that is
+    developed and maintained by a consortium of academic, research, and industry partners. \\
+    Homepage & \urllink{https://www.open-mpi.org/} \\
+    License & \link{https://www.open-mpi.org/community/license.php}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/open-mpi/ompi} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/ompi} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Open MPI dependency information.}
+  \label{tab:OpenMPIDependencyInformation}
+\end{table}
+
+\subsection{OTF-2}
+\label{subsec:DevelopersDependenciesOTF2}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & The Open Trace Format Version 2 (OTF2) is a highly scalable, memory
+    efficient event trace data format plus support library. It is the
+    standard trace format for Scalasca, Vampir, and Tau and is open
+    for other tools. \\    
+    Homepage & \urllink{http://www.vi-hps.org/projects/score-p/} \\
+    License & \link{https://opensource.org/licenses/BSD-3-Clause}{BSD 3-Clause} \\
+    Repository & \urllink{https://perftools.pages.jsc.fz-juelich.de/cicd/otf2/} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/otf2} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{OTF-2 dependency information.}
+  \label{tab:OTF2DependencyInformation}
+\end{table}
+
+\subsection{PAPI}
+\label{subsec:DevelopersDependenciesPAPI}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & PAPI: Performance Application Programming Interface. PAPI provides the
+    tool designer and application engineer with a consistent interface
+    and methodology for use of the performance counter hardware found
+    in most major microprocessors. PAPI enables software engineers to
+    see, in near real time, the relation between software performance
+    and processor events. \\    
+    Homepage & \urllink{http://icl.cs.utk.edu/papi/} \\
+    License & \link{https://bitbucket.org/icl/papi/src/master/LICENSE.txt}{BSD Like} \\
+    Repository & \urllink{https://bitbucket.org/icl/papi/src/master/} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/papi} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{PAPI dependency information.}
+  \label{tab:PAPIDependencyInformation}
+\end{table}
+
+\subsection{ParMETIS}
+\label{subsec:DevelopersDependenciesParMETIS}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & ParMETIS is an MPI-based library for partitioning graphs, partitioning finite
+    element meshes, and producing fill reducing orderings for sparse
+    matrices. The algorithms implemented in ParMETIS are based on the
+    multilevel recursive-bisection, multilevel k-way, and
+    multi-constraint partitioning schemes developed in the Karypis
+    lab. \\    
+    Homepage & \urllink{http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview} \\
+    License & \link{https://github.com/KarypisLab/ParMETIS/blob/main/LICENSE}{Apache-2.0???} \\
+    Repository & \urllink{https://github.com/KarypisLab/ParMETIS} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/ParMETIS} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{ParMETIS dependency information.}
+  \label{tab:ParMETISDependencyInformation}
+\end{table}
+
+\subsection{PETSc}
+\label{subsec:DevelopersDependenciesPETSc}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & PETSc, the Portable, Extensible Toolkit for Scientific Computation,
+    pronounced PET-see, is a suite of data structures and
+    routines for the scalable (parallel) solution of scientific
+    applications modeled by partial differential equations. It
+    supports MPI, and GPUs through CUDA, HIP or OpenCL, as well as
+    hybrid MPI-GPU parallelism; it also supports the NEC-SX Tsubasa
+    Vector Engine. PETSc (sometimes called PETSc/TAO) also contains
+    the TAO, the Toolkit for Advanced Optimization, software
+    library. \\    
+    Homepage & \urllink{https://petsc.org/} \\ 
+    License & \link{https://petsc.org/release/install/license}{BSD 2-Clause} \\
+    Repository & \urllink{https://github.com/petsc/petsc} \\ 
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/petsc} \\
+    Used by & \OpenCMISS,
+    \namelink{subsec:DevelopersDependenciesSLEPc} \\ 
+    Uses & \namelink{subsec:DevelopersDependenciesHDF5},
+    \namelink{subsec:DevelopersDependenciesHypre},
+    \namelink{subsec:DevelopersDependenciesLAPACKBLAS},
+    \namelink{subsec:DevelopersDependenciesMPICH},
+    \namelink{subsec:DevelopersDependenciesOpenMPI},
+    \namelink{subsec:DevelopersDependenciesSUNDIALS},
+    \namelink{subsec:DevelopersDependenciesSuperLUDist} \\ \hline
+  \end{tabularx}
+  \caption{PETSc dependency information.}
+  \label{tab:PETScDependencyInformation}
+\end{table}
+
+\subsection{Scalasca}
+\label{subsec:DevelopersDependenciesScalasca}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & Scalasca is a software tool that supports the performance optimization of
+    parallel programs by measuring and analyzing their runtime
+    behavior. The analysis identifies potential performance
+    bottlenecks – in particular those concerning communication and
+    synchronization – and offers guidance in exploring their
+    causes. \\    
+    Homepage & \urllink{https://www.scalasca.org/} \\
+    License & \link{https://www.scalasca.org/scalasca/software/scalasca-2.x/license.html}{BSD 3-Clause} \\
+    Download & \urllink{https://www.scalasca.org/scalasca/software/scalasca-2.x/download.html} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/scalasca} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Scalasca dependency information.}
+  \label{tab:ScalascaDependencyInformation}
+\end{table}
+
+\subsection{Score-P}
+\label{subsec:DevelopersDependenciesScoreP}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & The Score-P measurement infrastructure is a highly scalable and easy-to-use
+    tool suite for profiling and event tracing of HPC applications. \\    
+    Homepage & \urllink{http://www.vi-hps.org/projects/score-p/} \\
+    License & \link{https://opensource.org/licenses/BSD-3-Clause}{BSD 3-Clause} \\
+    Repository & \urllink{https://perftools.pages.jsc.fz-juelich.de/cicd/scorep/} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/scorep} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Score-P dependency information.}
+  \label{tab:ScorePDependencyInformation}
+\end{table}
+
+\subsection{Scotch}
+\label{subsec:DevelopersDependenciesScotch}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & Software package and libraries for sequential and parallel graph
+    partitioning, static mapping and clustering, sequential mesh and
+    hypergraph partitioning, and sequential and parallel sparse matrix
+    block ordering. \\    
+    Homepage & \urllink{https://www.labri.fr/perso/pelegrin/scotch/} \\
+    License & \link{https://cecill.info/licences/Licence\_CeCILL-C\_V1-en.html}{CeCILL-C 1} \\
+    Repository & \urllink{https://gitlab.inria.fr/scotch/scotch} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/scotch} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Scotch Distributed dependency information.}
+  \label{tab:ScotchDependencyInformation}
+\end{table}
+
+\subsection{SuiteSparse}
+\label{subsec:DevelopersDependenciesSuiteSparse}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SuiteSparse is a suite of sparse matrix algorithms. \\
+    Homepage & \urllink{https://people.engr.tamu.edu/davis/suitesparse.html} \\
+    License & \link{https://github.com/DrTimothyAldenDavis/SuiteSparse/blob/master/LICENSE.txt}{GPL/LGPL3} \\
+    Repository & \urllink{https://github.com/DrTimothyAldenDavis/SuiteSparse} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/SuiteSparse} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{SuiteSparse Distributed dependency information.}
+  \label{tab:SuiteSparseDependencyInformation}
+\end{table}
+
+\subsection{SLEPc}
+\label{subsec:DevelopersDependenciesSLEPc}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SLEPc, the Scalable Library for Eigenvalue Problem Computations. SLEPc is a
+    software library for the solution of large scale sparse eigenvalue
+    problems on parallel computers. It is an extension of PETSc and
+    can be used for linear eigenvalue problems in either standard or
+    generalized form, with real or complex arithmetic. It can also be
+    used for computing a partial SVD of a large, sparse, rectangular
+    matrix, and to solve nonlinear eigenvalue problems (polynomial or
+    general). Additionally, SLEPc provides solvers for the computation
+    of the action of a matrix function on a vector. \\    
+    Homepage & \urllink{https://slepc.upv.es/} \\ 
+    License & \link{https://gitlab.com/slepc/slepc/-/blob/main/LICENSE.md}{Other} \\
+    Repository & \urllink{https://gitlab.com/slepc/slepc} \\ 
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/slepc} \\
+    Used by & \OpenCMISS \\ 
+    Uses & \namelink{subsec:DevelopersDependenciesPETSc} \\ \hline
+  \end{tabularx}
+  \caption{SLEPc dependency information.}
+  \label{tab:SLEPcDependencyInformation}
+\end{table}
+
+\subsection{SUNDIALS}
+\label{subsec:DevelopersDependenciesSUNDIALS}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SUNDIALS is a SUite of Nonlinear and DIfferential/ALgebraic equation Solvers. It
+    consists of the following six solvers: CVODE, solves initial value
+    problems for ordinary differential equation (ODE) systems; CVODES,
+    solves ODE systems and includes sensitivity analysis capabilities
+    (forward and adjoint); ARKODE, solves initial value ODE problems
+    with additive Runge-Kutta methods, include support for IMEX
+    methods; IDA, solves initial value problems for
+    differential-algebraic equation (DAE) systems; IDAS, solves DAE
+    systems and includes sensitivity analysis capabilities (forward
+    and adjoint); KINSOL, solves nonlinear algebraic systems. \\
+    Homepage & \urllink{https://computing.llnl.gov/projects/sundials} \\
+    License & \link{https://computing.llnl.gov/projects/sundials/license}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/LLNL/sundials} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/sundials} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{SUNDIALS Distributed dependency information.}
+  \label{tab:SUNDIALSDependencyInformation}
+\end{table}
+
+\subsection{SuperLU}
+\label{subsec:DevelopersDependenciesSuperLU}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SuperLU is a general purpose library for the direct solution of large, sparse,
+    nonsymmetric systems of linear equations on sequential systems. \\
+    Homepage & \urllink{https://portal.nersc.gov/project/sparse/superlu/} \\
+    License & \link{https://portal.nersc.gov/project/sparse/superlu/License.txt}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/xiaoyeli/superlu} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/superlu} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{SuperLU dependency information.}
+  \label{tab:SuperLUDependencyInformation}
+\end{table}
+
+\subsection{SuperLU Distributed}
+\label{subsec:DevelopersDependenciesSuperLUDist}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SuperLU is a general purpose library for the direct solution of large, sparse,
+    nonsymmetric systems of linear equations on distributed memory parallel systems. \\
+    Homepage & \urllink{https://portal.nersc.gov/project/sparse/superlu/} \\
+    License & \link{https://portal.nersc.gov/project/sparse/superlu/License.txt}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/xiaoyeli/superlu\_dist} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/superlu\_dist} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{SuperLU Distributed dependency information.}
+  \label{tab:SuperLUDistDependencyInformation}
+\end{table}
+
+\subsection{SuperLU Multithreaded}
+\label{subsec:DevelopersDependenciesSuperLUMT}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & SuperLU is a general purpose library for the direct solution of large, sparse,
+    nonsymmetric systems of linear equations on shared memory parallel systems. \\
+    Homepage & \urllink{https://portal.nersc.gov/project/sparse/superlu/} \\
+    License & \link{https://portal.nersc.gov/project/sparse/superlu/License.txt}{BSD 3-Clause} \\
+    Repository & \urllink{https://github.com/xiaoyeli/superlu\_mt} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/superlu\_mt} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{SuperLU Multithreaded dependency information.}
+  \label{tab:SuperLUMTDependencyInformation}
+\end{table}
+
+\subsection{Zlib}
+\label{subsec:DevelopersDependenciesZlib}
+
+\begin{table}[htb] \centering
+  \begin{tabularx}{\linewidth}{|l|X|} \hline
+    Function & A Massively Spiffy Yet Delicately Unobtrusive Compression Library (Also Free,
+    Not to Mention Unencumbered by Patents). \\
+    Homepage & \urllink{http://zlib.net/} \\
+    License & \link{http://zlib.net/zlib_license.html}{GNU Like} \\
+    Repository & \urllink{https://github.com/madler/zlib} \\
+    \OpenCMISS fork & \urllink{https://github.com/OpenCMISS-Dependencies2/zlib} \\
+    Used by & \OpenCMISS \\
+    Uses & ?? \\ \hline
+  \end{tabularx}
+  \caption{Zlib dependency information.}
+  \label{tab:ZlibDependencyInformation}
+\end{table}
+
 
 \clearemptydoublepage
 

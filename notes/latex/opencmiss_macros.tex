@@ -36,7 +36,8 @@
 \usepackage{moreverb}
 \usepackage[subfolder,cleanup]{gnuplottex}
 \usepackage{xspace}
-\usepackage{url}
+\usepackage[driverfallback=dvips,pageanchor=true,breaklinks,colorlinks=true]{hyperref} %make links
+%\usepackage{url}
 
 %
 % Allow superimposition of symbols
@@ -49,11 +50,29 @@
 %
 % URL commands
 %
-\newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
-\newcommand{\directory} {\begingroup \urlstyle{sf}\Url}
-\newcommand{\file}      {\begingroup \urlstyle{sf}\Url}
-\renewcommand{\url}     {\begingroup \urlstyle{sf}\Url}
-
+\newcommand{\directory}[1]{ %
+  \textsf{#1} %
+} %
+\newcommand{\file}[1]{ %
+  \textsf{#1} %
+} %
+\newcommand{\link}[2]{ %
+  \ifthenelse{\equal{#2}{}}{ %
+    \href{#1}{\textsf{#1}}}{ %
+    \href{#1}{\textsf{#2}}} %
+} %hyperref link e.g. \link{A}{B} -> B text and A hyperlink
+\newcommand{\emaillink}[2]{ %
+  \ifthenelse{\equal{#2}{}}{ %
+    \href{mailto:#1}{\textsf{#1}}}{ %
+    \href{mailto:#1}{\textsf{#2}}} %
+} %hyperref email link
+\newcommand{\namelink}[1]{ %
+  \nameref{#1} %
+} %
+\newcommand{\urllink}[1]{ %
+  \link{#1}{#1} %
+} %
+  
 %
 % Software and systmes
 %
