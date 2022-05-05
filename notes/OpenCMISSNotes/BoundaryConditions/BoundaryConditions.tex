@@ -125,48 +125,54 @@ In an example file, for example Laplace, the boundary condition is implemented i
 \begin{itemize}
  \item  Initializing an object \emph{CmissBoundaryconditiontype}.
 
- \item \begin{verbatim}
-     EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_START 
-    \end{verbatim} 
+ \item
+\begin{verbatim}
+EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_START 
+\end{verbatim} 
 
  - As an overview this call stack passes through the \emph{EQUATIONS SET SETUP} (for e.g. Classical field $\rightarrow$ Laplace
  $\rightarrow$ Standard Laplace setup) to use the information of the pointer to the particular `equation set' and return a pointer to the created boundary condition. 
 
  \item In general in the next calls we evaluated on which nodes the boundary condition is to be set. The routine 
 \begin{itemize}
- \item \begin{verbatim}
- DECOMPOSITION_NODE_DOMAIN_GET
+\item
+\begin{verbatim}
+DECOMPOSITION_NODE_DOMAIN_GET
 \end{verbatim} - implements a tree search to get a nodal value
- \item \begin{verbatim}
- BOUNDARY_CONDITIONS_SET_NODE
+\item
+\begin{verbatim}
+BOUNDARY_CONDITIONS_SET_NODE
 \end{verbatim} - specifies the type of boundary condition on the particular node.
-
 \end{itemize}
- 
-\item \begin{verbatim}
-     EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_FINISH
-    \end{verbatim} 
-    \begin{itemize}
-     \item  \begin{verbatim}
-     EQUATIONS_SET_SETUP
-    \end{verbatim} - sets up the specific details of the equation set by using the  \begin{verbatim}
-     EQUATIONS_SET_SETUP_INFO
-     \end{verbatim}
-    \item  \begin{verbatim}
-     EQUATIONS_SET_BOUNDARY_CONDITIONS_GET
-    \end{verbatim} - Obtains boundary condition information for a particular type of equation set (Classical field $\rightarrow$ Laplace)
-    \item \begin{verbatim}
-     EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_FINISH
-    \end{verbatim} 
+\item
+\begin{verbatim}
+EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_FINISH
+\end{verbatim} 
+\begin{itemize}
+\item
+\begin{verbatim}
+EQUATIONS_SET_SETUP
+\end{verbatim} - sets up the specific details of the equation set by using the  \begin{verbatim}
+\item
+\begin{verbatim}
+EQUATIONS_SET_SETUP_INFO
+\end{verbatim}
+\item
+\begin{verbatim}
+EQUATIONS_SET_BOUNDARY_CONDITIONS_GET
+\end{verbatim} - Obtains boundary condition information for a particular type of equation set (Classical field $\rightarrow$ Laplace)
+\item
+\begin{verbatim}
+EQUATIONS_SET_BOUNDARY_CONDITIONS_CREATE_FINISH
+\end{verbatim} 
 In \emph{boundary conditions routine}
- the Dirichlet boundary condition is imposed by first calculating the Dirichlet degrees of freedom. 
+the Dirichlet boundary condition is imposed by first calculating the Dirichlet degrees of freedom. 
 Then the row-column information of the equations matrix is obtained by obtaining information about the distributed matrix, 
 more specifically the:
- 
+
 \begin{itemize}
  \item \emph{DISTRIBUTED MATRIX STORAGE TYPE}  
  \item \emph{DISTRIBUTED MATRIX STORAGE LOCATIONS}
-
 \end{itemize}
 
 \end{itemize}

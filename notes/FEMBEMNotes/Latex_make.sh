@@ -45,8 +45,15 @@ MY_TEX_SRC="titlepage.tex "\
 # if there are none then leave after the ='s sign blank.
 
 MY_EPS_SRC=
-MY_FIG_SRC="fem_basis_fns/figs/*.fig bem/figs/*.fig datafitting/figs/*.fig heat_conduction/figs/*.fig lin_elasticity/figs/*.fig transient_heat_condn/figs/*.fig derivative_bie/figs/*.fig"
+MY_FIG_SRC="fem_basis_fns/figs/*.fig "\
+	  "bem/figs/*.fig "\
+	  "datafitting/figs/*.fig "\
+	  "heat_conduction/figs/*.fig "\
+	  "lin_elasticity/figs/*.fig "\
+	  "transient_heat_condn/figs/*.fig "\
+	  "derivative_bie/figs/*.fig"
 MY_PLOT_SRC=
+MY_GNUPLOT_SRC=
 
 #
 # The name of the directory to place the html version of the document.
@@ -84,6 +91,7 @@ make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Latex_Makefile $* \
 	EPS_SRC="$MY_EPS_SRC" \
 	FIG_SRC="$MY_FIG_SRC" \
 	PLOT_SRC="$MY_PLOT_SRC" \
+	GNUPLOT_SRC="$MY_GNUPLOT_SRC" \
 	HTMLUPDATE_DIR=$MY_HTMLUPDATE_DIR \
 	HTMLIDXTYPE=$MY_HTMLIDXTYPE \
 	BIBS="$MY_BIBS" \

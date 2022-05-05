@@ -311,6 +311,127 @@ The right hand side flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
   \gint{\Gamma_{f}}{}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}}{\Gamma}
 \end{equation}
 
+\subsection{Analytic Solutions}
+ 
+\subsubsection{Two Dimensional Anisotropic Solution}
+
+Consider the problem shown in \figref{fig:femanisoplate}.
+
+\epstexfigure{ClassicalField/svgs/anisoplate.eps_tex}{Anisotropic plate solution
+  domain.}{Anisotropic plate solution domain.}{fig:anisoplate}{0.75}
+
+For this test problem the conductivity tensor in fibre coordinates is
+\begin{equation}
+  \tensor{\sigma}^{*}=\begin{bmatrix}
+    \sigma_{t} & 0 \\ 
+    0 & \sigma_{n}
+  \end{bmatrix}
+\end{equation}
+
+The conductivity tensor in  reference coordinates can be calculated from the
+conductivity tensor in  fibre coordinates by the tensor transformation rule
+$\tensor{\sigma}=\transpose{\tensor{Q}}\tensor{\sigma}^{*}\tensor{Q}$ where
+$\tensor{Q}$ is given by
+\begin{equation}
+  \tensor{Q}=\begin{bmatrix}
+    \cos(-\theta) & -\sin(-\theta) \\
+    \sin(-\theta) & \cos(-\theta)
+  \end{bmatrix} = \begin{bmatrix}
+    \cos\theta & +\sin\theta \\
+    -\sin\theta & \cos\theta
+  \end{bmatrix}
+\end{equation}
+Hence
+\begin{equation}
+  \tensor{\sigma}=\begin{bmatrix}
+    \sigma_{t}\cos^{2}\theta+\sigma_{n}\sin^{2}\theta & 
+    \pbrac{\sigma_{t}-\sigma_{n}}\sin\theta\cos\theta \\
+    \pbrac{\sigma_{t}-\sigma_{n}}\sin\theta\cos\theta &
+    \sigma_{t}\sin^{2}\theta+\sigma_{n}\cos^{2}\theta
+  \end{bmatrix} = \begin{bmatrix}
+    \sigma_{11} & \sigma_{12} \\
+    \sigma_{12} & \sigma_{22} 
+  \end{bmatrix}
+  \label{eqn:conductivtytransformation}
+\end{equation}
+
+The generalised Laplace equation for this problem in reference coordinates is
+hence given by
+\begin{equation}
+  \divergence{}{\pbrac{\tensor{\sigma}\gradient{}\Phi}}=\sigma_{11}\deltwosqby{\Phi}
+  {x}+2\sigma_{12}\deltwoby{\Phi}{x}{y}+\sigma_{22}\deltwosqby{\Phi}{y}
+  =0
+  \label{eqn:2DrcgenLaplace}
+\end{equation}
+
+\Eqnref{eqn:2DrcgenLaplace} cannot be solved using traditional eigenfunction
+expansions as it is non-separable. In fact, for an arbitrary domain and
+arbitrary boundary conditions, \eqnref{eqn:2DrcgenLaplace} is extremely
+difficult to solve. It can be solved, however, by realising that from the
+definition of $\sigma_{ij}$ in \eqnref{eqn:conductivtytransformation} the
+equation is elliptic everywhere in the solution domain. From
+\citeasnoun{clements:1981}, a system of second order elliptic partial
+differential equations is of the form
+\begin{equation}
+  a_{ijkl}\deltwoby{\Phi_{k}}{x_{j}}{x_{l}}=0
+  \label{eqn:general2ndorderellipticpde}
+\end{equation}
+where $\Phi_{k}$ are complex-valued functions of the dependent variables
+$x_{1}$ and $x_{2}$ and $i,k=1,\ldots,N$. The $a_{ijkl}$ are real constants
+which satisfy the symmetry condition $a_{ijkl}=a_{klij}$ and, since the system
+is elliptic, satisfy $a_{ijkl}\xi_{ij}\xi_{kl}>0$ for every non-zero $N\times
+2$ real matrix $\xi_{ij}$.
+
+Real solutions to \eqnref{eqn:general2ndorderellipticpde} may be written in
+the form 
+\begin{equation}
+  \Phi_{k}=\dsum_{\alpha}A_{k\alpha}\fnof{f_{\alpha}}{z_{\alpha}}+
+  \dsum_{\alpha}\overline{A_{k\alpha}}\overline{\fnof{f_{\alpha}}{z_{\alpha}}}
+\end{equation}
+where $\alpha=1,\hdots,N$, $\fnof{f_{\alpha}}{z_{\alpha}}$ are arbitrary
+analytic functions of a complex variable $z_{\alpha}$,
+$\overline{\fnof{f_{\alpha}}{z_{\alpha}}}$ the complex conjugate of the
+function $\fnof{f_{\alpha}}{z_{\alpha}}$, $A_{k\alpha}$ are complex constants
+(to be determined), $z_{\alpha}=x_{1}+\tau_{\alpha} x_{2}$ and $\tau_{\alpha}$
+are complex constants given by
+\begin{equation}
+  \det\sqbrac{a_{i1k1}+a_{i1k2}\tau+a_{i2k1}\tau+a_{i2k2}\tau^{2}}=0
+\end{equation}
+
+Comparing \eqnref{eqn:2DrcgenLaplace} with
+\eqnref{eqn:general2ndorderellipticpde} it can be seen that $N=1$ and
+$a_{1i1j}=\sigma_{ij}$ and thus $\tau$ is given by
+\begin{equation}
+  \tau=\dfrac{-\sigma_{12}+\imath\sqrt{\sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}
+  {\sigma_{22}}=\dfrac{-\sigma_{12}}{\sigma_{22}}+\dfrac{\imath\sqrt{
+      \sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}{\sigma_{22}}=-\lambda_{1}+
+  \imath\lambda_{2}
+\end{equation}
+where $\imath$ is the square root of $-1$. With this definition it can be seen
+that
+\begin{equation}
+  z=x+\tau y=\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y
+\end{equation}
+
+From \citeasnoun{clements:1981} $A_{11}=1$ for this problem and hence a
+solution to \eqnref{eqn:2DrcgenLaplace} can be found by specifying an
+arbitrary analytic function $\fnof{f}{z}$.
+
+For the test problem in this chapter the analytic function is chosen to be
+$\fnof{f}{z}=e^{z}$. Thus the complete analytic solution is given by
+\begin{equation}
+  \begin{split}
+    \fnof{\Phi}{x,y}&=\fnof{f}{z}+\overline{\fnof{f}{z}} \\
+    &= e^{\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y}+
+    \overline{e^{\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y}} \\
+    &= e^{\pbrac{x-\lambda_{1}y}}\pbrac{\cos\pbrac{\lambda_{2}y}+\imath
+      \sin\pbrac{\lambda_{2}y}}+e^{\pbrac{x-\lambda_{1}y}}
+    \pbrac{\cos\pbrac{\lambda_{2}y}-\imath\sin\pbrac{\lambda_{2}y}} \\
+    &= 2e^{x}e^{-\lambda_{1}{y}}\cos\pbrac{\lambda_{2}y}
+  \end{split}
+  \label{eqn:femanisoanalyticsol}
+\end{equation}
+
 % \subsection{Coded OpenCMISS formulation:}
 % Finally, we use the Gaussian quadrature rule (see Section~??? - still to be written), 
 % usually stated as a weighted sum of function values at specified Gauss points within the domain of integration. An $n$-point Gaussian quadrature rule yields an exact result for polynomials of degree $2n-1$ or less by a suitable choice of the points $x_i$ and weights $g_i$ for $i = 1,...,n$. Consequently, the formulation implemented can be derived from Equation (\ref{eqn:elementalfemlhs2}) as: 

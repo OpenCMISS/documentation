@@ -1,12 +1,132 @@
 \chapter{Introduction}
 \label{cha:Introduction}
 
-\section{Notation}
-\label{sec:Notation}
+\section{Background - \CMISS}
+\label{sec:IntroBackgroundCMISS}
 
+\OpenCMISS is a computational code designed to solve bioengineering
+problems. \OpenCMISS is a re-engineering of the \CMISS computational
+environment. \CMISS was originally started in the late 1970's/early
+1980's by Peter Hunter in order to solve problems in bioengineering
+that required features that were not available in commercial
+computational codes. Since then it has been extended by a large number
+of people from the Department of Engineering Science and then later
+the Auckland Bioengineering Institute at the University of
+Auckland. \CMISS is an acronym and starts for Continuum Mechanics,
+Imaging, Signal processing and System identification. \CMISS currently
+consists of two main parts - a graphical front end called \CMGUI and a
+computational engine called \CM. \CMGUI is written in C/C++ and is
+cross-platform and open source.
+
+The computational engine \CM is written in legacy Fortran 77 and is
+approximately $500,000$ lines in length. It is an application in that
+it has its own run-time environment and defined input an output
+files. \CM uses \OpenMP for shared memory parallelism. Some of the
+unique features of \CMISS include the use of high order elements like
+cubic Hermite that preserve \cont{1} or \gcont{1} continuity across
+element boundaries, the use of variable order basis functions, the use
+of embedded material fields to preserve the close relationship of
+tissue structure and anatomy and the use of Physiome standards to
+represent models.
+
+Despite the success of \CMISS in solving bioengineering problems over
+the last $40$ years it has recently become clear that \CMISS has a
+number of limitations that will be difficult to overcome. For example,
+it is difficult to run very large models in \CM as it has a large
+memory footprint and parallel speedup is limited due to the shared
+memory model used. In addition it was desired to take advantage of new
+modelling standards and repositories, to move towards an open source
+framework, and to take advantage of modern high performance computer
+architectures.
+
+\section{\OpenCMISS Design Goals}
+\label{sec:IntroOpenCMISSDesignGoals}
+
+In order to overcome the limitations of \CMISS it was decided to start
+a fresh with the \OpenCMISS project. From the start it was that
+\OpenCMISS would be a general collaborative code. The reasons for this
+were as follows:
+\begin{itemize}
+  \item Science and models are becoming more complex. The increase in
+    problem complexity inevitably leads to a corresponding increase in
+    code complexity. This means that modern scientific codes take a
+    greate deal of time and effort to develop, test and maintain them.
+  \item Science is collaborative. In order to facilitate collaborative
+    science codes are often developed collaboratively and used by many
+    groups.
+  \item Science builds on previous science. Most work builds on
+    previous projects. This becomes difficult if a student writes
+    independent code and then leaves the group on completion of their
+    studies. The next student may find the previous code difficult to
+    understand or adapt. Reinventing the wheel is then costly in both
+    time and effort.
+  \item Tomorrows science is upredictable. Assumptions made today may
+    be costly to fix in the future. A general code allows for a
+    greater potential for future use.
+\end{itemize}
+
+\OpenCMISS also had a number of design goals in mind. These were
+\begin{itemize}
+  \item That \OpenCMISS would be a library. A library is more flexible
+    rather than a large monolithic application such as \CMISS. A
+    library-based code means that it is considerably easier to
+    incorporate physiome and bioengineering models into clinical or
+    commercial applications as a library that can be wrapped by a
+    customised interface. The library should be modular, extensible,
+    and programmable. This allows for the library itself to be
+    customised and/or extended in whatever way is appropriate for the
+    end application.
+\item That \OpenCMISS would be a general code. Previous experience
+  with the \CMISS modelling environment indicated the importance of
+  developing code in as general a way as possible. Generalised data
+  structures, in which the data for diverse modelling problems are
+  expressed in a common format, allow for easier coupling between
+  different problems. This is especially true for unforeseen, coupled
+  problems that may arise from future applications. The goal of
+  generality does, however, often mean that there is some trade-off
+  with the computational performance of code. As the computational
+  size of bioengineering models can be very large it is extremely
+  important that computational performance is carefully
+  considered. But it is our view that it is better to optimise a more
+  general code armed with the knowledge of exactly what the problem is
+  than to prematurely optimise a specific code which could then limit
+  the applicability of that code.
+\item That \OpenCMISS should be an inherently parallel code and that
+  the parallel environment should be as general as possible. Parallel
+  processing is required as the computational demands of solving
+  models increases due to increased resolution or complexity of the
+  models. However, optimal parallel processing strategies depend on
+  the particular problem being solved. Also the lifetime of modelling
+  codes is often an order of magnitude greater than the lifetime of
+  the computer hardware, and it is notable that the architecture of
+  parallel machines has changed over the last few decades from vector
+  processors, to symmetric multiple processors (SMPs), to clusters of
+  processors, to clusters of multiple core processors, through to
+  using General Purpose Graphical Processing Units (GPGPUs). Code that
+  assumes a particular parallel algorithm or a particular parallel
+  architecture may not be appropriate for a future problem or future
+  parallel hardware. 
+\item That \OpenCMISS should be able to be used, understood, and
+  developed by novices and experts alike. Modern bioengineering and
+  physiome science requires a team of scientists, graduate students,
+  and post-doctoral researchers from varied backgrounds, each with a
+  different skill set. It is unrealistic to expect that each member of
+  the team will become an expert in every area of modelling and
+  computation. The design of OpenCMISS thus abstracts and encapsulates
+  model details in a number of objects of hierarchical complexity. The
+  hierarchy of these objects allows complex details to be hidden from
+  the users, if required, and the object interface allows an expert to
+  manipulate object parameters whilst the novice user makes use of
+  sensible default parameter values for the common cases.
+\item That \OpenCMISS incorporate Application Programming Interfaces
+  (APIs) for the physiome markup languages CellML and FieldML.
+\end{itemize}
+
+\section{Notation} 
+\label{sec:IntroNotation}
  
 \subsection{Vector and Tensors}
-\label{subsec:VectorTensorNotation}
+\label{subsec:IntroVectorTensorNotation}
 
 The following formatting will be used throughout theses notes for scalars, vectors, and tensors.
 \begin{equation}
@@ -24,7 +144,7 @@ The following formatting will be used throughout theses notes for scalars, vecto
 \end{equation}
 
 \subsection{Summation Notation}
-\label{subsec:SummationNotation}
+\label{subsec:IntroSummationNotation}
 
 The following (Einstein) summation notation\index{Summation Notation} will be
 used throughout these notes. In order to eliminate summation symbols repeated

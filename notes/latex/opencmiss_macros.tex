@@ -26,11 +26,18 @@
 \usepackage{amssymb}
 \usepackage{amsfonts}
 \usepackage{calc}
+\usepackage{keyval}
 \usepackage{graphicx}
 \usepackage{epsfig}
 \usepackage{ifthen}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{latexsym}
+\usepackage{moreverb}
+\usepackage[subfolder,cleanup]{gnuplottex}
 \usepackage{xspace}
-\usepackage{url}
+\usepackage[driverfallback=dvips,pageanchor=true,breaklinks,colorlinks=true]{hyperref} %make links
+%\usepackage{url}
 
 %
 % Allow superimposition of symbols
@@ -43,11 +50,29 @@
 %
 % URL commands
 %
-\newcommand{\email}     {\begingroup \urlstyle{sf}\Url}
-\newcommand{\directory} {\begingroup \urlstyle{sf}\Url}
-\newcommand{\file}      {\begingroup \urlstyle{sf}\Url}
-\renewcommand{\url}     {\begingroup \urlstyle{sf}\Url}
-
+\newcommand{\directory}[1]{ %
+  \textsf{#1} %
+} %
+\newcommand{\file}[1]{ %
+  \textsf{#1} %
+} %
+\newcommand{\link}[2]{ %
+  \ifthenelse{\equal{#2}{}}{ %
+    \href{#1}{\textsf{#1}}}{ %
+    \href{#1}{\textsf{#2}}} %
+} %hyperref link e.g. \link{A}{B} -> B text and A hyperlink
+\newcommand{\emaillink}[2]{ %
+  \ifthenelse{\equal{#2}{}}{ %
+    \href{mailto:#1}{\textsf{#1}}}{ %
+    \href{mailto:#1}{\textsf{#2}}} %
+} %hyperref email link
+\newcommand{\namelink}[1]{ %
+  \nameref{#1} %
+} %
+\newcommand{\urllink}[1]{ %
+  \link{#1}{#1} %
+} %
+  
 %
 % Software and systmes
 %
@@ -59,6 +84,8 @@
 \newcommand{\FieldML}{\textsf{FieldML}\xspace}
 \newcommand{\CellML}{\textsf{CellML}\xspace}
 \newcommand{\FAROARM}{\textsf{FARO ARM\xspace}}
+\newcommand{\OpenMP}{\textsf{OpenMP\xspace}}
+\newcommand{\OpenACC}{\textsf{OpenACC\xspace}}
 
 %
 % New commands
@@ -128,6 +155,21 @@
   % e.g. \epstexsubfigure{figure}{short caption}{long caption}{label}{scale}
   % or \epstexsubfigure{figure}{}{caption}{label}{}
   
+\newcommand{\gnuplotsubfigure}[8]{ %
+  \begin{subfigure}[b]{#5}
+    \centering %
+    \ifthenelse{\equal{#8}{}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #7,#7 #6}]{#1}}{ %
+      \gnuplotloadfile[terminal=pslatex,terminaloptions={color size #7,#8 #6}]{#1} %
+    } %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#3}}{ %
+      \caption[#2]{#3} %
+    } %
+    \label{#4} %
+  \end{subfigure}
+} % gnuplot subfigure e.g. \gnuplotsubfigure{file}{short caption}{long caption}{label}{subfigurescale}{fontsize}{gnuplotxsize}{gnuplotysize}
+  
 \newcommand{\pstexfigure}[5]{ %
   \begin{figure}[htbp] \centering %
     \ifthenelse{\equal{#5}{}}{ %
@@ -142,8 +184,21 @@
     \label{#4} %
   \end{figure} %
   } % pstex figure i.e. inkscape, xfig or gnuplot
-    % e.g. \pstexfigure{figure}{short caption}{long caption}{label}{scale}
-    % or \pstexfigure{figure}{}{caption}{label}{}
+    % e.g. \pstexsubfigure{figure}{short caption}{long caption}{label}{scale}
+    % or \pstexsubfigure{figure}{}{caption}{label}{}
+
+\newcommand{\pstexsubfigure}[5]{ %
+  \begin{subfigure}[b]{0.45\columnwidth} \centering %
+    \setkeys{Gin}{width=\columnwidth}
+    \input{#1} %
+    \ifthenelse{\equal{#2}{}}{ %
+      \caption{#3}}{ %
+      \caption[#2]{#3} %
+    } %
+    \label{#4} %
+  \end{subfigure} %
+} % pstex subfigure i.e. inkscape, xfig or gnuplot
+    % e.g. \pstexsubfigure{figure}{short caption}{long caption}{label}{scale}
 
 \newcommand{\epsfigure}[4]{ %
   \incgrfigure{}{#1}{#2}{#3}{#4}
@@ -275,6 +330,7 @@
 \newcommand{\kN}{\units{kN}} % kilonewtons
 \newcommand{\ml}{\units{ml}} % millilitres
 %\newcommand{\L}{\units{L}} % litres
+\newcommand{\J}{\units{J}} % Joule
 \newcommand{\Hz}{\units{Hz}} % Hertz
 \newcommand{\kHz}{\units{kHz}} % kilohertz
 \newcommand{\MHz}{\units{MHz}} % megahertz
@@ -361,6 +417,40 @@
 \newcommand{\nttento}[2]{\ensuremath{ %
     #1\ttento{#2} %
 }} % number times ten to power e.g. \nttento{2}{3} => 2 x 10^3
+
+%
+% Number formats
+%
+\newcommand{\nodenumber}[1]{\ensuremath{ %
+    \textbf{#1} %
+}} % format a node number to differentiate it
+\newcommand{\elementnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format an element number to differentiate it
+\newcommand{\datanumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format a data point number to differentiate it
+\newcommand{\dofnumber}[1]{\ensuremath{ %
+    \textrm{#1} %
+}} % format a DOF number to differentiate it
+\newcommand{\localdofnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format a local DOF number to differentiate it
+\newcommand{\globaldofnumber}[1]{\ensuremath{ %
+    \textrm{#1} %
+}} % format a global DOF number to differentiate it
+\newcommand{\localrownumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format a local row number to differentiate it
+\newcommand{\globalrownumber}[1]{\ensuremath{ %
+    \textrm{#1} %
+}} % format a global row number to differentiate it
+\newcommand{\localcolnumber}[1]{\ensuremath{ %
+    \textit{#1} %
+}} % format a local column number to differentiate it
+\newcommand{\globalcolnumber}[1]{\ensuremath{ %
+    \textbf{#1} %
+}} % format a global column number to differentiate it
 
 %
 % Non-dimensional numbers
@@ -561,9 +651,10 @@
     }} %% complex conjugate e.g. \conjugate{Z} => Z
 \newcommand{\const}[1]{\ensuremath{\mathrm{#1}}} % constant
 \newcommand{\cont}[1]{\ensuremath{C^{#1}}} % continuity e.g. \cont{1} => C1
+\newcommand{\gcont}[1]{\ensuremath{G^{#1}}} % geometric continuity e.g. \gcont{1} => G1
 \newcommand{\convolution}[2]{\ensuremath{#1*#2}} % convolution
 % e.g. \convolution{a}{b} => a*b
-\newcommand{\cuberoot}[1]{\ensuremath{ %
+\newcommand{\cuberoot}[1]{\ensuremath{ %7
     \sqrt[3]{#1} %
   }} % cube root e.g. \cuberoot{a} = 3\sqrt{a}
 \newcommand{\degree}{\ensuremath{^{\circ}}\xspace} % degree sign

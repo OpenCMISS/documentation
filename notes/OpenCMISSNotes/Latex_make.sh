@@ -26,6 +26,7 @@ MY_MAINFILE=OpenCMISSNotes
 MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Introduction/Introduction.tex "\
 "BasisFunctions/BasisFunctions.tex "\
+"FiniteElementMethod/FiniteElementMethod.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
 "Maths/Maths.tex "\
@@ -73,6 +74,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
 "AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
 "PortHamiltonian/PortHamiltonian.tex "\
+"DevelopersDocument/DevelopersDoc.tex "\
 "Appendices/Appendices.tex "\
 "Appendices/CoordinateSystems.tex "\
 "References/References.tex "\
@@ -87,14 +89,17 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 MY_EPS_SRC=
 MY_FIG_SRC="BasisFunctions/figs/*.fig"
 MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
+"FiniteElementMethod/svgs/*.svg "\
 "DifferentialGeometry/svgs/*.svg "\
-"AnalyticSolutions/ClassicalFieldClass/svgs/*.svg "\
+"ClassicalField/svgs/*.svg "\
 "SolidMechanics/svgs/*.svg "\
 "FluidMechanics/svgs/*.svg "\
 "Fitting/svgs/*.svg "\
-"PortHamiltonian/svgs/*.svg "
+"PortHamiltonian/svgs/*.svg "\
+"DevelopersDocument/svgs/*.svg "
 MY_PLOT_SRC="BasisFunctions/plots/*.gnu "\
 "BasisFunctions/plots/*.gnu8"
+MY_GNUPLOT_SRC="BasisFunctions/gnuplots/*.gnuplot "
 
 #
 # The name of the directory to place the html version of the document.
@@ -133,6 +138,7 @@ make -f ${OPENCMISS_ROOT}/documentation/notes/latex/Latex_Makefile $* \
 	FIG_SRC="$MY_FIG_SRC" \
 	SVG_SRC="$MY_SVG_SRC" \
 	PLOT_SRC="$MY_PLOT_SRC" \
+	GNUPLOT_SRC="$MY_GNUPLOT_SRC" \
 	HTMLUPDATE_DIR=$MY_HTMLUPDATE_DIR \
 	HTMLIDXTYPE=$MY_HTMLIDXTYPE \
 	BIBS=$MY_BIBS \
