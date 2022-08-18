@@ -16,7 +16,7 @@
 
 \subsection{Governing equations}
 
-The generalised Laplace's equation on a domain $\Omega$ with boundary $\Gamma$
+The \emph{generalised Laplace's equation} on a domain $\Omega$ with boundary $\Gamma$
 in \OpenCMISS can be stated as
 \begin{equation}
   \addtolength{\fboxsep}{5pt}
@@ -28,7 +28,7 @@ in \OpenCMISS can be stated as
 where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{u}{\vectr{x},t}$ is the potential and 
 $\fnof{\tensor{\sigma}}{\vectr{x}}$ is the (positive definite) conductivity
 tensor throughout the domain. Note that $\tensor{\sigma}=\tensor{I}$ gives 
-the standard form of Laplace's equation \ie $\laplacian{}{u}=0$.
+the \emph{standard form of Laplace's equation} \ie $\laplacian{}{u}=0$.
 
 To complete the description of the boundary value problem,
 the governing \eqnref{eqn:GeneralisedLaplaceEquation} is supplemented
@@ -264,11 +264,11 @@ Taking the fixed nodal degrees-of-freedom and scale factors outside the integral
 
 \Eqnref{eqn:elementalfem1} is an equation of the form of
 \begin{equation}
-  \matr{K}\vect{u}=\vect{f}
+  \matr{K}\vect{u}+\vect{f}=\vect{0}
 \end{equation}
-where
+or
 \begin{equation}
-  \vectr{f}=\matr{N}\vectr{q}
+  \matr{K}\vect{u}+\matr{N}\vectr{q}=\vect{0}
 \end{equation}
 
 The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
@@ -305,20 +305,101 @@ where $g^{rs}$ is the \emph{contravariant metric tensor} from $\vectr{x}$ to
 $\vectr{\xi}$ coordinates. It may thus be helpful to think about $\gamma^{rs}$
 as a scaled/transformed contravariant metric tensor.
 
-The right hand side flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
+The flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 \begin{equation}
-  N^{\alpha\gamma}_{mo} = \gsf{m}{\alpha}\gsf{o}{\gamma}
+  N^{\alpha\gamma}_{mo} = -\gsf{m}{\alpha}\gsf{o}{\gamma}
   \gint{\Gamma_{f}}{}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}}{\Gamma}
 \end{equation}
 
 \subsection{Analytic Solutions}
- 
-\subsubsection{Two Dimensional Anisotropic Solution}
 
-Consider the problem shown in \figref{fig:femanisoplate}.
+\subsubsection{Standard Laplace Two Dimensional Solution 1}
+
+The first analytic solution to the standard Laplace's equation in two-dimensions is given by
+\begin{equation}
+  \fnof{u}{x,y}=x^{2}+2xy-y^{2}
+  \label{eqn:StandardLaplaceTwoDAnalytic1}
+\end{equation}
+
+The gradient of \eqnref{eqn:StandardLaplaceTwoDAnalytic1} is
+\begin{equation}
+  \gradient{}{\fnof{u}{x,y}}=\begin{bmatrix}
+  \delby{\fnof{u}{x,y}}{x} \\
+  \delby{\fnof{u}{x,y}}{y}
+  \end{bmatrix}=\begin{bmatrix}
+  2x+2y \\
+  2x-2y
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceTwoDAnalyticGradient1}
+\end{equation}
+
+The Hessian of \eqnref{eqn:StandardLaplaceTwoDAnalytic1} is
+\begin{equation}
+  \hessian{}{\fnof{u}{x,y}}=\begin{bmatrix}
+  \deltwosqby{\fnof{u}{x,y}}{x} & \deltwoby{\fnof{u}{x,y}}{x}{y} \\
+  \deltwoby{\fnof{u}{x,y}}{y}{x} & \deltwosqby{\fnof{u}{x,y}}{y}
+  \end{bmatrix}=\begin{bmatrix}
+  2 & 2 \\
+  2 & -2
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceTwoDAnalyticHessian1}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \laplacian{}{\fnof{u}{x,y}}=\deltwosqby{\fnof{u}{x,y}}{x}+\deltwosqby{\fnof{u}{x,y}}{y}=2-2=0
+\end{equation}
+which shows that \eqnref{eqn:StandardLaplaceTwoDAnalytic1} satisfies the standard Laplace equation.
+
+This analytic solution does not have an analytic field.
+
+\subsubsection{Standard Laplace Two Dimensional Solution 2}
+ 
+The second analytic solution to the standard Laplace's equation in two-dimensions is given by
+\begin{equation}
+  \fnof{u}{x,y}=\cosine{x}\hypecosine{y}
+  \label{eqn:StandardLaplaceTwoDAnalytic2}
+\end{equation}
+
+The gradient of \eqnref{eqn:StandardLaplaceTwoDAnalytic2} is
+\begin{equation}
+  \gradient{}{\fnof{u}{x,y}}=\begin{bmatrix}
+  \delby{\fnof{u}{x,y}}{x} \\
+  \delby{\fnof{u}{x,y}}{y}
+  \end{bmatrix}=\begin{bmatrix}
+  -\sine{x}\hypecosine{y} \\
+  \cosine{x}\hypesine{y}
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceTwoDAnalyticGradient2}
+\end{equation}
+
+The Hessian of \eqnref{eqn:StandardLaplaceTwoDAnalytic2} is
+\begin{equation}
+  \hessian{}{\fnof{u}{x,y}}=\begin{bmatrix}
+  \deltwosqby{\fnof{u}{x,y}}{x} & \deltwoby{\fnof{u}{x,y}}{x}{y} \\
+  \deltwoby{\fnof{u}{x,y}}{y}{x} & \deltwosqby{\fnof{u}{x,y}}{y}
+  \end{bmatrix}=\begin{bmatrix}
+  -\cosine{x}\hypecosine{y} & -\sine{x}\hypesine{y} \\
+  -\sine{x}\hypesine{y} & \cosine{x}\hypecosine{y}
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceTwoDAnalyticHessian2}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \laplacian{}{\fnof{u}{x,y}}=\deltwosqby{\fnof{u}{x,y}}{x}+\deltwosqby{\fnof{u}{x,y}}{y}=-\cosine{x}\hypecosine{y}+
+  \cosine{x}\hypecosine{y}=0
+\end{equation}
+which shows that \eqnref{eqn:StandardLaplaceTwoDAnalytic2} satisfies the standard Laplace equation.
+
+This analytic solution does not have an analytic field.
+
+\subsubsection{Generalised Laplace Two Dimensional Anisotropic Solution 1}
+
+Consider the problem shown in \figref{fig:AnalyticLaplaceAnisoPlate}.
 
 \epstexfigure{ClassicalField/svgs/anisoplate.eps_tex}{Anisotropic plate solution
-  domain.}{Anisotropic plate solution domain.}{fig:anisoplate}{0.75}
+  domain.}{Anisotropic plate solution domain.}{fig:AnalyticLaplaceAnisoPlate}{0.75}
 
 For this test problem the conductivity tensor in fibre coordinates is
 \begin{equation}
@@ -334,20 +415,20 @@ $\tensor{\sigma}=\transpose{\tensor{Q}}\tensor{\sigma}^{*}\tensor{Q}$ where
 $\tensor{Q}$ is given by
 \begin{equation}
   \tensor{Q}=\begin{bmatrix}
-    \cos(-\theta) & -\sin(-\theta) \\
-    \sin(-\theta) & \cos(-\theta)
+    \cosine{-\theta} & -\sine{-\theta} \\
+    \sine{-\theta} & \cosine{-\theta}
   \end{bmatrix} = \begin{bmatrix}
-    \cos\theta & +\sin\theta \\
-    -\sin\theta & \cos\theta
+    \cosine{\theta} & +\sine{\theta} \\
+    -\sine{\theta} & \cosine{\theta}
   \end{bmatrix}
 \end{equation}
 Hence
 \begin{equation}
   \tensor{\sigma}=\begin{bmatrix}
-    \sigma_{t}\cos^{2}\theta+\sigma_{n}\sin^{2}\theta & 
-    \pbrac{\sigma_{t}-\sigma_{n}}\sin\theta\cos\theta \\
-    \pbrac{\sigma_{t}-\sigma_{n}}\sin\theta\cos\theta &
-    \sigma_{t}\sin^{2}\theta+\sigma_{n}\cos^{2}\theta
+    \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
+    \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
+    \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
+    \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
   \end{bmatrix} = \begin{bmatrix}
     \sigma_{11} & \sigma_{12} \\
     \sigma_{12} & \sigma_{22} 
@@ -358,8 +439,8 @@ Hence
 The generalised Laplace equation for this problem in reference coordinates is
 hence given by
 \begin{equation}
-  \divergence{}{\pbrac{\tensor{\sigma}\gradient{}\Phi}}=\sigma_{11}\deltwosqby{\Phi}
-  {x}+2\sigma_{12}\deltwoby{\Phi}{x}{y}+\sigma_{22}\deltwosqby{\Phi}{y}
+  \divergence{}{\pbrac{\tensor{\sigma}\gradient{}u}}=\sigma_{11}\deltwosqby{u}
+  {x}+2\sigma_{12}\deltwoby{u}{x}{y}+\sigma_{22}\deltwosqby{u}{y}
   =0
   \label{eqn:2DrcgenLaplace}
 \end{equation}
@@ -370,13 +451,13 @@ arbitrary boundary conditions, \eqnref{eqn:2DrcgenLaplace} is extremely
 difficult to solve. It can be solved, however, by realising that from the
 definition of $\sigma_{ij}$ in \eqnref{eqn:conductivtytransformation} the
 equation is elliptic everywhere in the solution domain. From
-\citeasnoun{clements:1981}, a system of second order elliptic partial
+\citet{clements:1981}, a system of second order elliptic partial
 differential equations is of the form
 \begin{equation}
-  a_{ijkl}\deltwoby{\Phi_{k}}{x_{j}}{x_{l}}=0
+  a_{ijkl}\deltwoby{u_{k}}{x_{j}}{x_{l}}=0
   \label{eqn:general2ndorderellipticpde}
 \end{equation}
-where $\Phi_{k}$ are complex-valued functions of the dependent variables
+where $u_{k}$ are complex-valued functions of the dependent variables
 $x_{1}$ and $x_{2}$ and $i,k=1,\ldots,N$. The $a_{ijkl}$ are real constants
 which satisfy the symmetry condition $a_{ijkl}=a_{klij}$ and, since the system
 is elliptic, satisfy $a_{ijkl}\xi_{ij}\xi_{kl}>0$ for every non-zero $N\times
@@ -385,7 +466,7 @@ is elliptic, satisfy $a_{ijkl}\xi_{ij}\xi_{kl}>0$ for every non-zero $N\times
 Real solutions to \eqnref{eqn:general2ndorderellipticpde} may be written in
 the form 
 \begin{equation}
-  \Phi_{k}=\dsum_{\alpha}A_{k\alpha}\fnof{f_{\alpha}}{z_{\alpha}}+
+  u_{k}=\dsum_{\alpha}A_{k\alpha}\fnof{f_{\alpha}}{z_{\alpha}}+
   \dsum_{\alpha}\overline{A_{k\alpha}}\overline{\fnof{f_{\alpha}}{z_{\alpha}}}
 \end{equation}
 where $\alpha=1,\hdots,N$, $\fnof{f_{\alpha}}{z_{\alpha}}$ are arbitrary
@@ -413,7 +494,7 @@ that
   z=x+\tau y=\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y
 \end{equation}
 
-From \citeasnoun{clements:1981} $A_{11}=1$ for this problem and hence a
+From \citet{clements:1981} $A_{11}=1$ for this problem and hence a
 solution to \eqnref{eqn:2DrcgenLaplace} can be found by specifying an
 arbitrary analytic function $\fnof{f}{z}$.
 
@@ -421,16 +502,185 @@ For the test problem in this chapter the analytic function is chosen to be
 $\fnof{f}{z}=e^{z}$. Thus the complete analytic solution is given by
 \begin{equation}
   \begin{split}
-    \fnof{\Phi}{x,y}&=\fnof{f}{z}+\overline{\fnof{f}{z}} \\
+    \fnof{u}{x,y}&=\fnof{f}{z}+\overline{\fnof{f}{z}} \\
     &= e^{\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y}+
     \overline{e^{\pbrac{x-\lambda_{1}y}+\imath\lambda_{2}y}} \\
-    &= e^{\pbrac{x-\lambda_{1}y}}\pbrac{\cos\pbrac{\lambda_{2}y}+\imath
-      \sin\pbrac{\lambda_{2}y}}+e^{\pbrac{x-\lambda_{1}y}}
-    \pbrac{\cos\pbrac{\lambda_{2}y}-\imath\sin\pbrac{\lambda_{2}y}} \\
-    &= 2e^{x}e^{-\lambda_{1}{y}}\cos\pbrac{\lambda_{2}y}
+    &= e^{\pbrac{x-\lambda_{1}y}}\pbrac{\cosine{\lambda_{2}y}+\imath
+      \sine{\lambda_{2}y}}+e^{\pbrac{x-\lambda_{1}y}}
+    \pbrac{\cosine{\lambda_{2}y}-\imath\sine{\lambda_{2}y}} \\
+    &= 2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y}
   \end{split}
-  \label{eqn:femanisoanalyticsol}
+  \label{eqn:GeneralisedLaplaceTwoDAnalytic1}
 \end{equation}
+
+
+The gradient of \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} is
+\begin{equation}
+  \begin{aligned}
+    \gradient{}{\fnof{u}{x,y}}&=\begin{bmatrix}
+    \delby{\fnof{u}{x,y}}{x} \\
+    \delby{\fnof{u}{x,y}}{y}
+    \end{bmatrix}=\begin{bmatrix}
+    2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} \\
+    2e^{x}\pbrac{e^{-\lambda_{1}{y}}.-\sine{\lambda_{2}y}.\lambda_{2}-\lambda_{1}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y}}
+    \end{bmatrix} \\
+    &=\begin{bmatrix}
+    2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} \\
+    -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}
+    \end{bmatrix}
+  \end{aligned}
+  \label{eqn:GeneralisedLaplaceTwoDAnalyticGradient1}
+\end{equation}
+
+The Hessian of \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} is
+\begin{equation}
+  \begin{aligned}
+    \hessian{}{\fnof{u}{x,y}}&=\begin{bmatrix}
+    \deltwosqby{\fnof{u}{x,y}}{x} & \deltwoby{\fnof{u}{x,y}}{x}{y} \\
+    \deltwoby{\fnof{u}{x,y}}{y}{x} & \deltwosqby{\fnof{u}{x,y}}{y}
+    \end{bmatrix} \\
+    &=\begin{bmatrix}
+    2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} &
+    -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} \\
+    -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} &
+    \begin{matrix}-2e^{x}\left(e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}^{2}\cosine{\lambda_{2}y}-\lambda_{1}\lambda_{2}\sine{\lambda_{2}y}}\right.\\
+      \hfil{}\left.-\lambda_{1}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}\right)
+    \end{matrix}\end{bmatrix}\\
+    &=\begin{bmatrix}
+    2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} &
+    -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} \\
+    -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} &
+    \begin{matrix}-2\lambda_{2}e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\cosine{\lambda_{2}y}-\lambda_{1}\sine{\lambda_{2}y}}\\
+      \hfil{}+2\lambda_{1}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}
+    \end{matrix}
+    \end{bmatrix}
+  \end{aligned}
+  \label{eqn:GeneralisedLaplaceTwoDAnalyticHessian1}
+\end{equation}
+
+Now we have $\lambda_{1}=\dfrac{\sigma_{12}}{\sigma_{22}}$ and
+$\lambda_{2}=\dfrac{\sqrt{\sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}{\sigma_{22}}$
+and so, rearranging, we have
+\begin{equation}
+  \sigma_{22}=\dfrac{\sigma_{12}}{\lambda_{1}}
+\end{equation}
+and
+\begin{equation}
+  \begin{aligned}
+    \sigma_{11}&=\dfrac{\sigma_{22}^{2}\lambda_{2}^{2}+\sigma_{12}^{2}}{\sigma_{22}}\\
+    &=\sigma_{22}\lambda_{2}^{2}+\sigma_{12}\lambda_{11}\\
+    &=\dfrac{\sigma_{12}\lambda_{2}^{2}}{\lambda_{1}}+\sigma_{12}\lambda_{11}\\
+    &=\sigma_{12}\dfrac{\pbrac{\lambda_{1}^{2}+\lambda_{2}^{2}}}{\lambda_{1}}
+  \end{aligned}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \begin{aligned}
+    \divergence{}{\pbrac{\tensor{\sigma}\gradient{}\fnof{u}{x,y}}}=\sigma_{11}\deltwosqby{\fnof{u}{x,y}}{x}+
+    2\sigma_{12}\deltwoby{\fnof{u}{x,y}}}{x}{y}+\sigma_{22}\deltwosqby{\fnof{u}{x,y}}{y}\\
+  &=\sigma_{11}
+  &=0
+  \end{aligned}
+\end{equation}
+which shows that \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} satisfies the generalised Laplace equation.
+
+This analytic solution does not have an analytic field.
+
+\subsubsection{Standard Laplace Three Dimensional Solution 1}
+
+The first analytic solution to the standard Laplace's equation in three-dimensions is given by
+\begin{equation}
+  \fnof{u}{x,y,z}=x^{2}+y^{2}-2z^{2}
+  \label{eqn:StandardLaplaceThreeDAnalytic1}
+\end{equation}
+
+The gradient of \eqnref{eqn:StandardLaplaceThreeDAnalytic1} is
+\begin{equation}
+  \gradient{}{\fnof{u}{x,y,z}}=\begin{bmatrix}
+  \delby{\fnof{u}{x,y,z}}{x} \\
+  \delby{\fnof{u}{x,y,z}}{y} \\
+  \delby{\fnof{u}{x,y,z}}{z}
+  \end{bmatrix}=\begin{bmatrix}
+  2x \\
+  2y \\
+  -4z
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceThreeDAnalyticGradient1}
+\end{equation}
+
+The Hessian of \eqnref{eqn:StandardLaplaceThreeDAnalytic1} is
+\begin{equation}
+  \hessian{}{\fnof{u}{x,y,z}}=\begin{bmatrix}
+  \deltwosqby{\fnof{u}{x,y,z}}{x} & \deltwoby{\fnof{u}{x,y,z}}{x}{y} & \deltwoby{\fnof{u}{x,y,z}}{x}{z} \\
+  \deltwoby{\fnof{u}{x,y,z}}{y}{x} & \deltwosqby{\fnof{u}{x,y,z}}{y} & \deltwoby{\fnof{u}{x,y,z}}{y}{z} \\
+  \deltwoby{\fnof{u}{x,y,z}}{z}{x} & \deltwoby{\fnof{u}{x,y,z}}{z}{y} & \deltwosqby{\fnof{u}{x,y,z}}{z}
+  \end{bmatrix}=\begin{bmatrix}
+  2 & 0 & 0 \\
+  0 & 2 & 0 \\
+  0 & 0 & -4 \\
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceThreeDAnalyticHessian1}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \laplacian{}{\fnof{u}{x,y,z}}=\deltwosqby{\fnof{u}{x,y,z}}{x}+\deltwosqby{\fnof{u}{x,y,z}}{y}+\deltwosqby{\fnof{u}{x,y,z}}{z}=
+  2+2-4=0
+\end{equation}
+which shows that \eqnref{eqn:StandardLaplaceThreeDAnalytic1} satisfies the standard Laplace equation.
+
+This analytic solution does not have an analytic field.
+
+\subsubsection{Standard Laplace Three Dimensional Solution 2}
+ 
+The second analytic solution to the standard Laplace's equation in three-dimensions is given by
+\begin{equation}
+  \fnof{u}{x,y,z}=\cosine{x}\hypecosine{y}z
+  \label{eqn:StandardLaplaceThreeDAnalytic2}
+\end{equation}
+
+The gradient of \eqnref{eqn:StandardLaplaceThreeDAnalytic2} is
+\begin{equation}
+  \gradient{}{\fnof{u}{x,y,z}}=\begin{bmatrix}
+  \delby{\fnof{u}{x,y,z}}{x} \\
+  \delby{\fnof{u}{x,y,z}}{y} \\
+  \delby{\fnof{u}{x,y,z}}{z}
+  \end{bmatrix}=\begin{bmatrix}
+  -\sine{x}\hypecosine{y}z \\
+  \cosine{x}\hypesine{y}z \\
+  \cosine{x}\hypecosine{y}
+  \end{bmatrix}
+  \label{eqn:StandardLaplaceThreeDAnalyticGradient2}
+\end{equation}
+
+The Hessian of \eqnref{eqn:StandardLaplaceThreeDAnalytic2} is
+\begin{equation}
+  \begin{aligned}
+    \hessian{}{\fnof{u}{x,y,z}}&=\begin{bmatrix}
+    \deltwosqby{\fnof{u}{x,y,z}}{x} & \deltwoby{\fnof{u}{x,y,z}}{x}{y} & \deltwoby{\fnof{u}{x,y,z}}{x}{z} \\
+    \deltwoby{\fnof{u}{x,y,z}}{y}{x} & \deltwosqby{\fnof{u}{x,y,z}}{y} & \deltwoby{\fnof{u}{x,y,z}}{y}{z} \\
+    \deltwoby{\fnof{u}{x,y,z}}{z}{x} & \deltwoby{\fnof{u}{x,y,z}}{z}{y} & \deltwosqby{\fnof{u}{x,y,z}}{z}
+    \end{bmatrix}\\
+    &=\begin{bmatrix}
+    -\cosine{x}\hypecosine{y}z & -\sine{x}\hypesine{y}z & -\sine{x}\hypecosine{y} \\
+    -\sine{x}\hypesine{y}z & \cosine{x}\hypecosine{y}z & \cosine{x}\hypesine{y} \\
+    -\sine{x}\hypecosine{y} & \cosine{x}\hypesine{y} & 0 \\
+    \end{bmatrix}
+  \end{aligned}
+  \label{eqn:StandardLaplaceThreeDAnalyticHessian2}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \begin{aligned}
+    \laplacian{}{\fnof{u}{x,y,z}}&=\deltwosqby{\fnof{u}{x,y,z}}{x}+\deltwosqby{\fnof{u}{x,y,z}}{y}+\deltwosqby{\fnof{u}{x,y,z}}{z}\\
+    &=-\cosine{x}\hypecosine{y}z+\cosine{x}\hypecosine{y}z+0=0
+  \end{aligned}
+\end{equation}
+which shows that \eqnref{eqn:StandardLaplaceThreeDAnalytic2} satisfies the standard Laplace equation.
+
+This analytic solution does not have an analytic field.
 
 % \subsection{Coded OpenCMISS formulation:}
 % Finally, we use the Gaussian quadrature rule (see Section~??? - still to be written), 

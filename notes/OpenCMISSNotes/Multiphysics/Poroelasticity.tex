@@ -12,7 +12,7 @@ constitutive relation has a dependence on the Darcy fluid pressure.
 
 \subsection{Coupled Darcy Fluid Pressure and Elasticity}
 
-The fully dynamic governing equations for poromechanics are described in \cite{coussy:2004}.
+The fully dynamic governing equations for poromechanics are described in \citet{coussy:2004}.
 CMISSProblemfiniteElasticityFluidPressureType implements a static form of these equations
 and strongly couples the equations
 for finite elasticity to an equation describing the Darcy fluid pressure. Darcy's
@@ -23,5 +23,5 @@ equation to give:
 \divergence{}{\pbrac{\dfrac{\tensor{K}}{\mu} \gradient{}{p}}} = 0
 \end{equation}
 
-A static form of the constitutive law developed by \cite{chapelle:2010} is implemented in the equations
+A static form of the constitutive law developed by \citet{chapelle:2010} is implemented in the equations
 set subtype CMISSEquationsSetElasticityFluidPressureStaticInriaSubtype.

@@ -35,7 +35,7 @@ there are 4 (with Neuman boundary conditions these are $\phi,
 \delby{\phi}{s_{1}}, \delby{\phi}{s_{2}}$ and $\frac{\del^{2}\phi}{\del
   s_{1}\del s_{2}}$).  Thus one needs to generate extra linearly independent
 equations.  This is achieved by differentiating (\ref{eqn:closed}) in various
-directions \cite{tomlinson:1996}, yielding a hypersingular integral
+directions \citep{tomlinson:1996}, yielding a hypersingular integral
 formulation.
 
 Taking the directional derivative of (\ref{eqn:closed}) at $P_{0}$ in an
@@ -89,7 +89,7 @@ domain is enlarged about this point to include a semicircular or hemispherical
 region of some small radius $\varepsilon > 0$.  The limits of the integral
 expression (\ref{eqn:arbdir}) over each part of the enlarged domain are then
 considered in detail as$\varepsilon \rightarrow 0$, with judicious application
-of the above identities \cite{tomlinson:1996,liu:1991}.  The result is
+of the above identities \citep{tomlinson:1996,liu:1991}.  The result is
 \begin{eqnarray}
  \int_{\del\Omega}\frac{\del^{2}G(P,P_{0})}{\del n\del n_{0}}
   &\left(\phi(P)-\phi(P_{0})-\delby{\phi(P_{0})}{x_{k}}\right)
@@ -158,7 +158,7 @@ part of the mesh fitting) so the matrix entries are all known.  The use of
 with the application of element scale factors (if required), involves only the
 required nodal unknowns as coefficients.  We concentrate now on obtaining
 expressions suitable for numerical computation for these coefficients.  As in
-\cite{liu:1992} two separate cases must be considered - that for which $P_{0}$
+\citep{liu:1992} two separate cases must be considered - that for which $P_{0}$
 is contained in the element $\Gamma_{m}$ being considered, and that for which
 $P_{0}$ is removed from the current element $\Gamma_{m}$.  For each case, we
 investigate both integrals of (\ref{eqn:result3}).
@@ -237,7 +237,7 @@ appropriate expression for numerical integration is
 The above equations provide numerically well-behaved expressions for the
 coefficients of the discretised derivative boundary integral equation.  It
 only remains to specify the direction(s) of $n_{0}$.  After extensive testing
-\cite{tomlinson:1996} we concluded that the direction of differentiation
+\citep{tomlinson:1996} we concluded that the direction of differentiation
 should be that of $s$ (\ie  tangential) for two-dimensional problems (where
 one extra equation is required) and for three-dimensional problems, one should
 differentiate in both the $s_{1}$ and $s_{2}$ directions (and set the cross

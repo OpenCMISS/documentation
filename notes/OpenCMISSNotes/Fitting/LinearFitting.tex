@@ -233,7 +233,7 @@ Newton-Raphson method from the current projections.
 \label{sec:sobolevlinearfitting}
 
 With an insufficient number of data points, fitting 'noisy' data or fitting
-data that has an uneven spread, a smoothness constraint \cite{young:1989}
+data that has an uneven spread, a smoothness constraint \citep{young:1989}
 can be introduced by adding a second term to the objective function:
 \begin{equation}
   \fnof{F}{\vectr{u}}=\gsum{e=1}{E}{\gsum{d=1}{D_{e}}{\gamma^{d}
@@ -245,7 +245,7 @@ can be introduced by adding a second term to the objective function:
 The first term in \eqnref{eqn:soboleverrorfn} measures the error in the
 surface from the data and the second term measures deformation of the surface.
 To measure the deformation of the surface a $\nth{p}$ order weighted
-Sobolev norm \cite{terzopoulos:1986,zzz-tikhonov:1977} is used, defined by
+Sobolev norm \citep{terzopoulos:1986,zzz-tikhonov:1977} is used, defined by
 \begin{equation}
   \fnof{g_{p,w}}{\fnof{\vectr{u}}{\xi}}=\gsum{q=0}{p}{\gsum{i=q}{}
   {w_{i}\norm{\delnby{q}{\vectr{u}}{\xi}{i}}^{2}}}
@@ -312,7 +312,7 @@ and in three $\xi$ dimensions it becomes
 
 Thus the parameter $\tau$ controls the tension of the surface and the
 parameter $\kappa$ controls the degree of surface curvature
-\cite{terzopoulos:1986}.
+\citep{terzopoulos:1986}.
 
 Now if we smoothing based on the value of the fitted field \ie
 $\vectr{u}\equiv\vectr{z}$, then the additional elemental stiffness matrix

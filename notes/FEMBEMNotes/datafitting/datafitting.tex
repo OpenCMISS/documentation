@@ -654,7 +654,7 @@ minimises the error in the mesh. An example of fitting is shown in
 \subsubsection{Sobelov Smoothing}
 
 With an insufficient number of data points, fitting 'noisy' data or fitting
-data that has an uneven spread, a smoothness constraint \cite{young:1989}
+data that has an uneven spread, a smoothness constraint \citep{young:1989}
 can be introduced by adding a second term to the objective function:
 %\[\vvf{F}{u}=\sum_{d=1,D}\gamma_{d}\norm{\onevf{\vect{z}}{\vect{\xi}_{d}}-
 %\vect{z}_{d}}^{2}+\int_{\Omega} \onevf{g}{\vvvf{u}{\xi}}d\vect{\xi}\]
@@ -662,7 +662,7 @@ can be introduced by adding a second term to the objective function:
 The first term measures the error in the surface from the data and the second
 term measures deformation of the surface. To measure the deformation of the
 surface a $p^{th}$ order weighted Sobelov norm 
-\cite{terzopoulos:1986,tikhonov:1977} is used, defined by
+\citep{terzopoulos:1986,tikhonov:1977} is used, defined by
 \begin{equation}
 %  \onevf{g_{p,w}}{\vvvf{u}{\xi}}=\sum_{q=0}^{p}\sum_{i+j=q}w_{ij}
 %  \norm{\frac{\del^{q}\vect{u}}{\del^{i}\xi_{1}\del^{j}\xi_{2}}}^{2}
@@ -701,7 +701,7 @@ now becomes
 
 The parameter $\alpha$ controls the tension of the surface and the parameter
 $\beta$ controls the degree of surface curvature
-\cite{terzopoulos:1986}.
+\citep{terzopoulos:1986}.
 
 \subsection{Non-linear geometric fitting with Hermite elements}
 
@@ -775,7 +775,7 @@ non-linear optimisation problem
 where \vect{a} is a vector of lower bounds, \vect{b} a vector of upper bounds 
 %and \vvvf{c}{u} a vector of non-linear constraints. This type of optimisation 
 problem can be solved with readily available non-linear optimisation packages 
-such as NPSOL \cite{gill:1986}. 
+such as NPSOL \citep{gill:1986}. 
 
 In order to ensure that there is an approximately uniform spacing of $\xi$
 with arc-length two approaches can be used. The first approach is to use

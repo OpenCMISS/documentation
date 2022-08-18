@@ -1,13 +1,15 @@
-\usepackage{etex} %increase the size of fixed (register) arrays
+%\usepackage{etex} %increase the size of fixed (register) arrays
 \usepackage{epic}  %package for epic 
 \usepackage{eepic} %package for extended epic
 \def\tenrm{}
 \usepackage{rotating}
-\usepackage{harvard}
+%\usepackage{harvard}
+\usepackage[authoryear,round]{natbib}
 \usepackage{color}
 \usepackage{multirow}
 \usepackage{makeidx}  % makes index
 \usepackage{tabularx} % tables that autofill widths plus wrapping.
+\usepackage{tocbibind} % Add in lists, references etc. to the TOC.
 
 \gdef\SetFigFont#1#2#3{#3}
 \gdef\SetFigFontNFSS#1#2#3{#3}
@@ -24,6 +26,9 @@
 %\setlength{\parindent}{0mm}         % no paragraph indents
 \usepackage{vmargin}
 \setpapersize{A4}
-\setmargrb{15mm}{20mm}{15mm}{20mm}
+\setmargrb{12mm}{15mm}{12mm}{15mm}
 \addtolength{\headheight}{6pt}
+
+% Set the max number of columns in a matrix to 16
+\setcounter{MaxMatrixCols}{16}
 
