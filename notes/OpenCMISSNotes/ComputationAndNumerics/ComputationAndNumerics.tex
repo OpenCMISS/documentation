@@ -1,0 +1,578 @@
+\chapter{Computational and Numerical Considerations}
+\label{cha:ComputationAndNumerics}
+
+\section{Numerical Integration}
+
+\subsection{Gaussian Quadrature}
+
+\pstexfigure{ComputationAndNumerics/plots/legendrepolynomials.pstex}{Legendre polynomials.}
+{Legendre polynomials.}{fig:LegendrePolynomials}
+
+\section{Computer storage of information}
+
+The way a computer stores information in memory is best thought of in terms of
+a hierarchy.
+
+\subsection{Bits}
+
+The first level of this hierarchy is the basic unit of storage in a computer
+called a \emph{bit}. A bit is thought of as either being on (given the
+representation $1$) or off (given the representation $0$). This $1/0$
+representation is called \emph{binary} (or base-$2$) representation.
+
+\subsection{Bytes}
+
+A sequence of eight bits forms the next level of the hierarchy called
+a \emph{byte} and is given the symbol \Byte. A byte is a more
+convenient unit of storage than a bit and is used to indicate the
+total amount of storage in a computer. It is, however, normally
+prefixed by a multiplicative constant \eg \units{k} (for kilo- or
+times one thousand) and \units{M} (for mega- or times one
+million)\footnote{To be strictly correct as we are working in base-$2$
+the \units{k} prefix is interpreted as times $2^{10}$ \ie times $1024$
+and the $\units{M}$ prefix is interpreted as times $2^{20}$ \ie times
+$1048576$. For example $1$ \kB $= 1024$ $\units{B}$ and $1$ \MB
+$=1048576$ \Byte}.
+
+\subsection{Words}
+
+In the final level of the hierarchy a sequence of bytes is used to
+form a \emph{word}. The number of bytes used to form a word differs
+from computer to computer but the most common number is $4$ bytes (\ie
+$32$ bits) on older smaller computers and $8$ bytes (\ie $64$ bits) on
+modern larger computers.
+
+\section{Computer representation of types}
+
+Different types are represented in computers by different patterns of bits
+within a word. This pattern differs for integers and real numbers, and for
+characters and logical types.
+
+\subsection{Integers}
+\label{sec:CompAndNumericsIntegerRepresentation}
+
+\subsubsection{Binary representation}
+
+In order to represent integers we must come up with a unique pattern of bits
+for each different integer. The most straight forward way to do this is to
+store each integer as the bit pattern that is equivalent to its binary (or
+base-$2$) representation, that is the sequence of four bits
+$b_{3}b_{2}b_{1}b_{0}$ represents the integer $b_{3}\times 2^{3}+ b_{2}\times
+2^{2} + b_{1}\times 2^{1} + b_{0} \times 2^{0}$. For example the pattern 1010
+represents the number $1\times 2^{3}+ 0\times 2^{2} + 1\times 2^{1} + 0\times
+2^{0} = 10$. In general then $n$-bits represents the integer
+$\dsum_{i=0}^{n-1}b_{i}2^{i}$. It should be noted that as there are only
+$2^{n}$ different bit patterns possible with $n$ bits only integers in
+the range $\sqbrac{0,2^{n}-1}$ can be represented in this manner.
+
+\subsubsection{Signed magnitude}
+
+The above form of representation does not account for negative integers.  One
+way to do so, is to use one bit to represent the sign of the number. If this
+bit is $1$ then the integer is the negative of the number represented by the
+remaining bits. This is know as \emph{signed magnitude}.  For example consider
+if we use the leftmost bit to represent the sign then the pattern $1101$
+represents the number $-5$ and the pattern $0101$ represents the number $+5$.
+Thus $n$ bits can represent an integer in the range
+$\sqbrac{-(2^{n-1}-1),2^{n-1}-1}$.
+
+\subsubsection{Two's complement}
+
+One problem with signed magnitude representation is that there are two
+possible bit patterns for the number $0$ \ie with four bits $0000$ represents
+$+0$ and $1000$ represents $-0$. To overcome this, signed integers are
+normally represented in a format known as \emph{two's complement}. Positive
+integers are represented in the same manner as the signed magnitude
+representation. Negative numbers are represented by adding $1$ (ignoring any
+carry) to the \emph{one's-complement} of the positive number. The
+one's-complement is found by reversing each bit in the bit pattern \eg the
+one's complement of the pattern $0010$ is $1101$. As an example of two's
+complement consider representing $-4$ with $4$ bits. The pattern for the
+positive number $(+4)$ is $0100$ and the ones complement of this pattern is
+$1011$.  Adding $1$ to this number gives the two's complement representation
+of $-4$, that is $1100$.  Two's complement representation has a unique
+representation for $0$ \ie $+0 = 0000$ and $-0 = 1111 + 1 = 0000$. Now
+consider representing $8$ with $4$ bits \ie $-8 = 0111+1 = 1000$ which is the
+same pattern as $+8$! To avoid this $+8$ is not representable with $4$ bits.
+In general two's complement with $n$ bits can only represent integers in the
+range $\sqbrac{-2^{n-1},2^{n-1}-1}$ \eg with $n=32$ bits the range is
+$\sqbrac{-2147483648, 2147483647}$. Note that with this restriction negative
+numbers have a leading $1$ bit and positive numbers a leading $0$ bit.
+
+\subsection{Real numbers}
+
+\subsubsection{Floating point representation}
+\label{sec:CompAndNumericsFPRepresentation}
+
+Like integer representation there are several different representations for
+real numbers, but by far the most common is \emph{floating-point
+  representation}. In general floating point representations have a
+\emph{base} $\beta$ and a \emph{precision} $p$ and represent a general number
+as $\pm d.ddd \cdots d \times \beta^{e}$, where $e$ is the \emph{exponent} and
+$d.ddd \cdots d$ is called the \emph{significand}\footnote{This term has
+  generally replaced the older term \emph{mantissa}.} which has $p$ digits.
+More precisely, $\pm d_{0}.d_{1}d_{2} \cdots d_{p-1} \times \beta^{e}$
+represents the number $\pm\beta^{e}\dsum_{i=0}^{p-1}d_{i}\beta^{-i}$ with $0
+\leq d_{i} < \beta$. For example consider $\beta=2$, $e=2$, $p=4$ and a
+significand of $+1.101$. This represents the number $2^{2}\pbrac{1 \times
+  2^{0} + 1 \times 2^{-1} + 0 \times 2^{-2} + 1 \times 2^{-3}} = 4\pbrac{1 +
+  \dfrac{1}{2} + \dfrac{1}{8}} = 6.5$
+
+Two other parameters associated with floating point representations are the
+largest and smallest allowable exponents, $e_{\text{max}}$ and
+$e_{\text{min}}$. Since there are $\beta^{p}$ possible significands and
+$e_{\text{max}} - e_{\text{min}} +1$ possible exponents, a floating point
+number can be encoded in $\sqbrac{\log_{2}\pbrac{e_{max}-e_{min}+1}}+
+\sqbrac{\log_{2} \pbrac{\beta^{p}}}+1$ bits, where the final $+1$ is for the
+sign bit.
+
+\subsubsection{Normalisation}
+\label{sec:normalisation}
+
+Floating point representations are not necessarily unique. For example both
+$0.01\ttento{1}$ and $1.00\ttento{-1}$ represent $0.1$. If the leading digit
+is non-zero (\ie $d_{0}\neq0$) the representation is said to be
+\emph{normalised}. For example the number $1.00\ttento{-1}$ is normalised but
+the number $0.01\ttento{1}$ is not.
+
+Requiring that floating point representation be normalised makes the
+representation unique. Unfortunately this restriction makes it impossible to
+represent zero! One way to represent $0$ is with $1.0 \times
+\beta^{e_{\text{min}}-1}$ \ie we reserve the exponent $e_{\text{min}}-1$ for
+representing zero. Hence when an exponent is stored with $k$ bits there are
+only $2^{k}-1 $ values available for use as exponents, since one must be
+reserved to represent $0$.
+
+With normalised floating point numbers with $\beta=2$ the leading
+digit in the significand, $d_{0}$, must always be $1$. It is wasteful
+to store this digit as we always know what its value is, hence in
+implementations of floating point representations this digit is not
+stored as it is implicit. Thus the normalised floating point number
+$1.ddd \cdots d$ is stored just as $ddd \cdots d$ and the leading $1$
+is said to be \emph{hidden}. With a fixed number of bits to store the
+significand using a hidden bit effectively increases the precision by
+$1$ bit.
+
+\subsubsection{IEEE floating point representation}
+
+As an example of a floating point representation we will look at the widely
+used representation defined in IEEE (Institute for Electrical and Electronic
+Engineers) standard 754. This standard will be further covered in
+\secref{sec:IEEE754Standard}. 
+
+IEEE standard 754 \citep{ieee754:2019} defines five floating point
+representations, three binary formats, $\beta=2$, and two decimal
+formats, $\beta=10$. The binary formats include one using $32$ bits
+(single precision), one using $64$ bits (double precision), and one
+using $128$ bits (quadruple precision). For the single precision case
+the number is represented by a single sign bit $s$, an $8$-bit
+exponent, $e$, and a $23$-bit significand, $m$.  This is shown in
+\figref{fig:IEEE754SP}.
+
+\epstexfigure{ComputationAndNumerics/svgs/IEEE754SP.eps_tex}{Layout of the bit pattern
+  for an IEEE standard 754 binary single precision floating point number.}{Layout of the bit pattern
+  for an IEEE standard 754 binary single precision floating point number.}{fig:IEEE754SP}{0.75}
+
+The sign bit is either $0$ for positive numbers or $1$ for negative numbers.
+The exponent is stored in an integer \emph{excess-$127$} code. This means that
+the bit pattern stored in the exponent field is the binary representation of
+the actual exponent plus $127$. The standard also defines $e_{\text{min}}$ as
+$-126$ and $e_{\text{max}}$ as $+127$. The significand is normalised and has a
+hidden bit (hence $p=24$).  The IEEE standard 754 hence represents a real
+number, $N$, in single precision format as $N=(-1)^{s}2^{e-127}(1.m)$,
+provided $0 < e < 255$.  For example, the number $N=-1.5$ is represented as
+$1~01111111~10000000000000000000000$.
+
+For the double precision case the format is similar with $1$ sign bit,
+a $11$ bit exponent stored in excess-$1023$ code with an
+$e_{\text{min}}$ of $-1022$ and an $e_{\text{max}}$ of $+1023$, and a
+$52$ bit significand ($p=53$). For the quadruple precision case there
+is $1$ sign bit, a $14$ bit exponent stored in excess-$16383$ code
+with an $e_{\text{min}}$ of $-16382$ and an $e_{\text{max}}$ of
+$+16383$, and a $112$ bit significand ($p=113$).
+
+ADD IN DECIMAL FORMATS
+
+\subsection{Characters}
+
+Because there are a finite number of set characters we can represent each
+character by assigning a unique \emph{code} to it.
+
+\subsubsection{ASCII}
+
+The most common code in use today is the ``ASCII'' (American Standard
+Code for Information Interchange) code.  It uses $7$ bits (although in
+practice $8$ bits are used so that each character takes up one byte)
+giving $128$ different bit patterns to encode the characters A--Z,
+a--z, 0--9, various punctuation characters such as !, ``, \#, \$ \etc
+and some control characters. The code works like this. Each different
+bit pattern is interpreted as an integer (base-$2$) and each character
+is assigned to an unique integer \eg $65$ corresponds to ``A'', $97$
+corresponds to ``a'', $48$ to ``0'' (zero) and $32$ to ``\,\,''
+(space). Numbers below $32$ correspond to control (non-printing)
+characters such as backspace.
+
+This one-to-one mapping between characters and numbers is known as a
+\emph{collating sequence}. A different mapping gives a different collating
+sequence. With a collating sequence it is hence possible to ask not only if
+two characters are equal (correspond to the same number) but also if a
+character is greater than or less than another character (depending on whether
+the corresponding numbers are greater than or less than each other).
+
+\subsubsection{Unicode}
+
+There are other collating sequence codes in use today, for example
+``Unicode''. Unicode is an international standard designed to allow
+characters from different languages \eg Greek characters or Russian
+Cyrillic characters. Because of the vast number of characters found in
+different languages Unicode uses two bytes or $16$ bits for each
+character.
+
+\subsection{Logicals}
+
+Logical types have two possible values, \emph{true} or \emph{false}. Because
+there are only two possible values it is possible to uniquely identify each
+value with a single bit. It is, however, inefficient for computers to deal in
+single bits (they like dealing with bigger quantities such as bytes and words)
+and hence logicals are usually stored in one word size units like integers.
+The exact size of logicals and the bit patterns given to true and false are
+different on different types of computer. On most computers logicals are
+stored as an integer with value $0$ used to represent false and anything else
+(\eg $1$ or $-1$) used to represent true.
+
+\section{Errors in floating point numbers}
+
+\subsection{Representation error}
+
+As shown in \secref{sec:CompAndNumericsIntegerRepresentation} with $n$-bits we can form
+$2^{n}$ distinct bit pattern's which we can use to represent (for two's
+complement format) every integer in the range $\sqbrac{-2^{n-1},2^{n-1}-1}$.
+With real numbers, however, for a given range there is an infinite number of
+real numbers that fall within the range. Hence to represent these numbers we
+need an infinite number of bits or, in other words, given a finite number of
+bits in the precision of a floating point number we can only represent a
+finite number of the infinitely many real numbers. The result of this is that
+not every real number can be exactly represented as a floating point number.
+For example consider representing the real number $0.1$ in a single precision
+IEEE floating point number. One possible bit pattern is
+$0~01111011~10011001100110011001101$ which corresponds to an exponent of
+$123-127=-4$ and a significand of $1+\dfrac{1}{2} + \dfrac{1}{16} +
+\dfrac{1}{32} + \dfrac{1}{256} + \dfrac{1}{512} + \dfrac{1}{4096} +
+\dfrac{1}{8192} + \dfrac{1}{65536} + \dfrac{1}{131072} + \dfrac{1}{1048576} +
+\dfrac{1}{2097152} + \dfrac{1}{8388608}$ which equals
+$\dfrac{13421773}{8388608}$ hence the number this bit pattern represents is
+$2^{-4}\dfrac{13421773}{8388608}$ or $\dfrac{13421773}{134217728}=0.100000001$
+which is slightly above $0.1$. To try and correct for the extra $0.000000001$
+we will remove the last bit from the significand to obtain a bit pattern
+of $0~01111011~10011001100110011001100$. This bit pattern represents the
+number $2^{-4}\dfrac{13421772}{8388608}$ or
+$\dfrac{13421772}{134217728}=0.099999994$ which is slightly below $0.1$.
+Increasing the precision does not help, in fact in base-$2$ $0.1$ can not be
+represented exactly with any number of significand bits. This error in
+representing some floating point numbers is known as \emph{representation
+  error}.
+
+\subsection{Rounding errors}
+
+This is an error associated with operations involving floating point
+numbers.  Consider the case of multiplying two floating point numbers
+each containing $n$ bits in the significand. The resulting product, if
+computed exactly, would have $2n$ bits in the significand but is
+stored in a floating point representation that only contains $n$ bits,
+that is the trailing $n$ bits are rounded out. For example consider
+the case of multiplying $\dfrac{3}{4}$ by $\dfrac{3}{4}$ with
+$\beta=2$ and $p=2$ (see
+\secref{sec:CompAndNumericsFPRepresentation}). The normalised
+significand for $\dfrac{3}{4}$ would be $1.10$ (with exponent $-1$)
+and the exact normalised result for the product is $1.001$ (with
+exponent $-1$). The problem now is that the resulting significand now
+needs $p=3$ to store the result. If we enforce $p=2$ we must round to
+get either $1.00$ or $1.01$ which corresponds to either $0.5$ or
+$0.625$ (the exact result is $0.5625$). The error between the stored
+result and the exact result is known as \emph{rounding error}.
+
+In general every floating point operation will cause some rounding error. This
+can cause a problem if the error is allow to \emph{accumulate}.  Consider the
+problem of finding the dot product of two vectors. This could be achieved by
+the Fortran 90 function
+
+\footnotesize
+\begin{verbatim}
+FUNCTION Dot(n,u,v)
+
+  ! This subroutine evaluates the dot product of two n-vectors
+  ! u and v in single precision yielding a scalar result.
+
+  USE Constants
+
+  IMPLICIT NONE
+
+  REAL(SP) :: Dot
+
+  INTEGER(LINT), INTENT(IN) :: n
+  REAL(SP), INTENT(IN) :: u(n),v(n)
+
+  INTEGER(LINT) :: i
+  REAL(SP) :: sum
+
+  sum=0.0_SP
+  DO i=1,n
+    sum=sum+u(i)*v(i)
+  ENDDO !sum
+  Dot=sum
+
+  RETURN
+END FUNCTION Dot
+\end{verbatim}
+\normalsize
+
+The main problem is that the inner product loop contains a multiplication
+which will introduce rounding error which is then summed up. Thus the rounding
+error will be accumulated and the variable \texttt{sum} could be greatly in
+error.  One way to avoid some of this error is to store the results of the
+multiplication to a greater precision (that is a greater number of bits in the
+significand). Our dot product function now becomes
+
+\footnotesize
+\begin{verbatim}
+FUNCTION Dot(n,u,v)
+
+  ! This subroutine evaluates the dot product of two n-vectors
+  ! u and v in double precision yielding a scalar result.
+
+  USE Constants
+
+  IMPLICIT NONE
+
+  REAL(SP) :: Dot
+
+  INTEGER(LINT), INTENT(IN) :: n
+  REAL(SP), INTENT(IN) :: u(n),v(n)
+
+  INTEGER(LINT) :: i
+  REAL(DP) :: sum
+
+  sum=0.0_DP
+  DO i=1,n
+    sum=sum+REAL(u(i),DP)*REAL(v(i),DP)
+  ENDDO
+  Dot=REAL(sum,SP)
+
+  RETURN
+END FUNCTION Dot
+\end{verbatim}
+\normalsize
+
+Note that the \texttt{sum} variable is set to zero with \texttt{0.0\_DP}, the
+\texttt{\_DP} suffix (instead of \texttt{\_SP}) indicating that this constant
+has a kind of \texttt{DP}.
+
+\section{Definition of errors}
+
+Since representation and rounding error are inherent in floating point
+computation it is important to have a way of measuring this error. There are
+two main ways of measuring this error, ulps and relative error.
+
+\subsection{Ulps}
+
+Consider the floating point format with $\beta=10$ and $p=3$. If the result of
+a floating point computation is $3.12\ttento{-2}$ and the answer when computed
+to infinite precision is $0.0314$, it is clear that this is in error by $2$
+units in the last place. Similarly, if the real number $0.0314159$ is
+represented as $3.14\ttento{-2}$ then it is in error by $0.159$ units in the
+last place. In general, if the floating point number $d.ddd \cdots d \times
+\beta^{e}$ is used to represent $z$, it is in error by $\abs{d.ddd \cdots d -
+  \pbrac{\dfrac{z}{\beta^{e}}}}\beta^{p-1}$ units in the last place (the
+shorthand \emph{ulp} will be used for ``units in the last place''). Hence
+even if the result of a floating point calculation is the floating point
+number nearest to the correct result, it still might be in error by as much as
+$\dfrac{1}{2}$ ulp.
+
+\subsection{Relative error}
+
+Another way to measure the difference between a floating point number and the
+real number it is approximating is \emph{relative error}, which is the
+difference between the two numbers divided by the real number. For example,
+the relative error committed when approximating $3.14159$ by $3.14\ttento{0}$
+is $\dfrac{0.00159}{3.14159} \approx 0.0005$.
+
+\subsection{Machine epsilon}
+
+To compute the relative error that corresponds to $\dfrac{1}{2}$ ulp, we
+observe that when a real number is approximated by the closest possible
+floating point number $d.ddd \cdots d \times \beta^{e}$, the absolute error
+can be as large as $0.000 \cdots 0 \beta^{'}\times\beta^{e}$ where $\beta^{'}$
+is the digit $\dfrac{\beta}{2}$. This error is
+$\pbrac{\dfrac{\beta}{2}\beta^{-p}} \times \beta^{e}$. Since all numbers of
+the form $d.ddd \cdots d \times\beta^{e}$ have this same absolute error but
+have actual values in the range between $\beta^{e}$ and
+$\beta\times\beta^{e}$, the relative error ranges between
+$\pbrac{\dfrac{\beta}{2}\beta^{-p}}\times\dfrac{\beta^{e}}{\beta^{e}}$ and
+$\pbrac{\dfrac{\beta}{2}\beta^{-p}}\times\dfrac{\beta^{e}}{\beta^{e+1}}$.
+That is $\dfrac{1}{2}\beta^{-p} \leq \dfrac{1}{2} \text{ulp} \leq
+\dfrac{\beta}{2}\beta^{-p}$. In particular, the relative error corresponding
+to $\dfrac{1}{2}$ ulp can vary by a factor of $\beta$. This factor is called
+the \emph{wobble}. Setting $\epsilon=\dfrac{\beta}{2}\beta^{-p}$ (the largest
+of the bounds above), we can say that when a real number is rounded to the
+closest floating point number, the relative error is always bounded by
+$\epsilon$, which is referred to as the \emph{machine epsilon}. Since
+$\epsilon$ can overestimate the effect of rounding to the nearest floating
+point number by the wobble factor of $\beta$, error estimates of formulas will
+be tighter on machines with a small $\beta$.
+
+\section{Cancellation in subtraction}
+
+\subsection{Errors in subtraction}
+
+When subtracting two floating point errors that are of roughly the same same
+size large errors can result. Consider $x-y$ with $x=10.1$, $y=9.93$,
+$\beta=10$, $p=3$. Here $x$ will be represented as $1.01\ttento{1}$. Now $y$,
+the smaller number will have to be stored so that it has the same exponent as
+$x$ so that subtraction can take place, that is $y$ is stored as
+$0.99\ttento{1}$. The result of the floating point computation is hence
+$x-y=0.02\ttento{1}$ whereas the correct answer is $0.17$ (\ie all the digits
+are wrong!).
+
+Now suppose that one extra \emph{guard} digit is added to the
+significand. That is the numbers are truncated to $p+1$ digits for the
+computation and the result then stored in $p$ digits the above example
+becomes: $x=1.010\ttento{1}$ and $y=0.993\ttento{1}$ hence
+$x-y=0.017\ttento{1}$ which is the same as the exact result. In fact if $x$
+and $y$ are floating point numbers in a format with $\beta$ and $p$ and if
+subtraction is done with $p+1$ digits (\ie one guard digit), then the
+relative rounding error in the result is less than $2\epsilon$.
+
+\subsection{Benign and catastrophic cancellation}
+
+When subtracting nearby quantities, the most significant bits match and
+cancel each other. There are two forms of this cancellation: benign and
+catastrophic cancellation. 
+
+\emph{Benign cancellation} occurs when subtracting exactly known quantities.
+If $x$ and $y$ have no rounding error then if the subtraction is done with a
+guard digit, the difference $x-y$ has a very small relative error (less than
+$2\epsilon$).
+
+\emph{Catastrophic cancellation} occurs when the operands are subject to
+rounding errors. For example, in the quadratic formula the expression $b^{2} -
+4ac$ occurs. The quantities $b^{2}$ and $4ac$ are subject to rounding errors
+since they are the results of floating point multiplications. Suppose they are
+rounded to the nearest floating point number and so are accurate to within
+$\dfrac{1}{2}$ ulp. When they are subtracted, cancellation can cause many of
+the accurate digits to disappear, leaving behind mainly digits contaminated by
+rounding error. Hence the difference might have an error of many ulps.
+
+A formula that exhibits catastrophic cancellation can sometimes be rearranged
+to eliminate the problem. Consider the quadratic formula
+\begin{equation}
+  \begin{split}
+    x_{1}&=\dfrac{-b+\sqrt{b^{2}-4ac}}{2a} \\
+    x_{2}&=\dfrac{-b-\sqrt{b^{2}-4ac}}{2a}
+  \end{split}
+  \label{eqn:quadratic}
+\end{equation}
+When $b^{2}\gg ac$, then $b^{2}-4ac$ does not involve a cancellation and
+$\sqrt{b^{2}-4ac}\approx\abs{b}$. The other addition (subtraction) in one of
+the formulas does, however, involve a catastrophic cancellation \eg
+$x_{1}\approx\dfrac{-b+\abs{b}}{2a}$. To avoid this, multiply the numerator
+and denominator of $x_{1}$ by $-b-\sqrt{b^{2}-4ac}$ (and similarly $x_{2}$) to
+obtain
+\begin{equation}
+  \begin{split}
+    x_{1}&=\dfrac{2c}{-b-\sqrt{b^{2}-4ac}} \\
+    x_{2}&=\dfrac{2c}{-b+\sqrt{b^{2}-4ac}} \\
+  \end{split}
+  \label{eqn:newquadratic}
+\end{equation}
+If $b^{2}\gg ac$ and $b>0$, then computing $x_{1}$ using \bref{eqn:quadratic}
+will involve a cancellation. Therefore use \bref{eqn:newquadratic} for
+computing $x_{1}$ and \bref{eqn:quadratic} for $x_{2}$. On the other hand if
+$b<0$, use \bref{eqn:quadratic} for $x_{1}$ and \bref{eqn:newquadratic} for
+$x_{2}$.
+
+\section{Comments on the IEEE standard for floating point numbers}
+\label{sec:IEEE754Standard}
+
+\subsection{Exact rounding}
+
+The IEEE standard requires that the result of addition, subtraction,
+multiplication and division be exactly rounded. That is, the result must be
+computed exactly then rounded to the nearest floating point number. The reason
+for this is that when a program is moved between two machines and both
+machines support IEEE arithmetic, if any intermediate results differ, it must
+be a consequence of software and not differences in arithmetic.
+
+\subsection{Special numbers}
+
+As mentioned in \secref{sec:normalisation} normalising a floating point number
+means it is not possible to store zero without the need for a special exponent
+value. Thus when this special exponent value is encountered the number is
+treated as zero regardless of the significand. The IEEE standard extends this
+concept further by allowing for NaN's, Infinities, denormalised numbers and
+signed zeros. This is summarised in \tabref{tab:ieeespecialvalues}.
+
+\begin{table}[htpb] \centering
+  \begin{tabular}{|c|c|l|} \hline
+    \emph{Exponent, E} & \emph{Significand, M} & \emph{Represents} \\
+    \hline\hline
+    $E=e_{\text{min}}-1$ & $M=0$ & $\pm 0$ (signed zero) \\
+    $E=e_{\text{min}}-1$ & $M\neq 0$ & $0.M\times 2^{e_{\text{min}}}$ 
+    (denormalised) \\
+    $e_{\text{min}} \leq E \leq e_{\text{max}}$ & $M$ & $1.M \times 2^{E-k}$ 
+    (normal) \\
+    $E=e_{\text{max}}+1$ & $M=0$ & $\pm \infty$ (infinities) \\
+    $E=e_{\text{max}}+1$ & $M\neq 0$ & NaN (Not a Number) \\ \hline
+  \end{tabular}
+  \caption{IEEE 754 special values}
+  \label{tab:ieeespecialvalues}
+\end{table}
+
+\subsubsection{Signed zeros}
+
+Zero is represented by the exponent $e_{\text{min}}-1$ and a zero significand.
+Since the sign bit can take on two different values, there are two zeros, $+0$
+and $-0$. The IEEE standard defines comparison so that $+0=-0$ rather than $-0
+< +0$. Signed zeros are implemented so that certain mathematical relationships
+hold. For example $\dfrac{1}{(1/x)}=x$ at $x=\pm \infty$ and
+$\sqrt{\dfrac{1}{z}} = \dfrac{1}{\sqrt{z}}$ for complex $z<0$.
+
+\subsubsection{Denormalised numbers}
+
+Consider normalised floating point numbers with $\beta=10$, $p=3$ and
+$e_{\text{min}}=-98$. The numbers $x=6.87\ttento{-97}$ and
+$y=6.81\ttento{-97}$ appear to be perfectly ordinary floating point numbers,
+which are more that a factor of $10$ larger than the smallest floating point
+number $1.00\ttento{-98}$. However if we enforce normalisation when we
+evaluate $x-y$ we get $0$ even though $x\neq y$. The reason is that
+$x-y=0.06\ttento{-97}=6.0\ttento{-99}$ which is too small to be represented as
+a normalised number and so must be flushed to zero. To avoid problems like
+this the IEEE standard allows for \emph{denormalised} numbers in special
+cases. That is when the number is too small to be represented (\ie the
+exponent is less than $e_{\text{min}}$) normalisation is not enforced and the
+hidden bit is now implied to be $0$. This special case is represented by an
+exponent of $e_{\text{min}}-1$ and a non-zero significand.
+
+\subsubsection{NaN's}
+
+Traditionally, the computation of $\dfrac{0}{0}$ or $\sqrt{-1}$ has been
+treated as an error that causes the computation to halt. The IEEE 754 standard
+avoids halting the computation by defining the results of these computations as
+a NaN or Not a Number.
+
+TALK ABOUT QUIET AND SIGNALING NANS
+
+\subsubsection{Infinities}
+
+Just as NaN's provide a way to continue a computation when expressions like
+$\dfrac{0}{0}$ or $\sqrt{-1}$ are encountered, infinities provide a way to
+continue when an overflow occurs. This is much safer than simply returning to
+largest representable number. For example consider computing
+$\sqrt{x^{2}+y^{2}}$, when $\beta=10$, $p=3$ and $e_{\text{max}}=98$. If
+$x=3\ttento{70}$ and $y=4\ttento{70}$, then $x^{2}$ will overflow and be
+replaced by $9.99\ttento{98}$. Similarly $y^{2}$ and $x^{2}+y^{2}$ will
+overflow and be replaced by $9.99\ttento{98}$. The final result will then be
+$\sqrt{9.99\ttento{98}}=3.16\ttento{49}$, which is drastically wrong when
+compared to the exact answer of $5\ttento{70}$. In IEEE arithmetic, the result
+of $x^{2}$ is $\infty$ as is $y^{2}, x^{2}+y^{2}$ and $\sqrt{x^{2}+y^{2}}$. So
+the final result is $\infty$, which is safer than returning an ordinary
+floating point number that is nowhere near the correct answer.

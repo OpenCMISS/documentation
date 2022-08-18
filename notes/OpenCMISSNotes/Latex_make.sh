@@ -74,9 +74,11 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
 "AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
 "PortHamiltonian/PortHamiltonian.tex "\
+"ComputationAndNumerics/ComputationAndNumerics.tex "\
 "DevelopersDocument/DevelopersDoc.tex "\
 "Appendices/Appendices.tex "\
 "Appendices/CoordinateSystems.tex "\
+"Appendices/TensorComponents.tex "\
 "References/References.tex "\
 "Index/Index.tex"
 
@@ -96,9 +98,11 @@ MY_SVG_SRC="BasisFunctions/svgs/*.svg "\
 "FluidMechanics/svgs/*.svg "\
 "Fitting/svgs/*.svg "\
 "PortHamiltonian/svgs/*.svg "\
+"ComputationAndNumerics/svgs/*.svg "\
 "DevelopersDocument/svgs/*.svg "
 MY_PLOT_SRC="BasisFunctions/plots/*.gnu "\
-"BasisFunctions/plots/*.gnu8"
+"BasisFunctions/plots/*.gnu8 "\
+"ComputationAndNumerics/plots/*.gnu"
 MY_GNUPLOT_SRC="BasisFunctions/gnuplots/*.gnuplot "
 
 #

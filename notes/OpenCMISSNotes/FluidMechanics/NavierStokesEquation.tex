@@ -234,7 +234,7 @@ condition. Several methods have been devised to define a pressure function
 that is consistent with the velocity space using primitive variables. These
 include mixed element methods, penalty methods, generalized petrov-galerkin
 methods using pressure poisson correction, operator splitting, and
-semi-implicit pressure correction \cite{chung:2010}.
+semi-implicit pressure correction \citep{chung:2010}.
 
 \subsection{Non-dimensional form}
 \label{subsec:NonDimensionalNavierStokes}
@@ -533,7 +533,7 @@ conditions at the boundary $\Gamma$ \ie
 
 % Boundary conditions
 For more extensive discussion of this procedure, along with other weak forms
-of the PDEs, we refer to \cite{gresho:2000}. From this weak form, we see
+of the PDEs, we refer to \citet{gresho:2000}. From this weak form, we see
 natural (Neumann) boundary conditions arising as a direct result of the
 integration.
 
@@ -1045,7 +1045,7 @@ more details.
 For the Navier-Stokes equations (and most nonlinear problems), the use of a
 Petrov-Galerkin formulation becomes more difficult than for linear cases like
 advection-diffusion, as consistent weighting can cause instabilities when used
-with additional terms like body forces \cite{heinrich:1999}. These issues can
+with additional terms like body forces \citep{heinrich:1999}. These issues can
 be overcome with more complex Petrov-Galerkin formulations, as those derived
 by Hughes and colleagues in the 1980s. A useful alternative route is to apply
 SUPG weights to the convective operator in elements as a function of each

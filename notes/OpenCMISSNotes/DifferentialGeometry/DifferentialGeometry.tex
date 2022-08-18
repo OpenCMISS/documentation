@@ -13,42 +13,63 @@ topology include
 \begin{enumerate}
 \item Discrete (OD) topology, $\dntopology{}$.
 \item Real topology, $\rntopology{n}$.
+\item Complex topology, $\cntopology{n}$.
 \item Spherical topology, $\sntopology{n}$.
 \end{enumerate}
 
 \section{Manifold}
 
-A manifold $\manifold{M}$ is a topological space (\ie a set of points with a specified
-topology) of a fixed dimension $n$ in which every point is homeomorphic to
-$\rntopology{n}$ \ie they admit a coordinate system that is locally
-Euclidean. For \FieldML purposes we need to relax this last restriction because
-we wish to allow branching structures, but we will still refer to this as a
-manifold – the neighbourhoods of points at the branch do not admit a
-coordinate system that is locally Euclidean.
+A manifold $\manifold{M}$ is a topological space (\ie a set of points
+with a specified topology) of a fixed dimension $n$ in which every
+point is homeomorphic to $\rntopology{n}$ \ie they admit a coordinate
+system that is locally Euclidean. For our purposes we need to relax
+this last restriction because we wish to allow branching structures,
+but we will still refer to this as a manifold – the neighbourhoods of
+points at the branch do not admit a coordinate system that is locally
+Euclidean.
 
 \section{Vectors and Covectors}
 
-To motivate this section consider standing on a hill. Now, consider two
-vectors that can be applied. If we move around the hill at constant height we
-can talk about our velocity vector around the hill. We can also talk about
-moving down the slope of the hill. The gradient vector would give the steepest
-direction down the hill. If both these vectors had a unit magnitude in what
-ever units of measurement we are using we might consider these vectors to be
-similar (apart from the obvious difference in direction). Now consider a
-change of units \eg from $\m$ to $\cm$. If our velocity was prevoiusly
-$\nunit{1}{\mps}$ then it would be now $\nunit{100}{\cmps}$. However, our
-gradient vector that was previously $\nunit{1}{\pmetre}$ would become
-$\nunit{0.01}{\pcm}$. If these two ``vectors'' are really so similar why do
-the transform differently under a change of units/coordinates? The reason is
-that these two ``vectors'' are not actually that similar at all. Indeed, one
-of them is not a vector at all but rather it is a \emph{covector}.
+To motivate this section consider standing on a hill as show in
+\figref{fig:hillvectors}. Now, consider two vectors that can be
+defined. If we move around the hill at constant altitude we can talk
+about our tangential velocity vector around the hill. We can also talk
+about moving down the slope of the hill. The gradient vector would
+give the steepest direction down the hill.
+
+\epstexfigure{DifferentialGeometry/svgs/hillvectors.eps_tex}{Differential
+  hill vectors.}{Imagine a person standing on a hill. Two vectors
+  could be considered in this situation. The first vector would be
+  found by moving around the hill at a constant altitude - this would
+  be the tangential velocity vector. The second vector would be
+  gradient vector which corresponds to moving down the hill in the
+  steepest direction.}{fig:hillvectors}{0.5}
+
+If both these vectors had a unit magnitude in what ever units of
+measurement we are using we might consider these vectors to be similar
+(apart from the obvious difference in direction). Now consider a
+change of units \eg from $\m$ to $\cm$. If our tangential velocity was
+prevoiusly $\nunit{1}{\mps}$ then it would be now
+$\nunit{100}{\cmps}$. However, our gradient vector that was previously
+$\nunit{1}{\pmetre}$ would become $\nunit{0.01}{\pcm}$. If these two
+``vectors'' are really so similar why do the transform differently
+under a change of units/coordinates?  The reason is that,
+geometrically, these two ``vectors'' are not actually that similar at
+all. Indeed, one of them is not a vector at all but rather it is a
+\emph{covector}.
 
 \section{Differential geometry of manifolds}
 
 \subsection{De Rham Complex}
 
 
-\epstexfigure{DifferentialGeometry/svgs/diffformcomplex.eps_tex}{De Rham Complex.}{The de Rham complex gives the relationship between differential forms. $\hodgestarop$ is the Hodge star operator, $\inverse{\hodgestarop}$ is the inverse Hodge star operator, $\exteriorderivop$ is the external differential operator, and $\exteriorcoderivop$ is the exterior co-differential operator.}{fig:DeRhamComplex}{1.0}
+\epstexfigure{DifferentialGeometry/svgs/diffformcomplex.eps_tex}{De
+  Rham Complex.}{The de Rham complex gives the relationship between
+  differential forms. $\hodgestarop$ is the Hodge star operator,
+  $\inverse{\hodgestarop}$ is the inverse Hodge star operator,
+  $\exteriorderivop$ is the external differential operator, and
+  $\exteriorcoderivop$ is the exterior co-differential
+  operator.}{fig:DeRhamComplex}{1.0}
 
 \subsection{Connections}
 
@@ -837,7 +858,7 @@ $\tensortwo{B}=B^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}$, will result in
 where $\tensorfour{C}$ is a fourth order tensor.
 
 Other tensor products can be defined
-\cite{del_piero_properties_1979,curnier_conewise_1994,itskov_theory_2000,kintzel_fourth-order_2006}
+\citep{del_piero_properties_1979,curnier_conewise_1994,itskov_theory_2000,kintzel_fourth-order_2006}
 such as the \emph{upper tensor product} \ie
 \begin{equation}
   \begin{aligned}
@@ -882,12 +903,12 @@ but, in general, they do not obey the \emph{commutative rule}
 \end{equation}
 
 The lower tensor product $\lowertensorprodop$ is sometimes written $\boxtimes$
-\cite{del_piero_properties_1979,kintzel_fourth-order_2006,kintzel_fourth-order2_2006,steinmann:2015}
-or $\times$ \cite{itskov_theory_2000}, the upper tensor produce
+\citep{del_piero_properties_1979,kintzel_fourth-order_2006,kintzel_fourth-order2_2006,steinmann:2015}
+or $\times$ \citep{itskov_theory_2000}, the upper tensor produce
 $\uppertensorprodop$ is sometimes written $\times$
-\cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006} or $\boxdot$
-\cite{steinmann:2015}, and the symmetric tensor product $\symtensorprodop$ is
-sometimes written $\, \overline{\underline{\otimes}} \,$ \cite{federico:2012}.
+\citep{kintzel_fourth-order_2006,kintzel_fourth-order2_2006} or $\boxdot$
+\citep{steinmann:2015}, and the symmetric tensor product $\symtensorprodop$ is
+sometimes written $\, \overline{\underline{\otimes}} \,$ \citep{federico:2012}.
 
 \subsubsection{Tensor Contraction}
 \label{subsubsec:TensorContractionFourthOrder}
@@ -1011,7 +1032,7 @@ Note that the \emph{trace} of a fourth order tensor can be defined as
 \end{equation}
 where $\identitytensorfour$ is the fourth order identity tensor defined below.
 
-In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+In \citep{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
 $\upperdoubledotprodop$ is denoted $\circ\bullet$ and $\lowerdoubledotprodop$ is denoted $\bullet\circ$.
 
 \subsubsection{Identity Tensor}
@@ -1092,6 +1113,9 @@ and the flat fourth order identity tensors
   \end{aligned}
 \end{equation}
 
+The components of the fully symmetric and fully anti-symmetric identity tensor are thus: TODO??? REFERENCE APPENDIX
+
+
 The differences between the identity tensors can
 be observed when they are contracted with a second order tensor,
 $\tensortwo{A}$, \ie
@@ -1112,7 +1136,7 @@ and
   \lowerdoubledotprod{\loweridentitytensorfour}{\tensortwo{A}}&=\lowerdoubledotprod{\lowertensorprod{\identitytensortwo}{\identitytensortwo}}{\tensortwo{A}}=\transpose{\tensortwo{A}}\\
 \end{align}
 
-In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+In \citep{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
 $\identitytensorfour$ is denoted $\tensorfour{I}$, $\upperidentitytensorfour$
 is denoted $\tensorfour{I}^{L}$, and $\loweridentitytensorfour$ is denoted
 $\tensorfour{I}^{R}$.
@@ -1165,7 +1189,7 @@ then $\tensorfour{A}$ is said to have \emph{pair symmetry} or \emph{minor
 said to have \emph{full symmetry} \ie
 $\tensorfour{A}=\fulltranspose{\tensorfour{A}}$.
 
-In \cite{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
+In \citet{kintzel_fourth-order_2006,kintzel_fourth-order2_2006}
 $\fulltranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{t}$,
 $\leftrighttranspose{\tensorfour{A}}$ is denoted
 $\tensorfour{A}^{T}=\tensorfour{A}^{d}$, $\swaptranspose{\tensorfour{A}}$ is
@@ -1174,7 +1198,7 @@ $\tensorfour{A}^{dl}$, $\righttranspose{\tensorfour{A}}$ is denoted
 $\tensorfour{A}^{dr}$, $\xtranspose{\tensorfour{A}}$ is denoted
 $\tensorfour{A}^{L}$, $\innertranspose{\tensorfour{A}}$ is denoted
 $\tensorfour{A}^{ti}$, and $\outertranspose{\tensorfour{A}}$ is denoted
-$\tensorfour{A}^{to}$. In \cite{itskov_theory_2000}
+$\tensorfour{A}^{to}$. In \citet{itskov_theory_2000}
 $\leftrighttranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{T}$,
 $\innertranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{t}$, and
 $\xtranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{R}$.
@@ -1182,7 +1206,7 @@ $\xtranspose{\tensorfour{A}}$ is denoted $\tensorfour{A}^{R}$.
 \subsubsection{Tensor Properties}
 \label{subsubsec:TensorPropertiesFourthOrder}
 
-From \cite{kintzel_fourth-order_2006} we can obtain a number of tensor
+From \citet{kintzel_fourth-order_2006} we can obtain a number of tensor
 property relationships.
 
 Single contraction of a fourth order tensor with a second order tensor

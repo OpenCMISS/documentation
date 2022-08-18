@@ -36,7 +36,8 @@
 \usepackage{moreverb}
 \usepackage[subfolder,cleanup]{gnuplottex}
 \usepackage{xspace}
-\usepackage[driverfallback=dvips,pageanchor=true,breaklinks,colorlinks=true]{hyperref} %make links
+\usepackage[driverfallback=dvips,pageanchor=true,breaklinks,colorlinks=true,backref=page,hyperindex=true]{hyperref} %make links
+\usepackage[hyphenbreaks]{breakurl}
 %\usepackage{url}
 
 %
@@ -359,6 +360,8 @@
 \newcommand{\percent}{\units{\%}} % percent
 \newcommand{\Henrys}{\units{H}} % Henrys
 \newcommand{\uF}{\units{\mu F}} %micro-Farads
+\newcommand{\bit}{\units{b}} % bit
+\newcommand{\Byte}{\units{B}} % byte
 \newcommand{\kB}{\units{kB}} % kilobyte
 \newcommand{\MB}{\units{MB}} % megabyte
 \newcommand{\GB}{\units{GB}} % gigabyte
@@ -516,6 +519,32 @@
 \newcommand{\irrationalnums}{\ensuremath{ %
     \mathbb{I} %
   }} % Irrational numbers
+
+%
+% Operators
+% 
+
+% Tensor/matrix operators
+\DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
+\DeclareMathOperator{\Trop}{Tr} % Trace operator e.g., Tr A
+\DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
+\DeclareMathOperator{\symop}{sym} % symmetric operator e.g., sym A
+\DeclareMathOperator{\Symop}{Sym} % Symmetric operator e.g., Sym A
+\DeclareMathOperator{\skewop}{skw} % skew-symmetric operator e.g., skw A
+\DeclareMathOperator{\Skewop}{Skw} % Skew-symmetric operator e.g., Skw A
+\DeclareMathOperator{\devop}{dev} % deviatoric operator e.g., dev A
+\DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
+\DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
+\DeclareMathOperator{\Sphop}{Sph} % Spherical operator e.g., Sph A
+\DeclareMathOperator{\kerop}{ker} % kernal operator e.g., ker A
+\DeclareMathOperator{\imgop}{im} % image operator e.g., im A
+\DeclareMathOperator{\dimop}{dim} % dimension operator e.g., dim A
+\DeclareMathOperator{\rankop}{rank} % rank operator e.g., rank A
+\DeclareMathOperator{\spanop}{span} % span operator e.g., span A
+\DeclareMathOperator{\volop}{vol} % volume operator e.g., vol A
+
+%generic operators
+\DeclareMathOperator{\signop}{sign} % sign operator e.g., span A
 
 % 
 % Brackets
@@ -699,6 +728,12 @@
 \newcommand{\gradsqnondim}{\ensuremath{ %
     \nondimsup{\nabla}{2} %
 }} % gradient non dimensional squared 
+\newcommand{\hessop}{\ensuremath{ %
+    H %
+}} % Hessian op
+\newcommand{\hessopnondim}{\ensuremath{ %
+    \nondimsup{H} %
+}} % Hessian op non dimensional
 \newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
                                 % \functional{f}{a} => f[a]
 \newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
@@ -793,6 +828,9 @@
 \newcommand{\poissonbracket}[2]{\ensuremath{ %
     \bbrac{#1,#2} %
 }} % Poisson bracket e.g.,\poissonbracket{X}{Y} => {X,Y}
+\newcommand{\sign}[1]{\ensuremath{
+    \fnof{\signop}{#1} %
+}} % sign function
 \newcommand{\symover}[2]{\ensuremath{
     \stackrel{\scriptscriptstyle #1}{#2} %
 }} % over
@@ -917,29 +955,6 @@
 \newcommand{\sphericalharmonicfn}[4]{\ensuremath{%
     \fnof{Y_{{#1}{#2}}^{#3}}{#4} %
 }} % Spherical harmonic function e.g. \sphericalharmonicfn{a}{b}{c}{d} => Y_ab^c(d)
-
-%
-% Operators
-% 
-
-% Tensor/matrix operators
-\DeclareMathOperator{\trop}{tr} % trace operator e.g., tr A
-\DeclareMathOperator{\Trop}{Tr} % Trace operator e.g., Tr A
-\DeclareMathOperator{\adjop}{adj} % adjoint e.g., adj A
-\DeclareMathOperator{\symop}{sym} % symmetric operator e.g., sym A
-\DeclareMathOperator{\Symop}{Sym} % Symmetric operator e.g., Sym A
-\DeclareMathOperator{\skewop}{skw} % skew-symmetric operator e.g., skw A
-\DeclareMathOperator{\Skewop}{Skw} % Skew-symmetric operator e.g., Skw A
-\DeclareMathOperator{\devop}{dev} % deviatoric operator e.g., dev A
-\DeclareMathOperator{\Devop}{Dev} % deviatoric operator e.g., Dev A
-\DeclareMathOperator{\sphop}{sph} % spherical operator e.g., sph A
-\DeclareMathOperator{\Sphop}{Sph} % Spherical operator e.g., Sph A
-\DeclareMathOperator{\kerop}{ker} % kernal operator e.g., ker A
-\DeclareMathOperator{\imgop}{im} % image operator e.g., im A
-\DeclareMathOperator{\dimop}{dim} % dimension operator e.g., dim A
-\DeclareMathOperator{\rankop}{rank} % rank operator e.g., rank A
-\DeclareMathOperator{\spanop}{span} % span operator e.g., span A
-\DeclareMathOperator{\volop}{vol} % volume operator e.g., vol A
 
 %
 %  Fractions
@@ -1822,6 +1837,22 @@
 }} % generic fourth order antisymmetric tensor e.g., \genericantisymtensorfour{I} => I^
 
 %
+% Tensor notations
+%
+\newcommand{\Mandelsymbol}{\ensuremath{ %
+    M %
+}} % Mandel symbol
+\newcommand{\Mandel}[1]{\ensuremath{ %
+    {#1}^{\Mandelsymbol} %
+}} % Mandel notation e.g., \Mandel{A} => A^M
+\newcommand{\Voigtsymbol}{\ensuremath{ %
+    V %
+}} % Voigt symbol
+\newcommand{\Voigt}[1]{\ensuremath{ %
+    {#1}^{\Voigtsymbol} %
+}} % Voigt notation e.g., \Voigt{A} => A^V
+
+%
 % Vector Calculus
 %
 
@@ -1861,6 +1892,18 @@
   }{ %
     \ensuremath{\gradnondim_{#1} #2} % 
 }} % gradient non dimensional e.g. \gradientnondim{}{u} => \grad' u & \gradientnondim{x}{u} => \grad'_{x} u
+\newcommand{\hessian}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\fnof{\hessop}{#2}} %
+  }{ %
+    \ensuremath{fnof{\hessop_{#1}}{#2}} % 
+}} % Hessian e.g. \hessian{}{u} => H u & \hessian{x}{u} => H_{x} u
+\newcommand{\hessiannondim}[2]{ %
+  \ifthenelse{\equal{#1}{}}{ %
+    \ensuremath{\fnof{\hessopnondim}{#2}} %
+  }{ %
+    \ensuremath{\fnof{\hessopondim_{#1}}{#2}} % 
+}} % Hessian non dimensional e.g. \hessiannondim{}{u} => H' u & \hessiannondim{x}{u} => H'_{x} u
 \newcommand{\laplacian}[2]{ %
   \ifthenelse{\equal{#1}{}}{ %
     \ensuremath{\gradsq #2} %
@@ -1923,7 +1966,7 @@
 \newcommand{\norm}[1]{\lnorm{2}{#1}} % normalise i.e. l-2 norm
 \newcommand{\rank}[1]{\ensuremath{ %
     \rankop #1 %
-}} % rank operation e.g., \rank{A} => rank A
+}} % rank operation e.g., \rank{A} => rank A7
 \newcommand{\skewsym}[1]{\ensuremath{
     \skewop #1 % skew-symmetric operator i.e., \skewsym{A} = skw A
   }}
@@ -1969,6 +2012,78 @@
     \ensuremath{\Trop_{#1} #2} % 
   }
 } % Trace e.g., \Trace{G}{A} = Tr_G A where G is the optional metric for the trace
+
+%
+% Trigonometric functions
+%
+
+\DeclareMathOperator{\sech}{sech} % hyperbolic secant operator e.g., sech A
+\DeclareMathOperator{\csch}{csch} % hyperbolic cosecant operator e.g., csch A
+
+\newcommand{\cosine}[1]{\ensuremath{ %
+    \fnof{\cos}{#1} %
+}} %cosine e.g., \cosine{x} => cos(x)
+\newcommand{\cosinesq}[1]{\ensuremath{ %
+    \fnof{\cos^{2}}{#1} %
+}} %cosine squared e.g., \cosinesq{x} => cos^{2}(x)
+\newcommand{\sine}[1]{\ensuremath{ %
+    \fnof{\sin}{#1} %
+}} %sine e.g., \sine{x} => sin(x)
+\newcommand{\sinesq}[1]{\ensuremath{ %
+    \fnof{\sin^{2}}{#1} %
+}} %sine squared e.g., \sinesq{x} => sin^{2}(x)
+\newcommand{\tangent}[1]{\ensuremath{ %
+    \fnof{\tan}{#1} %
+}} %tangent e.g., \tangent{x} => tan(x)
+\newcommand{\tangentsq}[1]{\ensuremath{ %
+    \fnof{\tan^{2}}{#1} %
+}} %tangent squared e.g., \tangentsq{x} => tan^{2}(x)
+\newcommand{\arccosine}[1]{\ensuremath{ %
+    \fnof{\inverse{\cos}}{#1} %
+}} %inverse cosine e.g., \invcosine{x} => cos^{-1}(x)
+\newcommand{\arcsine}[1]{\ensuremath{ %
+    \fnof{\inverse{\sin}}{#1} %
+}} %inverse sine e.g., \invsine{x} => sin^{-1}(x)
+\newcommand{\arctangent}[1]{\ensuremath{ %
+    \fnof{\inverse{\tan}}{#1} %
+}} %inverse tangent e.g., \invtangent{x} => tan^{-1}(x)
+\newcommand{\secant}[1]{\ensuremath{ %
+    \fnof{\sec}{#1} %
+}} %secant e.g., \secant{x} => sec(x)
+\newcommand{\cosecant}[1]{\ensuremath{ %
+    \fnof{\csc}{#1} %
+}} %cosecant e.g., \cosecant{x} => csc(x)
+\newcommand{\cotangent}[1]{\ensuremath{ %
+    \fnof{\cot}{#1} %
+}} %cotangent e.g., \contangent{x} => cot(x)
+\newcommand{\hypecosine}[1]{\ensuremath{ %
+    \fnof{\cosh}{#1} %
+}} %hyperbolic cosine e.g., \hypecosine{x} => cosh(x)
+\newcommand{\hypesine}[1]{\ensuremath{ %
+    \fnof{\sinh}{#1} %
+}} %hyperbolic sine e.g., \hypesine{x} => sinh(x)
+\newcommand{\hypetangent}[1]{\ensuremath{ %
+    \fnof{\tanh}{#1} %
+}} %hyperbolic tangent e.g., \hypetangent{x} => tanh(x)
+\newcommand{\hypesecant}[1]{\ensuremath{ %
+    \fnof{\sech}{#1} %
+}} %hyperbolic secant e.g., \hypesecant{x} => sech(x)
+\newcommand{\hypecosecant}[1]{\ensuremath{ %
+    \fnof{\csch}{#1} %
+}} %hyperbolic cosecant e.g., \hypecosecant{x} => csch(x)
+\newcommand{\hypecotangent}[1]{\ensuremath{ %
+    \fnof{\coth}{#1} %
+}} %hyperbolic cotangent e.g., \hypecontangent{x} => coth(x)
+\newcommand{\archypecosine}[1]{\ensuremath{ %
+    \fnof{\inverse{\cosh}}{#1} %
+}} %inverse hyperbolic cosine e.g., \archypecosine{x} => cosh^{-1}(x)
+\newcommand{\archypesine}[1]{\ensuremath{ %
+    \fnof{\inverse{\sinh}}{#1} %
+}} %inverse hyperbolic sine e.g., \archypesine{x} => sinh^{-1}(x)
+\newcommand{\archypetangent}[1]{\ensuremath{ %
+    \fnof{\inverse{\tanh}}{#1} %
+}} %inverse hyperbolic tangent e.g., \archypetangent{x} => tanh^{-1}(x)
+
 
 %
 % Basis functions and interpolation

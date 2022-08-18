@@ -548,7 +548,7 @@ and
 \subsection{Elasticity Tensors}
 
 If $\fnof{\tensor{P}}{\vectr{X},\tensor{F}}$ is the first Piola-Kirchoff
-constituative function that depends on $\vectr{X}$ and the deformation
+constitutive function that depends on $\vectr{X}$ and the deformation
 gradient tensor $\tensor{F}$. The \emph{first elasticity tensor}\symbolat{$\tensorfour{A}$}{First elasticity
   tensor},
 $\tensorfour{A}$, is given by 
@@ -667,10 +667,10 @@ and
   \sigma^{ij}=2\delby{W}{g_{ij}}
 \end{equation}
 
-\subsection{Constituative Relationships}
+\subsection{Constitutive Relationships}
 
-The relationship between stress and strain is known as a \emph{consituative
-  relationship}. Materials for which the constituative relationship is just a
+The relationship between stress and strain is known as a \emph{constitutive
+  relationship}. Materials for which the constitutive relationship is just a
 function of the current state of deformation are known as \emph{elastic}.
 
 \subsubsection{Hyperelasticity}
@@ -729,13 +729,28 @@ or
   \tensor{S}=S^{AB}\tensorprod{\vectr{N}_{A}}{\vectr{N}_{B}}=\delby{\fnof{W}{\tensor{E}}}{\tensor{E}}=\delby{\fnof{W}{\tensor{E}}}{E_{AB}}\tensorprod{\vectr{N}_{A}}{\vectr{N}_{B}}
 \end{equation}
 
-\subsection{Incompressibility}
+\subsection{Compressible and Nearly-Incompressibile Materials}
+\label{subsec:FiniteElasticityCompressibleNearlyIncompressibleMat}
 
-Now it is often useful to consider the strain energy (or stress) in terms of a
-component that is purely volumetric (or spherical) and a component that is
-purely isochoric (or deviatoric). Following \citeasnoun{federico:2012} we start with
-a \emph{modified deformation gradient
-  tensor}\symbolat{$\bar{\tensortwo{F}}$}{modified deformation gradient tensor} \ie
+JUST AND IN A SPHERICAL PART TO THE STRAIN ENERGY FUNCTION
+
+LIST THE DIFFERENT TYPES OF COMPRESSIBLY/NEAR MODELS HEAR OR LATER?
+
+\subsection{Incompressibile Materials}
+\label{subsec:FiniteElasticityIncompressibleMat}
+
+A number of materials are incompressible \ie any deformation does not
+result in a change of volume. A common incompressible material is
+water and, due to the high proportion of water in their composition,
+biological materials.
+
+For incompressible materials it is often useful to consider the strain
+energy (or stress) in terms of a component that is purely volumetric
+(or spherical) and a component that is purely isochoric (or
+deviatoric). Following \citet{federico:2012} we start with a
+\emph{modified deformation gradient
+tensor}\symbolat{$\bar{\tensortwo{F}}$}{modified deformation gradient
+  tensor} \ie
 \begin{equation}
   \tensor{F}=J^{\frac{1}{3}}\bar{\tensor{F}} \quad\Rightarrow\quad \bar{\tensor{F}} =J^{-\frac{1}{3}}\tensor{F}
   \label{eqn:modifiedDeformationGradientTensor}
@@ -786,6 +801,7 @@ isochoric/deviatoric part and a volumetric/spherical part \ie
     &=\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensor{C}}}+\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensor{C}}}\\
     &=\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensor{C}},\fnof{J}{\tensor{C}}}
   \end{split}
+  \label{eqn:FiniteElasticityDecomposedStrainEnergy}
 \end{equation}
 where
 $\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}$
@@ -925,7 +941,7 @@ Substituting \eqnref{eqn:DelJacobianDelC} and \eqnref{eqn:DelCBarDelC} into
     &=\fnof{\tensor{S}_{\pullback{\Devop}{}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}
     +\fnof{\tensor{S}_{\pullback{\Sphop}{}}}{\fnof{J}{\tensortwo{C}}}
   \end{split}
-  \label{eqn:DecomposedSecondPKinC}
+  \label{eqn:FiniteElasticityDecomposedSecondPKinC}
 \end{equation}
 or
 \begin{equation}
@@ -936,7 +952,7 @@ or
     &=\fnof{\tensor{S}_{\pullback{\Devop}{}}}{\fnof{\bar{\tensortwo{E}}}{\tensortwo{E}}}
     +\fnof{\tensor{S}_{\pullback{\Sphop}{}}}{\fnof{J}{\tensortwo{E}}}
   \end{split}
-  \label{eqn:DecomposedSecondPKinE}
+  \label{eqn:FiniteElasticityDecomposedSecondPKinE}
 \end{equation}
 
 It should be noted that $\tensor{S}_{\pullback{\Devop}{}}$ and
@@ -946,7 +962,7 @@ of the second Piola-Kirchoff stress tensor in the reference configuration (\ie
 with respect to the metric $\tensor{G}$) but rather we require that when we
 push $\tensor{S}_{\pullback{\Devop}{}}$ and
 $\tensor{S}_{\pullback{\Sphop}{}}$ forward to give $\tensor{\sigma}_{\devop}$
-and $\tensor{\sigma}_{\sphop}$ that these tensors are deviartoric and
+and $\tensor{\sigma}_{\sphop}$ that these tensors are deviatoric and
 spherical respectively (\ie with respect to the metric $\tensor{g}$).
 
 We can now define for the current configuration (\ie with respect to the
@@ -970,6 +986,8 @@ $\spatialdeviatorictensorfour$, tensors as
 \end{align}
 where $\spatialidentitytensortwo$ is the spatial identity tensor \ie
 $\spatialidentitytensortwo=\sharptensor{\tensortwo{g}}\flattensor{\tensortwo{g}}$.
+
+NOTE: THE ORDER OF THE INDICES ABOVE ARE DIFFERENT TO THAT IN THE DIFFERENTIAL GEOMETRY SECTION???
 
 Note that these tensors act on a second order symmetric (contravariant) tensor
 in the current configuration, $\sharptensor{\tensortwo{q}}$, such that
@@ -1195,8 +1213,9 @@ Note that
   \tensorfour{i}^{\flat}_{*}&=-\delby{\tensortwo{c}}{\tensortwo{b}}=-\delby{\inverse{\tensortwo{b}}}{\tensortwo{b}} \\
 \end{align}
 
-We are now in a position to reconsider \eqnref{eqn:DecomposedSecondPKinC} or \eqnref{eqn:DecomposedSecondPKinE} \ie
-using
+We are now in a position to reconsider
+\eqnref{eqn:FiniteElasticityDecomposedSecondPKinC} or
+\eqnref{eqn:FiniteElasticityDecomposedSecondPKinE} \ie using
 $\doubledotprod{\bar{\tensortwo{S}}}{\tensorfour{M}^{*T}}=\doubledotprod{\pullback{\tensorfour{M}}{}}{\bar{\tensortwo{S}}}$
 we can write
 \begin{equation}
@@ -1204,7 +1223,7 @@ we can write
     \tensor{S}&=\doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{C}}}{\tensor{C}}}-2p\delby{J}{\tensor{C}}=
     \doubledotprod{\bar{\tensor{S}}}{\delby{\bar{\tensor{E}}}{\tensor{E}}}-p\delby{J}{\tensor{E}}\\
     &=
-    \doubledotprod{\bar{\tensor{S}}}{J^{-\frac{2}{3}}\pbrac{\tensorfour{I}-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
+    \doubledotprod{\bar{\tensor{S}}}{J^{-\frac{2}{3}}\pbrac{\materialsymidentitytensorfour-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
     &=J^{-\frac{2}{3}}\doubledotprod{\pullback{\tensorfour{M}}{}}{\bar{\tensortwo{S}}}-pJ\tensor{B}\\
     &=\doubledotprod{\pullback{\tensorfour{M}}{}}{\tensortwo{S}}+\doubledotprod{\pullback{\tensorfour{K}}{}}{\tensortwo{S}}\\
     &=\tensor{S}_{\pullback{\Devop}{}}+\tensor{S}_{\pullback{\Sphop}{}}
@@ -1247,7 +1266,7 @@ being the \emph{Cauchy psuedo stress
   tensor}.
 
 We can also use the constitutive law to obtain the elasticity
-tensor. Following \cite{holzapfel:2000} we obtain
+tensor. Following \citet{holzapfel:2000} we obtain
 \begin{equation}
   \begin{split}
     \fnof{\tensorfour{C}}{\tensor{C}}&=2\delby{\fnof{\tensor{S}}{\tensor{C}}}{\tensor{C}}\\
@@ -1473,6 +1492,15 @@ The three invariants are given by
     &=C_{11}C_{22}C_{33}+C_{12}C_{23}C_{31}+C_{13}C_{21}C_{32}\\
     &\quad-C_{13}C_{22}C_{31}-C_{12}C_{21}C_{33}-C_{11}C_{23}C_{32}
   \end{split}
+\end{equation}
+
+Note that we also have \citep{adkins:1954},
+\begin{equation}
+ \begin{split}
+    \fnof{I_{1}}{\tensor{C}} &= G^{ij}g_{ij} \\
+    \fnof{I_{2}}{\tensor{C}} &= I_{3}G_{ij}g^{ij}\\
+    \fnof{I_{3}}{\tensor{C}} &= \frac{\abs{g_{ij}}}{\abs{G_{ij}}}
+  \end{split}  
 \end{equation}
 
 Now we have
@@ -2742,38 +2770,68 @@ For incompressible problems
   \matr{K}^{HR}_{pp}=K^{\pbrac{N+1}\pbrac{N+1}\alpha\beta}_{mn}=\matr{0}
 \end{equation}
 
+\section{Lower Dimensional Elasticity}
+\label{sec:FiniteMechLowerDimensions}
+
 \section{Constitutive Laws}
+\label{sec:FiniteMechConstitutiveLaws}
 
 \subsection{St Venant-Kirchoff}
 
 The relationships between the elastic constants are given in \Tabref{tab:RelationshipBetweenElasticConstants}.
 
-TODO: Eliminate either $\mu$ or $G$ (they are the same) to make the table
-fit. Then fill in.
+TODO: Fill in table more.
 
 \begin{table}[htb] \centering
-  \begin{tabular}{|c|c|c|c|c|c|c|} \hline
-    & $\lambda$ & $\mu$ & $E$ & $\nu$ & $G$ & $K$ \\ \hline \hline
+  \begin{tabular}{|c|c|c|c|c|c|} \hline
+    & $\lambda$ & $\mu/G$ & $E$ & $\nu$ & $K$ \\ \hline \hline
     $\pbrac{\lambda,\mu}$ & - & - &
-    $\dfrac{\mu\pbrac{3\lambda+2\mu}}{\lambda+\mu}$ & $\dfrac{\lambda}{2\pbrac{\lambda+\mu}}$ & $\mu$ & $\dfrac{3\lambda+2\mu}{3}$ \\ \hline
+    $\dfrac{\mu\pbrac{3\lambda+2\mu}}{\lambda+\mu}$ & $\dfrac{\lambda}{2\pbrac{\lambda+\mu}}$ & $\dfrac{3\lambda+2\mu}{3}$ \\ \hline
     $\pbrac{E,\nu}$ & $\dfrac{\nu E}{\pbrac{1+\nu}\pbrac{1-2\nu}}$ & $\dfrac{E}{2\pbrac{1-\nu}}$ &
-    - & - & $\dfrac{E}{2\pbrac{1+\nu}}$ & $\dfrac{E}{3\pbrac{1-2\nu}}$
-    \\ \hline
-    $\pbrac{G,K}$ & $\dfrac{3K-2G}{3}$ & $G$ & $\dfrac{9KG}{3K+G}$ &
-    $\dfrac{3K-2G}{2\pbrac{3K+G}}$ & - & - \\ \hline
+    - & - & $\dfrac{E}{3\pbrac{1-2\nu}}$ \\ \hline
+    $\pbrac{\mu/G,K}$ & $\dfrac{3K-2\mu}{3}$ & - & $\dfrac{9K\mu}{3K+\mu}$ &
+    $\dfrac{3K-2\mu}{2\pbrac{3K+\mu}}$ & - \\ \hline
     $\pbrac{\lambda,E}$ & - & $\dfrac{E-3\lambda+c}{4}$ & - &
-    $\dfrac{2\lambda}{E+\lambda+c}$ & $\dfrac{E-3\lambda+c}{4}$ &
+    $\dfrac{2\lambda}{E+\lambda+c}$ &
     $\dfrac{E+3\lambda+c}{6}$ \\ \hline
-    $\pbrac{\lambda,\nu}$ & - & $\dfrac{\lambda\pbrac{1-2\nu}}{2\nu}$ & $\dfrac{\lambda\pbrac{1+\nu}\pbrac{1-2\nu}}{\nu}$ & - & $$ & $\dfrac{\lambda\pbrac{1+\nu}}{3\nu}$ \\ \hline
+    $\pbrac{\lambda,\nu}$ & - & $\dfrac{\lambda\pbrac{1-2\nu}}{2\nu}$ & $\dfrac{\lambda\pbrac{1+\nu}\pbrac{1-2\nu}}{\nu}$ & - & $\dfrac{\lambda\pbrac{1+\nu}}{3\nu}$ \\ \hline
   \end{tabular}
   \caption{Reltionships between elastic constants. $\lambda$ is the first
     Lam\'e constant, $\mu$ is the second Lam\'e constant, $E$ is Young's
     modulus, $\nu$ is Poisson's ratio, $G$ is the shear modulus and $K$ is the
-    bulk modulus. $c=\sqrt{E^{2}+9\lambda^{2}+2E\lambda}$}
+    bulk modulus. $c=\sqrt{E^{2}+9\lambda^{2}+2E\lambda}$}.
   \label{tab:RelationshipBetweenElasticConstants}
 \end{table}
 
 
+\subsection{Generalised}
+
+A number of phenomelogical hyperelastic models are off the form
+\begin{equation}
+  \fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2},J}=\gsum{i+j=1}{N}{c_{ij}\pbrac{\bar{I}_{1}-n}^{i}\pbrac{\bar{I}_{2}-2}^{j}}+\gsum{k=1}{N}{\dfrac{1}{d_{k}}\pbrac{J-1}^{2k}}
+\end{equation}
+where $N$ is the order of the model, $n$ is the number of dimensions, and $c_{ij}$ and $d_{k}$ are material constants that can be determined by fitting to experimental data.
+
+\subsection{Neo-Hookean}
+
+The simplest constitutive non-linear model is the Neo-Hookean model. It corresponds to a $N=1$ order model and is given by
+\begin{equation}
+   \fnof{\bar{W}}{\bar{I}_{1},J}=c_{10}\pbrac{\bar{I}_{1}-n}+\dfrac{1}{d_{1}}\pbrac{J-1}^{2}
+\end{equation}
+
+Here the equivalent/initial shear modulus is given by $G_{0}=2c_{10}$ and the equivalent bulk modulus is given by $K_{0}=\frac{1}{d_{1}}$.
+
+Note that an equivalent Poisson's ratio can be calculated from the initial shear and bulk modulii by
+\begin{equation}
+  \nu=\frac{3K_{0}-2G_{0}}{6K_{0}+2G_{0}}
+\end{equation}
+
+This means that
+\begin{equation}
+  d_{1}=\dfrac{2}{K_{0}}=\dfrac{3\pbrac{1-2\nu}}{G_{0}\pbrac{1+\nu}}
+\end{equation}
+NOTE: WHY 2 DIVIDED BY $K_{0}$ ABOVE BUT ONLY 1 DIVIDED BY $K_{0}$ ABOVE THAT???
+  
 \subsection{Mooney-Rivlin}
 
 As an example consider a Mooney-Rivlin material.
@@ -2783,6 +2841,8 @@ For two dimensions the strain energy function is given by
   \fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}=c_{1}\pbrac{\bar{I}_{1}-2}+c_{2}\pbrac{\bar{I}_{2}-2}
 \end{equation}
 where $\bar{I}_{1}$ and $\bar{I}_{2}$ are the invariants of either $\bar{\tensor{C}}$ or $\bar{\tensor{E}}$.
+
+The equivalent/initial shear modulus for a Mooney-Rivlin material is given by $G_{0}=2\pbrac{c_{10}+c_{01}}$.
 
 The second Piola Kirchoff tensor is thus
 \begin{equation}
@@ -2951,15 +3011,19 @@ where
 
 \clearemptydoublepage
 
-\section{Uniaxial extension of a unit square}
+\section{Uniaxial extension of an incompressible unit square}
 
-Consider a uniaxial stretch of $\alpha$ of a unit square in the $x$ direction
-and $-\beta$ in the $y$ direction as shown in \figref{fig:TwoDUniaxialExtension}. The resulting deformed configuration will
-be a square of dimensions $1+\alpha$ by $1-\beta$.
+Consider a uniaxial stretch of $\alpha$ of an incompressible unit
+square in the $x$ direction and $-\beta$ in the $y$ direction as shown
+in \figref{fig:TwoDUniaxialExtension}. The resulting deformed
+configuration will be a square of dimensions $1+\alpha$ by $1-\beta$.
 
-\epstexfigure{SolidMechanics/svgs/TwoDUniaxialExtension.eps_tex}{2D uniaxial extension.}{Two dimensional uniaxial extension of a unit square. The unit square deforms by $\alpha$ in the $x$ direction and $\beta$ in the $y$ direction.}{fig:TwoDUniaxialExtension}{0.75}
+\epstexfigure{SolidMechanics/svgs/TwoDUniaxialExtension.eps_tex}{2D
+  uniaxial extension.}{Two dimensional uniaxial extension of a unit
+  square. The unit square deforms by $\alpha$ in the $x$ direction and
+  $\beta$ in the $y$ direction.}{fig:TwoDUniaxialExtension}{0.66}
 
-FThe deformation gradient tensor will be
+The deformation gradient tensor will be
 \begin{equation}
   \tensor{F}= \begin{bmatrix}
     1+\alpha & 0  \\
@@ -2973,7 +3037,7 @@ everywhere, and the Jacobian of the deformation will be
 
 The modified deformation gradient tensor will be
 \begin{equation}
-  \bar{\tensor{F}}=J^{-\frac{1}{2}}\tensor{F}=\frac{1}{\sqrt{\pbrac{1+\alpha}\pbrac{1+\beta}}}\begin{bmatrix}
+  \bar{\tensortwo{F}}=J^{-\frac{1}{2}}\tensor{F}=\frac{1}{\sqrt{\pbrac{1+\alpha}\pbrac{1+\beta}}}\begin{bmatrix}
     1+\alpha & 0  \\
     0 & 1-\beta
   \end{bmatrix}=\begin{bmatrix}
@@ -2984,7 +3048,9 @@ The modified deformation gradient tensor will be
 
 The modified right Cauchy-Green tensor is
 \begin{equation}
-  \bar{\tensor{C}} = \transpose{\bar{\tensor{F}}}\bar{\tensor{F}} = \begin{bmatrix}
+  \bar{\tensor{C}} = \transpose{\bar{\tensor{F}}}\bar{\tensor{F}} =
+  J^{-\frac{1}{2}}J^{-\frac{1}{2}}\transpose{\tensortwo{F}}\tensortwo{F} =
+  \begin{bmatrix}
     \frac{\sqrt{1+\alpha}}{\sqrt{1-\beta}} & 0  \\
     0 & \frac{\sqrt{1-\beta}}{\sqrt{1+\alpha}}
   \end{bmatrix} \begin{bmatrix}
@@ -3413,15 +3479,20 @@ We thus have
   \end{split}
 \end{equation}
 
-\section{Uniaxial extension of a unit cube}
+\section{Uniaxial extension of an incompressible unit cube}
 
-Consider a uniaxial stretch of $\alpha$ of a unit square in the $x$
-direction and $-\beta$ in the $y$ direction and $-\gamma$ in the $z$
-direction as shown in \figref{fig:ThreeDUniaxialExtension}. The
-resulting deformed configuration will be a cube of dimensions
-$1+\alpha$ by $1-\beta$ by $1-\gamma$.
+Consider a uniaxial stretch of $\alpha$ of an incompressible unit
+square in the $x$ direction and $-\beta$ in the $y$ direction and
+$-\gamma$ in the $z$ direction as shown in
+\figref{fig:ThreeDUniaxialExtension}. The resulting deformed
+configuration will be a cube of dimensions $1+\alpha$ by $1-\beta$ by
+$1-\gamma$.
 
-\epstexfigure{SolidMechanics/svgs/ThreeDUniaxialExtension.eps_tex}{3D uniaxial extension.}{Three dimensional uniaxial extension of a unit cube. The unit cube deforms by $\alpha$ in the $x$ direction, and $\beta$ in the $y$ direction and $\gamma$ in the $z$ direction.}{fig:ThreeDUniaxialExtension}{0.75}
+\epstexfigure{SolidMechanics/svgs/ThreeDUniaxialExtension.eps_tex}{3D
+  uniaxial extension.}{Three dimensional uniaxial extension of an
+  incompressible unit cube. The unit cube deforms by $\alpha$ in the
+  $x$ direction, and $\beta$ in the $y$ direction and $\gamma$ in the
+  $z$ direction.}{fig:ThreeDUniaxialExtension}{0.66}
 
 The deformation gradient tensor will be
 \begin{equation}
@@ -3430,10 +3501,12 @@ The deformation gradient tensor will be
     0 & 1-\beta & 0 \\
     0 & 0 & 1-\gamma
   \end{bmatrix}
+  \label{eqn:FiniteElasticityUniaxialCubeDeformationGradient}
 \end{equation}
 everywhere, and the Jacobian of the deformation will be 
 \begin{equation}
   J = \determinant{\tensor{F}}=\pbrac{1+\alpha}\pbrac{1-\beta}\pbrac{1-\gamma}
+  \label{eqn:FiniteElasticityUniaxialCubeJacobian}
 \end{equation}
 
 The modified deformation gradient tensor will be
@@ -3453,28 +3526,29 @@ The modified deformation gradient tensor will be
     0 & 0 & \frac{\cuberoot{\pbrac{1-\gamma}^{2}}}{\cuberoot{\pbrac{1+\alpha}\pbrac{1-\beta}}}
     \end{bmatrix}
   \end{split}
+  \label{eqn:FiniteElasticityUniaxialCubeModDeformationGradient}
 \end{equation}
 
 The modified right Cauchy-Green tensor is
 \begin{equation}
   \begin{split}
-    \bar{\tensor{C}} &= \transpose{\bar{\tensor{F}}}\bar{\tensor{F}}\\
-    &= \begin{bmatrix}
-    \frac{\cuberoot{\pbrac{1+\alpha}^{2}}}{\cuberoot{\pbrac{1-\beta}\pbrac{1-\gamma}}}
-    & 0 & 0 \\
-    0 &
-    \frac{\cuberoot{\pbrac{1-\beta}^{2}}}{\cuberoot{\pbrac{1+\alpha}\pbrac{1-\gamma}}}
-    & 0 \\
-    0 & 0 & \frac{\cuberoot{\pbrac{1-\gamma}^{2}}}{\cuberoot{\pbrac{1+\alpha}\pbrac{1-\beta}}}
+    \bar{\tensor{C}} &= \transpose{\bar{\tensor{F}}}\bar{\tensor{F}}=
+    \transpose{\pbrac{J^{-\frac{1}{3}}\tensor{F}}}\pbrac{J^{-\frac{1}{3}}\tensor{F}}\\
+    &= J^{-\frac{2}{3}}\begin{bmatrix}
+      1+\alpha & 0 & 0 \\
+      0 & 1-\beta & 0 \\
+      0 & 0 & 1-\gamma
     \end{bmatrix}\begin{bmatrix}
-    \frac{\cuberoot{\pbrac{1+\alpha}^{2}}}{\cuberoot{\pbrac{1-\beta}\pbrac{1-\gamma}}}
-    & 0 & 0 \\
-    0 &
-    \frac{\cuberoot{\pbrac{1-\beta}^{2}}}{\cuberoot{\pbrac{1+\alpha}\pbrac{1-\gamma}}}
-    & 0 \\
-    0 & 0 & \frac{\cuberoot{\pbrac{1-\gamma}^{2}}}{\cuberoot{\pbrac{1+\alpha}\pbrac{1-\beta}}}
+      1+\alpha & 0 & 0 \\
+      0 & 1-\beta & 0 \\
+      0 & 0 & 1-\gamma
     \end{bmatrix}\\
-    &=\begin{bmatrix}
+    &=J^{-\frac{2}{3}}\begin{bmatrix}
+      \pbrac{1+\alpha}^{2} & 0 & 0 \\
+      0 & \pbrac{1-\beta}^{2} & 0 \\
+      0 & 0 & \pbrac{1-\gamma}^{2}
+    \end{bmatrix} \\
+     &=\begin{bmatrix}
     \frac{\cuberoot{\pbrac{1+\alpha}^{4}}}{\cuberoot{\pbrac{1-\beta}^{2}\pbrac{1-\gamma}^{2}}}
     & 0 & 0 \\
     0 & \frac{\cuberoot{\pbrac{1-\beta}^{4}}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\gamma}^{2}}}
@@ -3482,78 +3556,96 @@ The modified right Cauchy-Green tensor is
     0 & 0 & \frac{\cuberoot{\pbrac{1-\gamma}^{4}}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\beta}^{2}}}
     \end{bmatrix}
   \end{split}
+  \label{eqn:FiniteElasticityUniaxialCubeModRightCachyGreen}
 \end{equation}
 
-The modified Lagrange strain tensor is
+We now consider a hyperelastic constitutive law as specified by a
+strain energy function. From
+\eqnref{eqn:FiniteElasticityDecomposedStrainEnergy} we have
 \begin{equation}
   \begin{split}
-    \bar{\tensor{E}} &= \frac{1}{2}\pbrac{\bar{\tensor{C}}-\tensor{I}} \\
-    &= \frac{1}{2}\pbrac{\begin{bmatrix}
-        \frac{\cuberoot{\pbrac{1+\alpha}^{4}}}{\cuberoot{\pbrac{1-\beta}^{2}\pbrac{1-\gamma}^{2}}}
-        & 0 & 0 \\
-        0 & \frac{\cuberoot{\pbrac{1-\beta}^{4}}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\gamma}^{2}}}
-        & 0  \\
-        0 & 0 & \frac{\cuberoot{\pbrac{1-\gamma}^{4}}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\beta}^{2}}}
-      \end{bmatrix} - \begin{bmatrix}
-        1 & 0 & 0 \\
-        0 & 1 & 0 \\
-        0 & 0 & 1
-    \end{bmatrix}} \\
-    &= \begin{bmatrix}
-      ?? & 0 & 0\\
-      0 & ?? & 0 \\
-      0 & 0 & ??
-    \end{bmatrix}
+    \fnof{W}{\tensor{C}} &=
+    \fnof{W_{\Devop}}{\tensor{C}}+\fnof{W_{\Sphop}}{\tensor{C}} \\
+    &=\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensor{C}}}+\fnof{\bar{W}_{\Sphop}}{\fnof{J}{\tensor{C}}}\\
+    &=\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensor{C}},\fnof{J}{\tensor{C}}}
   \end{split}
 \end{equation}
-
-Now consider a Mooney-Rivlin material. The strain energy function is given by
-\begin{equation}
-  \fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}=c_{1}\pbrac{\bar{I}_{1}-3}+c_{2}\pbrac{\bar{I}_{2}-3}
-\end{equation}
 where
+$\fnof{\bar{W}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}},\fnof{J}{\tensortwo{C}}}$
+is the \emph{modified strain energy function}, $\fnof{J}{\tensor{C}}$
+is the Jacobian which quantifies volume change and
+$\fnof{\bar{\tensor{C}}}{\tensor{C}}$, is the modified right
+Cauchy-Green deformation tensor.
+
+From \eqnref{eqn:FiniteElasticityDecomposedSecondPKinC} we can determine the second Piola-Kirchoff stress tensor, $\tensortwo{S}$, as a function of the right Cauchy-Green deformation tensor, $\tensortwo{C}$, \ie
+\begin{equation}
+  \begin{split}
+    \fnof{\tensor{S}}{\tensor{C}}
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\delby{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}{\tensor{C}}}-2p\delby{\fnof{J}{\tensortwo{C}}}{\tensor{C}}\\
+    &=\doubledotprod{\fnof{\bar{\tensor{S}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}}{\fnof{J^{-\frac{2}{3}}}{\tensortwo{C}}\pbrac{\symidentitytensorfour-\dfrac{\tensorprod{\tensor{C}}{\tensor{B}}}{3}}}-pJ\tensor{B}\\
+    &=\fnof{\tensor{S}_{\pullback{\Devop}{}}}{\fnof{\bar{\tensortwo{C}}}{\tensortwo{C}}}
+    +\fnof{\tensor{S}_{\pullback{\Sphop}{}}}{\fnof{J}{\tensortwo{C}}}
+  \end{split}
+  \label{eqn:FiniteElasticityDecomposedSecondPKinC}
+\end{equation}
+where $\bar{\tensortwo{S}}$ is the second Piola-Kirchoff psuedo stress
+tensor, $\tensortwo{S}_{\pullback{\Devop}{}}$ the pulled back
+deviatoric second Piola-Kirchoff stress tensor,
+$\tensortwo{S}_{\pullback{\Sphop}{}}$ the pulled back spherical second
+Piola-Kirchoff stress tensor, $\tensortwo{B}=\inverse{\tensortwo{C}}$
+is the Piola deformation tensor, and $p$ the hydrostatic pressure
+which resists volume change.
+
+The second Piola-Kirchoff psuedo stress tensor can be found from the modified strain engergy function \ie
+\begin{equation}
+  \bar{\tensor{S}}=2\delby{\fnof{\bar{W}_{\Devop}}{\fnof{\bar{\tensor{C}}}{\tensortwo{C}}}}{\bar{\tensor{C}}}
+\end{equation}
+
+For a Mooney-Rivlin material the modified deviatoric strain energy function is given by
+\begin{equation}
+  \fnof{\bar{W}_{\Devop}}{\bar{\tensortwo{C}}}=\fnof{\bar{W}_{\Devop}}{\bar{I}_{1},\bar{I}_{2}}=c_{10}\pbrac{\bar{I}_{1}-3}+c_{01}\pbrac{\bar{I}_{2}-3}
+\end{equation}
+where $c_{10}$ and $c_{01}$ are the Mooney-Rivlin material constants and
 \begin{equation}
   \begin{split}
     \bar{I}_{1}&=\trace{}{\bar{\tensor{C}}}=\bar{C}_{11}+\bar{C}_{22}+\bar{C}_{33}\\
-    \bar{I}_{2}&=\frac{1}{2}\pbrac{\pbrac{\trace{}{\bar{\tensor{C}}}}^{2}-\trace{}{\bar{\tensor{C}}^{2}}} \\
-    &=\dfrac{1}{2}\left(\pbrac{\bar{C}_{11}+\bar{C}_{22}+\bar{C}_{33}}^{2}\right. \\
-    & \quad\left.-\pbrac{\bar{C}_{11}^{2}+\bar{C}_{12}\bar{C}_{21}+\bar{C}_{13}\bar{C}_{31}+
+    \bar{I}_{2}&=\frac{1}{2}\pbrac{\pbrac{\trace{}{\bar{\tensor{C}}}}^{2}-\trace{}{\bar{\tensor{C}}^{2}}}
+    \\ &=\dfrac{1}{2}\left(\pbrac{\bar{C}_{11}+\bar{C}_{22}+\bar{C}_{33}}^{2}\right. \\ &
+    \quad\left.-\pbrac{\bar{C}_{11}^{2}+\bar{C}_{12}\bar{C}_{21}+\bar{C}_{13}\bar{C}_{31}+
       \bar{C}_{21}\bar{C}_{12}+\bar{C}_{22}^{2}+\bar{C}_{23}\bar{C}_{32}+\bar{C}_{31}\bar{C}_{13}+\bar{C}_{32}\bar{C}_{23}+\bar{C}_{33}^{2}}\right)
   \end{split}
 \end{equation}
 
+Note that for an incompressible material $\bar{I}_{3}=\determinant{\bar{\tensortwo{C}}}=1$.
+
 Now
 \begin{equation}
   \begin{split}
-    \bar{\tensor{S}}&=2\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{\tensor{C}}}\\
-    &=2\pbrac{\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{1}}\delby{\bar{I}_{1}}{\bar{\tensor{C}}}+\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{2}}\delby{\bar{I}_{2}}{\bar{\tensor{C}}}}\\
-    &=2\pbrac{c_{1}\begin{bmatrix}
+    \bar{\tensortwo{S}}_{\Devop}&=2\delby{\fnof{\bar{W}_{\Devop}}{\bar{\tensortwo{C}}}}{\bar{\tensortwo{C}}} \\
+    &=2\pbrac{\delby{\fnof{\bar{W}_{\Devop}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{1}}\delby{\bar{I}_{1}}{\bar{\tensor{C}}}+\delby{\fnof{\bar{W}_{\Devop}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{2}}\delby{\bar{I}_{2}}{\bar{\tensor{C}}}}\\
+    &=2\pbrac{c_{10}\begin{bmatrix}
         1 & 0 & 0 \\
         0 & 1 & 0 \\
         0 & 0 & 1
-      \end{bmatrix}+c_{2}\begin{bmatrix}
+      \end{bmatrix}+c_{01}\begin{bmatrix}
         \bar{C}_{22}+\bar{C}_{33} & -\bar{C}_{21} & \bar{C}_{31} \\
         -\bar{C}_{12} & \bar{C}_{11}+\bar{C}_{33} & -\bar{C}_{32} \\
         -\bar{C}_{13} & -\bar{C}_{23} & \bar{C}_{11}+\bar{C}_{22}
     \end{bmatrix}} \\
     &=\begin{bmatrix}
-    2c_{1}+2c_{2}\pbrac{\bar{C}_{22}+\bar{C}_{33}} & -2c_{2}\bar{C}_{21} &
-    -2c_{2}\bar{C}_{31} \\
-    -2c_{2}\bar{C}_{12} & 2c_{1}+2c_{2}\pbrac{\bar{C}_{11}+\bar{C}_{33}} & -2c_{2}\bar{C}_{32} \\
-    -2c_{2}\bar{C}_{13} & -2c_{2}\bar{C}_{23} & 2c_{1}+2c_{2}\pbrac{\bar{C}_{11}+\bar{C}_{22}} 
+    2c_{10}+2c_{01}\pbrac{\bar{C}_{22}+\bar{C}_{33}} & -2c_{01}\bar{C}_{21} & -2c_{01}\bar{C}_{31} \\
+    -2c_{01}\bar{C}_{12} & 2c_{10}+2c_{01}\pbrac{\bar{C}_{11}+\bar{C}_{33}} & -2c_{01}\bar{C}_{32} \\
+    -2c_{01}\bar{C}_{13} & -2c_{01}\bar{C}_{23} & 2c_{10}+2c_{01}\pbrac{\bar{C}_{11}+\bar{C}_{22}} 
     \end{bmatrix}
   \end{split}
 \end{equation}
 
-
 And so we have
 \begin{equation}
-  \bar{\tensor{S}}=\begin{bmatrix}
-  2c_{1}+2c_{2}\pbrac{\frac{\pbrac{1-\beta}^{2}+\pbrac{1-\gamma}^{2}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\beta}^{2}\pbrac{1-\gamma}^{2}}}} & 0 & 0\\
-  0 &
-  2c_{1}+2c_{2}\pbrac{\frac{\pbrac{1+\alpha}^{2}+\pbrac{1-\gamma}^{2}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\beta}^{2}\pbrac{1-\gamma}^{2}}}}
-  & 0 \\
-  0 & 0 & 2c_{1}+2c_{2}\pbrac{\frac{\pbrac{1+\alpha}^{2}+\pbrac{1-\beta}^{2}}{\cuberoot{\pbrac{1+\alpha}^{2}\pbrac{1-\beta}^{2}\pbrac{1-\gamma}^{2}}}}
+  \bar{\tensor{S}}=2\begin{bmatrix}
+  c_{10}+c_{01}J^{\frac{-2}{3}}\pbrac{\pbrac{1-\beta}^{2}+\pbrac{1-\gamma}^{2}} & 0 & 0\\
+  0 & c_{10}+c_{01}J^{\frac{-2}{3}}\pbrac{\pbrac{1+\alpha}^{2}+\pbrac{1-\gamma}^{2}} & 0 \\
+  0 & 0 & c_{10}+c_{01}J^{\frac{-2}{3}}\pbrac{\pbrac{1+\alpha}^{2}+\pbrac{1-\beta}^{2}} 
   \end{bmatrix} 
 \end{equation}
 
@@ -4032,6 +4124,117 @@ We thus have
   \end{split}
 \end{equation}
 
+\subsection{Special Two-dimensional Cases}
+\label{subsec:FiniteElasticity2DCases}
+
+Just like for linear elasticity we can formulate finite elasticity for
+lower dimensions by making some assumptions on the deformation. The two main 
+assumptions on allowed deformation include:
+\begin{itemize}
+\item Plane Stress: Assume that deformation happens such that there is
+  no stress in one dimension normal to the other two dimensions. This
+  corresponds to an infinitely thin plate.
+\item Plane Strain: Assume that defomration happens such that there is
+  no strain in one dimension normal to the other two dimesions. This
+  corresponds to an infinitely thick plate.
+\end{itemize}
+
+\subsubsection{Plane Stress}
+\label{subsubsec:FiniteElasticityPlaneStress}
+
+For plane stress elasticity the deformation is such that there is no
+stress in a third, normal, dimension. In the limit, this corresponds to deformation
+in an infinitely thin plate.
+
+For the biaxial plane stress case the deformation tensors are given by
+\begin{equation}
+  \tensortwo{F}=\begin{bmatrix}
+  1+\alpha & 0 & 0 \\
+  0 & 1-\beta & 0 \\
+  0 & 0 & 1-\gamma
+  \end{bmatrix}  
+\end{equation}
+where $\gamma$ is now the deformation in the $z$ direction required to ensure that there is zero stress in that direction.
+
+The Jacobian of the deformation gradient, the modified deformation
+gradient tensor, the modified right Cauchy-Green strain tensor and the
+modified Lagrange strain tensor are given by
+Equations~\ref{eqn:FiniteElasticityUniaxialCubeJacobian},\ref{eqn:FiniteElasticityUniaxialCubeModDeformationGradient},
+and \ref{eqn:FiniteElasticityUniaxialCubeModRightCachyGreen} \ie
+\begin{equation}
+  J=\pbrac{1+\alpha}\pbrac{1-\beta}\pbrac{1-\gamma}
+\end{equation}
+\begin{equation}
+  \bar{\tensortwo{F}}=J^{-\frac{1}{3}}\tensor{F}=\frac{1}{\cuberoot{\pbrac{1+\alpha}\pbrac{1+\beta}\pbrac{1+\gamma}}}\begin{bmatrix}
+      1+\alpha & 0 & 0 \\
+      0 & 1-\beta & 0 \\
+      0 & 0 & 1-\gamma
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+  \bar{\tensortwo{C}}=\transpose{\bar{\tensor{F}}}\bar{\tensor{F}}=J^{-\frac{2}{3}}\begin{bmatrix}
+    \pbrac{1+\alpha}^{2} & 0 & 0 \\
+    0 & \pbrac{1-\beta}^{2} & 0  \\
+    0 & 0 & \pbrac{1-\gamma}^{2}
+  \end{bmatrix}
+\end{equation}
+
+Now consider an incompressible Mooney-Rivlin material. The strain energy function is given by
+\begin{equation}
+  \fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}=c_{10}\pbrac{\bar{I}_{1}-3}+c_{01}\pbrac{\bar{I}_{2}-3}
+\end{equation}
+where
+\begin{equation}
+  \begin{split}
+    \bar{I}_{1}&=\trace{}{\bar{\tensor{C}}}=\bar{C}_{11}+\bar{C}_{22}+\bar{C}_{33} \\
+    \bar{I}_{2}&=\frac{1}{2}\pbrac{\pbrac{\trace{}{\bar{\tensor{C}}}}^{2}-\trace{}{\bar{\tensor{C}}^{2}}} \\
+    &=\dfrac{1}{2}\left(\pbrac{\bar{C}_{11}+\bar{C}_{22}+\bar{C}_{33}}^{2}\right. \\
+    & \quad\left.-\pbrac{\bar{C}_{11}^{2}+\bar{C}_{12}\bar{C}_{21}+\bar{C}_{13}\bar{C}_{31}+
+      \bar{C}_{21}\bar{C}_{12}+\bar{C}_{22}^{2}+\bar{C}_{23}\bar{C}_{32}+\bar{C}_{31}\bar{C}_{13}+
+      \bar{C}_{32}\bar{C}_{23}+\bar{C}_{33}^{2}}\right)
+  \end{split}
+\end{equation}
+
+The modified second Piola-Kirchoff stress tensor is then given by
+Now
+\begin{equation}
+  \begin{split}
+    \bar{\tensor{S}}&=2\pbrac{\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{\tensor{C}}}}\\
+    &=2\pbrac{\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{1}}\delby{\bar{I}_{1}}{\bar{\tensor{C}}}+\delby{\fnof{\bar{W}}{\bar{I}_{1},\bar{I}_{2}}}{\bar{I}_{2}}\delby{\bar{I}_{2}}{\bar{\tensor{C}}}}\\
+    &=2\pbrac{c_{10}\begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+      \end{bmatrix}+c_{01}\begin{bmatrix}
+        \bar{C}_{22}+\bar{C}_{33} & -\bar{C}_{21} & \bar{C}_{31} \\
+        -\bar{C}_{12} & \bar{C}_{11}+\bar{C}_{33} & -\bar{C}_{32} \\
+        -\bar{C}_{13} & -\bar{C}_{23} & \bar{C}_{11}+\bar{C}_{22}
+    \end{bmatrix}} \\
+    &=\begin{bmatrix}
+    2c_{1}+2c_{2}\pbrac{\bar{C}_{22}+\bar{C}_{33}} & -2c_{2}\bar{C}_{21} &
+    -2c_{2}\bar{C}_{31} \\
+    -2c_{2}\bar{C}_{12} & 2c_{1}+2c_{2}\pbrac{\bar{C}_{11}+\bar{C}_{33}} & -2c_{2}\bar{C}_{32} \\
+    -2c_{2}\bar{C}_{13} & -2c_{2}\bar{C}_{23} & 2c_{1}+2c_{2}\pbrac{\bar{C}_{11}+\bar{C}_{22}} 
+    \end{bmatrix}
+  \end{split}
+\end{equation}
+
+
+
+\subsection{Plane Strain}
+\label{subsec:FiniteElasticityPlaneStrain}
+
+For plane strain elasticity the deformation is such that there is no
+strain in a third, normal, dimension. This corresponds to deformation
+in an infinitely thick plate.
+
+\subsection{Membrane}
+\label{subsec:FiniteElasticityMembrane}
+
+\subsection{\Onedal}
+\label{subsec:FiniteElasticityOneDimension}
+
+
 \clearemptydoublepage
 
 
@@ -4055,7 +4258,7 @@ generally nodal based. However, force boundary conditions can take any of the
 following forms or a combination of them - nodal-based, distributed load
 (e.g. pressure) or force acting at a discrete point on the boundary. In the
 latter two forms, the equivalent nodal forces are determined using the
-\textit{\textbf{method of work equivalence}} \cite{hutton:2004} and the forces
+\textit{\textbf{method of work equivalence}} \citep{hutton:2004} and the forces
 so obtained will then be added to the right hand side or the residual vector
 of the linear equation system.
 

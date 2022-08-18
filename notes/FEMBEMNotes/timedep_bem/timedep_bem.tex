@@ -28,7 +28,7 @@ constant or a function of position.
 \index{Coupled finite difference - boundary element method}
 This approach discretises the time-domain in a finite difference form.
 Consider the variation between a time $t^{m}$ and a time $t^{m+1} =
-t^{m} + \Delta t$.  The most common approach \cite{brebbia:1984} is to
+t^{m} + \Delta t$.  The most common approach \citep{brebbia:1984} is to
 assume that, for sufficiently small $\Delta t$, the time derivative can be
 approximated using a first-order fully implicit finite difference scheme 
 \begin{equation}
@@ -65,7 +65,7 @@ explicitly from \eqnref{eq:fdbem} where the fundamental solution is applied
 at internal point $\xi$ and $\fnof{c}{\vect{\xi}} = 1$.
 
 Unfortunately \eqnref{eq:fdbem} contains a domain integral.  This integral is
-generally evaluated by using a domain mesh \cite{brebbia:1984}.  The domain
+generally evaluated by using a domain mesh \citep{brebbia:1984}.  The domain
 integral does not include any problem unknowns so a fairly coarse domain
 mesh will generally suffice. Applying the BEM to \eqnref{eq:fdbem} gives
 \begin{equation}
@@ -92,8 +92,8 @@ problem has time-dependent boundary conditions the solution system needs to
 be reformed at each time-step.
 
 This coupled finite difference - boundary element method (FD-BEM) was first
-proposed by \citeasnoun{walker:1980} for the diffusion equation. It was
-implemented and investigated by \citeasnoun{curran:1980}.  They found that
+proposed by \citet{walker:1980} for the diffusion equation. It was
+implemented and investigated by \citet{curran:1980}.  They found that
 this method will only produce accurate results if \eqnref{eq:fdapprox}
 accurately approximates the time derivative.  This will generally require
 small time-steps to be adopted.  \citename{curran:1980} investigated the use
@@ -101,7 +101,7 @@ of a higher-order approximation to the time-derivative.  They found that
 this improved the accuracy of the method.  Unfortunately it lead to a
 deterioration in convergence behaviour.
 
-\citeasnoun{tanaka:1994} proposed a generalised version of this time-stepping
+\citet{tanaka:1994} proposed a generalised version of this time-stepping
 scheme.  They approximated the time variation within an interval as
 \begin{equation}
 \fnof{u}{\vect{x},t} = \phi \fnof{u}{\vect{x},t^{m+1}} + \pbrac{1-\phi}
@@ -166,14 +166,14 @@ problem so that an internal solution is constructed at the end of each
 time-step to be used as pseudo-initial conditions for the next time-step.
 Alternatively the time integration process can be restarted at $t_{0}$ with
 increasing numbers of intermediate steps used.  These two time-stepping
-approaches are discussed in detail in \citeasnoun{brebbia:1984}.
+approaches are discussed in detail in \citet{brebbia:1984}.
 
 The first method requires a new domain integral to be calculated after each
 time-step due to the updated pseudo-initial conditions.  The second
 time-stepping procedure involves only a domain integral at $t_{0}$ so,
 ideally, a domain integral only needs to be calculated once. This, however,
 will still require the user to create a domain mesh. As mentioned by
-\citeasnoun{brebbia:1984}, in many practical cases the domain integral can
+\citet{brebbia:1984}, in many practical cases the domain integral can
 be avoided. If the initial conditions are $u_{0} = 0$ throughout the body
 the domain integral equals zero. If the initial conditions satisfy
 Laplace's equation $\laplacian{u_{0}} = 0$ then a Galerkin vector can be found
@@ -228,9 +228,9 @@ determined in Laplace transform space this solution can be inverted to give
 a solution in the time-domain. This inversion procedure requires solutions
 to be generated for several values of the transform parameter $\lambda$.
 
-This method was first proposed by \citeasnoun{rizzo:1970} and has since
-been successfully used by other practitioners \cite{moridis:1991}
-\cite{zhu:1994}.  \citeasnoun{liggett:1979} compared the Laplace transform
+This method was first proposed by \citet{rizzo:1970} and has since
+been successfully used by other practitioners \citep{moridis:1991}
+\citep{zhu:1994}.  \citet{liggett:1979} compared the Laplace transform
 method with the time-dependent Green's function method. They noted that the
 direct method is simpler to apply.  However, due to its greater efficiency,
 they recommended the Laplace transform method for solving diffusion
@@ -240,7 +240,7 @@ One limitation of the Laplace transform method is that \eqnref{eq:laptrans}
 is inhomogeneous so that applying the standard BEM will generate a domain
 integral involving the initial conditions.  Traditionally this domain
 integral has been calculated by using a domain discretisation
-\cite{brebbia:1984}.  However, recently \citeasnoun{zhu:1994} proposed
+\citep{brebbia:1984}.  However, recently \citet{zhu:1994} proposed
 using the DR-BEM to convert this domain integral term to equivalent
 boundary integrals.  They chose to apply the DR-BEM based on the known
 fundamental solution to the Laplace operator.  Considering
@@ -309,7 +309,7 @@ or
 \Eqnref{eq:drmtransient} can be solved using a standard direct
 time-integration method.
 
-\citeasnoun{partridge:1990} recommended using a first-order finite difference
+\citet{partridge:1990} recommended using a first-order finite difference
 approximation to the time derivative 
 \begin{equation}
 \delby{u}{t} = \dfrac{u^{m+1} - u^{m}}{\Delta t}

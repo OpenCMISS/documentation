@@ -244,7 +244,7 @@ where $\fnof{\gamma^{rs}}{\vectr{\xi}}$ is defined in
 
 For a \emph{generalised Poisson's equation} \eqnref{eqn:PoissonFemForm} is an equation of the form
 \begin{equation}
-  \matr{K}\vect{u}-\matr{R}\vect{s}=\vect{f}=\matr{N}\vect{q}
+  \matr{K}\vect{u}+\matr{R}\vect{s}+\vect{f}=\matr{K}\vect{u}+\matr{R}\vect{s}+\matr{N}\vect{q}=\vect{0}
 \end{equation}
 where $\vect{u}$ is the vector of $u$ DOFs, $\vect{s}$ is the vector of source
 DOFs and $\vectr{q}$ is the vector of flux DOFs.
@@ -276,7 +276,7 @@ and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 For a \emph{linear source Poisson's equation}
  \eqnref{eqn:PoissonFemForm} is an equation of the form
 \begin{equation}
-  \matr{K}\vect{u}-\matr{R}\vect{s}=\vect{f}=\matr{N}\vect{q}
+  \matr{K}\vect{u}+\matr{R}\vect{s}+\vect{f}=\matr{K}\vect{u}+\matr{R}\vect{s}+\matr{N}\vect{q}=\vect{0}
 \end{equation}
 
 The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
@@ -297,7 +297,7 @@ The elemental source matrix, $R^{\alpha\epsilon}_{me}$,
 \end{equation}
 and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 \begin{equation}
-  N^{\alpha\gamma}_{mo} =\gsf{m}{\alpha}\gsf{o}{\gamma}
+  N^{\alpha\gamma}_{mo} =-\gsf{m}{\alpha}\gsf{o}{\gamma}
   \gint{\vectr{0}}{\vectr{1}}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
 \end{equation}
@@ -307,7 +307,7 @@ and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 For a \emph{Quadratic source Poisson's equation}
 \eqnref{eqn:PoissonFemForm} is an equation of the form
 \begin{equation}
-  \matr{K}\vect{u}-\fnof{\vect{g}}{\vect{u}}-\matr{R}\vect{s}=\vect{f}=\matr{N}\vect{q}
+  \matr{K}\vect{u}+\fnof{\vect{g}}{\vect{u}}+\matr{R}\vect{s}+\vect{f}=\matr{K}\vect{u}+\fnof{\vect{g}}{\vect{u}}+\matr{R}\vect{s}+\matr{N}\vect{q}=\vect{0}
 \end{equation}
 
 The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
@@ -319,7 +319,7 @@ The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
   \label{eqn:elementalfemlhs2}
 \end{equation}
-and the nonlinear elemental residual vector, $g^{\alpha}_{m}$, is given by
+and the nonlinear elemental residual vector, $g^{\alpha}_{m}$, is given by 
 \begin{equation}
   g^{\alpha}_{m}=\gsf{m}{\alpha}\gint{\vectr{0}}{\vectr{1}}{\fnof{b}{\vectr{\xi}}
     \pbrac{\fnof{u}{\vectr{\xi}}}^{2}\gbfn{m}{\alpha}{\vectr{\xi}}\abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
@@ -339,7 +339,7 @@ The elemental source matrix, $R^{\alpha\epsilon}_{me}$,
 \end{equation}
 and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 \begin{equation}
-  N^{\alpha\gamma}_{mo} =\gsf{m}{\alpha}\gsf{o}{\gamma}
+  N^{\alpha\gamma}_{mo} =-\gsf{m}{\alpha}\gsf{o}{\gamma}
   \gint{\vectr{0}}{\vectr{1}}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
 \end{equation}
@@ -349,7 +349,7 @@ and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 For an \emph{Exponential source Poisson's equation}
 \eqnref{eqn:PoissonFemForm} is an equation of the form
 \begin{equation}
-  \matr{K}\vect{u}-\fnof{\vect{g}}{\vect{u}}-\matr{R}\vect{s}=\vect{f}=\matr{N}\vect{q}
+  \matr{K}\vect{u}+\fnof{\vect{g}}{\vect{u}}+\matr{R}\vect{s}+\vect{f}=\matr{K}\vect{u}+\fnof{\vect{g}}{\vect{u}}+\matr{R}\vect{s}+\matr{N}\vect{q}=\vect{0}
 \end{equation}
 
 The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
@@ -382,8 +382,90 @@ The elemental source matrix, $R^{\alpha\epsilon}_{me}$,
 \end{equation}
 and the elemental flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
 \begin{equation}
-  N^{\alpha\gamma}_{mo} =\gsf{m}{\alpha}\gsf{o}{\gamma}
+  N^{\alpha\gamma}_{mo} =-\gsf{m}{\alpha}\gsf{o}{\gamma}
   \gint{\vectr{0}}{\vectr{1}}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}}{\vectr{\xi}}
 \end{equation}
 
+\subsection{Analytic solutions}
+
+\subsubsection{Two-dimensional Exponential Poisson Analytic Function 1}
+
+Consider the problem shown in \figref{fig:TwoDimExpSourcePoisson}. 
+
+\epstexfigure{ClassicalField/svgs/twodimexpsourcepoisson.eps_tex}{2D domain for an exponential source Poisson equation.}{2D domain for an exponential source Poisson equation.}{fig:TwoDimExpSourcePoisson}{0.75}
+
+Following from \citet{polyanin:2004} and \citet{crowdy:1997} we can
+obtain an number of analytic solutions.
+
+The first analytic solution we consider is from
+\urllink{http://eqworld.ipmnet.ru/en/solutions/npde/npde3103.pdf}
+\begin{equation}
+  \fnof{u}{x,y}=\dfrac{1}{\beta}\ln\sqbrac{\dfrac{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}} 
+\end{equation}
+where $A$, $B$ and $C$ are constants. Note that $\sign{\alpha\beta}$
+is added to ensure that we are taking the natural logarithm of a
+positive number if $\alpha\beta<0$.
+
+Differentiating we obtain
+\begin{multline}
+  \delby{\fnof{u}{x,y}}{x}=\dfrac{1}{\beta}\sqbrac{\dfrac{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}}}\\
+  \sqbrac{\dfrac{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}.-2\alpha\beta\cos\pbrac{Ax+By+C}.-\sin\pbrac{Ax+By+C}.A}{\pbrac{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}^{2}}}
+\end{multline}
+or
+\begin{equation}
+  \begin{aligned}
+    \delby{\fnof{u}{x,y}}{x}&=\dfrac{1}{\beta}\sqbrac{\dfrac{2A\alpha\beta\cos\pbrac{Ax+By+C}\sin\pbrac{Ax+By+C}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}}\\
+    &=\dfrac{1}{\beta}\sqbrac{\dfrac{2A\sin\pbrac{Ax+By+C}}{\cos\pbrac{Ax+By+C}}} \\
+    &=\dfrac{2A}{\beta}\tan\pbrac{Ax+By+C}
+  \end{aligned}
+\end{equation}
+
+Similarily
+\begin{equation}
+  \delby{\fnof{u}{x,y}}{y}=\dfrac{2B}{\beta}\tan\pbrac{Ax+By+C}
+\end{equation}
+
+Differentiating again we have
+\begin{equation}
+  \begin{aligned}
+    \deltwosqby{\fnof{u}{x,y}}{x}&=\dfrac{2A.A}{\beta\cos^{2}\pbrac{Ax+By+C}}\\
+    &=\dfrac{2A^{2}}{\beta\cos^{2}\pbrac{Ax+By+C}}
+  \end{aligned}
+\end{equation}
+
+Similarily
+\begin{equation}
+  \deltwosqby{\fnof{u}{x,y}}{y}=\dfrac{2B^{2}}{\beta\cos^{2}\pbrac{Ax+By+C}}
+\end{equation}
+
+Substituting the above equations into the governing equation we thus have
+\begin{equation}
+  \begin{aligned}
+    \laplacian{}{\fnof{u}{x,y}}&=\alpha e^{\beta\fnof{u}{x,y}}\\
+    \deltwosqby{\fnof{u}{x,y}}{x}+\deltwosqby{\fnof{u}{x,y}}{y}&=\alpha e^{\beta\fnof{u}{x,y}}\\
+    \dfrac{2A^{2}}{\beta\cos^{2}\pbrac{Ax+By+C}}+\dfrac{2B^{2}}{\beta\cos^{2}\pbrac{Ax+By+C}}&=
+    \alpha e^{\beta\dfrac{1}{\beta}\ln\sqbrac{\dfrac{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}}}\\
+    \dfrac{2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}&=
+    e^{\ln\sqbrac{\dfrac{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}}} \\
+    \dfrac{2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}}&=
+    \dfrac{\sign{\alpha\beta}2\pbrac{A^{2}+B^{2}}}{\alpha\beta\cos^{2}\pbrac{Ax+By+C}} \\
+  \end{aligned}
+\end{equation}
+thus showing that that we have an analytic solution that satisfies the governing equation.
+
+The analytic field component definitions in \OpenCMISS are shown in \tabref{tab:OpenCMISSAnalyticFieldExponentialPoisonEquationTwoDim1}.
+
+\begin{table}[htb] \centering
+  \begin{tabular}{|c|c|} \hline
+    \emph{Analytic constant} & \emph{Analytic field component} \\ \hline \hline
+    $A$ & $1$ \\ 
+    $B$ & $2$ \\
+    $C$ & $3$ \\
+    $\alpha$ & $4$ \\ 
+    $\beta$ & $5$ \\ \hline
+  \end{tabular}
+  \caption{\OpenCMISS analytic field components for the \twod exponential Poisson equation
+    analytic function 1.}
+  \label{tab:OpenCMISSAnalyticFieldExponentialPoisonEquationTwoDim1}
+\end{table}

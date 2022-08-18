@@ -35,11 +35,11 @@ free-space Green's function.
 The mathematical theory required to determine the fundamental solution of a
 constant coefficient PDE is well-developed and has been used successfully
 to determine the fundamental solutions for a wide range of constant
-coefficient equations \cite{walker:1980} \cite{clements:1978}
-\cite{ortner:1987}.  Fundamental solutions are known and have been
+coefficient equations \citep{walker:1980} \citep{clements:1978}
+\citep{ortner:1987}.  Fundamental solutions are known and have been
 published for many of the most important equations in engineering such as
 Laplace's equation, the diffusion equation and the wave equation
-\cite{brebbia:1984b}.  However, by no means can it be guaranteed that the
+\citep{brebbia:1984b}.  However, by no means can it be guaranteed that the
 fundamental solution to a specific differential equation is known.  In
 particular, PDEs with variable coefficients do not, in general, have known
 fundamental solutions.  If the fundamental solution to an operator cannot
@@ -47,7 +47,7 @@ be found then domain integrals cannot be completely removed from the
 integral formulation.  Domain integrals will also arise for inhomogeneous
 equations.
 
-\citeasnoun{wu:1985} argued that the BEM has several advantages over
+\citet{wu:1985} argued that the BEM has several advantages over
 other numerical methods which justify its use for many practical problems -
 even in cases where domain integration is required.  He argued that for
 problems such as flow problems a wide range of phenomena are described by
@@ -92,7 +92,7 @@ requires discretising the domain into internal cells in much the same way
 as for the finite element method.  As the domain integral does not involve
 any unknown values accurate results can generally be achieved using a
 fairly coarse mesh.  This method is simple and has been shown to produce
-accurate results \cite{brebbia:1984b}.  This approach, however, requires a
+accurate results \citep{brebbia:1984b}.  This approach, however, requires a
 domain discretisation and a numerical domain integration procedure which
 reduces the attraction of the BEM over domain-based numerical methods.
 
@@ -122,10 +122,10 @@ Therefore if a Galerkin vector can be found and $\gamma$ is harmonic the
 domain integral in \eqnref{eq:inhomog} can be expressed as equivalent
 boundary integrals.
 
-\citeasnoun{fairweather:1979} determined the Galerkin vector for the
-two-dimensional Poisson equation and \citeasnoun{rangogni:1982} determined
+\citet{fairweather:1979} determined the Galerkin vector for the
+two-dimensional Poisson equation and \citet{rangogni:1982} determined
 the Galerkin vector for the three-dimensional Poisson equation.
-\citeasnoun{danson:1981} showed how this method can be applied
+\citet{danson:1981} showed how this method can be applied
 successfully for a number of physical problems involving linear isotropic
 problems with body forces.  He considered the practical cases where the
 body force term arose due to either a constant gravitational load, rotation
@@ -156,7 +156,7 @@ allowing the integration to be performed over a simple geometry enclosing
 the problem domain - if a random point is not in the problem domain its
 contribution is ignored.
 
-The method was proposed by \citeasnoun{gipson:1987}.  Gipson has
+The method was proposed by \citet{gipson:1987}.  Gipson has
 successfully applied this method to a number of Poisson-type problems.
 Unfortunately this method often proves to be computationally expensive as a
 large number of integration points are needed for accurate domain
@@ -190,7 +190,7 @@ This approach can be applied in a situation where an analytic expression
 for a particular solution can be found.  Unfortunately particular solutions
 are generally only known for simple operators and for simple forms of
 $\gamma$.  Alternatively an approximate particular solution could be
-calculated numerically.  \citeasnoun{zheng:1991} proposed a method
+calculated numerically.  \citet{zheng:1991} proposed a method
 where a particular solution is determined by approximating the
 inhomogeneous source term using a global interpolation function.  This
 approach is a special case of a more general method known as the dual
@@ -220,7 +220,7 @@ the internal nodes are treated as formal problem unknowns.
 \subsection{The Perturbation Boundary Element Method}
 
 \index{Perturbation Boundary Element Method@Perturbation BEM}
-\citeasnoun{rangogni:1986} proposed solving variable coefficient PDEs by
+\citet{rangogni:1986} proposed solving variable coefficient PDEs by
 coupling the boundary element method with a perturbation method. He
 considered the two-dimensional generalised Laplace equation
 \begin{equation}
@@ -235,7 +235,7 @@ Using the substitution $\fnof{V}{x,y} = \kappa^{-\dfrac{1}{2}} \fnof{u}{x,y}$
 \end{equation}
 where $f$ is a known function of position.
 
-\citename{rangogni:1986} treated 
+\citet{rangogni:1986} treated 
 this equation as a perturbation about Laplace's equation. He considered the class of equations
 \begin{equation}
   \laplacian{}{u} + \varepsilon \fnof{f}{x,y} u = 0 \qquad 
@@ -271,7 +271,7 @@ given by $\dsuml{j=0}{\infty} u_{j}$. Rangogni reported that in practice
 this series converged rapidly and in his numerical examples he achieved
 accurate results using only $u_{0}$ and $u_{1}$.
 
-\citeasnoun{rangogni:1991} extended this coupled perturbation - boundary
+\citet{rangogni:1991} extended this coupled perturbation - boundary
 element method to the general second-order variable coefficient PDE
 \begin{equation}
   \laplacian{}{u} + \fnof{f}{x,y} \delby{u}{x} + \fnof{g}{x,y} \delby{u}{y} =
@@ -291,18 +291,18 @@ Rangogni used an domain mesh to solve these Poisson equations.  Rangogni
 found that in practice convergence was rapid and accurate results were
 produced.
 
-\citeasnoun{gipson:1987b} considered a class of hyperbolic and elliptic
+\citet{gipson:1987b} considered a class of hyperbolic and elliptic
 problems which can be transformed into an inhomogeneous Helmholtz equation.
 They used the perturbation method to recast this as an infinite sequence of
 Poisson equations. They avoided domain discretisation by using a Monte
-Carlo integration technique \cite{gipson:1987} to evaluate the required
+Carlo integration technique \citep{gipson:1987} to evaluate the required
 domain integrals.
 
-\citeasnoun{lafe:1987} used the perturbation method to solve
+\citet{lafe:1987} used the perturbation method to solve
 steady-state groundwater flow problems in heterogeneous aquifers.  They
 showed the method produced accurate results for simply varying hydraulic
 conductivities with convergence after two or three terms.
-\citename{lafe:1987} investigated the convergence of the perturbation
+\citet{lafe:1987} investigated the convergence of the perturbation
 method.  They found that for rapidly varying hydraulic conductivity
 convergence is not guaranteed.  From this investigation they concluded that
 accurate results can be obtained so long as the hydraulic conductivity does
@@ -321,7 +321,7 @@ subproblems will be required within each subregion.
 
 The multiple reciprocity method 
  \index{Multiple reciprocity method|(} (MRM) was
-initially proposed by \citeasnoun{nowak:1987} for the solution of transient
+initially proposed by \citet{nowak:1987} for the solution of transient
 heat conduction problems.  Since then the method has been successfully applied
 to a wide range of problems.  The MRM can be viewed as a generalisation of the
 Galerkin vector approach.  Instead of using one higher-order fundamental
@@ -416,14 +416,14 @@ This approach relies on knowledge of the higher-order fundamental solutions
 necessary for application of the method.  These solutions have been
 determined and successfully used for the Laplace operator in both two and
 three dimensions but the extension of the method to other equation types
-needs further research.  \citeasnoun{itagaki:1993} have determined the higher
+needs further research.  \citet{itagaki:1993} have determined the higher
 order fundamental solutions for the two-dimensional modified Helmholtz
 equation.
 
 The MRM can be extended to other equations by allowing the forcing function
 $b_{0}$ to be a general function such that $b_{0} = \fnof{b_{0}}{\vect{x},u,t}$.
 The MRM will be restricted to cases where the recurrence relationships -
-\eqnrefs{eq:recurr}{eq:higher} - can be employed.  \citeasnoun{brebbia:1989}
+\eqnrefs{eq:recurr}{eq:higher} - can be employed.  \citet{brebbia:1989}
 have applied the MRM to the Helmholtz equation $\laplacian{}{u} + \kappa^{2} u =
 0$ where $b_{0} = -\kappa^{2} u$ and the recurrence relationship defined by
 \eqnref{eq:recurr} becomes simply 
@@ -449,7 +449,7 @@ avoid the need for domain integration in cases where the fundamental
 solution of the governing differential equation is unknown or is
 impractical to apply.  Instead the DR-BEM is applied using an appropriate
 related operator with known fundamental solution.  The most common choice
-is the Laplace operator \cite{partridge:1992} and in this chapter the DR-BEM
+is the Laplace operator \citep{partridge:1992} and in this chapter the DR-BEM
 will be illustrated for this choice.
 
 Consider a second-order PDE which can be expressed in the form
@@ -535,7 +535,7 @@ the numerical implementation will generate the same matrices $\matr{H}$ and
 $\matr{G}$ on both sides of \eqnref{eq:drmmaths}. The error generated by
 approximating each $\hat{u}_{j}$ in this manner has been found to be small
 and can be justified by the improved computational efficiency of the method
-\cite{partridge:1992}.
+\citep{partridge:1992}.
 
 The application of this method results in the system
 \begin{equation}
@@ -546,8 +546,8 @@ The application of this method results in the system
 where the $M$ poles were chosen to be the $N$ boundary nodes plus $I$ internal
 points so that $M = N+I$. Although it is not generally necessary to include
 poles at internal points it has been found that in general improved accuracy
-is achieved by doing so \cite{nowak:1992}.  It has been shown that for many
-problems \cite{partridge:1992} \cite{cruse:1993} using boundary points only in
+is achieved by doing so \citep{nowak:1992}.  It has been shown that for many
+problems \citep{partridge:1992} \citep{cruse:1993} using boundary points only in
 this procedure is insufficient to define the problem.  In general using
 internal points is likely to improve the solution accuracy as it increases the
 number of degrees of freedom.  No theory has been developed of how many
@@ -613,9 +613,9 @@ $\vect{x}$ and the source point $\vect{\xi}$ of the fundamental
 solution.  Due to the dependence of this fundamental solution only on $r$
 the approximating function is generally chosen to be some radial function
 \ie  $f_{j} = \fnof{f_{j}}{r}$. Several other options for $f_{j}$ have been tried
-\cite{partridge:1992} but it has been found that in general the most accurate
+\citep{partridge:1992} but it has been found that in general the most accurate
 results were generated using some radial function.  For both two and
-three-dimensional problems \citeasnoun{wrobel:1986} recommended choosing
+three-dimensional problems \citet{wrobel:1986} recommended choosing
 $f_{j}$ from the series
 \begin{equation}
   f_{j} = 1 + r_{j} + r_{j}^{2} +\ldots+ r_{j}^{m}
@@ -650,7 +650,7 @@ where $r_{x} = x_{j} - x_{i}$ and $r_{y} = y_{j} - y_{i}$.
 
 Any combination of terms from \eqnref{eq:fdefine} can be used for specifying
 $f$. It has been found that in general including higher-order terms leads
-to little improvement in accuracy \cite{partridge:1992}. The most commonly
+to little improvement in accuracy \citep{partridge:1992}. The most commonly
 used form is $f = 1 + r$ as this approximation will generally give accurate
 results with greater computational efficiency than other choices.
 
@@ -668,13 +668,13 @@ approximating function has generally been chosen and used in a rather
 ad-hoc manner.  Recently some more formal analysis of the use of
 approximating functions has been undertaken. 
 
-\citeasnoun{golberg:1994} argued that a formal analysis of the approximating
+\citet{golberg:1994} argued that a formal analysis of the approximating
 function $f$ can be undertaken using the theory of radial basis functions.
 Radial basis functions are a generalisation of cubic splines in
 multi-dimensions.  Cubic splines are known to be optimal for one-dimensional
 interpolation.  Therefore, rather than being an arbitrary choice, it seems
 that choosing $f$ to be a radial function is a logical extension for two
-or three-dimensional problems.  \citename{golberg:1994} showed that, for the
+or three-dimensional problems.  \citet{golberg:1994} showed that, for the
 Poisson equation, choosing $f$ to be a radial basis function ensures
 convergence of the DR-BEM.
 
@@ -686,9 +686,9 @@ of $f = 1 + r$ when applying the DR-BEM to three-dimensional problems - the
 constant is included to ensure a non-zero diagonal for $\matr{F}$.  However
 for two-dimensional problems it has been shown that optimal approximation
 is attained using the thin plate spline $f = r^{2} log r$.  This
-observation lead \citename{golberg:1994} to suggest that choosing $f$ to be a
+observation lead \citet{golberg:1994} to suggest that choosing $f$ to be a
 thin plate spline may improve the accuracy of the DR-BEM in two dimensions.
-Recently \citeasnoun{golberg:1995} has published a review of the DR-BEM
+Recently \citet{golberg:1995} has published a review of the DR-BEM
 concentrating on developments since 1990 concerning the numerical
 evaluation of particular solutions.
 
@@ -711,13 +711,13 @@ conditions \eqnref{eq:drmpoisson} can be
 reduced to a linear system $\matr{A} \vect{x} = \vect{\tau}$ which can be
 solved to give the unknown nodal values of $u$ and $q$.
 
-\citeasnoun{zheng:1991} and \citeasnoun{coleman:1991} have proposed
+\citet{zheng:1991} and \citet{coleman:1991} have proposed
 a method which uses a global shape function to construct an approximate
-particular solution.  As discussed by \citeasnoun{polyzos:1994} this method
+particular solution.  As discussed by \citet{polyzos:1994} this method
 is essentially equivalent to the DR-BEM.  However,
-\citename{zheng:1991} and \citename{coleman:1991} suggested several
+\citet{zheng:1991} and \citet{coleman:1991} suggested several
 alternative ways of determining the unknown coefficients $\alpha_{j}$ for
-inhomogeneous equations.  \citeasnoun{zheng:1991} used a least-squares
+inhomogeneous equations.  \citet{zheng:1991} used a least-squares
 method where they minimised the sum of squares
 \begin{equation}
   S = \dsuml{m=1}{M} \pbrac{\fnof{b}{r_{m}} - \dsuml{j=1}{N}
@@ -725,7 +725,7 @@ method where they minimised the sum of squares
 \end{equation}
 using singular value decomposition.  For large systems they found the
 computational efficiency could be improved by employing the conjugate
-gradient method.  \citeasnoun{coleman:1991} successfully solved
+gradient method.  \citet{coleman:1991} successfully solved
 inhomogeneous potential and elasticity problems which are governed by
 operators other than the Laplacian.
 
@@ -772,7 +772,7 @@ simultaneously.
   BEM!derivative terms}
 The DR-BEM can also be applied for elliptic problems where
 $b$ involves derivatives of the dependent variable
-\cite{partridge:1992}. Consider, for example, the differential equation 
+\citep{partridge:1992}. Consider, for example, the differential equation 
 \begin{equation}
   \laplacian{}{u} + \delby{u}{x} = 0
 \end{equation}
@@ -831,20 +831,20 @@ $\delby{f}{x}$.  Using the approximating function $f = 1 + r$ gives
   \delby{f}{x} = \delby{f}{r} \delby{r}{x} = \delby{f}{r} \dfrac{r_{x}}{r} 
 \end{equation}
 This derivative function can become singular, so - as shown by
-\citeasnoun{zhang:1993} - significant numerical error may result.  This
+\citet{zhang:1993} - significant numerical error may result.  This
 will especially be the case in problems where collocation points are located
 close together.
 
-\citeasnoun{zhang:1993} suggested two possibilities for avoiding this
+\citet{zhang:1993} suggested two possibilities for avoiding this
 problem.  The first suggestion involved using a mapping procedure to map
 the governing equation to an equation without convective terms. This method
 was shown to produce accurate results but is somewhat cumbersome and can
 only be applied to linear problems.  A simpler approach is to choose an
 approximating function which does not lead to singularities for convective
-terms.  \citename{zhang:1993} recommended use of either $f = 1 + r^{3}$
+terms.  \citet{zhang:1993} recommended use of either $f = 1 + r^{3}$
 or $f = 1 + r^{2}+ r^{3}$.  These approximating functions produce accurate
 results and can be simply applied for both linear and nonlinear problems.
-\citename{zhang:1993} recommended the adoption of these approximating
+\citet{zhang:1993} recommended the adoption of these approximating
 functions for all use of the DR-BEM.
 
 The same idea of using \eqnref{eq:uapprox} to allow nodal values of $u$ to be
@@ -939,13 +939,13 @@ choosing the approximating function $f$.  A choice of $f$ which produces
 accurate results is required but it is also necessary to choose an $f$ for
 which a particular solution $\hat{u}$ can be determined. 
 
-\citeasnoun{zhu:1993} has determined the particular solutions necessary for
+\citet{zhu:1993} has determined the particular solutions necessary for
 applying the DR-BEM based on the two-dimensional Helmholtz operator.
 \begin{equation}
   \laplacian{}{u} + \kappa^2 u = \fnof{b}{x,y,u,t}
 \end{equation}
 Radial functions have generally been used when applying the DR-BEM.  Along
-the lines of \citeasnoun{wrobel:1986}, \citename{zhu:1993} chose an
+the lines of \citet{wrobel:1986}, \citet{zhu:1993} chose an
 approximating function of the form $f = r^{m}$ where $m$ is a positive
 integer.  Determining the particular solution $\hat{u}$ requires solving the
 ordinary differential equation
@@ -954,7 +954,7 @@ ordinary differential equation
 \end{equation}
 which can be achieved using a variation of coefficients method.
 
-\citeasnoun{partridge:1992} applied the DR-BEM to the transient convection
+\citet{partridge:1992} applied the DR-BEM to the transient convection
 diffusion equation
 \begin{equation}
   D \laplacian{}{u} - v_{x} \delby{u}{x} - v_{y} \delby{u}{y} - k u = \delby{u}{t}
@@ -976,7 +976,7 @@ which satisfies
 \label{eq:cdpartic}
 \end{equation}
 Instead of defining a form of the approximating function $f$ and solving
-for $\hat{u}$ \citename{partridge:1992} chose to define $\hat{u}$ and use
+for $\hat{u}$ \citet{partridge:1992} chose to define $\hat{u}$ and use
 \eqnref{eq:cdpartic} to determine the corresponding approximating function.
 Although somewhat ad-hoc this approach was found to produce accurate
 results.
