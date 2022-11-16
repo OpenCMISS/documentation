@@ -572,8 +572,14 @@
 \newcommand{\set}[1]{\ensuremath{
     \bbrac{#1}
 }} % e.g. \set{1,2,3} => {1,2,3}
-\newcommand{\union}[2]{\ensuremath{#1\cup#2}} % Union
-\newcommand{\intersection}[2]{\ensuremath{#1\cap#2}} % Intersection
+\newcommand{\union}[2]{\uniontwo{#1,#2}} % Union
+\newcommand{\uniontwo}[2]{\ensuremath{#1\cup#2}} % Two way union
+\newcommand{\unionthree}[3]{\ensuremath{#1\cup#2\cup#3}} % Three way union
+\newcommand{\unionfour}[4]{\ensuremath{#1\cup#2\cup#3\cup#4}} % Four way union
+\newcommand{\intersection}[2]{\intersectiontwo{#1,#2}} % Intersection
+\newcommand{\intersectiontwo}[2]{\ensuremath{#1\cap#2}} % Two way intersection
+\newcommand{\intersectionthree}[3]{\ensuremath{#1\cap#2\cap#3}} % Three way intersection
+\newcommand{\intersectionfour}[4]{\ensuremath{#1\cap#2\cap#3\cap#4}} % Four way intersection
 
 %
 % Topologies
@@ -2023,66 +2029,138 @@
 \newcommand{\cosine}[1]{\ensuremath{ %
     \fnof{\cos}{#1} %
 }} %cosine e.g., \cosine{x} => cos(x)
+\newcommand{\cosinen}[2]{\ensuremath{ %
+    \fnof{\cos^{#1}}{#2} %
+}} %cosine to nth power e.g., \cosinen{3}{x} => cos^{3}(x)
 \newcommand{\cosinesq}[1]{\ensuremath{ %
     \fnof{\cos^{2}}{#1} %
 }} %cosine squared e.g., \cosinesq{x} => cos^{2}(x)
 \newcommand{\sine}[1]{\ensuremath{ %
     \fnof{\sin}{#1} %
 }} %sine e.g., \sine{x} => sin(x)
+\newcommand{\sinen}[2]{\ensuremath{ %
+    \fnof{\sin^{#1}}{#2} %
+}} %sine to nth power e.g., \sinen{3}{x} => sin^{3}(x)
 \newcommand{\sinesq}[1]{\ensuremath{ %
     \fnof{\sin^{2}}{#1} %
 }} %sine squared e.g., \sinesq{x} => sin^{2}(x)
 \newcommand{\tangent}[1]{\ensuremath{ %
     \fnof{\tan}{#1} %
 }} %tangent e.g., \tangent{x} => tan(x)
+\newcommand{\tangentn}[2]{\ensuremath{ %
+    \fnof{\tan^{#1}}{#2} %
+}} %tangent to nth power e.g., \tangentn{3}{x} => tan^{3}(x)
 \newcommand{\tangentsq}[1]{\ensuremath{ %
     \fnof{\tan^{2}}{#1} %
 }} %tangent squared e.g., \tangentsq{x} => tan^{2}(x)
 \newcommand{\arccosine}[1]{\ensuremath{ %
     \fnof{\inverse{\cos}}{#1} %
-}} %inverse cosine e.g., \invcosine{x} => cos^{-1}(x)
+}} %inverse cosine e.g., \arccosine{x} => cos^{-1}(x)
+\newcommand{\arccosinen}[2]{\ensuremath{ %
+    \fnof{\cos^{-#1}}{#2} %
+}} %inverse cosine to the nth power e.g., \arccosinen{3}{x} => cos^{-3}(x)
 \newcommand{\arcsine}[1]{\ensuremath{ %
     \fnof{\inverse{\sin}}{#1} %
 }} %inverse sine e.g., \invsine{x} => sin^{-1}(x)
+\newcommand{\arcsinen}[2]{\ensuremath{ %
+    \fnof{\sin^{-#1}}{#2} %
+}} %inverse sine to the nth power e.g., \arcsinen{3}{x} => sin^{-3}(x)
 \newcommand{\arctangent}[1]{\ensuremath{ %
     \fnof{\inverse{\tan}}{#1} %
 }} %inverse tangent e.g., \invtangent{x} => tan^{-1}(x)
+\newcommand{\arctangentn}[2]{\ensuremath{ %
+    \fnof{\tan^{-#1}}{#2} %
+}} %inverse tangent to the nth power e.g., \arctangentn{3}{x} => tan^{-3}(x)
 \newcommand{\secant}[1]{\ensuremath{ %
     \fnof{\sec}{#1} %
 }} %secant e.g., \secant{x} => sec(x)
+\newcommand{\secantn}[2]{\ensuremath{ %
+    \fnof{\sec^{#1}}{#2} %
+}} %secant to the nth power e.g., \secantn{3}{x} => sec^{3}(x)
 \newcommand{\cosecant}[1]{\ensuremath{ %
     \fnof{\csc}{#1} %
 }} %cosecant e.g., \cosecant{x} => csc(x)
+\newcommand{\cosecantn}[2]{\ensuremath{ %
+    \fnof{\csc^{#1}}{#2} %
+}} %cosecant to the nth power e.g., \cosecantn{3}{x} => csc^{3}(x)
 \newcommand{\cotangent}[1]{\ensuremath{ %
     \fnof{\cot}{#1} %
 }} %cotangent e.g., \contangent{x} => cot(x)
+\newcommand{\cotangentn}[2]{\ensuremath{ %
+    \fnof{\cot^{#1}}{#2} %
+}} %cotangent to the nth power e.g., \cotangent{3}{x} => cot^{3}(x)
 \newcommand{\hypecosine}[1]{\ensuremath{ %
     \fnof{\cosh}{#1} %
 }} %hyperbolic cosine e.g., \hypecosine{x} => cosh(x)
+\newcommand{\hypecosinen}[2]{\ensuremath{ %
+    \fnof{\cosh^{#1}}{#2} %
+}} %hyperbolic cosine to the nth power e.g., \hypecosinen{3}{x} => cosh^{3}(x)
+\newcommand{\hypecosinesq}[1]{\ensuremath{ %
+    \fnof{\cosh^{2}}{#1} %
+}} %hyperbolic cosine squared e.g., \hypecosinesq{x} => cosh^{2}(x)
 \newcommand{\hypesine}[1]{\ensuremath{ %
     \fnof{\sinh}{#1} %
 }} %hyperbolic sine e.g., \hypesine{x} => sinh(x)
+\newcommand{\hypesinen}[2]{\ensuremath{ %
+    \fnof{\sinh^{#1}}{#2} %
+}} %hyperbolic sine to the nth power e.g., \hypesinen{3}{x} => sinh^{3}(x)
+\newcommand{\hypesinesq}[1]{\ensuremath{ %
+    \fnof{\sinh^{2}}{#1} %
+}} %hyperbolic sine squared e.g., \hypesinesq{x} => sinh^{2}(x)
 \newcommand{\hypetangent}[1]{\ensuremath{ %
     \fnof{\tanh}{#1} %
+}} %hyperbolic tangent e.g., \hypetangent{x} => tanh(x)
+\newcommand{\hypetangentn}[2]{\ensuremath{ %
+    \fnof{\tanh^{#1}}{#2} %
+}} %hyperbolic tangent to the nth power e.g., \hypetangentn{3}{x} => tanh^{3}(x)
+\newcommand{\hypetangentsq}[1]{\ensuremath{ %
+    \fnof{\tanh^{2}}{#1} %
 }} %hyperbolic tangent e.g., \hypetangent{x} => tanh(x)
 \newcommand{\hypesecant}[1]{\ensuremath{ %
     \fnof{\sech}{#1} %
 }} %hyperbolic secant e.g., \hypesecant{x} => sech(x)
+\newcommand{\hypesecantn}[2]{\ensuremath{ %
+    \fnof{\sech^{#1}}{#2} %
+}} %hyperbolic secant to the nth power e.g., \hypesecantn{3}{x} => sech^{3}(x)
+\newcommand{\hypesecantsq}[1]{\ensuremath{ %
+    \fnof{\sech^{2}}{#1} %
+}} %hyperbolic secant squared e.g., \hypesecantsq{x} => sech^{2}(x)
 \newcommand{\hypecosecant}[1]{\ensuremath{ %
     \fnof{\csch}{#1} %
 }} %hyperbolic cosecant e.g., \hypecosecant{x} => csch(x)
+\newcommand{\hypecosecantn}[2]{\ensuremath{ %
+    \fnof{\csch^{#1}}{#2} %
+}} %hyperbolic cosecant to the nth power e.g., \hypecosecantn{3}{x} => csch^{3}(x)
+\newcommand{\hypecosecantsq}[1]{\ensuremath{ %
+    \fnof{\csch^{2}}{#1} %
+}} %hyperbolic cosecant squared e.g., \hypecosecantsq{x} => csch^{2}(x)
 \newcommand{\hypecotangent}[1]{\ensuremath{ %
     \fnof{\coth}{#1} %
 }} %hyperbolic cotangent e.g., \hypecontangent{x} => coth(x)
+\newcommand{\hypecotangentn}[2]{\ensuremath{ %
+    \fnof{\coth^{#1}}{#2} %
+}} %hyperbolic cotangent to the nth power e.g., \hypecotangentn{3}{x} => coth^{3}(x)
+\newcommand{\hypecotangentsq}[1]{\ensuremath{ %
+    \fnof{\coth^{2}}{#1} %
+}} %hyperbolic cotangent squared e.g., \hypecontangentsq{x} => coth^{2}(x)
 \newcommand{\archypecosine}[1]{\ensuremath{ %
     \fnof{\inverse{\cosh}}{#1} %
 }} %inverse hyperbolic cosine e.g., \archypecosine{x} => cosh^{-1}(x)
+\newcommand{\archypecosinen}[2]{\ensuremath{ %
+    \fnof{\cosh^{-#1}}{#2} %
+}} %arc hyperbolic cosine to the nth power e.g., \archypecosinen{3}{x} => cosh^{-3}(x)
 \newcommand{\archypesine}[1]{\ensuremath{ %
     \fnof{\inverse{\sinh}}{#1} %
 }} %inverse hyperbolic sine e.g., \archypesine{x} => sinh^{-1}(x)
+\newcommand{\archypesinen}[2]{\ensuremath{ %
+    \fnof{\sinh^{-#1}}{#2} %
+}} %arc hyperbolic sine to the nth power e.g., \archypesinen{3}{x} => sinh^{-3}(x)
 \newcommand{\archypetangent}[1]{\ensuremath{ %
     \fnof{\inverse{\tanh}}{#1} %
 }} %inverse hyperbolic tangent e.g., \archypetangent{x} => tanh^{-1}(x)
+\newcommand{\archypetangentn}[2]{\ensuremath{ %
+    \fnof{\tahh^{-#1}}{#2} %
+}} %arc hyperbolic tangent to the nth power e.g., \archypetangentn{3}{x} => tanh^{-3}(x)
 
 
 %
