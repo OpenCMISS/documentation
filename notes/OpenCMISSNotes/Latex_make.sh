@@ -79,6 +79,7 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Appendices/Appendices.tex "\
 "Appendices/CoordinateSystems.tex "\
 "Appendices/TensorComponents.tex "\
+"Appendices/ElementStiffnessMatrices.tex "\
 "References/References.tex "\
 "Index/Index.tex"
 

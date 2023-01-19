@@ -583,9 +583,126 @@ Thus we have
   &=0
   \end{aligned}
 \end{equation}
-which shows that \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} satisfies the generalised Laplace equation.
+which shows that \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} satisfies the generalised Laplace equation. TWODO FIX.
 
-This analytic solution does not have an analytic field.
+The analytic field component definitions in \OpenCMISS are shown in \tabref{tab:OpenCMISSAnalyticFieldGeneralisedLaplaceTwoDim1}.
+
+\begin{table}[htb] \centering
+  \begin{tabular}{|c|c|} \hline
+    \emph{Analytic constant} & \emph{Analytic field component} \\ \hline \hline
+    $\sigma_{t}$ & $1$ \\ 
+    $\sigma_{n}$ & $2$ \\
+    $\theta$ & $3$ \\ \hline
+  \end{tabular}
+  \caption{\OpenCMISS analytic field components for the \twod generalised Laplace equation
+    analytic function 1.}
+  \label{tab:OpenCMISSAnalyticFieldGeneralisedLaplaceEquationTwoDim1}
+\end{table}
+
+We can consider a worked example for the domain shown in \figref{fig:FEMTwoDGenLaplaceDomainExample}
+
+\epstexfigure{ClassicalField/svgs/FEMTwoDGenLaplaceDomain.eps_tex}{Generalised
+  Laplace example domain.}{Generalised Laplace example domain of a
+  plate of length $L$ and height $H$ divided into $4\times 2=8$
+  elements. The plate has a fibre field at an angle of $\theta$ to the
+  $x$ axis.}{fig:FEMTwoDGenLaplaceDomainExample}{0.66}
+
+For the case when $H=\dfrac{L}{2}$, $N_{y}=\dfrac{N_{x}}{2}$, $\sigma_{t}=3$, $\sigma_{n}=1$, and $\theta=30\degree$ we have that
+
+\begin{align}
+  \tensor{\sigma}&=\begin{bmatrix}
+  \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
+  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
+  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
+  \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
+  \end{bmatrix} = \begin{bmatrix}
+    \sigma_{11} & \sigma_{12} \\
+    \sigma_{12} & \sigma_{22} 
+  \end{bmatrix} \\
+  &=\begin{bmatrix}
+  3\pbrac{\dfrac{\sqrt{3}}{2}}^{2}+1\pbrac{\dfrac{1}{2}}^{2} & 
+  \pbrac{3-1}\pbrac{\dfrac{1}{2}}\pbrac{\dfrac{\sqrt{3}}{2}} \\
+  \pbrac{3-1}\pbrac{\dfrac{1}{2}}\pbrac{\dfrac{\sqrt{3}}{2}} &
+  3\pbrac{\dfrac{1}{2}}^{2}+1\pbrac{\dfrac{\sqrt{3}}{2}}^{2}
+  \end{bmatrix} = \begin{bmatrix}
+    \frac{5}{2} & \frac{\sqrt{3}}{2} \\
+    \frac{\sqrt{3}}{2} & \frac{3}{2}
+  \end{bmatrix} 
+  \label{eqn:FEMTwoDGenLaplaceDomainConductivity}
+\end{align}
+
+Now from \eqnref{eqn:FEMTwoDGenLaplaceElementStiffnessMatrix} we have
+\begin{equation}
+  K_{mn}=\begin{bmatrix}
+  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
+  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
+  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
+  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
+  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
+  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}}
+  \end{bmatrix} 
+\end{equation}
+
+Now, for the case when $H=\dfrac{L}{2}$ and $N_{y}=\dfrac{N_{x}}{2}$ we have that
+
+\begin{equation}
+  K_{mn}=\begin{bmatrix}
+  \frac{\sigma_{11}+\sigma_{22}}{3} & \frac{\sigma_{11}-2 \sigma_{22}}{6} &
+  \frac{-2\sigma_{11}+\sigma_{22}}{6} & \frac{-\sigma_{11}-\sigma_{22}}{6} \\
+  \frac{\sigma_{11}-2 \sigma_{22}}{6} & \frac{\sigma_{11}+\sigma_{22}}{3} &
+  \frac{-\sigma_{11}-\sigma_{22}}{6} & \frac{-2\sigma_{11}+\sigma_{22}}{6} \\
+  \frac{-2\sigma_{11}+\sigma_{22}}{6} & \frac{-\sigma_{11}-\sigma_{22}}{6} &
+  \frac{\sigma_{11}+\sigma_{22}}{3} & \frac{\sigma_{11}-2\sigma_{22}}{6} \\
+  \frac{-\sigma_{11}-\sigma_{22}}{6} & \frac{-2\sigma_{11}+\sigma_{22}}{6} &
+  \frac{\sigma_{11}-2 \sigma_{22}}{6} & \frac{\sigma_{11}+\sigma_{22}}{3}
+  \end{bmatrix} 
+\end{equation}
+
+For the case when $\sigma_{t}=3$, $\sigma_{n}=1$, and $\theta=30\degree$ we have that
+
+\begin{align}
+  \tensor{\sigma}&=\begin{bmatrix}
+  \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
+  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
+  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
+  \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
+  \end{bmatrix} = \begin{bmatrix}
+    \sigma_{11} & \sigma_{12} \\
+    \sigma_{12} & \sigma_{22} 
+  \end{bmatrix} \\
+  &=\begin{bmatrix}
+  3\pbrac{\frac{\sqrt{3}}{2}}^{2}+1\pbrac{-\frac{1}{2}}^{2} & 
+  \pbrac{3-1}\pbrac{-\frac{1}{2}}\pbrac{\frac{\sqrt{3}}{2}} \\
+  \pbrac{3-1}\pbrac{-\frac{1}{2}}\pbrac{\frac{\sqrt{3}}{2}} &
+  3\pbrac{-\frac{1}{2}}^{2}+1\pbrac{\frac{\sqrt{3}}{2}}^{2}
+  \end{bmatrix} = \begin{bmatrix}
+    \frac{5}{2} & \frac{\sqrt{3}}{2} \\
+    \frac{\sqrt{3}}{2} & \frac{3}{2}
+  \end{bmatrix} 
+  \label{eqn:FEMTwoDGenLaplaceDomainConductivity}
+\end{align}
+
+With these conductivities and fibre angle the elemental stiffness matrix becomes
+
+\begin{equation}
+  K_{mn}=\begin{bmatrix}
+  +\frac{4}{3} & -\frac{1}{12} & -\frac{7}{12} & -\frac{2}{3} \\
+  -\frac{1}{12} & +\frac{4}{3} & -\frac{2}{3} & -\frac{7}{12} \\
+  -\frac{7}{12} & -\frac{2}{3} & +\frac{4}{3} & -\frac{1}{12} \\
+  -\frac{2}{3} & -\frac{7}{12} & -\frac{1}{12} & +\frac{4}{3}
+  \end{bmatrix} 
+\end{equation}
+
 
 \subsubsection{Standard Laplace Three Dimensional Solution 1}
 
