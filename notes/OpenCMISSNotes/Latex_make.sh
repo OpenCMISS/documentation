@@ -29,6 +29,8 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "FiniteElementMethod/FiniteElementMethod.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
+"Theory/SolutionMethods.tex "\
+"Theory/MaterialCoordinateTransformations.tex "\
 "Maths/Maths.tex "\
 "Maths/Notation/Notation.tex "\
 "Maths/VectorCalculus/VectorCalculus.tex "\

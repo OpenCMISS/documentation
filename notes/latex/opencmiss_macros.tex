@@ -1,5 +1,5 @@
 %
-% Macros.tex - global macros file
+% opencmiss_macros.tex - global macros file
 %
 % Created:
 %   10 September 1996
@@ -39,6 +39,7 @@
 \usepackage[driverfallback=dvips,pageanchor=true,breaklinks,colorlinks=true,backref=page,hyperindex=true]{hyperref} %make links
 \usepackage[hyphenbreaks]{breakurl}
 %\usepackage{url}
+\usepackage[svgnames,hyperref]{xcolor}
 
 %
 % Allow superimposition of symbols
@@ -46,6 +47,20 @@
 \makeatletter
 \newcommand{\superimpose}[2]{%
   {\ooalign{$#1\@firstoftwo#2$\cr\hfil$#1\@secondoftwo#2$\hfil\cr}}}
+\makeatother
+
+%
+% Define mathcolor until we have an up-to-date package version that supports it
+%
+\makeatletter
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+\DeclareRobustCommand{\fracc}[3]{{\begingroup\color{#1}#2\endgroup\color{#1}\@@over\color{#1}#3\normalcolor}}
 \makeatother
 
 %
@@ -253,6 +268,12 @@
 \newcommand{\Figrefs}[2]{Figures~\ref{#1} and~\ref{#2}} % Figures reference
 \newcommand{\figthrurefs}[2]{Figures~\bref{#1}--\bref{#2}} % Figures-- ref.
 \newcommand{\Figthrurefs}[2]{Figures~\bref{#1}--\bref{#2}} % Figures-- ref.
+\newcommand{\subfigref}[1]{Figure~\subref{#1}} % Subfigure reference
+\newcommand{\Subfigref}[1]{Figure~\subref{#1}} % subfigure reference
+\newcommand{\subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % Subfigures reference
+\newcommand{\Subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % subfigures reference
+\newcommand{\subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
+\newcommand{\Subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
 \newcommand{\pagref}[1]{page~\pageref{#1}} % page reference
 \newcommand{\Pagref}[1]{Page~\pageref{#1}} % Page reference
 \newcommand{\pagrefs}[2]{pages~\pageref{#1} and~\pageref{#2}} % pages reference
@@ -265,12 +286,18 @@
 \newcommand{\Secrefs}[2]{Sections~\ref{#1} and~\ref{#2}} % Sections reference
 \newcommand{\secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
 \newcommand{\Secthrurefs}[2]{Sections~\bref{#1}--\bref{#2}} % Sections-- ref.
-\newcommand{\subfigref}[1]{Figure~\subref{#1}} % Subfigure reference
-\newcommand{\Subfigref}[1]{Figure~\subref{#1}} % subfigure reference
-\newcommand{\subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % Subfigures reference
-\newcommand{\Subfigrefs}[2]{Figures~\subref{#1} and~\subref{#2}} % subfigures reference
-\newcommand{\subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
-\newcommand{\Subfigthrurefs}[2]{Figures~\bsubref{#1}--\bsubref{#2}} % Subfigures-- ref.
+\newcommand{\subsecref}[1]{Subsection~\ref{#1}} % Subsection reference
+\newcommand{\Subsecref}[1]{Subsection~\ref{#1}} % Subsection reference
+\newcommand{\subsecrefs}[2]{Subsections~\ref{#1} and~\ref{#2}} % Subsections reference
+\newcommand{\Subsecrefs}[2]{Subsections~\ref{#1} and~\ref{#2}} % Subsections reference
+\newcommand{\subsecthrurefs}[2]{Subsections~\bref{#1}--\bref{#2}} % Subsections-- ref.
+\newcommand{\Subsecthrurefs}[2]{Subsections~\bref{#1}--\bref{#2}} % Subsections-- ref.
+\newcommand{\subsubsecref}[1]{Subsubsection~\ref{#1}} % Subsubsection reference
+\newcommand{\Subsubsecref}[1]{Subsubsection~\ref{#1}} % Subsubsection reference
+\newcommand{\subsubsecrefs}[2]{Subsubsections~\ref{#1} and~\ref{#2}} % Subsubsections reference
+\newcommand{\Subsubsecrefs}[2]{Subsubsections~\ref{#1} and~\ref{#2}} % Subsubsections reference
+\newcommand{\subsubsecthrurefs}[2]{Subsubsections~\bref{#1}--\bref{#2}} % Subsubsections-- ref.
+\newcommand{\Subsubsecthrurefs}[2]{Subsubsections~\bref{#1}--\bref{#2}} % Subsubsections-- ref.
 \newcommand{\tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\Tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\tabrefs}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference
@@ -427,33 +454,63 @@
 \newcommand{\nodenumber}[1]{\ensuremath{ %
     \textbf{#1} %
 }} % format a node number to differentiate it
+\newcommand{\nodenumberc}[2]{\ensuremath{ %
+    \textbf{\textcolor{#1}#2} %
+}} % format a node number with colour to differentiate it
 \newcommand{\elementnumber}[1]{\ensuremath{ %
     \textit{#1} %
 }} % format an element number to differentiate it
+\newcommand{\elementnumberc}[2]{\ensuremath{ %
+    \textit{\textcolor{#1}#2} %
+}} % format an element number with colour to differentiate it
 \newcommand{\datanumber}[1]{\ensuremath{ %
     \textit{#1} %
 }} % format a data point number to differentiate it
+\newcommand{\datanumberc}[2]{\ensuremath{ %
+    \textit{\textcolor{#1}#2} %
+}} % format a data point number with colour to differentiate it
 \newcommand{\dofnumber}[1]{\ensuremath{ %
     \textrm{#1} %
 }} % format a DOF number to differentiate it
+\newcommand{\dofnumberc}[2]{\ensuremath{ %
+    \textrm{\textcolor{#1}#2} %
+}} % format a DOF number with colour to differentiate it
 \newcommand{\localdofnumber}[1]{\ensuremath{ %
     \textit{#1} %
 }} % format a local DOF number to differentiate it
+\newcommand{\localdofnumberc}[2]{\ensuremath{ %
+    \textit{\textcolor{#1}#2} %
+}} % format a local DOF number with colour to differentiate it
 \newcommand{\globaldofnumber}[1]{\ensuremath{ %
     \textrm{#1} %
 }} % format a global DOF number to differentiate it
+\newcommand{\globaldofnumberc}[2]{\ensuremath{ %
+    \textrm{\textcolor{#1}#2} %
+}} % format a global DOF number with colour to differentiate it
 \newcommand{\localrownumber}[1]{\ensuremath{ %
     \textit{#1} %
 }} % format a local row number to differentiate it
+\newcommand{\localrownumberc}[2]{\ensuremath{ %
+    \textit{\textcolor{#1}#2} %
+}} % format a local row number with colour to differentiate it
 \newcommand{\globalrownumber}[1]{\ensuremath{ %
     \textrm{#1} %
 }} % format a global row number to differentiate it
+\newcommand{\globalrownumberc}[2]{\ensuremath{ %
+    \textrm{\textcolor{#1}#2} %
+}} % format a global row number with colour to differentiate it
 \newcommand{\localcolnumber}[1]{\ensuremath{ %
     \textit{#1} %
 }} % format a local column number to differentiate it
+\newcommand{\localcolnumberc}[2]{\ensuremath{ %
+    \textit{\textcolor{#1}#2} %
+}} % format a local column number with colour to differentiate it
 \newcommand{\globalcolnumber}[1]{\ensuremath{ %
     \textbf{#1} %
 }} % format a global column number to differentiate it
+\newcommand{\globalcolnumberc}[2]{\ensuremath{ %
+    \textbf{\textcolor{#1}#2} %
+}} % format a global column number with colour to differentiate it
 
 %
 % Non-dimensional numbers
@@ -740,51 +797,171 @@
 \newcommand{\hessopnondim}{\ensuremath{ %
     \nondimsup{H} %
 }} % Hessian op non dimensional
-\newcommand{\functional}[2]{\ensuremath{#1\sqbrac{#2}}} % functional e.g.,
-                                % \functional{f}{a} => f[a]
-\newcommand{\functionalderiv}[2]{\ensuremath{\delta #1}} % functional deriv e.g.,
-                                % \functionalderiv{f} => \delta f
+\newcommand{\functional}[2]{\ensuremath{ %
+    #1\sqbrac{#2} %
+}} % functional e.g., \functional{f}{a} => f[a]
+\newcommand{\functionalderiv}[2]{\ensuremath{ %
+    \delta #1
+}} % functional deriv e.g., \functionalderiv{f} => \delta f
 \newcommand{\inteval}[3]{\ensuremath{ %
     \displaystyle\sqbrac{#1}_{#2}^{#3} %
-    }} % display evaluated integral with limits e.g. 
-       % \inteval{xxx}{a}{b} => [xxx]_a^b
-\newcommand{\inverse}[1]{\ensuremath{{#1}^{-1}}} % inverse e.g. \inverse{A} => A^-1
+}} % display evaluated integral with limits e.g. \inteval{xxx}{a}{b} => [xxx]_a^b
+\newcommand{\inverse}[1]{\ensuremath{ %
+    {#1}^{-1} %
+}} % inverse e.g. \inverse{A} => A^-1
 \newcommand{\invsquared}[1]{\ensuremath{ %
-    {#1}^{-2}
+    {#1}^{-2} %
 }} % inverse squared e.g. \invsquared{A} => A^-2
+\newcommand{\kroneckersymbol}{\ensuremath{ %
+    \delta %
+}} % kronecker delta symbol
+\newcommand{\sharpkroneckertwo}[2]{\ensuremath{ %
+    \kroneckersymbol^{{#1}{#2}} %
+}} % second order sharp kronecker delta e.g., \sharpkroneckertwo{i}{j} => \delta^{ij}
+\newcommand{\sharpkroneckerthree}[3]{\ensuremath{ %
+    \kroneckersymbol^{{#1}{#2}{#3}} %
+}} % third order sharp kronecker delta e.g., \sharpkroneckerthree{i}{j}{k} => \delta^{ijk}
+\newcommand{\sharpkroneckerfour}[4]{\ensuremath{ %
+    \kroneckersymbol^{{#1}{#2}{#3}{#4}} %
+}} % fourth order sharp kronecker delta e.g., \sharpkroneckerfour{i}{j}{k}{l} => \delta^{ijkl}
 \newcommand{\sharpkronecker}[2]{\ensuremath{ %
-    \delta^{{#1}{#2}}
-}} % sharp kronecker delta tensor e.g., \sharpkronecker{i}{j} => delta^{ij}
+    \sharpkroneckertwo{#1}{#2} %
+}} % sharp kronecker delta (default to second-order) e.g., \sharpkronecker{i}{j} => \delta^{ij}
+\newcommand{\contrakroneckertwo}[2]{\ensuremath{ %
+    \sharpkroneckertwo{#1}{#2} %
+}} % second order contravariant kronecker delta e.g., \contrakroneckertwo{i}{j} => \delta^{ij}
+\newcommand{\contrakroneckerthree}[3]{\ensuremath{ %
+    \sharpkroneckerthree{#1}{#2}{#3} %
+}} % third order contravariant kronecker delta e.g., \contrakroneckerthree{i}{j}{k} => \delta^{ijk}
+\newcommand{\contrakroneckerfour}[4]{\ensuremath{ %
+    \sharpkroneckerfour{#1}{#2}{#3}{#4} %
+}} % fourth order contravariant kronecker delta e.g., \contrakroneckerfour{i}{j}{k}{l} => \delta^{ijkl}
 \newcommand{\contrakronecker}[2]{\ensuremath{ %
-    \sharpkronecker{#1}{#2} %
-}} % contravariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta^{ij}
-\newcommand{\flatkronecker}[2]{\ensuremath{
-    \delta_{{#1}{#2}}
-}} % flat kronecker delta tensor e.g., \flatkronecker{i}{j} => delta_{ij}
-\newcommand{\covarkronecker}[2]{\ensuremath{
-    \flatkronecker{#1}{#2} %
-}} % covariant kronecker delta tensor e.g., \contrakronecker{i}{j} => delta_{ij}
-\newcommand{\mixedkronecker}[2]{\ensuremath{
-    \delta^{#1}_{#2}
-}} % mixed kronecker delta tensor e.g., \mixedkronecker{i}{j} => delta_{i}^{j}
+    \contrakroneckertwo{#1}{#2} %
+}} % contravariant kronecker delta (default to second-order) e.g., \contrakronecker{i}{j} => \delta^{ij}
+\newcommand{\flatkroneckertwo}[2]{\ensuremath{ %
+    \kroneckersymbol_{{#1}{#2}} %
+}} % second order flat kronecker delta e.g., \flatkroneckertwo{i}{j} => \delta_{ij}
+\newcommand{\flatkroneckerthree}[3]{\ensuremath{ %
+    \kroneckersymbol_{{#1}{#2}{#3}} %
+}} % third order flat kronecker delta e.g., \flatkroneckerthree{i}{j}{k} => \delta_{ijk}
+\newcommand{\flatkroneckerfour}[4]{\ensuremath{ %
+    \kroneckersymbol_{{#1}{#2}{#3}{#4}} %
+}} % fourth order flat kronecker delta e.g., \flatkroneckerfour{i}{j}{k}{l} => \delta_{ijkl}
+\newcommand{\flatkronecker}[2]{\ensuremath{ %
+    \flatkroneckertwo{#1}{#2} %
+}} % flat kronecker delta (default to second-order) e.g., \flatkronecker{i}{j} => \delta_{ij}
+\newcommand{\covarkroneckertwo}[2]{\ensuremath{ %
+    \flatkroneckertwo{#1}{#2} %
+}} % second order covariant kronecker delta e.g., \contrakroneckertwo{i}{j} => \delta_{ij}
+\newcommand{\covarkroneckerthree}[3]{\ensuremath{ %
+    \flatkroneckerthree{#1}{#2}{#3} %
+}} % third order covariant kronecker delta e.g., \contrakroneckerthree{i}{j}{k} => \delta_{ijk}
+\newcommand{\covarkroneckerfour}[4]{\ensuremath{ %
+    \flatkroneckerfour{#1}{#2}{#3}{#4} %
+}} % fourth order covariant kronecker delta e.g., \contrakroneckerfour{i}{j}{k}{l} => \delta_{ijkl}
+\newcommand{\covarkronecker}[2]{\ensuremath{ %
+    \flatkroneckertwo{#1}{#2} %
+}} % covariant kronecker delta (default to second order) e.g., \contrakronecker{i}{j} => \delta_{ij}
+\newcommand{\mixedkronecker}[2]{\ensuremath{ %
+    \kroneckersymbol^{#1}_{#2} %
+}} % mixed kronecker delta e.g., \mixedkronecker{i}{j} => \delta_{i}^{j}
+\newcommand{\mixedkroneckertwo}[2]{\ensuremath{ %
+    \mixedkronecker{#1}{#2} %
+}} % second order mixed kronecker delta tensor (for completeness) e.g., \mixedkroneckertwo{i}{j} => \delta_{i}^{j}
+\newcommand{\mixedkroneckerthree}[2]{\ensuremath{ %
+    \mixedkronecker{#1}{#2} %
+}} % third order mixed kronecker delta tensor (for completeness) e.g., \mixedkroneckerthree{i}{j} => \delta_{i}^{j}
+\newcommand{\mixedkroneckerfour}[2]{\ensuremath{ %
+    \mixedkronecker{#1}{#2} %
+}} % forth order mixed kronecker delta tensor (for completeness) e.g., \mixedkroneckerfour{i}{j} => \delta_{i}^{j}
 \newcommand{\kronecker}[2]{ %
-  \covarkronecker{#1}{#2} %
-} % Kronecker delta tensor. Default to covariant.
-\newcommand{\levicitasymbol}{\ensuremath{ %
+  \flatkronecker{#1}{#2} %
+} % Kronecker delta tensor. Default to flat.
+\newcommand{\levicivitasymbol}{\ensuremath{ %
     \epsilon %
-}} % Levi-Cita symbol e.g., \levicitasymbol => epsilon
-\newcommand{\sharplevicita}[3]{\ensuremath{ %
-    \levicitasymbol^{{#1}{#2}{#3}}
-}} % sharp Levi-Cita symbol e.g., \sharplevicita{i}{j}{k} => epsilon^{ijk}
-\newcommand{\flatlevicita}[3]{\ensuremath{
-    \levicitasymbol_{{#1}{#2}{#3}}
-}} % flat Levi-Cita symbol e.g., \flatlevicita{i}{j}{k} => epsilon_{ijk}
-\newcommand{\mixedlevicita}[2]{\ensuremath{
-    \levicitasymbol^{#1}_{#2}
-}} % mixed Levi-Cita e.g., \mixedlevicita{i}{j} => epsilon_{i}^{j}
-\newcommand{\levicita}[3]{ %
-  \flatlevicita{#1}{#2}{#3} %
-} % Levi-Cita permutation symbol. Default to covariant.
+}} % Levi-Civita symbol e.g., \levicivitasymbol => \epsilon
+\newcommand{\sharplevicivitatwo}[2]{\ensuremath{ %
+    \levicivitasymbol^{{#1}{#2}} %
+}} % second order sharp Levi-Civita symbol e.g., \sharplevicivitatwo{i}{j} => \epsilon^{ij}
+\newcommand{\sharplevicivitathree}[3]{\ensuremath{ %
+    \levicivitasymbol^{{#1}{#2}{#3}} %
+}} % third order sharp Levi-Civita symbol e.g., \sharplevicivitathree{i}{j}{k} => \epsilon^{ijk}
+\newcommand{\sharplevicivitafour}[4]{\ensuremath{ %
+    \levicivitasymbol^{{#1}{#2}{#3}{#4}} %
+}} % fourth order sharp Levi-Civita symbol e.g., \sharplevicivitafour{i}{j}{k}{l} => \epsilon^{ijkl}
+\newcommand{\sharplevicivita}[3]{\ensuremath{ %
+    \levicivitasymbol^{{#1}{#2}{#3}} %
+}} % sharp Levi-Civita symbol (default to third order) e.g., \sharplevicivita{i}{j}{k} => \epsilon^{ijk}
+\newcommand{\flatlevicivitatwo}[2]{\ensuremath{ %
+    \levicivitasymbol_{{#1}{#2}} %
+}} % second order flat Levi-Civita symbol e.g., \flatlevicivitathwo{i}{j} => \epsilon_{ij}
+\newcommand{\flatlevicivitathree}[3]{\ensuremath{ %
+    \levicivitasymbol_{{#1}{#2}{#3}} %
+}} % third order flat Levi-Civita symbol e.g., \flatlevicivitathree{i}{j}{k} => \epsilon_{ijk}
+\newcommand{\flatlevicivitafour}[4]{\ensuremath{ %
+    \levicivitasymbol_{{#1}{#2}{#3}{#4}} %
+}} % fourth order flat Levi-Civita symbol e.g., \flatlevicivitafour{i}{j}{k}{l} => \epsilon_{ijkl}
+\newcommand{\flatlevicivita}[3]{\ensuremath{ %
+    \flatlevicivitathree{#1}{#2}{#3} %
+}} % flat Levi-Civita symbol (default to third order) e.g., \flatlevicivita{i}{j}{k} => \epsilon_{ijk}
+\newcommand{\mixedlevicivita}[2]{\ensuremath{ %
+    \levicivitasymbol^{#1}_{#2} %
+}} % mixed Levi-Civita e.g., \mixedlevicivita{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedlevicivitatwo}[2]{\ensuremath{ %
+    \mixedlevicivita{#1}{#2} %
+}} % second order mixed Levi-Civita (for completeness) e.g., \mixedlevicivitatwo{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedlevicivitathree}[2]{\ensuremath{ %
+    \mixedlevicivita{#1}{#2} %
+}} % third order mixed Levi-Civita (for completeness) e.g., \mixedlevicivitathree{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedlevicivitafour}[2]{\ensuremath{ %
+    \mixedlevicivita{#1}{#2} %
+}} % fourth order mixed Levi-Civita (for completeness) e.g., \mixedlevicivitafour{i}{j} => \epsilon_{i}^{j}
+\newcommand{\levicivita}[3]{ %
+  \flatlevicivita{#1}{#2}{#3} %
+} % Levi-Civita permutation symbol. Default to flat.
+\newcommand{\permutationsymbol}{\ensuremath{ %
+    \levicivitasymbol %
+}} % permutation symbol e.g., \permutationsymbol => \epsilon
+\newcommand{\sharppermutationtwo}[2]{\ensuremath{ %
+    \sharplevitcivitatwo{#1}{#2} %
+}} % third order sharp permutation symbol e.g., \sharppermutationthree{i}{j}{k} => \epsilon^{ijk}
+\newcommand{\sharppermutationthree}[3]{\ensuremath{ %
+    \sharplevitcivitathree{#1}{#2}{#3} %
+}} % third order sharp permutation symbol e.g., \sharppermutationthree{i}{j}{k} => \epsilon^{ijk}
+\newcommand{\sharppermutationfour}[4]{\ensuremath{ %
+    \sharplevitcivitafour{#1}{#2}{#3}{#4} %
+}} % fourth order sharp permutation symbol e.g., \sharppermutationfour{i}{j}{k}{l} => \epsilon^{ijkl}
+\newcommand{\sharppermutation}[3]{\ensuremath{ %
+    \sharplevitcivita{#1}{#2}{#3} %
+}} % sharp permutation symbol (default to third order) e.g., \sharppermutation{i}{j}{k} => \epsilon^{ijk}
+\newcommand{\flatpermutationtwo}[2]{\ensuremath{ %
+    \flatlevicivitatwo{#1}{#2} %
+}} % second order flat permutation symbol e.g., \flatpermutationtwo{i}{j} => \epsilon_{ij}
+\newcommand{\flatpermutationthree}[3]{\ensuremath{ %
+    \flatlevicivitathree{#1}{#2}{#3} %
+}} % third order flat permutation symbol e.g., \flatpermutationthree{i}{j}{k} => \epsilon_{ijk}
+\newcommand{\flatpermutationfour}[4]{\ensuremath{ %
+    \flatlevicivitafour{#1}{#2}{#3}{#4} %
+}} % fourth order flat permutation symbol e.g., \flatpermutationfour{i}{j}{k}{l} => \epsilon_{ijkl}
+\newcommand{\flatpermutation}[3]{\ensuremath{ %
+    \flatlevicivita{#1}{#2}{#3} %
+}} % flat permutation symbol (default to third order) e.g., \flatpermutation{i}{j}{k} => \epsilon_{ijk}
+\newcommand{\mixedpermutation}[2]{\ensuremath{ %
+    \mixedlevicivita{#1}{#2} %
+}} % mixed permutation symbol e.g., \mixedpermutation{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedpermutationtwo}[2]{\ensuremath{ %
+    \mixedpermutation{#1}{#2} %
+}} % second order mixed permutation symbol (for completeness) e.g., \mixedpermutationtwo{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedpermutationthree}[2]{\ensuremath{ %
+    \mixedpermutation{#1}{#2} %
+}} % third order mixed permutation symbol (for completeness) e.g., \mixedpermutationthree{i}{j} => \epsilon_{i}^{j}
+\newcommand{\mixedpermutationfour}[2]{\ensuremath{ %
+    \mixedpermutation{#1}{#2} %
+}} % fourth order mixed permutation symbol (for completeness) e.g., \mixedpermutationfour{i}{j} => \epsilon_{i}^{j}
+\newcommand{\permutation}[3]{ %
+  \levicivita{#1}{#2}{#3} %
+} % Permutation symbol. Default to third order.
 \newcommand{\linearisationdirsymbol}{\ensuremath{ %
     \Delta%
     }} % linearisation direction symbol => \Delta
@@ -793,8 +970,8 @@
     }} % linerarisation direction e.g. \linearisationdir{f} => \Delta f
 \newcommand{\linearisation}[3]{ %
   \ifthenelse{\equal{#2}{}}{ %
-    \ensuremath{\sqfnof{\fnof{L}{#1}}{\linearisationdir{#3}}}
-  }{
+    \ensuremath{\sqfnof{\fnof{L}{#1}}{\linearisationdir{#3}}} %
+  }{ %
     \ensuremath{\sqfnof{\fnof{L_{#2}}{#1}}{\linearisationdir{#3}}} % 
   }} % linearisation e.g. \linearisation{f}{}{u} => L(f)[\Delta u] &
      % \linearisation{f}{x}{u} => L_x(f)[\Delta u]
@@ -904,17 +1081,31 @@
 \newcommand{\dintl}[2]{\ensuremath{ %
     \displaystyle\int\limits_{#1}^{#2} %
 }} % display integral with limits
+\newcommand{\infinitesimal}[1]{\ensuremath{ %
+    \,\exteriorderivop #1 %
+}} % infinitesimal for a variable e.g., \infinitesimal{x} => dx
+\newcommand{\infinitesimalone}[1]{\ensuremath{ %
+    \infinitesimal{#1} %
+}} % infinitesimal for one variable e.g., \infinitesimalone{x} => dx
+\newcommand{\infinitesimaltwo}[2]{\ensuremath{ %
+    \,\exteriorprodtwo{\exteriorderivop #1}{\exteriorderivop #2}%
+}} % infinitesimal for two variables e.g., \infinitesimaltwo{x}{y} => dx^dy
+\newcommand{\infinitesimalthree}[3]{\ensuremath{ %
+    \,\exteriorprodthree{\exteriorderivop #1}{\exteriorderivop #2}{\exteriorderivop #3}%
+}} % infinitesimal for three variables e.g., \infinitesimalthree{x}{y}{z} => dx^dy^dz
 \newcommand{\gint}[4]{\ensuremath{ %
     \ifthenelse{\equal{#4}{}}{ %
       \dintl{#1}{#2}\,#3 %
     }{
-      \dintl{#1}{#2}\,#3\,\exteriorderivop #4 %
+      \dintl{#1}{#2}\,#3\infinitesimal{#4} %
     }
 }} % general integral with two limits. e.g. \gint{a}{b}{xxx}{c} => int_a^b xxx dc
 \newcommand{\giint}[7]{\ensuremath{ %
-    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\,\exteriorderivop#6\wedge\exteriorderivop#7 %
-    }} % general double integral with two limits. e.g.  
-       % \gint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
+    \dintl{#1}{#2}\!\dintl{#3}{#4}\,#5\infinitesimaltwo{#6}{#7} %
+}} % general double integral with two limits. e.g. \giint{a}{b}{c}{d}{xxx}{e}{f} => int_a^b int_c^d xxx dedf
+\newcommand{\giiint}[8]{\ensuremath{ %
+    \dintl{#1}{#2}\!\dintl{#3}{#4}\!\dintl{#5}{#6}\,#7 #8 %
+}} % general triple integral with two limits. e.g. \giiint{a}{b}{c}{d}{e}{f}{xxx}{g} => int_a^b int_c^d int_e^f xxx g
 \newcommand{\goneint}[2]{\ensuremath{ %
     \gint{#2}{}{#1}{#2} %
 }} % general integral with one limit. eg. \goneint{xxx}{a} => int_a xxx da
@@ -1607,24 +1798,51 @@
 \newcommand{\antisymtensorprodfour}[4]{\ensuremath{ %
     #1\antisymtensorprodop#2\antisymtensorprodop#3\antisymtensorprodop#4 %
 }} % anti symmetric tensor product four e.g., \antisymtensorprodfour{a}{b}{c}{d} => a O* b O* c O* d
-\newcommand{\wedgeprodop}{\ensuremath{ %
+\newcommand{\exteriorprodop}{\ensuremath{ %
     \wedge %
-}} % wedge product operator symbol
+}} % exterior product operator symbol e.g., \exteriorprodop => ^
+\newcommand{\exteriorprodtwo}[2]{\ensuremath{ %
+    #1\exteriorprodop#2 %
+}} % two times exterior product e.g., \exteriorprodtwo{a}{b} => a ^ b
+\newcommand{\exteriorprodthree}[3]{\ensuremath{ %
+    #1\exteriorprodop#2\exteriorprodop#3 %
+}} % three times exterior product e.g., \exteriorprodthree{a}{b}{c} => a ^ b ^ c
+\newcommand{\exteriorprodfour}[4]{\ensuremath{ %
+    #1\exteriorprodop#2\exteriorprodop#3\exteriorprodop#4 %
+}} % four times exterior product e.g., \exteriorprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
+\newcommand{\exteriorprod}[2]{\ensuremath{ %
+    \exteriorprodtwo{#1}{#2} %
+}} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
+\newcommand{\interiorprodop}{\ensuremath{ %
+    \vee %
+}} % interior product operator symbol e.g., \exteriorprodop => v
+\newcommand{\interiorprodtwo}[2]{\ensuremath{ %
+    #1\interiorprodop#2 %
+}} % two times interior product e.g., \interiorprodtwo{a}{b} => a v b
+\newcommand{\interiorprodthree}[3]{\ensuremath{ %
+    #1\interiorprodop#2\interiorprodop#3 %
+}} % three times interior product e.g., \prodthree{a}{b}{c} => a v b v c
+\newcommand{\interiorprodfour}[4]{\ensuremath{ %
+    #1\interiorprodop#2\interiorprodop#3\interiorprodop#4 %
+}} % four times interior product e.g., \interiorprodfour{a}{b}{c}{d} => a v b v c v d
+\newcommand{\interiorprod}[2]{\ensuremath{ %
+    \interiorprodtwo{#1}{#2} %
+}} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
+\newcommand{\wedgeprodop}{\ensuremath{ %
+    \exteriorprodop %
+}} % wedge product operator symbol e.g., \wedgeprodop => ^
+\newcommand{\wedgeprodtwo}[2]{\ensuremath{ %
+    \exteriorprodtwo{#1}{#2} %
+}} % two times wedge product e.g., \wedgeprodtwo{a}{b} => a ^ b
+\newcommand{\wedgeprodthree}[3]{\ensuremath{ %
+    \exteriorprodthree{#1}{#2}{#3} %
+}} % three times wedge product e.g., \wedgeprodthree{a}{b}{c} => a ^ b ^ c
+\newcommand{\wedgeprodfour}[4]{\ensuremath{ %
+    \exteriorprodfour{#1}{#2}{#3}{#4} %
+}} % four times wedge product e.g., \wedgeprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
 \newcommand{\wedgeprod}[2]{ %
   \wedgeprodtwo{#1}{#2} %
 } % wedge product e.g., \wedgeprod{a}{b} => a ^ b
-\newcommand{\wedgeprodtwo}[2]{\ensuremath{ %
-    #1\wedgeprodop#2 %
-}} % two times wedge product e.g., \wedgeprodtwo{a}{b} => a ^ b
-\newcommand{\wedgeprodthree}[3]{\ensuremath{ %
-    #1\wedgeprodop#2\wedgeprodop#3 %
-}} % three times wedge product e.g., \wedgeprodthree{a}{b}{c} => a ^ b ^ c
-\newcommand{\wedgeprodfour}[4]{\ensuremath{ %
-    #1\wedgeprodop#2\wedgeprodop#3\wedgeprodop#4 %
-}} % four times wedge product e.g., \wedgeprodfour{a}{b}{c}{d} => a ^ b ^ c ^ d
-\newcommand{\exteriorprod}[2]{\ensuremath{ %
-    \wedgeproduct{#1}{#2} %
-}} % exterior product e.g., \exteriorprod{a}{b} => a ^ b
 
 %
 % Special tensors
@@ -1726,6 +1944,33 @@
 \newcommand{\antisymidentitytensorfour}{\ensuremath{ %
     \genericantisymtensorfour{\standardidentitytensorsymbol} %
 }} % fourth order antisymmetric identity tensor e.g., \antisymidentitytensorfour => I^
+
+% Levi-Civita/Permutation tensor
+
+\newcommand{\levicivitatensortwo}{\ensuremath{ %
+    \tensortwo{\levicivitasymbol} %
+}} % second order Levi-Civita tensor e.g., \levicivitatensortwo => \epsilon
+\newcommand{\levicivitatensorthree}{\ensuremath{ %
+    \tensorthree{\levicivitasymbol} %
+}} % third order Levi-Civita tensor e.g., \levicivitatensorthree => \epsilon
+\newcommand{\levicivitatensorfour}{\ensuremath{ %
+    \tensorfour{\levicivitasymbol} %
+}} % fourth order Levi-Civita tensor e.g., \levicivitatensorfour => \epsilon
+\newcommand{\levicivitatensor}{\ensuremath{ %
+    \levicivitatensorthree%
+}} % Levi-Civita tensor (default to third order) e.g., \levicivitatensor => \epsilon
+\newcommand{\permutationtensortwo}{\ensuremath{ %
+    \tensortwo{\permutationsymbol} %
+}} % second order permutation tensor e.g., \permutationtensortwo => \epsilon
+\newcommand{\permutationtensorthree}{\ensuremath{ %
+    \tensorthree{\permutationsymbol} %
+}} % third order permutation tensor e.g., \permutationtensorthree => \epsilon
+\newcommand{\permutationtensorfour}{\ensuremath{ %
+    \tensorfour{\permutationsymbol} %
+}} % fourth order permutation tensor e.g., \permutationtensorfour => \epsilon
+\newcommand{\permutationtensor}{\ensuremath{ %
+    \permutationtensorthree%
+}} % permutation tensor (default to third order) e.g., \permutationtensor => \epsilon
 
 % Deviatoric tensor
 
@@ -1841,6 +2086,89 @@
 \newcommand{\genericantisymtensorfour}[1]{\ensuremath{ %
     \tilde{\tensorfour{#1}} %
 }} % generic fourth order antisymmetric tensor e.g., \genericantisymtensorfour{I} => I^
+
+%
+% Metric tensors/base vectors
+%
+
+\newcommand{\worldbasevectorsymbol}{\ensuremath{ %
+    i %
+}} % World base vector symbol e.g., \worldbasevectorsymbol => i
+\newcommand{\worldbasevector}{\ensuremath{ %
+    \vectr{\worldbasevectorsymbol} %
+}} % World base vector e.g., \worldbasevector => i
+\newcommand{\worldmetrictensorsymbol}{\ensuremath{ %
+    I %
+}} % World metric tensor symbol e.g., \worldmetrictensorsymbol => I
+\newcommand{\worldmetrictensor}{\ensuremath{ %
+    \tensortwo{\worldmetrictensorsymbol} %
+}} % World metric tensor e.g., \worldmetrictensor => I
+\newcommand{\euclideanbasevectorsymbol}{\ensuremath{ %
+    e %
+}} % Euclidean base vector symbol e.g., \euclideanbasevectorsymbol => e
+\newcommand{\euclideanbasevector}{\ensuremath{ %
+    \vectr{\euclideanbasevectorsymbol} %
+}} % Euclidean base vector e.g., \euclideanbasevector => e
+\newcommand{\euclideanmetrictensorsymbol}{\ensuremath{ %
+    E %
+}} % Euclidean metric tensor symbol e.g., \euclideanmetrictensorsymbol => E
+\newcommand{\euclideanmetrictensor}{\ensuremath{ %
+    \tensortwo{\euclideanmetrictensorsymbol} %
+}} % Euclidean metric tensor e.g., \euclideanmetrictensor => E
+\newcommand{\generalbasevectorsymbol}{\ensuremath{ %
+    g %
+}} % general base vector symbol e.g., \generalbasevectorsymbol => g
+\newcommand{\generalbasevector}{\ensuremath{ %
+    \vectr{\generalbasevectorsymbol} %
+}} % general base vector e.g., \generalbasevector => g
+\newcommand{\generalmetrictensorsymbol}{\ensuremath{ %
+    g %
+}} %  general metric tensor symbol e.g., \generalmetrictensorsymbol => g
+\newcommand{\generalmetrictensor}{\ensuremath{ %
+    \tensortwo{\generalmetrictensorsymbol} %
+}} % general metric tensor e.g., \generalmetrictensor => g
+\newcommand{\generalmetrictensorscalesymbol}{\ensuremath{ %
+    \generalmetrictensorsymbol %
+}} % general metric tensor scale symbol e.g., \generalmetrictensorscalesymbol => g=\sqrt{det g}
+\newcommand{\generalmetrictensorscale}{\ensuremath{ %
+    \sqrt{\determinant{\generalmetrictensor}} %
+}} % general metric tensor scale e.g., \generalmetrictensorscale => \sqrt{det g}
+\newcommand{\spatialbasevectorsymbol}{\ensuremath{ %
+    g %
+}} % spatial base vector symbol e.g., \spatialbasevectorsymbol => g
+\newcommand{\spatialbasevector}{\ensuremath{ %
+    \vectr{\spatialbasevectorsymbol} %
+}} % spatial base vector e.g., \spatialbasevector => g
+\newcommand{\spatialmetrictensorsymbol}{\ensuremath{ %
+    g %
+}} %  spatial metric tensor symbol e.g., \spatialmetrictensorsymbol => g
+\newcommand{\spatialmetrictensor}{\ensuremath{ %
+    \tensortwo{\spatialmetrictensorsymbol} %
+}} % spatial metric tensor e.g., \spatialmetrictensor => g
+\newcommand{\spatialmetrictensorscalesymbol}{\ensuremath{ %
+    \spatialmetrictensorsymbol %
+}} % spatial metric tensor scale symbol.g., \spatialmetrictensorscalesymbol => g=\sqrt{|g|}
+\newcommand{\spatialmetrictensorscale}{\ensuremath{ %
+    \sqrt{\abs{\spatialmetrictensor}} %
+}} % spatial metric tensor scale e.g., \spatialmetrictensorscale => \sqrt{|g|}
+\newcommand{\materialbasevectorsymbol}{\ensuremath{ %
+    G %
+}} % material base vector symbol e.g., \materialbasevectorsymbol => G
+\newcommand{\materialbasevector}{\ensuremath{ %
+    \vectr{\materialbasevectorsymbol} %
+}} % material base vector e.g., \materialbasevector => G
+\newcommand{\materialmetrictensorsymbol}{\ensuremath{ %
+    G %
+}} %  material metric tensor symbol e.g., \materialmetrictensorsymbol => G
+\newcommand{\materialmetrictensor}{\ensuremath{ %
+    \tensortwo{\materialmetrictensorsymbol} %
+}} % material metric tensor e.g., \materialmetrictensor => G
+\newcommand{\materialmetrictensorscalesymbol}{\ensuremath{ %
+    \materialmetrictensorsymbol %
+}} % material metric tensor scale symbol e.g., \materialmetrictensorscalesymbol => G=\sqrt{|G|}
+\newcommand{\materialmetrictensorscale}{\ensuremath{ %
+    \sqrt{\abs{\materialmetrictensor}} %
+}} % material metric tensor scale e.g., \materialmetrictensorscale => \sqrt{|G|}
 
 %
 % Tensor notations
@@ -2283,9 +2611,6 @@
     \fnof{\nsfsymb}{#1,#2} %
     }} % \nsftwo{n}{i} => Nodal scale factor in two directions at node n and xi
        % direction i
-\newcommand{\xione}{\ensuremath{\xi_{1}}\xspace} % xi 1
-\newcommand{\xitwo}{\ensuremath{\xi_{2}}\xspace} % xi 2
-\newcommand{\xithree}{\ensuremath{\xi_{3}}\xspace} % xi 3
 
 
 %%% Local Variables: 

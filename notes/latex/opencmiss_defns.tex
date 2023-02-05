@@ -5,7 +5,7 @@
 \usepackage{rotating}
 %\usepackage{harvard}
 \usepackage[authoryear,round]{natbib}
-\usepackage{color}
+\usepackage[svgnames,hyperref]{xcolor}
 \usepackage{multirow}
 \usepackage{makeidx}  % makes index
 \usepackage{tabularx} % tables that autofill widths plus wrapping.
@@ -28,6 +28,9 @@
 \setpapersize{A4}
 \setmargrb{12mm}{15mm}{12mm}{15mm}
 \addtolength{\headheight}{6pt}
+
+% Set the max depth of sections
+\setcounter{secnumdepth}{3} %allow for subsubsections
 
 % Set the max number of columns in a matrix to 16
 \setcounter{MaxMatrixCols}{16}

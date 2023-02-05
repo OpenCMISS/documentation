@@ -21,30 +21,30 @@ in \OpenCMISS can be stated as
 \begin{equation}
   \addtolength{\fboxsep}{5pt}
   \boxed{
-    \divergence{}{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x},t}}}}=0
+    \divergence{}{\pbrac{\fnof{\conductivitytensor}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x},t}}}}=0
   }
   \label{eqn:GeneralisedLaplaceEquation}
 \end{equation}
 where $\vectr{x}\in\Omega$, $t\in[0,\infty)$, $\fnof{u}{\vectr{x},t}$ is the potential and 
-$\fnof{\tensor{\sigma}}{\vectr{x}}$ is the (positive definite) conductivity
-tensor throughout the domain. Note that $\tensor{\sigma}=\tensor{I}$ gives 
+$\fnof{\conductivitytensor}{\vectr{x}}$ is the (positive definite) conductivity
+tensor throughout the domain. Note that $\conductivitytensor=\tensor{I}$ gives 
 the \emph{standard form of Laplace's equation} \ie $\laplacian{}{u}=0$.
 
 To complete the description of the boundary value problem,
 the governing \eqnref{eqn:GeneralisedLaplaceEquation} is supplemented
 by suitable boundary conditions on the domain boundary~$\Gamma$.
 These boundary conditions can either be of Dirichlet type and specify a
-solution value, $\fnof{g}{\vectr{x},t}$, \ie
+solution value, $\fnof{D}{\vectr{x},t}$, \ie
 \begin{equation}
-  \fnof{u}{\vectr{x},t} = \fnof{g}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
+  \fnof{u}{\vectr{x},t} = \fnof{D}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{D},t\in[0,\infty)
   \label{eqn:LaplaceDirichletBC} 
 \end{equation}
 and/or of Neumann type and specify the solution gradient in normal direction,
-$\fnof{h}{\vectr{x},t}$, \ie
+$\fnof{N}{\vectr{x},t}$, \ie
 \begin{equation}
-  \fnof{q}{\vectr{x},t} = \dotprod{\pbrac{\fnof{\tensor{\sigma}}{\vectr{x}}
+  \fnof{q}{\vectr{x},t} = \dotprod{\pbrac{\fnof{\conductivitytensor}{\vectr{x}}
       \gradient{}{\fnof{u}{\vectr{x},t}}}}{\fnof{\normal}{\vectr{x}}} =
-  \fnof{h}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
+  \fnof{N}{\vectr{x},t} \quad \vectr{x}\in\Gamma_{N},t\in[0,\infty)
   \label{eqn:LaplaceNeumannBC} 
 \end{equation}
 where $\fnof{q}{\vectr{x},t}$ is the flux in the normal direction, $\fnof{\normal}{\vectr{x}}$ is the normal
@@ -54,7 +54,7 @@ vector to the boundary and $\Gamma = \Gamma_D \cup \Gamma_N$.
 
 The corresponding weak form of \eqnref{eqn:GeneralisedLaplaceEquation} is
 \begin{equation}
-  \gint{\Omega}{}{\divergence{}{\pbrac{\tensor{\sigma}\gradient{}{u}}}w}{\Omega}=0 
+  \gint{\Omega}{}{\divergence{}{\pbrac{\conductivitytensor\gradient{}{u}}}w}{\Omega}=0 
   \label{eqn:LaplaceWeakForm}
 \end{equation}
 where $w$ is a suitable test function (For a definition of what constitutes a
@@ -62,15 +62,15 @@ where $w$ is a suitable test function (For a definition of what constitutes a
 
 Applying Green's theorem to \eqnref{eqn:LaplaceWeakForm} gives
 \begin{equation}
- \gint{\Omega}{}{\divergence{}{\pbrac{\tensor{\sigma}\gradient{}{u}}}w}{\Omega}
- = -\gint{\Omega}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{u}}}{\gradient{}{w}}}{\Omega}
-   +\gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{u}}}{\vectr{n}}w}{\Gamma}
+ \gint{\Omega}{}{\divergence{}{\pbrac{\conductivitytensor\gradient{}{u}}}w}{\Omega}
+ = -\gint{\Omega}{}{\dotprod{\pbrac{\conductivitytensor\gradient{}{u}}}{\gradient{}{w}}}{\Omega}
+   +\gint{\Gamma}{}{\dotprod{\pbrac{\conductivitytensor\gradient{}{u}}}{\normal}w}{\Gamma}
  = 0
 \end{equation}
 or
 \begin{equation}
-  \gint{\Omega}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{u}}}{\gradient{}{w}}}{\Omega}
-  = \gint{\Gamma}{}{\dotprod{\pbrac{\tensor{\sigma}\gradient{}{u}}}{\vectr{n}w}}{\Gamma} \,,
+  \gint{\Omega}{}{\dotprod{\pbrac{\conductivitytensor\gradient{}{u}}}{\gradient{}{w}}}{\Omega}
+  = \gint{\Gamma}{}{\dotprod{\pbrac{\conductivitytensor\gradient{}{u}}}{\normal}w}{\Gamma} \,,
   \label{eqn:LaplaceWeightedResidualForm}
 \end{equation}
 
@@ -81,7 +81,7 @@ If we now consider the integrand of the left hand side of
 derivatives indicated by a semi-colon in the index
 (see \secref{subsec:function derivatives} for details) then
 \begin{equation}
-  \tensor{\sigma}\gradient{}{u} = \sigma^{i}_{.j}\covarderiv{u}{i}
+  \conductivitytensor\gradient{}{u} = \conductivitytensorsymbol^{i}_{.j}\covarderiv{u}{i}
   \label{eqn:LaplaceWeakFormFactor1}
 \end{equation}
 and
@@ -90,26 +90,25 @@ and
   \label{eqn:LaplaceWeakFormFactor2}
 \end{equation}
 
-Now, Equations (\ref{eqn:LaplaceWeakFormFactor1}) and (\ref{eqn:LaplaceWeakFormFactor2})
-represent vectors that are covariant and therefore we must convert Equation
-(\ref{eqn:LaplaceWeakFormFactor1}) to a contravariant vector by 
+Now, \eqnref{eqn:LaplaceWeakFormFactor1}) and \eqnref{eqn:LaplaceWeakFormFactor2}
+both represent covariant vectors and therefore we must convert \eqnref{eqn:LaplaceWeakFormFactor2} to a contravariant vector by 
 multiplying by the contravariant metric tensor (from $\vectr{i}$ to $\vectr{x}$ 
 coordinates; see \secrefs{sec:MetricTensors}{sec:CoordinateSystems})
 so that we can take the dot product. The final tensorial form for the left
 hand integral is
 \begin{equation}
-  \dotprod{\pbrac{\tensor{\sigma}\gradient{}{u}}}{\gradient{}{w}} = 
-  G^{jk}\sigma^{i}_{.j}\covarderiv{u}{i}\covarderiv{w}{k}
+  \dotprod{\pbrac{\conductivitytensor\gradient{}{u}}}{\gradient{}{w}} = 
+  \conductivitytensorsymbol^{i}_{.j}\covarderiv{u}{i}\generalmetrictensorsymbol^{kj}\covarderiv{w}{k}
 \end{equation}
 and thus \eqnref{eqn:LaplaceWeightedResidualForm} becomes
 \begin{equation}
-  \gint{\Omega}{}{G^{jk}\sigma^{i}_{.j}\covarderiv{u}{i}\covarderiv{w}{k}}{\Omega}
-  = \gint{\Gamma}{}{G^{jk}\sigma^{i}_{.j}\covarderiv{u}{i}n_{k}w}{\Gamma}
+  \gint{\Omega}{}{\conductivitytensorsymbol^{i}_{.j}\covarderiv{u}{i}\generalmetrictensorsymbol^{kj}\covarderiv{w}{k}}{\Omega}
+  = \gint{\Gamma}{}{\conductivitytensorsymbol^{i}_{.j}\covarderiv{u}{i}\generalmetrictensorsymbol^{kj}n_{k}w}{\Gamma}
   \label{eqn:LaplaceWeightedResidualTensorForm1}
 \end{equation}
 or
 \begin{equation}
-  \gint{\Omega}{}{G^{jk}\sigma^{i}_{.j}\covarderiv{u}{i}\covarderiv{w}{k}}{\Omega}
+  \gint{\Omega}{}{\conductivitytensorsymbol^{i}_{.j}\covarderiv{u}{i}\generalmetrictensorsymbol^{kj}\covarderiv{w}{k}}{\Omega}
   = \gint{\Gamma}{}{qw}{\Gamma}
   \label{eqn:LaplaceWeightedResidualTensorForm2}
 \end{equation}
@@ -121,7 +120,8 @@ We can now discretise the domain into finite elements \ie $\Omega=
 $\Gamma=\displaystyle{\bigcup_{f=1}^{F}}\Gamma_{f}$, 
 \eqnref{eqn:LaplaceWeightedResidualTensorForm2} becomes
 \begin{equation}
-  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{G^{jk}\sigma^{i}_{j}\covarderiv{u}{i}\covarderiv{w}{k}}{\Omega}
+  \dsum_{e=1}^{E}\gint{\Omega_{e}}{}{\conductivitytensorsymbol^{i}_{j}\covarderiv{u}{i}\generalmetrictensorsymbol^{kj}
+    \covarderiv{w}{k}}{\Omega}
   =\dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{qw}{\Omega}
 \end{equation}
 
@@ -162,11 +162,11 @@ We can also interpolate the other variables in a similar manner \ie
 \begin{equation}
   \begin{split}
     \fnof{q}{\vectr{\xi}} &= \gbfn{o}{\gamma}{\vectr{\xi}}\nodedof{q}{o}{\gamma}\gsf{o}{\gamma} \\
-    \fnof{\tensor{\sigma}}{\vectr{\xi}}
-    &=\gbfn{l}{\delta}{\vectr{\xi}}\nodedof{\tensor{\sigma}}{l}{\delta}\gsf{l}{\delta} \\
+    \fnof{\conductivitytensor}{\vectr{\xi}}
+    &=\gbfn{l}{\delta}{\vectr{\xi}}\nodedof{\conductivitytensor}{l}{\delta}\gsf{l}{\delta} \\
   \end{split}
 \end{equation}
-where $\nodedof{q}{o}{\gamma}$ and $\nodedof{\tensor{\sigma}}{l}{\delta}$ are the
+where $\nodedof{q}{o}{\gamma}$ and $\nodedof{\conductivitytensor}{l}{\delta}$ are the
 nodal degrees-of-freedom for the flux variable and conductivity tensor.
 
 Using a Galerkin finite element approach (where the weighting functions are
@@ -201,42 +201,42 @@ and
   \delby{\xi^{r}}{x^{k}}\delby{w}{\xi^{r}}
 \end{equation}
 
-As we only know $\tilde{\tensor{\sigma}}$, the conductivity in the 
-$\vectr{\nu}$ (fibre) coordinate system rather than $\tensor{\sigma}$, the
+As we only know $\tilde{\conductivitytensor}$, the conductivity in the 
+$\vectr{\nu}$ (fibre) coordinate system rather than $\conductivitytensor$, the
 conductivity in the $\vectr{x}$ (geometric) coordinate system, we must transform the mixed
-tensor ${\tilde{\sigma}}^{a}_{.b}$ from $\vectr{\nu}$ to $\vectr{x}$ coordinates. However, as the
+tensor ${\tilde{\conductivitytensorsymbol}}^{a}_{.b}$ from $\vectr{\nu}$ to $\vectr{x}$ coordinates. However, as the
 fibre coordinate system is defined in terms of $\vectr{\xi}$ coordinates we
 first transform the conductivity tensor from $\vectr{\nu}$ to $\vectr{\xi}$
 coordinates \ie
 \begin{equation}
-  \fnof{\sigma^{c}_{.d}}{\vectr{\xi}}=\delby{\xi^{c}}{\nu^{a}}\delby{\nu^{b}}{\xi^{d}}
-  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}
+  \fnof{\conductivitytensorsymbol^{c}_{.d}}{\vectr{\xi}}=\delby{\xi^{c}}{\nu^{a}}\delby{\nu^{b}}{\xi^{d}}
+  \fnof{{\tilde{\conductivitytensorsymbol}}^{a}_{.b}}{\vectr{\xi}}
 \end{equation}
 with $.b$ indicating that $b$ is the ``second'' index (\secref{subsec:SummationNotation}),
 and then transform the conductivity from $\vectr{\xi}$ coordinates to
 $\vectr{x}$ coordinates \ie
 \begin{equation}
   \begin{split}
-    \fnof{\sigma^{i}_{.j}}{\vectr{\xi}} &=
+    \fnof{\conductivitytensorsymbol^{i}_{.j}}{\vectr{\xi}} &=
     \delby{x^{i}}{\xi^{c}}\delby{\xi^{d}}{x^{j}}
-    \fnof{{\sigma}^{c}_{.d}}{\vectr{\xi}} \\
+    \fnof{{\conductivitytensorsymbol}^{c}_{.d}}{\vectr{\xi}} \\
     &= \delby{x^{i}}{\xi^{c}}\delby{\xi^{d}}{x^{j}}\delby{\xi^{c}} 
-    {\nu^{a}}\delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}
+    {\nu^{a}}\delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\conductivitytensorsymbol}}^{a}_{.b}}{\vectr{\xi}}
   \end{split}
 \end{equation}
-where $\tilde{\tensor{\sigma}}$ is interpolated in the normal way \ie
+where $\tilde{\conductivitytensor}$ is interpolated in the normal way \ie
 \begin{equation}
-  \fnof{\tilde{\tensor{\sigma}}}{\vectr{\xi}}
-  =\gbfn{l}{\delta}{\vectr{\xi}}\nodedof{\tilde{\tensor{\sigma}}}{l}{\delta}
+  \fnof{\tilde{\conductivitytensor}}{\vectr{\xi}}
+  =\gbfn{l}{\delta}{\vectr{\xi}}\nodedof{\tilde{\conductivitytensor}}{l}{\delta}
   \gsf{l}{\delta}
 \end{equation}
 
 Using an interpolated variables yields
 \begin{multline}
-  \dsum_{e=1}^{E}\dintl{\vectr{0}}{\vectr{1}}G^{jk}\delby{x^{i}}{\xi^{c}}
+  \dsum_{e=1}^{E}\dintl{\vectr{0}}{\vectr{1}}\delby{x^{i}}{\xi^{c}}
     \delby{\xi^{d}}{x^{j}}\delby{\xi^{c}}{\nu^{a}}
-    \delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}\delby{\xi^{s}}{x^{i}} \\
-    \delby{\pbrac{\gbfn{n}{\beta}{\vectr{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}}}{\xi^{s}}
+    \delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\conductivitytensorsymbol}}^{a}_{.b}}{\vectr{\xi}}\delby{\xi^{s}}{x^{i}} \\
+    \generalmetrictensorsymbol^{kj}\delby{\pbrac{\gbfn{n}{\beta}{\vectr{\xi}}\nodedof{u}{n}{\beta}\gsf{n}{\beta}}}{\xi^{s}}
     \delby{\xi^{r}}{x^{k}}\delby{\pbrac{\gbfn{m}{\alpha}{\vectr{\xi}}\gsf{m}{\alpha}}}{\xi^{r}}
     \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\ 
   = \dsum_{f=1}^{F}\gint{\Gamma_{f}}{}{\gbfn{o}{\gamma}{\vectr{\xi}}\nodedof{q}{o}{\gamma}
@@ -248,10 +248,10 @@ transformation from the integration $\vectr{x}$ to $\vectr{\xi}$ coordinates.
 Taking the fixed nodal degrees-of-freedom and scale factors outside the integral we have
 \begin{multline}
   \dsum_{e=1}^{E}\nodedof{u}{n}{\beta}\gsf{m}{\alpha}\gsf{n}{\beta}
-  \dintl{\vectr{0}}{\vectr{1}}G^{jk}\delby{x^{i}}{\xi^{c}}
+  \dintl{\vectr{0}}{\vectr{1}}\delby{x^{i}}{\xi^{c}}
   \delby{\xi^{d}}{x^{j}}\delby{\xi^{c}}{\nu^{a}}
-  \delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}} \\
-  \delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \delby{\nu^{b}}{\xi^{d}}\fnof{{\tilde{\conductivitytensorsymbol}}^{a}_{.b}}{\vectr{\xi}} \\
+  \generalmetrictensorsymbol^{kj}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
   \delby{\gbfn{m}{\alpha}{\vectr{\xi}}}{\xi^{s}}
   \delby{\gbfn{n}{\beta}{\vectr{\xi}}}{\xi^{r}}
   \abs{\fnof{\matr{J}}{\vectr{\xi}}}\exteriorderiv{\vectr{\xi}} \\
@@ -281,24 +281,28 @@ The elemental stiffness matrix, $K^{\alpha\beta}_{mn}$, is given by
 \end{equation}
 where
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vectr{\xi}}=G^{jk}\delby{x^{i}}{\xi^{c}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=\delby{x^{i}}{\xi^{c}}
   \delby{\xi^{d}}{x^{j}}\delby{\xi^{c}}{\nu^{a}}\delby{\nu^{b}}{\xi^{d}}
-  \fnof{{\tilde{\sigma}}^{a}_{.b}}{\vectr{\xi}}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \fnof{{\tilde{\conductivitytensorsymbol}}^{a}_{.b}}{\vectr{\xi}}\generalmetrictensorsymbol^{kj}
+  \delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
   \label{eqn:diffusiongammadefinition1}
 \end{equation}
 or
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vectr{\xi}}=G^{jk}\fnof{{\sigma}^{i}_{.j}}{\vectr{\xi}}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=\fnof{\conductivitytensorsymbol^{i}_{.j}}{\vectr{\xi}}\delby{\xi^{r}}{x^{i}}
+  \generalmetrictensorsymbol^{kj}\delby{\xi^{s}}{x^{k}}
 \end{equation}
-Note that for Laplace's equation with no conductivity or fibre fields we have
+Note that for Laplace's equation with no conductivity or fibre fields
+(\ie $\conductivitytensorsymbol^{i}_{.j}=\mixedkronecker{i}{.j}$ and thus $i=j$) we
+  have
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vectr{\xi}}=G^{ik}\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{k}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=\generalmetrictensorsymbol^{kj}\delby{\xi^{r}}{x^{j}}\delby{\xi^{s}}{x^{k}}
   \label{eqn:diffusiongammadefinition2}
 \end{equation}
 and that for rectangular-Cartesian coordinates systems
-$G^{ik}=\contrakronecker{i}{k}$ and thus $i=k$. This now gives
+$\generalmetrictensorsymbol^{kj}=\sharpkronecker{k}{j}$ and thus $k=j$. This now gives
 \begin{equation}
-  \fnof{\gamma^{rs}}{\vectr{\xi}}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{i}}=\fnof{g^{rs}}{\vectr{x}}
+  \fnof{\gamma^{rs}}{\vectr{\xi}}=\delby{\xi^{r}}{x^{k}}\delby{\xi^{s}}{x^{k}}=\fnof{g^{rs}}{\vectr{x}}
   \label{eqn:diffusiongammadefinition3}
 \end{equation}
 where $g^{rs}$ is the \emph{contravariant metric tensor} from $\vectr{x}$ to
@@ -310,6 +314,10 @@ The flux matrix, $N^{\alpha\gamma}_{mo}$, is given by
   N^{\alpha\gamma}_{mo} = -\gsf{m}{\alpha}\gsf{o}{\gamma}
   \gint{\Gamma_{f}}{}{\gbfn{m}{\alpha}{\vectr{\xi}}\gbfn{o}{\gamma}{\vectr{\xi}}}{\Gamma}
 \end{equation}
+
+\subsection{\OpenCMISS Implementation}
+
+\OpenCMISS requires a number of field variables for the generalised Laplace equation. 
 
 \subsection{Analytic Solutions}
 
@@ -347,7 +355,11 @@ The Hessian of \eqnref{eqn:StandardLaplaceTwoDAnalytic1} is
 
 Thus we have
 \begin{equation}
-  \laplacian{}{\fnof{u}{x,y}}=\deltwosqby{\fnof{u}{x,y}}{x}+\deltwosqby{\fnof{u}{x,y}}{y}=2-2=0
+  \begin{aligned}
+    \laplacian{}{\fnof{u}{x,y}}&=\deltwosqby{\fnof{u}{x,y}}{x}+\deltwosqby{\fnof{u}{x,y}}{y}\\
+    &=2-2\\
+    &=0
+  \end{aligned}
 \end{equation}
 which shows that \eqnref{eqn:StandardLaplaceTwoDAnalytic1} satisfies the standard Laplace equation.
 
@@ -403,67 +415,152 @@ Consider the problem shown in \figref{fig:AnalyticLaplaceAnisoPlate}.
 
 For this test problem the conductivity tensor in fibre coordinates is
 \begin{equation}
-  \tensor{\sigma}^{*}=\begin{bmatrix}
-    \sigma_{t} & 0 \\ 
-    0 & \sigma_{n}
+  \tilde{\conductivitytensor}=\begin{bmatrix}
+    \tilde{\conductivitytensorsymbol}_{t} & 0 \\ 
+    0 & \tilde{\conductivitytensorsymbol}_{n}
   \end{bmatrix}
 \end{equation}
 
-The conductivity tensor in  reference coordinates can be calculated from the
-conductivity tensor in  fibre coordinates by the tensor transformation rule
-$\tensor{\sigma}=\transpose{\tensor{Q}}\tensor{\sigma}^{*}\tensor{Q}$ where
-$\tensor{Q}$ is given by
+The conductivity tensor in reference coordinates can be calculated
+from the conductivity tensor in fibre coordinates by tensor
+transformation. From \figref{fig:AnalyticLaplaceAnisoPlate} we have
 \begin{equation}
-  \tensor{Q}=\begin{bmatrix}
-    \cosine{-\theta} & -\sine{-\theta} \\
-    \sine{-\theta} & \cosine{-\theta}
-  \end{bmatrix} = \begin{bmatrix}
-    \cosine{\theta} & +\sine{\theta} \\
-    -\sine{\theta} & \cosine{\theta}
-  \end{bmatrix}
+  \begin{aligned}
+    \tilde{x}&=\cosine{\theta}x+\sine{\theta}y\\
+    \tilde{y}&=-\sine{\theta}x+\cosine{\theta}y
+  \end{aligned}
+  \label{eqn:AnisoPlateFibreFromSpatialCoordinates}
 \end{equation}
+and
+\begin{equation}
+  \begin{aligned}
+    x&=\cosine{\theta}\tilde{x}-\sine{\theta}\tilde{y}\\
+    y&=\sine{\theta}\tilde{x}+\cosine{\theta}\tilde{y}
+  \end{aligned}
+  \label{eqn:AnisoPlateSpatialFromFibreCoordinates}
+\end{equation}
+
+As $\tilde{\conductivitytensor}$ is a mixed tensor \ie
+$\tilde{\conductivitytensor}=\tilde{\conductivitytensorsymbol}^{a}_{.b}\,\tensorprodtwo{\tilde{\generalbasevector}_{a}}{\tilde{\generalbasevector}^{b}}$,
+then we need to use the transformation rule given in
+\eqnref{eqn:TransformationRuleMixedContraCovariantSecondOrderTensor}
+\ie
+\begin{equation}
+  \conductivitytensorsymbol^{i}_{.j}=\delby{x^{i}}{\tilde{x}^{a}}\delby{\tilde{x}^{b}}{x^{j}}\tilde{\conductivitytensorsymbol}^{a}_{.b}
+  \label{eqn:AnsioPlateConductivityTensorTransformation}
+\end{equation}
+
+The transformation components can be found from differentiating
+\eqnrefs{eqn:AnisoPlateFibreFromSpatialCoordinates}{eqn:AnisoPlateSpatialFromFibreCoordinates}
+\ie
+\begin{equation}
+  \begin{aligned}
+    \begin{bmatrix}
+      \delby{\tilde{x}}{x} & \delby{\tilde{y}}{x} \\
+      \delby{\tilde{x}}{y} & \delby{\tilde{y}}{y}
+    \end{bmatrix} &=
+    \begin{bmatrix}
+      \cosine{\theta} & -\sine{\theta} \\
+      \sine{\theta} & \cosine{\theta}
+    \end{bmatrix} &\qquad&&
+    \begin{bmatrix}
+      \delby{x}{\tilde{x}} & \delby{y}{\tilde{x}} \\
+      \delby{x}{\tilde{y}} & \delby{y}{\tilde{y}}
+    \end{bmatrix}&=
+    \begin{bmatrix}
+      \cosine{\theta} & \sine{\theta} \\
+      -\sine{\theta} & \cosine{\theta}
+    \end{bmatrix}
+  \end{aligned}
+\end{equation}
+
+We thus have from \eqnref{eqn:AnsioPlateConductivityTensorTransformation}
+\begin{equation}
+  \begin{aligned}
+    \conductivitytensorsymbol^{1}_{1}&=
+    \delby{x}{\tilde{x}}\delby{\tilde{x}}{x}\tilde{\conductivitytensorsymbol}^{1}_{1}
+    +\delby{x}{\tilde{x}}\delby{\tilde{y}}{x}\tilde{\conductivitytensorsymbol}^{1}_{2}
+    +\delby{x}{\tilde{y}}\delby{\tilde{x}}{x}\tilde{\conductivitytensorsymbol}^{2}_{1}
+    +\delby{x}{\tilde{y}}\delby{\tilde{y}}{x}\tilde{\conductivitytensorsymbol}^{2}_{2} \\
+    &=\cosine{\theta}\cosine{\theta}\tilde{\conductivitytensorsymbol}_{t}
+    +\cosine{\theta}-\sine{\theta}.0
+    -\sine{\theta}\cosine{\theta}.0
+    -\sine{\theta}-\sine{\theta}\tilde{\conductivitytensorsymbol}_{n} \\
+    \conductivitytensorsymbol^{1}_{2}&=
+    \delby{x}{\tilde{x}}\delby{\tilde{x}}{y}\tilde{\conductivitytensorsymbol}^{1}_{1}
+    +\delby{x}{\tilde{x}}\delby{\tilde{y}}{y}\tilde{\conductivitytensorsymbol}^{1}_{2}
+    +\delby{x}{\tilde{y}}\delby{\tilde{x}}{y}\tilde{\conductivitytensorsymbol}^{2}_{1}
+    +\delby{x}{\tilde{y}}\delby{\tilde{y}}{y}\tilde{\conductivitytensorsymbol}^{2}_{2} \\
+    &=\cosine{\theta}\sine{\theta}\tilde{\conductivitytensorsymbol}_{t}
+    +\cosine{\theta}\cosine{\theta}.0
+    -\sine{\theta}\sine{\theta}.0
+    -\sine{\theta}\cosine{\theta}\tilde{\conductivitytensorsymbol}_{n} \\
+    \conductivitytensorsymbol^{2}_{1}&=
+    \delby{y}{\tilde{x}}\delby{\tilde{x}}{x}\tilde{\conductivitytensorsymbol}^{1}_{1}
+    +\delby{y}{\tilde{x}}\delby{\tilde{y}}{x}\tilde{\conductivitytensorsymbol}^{1}_{2}
+    +\delby{y}{\tilde{y}}\delby{\tilde{x}}{x}\tilde{\conductivitytensorsymbol}^{2}_{1}
+    +\delby{y}{\tilde{y}}\delby{\tilde{y}}{x}\tilde{\conductivitytensorsymbol}^{2}_{2} \\
+    &=\sine{\theta}\cosine{\theta}\tilde{\conductivitytensorsymbol}_{t}
+    +\sine{\theta}-\sine{\theta}.0
+    +\cosine{\theta}\cosine{\theta}.0
+    +\cosine{\theta}-\sine{\theta}\tilde{\conductivitytensorsymbol}_{n} \\
+    \conductivitytensorsymbol^{2}_{2}&=
+    \delby{y}{\tilde{x}}\delby{\tilde{x}}{y}\tilde{\conductivitytensorsymbol}^{1}_{1}
+    +\delby{y}{\tilde{x}}\delby{\tilde{y}}{y}\tilde{\conductivitytensorsymbol}^{1}_{2}
+    +\delby{y}{\tilde{y}}\delby{\tilde{x}}{y}\tilde{\conductivitytensorsymbol}^{2}_{1}
+    +\delby{y}{\tilde{y}}\delby{\tilde{y}}{y}\tilde{\conductivitytensorsymbol}^{2}_{2} \\
+    &=\sine{\theta}\sine{\theta}\tilde{\conductivitytensorsymbol}_{t}
+    +\sine{\theta}\cosine{\theta}.0
+    +\cosine{\theta}\sine{\theta}.0
+    +\cosine{\theta}\cosine{\theta}\tilde{\conductivitytensorsymbol}_{n} \\
+  \end{aligned}
+\end{equation}
+
 Hence
 \begin{equation}
-  \tensor{\sigma}=\begin{bmatrix}
-    \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
-    \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
-    \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
-    \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
+  \conductivitytensor= \begin{bmatrix}
+    \conductivitytensorsymbol^{1}_{1} & \conductivitytensorsymbol^{2}_{1} \\
+    \conductivitytensorsymbol^{1}_{2} & \conductivitytensorsymbol^{2}_{2} 
   \end{bmatrix} = \begin{bmatrix}
-    \sigma_{11} & \sigma_{12} \\
-    \sigma_{12} & \sigma_{22} 
-  \end{bmatrix}
-  \label{eqn:conductivtytransformation}
+    \tilde{\conductivitytensorsymbol}_{t}\cosinesq{\theta}+\tilde{\conductivitytensorsymbol}_{n}\sinesq{\theta} & 
+    \pbrac{\tilde{\conductivitytensorsymbol}_{t}-\tilde{\conductivitytensorsymbol}_{n}}\sine{\theta}\cosine{\theta} \\
+    \pbrac{\tilde{\conductivitytensorsymbol}_{t}-\tilde{\conductivitytensorsymbol}_{n}}\sine{\theta}\cosine{\theta} &
+    \tilde{\conductivitytensorsymbol}_{t}\sinesq{\theta}+\tilde{\conductivitytensorsymbol}_{n}\cosinesq{\theta}
+  \end{bmatrix} 
+  \label{eqn:AnisoPlateTransformedConductivty}
 \end{equation}
 
 The generalised Laplace equation for this problem in reference coordinates is
 hence given by
 \begin{equation}
-  \divergence{}{\pbrac{\tensor{\sigma}\gradient{}u}}=\sigma_{11}\deltwosqby{u}
-  {x}+2\sigma_{12}\deltwoby{u}{x}{y}+\sigma_{22}\deltwosqby{u}{y}
+  \divergence{}{\pbrac{\conductivitytensor\gradient{}u}}=
+  \conductivitytensorsymbol^{1}_{1}\deltwosqby{u}{x}
+  +\conductivitytensorsymbol^{2}_{1}\deltwoby{u}{x}{y}
+  +\conductivitytensorsymbol^{1}_{2}\deltwoby{u}{y}{x}
+  +\conductivitytensorsymbol^{2}_{2}\deltwosqby{u}{y}
   =0
-  \label{eqn:2DrcgenLaplace}
+  \label{eqn:AnisoPlate2DRCGenLaplace}
 \end{equation}
 
-\Eqnref{eqn:2DrcgenLaplace} cannot be solved using traditional eigenfunction
+\Eqnref{eqn:AnisoPlate2DRCGenLaplace} cannot be solved using traditional eigenfunction
 expansions as it is non-separable. In fact, for an arbitrary domain and
-arbitrary boundary conditions, \eqnref{eqn:2DrcgenLaplace} is extremely
+arbitrary boundary conditions, \eqnref{eqn:AnisoPlate2DRCGenLaplace} is extremely
 difficult to solve. It can be solved, however, by realising that from the
-definition of $\sigma_{ij}$ in \eqnref{eqn:conductivtytransformation} the
+definition of $\conductivitytensorsymbol^{i}_{.j}$ in \eqnref{eqn:AnisoPlateTransformedConductivty} the
 equation is elliptic everywhere in the solution domain. From
 \citet{clements:1981}, a system of second order elliptic partial
 differential equations is of the form
 \begin{equation}
-  a_{ijkl}\deltwoby{u_{k}}{x_{j}}{x_{l}}=0
-  \label{eqn:general2ndorderellipticpde}
+  a^{ijkl}\deltwoby{u_{k}}{x^{j}}{x^{l}}=0
+  \label{eqn:General2ndOrderEllipticPDE}
 \end{equation}
 where $u_{k}$ are complex-valued functions of the dependent variables
-$x_{1}$ and $x_{2}$ and $i,k=1,\ldots,N$. The $a_{ijkl}$ are real constants
-which satisfy the symmetry condition $a_{ijkl}=a_{klij}$ and, since the system
-is elliptic, satisfy $a_{ijkl}\xi_{ij}\xi_{kl}>0$ for every non-zero $N\times
+$x^{1}$ and $x^{2}$ and $i,k=1,\ldots,N$. The $a^{ijkl}$ are real constants
+which satisfy the symmetry condition $a^{ijkl}=a^{klij}$ and, since the system
+is elliptic, satisfy $a^{ijkl}\xi_{ij}\xi_{kl}>0$ for every non-zero $N\times
 2$ real matrix $\xi_{ij}$.
 
-Real solutions to \eqnref{eqn:general2ndorderellipticpde} may be written in
+Real solutions to \eqnref{eqn:General2ndOrderEllipticPDE} may be written in
 the form 
 \begin{equation}
   u_{k}=\dsum_{\alpha}A_{k\alpha}\fnof{f_{\alpha}}{z_{\alpha}}+
@@ -473,20 +570,21 @@ where $\alpha=1,\hdots,N$, $\fnof{f_{\alpha}}{z_{\alpha}}$ are arbitrary
 analytic functions of a complex variable $z_{\alpha}$,
 $\overline{\fnof{f_{\alpha}}{z_{\alpha}}}$ the complex conjugate of the
 function $\fnof{f_{\alpha}}{z_{\alpha}}$, $A_{k\alpha}$ are complex constants
-(to be determined), $z_{\alpha}=x_{1}+\tau_{\alpha} x_{2}$ and $\tau_{\alpha}$
+(to be determined), $z_{\alpha}=x^{1}+\tau_{\alpha} x^{2}$ and $\tau_{\alpha}$
 are complex constants given by
 \begin{equation}
-  \det\sqbrac{a_{i1k1}+a_{i1k2}\tau+a_{i2k1}\tau+a_{i2k2}\tau^{2}}=0
+  \det\sqbrac{a^{i1k1}+a^{i1k2}\tau+a^{i2k1}\tau+a^{i2k2}\tau^{2}}=0
 \end{equation}
 
-Comparing \eqnref{eqn:2DrcgenLaplace} with
-\eqnref{eqn:general2ndorderellipticpde} it can be seen that $N=1$ and
-$a_{1i1j}=\sigma_{ij}$ and thus $\tau$ is given by
+Comparing \eqnref{eqn:AnisoPlate2DRCGenLaplace} with
+\eqnref{eqn:General2ndOrderEllipticPDE} it can be seen that $N=1$ and
+$a_{1i1j}=\conductivitytensorsymbol_{ij}$ and thus $\tau$ is given by
 \begin{equation}
-  \tau=\dfrac{-\sigma_{12}+\imath\sqrt{\sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}
-  {\sigma_{22}}=\dfrac{-\sigma_{12}}{\sigma_{22}}+\dfrac{\imath\sqrt{
-      \sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}{\sigma_{22}}=-\lambda_{1}+
-  \imath\lambda_{2}
+  \tau=\dfrac{-\conductivitytensorsymbol_{12}+
+    \imath\sqrt{\conductivitytensorsymbol_{11}\conductivitytensorsymbol_{22}-\conductivitytensorsymbol_{12}^{2}}}
+  {\conductivitytensorsymbol_{22}}=\dfrac{-\conductivitytensorsymbol_{12}}{\conductivitytensorsymbol_{22}}+\dfrac{\imath\sqrt{
+      \conductivitytensorsymbol_{11}\conductivitytensorsymbol_{22}-
+      \conductivitytensorsymbol_{12}^{2}}}{\conductivitytensorsymbol_{22}}=-\lambda_{1}+\imath\lambda_{2}
 \end{equation}
 where $\imath$ is the square root of $-1$. With this definition it can be seen
 that
@@ -495,7 +593,7 @@ that
 \end{equation}
 
 From \citet{clements:1981} $A_{11}=1$ for this problem and hence a
-solution to \eqnref{eqn:2DrcgenLaplace} can be found by specifying an
+solution to \eqnref{eqn:AnisoPlate2DRCGenLaplace} can be found by specifying an
 arbitrary analytic function $\fnof{f}{z}$.
 
 For the test problem in this chapter the analytic function is chosen to be
@@ -543,14 +641,16 @@ The Hessian of \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} is
     2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} &
     -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} \\
     -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} &
-    \begin{matrix}-2e^{x}\left(e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}^{2}\cosine{\lambda_{2}y}-\lambda_{1}\lambda_{2}\sine{\lambda_{2}y}}\right.\\
+    \begin{matrix}
+      -2e^{x}\left(e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}^{2}\cosine{\lambda_{2}y}-\lambda_{1}\lambda_{2}\sine{\lambda_{2}y}}\right.\\
       \hfil{}\left.-\lambda_{1}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}\right)
     \end{matrix}\end{bmatrix}\\
     &=\begin{bmatrix}
     2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y} &
     -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} \\
     -2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}} &
-    \begin{matrix}-2\lambda_{2}e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\cosine{\lambda_{2}y}-\lambda_{1}\sine{\lambda_{2}y}}\\
+    \begin{matrix}
+      -2\lambda_{2}e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\cosine{\lambda_{2}y}-\lambda_{1}\sine{\lambda_{2}y}}\\
       \hfil{}+2\lambda_{1}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}
     \end{matrix}
     \end{bmatrix}
@@ -558,40 +658,63 @@ The Hessian of \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} is
   \label{eqn:GeneralisedLaplaceTwoDAnalyticHessian1}
 \end{equation}
 
-Now we have $\lambda_{1}=\dfrac{\sigma_{12}}{\sigma_{22}}$ and
-$\lambda_{2}=\dfrac{\sqrt{\sigma_{11}\sigma_{22}-\sigma_{12}^{2}}}{\sigma_{22}}$
+Now we have $\lambda_{1}=\dfrac{\conductivitytensorsymbol_{12}}{\conductivitytensorsymbol_{22}}$ and
+$\lambda_{2}=\dfrac{\sqrt{\conductivitytensorsymbol_{11}\conductivitytensorsymbol_{22}-\conductivitytensorsymbol_{12}^{2}}}{\conductivitytensorsymbol_{22}}$
 and so, rearranging, we have
 \begin{equation}
-  \sigma_{22}=\dfrac{\sigma_{12}}{\lambda_{1}}
+  \conductivitytensorsymbol_{22}=\dfrac{\conductivitytensorsymbol_{12}}{\lambda_{1}}
 \end{equation}
 and
 \begin{equation}
   \begin{aligned}
-    \sigma_{11}&=\dfrac{\sigma_{22}^{2}\lambda_{2}^{2}+\sigma_{12}^{2}}{\sigma_{22}}\\
-    &=\sigma_{22}\lambda_{2}^{2}+\sigma_{12}\lambda_{11}\\
-    &=\dfrac{\sigma_{12}\lambda_{2}^{2}}{\lambda_{1}}+\sigma_{12}\lambda_{11}\\
-    &=\sigma_{12}\dfrac{\pbrac{\lambda_{1}^{2}+\lambda_{2}^{2}}}{\lambda_{1}}
+    \conductivitytensorsymbol_{11}&=\dfrac{\conductivitytensorsymbol_{22}^{2}\lambda_{2}^{2}+
+      \conductivitytensorsymbol_{12}^{2}}{\conductivitytensorsymbol_{22}}\\
+    &=\conductivitytensorsymbol_{22}\lambda_{2}^{2}+\conductivitytensorsymbol_{12}\lambda_{11}\\
+    &=\dfrac{\conductivitytensorsymbol_{12}\lambda_{2}^{2}}{\lambda_{1}}+\conductivitytensorsymbol_{12}\lambda_{11}\\
+    &=\conductivitytensorsymbol_{12}\dfrac{\pbrac{\lambda_{1}^{2}+\lambda_{2}^{2}}}{\lambda_{1}}
   \end{aligned}
 \end{equation}
 
 Thus we have
 \begin{equation}
   \begin{aligned}
-    \divergence{}{\pbrac{\tensor{\sigma}\gradient{}\fnof{u}{x,y}}}=\sigma_{11}\deltwosqby{\fnof{u}{x,y}}{x}+
-    2\sigma_{12}\deltwoby{\fnof{u}{x,y}}{x}{y}+\sigma_{22}\deltwosqby{\fnof{u}{x,y}}{y}\\
-  &=\sigma_{11}
-  &=0
+    \divergence{}{\pbrac{\conductivitytensor\gradient{}\fnof{u}{x,y}}}&=\conductivitytensorsymbol_{11}\deltwosqby{\fnof{u}{x,y}}{x}+
+    2\conductivitytensorsymbol_{12}\deltwoby{\fnof{u}{x,y}}{x}{y}+\conductivitytensorsymbol_{22}\deltwosqby{\fnof{u}{x,y}}{y}\\
+    &=\conductivitytensorsymbol_{12}\dfrac{\pbrac{\lambda_{1}^{2}+\lambda_{2}^{2}}}{\lambda_{1}}
+    \pbrac{2e^{x}e^{-\lambda_{1}{y}}\cosine{\lambda_{2}y}}+
+    2\conductivitytensorsymbol_{12}\pbrac{-2e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+
+        \lambda_{1}\cosine{\lambda_{2}y}}}\\
+    &\quad+\dfrac{\conductivitytensorsymbol_{12}}{\lambda_{1}}
+    \pbrac{-2\lambda_{2}e^{x}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\cosine{\lambda_{2}y}-\lambda_{1}\sine{\lambda_{2}y}}+
+      2\lambda_{1}e^{-\lambda_{1}{y}}\pbrac{\lambda_{2}\sine{\lambda_{2}y}+\lambda_{1}\cosine{\lambda_{2}y}}}\\
+    &=2\conductivitytensorsymbol_{12}e^{x}e^{-\lambda_{1}y}\left[
+      \lambda_{1}\cosine{\lambda_{2}y}
+      +\dfrac{\lambda_{2}^{2}}{\lambda_{1}}\cosine{\lambda_{2}y}
+      -2\lambda_{2}\sine{\lambda_{2}y}
+      -2\lambda_{1}\cosine{\lambda_{2}y}\right.\\
+      &\quad\left.-\dfrac{\lambda_{2}^{2}}{\lambda_{1}}\cosine{\lambda_{2}y}
+      +\lambda_{2}\sine{\lambda_{2}y}
+      +\lambda_{2}\sine{\lambda_{2}y}
+      +\lambda_{1}\cosine{\lambda_{2}y}\right]\\
+    &=2\conductivitytensorsymbol_{12}e^{x}e^{-\lambda_{1}y}\left[2\lambda_{1}\cosine{\lambda_{2}y}-2\lambda_{1}\cosine{\lambda_{2}y}
+      \right.\\
+      &\quad\left.-2\lambda_{2}\sine{\lambda_{2}y}+2\lambda_{2}\sine{\lambda_{2}y}
+      +\dfrac{\lambda_{2}^{2}}{\lambda_{1}}\cosine{\lambda_{2}y}
+      -\dfrac{\lambda_{2}^{2}}{\lambda_{1}}\cosine{\lambda_{2}y}\right]\\
+    &=2\conductivitytensorsymbol_{12}e^{x}e^{-\lambda_{1}y}\sqbrac{0}\\
+    &=0
   \end{aligned}
 \end{equation}
-which shows that \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} satisfies the generalised Laplace equation. TWODO FIX.
+which shows that \eqnref{eqn:GeneralisedLaplaceTwoDAnalytic1} satisfies the generalised Laplace equation.
 
-The analytic field component definitions in \OpenCMISS are shown in \tabref{tab:OpenCMISSAnalyticFieldGeneralisedLaplaceTwoDim1}.
+The analytic field component definitions in \OpenCMISS are shown in
+\tabref{tab:OpenCMISSAnalyticFieldGeneralisedLaplaceEquationTwoDim1}.
 
 \begin{table}[htb] \centering
   \begin{tabular}{|c|c|} \hline
     \emph{Analytic constant} & \emph{Analytic field component} \\ \hline \hline
-    $\sigma_{t}$ & $1$ \\ 
-    $\sigma_{n}$ & $2$ \\
+    $\tilde{\conductivitytensorsymbol}_{t}$ & $1$ \\ 
+    $\tilde{\conductivitytensorsymbol}_{n}$ & $2$ \\
     $\theta$ & $3$ \\ \hline
   \end{tabular}
   \caption{\OpenCMISS analytic field components for the \twod generalised Laplace equation
@@ -607,17 +730,17 @@ We can consider a worked example for the domain shown in \figref{fig:FEMTwoDGenL
   elements. The plate has a fibre field at an angle of $\theta$ to the
   $x$ axis.}{fig:FEMTwoDGenLaplaceDomainExample}{0.66}
 
-For the case when $H=\dfrac{L}{2}$, $N_{y}=\dfrac{N_{x}}{2}$, $\sigma_{t}=3$, $\sigma_{n}=1$, and $\theta=30\degree$ we have that
+For the case when $H=\dfrac{L}{2}$, $N_{y}=\dfrac{N_{x}}{2}$, $\conductivitytensorsymbol_{t}=3$, $\conductivitytensorsymbol_{n}=1$, and $\theta=30\degree$ we have that
 
 \begin{align}
-  \tensor{\sigma}&=\begin{bmatrix}
-  \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
-  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
-  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
-  \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
+  \conductivitytensor&=\begin{bmatrix}
+  \conductivitytensorsymbol_{t}\cosinesq{\theta}+\conductivitytensorsymbol_{n}\sinesq{\theta} & 
+  \pbrac{\conductivitytensorsymbol_{t}-\conductivitytensorsymbol_{n}}\sine{\theta}\cosine{\theta} \\
+  \pbrac{\conductivitytensorsymbol_{t}-\conductivitytensorsymbol_{n}}\sine{\theta}\cosine{\theta} &
+  \conductivitytensorsymbol_{t}\sinesq{\theta}+\conductivitytensorsymbol_{n}\cosinesq{\theta}
   \end{bmatrix} = \begin{bmatrix}
-    \sigma_{11} & \sigma_{12} \\
-    \sigma_{12} & \sigma_{22} 
+    \conductivitytensorsymbol_{11} & \conductivitytensorsymbol_{12} \\
+    \conductivitytensorsymbol_{12} & \conductivitytensorsymbol_{22} 
   \end{bmatrix} \\
   &=\begin{bmatrix}
   3\pbrac{\dfrac{\sqrt{3}}{2}}^{2}+1\pbrac{\dfrac{1}{2}}^{2} & 
@@ -631,72 +754,48 @@ For the case when $H=\dfrac{L}{2}$, $N_{y}=\dfrac{N_{x}}{2}$, $\sigma_{t}=3$, $\
   \label{eqn:FEMTwoDGenLaplaceDomainConductivity}
 \end{align}
 
-Now from \eqnref{eqn:FEMTwoDGenLaplaceElementStiffnessMatrix} we have
+Now from \eqnref{eqn:FEMTwoDGenLaplaceSquareElementStiffnessMatrix} we have
 \begin{equation}
   K_{mn}=\begin{bmatrix}
-  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
-  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
-  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
-  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} \\
-  \frac{-\sigma_{11}H^{2}N_{x}^{2}-\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{-2 \sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}-2 \sigma_{22}L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}} &
-  \frac{\sigma_{11}H^{2}N_{x}^{2}+\sigma_{22}L^{2}N_{y}^{2}}{3 L H N_{x} N_{y}}
-  \end{bmatrix} 
+  \frac{4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{-4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{-2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} \\
+  \frac{-4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{-2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+        \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}L^{2}}{12} \\
+  \frac{2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{-2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{-4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} \\
+  \frac{-2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+        \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}L^{2}}{12}&
+  \frac{-4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
+      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
+  \frac{4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
+      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12}
+  \end{bmatrix}
 \end{equation}
-
-Now, for the case when $H=\dfrac{L}{2}$ and $N_{y}=\dfrac{N_{x}}{2}$ we have that
-
-\begin{equation}
-  K_{mn}=\begin{bmatrix}
-  \frac{\sigma_{11}+\sigma_{22}}{3} & \frac{\sigma_{11}-2 \sigma_{22}}{6} &
-  \frac{-2\sigma_{11}+\sigma_{22}}{6} & \frac{-\sigma_{11}-\sigma_{22}}{6} \\
-  \frac{\sigma_{11}-2 \sigma_{22}}{6} & \frac{\sigma_{11}+\sigma_{22}}{3} &
-  \frac{-\sigma_{11}-\sigma_{22}}{6} & \frac{-2\sigma_{11}+\sigma_{22}}{6} \\
-  \frac{-2\sigma_{11}+\sigma_{22}}{6} & \frac{-\sigma_{11}-\sigma_{22}}{6} &
-  \frac{\sigma_{11}+\sigma_{22}}{3} & \frac{\sigma_{11}-2\sigma_{22}}{6} \\
-  \frac{-\sigma_{11}-\sigma_{22}}{6} & \frac{-2\sigma_{11}+\sigma_{22}}{6} &
-  \frac{\sigma_{11}-2 \sigma_{22}}{6} & \frac{\sigma_{11}+\sigma_{22}}{3}
-  \end{bmatrix} 
-\end{equation}
-
-For the case when $\sigma_{t}=3$, $\sigma_{n}=1$, and $\theta=30\degree$ we have that
-
-\begin{align}
-  \tensor{\sigma}&=\begin{bmatrix}
-  \sigma_{t}\cosinesq{\theta}+\sigma_{n}\sinesq{\theta} & 
-  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} \\
-  \pbrac{\sigma_{t}-\sigma_{n}}\sine{\theta}\cosine{\theta} &
-  \sigma_{t}\sinesq{\theta}+\sigma_{n}\cosinesq{\theta}
-  \end{bmatrix} = \begin{bmatrix}
-    \sigma_{11} & \sigma_{12} \\
-    \sigma_{12} & \sigma_{22} 
-  \end{bmatrix} \\
-  &=\begin{bmatrix}
-  3\pbrac{\frac{\sqrt{3}}{2}}^{2}+1\pbrac{-\frac{1}{2}}^{2} & 
-  \pbrac{3-1}\pbrac{-\frac{1}{2}}\pbrac{\frac{\sqrt{3}}{2}} \\
-  \pbrac{3-1}\pbrac{-\frac{1}{2}}\pbrac{\frac{\sqrt{3}}{2}} &
-  3\pbrac{-\frac{1}{2}}^{2}+1\pbrac{\frac{\sqrt{3}}{2}}^{2}
-  \end{bmatrix} = \begin{bmatrix}
-    \frac{5}{2} & \frac{\sqrt{3}}{2} \\
-    \frac{\sqrt{3}}{2} & \frac{3}{2}
-  \end{bmatrix} 
-  \label{eqn:FEMTwoDGenLaplaceDomainConductivity}
-\end{align}
 
 With these conductivities and fibre angle the elemental stiffness matrix becomes
-
 \begin{equation}
   K_{mn}=\begin{bmatrix}
-  +\frac{4}{3} & -\frac{1}{12} & -\frac{7}{12} & -\frac{2}{3} \\
+  +\frac{32+6\sqrt{3}}{24} & -\frac{1}{3} & -\frac{1}{12} & -\frac{6+6\sqrt{3}}{24} \\
   -\frac{1}{12} & +\frac{4}{3} & -\frac{2}{3} & -\frac{7}{12} \\
   -\frac{7}{12} & -\frac{2}{3} & +\frac{4}{3} & -\frac{1}{12} \\
   -\frac{2}{3} & -\frac{7}{12} & -\frac{1}{12} & +\frac{4}{3}
@@ -742,8 +841,11 @@ The Hessian of \eqnref{eqn:StandardLaplaceThreeDAnalytic1} is
 
 Thus we have
 \begin{equation}
-  \laplacian{}{\fnof{u}{x,y,z}}=\deltwosqby{\fnof{u}{x,y,z}}{x}+\deltwosqby{\fnof{u}{x,y,z}}{y}+\deltwosqby{\fnof{u}{x,y,z}}{z}=
-  2+2-4=0
+  \begin{aligned}
+    \laplacian{}{\fnof{u}{x,y,z}}&=\deltwosqby{\fnof{u}{x,y,z}}{x}+\deltwosqby{\fnof{u}{x,y,z}}{y}+\deltwosqby{\fnof{u}{x,y,z}}{z} \\
+    &=2+2-4\\
+    &=0
+  \end{aligned}
 \end{equation}
 which shows that \eqnref{eqn:StandardLaplaceThreeDAnalytic1} satisfies the standard Laplace equation.
 
@@ -792,7 +894,8 @@ Thus we have
 \begin{equation}
   \begin{aligned}
     \laplacian{}{\fnof{u}{x,y,z}}&=\deltwosqby{\fnof{u}{x,y,z}}{x}+\deltwosqby{\fnof{u}{x,y,z}}{y}+\deltwosqby{\fnof{u}{x,y,z}}{z}\\
-    &=-\cosine{x}\hypecosine{y}z+\cosine{x}\hypecosine{y}z+0=0
+    &=-\cosine{x}\hypecosine{y}z+\cosine{x}\hypecosine{y}z+0\\
+    &=0
   \end{aligned}
 \end{equation}
 which shows that \eqnref{eqn:StandardLaplaceThreeDAnalytic2} satisfies the standard Laplace equation.

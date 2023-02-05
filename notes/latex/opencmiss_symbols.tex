@@ -1,0 +1,230 @@
+%
+% opencmiss_symbols.tex
+%
+% Global OpenCMISS symbol definitions i.e., assigning the symbol used to a latexname for a physical quantities
+% (i.e., non-mathematical symbols).
+%
+
+%
+% General
+%
+
+\newcommand{\gravitysymbol}{\ensuremath{ %
+    a %
+}} % gravity symbol e.g., \gravitysymbol => a
+\newcommand{\gravityvector}{\ensuremath{ %
+    \vectr{\gravitysymbol} %
+}} % gravity vector e.g., \gravityvector => a
+\newcommand{\voltagesymbol}{\ensuremath{ %
+    V %
+}} % voltage symbol e.g., \voltagesymbol => V
+\newcommand{\currentsymbol}{\ensuremath{ %
+    I %
+}} % current symbol e.g., \currentsymbol => I
+\newcommand{\currentdensitysymbol}{\ensuremath{ %
+    J %
+}} % current density symbol e.g., \currentdensitysymbol => J
+\newcommand{\currentdensityvector}{\ensuremath{ %
+    \vectr{J} %
+}} % current density vector e.g., \currentdensityvector => J
+\newcommand{\potentialsymbol}{\ensuremath{ %
+    \phi %
+}} % potential symbol e.g., \potentialsymbol => V
+\newcommand{\conductivitytensorsymbol}{\ensuremath{ %
+    \sigma %
+}} % conductivity tensor symbol e.g., \conductivitytensorsymbol => \sigma
+\newcommand{\conductivitytensor}{\ensuremath{ %
+    \tensortwo{\conductivitytensorsymbol} %
+}} % conductivity tensor e.g., \conductivitytensor => \sigma
+
+%
+% Interpolation
+%
+
+\newcommand{\xione}{\ensuremath{\xi^{1}}\xspace} % xi 1
+\newcommand{\xionesq}{\ensuremath{{\xi^{1}}^{2}}\xspace} % (xi 1)^2
+\newcommand{\xionecube}{\ensuremath{{\xi^{1}}^{3}}\xspace} % (xi 1)^3
+\newcommand{\xitwo}{\ensuremath{\xi^{2}}\xspace} % xi 2
+\newcommand{\xitwosq}{\ensuremath{{\xi^{2}}^{2}}\xspace} % (xi 2)^2
+\newcommand{\xitwocube}{\ensuremath{{\xi^{2}}^{3}}\xspace} % (xi 2)^3
+\newcommand{\xithree}{\ensuremath{\xi^{3}}\xspace} % xi 3
+\newcommand{\xithreesq}{\ensuremath{{\xi^{3}}^{2}}\xspace} % (xi 3)^2
+\newcommand{\xithreecube}{\ensuremath{{\xi^{3}}^{3}}\xspace} % (xi 3)^3
+
+%
+% Solid Mechanics
+%
+
+% Constants
+
+\newcommand{\poissonsratiosymbol}{\ensuremath{ %
+    \nu %
+}} % Poisson's ratio symbol e.g., \poissonsratiosymbol => \nu
+\newcommand{\bulkstrainmodulussymbol}{\ensuremath{ %
+    K %
+}} % Bulk strain modulus symbol e.g., \bulkstrainmodulussymbol => K
+\newcommand{\soliddensitysymbol}{\ensuremath{ %
+    \densitysymbol_{s} %
+}} % Solid density symbol e.g., \soliddensitysymbol => \rho_s
+
+
+% Deformation and strain
+
+\newcommand{\deformationgradienttensorsymbol}{\ensuremath{ %
+    F %
+}} % Deformation gradient tensor symbol e.g., \deformationgradienttensorsymbol => F
+\newcommand{\deformationgradienttensor}{\ensuremath{ %
+    \tensortwo{\deformationgradienttensor} %
+}} % Deformation gradient tensor e.g., \deformationgradienttensor => F
+\newcommand{\rightstretchtensorsymbol}{\ensuremath{ %
+    U %
+}} % Right stretch tensor symbol e.g., \rightstretchtensorsymbol => U
+\newcommand{\rightstretchtensor}{\ensuremath{ %
+    \tensortwo{\rightstretchtensorsymbol} %
+}} % Right stretch tensor e.g., \rightstretchtensor => U
+\newcommand{\leftstretchtensorsymbol}{\ensuremath{ %
+    V %
+}} % Left stretch tensor symbol e.g., \leftstretchtensorsymbol => V
+\newcommand{\leftstretchtensor}{\ensuremath{ %
+    \tensortwo{\leftstretchtensorsymbol} %
+}} % Left stretch tensor e.g., \leftstretchtensor => V
+\newcommand{\rightcauchygreentensorsymbol}{\ensuremath{ %
+    C %
+}} % Right Cauchy-Green (or Green) deformation tensor symbol e.g., \rightcauchygreentensorsymbol => C
+\newcommand{\rightcauchygreentensor}{\ensuremath{ %
+    \tensortwo{\rightcauchygreentensorsymbol} %
+}} % Right Cauchy-Green (or Green) deformation tensor e.g., \rightcauchygreentensor => C
+\newcommand{\pioladeformationtensorsymbol}{\ensuremath{ %
+    B %
+}} % Piola deformation tensor symbol e.g., \pioladefomationtensorsymbol => B
+\newcommand{\pioladeformationtensor}{\ensuremath{ %
+    \tensortwo{\pioladeformationtensorsymbol} %
+}} % Piola deformation tensor e.g., \pioladefomationtensor => B
+\newcommand{\greenlagrangestraintensorsymbol}{\ensuremath{ %
+    E %
+}} % Green-Lagrange strain tensor symbol e.g., \greenlagrangestraintensorsymbol => E
+\newcommand{\greenlagrangestraintensor}{\ensuremath{ %
+    \tensortwo{\greenlagrangetensorsymbol} %
+}} % Green-Lagrange strain tensor e.g., \greenlagrangestraintensor => B
+\newcommand{\leftcauchygreentensorsymbol}{\ensuremath{ %
+    b %
+}} % Left Cauchy-Green (or Finger) deformation tensor symbol e.g., \leftcauchygreentensorsymbol => b
+\newcommand{\leftcauchygreentensor}{\ensuremath{ %
+    \tensortwo{\leftcauchygreentensorsymbol} %
+}} % Left Cauchy-Green (or Finger) deformation tensor e.g., \leftcauchygreentensor => b
+\newcommand{\cauchydeformationtensorsymbol}{\ensuremath{ %
+    c %
+}} % Cauchy deformation tensor symbol e.g., \cauchydeformationtensorsymbol => c
+\newcommand{\cauchydeformationtensor}{\ensuremath{ %
+    \tensortwo{\cauchydeformationtensorsymbol} %
+}} % Cauchy deformation tensor e.g., \cauchydeformationtensor => c
+\newcommand{\euleralmansistraintensorsymbol}{\ensuremath{ %
+    e %
+}} % Euler-Almansi strain tensor symbol e.g., \euleralmansistraintensorsymbol => e
+\newcommand{\euleralmansistraintensor}{\ensuremath{ %
+    \tensortwo{\euleralmansistraintensorsymbol} %
+}} % Euler-Almansi strain tensor e.g., \euleralmansistraintensor => e
+
+% Stress
+
+\newcommand{\firstpiolakirchofftensorsymbol}{\ensuremath{ %
+    P %
+}} % First Piola-Kirchoff stress tensor symbol e.g., \firstpiolakirchoffstresstensorsymbol => P
+\newcommand{\firstpiolakirchoffstresstensor}{\ensuremath{ %
+    \tensortwo{\firstpiolakirchoffstresstensorsymbol} %
+}} % First Piola-Kirchoss stress tensor e.g., \firstpiolakirchoffstresstensor => P
+\newcommand{\secondpiolakirchofftensorsymbol}{\ensuremath{ %
+    S %
+}} % Second Piola-Kirchoff stress tensor symbol e.g., \secondpiolakirchoffstresstensorsymbol => S
+\newcommand{\secondpiolakirchoffstresstensor}{\ensuremath{ %
+    \tensortwo{\secondpiolakirchoffstresstensorsymbol} %
+}} % Second Piola-Kirchoss stress tensor e.g., \secondpiolakirchoffstresstensor => S
+\newcommand{\cauchystresstensorsymbol}{\ensuremath{ %
+    \sigma %
+}} % Cauchy stress tensor symbol e.g., \cauchystresstensorsymbol => \sigma
+\newcommand{\cauchystresstensor}{\ensuremath{ %
+    \tensortwo{\cauchystresstensorsymbol} %
+}} % Cauchy stress tensor e.g., \cauchystresstensor => \sigma
+\newcommand{\kirchoffstresstensorsymbol}{\ensuremath{ %
+    \tau %
+}} % Kirchoff stress tensor symbol e.g., \kirchoffstresstensorsymbol => \tau
+\newcommand{\kirchoffstresstensor}{\ensuremath{ %
+    \tensortwo{\kirchoffstresstensorsymbol} %
+}} % Kirchoff stress tensor e.g., \kirchoffstresstensor => \tau
+
+% Elasticity
+
+\newcommand{\materialfirstelasticitytensorsymbol}{\ensuremath{ %
+    A %
+}} % Material first elasticity tensor symbol e.g., \materialfirstelasticitytensorsymbol => A
+\newcommand{\materialfirstelasticitytensor}{\ensuremath{ %
+    \tensorfour{\materialfirstelasticitytensorsymbol} %
+}} % Material first elasticity tensor e.g., \materialfirstelasticitytensor => A
+\newcommand{\materialsecondelasticitytensorsymbol}{\ensuremath{ %
+    C %
+}} % Material second elasticity tensor symbol e.g., \materialsecondelasticitytensorsymbol => C
+\newcommand{\materialsecondelasticitytensor}{\ensuremath{ %
+    \tensorfour{\materialsecondelasticitytensorsymbol} %
+}} % Material second elasticity tensor e.g., \materialsecondelasticitytensor => C
+\newcommand{\spatialfirstelasticitytensorsymbol}{\ensuremath{ %
+    a %
+}} % Spatial first elasticity tensor symbol e.g., \spatialfirstelasticitytensorsymbol => a
+\newcommand{\spatialfirstelasticitytensor}{\ensuremath{ %
+    \tensorfour{\spatialfirstelasticitytensorsymbol} %
+}} % Spatial first elasticity tensor e.g., \spatialfirstelasticitytensor => a
+\newcommand{\spatialsecondelasticitytensorsymbol}{\ensuremath{ %
+    c %
+}} % Spatial second elasticity tensor symbol e.g., \spatialsecondelasticitytensorsymbol => c
+\newcommand{\spatialsecondelasticitytensor}{\ensuremath{ %
+    \tensorfour{\spatialsecondelasticitytensorsymbol} %
+}} % Spatial second elasticity tensor e.g., \spatialsecondelasticitytensor => c
+
+%
+% Bioelectrics
+%
+
+\newcommand{\membraneareavolumeratio}{\ensuremath{ %
+    A_{m} %
+}} % membrane area to volume ratio e.g., \membraneareavolumeration => A_m
+\newcommand{\membranecapacitance}{\ensuremath{ %
+    C_{m} %
+}} % membrane capacitance e.g., \membranecapacitance => C_m
+\newcommand{\transmembranevoltage}{\ensuremath{ %
+    {\voltagesymbol}_{m} %
+}} % transmembrane voltage e.g., \transmembranevoltage => V_m
+\newcommand{\transmembranecurrent}{\ensuremath{ %
+    {\currentsymbol}_{m} %
+}} % transmembrane current e.g., \transmembranecurrent => I_m
+\newcommand{\ioniccurrent}{\ensuremath{ %
+    {\currentsymbol}_{\text{ion}} %
+}} % Ionic current e.g., \ioniccurrent => I_ion
+\newcommand{\stimuluscurrent}{\ensuremath{ %
+    {\currentsymbol}_{s} %
+}} % stimulus current e.g., \stimulus current => I_s
+\newcommand{\intracellularpotential}{\ensuremath{ %
+    {\potentialsymbol}_{i} %
+}} % intra-cellular potential e.g., \intracellularpotential => \phi_i
+\newcommand{\intracellularstimuluscurrent}{\ensuremath{ %
+    {\stimuluscurrent}_{i} %
+}} % intra-cellular stimulus current e.g., \intracellularstimuluscurrent => {I_s}_i
+\newcommand{\intracellularcurrentdensityvector}{\ensuremath{ %
+    {\currentdensityvector}_{i} %
+}} % intra-cellular current density vector e.g., \intracellularcurrentdensityvector => J_i
+\newcommand{\intracellularconductivitytensor}{\ensuremath{ %
+    {\conductivitytensor}_{i} %
+}} % intra-cellular conductivity tensor e.g., \intracellularconductivitytensor => \sigma_i
+\newcommand{\extracellularpotential}{\ensuremath{ %
+    {\potentialsymbol}_{e} %
+}} % extra-cellular potential e.g., \extracellularpotential => \phi_e
+\newcommand{\extracellularstimuluscurrent}{\ensuremath{ %
+    {\stimuluscurrent}_{e} %
+}} % extra-cellular stimulus current e.g., \extracellularstimuluscurrent => {I_s}_e
+\newcommand{\extracellularcurrentdensityvector}{\ensuremath{ %
+    {\currentdensityvector}_{e} %
+}} % extra-cellular current density vector e.g., \extracellularcurrentdensityvector => J_e
+\newcommand{\extracellularconductivitytensor}{\ensuremath{ %
+    {\conductivitytensor}_{e} %
+}} % extra-cellular conductivity tensor e.g., \extracellularconductivitytensor => \sigma_e
+\newcommand{\monodomainconductivitytensor}{\ensuremath{ %
+    {\conductivitytensor}_{m} %
+}} % monodomain conductivity tensor e.g., \monodomainconductivitytensor => \sigma_m
