@@ -738,9 +738,12 @@
 % Commonly-used Math Symbols and operations
 %
 \newcommand{\abs}[1]{\brac{|}{#1}{|}} % absolute value
+\newcommand{\complex}[1]{\ensuremath{ %
+  \boldsymbol{\textrm{#1}} %
+}} %% complex number format e.g. \complex{i} => i
 \newcommand{\conjugate}[1]{\ensuremath{ %
     \overline{#1} %                                _
-    }} %% complex conjugate e.g. \conjugate{Z} => Z
+}} %% complex conjugate e.g. \conjugate{Z} => Z
 \newcommand{\const}[1]{\ensuremath{\mathrm{#1}}} % constant
 \newcommand{\cont}[1]{\ensuremath{C^{#1}}} % continuity e.g. \cont{1} => C1
 \newcommand{\gcont}[1]{\ensuremath{G^{#1}}} % geometric continuity e.g. \gcont{1} => G1

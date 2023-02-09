@@ -16,10 +16,10 @@ related through the transmembrane voltage, $\transmembranevoltage$,
 The intra- and extra- cellular current densities can be found from
 \begin{align}
   \intracellularcurrentdensityvector&=
-  -\intracellularconductivitytensor\gradient{}{\intracellularpotential}
+  -\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}
   \label{eqn:IntraCellularCurrentDensityVectorDefinition} \\
   \extracellularcurrentdensityvector&=
-  -\extracellularconductivitytensor\gradient{}{\extracellularpotential}
+  -\sharptensor{\extracellularconductivitytensor}\gradient{}{\extracellularpotential}
   \label{eqn:ExtraCellularCurrentDensityVectorDefinition}  
 \end{align}
 where $\intracellularcurrentdensityvector$ is the intracellular

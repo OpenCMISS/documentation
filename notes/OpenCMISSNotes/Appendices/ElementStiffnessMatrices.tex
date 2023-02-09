@@ -19,15 +19,20 @@ Using weighted residuals and the Green-Gauss theorem
 \end{equation}
 or
 \begin{equation}
-  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{u}{\vectr{x}}}}
-    \transpose{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}}}}{\Omega}-
-  \gint{\Gamma}{}{\sqbrac{\gradient{}{\fnof{u}{\vectr{x}}}}
-    \transpose{\sqbrac{\fnof{\normal}{\vectr{x}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}}}\fnof{w}{\vectr{x}}}{\Gamma}=0
+  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}}\sqbrac{\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x}}}}}{\Omega}-
+  \gint{\Gamma}{}{\sqbrac{\fnof{\normal}{\vectr{x}}}\sqbrac{\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x}}}}\fnof{w}{\vectr{x}}}{\Gamma}=0
+\end{equation}
+or
+\begin{equation}
+  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}}\transpose{\sqbrac{\gradient{}{\fnof{u}{\vectr{x}}}}}}{\Omega}-
+  \gint{\Gamma}{}{\sqbrac{\fnof{\normal}{\vectr{x}}}\transpose{\sqbrac{\gradient{}{\fnof{u}{\vectr{x}}}}}\fnof{w}{\vectr{x}}}{\Gamma}=0
   \label{eqn:ElementMatricesLaplaceStartingEqution}
 \end{equation}
-where $\fnof{\normal}{\vectr{x}}$ is the normal to the boundary $\Gamma=\boundary{\Omega}$, the boundary of the domain
-$\Omega$, and $\fnof{\generalmetrictensor}{\vectr{x}}$ is the metric tensor of the space to enable us
-to take the dot product.
+where $\fnof{\normal}{\vectr{x}}$ is the normal to the boundary
+$\Gamma=\boundary{\Omega}$, the boundary of the domain $\Omega$, and
+$\fnof{\generalmetrictensor}{\vectr{x}}$ is the metric tensor of the
+space to enable us to take the dot product (assumed to be the identity
+tensor for the rectangular Cartesian coordinates of this case).
 
 By discretising into elements this gives a matrix-vector system of the form
 \begin{equation}
@@ -72,60 +77,58 @@ and the Jacobian between $\pbrac{x,y}$ and $\pbrac{\xione,\xitwo}$ is given by
   \abs{\fnof{J}{\vectr{\xi}}}=\dfrac{LH}{N_{x}N_{y}}
 \end{equation}
 
-Now, if we consider the first integral of \eqnref{eqn:eqn:ElementMatricesLaplaceStartingEqution} we have
+Now, if we consider the first integral of \eqnref{eqn:ElementMatricesLaplaceStartingEqution} we have
 \begin{equation}
   \begin{aligned}
-    \gint{\Omega}{}{\dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}&=
-    \giint{0}{H/N_{y}}{0}{L/N_{x}}{\sqbrac{\gradient{}{\fnof{u}{x,y}}}
-      \transpose{\sqbrac{\gradient{}{\fnof{w}{x,y}}\fnof{\sharptensor{\generalmetrictensor}}{x,y}}}}{x}{y}\\
-    &=\giint{0}{H}{0}{L}{\pbrac{\begin{bmatrix}\delby{\fnof{u}{x,y}}{x}&\delby{\fnof{u}{x,y}}{y}\end{bmatrix}}
-      \transpose{\pbrac{\begin{bmatrix}\delby{\fnof{w}{x,y}}{x}&\delby{\fnof{w}{x,y}}{y}\end{bmatrix}\begin{bmatrix}
-            1 & 0 \\
-            0 & 1
-    \end{bmatrix}}}}{x}{y} \\
+    \gint{\Omega}{}{\dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}
+    &=\giint{0}{H/N_{y}}{0}{L/N_{x}}{\sqbrac{\gradient{}{\fnof{w}{x,y}}}
+      \transpose{\sqbrac{\gradient{}{\fnof{u}{x,y}}}}}{x}{y}\\
+    &=\giint{0}{H/N_{y}}{0}{L/N_{x}}{
+      \pbrac{\begin{bmatrix}\delby{\fnof{w}{x,y}}{x}&\delby{\fnof{w}{x,y}}{y}\end{bmatrix}}
+      \transpose{\pbrac{\begin{bmatrix}\delby{\fnof{u}{x,y}}{x}&\delby{\fnof{u}{x,y}}{y}\end{bmatrix}}}}{x}{y} \\
     &=\dintl{0}{1}\dintl{0}{1}\pbrac{\begin{bmatrix}
-        \delby{\fnof{u}{\xione,\xitwo}}{\xione}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
-      \end{bmatrix}\begin{bmatrix}
-      \delby{\xione}{x} & \delby{\xione}{y} \\
-      \delby{\xitwo}{x} & \delby{\xitwo}{y}
-    \end{bmatrix}} \\
-    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
           \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
         \end{bmatrix}\begin{bmatrix}
           \delby{\xione}{x} & \delby{\xione}{y} \\
           \delby{\xitwo}{x} & \delby{\xitwo}{y}
+    \end{bmatrix}} \\
+    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
+          \delby{\fnof{u}{\xione,\xitwo}}{\xione}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
         \end{bmatrix}\begin{bmatrix}
-          1 & 0 \\
-          0 & 1
-    \end{bmatrix}}} \\
-    &\qquad\qquad\qquad\abs{\fnof{J}{\xione,\xitwo}}\infinitesimaltwo{\xione}{\xitwo} \\ 
+          \delby{\xione}{x} & \delby{\xione}{y} \\
+          \delby{\xitwo}{x} & \delby{\xitwo}{y}
+    \end{bmatrix}}} \abs{\fnof{J}{\xione,\xitwo}}\infinitesimaltwo{\xione}{\xitwo} \\ 
     &=\dintl{0}{1}\dintl{0}{1}\pbrac{\begin{bmatrix}
-        \delby{\fnof{u}{\xione,\xitwo}}{\xione}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
+        \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
       \end{bmatrix}\begin{bmatrix}
         \dfrac{N_{x}}{L} & 0 \\
         0 & \dfrac{N_{y}}{H}
-    \end{bmatrix}} \\
+        \end{bmatrix}} \\
     &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
-          \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+          \delby{\fnof{u}{\xione,\xitwo}}{\xione}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
         \end{bmatrix}\begin{bmatrix}
           \dfrac{N_{x}}{L} & 0 \\
           0 & \dfrac{N_{y}}{H}
-        \end{bmatrix}\begin{bmatrix}
-          1 & 0 \\
-          0 & 1
-    \end{bmatrix}}}\dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo} \\
+    \end{bmatrix}}}\dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo}
+  \end{aligned}
+\end{equation}
+
+Thus we have
+\begin{equation}
+  \begin{aligned}
+    \gint{\Omega}{}{\dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}
     &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}
-        \delby{\fnof{u}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
-      \end{bmatrix}\\
+        \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
+    \end{bmatrix}\\
     &\qquad\qquad \transpose{\begin{bmatrix}
-          \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
-      \end{bmatrix}}
-      \dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\delby{\fnof{u}{\xione,\xitwo}}{\xione}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
-        \dfrac{N_{x}^{2}}{L^{2}}+\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
-        \dfrac{N_{y}^{2}}{H^{2}}}\dfrac{LH}{N_{x}N_{y}}}{\xione}{\xitwo}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\delby{\fnof{u}{\xione,\xitwo}}{\xione}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+      \delby{\fnof{u}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
+    \end{bmatrix}}
+    \dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo} \\
+    &=\giint{0}{1}{0}{1}{\pbrac{\delby{\fnof{w}{\xione,\xitwo}}{\xione}\delby{\fnof{u}{\xione,\xitwo}}{\xione}
+        \dfrac{N_{x}^{2}}{L^{2}}+\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
+        \dfrac{N_{y}^{2}}{H^{2}}}\dfrac{LH}{N_{x}N_{y}}}{\xione}{\xitwo} \\
+    &=\giint{0}{1}{0}{1}{\pbrac{\delby{\fnof{w}{\xione,\xitwo}}{\xione}\delby{\fnof{u}{\xione,\xitwo}}{\xione}
+        \dfrac{H N_{x}}{L N_{y}}+\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}
         \dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo}
   \end{aligned}
 \end{equation}
@@ -137,14 +140,15 @@ $\fnof{u}{\xione,\xitwo}=\gbfn{n}{\beta}{\xione,\xitwo}\nodedof{u}{n}{\beta}\gsf
 elemental stiffness matrix for element $i$ thus becomes
 \begin{equation}
   \begin{aligned}
-    K^{\alpha\beta}_{mn}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\fnof{u}{\xione,\xitwo}}{\xione}
-        \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-        \delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\delby{\fnof{w}{\xione\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo} \\
-    &=\dintl{0}{1}\dintl{0}{1}\left(\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xione}
-      \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xione}\dfrac{H N_{x}}{L N_{y}} \right.\\
-      &\qquad\qquad+\left.\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xitwo}
-      \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)
-      \infinitesimaltwo{\xione}{\xitwo}\\
+    K^{\alpha\beta}_{mn}&=\giint{0}{1}{0}{1}{\pbrac{
+        \delby{\fnof{w}{\xione,\xitwo}}{\xione}\delby{\fnof{u}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
+        +\delby{\fnof{w}{\xione\xitwo}}{\xitwo}\delby{\fnof{u}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}}
+    }{\xione}{\xitwo} \\
+    &=\dintl{0}{1}\dintl{0}{1}\left(\delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xione}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
+    &\qquad\qquad+\left.\delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xitwo}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)
+    \infinitesimaltwo{\xione}{\xitwo}\\
     &=\gsf{m}{\alpha}\gsf{n}{\beta}\giint{0}{1}{0}{1}{\pbrac{\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xione}
         \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
         \delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xitwo}\delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xitwo}
@@ -156,6 +160,7 @@ Consider using bilinear Lagrange basis functions \ie
 $\gbfn{m}{\alpha}{\xione,\xitwo}=\lbfn{m}{\xione,\xitwo}$,
 $\gbfn{n}{\beta}{\xione,\xitwo}=\lbfn{n}{\xione,\xitwo}$,
 $\gsf{m}{\alpha}=\gsf{n}{\beta}\equiv 1$ where
+
 \begin{alignat*}{3}
   \lbfn{1}{\xione,\xitwo}&=\pbrac{1-\xione}\pbrac{1-\xitwo}&\quad&&\delby{\lbfn{1}{\xione,\xitwo}}{\xione}&=-\pbrac{1-\xitwo}\\
   &&&&\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}&=-\pbrac{1-\xione} \\
@@ -384,15 +389,27 @@ Using weighted residuals and the Green-Gauss theorem
 \end{equation}
 or
 \begin{equation}
-  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\conductivitytensor}{\vectr{x}}}
-    \transpose{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}}}}{\Omega}-
-  \gint{\Gamma}{}{\sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\conductivitytensor}{\vectr{x}}}
-    \transpose{\sqbrac{\fnof{\normal}{\vectr{x}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}}}\fnof{w}{\vectr{x}}}{\Gamma}=0
+  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}}
+    \sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}
+      \fnof{\conductivitytensor}{\vectr{x}}}}{\Omega}-
+  \gint{\Gamma}{}{\sqbrac{\fnof{\normal}{\vectr{x}}}
+    \sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\sharptensor{\generalmetrictensor}}{\vectr{x}}
+      \fnof{\conductivitytensor}{\vectr{x}}}\fnof{w}{\vectr{x}}}{\Gamma}=0
+\end{equation}
+or
+\begin{equation}
+  \gint{\Omega}{}{\sqbrac{\gradient{}{\fnof{w}{\vectr{x}}}}
+    \transpose{\sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\sharptensor{\conductivitytensor}}{\vectr{x}}}}}{\Omega}-
+  \gint{\Gamma}{}{\sqbrac{\fnof{\normal}{\vectr{x}}}
+    \transpose{\sqbrac{\gradient{}{\fnof{u}{\vectr{x},t}}\fnof{\sharptensor{\conductivitytensor}}{\vectr{x}}}}
+    \fnof{w}{\vectr{x}}}{\Gamma}=0
   \label{eqn:ElementMatricesGenLaplaceStartingEqution}
 \end{equation}
-where $\fnof{\normal}{\vectr{x}}$ is the normal to the boundary $\Gamma=\boundary{\Omega}$, the boundary of the domain
-$\Omega$, and $\fnof{\generalmetrictensor}{\vectr{x}}$ is the metric tensor of the space to enable us
-to take the dot product.
+where $\fnof{\normal}{\vectr{x}}$ is the normal to the boundary
+$\Gamma=\boundary{\Omega}$, the boundary of the domain $\Omega$, and
+$\fnof{\generalmetrictensor}{\vectr{x}}$ is the metric tensor of the
+space to enable us to take the dot product (assumed to be the identity
+tensor for the rectangular Cartesian coordinates of this case).
 
 By discretising into elements this gives a matrix-vector system of the form
 \begin{equation}
@@ -442,75 +459,48 @@ Now, if we consider the first integral of \eqnref{eqn:ElementMatricesGenLaplaceS
   \begin{aligned}
     \gint{\Omega}{}{\dotprod{\pbrac{\fnof{\conductivitytensor}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x},t}}}}
       {\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}
-    &=\giint{0}{H/N_{y}}{0}{L/N_{x}}{\sqbrac{\gradient{}{\fnof{u}{x,y,t}}\fnof{\conductivitytensor}{x,y}}
-    \transpose{\sqbrac{\gradient{}{\fnof{w}{x,y}}\fnof{\sharptensor{\generalmetrictensor}}{x,y}}}}{x}{y}\\
+    &=\giint{0}{H/N_{y}}{0}{L/N_{x}}{\sqbrac{\gradient{}{\fnof{w}{x,y}}}
+    \transpose{\sqbrac{\gradient{}{\fnof{u}{x,y,t}}\fnof{\sharptensor{\conductivitytensor}}{x,y}}}}{x}{y}\\
     &=\dintl{0}{1}\dintl{0}{1}\pbrac{\begin{bmatrix}
+            \delby{\fnof{w}{x,y}}{x}&\delby{\fnof{w}{x,y}}{y}
+          \end{bmatrix}}\\
+    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
           \delby{\fnof{u}{x,y,t}}{x}&\delby{\fnof{u}{x,y,t}}{y}
         \end{bmatrix}\begin{bmatrix}
-          \conductivitytensorsymbol^{1}_{1} & \conductivitytensorsymbol^{1}_{2} \\
-          \conductivitytensorsymbol^{2}_{1} & \conductivitytensorsymbol^{2}_{2}
-    \end{bmatrix}}\\
-    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
-            \delby{\fnof{w}{x,y}}{x}&\delby{\fnof{w}{x,y}}{y}
-          \end{bmatrix}\begin{bmatrix}
-            \generalmetrictensorsymbol^{11} & \generalmetrictensorsymbol^{12} \\
-            \generalmetrictensorsymbol^{21} & \generalmetrictensorsymbol^{22}
+          \conductivitytensorsymbol^{11} & \conductivitytensorsymbol^{12} \\
+          \conductivitytensorsymbol^{21} & \conductivitytensorsymbol^{22}
     \end{bmatrix}}}\,\exteriorderivop x \wedge\exteriorderivop y \\
     &=\dintl{0}{1}\dintl{0}{1}\pbrac{\begin{bmatrix}
+          \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+        \end{bmatrix}\begin{bmatrix}
+          \delby{\xione}{x} & \delby{\xione}{y} \\
+          \delby{\xitwo}{x} & \delby{\xitwo}{y}
+        \end{bmatrix}} \\
+    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
         \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}&\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}
       \end{bmatrix}\begin{bmatrix}
       \delby{\xione}{x} & \delby{\xione}{y} \\
       \delby{\xitwo}{x} & \delby{\xitwo}{y}
     \end{bmatrix}\begin{bmatrix}
-        \conductivitytensorsymbol^{1}_{1} & \conductivitytensorsymbol^{1}_{2} \\
-        \conductivitytensorsymbol^{2}_{1} & \conductivitytensorsymbol^{2}_{2}
-    \end{bmatrix}} \\
-    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
-          \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
-        \end{bmatrix}\begin{bmatrix}
-          \delby{\xione}{x} & \delby{\xione}{y} \\
-          \delby{\xitwo}{x} & \delby{\xitwo}{y}
-        \end{bmatrix}\begin{bmatrix}
-          1 & 0 \\
-          0 & 1
+        \conductivitytensorsymbol^{11} & \conductivitytensorsymbol^{12} \\
+        \conductivitytensorsymbol^{21} & \conductivitytensorsymbol^{22}
     \end{bmatrix}}} \\
     &\qquad\qquad\qquad\abs{\fnof{J}{\xione,\xitwo}}\infinitesimaltwo{\xione}{\xitwo} \\ 
     &=\dintl{0}{1}\dintl{0}{1}\pbrac{\begin{bmatrix}
+          \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+        \end{bmatrix}\begin{bmatrix}
+          \dfrac{N_{x}}{L} & 0 \\
+          0 & \dfrac{N_{y}}{H}
+        \end{bmatrix}} \\
+    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
         \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}&\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}
       \end{bmatrix}\begin{bmatrix}
         \dfrac{N_{x}}{L} & 0 \\
         0 & \dfrac{N_{y}}{H}
     \end{bmatrix}\begin{bmatrix}
-        \conductivitytensorsymbol^{1}_{1} & \conductivitytensorsymbol^{1}_{2} \\
-        \conductivitytensorsymbol^{2}_{1} & \conductivitytensorsymbol^{2}_{2}
-    \end{bmatrix}} \\
-    &\qquad\qquad\transpose{\pbrac{\begin{bmatrix}
-          \delby{\fnof{w}{\xione,\xitwo}}{\xione}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
-        \end{bmatrix}\begin{bmatrix}
-          \dfrac{N_{x}}{L} & 0 \\
-          0 & \dfrac{N_{y}}{H}
-        \end{bmatrix}\begin{bmatrix}
-          1 & 0 \\
-          0 & 1
+        \conductivitytensorsymbol^{11} & \conductivitytensorsymbol^{12} \\
+        \conductivitytensorsymbol^{21} & \conductivitytensorsymbol^{22}
     \end{bmatrix}}}\\
-    &\qquad\qquad\qquad\dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo} \\
-    &=\dintl{0}{1}\dintl{0}{1}\left[
-      \pbrac{\conductivitytensorsymbol^{1}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{N_{x}}{L}+
-        \conductivitytensorsymbol^{2}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{y}}{H}}\right. \\
-      &\qquad\qquad\left.\pbrac{\conductivitytensorsymbol^{1}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{N_{x}}{L}+
-        \conductivitytensorsymbol^{2}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{y}}{H}}\right] \\
-    &\qquad\qquad\qquad \transpose{\begin{bmatrix}
-        \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
-    \end{bmatrix}}
-    \dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{1}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{N_{x}^{2}}{L^{2}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
-    \dfrac{N_{x}N_{y}}{L H}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{x}N_{y}}{L H}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}^{2}}{H^{2}}\right)\\
     &\qquad\qquad\qquad\dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo}
   \end{aligned}
 \end{equation}
@@ -520,49 +510,73 @@ Thus, finally, we have
   \begin{aligned}
     \gint{\Omega}{}{\dotprod{\pbrac{\fnof{\conductivitytensor}{\vectr{x}}\gradient{}{\fnof{u}{\vectr{x},t}}}}
       {\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}
-    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{1}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
-    \right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\\
-    &\qquad\qquad\qquad\infinitesimaltwo{\xione}{\xitwo}
+    &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}
+        \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{N_{x}}{L}&\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{N_{y}}{H}
+    \end{bmatrix}\\
+    &\qquad\qquad\left[
+      \pbrac{\conductivitytensorsymbol^{11}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{N_{x}}{L}+
+        \conductivitytensorsymbol^{21}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{y}}{H}}\right. \\
+      &\qquad\qquad\qquad\transpose{\left.\pbrac{\conductivitytensorsymbol^{12}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione
+          }\dfrac{N_{x}}{L}+
+          \conductivitytensorsymbol^{22}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{y}}{H}}\right]} \\    
+    &\qquad\qquad\qquad\qquad\dfrac{LH}{N_{x}N_{y}}\infinitesimaltwo{\xione}{\xitwo}\\
+    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{11}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{N_{x}^{2}}{L^{2}}\right.\\
+    &\qquad\qquad+\conductivitytensorsymbol^{21}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{x}N_{y}}{L H}\\
+    &\qquad\qquad\qquad+\conductivitytensorsymbol^{12} \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{N_{x}N_{y}}{L H} \\
+    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{22}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{N_{y}^{2}}{H^{2}}\right)\dfrac{LH}{N_{x}N_{y}}
+    \infinitesimaltwo{\xione}{\xitwo} \\
+    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{11}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
+    &\qquad\qquad+\conductivitytensorsymbol^{21}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\\
+    &\qquad\qquad\qquad+\conductivitytensorsymbol^{12}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\\
+    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{22}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}
   \end{aligned}
 \end{equation}
+
 We can now introduce basis functions to interpolate \ie
 $\fnof{w}{\xione,\xitwo}=\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}$
 and
 $\fnof{u}{\xione,\xitwo,t}=\gbfn{n}{\beta}{\xione,\xitwo}\fnof{\nodedof{u}{n}{\beta}}{t}\gsf{n}{\beta}$. The
 elemental stiffness matrix for element $i$ thus becomes
+
 \begin{equation}
   \begin{aligned}
-    K^{\alpha\beta}_{mn}&=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{1}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
-    \right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xione}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}
-    \delby{\fnof{w}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\\
-    &\qquad\qquad\qquad\infinitesimaltwo{\xione}{\xitwo} \\
-    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{1}_{1}\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xione}
-    \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
-    &\qquad\qquad+\conductivitytensorsymbol^{2}_{1}\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xitwo}
-    \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xione}\\
-    &\qquad\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xione}
-    \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xitwo}\\
-    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{2}_{2}\delby{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}{\xitwo}
-    \delby{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\\
-    &\qquad\qquad\qquad\qquad\qquad\infinitesimaltwo{\xione}{\xitwo}\\
+    K^{\alpha\beta}_{mn}&=\dintl{0}{1}\dintl{0}{1}\left(
+    \conductivitytensorsymbol^{11}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
+    &\qquad\qquad+\conductivitytensorsymbol^{21}\delby{\fnof{w}{\xione,\xitwo}}{\xione}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\\
+    &\qquad\qquad\qquad+\conductivitytensorsymbol^{12}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xione} \\
+    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{22}\delby{\fnof{w}{\xione,\xitwo}}{\xitwo}
+    \delby{\fnof{u}{\xione,\xitwo,t}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo} \\
+    &=\dintl{0}{1}\dintl{0}{1}\left(\conductivitytensorsymbol^{11}
+    \delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xione}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
+    &\qquad\qquad+\conductivitytensorsymbol^{21}\delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xione}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xitwo}\\
+    &\qquad\qquad\qquad+\conductivitytensorsymbol^{12}
+    \delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xitwo}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xione}\\
+    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{22}
+    \delby{\pbrac{\gbfn{m}{\alpha}{\xione,\xitwo}\gsf{m}{\alpha}}}{\xitwo}
+    \delby{\pbrac{\gbfn{n}{\beta}{\xione,\xitwo}\gsf{n}{\beta}}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)
+    \infinitesimaltwo{\xione}{\xitwo}\\
     &=\gsf{m}{\alpha}\gsf{n}{\beta}\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xione}
     \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}\right.\\
-    &\qquad\qquad+\conductivitytensorsymbol^{2}_{1}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xione}
-    \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xitwo}+\conductivitytensorsymbol^{1}_{2}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad+\conductivitytensorsymbol^{21}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xione}
+    \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xitwo}\\
+    &\qquad\qquad\qquad+\conductivitytensorsymbol^{12}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xitwo}
     \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xione}\\
-    &\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{2}_{2}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\qquad\qquad\left.+\conductivitytensorsymbol^{22}\delby{\gbfn{m}{\alpha}{\xione,\xitwo}}{\xitwo}
     \delby{\gbfn{n}{\beta}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}
   \end{aligned}
 \end{equation}
@@ -571,6 +585,7 @@ Consider using bilinear Lagrange basis functions \ie
 $\gbfn{m}{\alpha}{\xione,\xitwo}=\lbfn{m}{\xione,\xitwo}$,
 $\gbfn{n}{\beta}{\xione,\xitwo}=\lbfn{n}{\xione,\xitwo}$,
 $\gsf{m}{\alpha}=\gsf{n}{\beta}\equiv 1$ where
+
 \begin{alignat*}{3}
   \lbfn{1}{\xione,\xitwo}&=\pbrac{1-\xione}\pbrac{1-\xitwo}&\quad&&\delby{\lbfn{1}{\xione,\xitwo}}{\xione}&=-\pbrac{1-\xitwo}\\
   &&&&\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}&=-\pbrac{1-\xione} \\
@@ -586,438 +601,438 @@ The integrals for the elemental stiffness matrix are thus
 \begin{equation}
   \begin{aligned}
     K_{11}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{1}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{1}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\pbrac{1-\xitwo}.-\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\pbrac{1-\xitwo}.-\pbrac{1-\xione}}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\pbrac{1-\xione}.-\pbrac{1-\xitwo}}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\pbrac{1-\xione}.-\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\pbrac{1-\xitwo}.-\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\pbrac{1-\xitwo}.-\pbrac{1-\xione}}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\pbrac{1-\xione}.-\pbrac{1-\xitwo}}+
+    \conductivitytensorsymbol^{22}\pbrac{-\pbrac{1-\xione}.-\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{1-2\xitwo+\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{1-2\xione+\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\xitwo-\xitwosq+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{\xitwo-\xione\xitwo-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{\xione-\dfrac{\xionesq}{2}-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\xione-\xionesq+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{1-\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{1-\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{2\xione-\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{2\xitwo-\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{1-2\xitwo+\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{1-2\xione+\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\xitwo-\xitwosq+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{\xitwo-\xione\xitwo-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{\xione-\dfrac{\xionesq}{2}-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\xione-\xionesq+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{1-\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{1-\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{2\xione-\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{2\xitwo-\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{12}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{2}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\pbrac{1-\xitwo}.\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\pbrac{1-\xitwo}.-\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\pbrac{1-\xione}.\pbrac{1-\xitwo}}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\pbrac{1-\xione}.-\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\pbrac{1-\xitwo}.\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\pbrac{1-\xitwo}.-\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\pbrac{1-\xione}.\pbrac{1-\xitwo}}+
+    \conductivitytensorsymbol^{22}\pbrac{-\pbrac{1-\xione}.-\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-1+2\xitwo-\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{\xione-\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{-1+\xione+\xitwo-\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xione-\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\xitwo+\xitwosq-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{-\xione+\dfrac{\xionesq}{2}+\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionesq}{2}-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{-1+\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{6}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{-2\xitwo+\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{6}}^{1}_{0} \\
-    &=\dfrac{-\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{-\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+2\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-1+2\xitwo-\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{\xione-\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{-1+\xione+\xitwo-\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xione-\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\xitwo+\xitwosq-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{-\xione+\dfrac{\xionesq}{2}+\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionesq}{2}-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{-1+\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{6}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{-2\xitwo+\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{6}}^{1}_{0} \\
+    &=\dfrac{-\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{-\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{6 H N_{x}} \\
+    &=\dfrac{-4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+2\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{13}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\pbrac{1-\xitwo}.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\pbrac{1-\xitwo}.\pbrac{1-\xione}}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\pbrac{1-\xione}.-\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\pbrac{1-\xione}.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\pbrac{1-\xitwo}.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\pbrac{1-\xitwo}.\pbrac{1-\xione}}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\pbrac{1-\xione}.-\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{-\pbrac{1-\xione}.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{-1+\xione+\xitwo-\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-1+2\xione-\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwosq}{2}-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{-\xitwo+\xione\xitwo+\dfrac{\xitwo}{2}-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\xione+\xionesq-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{6}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{-1+\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{6}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{-2\xione+\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{6 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{-\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{2\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}-4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{-1+\xione+\xitwo-\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-1+2\xione-\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwosq}{2}-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{-\xitwo+\xione\xitwo+\dfrac{\xitwo}{2}-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\xione+\xionesq-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{6}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{-1+\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{6}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{-2\xione+\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{6 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{\conductivitytensorsymbol^{12}}{4}+\dfrac{-\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{2\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}-4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{14}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\pbrac{1-\xitwo}.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\pbrac{1-\xitwo}.\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\pbrac{1-\xione}.\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\pbrac{1-\xione}.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\pbrac{1-\xitwo}.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\pbrac{1-\xitwo}.\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\pbrac{1-\xione}.\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{-\pbrac{1-\xione}.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{-\xitwosq}{2}+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{6}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{6}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{6}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{6}}^{1}_{0} \\
-    &=\dfrac{-\conductivitytensorsymbol^{1}_{1} H N_{x}}{6 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{-\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{-\conductivitytensorsymbol^{2}_{2} L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-2\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}-2\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{-\xitwosq}{2}+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{6}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{6}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{6}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{6}}^{1}_{0} \\
+    &=\dfrac{-\conductivitytensorsymbol^{11} H N_{x}}{6 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{-\conductivitytensorsymbol^{12}}{4}+\dfrac{-\conductivitytensorsymbol^{22} L N_{y}}{6 H N_{x}} \\
+    &=\dfrac{-2\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}-2\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{22}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{2}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{\pbrac{1-\xitwo}.\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{\pbrac{1-\xitwo}.-\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\xione.\pbrac{1-\xitwo}}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\xione.-\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{\pbrac{1-\xitwo}.\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{\pbrac{1-\xitwo}.-\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\xione.\pbrac{1-\xitwo}}+
+    \conductivitytensorsymbol^{22}\pbrac{-\xione.-\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{1-2\xitwo+\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\xitwo-\xitwosq+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{-1+\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{-2\xitwo+\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{-\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{1-2\xitwo+\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\xitwo-\xitwosq+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{-1+\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{-2\xitwo+\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{-\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{23}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{\pbrac{1-\xitwo}.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{\pbrac{1-\xitwo}.\pbrac{1-\xione}}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\xione.-\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\xione.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{\pbrac{1-\xitwo}.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{\pbrac{1-\xitwo}.\pbrac{1-\xione}}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\xione.-\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{-\xione.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\dfrac{\xitwosq}{2}+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{\xitwo-\xione\xitwo-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{6}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{1-\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{6}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{6}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{2\xione-\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{6}}^{1}_{0} \\
-    &=\dfrac{-\conductivitytensorsymbol^{1}_{1} H N_{x}}{6 L N_{y}}+\dfrac{\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{-\conductivitytensorsymbol^{2}_{2} L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-2\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}-2\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{1-\xione-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xione+\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\dfrac{\xitwosq}{2}+\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{\xitwo-\xione\xitwo-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq}{2}+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{6}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{1-\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{6}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{6}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{2\xione-\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{6}}^{1}_{0} \\
+    &=\dfrac{-\conductivitytensorsymbol^{11} H N_{x}}{6 L N_{y}}+\dfrac{\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{\conductivitytensorsymbol^{12}}{4}+\dfrac{-\conductivitytensorsymbol^{22} L N_{y}}{6 H N_{x}} \\
+    &=\dfrac{-2\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}-2\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{24}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{2}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{\pbrac{1-\xitwo}.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{\pbrac{1-\xitwo}.\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{-\xione.\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{-\xione.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{\pbrac{1-\xitwo}.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{\pbrac{1-\xitwo}.\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{-\xione.\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{-\xione.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{\xione-\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{-\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwosq}{2}-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{6}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{6}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{6 L N_{y}}+\dfrac{\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{-\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{-\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{2\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}-4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{\xione-\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{-\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{-\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwosq}{2}-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{6}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{-1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{6}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{-\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{6 L N_{y}}+\dfrac{\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{-\conductivitytensorsymbol^{12}}{4}+\dfrac{-\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{2\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}-4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{33}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\xitwo.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\xitwo.\pbrac{1-\xione}}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{\pbrac{1-\xione}.-\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{\pbrac{1-\xione}.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\xitwo.-\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\xitwo.\pbrac{1-\xione}}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{\pbrac{1-\xione}.-\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{\pbrac{1-\xione}.\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{1-2\xione+\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\xione-\xionesq+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{-1+\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{-2\xione+\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{-\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{-\xitwo+\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{1-2\xione+\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{-\dfrac{\xitwosq}{2}+\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{-\xione\xitwo+\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\xione-\xionesq+\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{-1+\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{-\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{-2\xione+\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{-\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{-\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{34}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{3}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{-\xitwo.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{-\xitwo.\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{\pbrac{1-\xione}.\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{\pbrac{1-\xione}.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{-\xitwo.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{-\xitwo.\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{\pbrac{1-\xione}.\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{\pbrac{1-\xione}.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{-\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xione-\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionesq}{2}-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{6}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{6}}^{1}_{0} \\
-    &=\dfrac{-\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+2\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{-\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{-\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{\xitwo-\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xione-\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{-\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{-\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{\xione\xitwo-\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionesq}{2}-\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{-1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{-\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{6}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{-\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{-\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{6}}^{1}_{0} \\
+    &=\dfrac{-\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{-\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{6 H N_{x}} \\
+    &=\dfrac{-4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}-3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+2\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 \begin{equation}
   \begin{aligned}
     K_{44}&=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\delby{\lbfn{4}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{11}\delby{\lbfn{4}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xione}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\delby{\lbfn{4}{\xione,\xitwo}}{\xione}
+    \conductivitytensorsymbol^{21}\delby{\lbfn{4}{\xione,\xitwo}}{\xione}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\beta}{\xione,\xitwo}}{\xione}+
-    \conductivitytensorsymbol^{2}_{2}\delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}
+    \conductivitytensorsymbol^{22}\delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}
     \delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}\dfrac{L N_{y}}{H N_{x}}\right)\infinitesimaltwo{\xione}{\xitwo}\\
     &=\dintl{0}{1}\dintl{0}{1}\left(
-    \conductivitytensorsymbol^{1}_{1}\pbrac{\xitwo.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
-    \conductivitytensorsymbol^{2}_{1}\pbrac{\xitwo.\xione}\right.\\
-    &\qquad\qquad\left.+\conductivitytensorsymbol^{1}_{2}\pbrac{\xione.\xitwo}+
-    \conductivitytensorsymbol^{2}_{2}\pbrac{\xione.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
+    \conductivitytensorsymbol^{11}\pbrac{\xitwo.\xitwo}\dfrac{H N_{x}}{L N_{y}}+
+    \conductivitytensorsymbol^{21}\pbrac{\xitwo.\xione}\right.\\
+    &\qquad\qquad\left.+\conductivitytensorsymbol^{12}\pbrac{\xione.\xitwo}+
+    \conductivitytensorsymbol^{22}\pbrac{\xione.\xione}\dfrac{L N_{y}}{H N_{x}}\right)
     \infinitesimaltwo{\xione}{\xitwo}\\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwosq}}{\xione}{\xitwo}
-    +\conductivitytensorsymbol^{2}_{1}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xionesq}}{\xione}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\sqbrac{\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
-    &\qquad\qquad+\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\sqbrac{\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
-    +\conductivitytensorsymbol^{2}_{1}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
-    +\conductivitytensorsymbol^{1}_{2}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
-    +\conductivitytensorsymbol^{2}_{1}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
-    +\conductivitytensorsymbol^{1}_{2}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
-    +\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
-    &=\dfrac{\conductivitytensorsymbol^{1}_{1} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{2}_{1}}{4}+
-    \dfrac{\conductivitytensorsymbol^{1}_{2}}{4}+\dfrac{\conductivitytensorsymbol^{2}_{2} L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{4\conductivitytensorsymbol^{1}_{1}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{2}_{2}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{\xitwosq}}{\xione}{\xitwo}
+    +\conductivitytensorsymbol^{21}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\giint{0}{1}{0}{1}{\pbrac{\xione\xitwo}}{\xione}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\dfrac{\xitwocube}{3}}^{1}_{0}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\sqbrac{\dfrac{\xione\xitwosq}{2}}^{1}_{0}}{\xione}\\
+    &\qquad\qquad+\conductivitytensorsymbol^{12}\gint{0}{1}{\sqbrac{\dfrac{\xionesq\xitwo}{2}}^{1}_{0}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\dfrac{\xionecube}{3}}^{1}_{0}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}
+    +\conductivitytensorsymbol^{21}\gint{0}{1}{\dfrac{\xione}{2}}{\xione}
+    +\conductivitytensorsymbol^{12}\gint{0}{1}{\dfrac{\xitwo}{2}}{\xitwo}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{L N_{y}}\sqbrac{\dfrac{\xione}{3}}^{1}_{0}
+    +\conductivitytensorsymbol^{21}\sqbrac{\dfrac{\xionesq}{4}}^{1}_{0}
+    +\conductivitytensorsymbol^{12}\sqbrac{\dfrac{\xitwosq}{4}}^{1}_{0}
+    +\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{H N_{x}}\sqbrac{\dfrac{\xitwo}{3}}^{1}_{0} \\
+    &=\dfrac{\conductivitytensorsymbol^{11} H N_{x}}{3 L N_{y}}+\dfrac{\conductivitytensorsymbol^{21}}{4}+
+    \dfrac{\conductivitytensorsymbol^{12}}{4}+\dfrac{\conductivitytensorsymbol^{22} L N_{y}}{3 H N_{x}} \\
+    &=\dfrac{4\conductivitytensorsymbol^{11}H^{2}N_{x}^{2}+3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}L H N_{x} N_{y}+4\conductivitytensorsymbol^{22}L^{2}N_{y}^{2}}{12 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
 Now, if each element is square \ie $\dfrac{L}{N_{x}}=\dfrac{H}{N_{y}}$, then the elemental stiffness matrix simplifies to
 \begin{equation}
   K_{mn}=\begin{bmatrix}
-  \frac{4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{-4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{-2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} \\
-  \frac{-4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{-2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12} \\
-  \frac{2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{-2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{-4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} \\
-  \frac{-2\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-        \conductivitytensorsymbol^{1}_{2}}-2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{2\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-        \conductivitytensorsymbol^{1}_{2}}-4\conductivitytensorsymbol^{2}_{2}}{12}&
-  \frac{-4\conductivitytensorsymbol^{1}_{1}-3\pbrac{\conductivitytensorsymbol^{2}_{1}-
-      \conductivitytensorsymbol^{1}_{2}}+2\conductivitytensorsymbol^{2}_{2}}{12} &
-  \frac{4\conductivitytensorsymbol^{1}_{1}+3\pbrac{\conductivitytensorsymbol^{2}_{1}+
-      \conductivitytensorsymbol^{1}_{2}}+4\conductivitytensorsymbol^{2}_{2}}{12}
+  \frac{4\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}+
+      \conductivitytensorsymbol^{12}}+4\conductivitytensorsymbol^{22}}{12} &
+  \frac{-4\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}+2\conductivitytensorsymbol^{22}}{12} &
+  \frac{2\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}-4\conductivitytensorsymbol^{22}}{12} &
+  \frac{-2\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}-2\conductivitytensorsymbol^{22}}{12} \\
+  \frac{-4\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}+2\conductivitytensorsymbol^{22}}{12} &
+  \frac{4\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}+
+      \conductivitytensorsymbol^{12}}+4\conductivitytensorsymbol^{22}}{12} &
+  \frac{-2\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}-2\conductivitytensorsymbol^{22}}{12} &
+  \frac{2\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}-4\conductivitytensorsymbol^{22}}{12} \\
+  \frac{2\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}-4\conductivitytensorsymbol^{22}}{12} &
+  \frac{-2\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}-2\conductivitytensorsymbol^{22}}{12} &
+  \frac{4\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}+
+      \conductivitytensorsymbol^{12}}+4\conductivitytensorsymbol^{22}}{12} &
+  \frac{-4\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}+2\conductivitytensorsymbol^{22}}{12} \\
+  \frac{-2\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}+
+        \conductivitytensorsymbol^{12}}-2\conductivitytensorsymbol^{22}}{12} &
+  \frac{2\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}-
+        \conductivitytensorsymbol^{12}}-4\conductivitytensorsymbol^{22}}{12}&
+  \frac{-4\conductivitytensorsymbol^{11}-3\pbrac{\conductivitytensorsymbol^{21}-
+      \conductivitytensorsymbol^{12}}+2\conductivitytensorsymbol^{22}}{12} &
+  \frac{4\conductivitytensorsymbol^{11}+3\pbrac{\conductivitytensorsymbol^{21}+
+      \conductivitytensorsymbol^{12}}+4\conductivitytensorsymbol^{22}}{12}
   \end{bmatrix}
   \label{eqn:FEMTwoDGenLaplaceSquareElementStiffnessMatrix}
 \end{equation}
