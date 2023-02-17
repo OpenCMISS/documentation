@@ -63,6 +63,11 @@ all. Indeed, one of them is not a vector at all but rather it is a
 \subsection{De Rham Complex}
 
 
+The \emph{de Rham complex}\footnote{named after
+\link{https://en.wikipedia.org/wiki/Georges_de_Rham}{Georges de Rham}
+(1903-1990), a Swiss mathematician.}\index{de Rham complex} can be
+view graphically in \figref{fig:DeRhamComplex}.
+
 \epstexfigure{DifferentialGeometry/svgs/diffformcomplex.eps_tex}{De
   Rham Complex.}{The de Rham complex gives the relationship between
   differential forms. $\hodgestarop$ is the Hodge star operator,
@@ -76,9 +81,18 @@ all. Indeed, one of them is not a vector at all but rather it is a
 
 \subsection{Covariant Differentiation}
 
-Consider transforming a constant vector $\vectr{a}$ by moving it through $\Delta\theta$ in polar coordinates to the vector $\hat{\vectr{a}}$ as shown in \figref{fig:CovariantDerivativeConstantVector}.
+Consider transforming a constant vector $\vectr{a}$ by moving it
+through $\Delta\theta$ in polar coordinates to the vector
+$\hat{\vectr{a}}$ as shown in
+\figref{fig:CovariantDerivativeConstantVector}.
 
-\epstexfigure{DifferentialGeometry/svgs/covariantderivvector.eps_tex}{Changes of a vector due to changes in the coordinate system.}{Transformation of a constant vector $\vectr{a}$ to $\hat{\vectr{a}}$ by moving it through $\Delta\theta$ in a polar coordinate system. The transformation shows that $\delby{a^{r}}{\theta}$ is non-zero even though the physical vector $\vectr{a}$ is constant.}{fig:CovariantDerivativeConstantVector}{0.5}
+\epstexfigure{DifferentialGeometry/svgs/covariantderivvector.eps_tex}{Changes
+  of a vector due to changes in the coordinate system.}{Transformation
+  of a constant vector $\vectr{a}$ to $\hat{\vectr{a}}$ by moving it
+  through $\Delta\theta$ in a polar coordinate system. The
+  transformation shows that $\delby{a^{r}}{\theta}$ is non-zero even
+  though the physical vector $\vectr{a}$ is
+  constant.}{fig:CovariantDerivativeConstantVector}{0.5}
 
 A covariant derivative is a derivative along a tangent vector of a
 manifold. It is a generalisation of a directional derivative to manifolds. It
@@ -115,51 +129,51 @@ which is an $\pbrac{r,s+2}$ tensor field. It is defined by
 
 Now, if we have a vector, $\vectr{v}$ we can write
 \begin{equation}
-  \vectr{v}=v^{i}\vectr{g}_{i}
+  \vectr{v}=v^{i}\generalbasevector_{i}
 \end{equation}
 where $v^{i}$ are the components of the contravariant vector, and
-$\vectr{g}_{i}$ are the covariant base vectors.
+$\generalbasevector_{i}$ are the covariant base vectors.
 
 Similarly, the vector $\vectr{v}$ can also be written as 
 \begin{equation}
-  \vectr{v}=v_{i}\vectr{g}^{i}
+  \vectr{v}=v_{i}\generalbasevector^{i}
 \end{equation}
 where $v_{i}$ are the components of the covariant vector, and
-$\vectr{g}^{i}$ are the contravariant base vectors. 
+$\generalbasevector^{i}$ are the contravariant base vectors. 
 
 We now note that
 \begin{equation}
-  \vectr{v}=v^{i}\vectr{g}_{i}=v^{i}\sqrt{g_{ii}}\hat{\vectr{g}_{i}}
+  \vectr{v}=v^{i}\generalbasevector_{i}=v^{i}\sqrt{g_{ii}}\hat{\generalbasevector_{i}}
 \end{equation}
 where $v^{i}\sqrt{g_{ii}}$ are the physical components of the vector and
-$\hat{\vectr{g}_{i}}$ are the unit vectors given by
+$\hat{\generalbasevector_{i}}$ are the unit vectors given by
 \begin{equation}
-  \hat{\vectr{g}_{i}}=\dfrac{\vectr{g}_{i}}{\sqrt{g_{ii}}}
+  \hat{\generalbasevector_{i}}=\dfrac{\generalbasevector_{i}}{\sqrt{g_{ii}}}
 \end{equation}
 
 \subsection{Metric Tensors}
 \label{sec:metric tensors}
 
-Metric tensors are the inner product of base vectors. If $\vectr{g}_{i}$ are the
+Metric tensors are the inner product of base vectors. If $\generalbasevector_{i}$ are the
 covariant base vectors then the covariant metric tensor is given by
 \begin{equation}
-  g_{ij}=\dotprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+  g_{ij}=\dotprod{\generalbasevector_{i}}{\generalbasevector_{j}}
 \end{equation}
 
-Similarily if $\vectr{g}^{i}$ are the contravariant base vectors then the
+Similarily if $\generalbasevector^{i}$ are the contravariant base vectors then the
 contravariant metric tensor is given by 
 \begin{equation}
-  g^{ij}=\dotprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+  g^{ij}=\dotprod{\generalbasevector^{i}}{\generalbasevector^{j}}
 \end{equation}
 
 We can also form a mixed metric tensor from the dot product of a contravariant
 and a covariant base vector \ie
 \begin{equation}
-  g^{i}_{.j}=\dotprod{\vectr{g}^{i}}{\vectr{g}_{j}}
+  g^{i}_{.j}=\dotprod{\generalbasevector^{i}}{\generalbasevector_{j}}
 \end{equation}
 and 
 \begin{equation}
-  g_{i}^{.j}=\dotprod{\vectr{g}_{i}}{\vectr{g}^{j}}
+  g_{i}^{.j}=\dotprod{\generalbasevector_{i}}{\generalbasevector^{j}}
 \end{equation}
 
 Note that for mixed tensors the ``.'' indicates the order of the index \ie
@@ -168,7 +182,7 @@ index is covariant whereas $g_{i}^{.j}$ indicates that the first index is
 covariant and the second index is contravariant.
 
 If the base vectors are all mutually orthogonal and constant then
-$\vectr{g}_{i}=\vectr{g}^{i}$ and $g_{ij}=g^{ij}$.
+$\generalbasevector_{i}=\generalbasevector^{i}$ and $g_{ij}=g^{ij}$.
 
 The metric tensors generalise (Euclidean) distance \ie
 \begin{equation}
@@ -239,9 +253,9 @@ The angle between two vectors $\vectr{u}$ and $\vectr{v}$ is given by
 
 \subsubsection{Properties of the metric tensor}
 
-A metric tensor $\tensor{g}$ has the following properties
+A metric tensor $\generalmetrictensor$ has the following properties
 \begin{align}
-  \divergence{}{\sharptensor{\tensor{g}}}=0
+  \divergence{}{\sharptensor{\generalmetrictensor}}=0
   \label{eqn:DivergenceSharpMetricTensor}
 \end{align}
 
@@ -334,29 +348,29 @@ The derivatives of a vector $\vectr{v}$ are given by
 \begin{equation}
   \begin{split}
     \delby{\vectr{v}}{\xi^{i}} &=
-    \delby{}{\xi^{i}}\pbrac{v^{k}\vectr{g}_{k}} \\
-    &= \delby{v^{k}}{\xi^{i}}\vectr{g}_{k}+v^{k}\delby{\vectr{g}_{k}}{\xi^{i}} \\
-    &= \partialderiv{v^{k}}{i}\vectr{g}_{k}+v^{k}\partialderiv{\vectr{g}_{k}}{i}
+    \delby{}{\xi^{i}}\pbrac{v^{k}\generalbasevector_{k}} \\
+    &= \delby{v^{k}}{\xi^{i}}\generalbasevector_{k}+v^{k}\delby{\generalbasevector_{k}}{\xi^{i}} \\
+    &= \partialderiv{v^{k}}{i}\generalbasevector_{k}+v^{k}\partialderiv{\generalbasevector_{k}}{i}
   \end{split}
 \end{equation}
 
 Now introducing the notation
 \begin{equation}
-  \christoffelsecond{i}{j}{k} = \dotprod{\vectr{g}^{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
+  \christoffelsecond{i}{j}{k} = \dotprod{\generalbasevector^{i}}{\delby{\generalbasevector_{j}}{x^{k}}}
 \end{equation}
 where $\christoffelsecond{i}{j}{k}$ are the Christoffel symbols of the second
 kind. 
 
 Note that the Christoffel symbols of the first kind are given by
 \begin{equation}
-  \christoffelfirst{i}{j}{k} = \dotprod{\vectr{g}_{i}}{\delby{\vectr{g}_{j}}{x^{k}}}
+  \christoffelfirst{i}{j}{k} = \dotprod{\generalbasevector_{i}}{\delby{\generalbasevector_{j}}{x^{k}}}
 \end{equation}
 
 Note that
 \begin{equation}
   \begin{split}
-    \christoffel{i}{j}{k} &= \dotprod{\vectr{g}^{i}}{\partialderiv{\vectr{g}_{j}}{k}} \\
-    &=\dotprod{\vectr{g}^{i}}{\christoffelsecond{l}{j}{k}\vectr{g}_{l}} \\
+    \christoffel{i}{j}{k} &= \dotprod{\generalbasevector^{i}}{\partialderiv{\generalbasevector_{j}}{k}} \\
+    &=\dotprod{\generalbasevector^{i}}{\christoffelsecond{l}{j}{k}\generalbasevector_{l}} \\
     &= \christoffel{i}{j}{l}g^{i}_{.l} 
   \end{split}
 \end{equation}
@@ -386,10 +400,10 @@ transformation laws from $\vectr{\nu}$ to $\vectr{\xi}$ coordinates
 We can now write (BELOW SEEMS WRONG - CHECK)
 \begin{equation}
   \begin{split}
-    \partialderiv{\vectr{v}}{i}&=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{k}{i}{j}v^{j}\vectr{g}_{j}\\
-    &=\partialderiv{v^{k}}{i}\vectr{g}_{k}+\christoffel{j}{i}{k}v^{k}\vectr{g}_{k}\\
-    &=\pbrac{\partialderiv{v^{k}}{i}+\christoffel{j}{i}{k}v^{k}}\vectr{g}_{k}\\
-    &=\covarderiv{v^{k}}{i}\vectr{g}_{k}
+    \partialderiv{\vectr{v}}{i}&=\partialderiv{v^{k}}{i}\generalbasevector_{k}+\christoffel{k}{i}{j}v^{j}\generalbasevector_{j}\\
+    &=\partialderiv{v^{k}}{i}\generalbasevector_{k}+\christoffel{j}{i}{k}v^{k}\generalbasevector_{k}\\
+    &=\pbrac{\partialderiv{v^{k}}{i}+\christoffel{j}{i}{k}v^{k}}\generalbasevector_{k}\\
+    &=\covarderiv{v^{k}}{i}\generalbasevector_{k}
   \end{split}
 \end{equation}
 where $\covarderiv{v^{k}}{i}$ is the covariant derivative of $v^{k}$ . 
@@ -428,11 +442,11 @@ involve tensor quantities \ie covariant derivatives rather than partial derivati
 As the covariant derivative of a scalar is just the partial derivative the
 gradient of a scalar function $\phi$ using covariant derivatives is
 \begin{equation}
-  \gradop \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}\vectr{g}^{i}
+  \gradop \phi = \gradient{}{\phi}=\covarderiv{\phi}{i}\generalbasevector^{i}=\partialderiv{\phi}{i}\generalbasevector^{i}
 \end{equation}
 and
 \begin{equation}
-  \gradient{}{\phi}=\partialderiv{\phi}{i}\vectr{g}^{i}=\partialderiv{\phi}{i}g^{ij}\vectr{g}_{j}
+  \gradient{}{\phi}=\partialderiv{\phi}{i}\generalbasevector^{i}=\partialderiv{\phi}{i}g^{ij}\generalbasevector_{j}
 \end{equation}
 
 \subsubsection{Divergence}
@@ -447,7 +461,7 @@ where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
 The curl of a vector using covariant derivatives is
 \begin{equation}
-  \curlop \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\vectr{g}_{k}
+  \curlop \vectr{\phi} = \curl{}{\vectr{\phi}}=\frac{1}{\sqrt{g}}\pbrac{\covarderiv{\phi_{j}}{i}-\covarderiv{\phi_{i}}{j}}\generalbasevector_{k}
 \end{equation}
 where $g$ is the determinant of the covariant metric tensor $g_{ij}$.
 
@@ -491,13 +505,132 @@ and the covariant derivative of a covariant tensor  (rank (1,0)) $\phi_{k}$ is
 \section{Tensor Algebra}
 \label{sec:TensorAlgebra}
 
+\subsection{Tensor Symbols}
+\label{subsec:TensorAlgebraSymbols}
+
+\subsubsection{Kronecker Delta}
+\label{subsubsec:TensorSymbolsKroneckerDelta}
+
+The \emph{Kronecker delta}\footnote{Named
+after\link{https://en.wikipedia.org/wiki/Leopold_Kronecker}{Leopold
+  Kronecker} (1823-1891), a German Mathematician.}\index{Kronecker
+  delta}\index{Special symbols!Kronecker delta} is a function of two
+variables or indices. The Kronecker delta as the value $1$ if the two
+indices are equal and $0$ if not \ie
+\begin{equation}
+  \flatkroneckertwo{i}{j}=\begin{cases}
+  +1&\text{if $i=j$}, \\
+  0 &\text{if $i\neq j$.}
+  \end{cases}
+  \label{eqn:DefinitionKroneckerDelta}
+\end{equation}
+
+In order to generalise, the Kronecker delta can be considered as representing a type $\pbrac{1,1}$ tensor with a covariant index $j$ and a contravariant index $i$ \ie
+\begin{equation}
+  \mixedkroneckertwo{i}{j}=\begin{cases}
+  +1&\text{if $i=j$}, \\
+  0 &\text{if $i\neq j$.}
+  \end{cases}
+  \label{eqn:DefinitionGeneralisedKroneckerDeltaTwo}
+\end{equation}
+
+The \emph{generalised Kronecker delta}\index{Kronecker delta!Generalised}\index{Special symbols!Generalised Kronecker delta} of order $2n$ is a type $\pbrac{n,n}$ tensor that is antisymmetric in both is upper and lower indices. It is defined by
+\begin{equation}
+  \mixedkronecker{i_{1},i_{2},\ldots,i_{n}}{j_{1},j_{2},\ldots,j_{n}}=\begin{cases}
+  +1&\text{if $\pbrac{j_{1},j_{2},\ldots,j_{n}}$ are distinct integers and are an even permutation of $\pbrac{i_{1},i_{2},\ldots,i_{n}}$}, \\
+  -1&\text{if $\pbrac{j_{1},j_{2},\ldots,j_{n}}$ are distinct integers and are an odd permutation of $\pbrac{i_{1},i_{2},\ldots,i_{n}}$}, \\
+  0 &\text{otherwise.}
+  \end{cases}
+  \label{eqn:DefinitionGeneralisedKroneckerDelta}
+\end{equation}
+
+The generalised Kronecker delta of order $2n$ can also be defined in terms of the generalised Kronecker delta of order $1$ \ie
+\begin{equation}
+  \mixedkronecker{i_{1},i_{2},\ldots,i_{n}}{j_{1},j_{2},\ldots,j_{n}}=\determinant{\begin{bmatrix}
+      \mixedkronecker{i_{1}}{j_{1}} & \mixedkronecker{i_{1}}{j_{2}} & \hdots & \mixedkronecker{i_{1}}{j_{n}} \\
+      \mixedkronecker{i_{2}}{j_{1}} & \mixedkronecker{i_{2}}{j_{2}} & \hdots & \mixedkronecker{i_{2}}{j_{n}} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      \mixedkronecker{i_{n}}{j_{1}} & \mixedkronecker{i_{n}}{j_{2}} & \hdots & \mixedkronecker{i_{n}}{j_{n}} \\      
+  \end{bmatrix}}
+  \label{eqn:DefinitionGeneralisedKroneckerDeltaDeterminant}
+\end{equation}
+
+\subsubsection{Levi-Civita Symbol}
+\label{subsubsec:TensorSymbolsLeviCivita}
+
+The \emph{Levi-Civita symbol}\footnote{Named after\link{https://en.wikipedia.org/wiki/Tullio_Levi-Civita}{Tullio
+  Levi-Civita} (1873-1941), an Italian
+Mathematician.}\index{Levi-Civita symbol}\index{Special
+  symbols!Levi-Civita symbol} or \emph{permutation
+symbol}\index{Permutation symbol}\index{Special symbols!Permutation
+  symbol} is a symbol defined from the permutations of natural numbers.
+
+Where the components of the Levi-Civita symbol are defined by
+\begin{equation}
+  \flatlevicivitathree{i}{j}{k}=\begin{cases}
+  +1&\text{if $ijk$ is an even permutation \ie $\pbrac{1,2,3}$, $\pbrac{2,3,1}$, or $\pbrac{3,1,2}$}, \\
+  -1&\text{if $ijk$ is an odd permutation \ie $\pbrac{1,3,2}$, $\pbrac{2,1,3}$, or $\pbrac{3,2,1}$}, \\
+  0 &\text{otherwise \ie $i=j$, or $i=k$, or $j=k$.}
+  \end{cases}
+  \label{eqn:DefinitionLeviCivitaSymbolThirdOrder}
+\end{equation}
+
+The Levi-Civita symbol can also be defined for other orders. A second
+order Levi-Civita symbol is defined by
+\begin{equation}
+  \flatlevicivitatwo{i}{j}=\begin{cases}
+  +1&\text{if $ij$ is an even permutation \ie $\pbrac{1,2}$}, \\
+  -1&\text{if $ij$ is an odd permutation \ie $\pbrac{2,1}$}, \\
+  0 &\text{otherwise \ie $i=j$.}
+  \end{cases}
+  \label{eqn:DefinitionLeviCivitaSymbolSecondOrder}
+\end{equation}
+and a fourth order Levi-Civita symbol is defined by
+\begin{equation}
+  \flatlevicivitafour{i}{j}{k}{l}=\begin{cases}
+  +1&\text{if $ijkl$ is an even permutation \ie $\pbrac{1,2,3,4}$, $\pbrac{2,3,4,1}$, $\pbrac{3,4,1,2}$, or $\pbrac{4,1,2,3}$}, \\
+  -1&\text{if $ijkl$ is an odd permutation \ie $\pbrac{1,4,3,2}$, $\pbrac{2,1,4,3}$, $\pbrac{3,2,1,4}$, or $\pbrac{4,3,2,1}$}, \\
+  0 &\text{otherwise \ie $i=j$, or $i=k$, or $i=l$, or $j=k$, or $j=l$, or $k=j$.}
+  \end{cases}
+  \label{eqn:DefinitionLeviCivitaSymbolFourthOrder}
+\end{equation}
+
+The definition can be extended to an arbitrary order. For example the
+$\nth{n}$ order definition for $n$ dimensions with indices
+$\pbrac{i_{1},i_{2},i_{3},\ldots,i_{n}}$ is given by
+\begin{equation}
+  \levicivitasymbol_{i_{1},i_{2},i_{3},\ldots,i_{n}}=\begin{cases}
+  +1&\text{if $\pbrac{i_{1},i_{2},i_{3},\ldots,i_{n}}$ is an even permutation of $\pbrac{1,2,3,\ldots,n}$}, \\
+  -1&\text{if $\pbrac{i_{1},i_{2},i_{3},\ldots,i_{n}}$ is an odd permutation of $\pbrac{1,2,3,\ldots,n}$}, \\
+  0 &\text{otherwise.}
+  \end{cases}
+  \label{eqn:DefinitionLeviCivitaSymbolNOrder}
+\end{equation}
+
+Some properties of the Levi-Civita symbol include
+\begin{align}
+  \levicivitasymbol^{i_{1},i_{2},i_{3},\ldots,i_{n}}\levicivitasymbol_{i_{1},i_{2},i_{3},\ldots,i_{n}}&=\factorial{n} \label{eqn:LeviCivitaSymbolProperty1} \\
+  \levicivitasymbol^{i_{1},i_{2},i_{3},\ldots,i_{n}}\levicivitasymbol_{j_{1},j_{2},j_{3},\ldots,j_{n}}&=\mixedkronecker{i_{1},i_{2},i_{3},\ldots,i_{n}}{j_{1},j_{2},j_{3},\ldots,j_{n}} \label{eqn:LeviCivitaSymbolProperty2} \\
+  \levicivitasymbol^{i_{1},\ldots,i_{k},i_{k+1},\ldots,i_{n}}\levicivitasymbol_{i_{1},\ldots,i_{k},j_{k+1},\ldots,j_{n}}&=\mixedkronecker{i_{1},\ldots,i_{k},i_{k+1},\ldots,i_{n}}{i_{1},\ldots,i_{k},j_{k+1},\ldots,j_{n}}=\factorial{k}\mixedkronecker{j_{k+1},\ldots,j_{n}}{i_{k+1},\ldots,i_{n}}\label{eqn:LeviCivitaSymbolProperty3} \\
+  \levicivitasymbol^{i_{1},i_{2},i_{3},\ldots,i_{n}}\levicivitasymbol_{j_{1},j_{2},j_{3},\ldots,j_{n}}&=\determinant{\begin{bmatrix}
+      \mixedkronecker{i_{1}}{j_{1}} & \mixedkronecker{i_{1}}{j_{2}} & \hdots & \mixedkronecker{i_{1}}{j_{n}} \\
+      \mixedkronecker{i_{2}}{j_{1}} & \mixedkronecker{i_{2}}{j_{2}} & \hdots & \mixedkronecker{i_{2}}{j_{n}} \\
+      \vdots & \vdots & \ddots & \vdots \\
+     \mixedkronecker{i_{n}}{j_{1}} & \mixedkronecker{i_{n}}{j_{2}} & \hdots & \mixedkronecker{i_{n}}{j_{n}}       
+  \end{bmatrix}} \label{eqn:LeviCivitaSymbolProperty4}
+\end{align}
+where
+$\mixedkronecker{i_{1},i_{2},i_{3},\ldots,i_{n}}{j_{1},j_{2},j_{3},\ldots,j_{n}}$
+is the generalised Kronecker delta defined in
+\eqnref{eqn:DefinitionGeneralisedKroneckerDelta}.
+
 \subsection{First Order Tensors}
 \label{subsec:TensorAlgebraFirstOrder}
 
 \subsubsection{Identity Vector}
 \label{subsubsec:IdentityTensorFirstOrder}
 
-The first order \emph{identity vector}, $\identitytensorone$, is defined by
+The first order \emph{identity vector}\index{Special tensors!First-order tensors!Identity vector}, $\identitytensorone$, is defined by
 \begin{equation}
   \dotprod{\identitytensorone}{\vectr{a}}=\vectr{a}
   \label{eqn:DefinitionIdentityFirstOrder}
@@ -507,7 +640,7 @@ for all vectors $\vectr{a}$.
 \subsubsection{Null Vector}
 \label{subsubsec:NullTensorFirstOrder}
 
-The first order \emph{null vector}, $\nulltensorone$, is defined by
+The first order \emph{null vector}\index{Special tensors!First-order tensors!Null vector}, $\nulltensorone$, is defined by
 \begin{equation}
   \dotprod{\nulltensorone}{\vectr{a}}=\nulltensorone
   \label{eqn:DefinitionNullFirstOrder}
@@ -539,16 +672,16 @@ where $\tensortwo{A}$ is a second order tensor.
 In component form we have
 \begin{equation}
   \begin{aligned}
-    \tensortwo{A}&=\tensorprod{a^{i}\vectr{g}_{i}}{b^{j}\vectr{g}_{j}}\\
-    &=a^{i}b^{j}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}\\
-    &=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
+    \tensortwo{A}&=\tensorprod{a^{i}\generalbasevector_{i}}{b^{j}\generalbasevector_{j}}\\
+    &=a^{i}b^{j}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}\\
+    &=A^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
   \end{aligned}
 \end{equation}
 
 \subsubsection{Identity Tensor}
 \label{subsubsec:IdentityTensorSecondOrder}
 
-The second order \emph{identity tensor}, $\identitytensortwo$, is defined by
+The second order \emph{identity tensor}\index{Special tensors!Second-order tensors!Identity tensor}, $\identitytensortwo$, is defined by
 \begin{equation}
   \dotprod{\identitytensortwo}{\vectr{a}}=\vectr{a}
   \label{eqn:DefinitionIdentitySecondOrder}
@@ -556,50 +689,50 @@ The second order \emph{identity tensor}, $\identitytensortwo$, is defined by
 for all vectors $\vectr{a}$. Now if a general second order tensor is defined
 as
 \begin{equation}
-  \tensortwo{A}=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}=A_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=A^{i}_{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=A^{.i}_{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}
+  \tensortwo{A}=A^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}=A_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}=A^{i}_{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}=A^{.i}_{j}\tensorprod{\generalbasevector^{j}}{\generalbasevector_{i}}
 \end{equation}
 then the components of this tensor are given by
 \begin{equation}
   \begin{aligned}
-    A^{ij}&=\vectr{g}^{i}\tensortwo{A}\vectr{g}^{j} \\
-    A_{ij}&=\vectr{g}_{i}\tensortwo{A}\vectr{g}_{j} \\
-    A^{i}_{.j}&=\vectr{g}^{i}\tensortwo{A}\vectr{g}_{j} \\
-    A^{.i}_{j}&=\vectr{g}_{j}\tensortwo{A}\vectr{g}^{i}    
+    A^{ij}&=\generalbasevector^{i}\tensortwo{A}\generalbasevector^{j} \\
+    A_{ij}&=\generalbasevector_{i}\tensortwo{A}\generalbasevector_{j} \\
+    A^{i}_{.j}&=\generalbasevector^{i}\tensortwo{A}\generalbasevector_{j} \\
+    A^{.i}_{j}&=\generalbasevector_{j}\tensortwo{A}\generalbasevector^{i}    
   \end{aligned}
 \end{equation}
 
 From \eqnref{eqn:DefinitionIdentitySecondOrder}, the definition of the components of the identity tensor are thus given by
 \begin{equation}
   \begin{aligned}
-    I^{ij}&=\vectr{g}^{i}\tensortwo{I}\vectr{g}^{j}=\dotprod{\vectr{g}^{i}}{\vectr{g}^{j}}=g^{ij} \\
-    I_{ij}&=\vectr{g}_{i}\tensortwo{I}\vectr{g}_{j}=\dotprod{\vectr{g}_{i}}{\vectr{g}_{j}}=g_{ij}  \\
-    I^{i}_{.j}&=\vectr{g}^{i}\tensortwo{I}\vectr{g}_{j}=\dotprod{\vectr{g}^{i}}{\vectr{g}_{j}}=\mixedkronecker{i}{.j} \\
-    I^{.i}_{j}&=\vectr{g}_{j}\tensortwo{I}\vectr{g}^{i}=\dotprod{\vectr{g}_{j}}{\vectr{g}^{i}}=\mixedkronecker{.i}{j}    
+    I^{ij}&=\generalbasevector^{i}\tensortwo{I}\generalbasevector^{j}=\dotprod{\generalbasevector^{i}}{\generalbasevector^{j}}=g^{ij} \\
+    I_{ij}&=\generalbasevector_{i}\tensortwo{I}\generalbasevector_{j}=\dotprod{\generalbasevector_{i}}{\generalbasevector_{j}}=g_{ij}  \\
+    I^{i}_{.j}&=\generalbasevector^{i}\tensortwo{I}\generalbasevector_{j}=\dotprod{\generalbasevector^{i}}{\generalbasevector_{j}}=\mixedkronecker{i}{.j} \\
+    I^{.i}_{j}&=\generalbasevector_{j}\tensortwo{I}\generalbasevector^{i}=\dotprod{\generalbasevector_{j}}{\generalbasevector^{i}}=\mixedkronecker{.i}{j}    
   \end{aligned}
 \end{equation}
 
 The second order \emph{identity tensor} is thus given by
 \begin{equation}
   \begin{aligned}
-    \identitytensortwo&=\tensorprod{\vectr{g}_{i}}{\vectr{g}^{i}}=\tensorprod{\vectr{g}^{i}}{\vectr{g}_{i}}\\
-    &=\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}\\
-    &=I^{i}_{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}=I^{.i}_{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}
+    \identitytensortwo&=\tensorprod{\generalbasevector_{i}}{\generalbasevector^{i}}=\tensorprod{\generalbasevector^{i}}{\generalbasevector_{i}}\\
+    &=\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}=\mixedkronecker{.i}{j}\tensorprod{\generalbasevector^{j}}{\generalbasevector_{i}}\\
+    &=I^{i}_{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}=I^{.i}_{j}\tensorprod{\generalbasevector^{j}}{\generalbasevector_{i}}
   \end{aligned}
 \end{equation}
 
 We also have
 \begin{equation}
   \begin{aligned}
-    \flattensor{\identitytensortwo}&=g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}} \\
-    &=I_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}} \\
+    \flattensor{\identitytensortwo}&=g_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}} \\
+    &=I_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}} \\
     &=\flattensor{\tensortwo{g}}
   \end{aligned}
 \end{equation}
 and
 \begin{equation}
   \begin{aligned}
-    \sharptensor{\identitytensortwo}&=g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}  \\
-    &=I^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
+    \sharptensor{\identitytensortwo}&=g^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}  \\
+    &=I^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}} \\
     &=\sharptensor{\tensortwo{g}}
   \end{aligned}
 \end{equation}
@@ -607,7 +740,7 @@ and
 \subsubsection{Null Tensor}
 \label{subsubsec:NullTensorSecondOrder}
 
-The second order \emph{null tensor}, $\nulltensortwo$, is defined by
+The second order \emph{null tensor}\index{Special tensors!Second-order tensors!Null tensor}, $\nulltensortwo$, is defined by
 \begin{equation}
   \dotprod{\nulltensortwo}{\vectr{a}}=\nulltensorone
   \label{eqn:DefinitionNullSecondOrder}
@@ -649,19 +782,19 @@ A coordinate free definition of a tensor tranpose can be given as
 \end{equation}
 
 For the second order tensor
-$\tensortwo{A}=A^{ij}\tensorprodtwo{\vectr{g}_{i}}{\vectr{g}_{j}}$ then we
+$\tensortwo{A}=A^{ij}\tensorprodtwo{\generalbasevector_{i}}{\generalbasevector_{j}}$ then we
 have
 \begin{equation}
-  \transpose{\tensortwo{A}}=A^{ji}\tensorprodtwo{\vectr{g}_{i}}{\vectr{g}_{j}}
+  \transpose{\tensortwo{A}}=A^{ji}\tensorprodtwo{\generalbasevector_{i}}{\generalbasevector_{j}}
 \end{equation}
 
 In component form the defintion of the transpose is
 \begin{equation}
-  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a^{i}\vectr{g}_{i}}{A_{ij}\tensorprod{\vectr{g^{i}}}{\vectr{g^{j}}}}b^{j}\vectr{g}_{j}=a^{i}A_{ij}b^{j}=b^{j}\pbrac{\transpose{A}}_{ji}a^{i}=\dotprod{b^{j}\vectr{g}_{j}}{\pbrac{\transpose{A}}_{ji}\tensorprod{\vectr{g^{j}}}{\vectr{g^{i}}}}a^{i}\vectr{g}_{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
+  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a^{i}\generalbasevector_{i}}{A_{ij}\tensorprod{\vectr{g^{i}}}{\vectr{g^{j}}}}b^{j}\generalbasevector_{j}=a^{i}A_{ij}b^{j}=b^{j}\pbrac{\transpose{A}}_{ji}a^{i}=\dotprod{b^{j}\generalbasevector_{j}}{\pbrac{\transpose{A}}_{ji}\tensorprod{\vectr{g^{j}}}{\vectr{g^{i}}}}a^{i}\generalbasevector_{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
 \end{equation}
 for $\sharptensor{\tensortwo{A}}$ and
 \begin{equation}
-  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a_{i}\vectr{g}^{i}}{A^{ij}\tensorprod{\vectr{g_{i}}}{\vectr{g_{j}}}}b_{j}\vectr{g}^{j}=a_{i}A^{ij}b_{j}=b_{j}\pbrac{\transpose{A}}^{ji}a_{i}=\dotprod{b_{j}\vectr{g}^{j}}{\pbrac{\transpose{A}}^{ji}\tensorprod{\vectr{g_{j}}}{\vectr{g_{i}}}}a_{i}\vectr{g}^{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
+  \dotprod{\vectr{a}}{\tensortwo{A}\vectr{b}}=\dotprod{a_{i}\generalbasevector^{i}}{A^{ij}\tensorprod{\vectr{g_{i}}}{\vectr{g_{j}}}}b_{j}\generalbasevector^{j}=a_{i}A^{ij}b_{j}=b_{j}\pbrac{\transpose{A}}^{ji}a_{i}=\dotprod{b_{j}\generalbasevector^{j}}{\pbrac{\transpose{A}}^{ji}\tensorprod{\vectr{g_{j}}}{\vectr{g_{i}}}}a_{i}\generalbasevector^{i}=\dotprod{\vectr{b}}{\transpose{\tensortwo{A}}\vectr{a}}
 \end{equation}
 for $\flattensor{\tensortwo{A}}$.
 
@@ -683,10 +816,10 @@ $\trace{}{\tensor{A}}$, is given by
 Or, in component form
 \begin{equation}
   \begin{aligned}
-    \trace{}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{I}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}}{A^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}}=g_{ij}A^{ij}\\
-    &=\doubledotprod{\sharptensor{\tensortwo{I}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}{A_{kl}\tensorprod{\vectr{g}^{k}}{\vectr{g}^{l}}}=g^{ij}A_{ij}\\
-    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}{A^{k}_{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
-    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}}{A^{.k}_{l}\tensorprod{\vectr{g}^{l}}{\vectr{g}_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
+    \trace{}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{I}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}}{A^{kl}\tensorprod{\generalbasevector_{k}}{\generalbasevector_{l}}}=g_{ij}A^{ij}\\
+    &=\doubledotprod{\sharptensor{\tensortwo{I}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}}{A_{kl}\tensorprod{\generalbasevector^{k}}{\generalbasevector^{l}}}=g^{ij}A_{ij}\\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}{A^{k}_{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\generalbasevector^{j}}{\generalbasevector_{i}}}{A^{.k}_{l}\tensorprod{\generalbasevector^{l}}{\generalbasevector_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
   \end{aligned}
 \end{equation}
 
@@ -694,10 +827,10 @@ To indicate what metric tensor the trace is repsect to the following notation
 is used
 \begin{equation}
   \begin{aligned}
-    \trace{\tensortwo{g}}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}}{A^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}}=g_{ij}A^{ij}\\
-    &=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}}{A_{kl}\tensorprod{\vectr{g}^{k}}{\vectr{g}^{l}}}=g^{ij}A_{ij}\\
-    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}{A^{k}_{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
-    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\vectr{g}^{j}}{\vectr{g}_{i}}}{A^{.k}_{l}\tensorprod{\vectr{g}^{l}}{\vectr{g}_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
+    \trace{\tensortwo{g}}{\tensortwo{A}}&=\doubledotprod{\flattensor{\tensortwo{g}}}{\sharptensor{\tensortwo{A}}}=\doubledotprod{g_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}}{A^{kl}\tensorprod{\generalbasevector_{k}}{\generalbasevector_{l}}}=g_{ij}A^{ij}\\
+    &=\doubledotprod{\sharptensor{\tensortwo{g}}}{\flattensor{\tensortwo{A}}}=\doubledotprod{g^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}}{A_{kl}\tensorprod{\generalbasevector^{k}}{\generalbasevector^{l}}}=g^{ij}A_{ij}\\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}{A^{k}_{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}=\mixedkronecker{i}{.j}A^{j}_{.i}=A^{i}_{.i} \\
+    &=\doubledotprod{\tensortwo{I}}{\tensortwo{A}}=\doubledotprod{\mixedkronecker{.i}{j}\tensorprod{\generalbasevector^{j}}{\generalbasevector_{i}}}{A^{.k}_{l}\tensorprod{\generalbasevector^{l}}{\generalbasevector_{k}}}=\mixedkronecker{.i}{j}A^{.j}_{i}=A^{.i}_{i}
   \end{aligned}
 \end{equation}
 
@@ -736,8 +869,8 @@ tensor components \ie
         A_{31} & A_{32} & A_{33}
     \end{bmatrix}}\\
     &=A_{11}A_{22}A_{33}+A_{12}A_{23}A_{31}+A_{13}A_{21}A_{32}-A_{31}A_{22}A_{13}-A_{32}A_{23}A_{11}-A_{33}A_{21}A_{12}\\
-    &=\sharplevicita{i}{j}{k}A_{i1}A_{j2}A_{k3}\\
-    &=\sharplevicita{i}{j}{k}A_{1i}A_{2j}A_{3k}
+    &=\sharplevicivitathree{i}{j}{k}A_{i1}A_{j2}A_{k3}\\
+    &=\sharplevicivitathree{i}{j}{k}A_{1i}A_{2j}A_{3k}
   \end{aligned}
   \label{eqn:DefinitionDeterminantTensorSecondOrder}
 \end{equation}
@@ -749,7 +882,7 @@ tensors $\tensortwo{A}$ and $\tensortwo{B}$, some properties of the determinant 
   \determinant{\phi\tensortwo{A}}&=\phi^{3}\determinant{\tensortwo{A}} \\
   \determinant{\tensortwo{A}\tensortwo{B}}&=\determinant{\tensortwo{A}}\determinant{\tensortwo{B}}\\
   \determinant{\transpose{\tensortwo{A}}}&=\determinant{\tensortwo{A}} \\
-  \flatlevicita{l}{m}{n}\determinant{\tensortwo{A}}&=\sharplevicita{i}{j}{k}A_{il}A_{jm}A_{kn}
+  \flatlevicivitathree{l}{m}{n}\determinant{\tensortwo{A}}&=\sharplevicivitathree{i}{j}{k}A_{il}A_{jm}A_{kn}
 \end{align}
 
 \subsubsection{Symmetric and Skew-symmetric}
@@ -775,7 +908,8 @@ For second order tensors $\tensor{A}$ and $\tensor{B}$, some properties of a sym
   \determinant{\pbrac{\skewsym{\tensor{A}}}}&=0 \\
   \trace{}{\pbrac{\symmetric{\tensor{A}}\skewsym{\tensor{A}}}}&=0\\
   \doubledotprod{\symmetric{\tensor{A}}}{\skewsym{\tensor{A}}}&=0\\
-  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\symmetric{\tensor{A}}+\skewsym{\tensor{A}}}}{\pbrac{\symmetric{\tensor{B}}+\skewsym{\tensor{B}}}} \\
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\symmetric{\tensor{A}}+
+      \skewsym{\tensor{A}}}}{\pbrac{\symmetric{\tensor{B}}+\skewsym{\tensor{B}}}} \\
   &=\doubledotprod{\symmetric{\tensor{A}}}{\symmetric{\tensor{B}}}+\doubledotprod{\skewsym{\tensor{A}}}{\skewsym{\tensor{B}}}
 \end{align}
 as the double contraction of a symmetric and skew-symmetric tensor is zero.
@@ -784,11 +918,12 @@ as the double contraction of a symmetric and skew-symmetric tensor is zero.
 \label{subsubsec:DeviatoricSpherical}
 
 Consider a second order tensor, $\tensor{A}$, on a manifold with a metric,
-$\tensor{g}$. Any second order tensor can be split into two parts \ie
+$\generalmetrictensor$. Any second order tensor can be split into two parts \ie
 \begin{align}
-  \tensor{A}&=\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}+\pbrac{\tensor{A}-\pbrac{\frac{1}{3}\trace{\tensor{g}}{\tensor{A}}}\tensor{I}}
+  \tensor{A}&=\pbrac{\frac{1}{3}\trace{\generalmetrictensor}{\tensor{A}}}\tensor{I}+\pbrac{\tensor{A}-
+    \pbrac{\frac{1}{3}\trace{\generalmetrictensor}{\tensor{A}}}\tensor{I}}
   \notag \\
-  &=\spherical{\tensor{g}}{\tensor{A}}+\deviatoric{\tensor{g}}{\tensor{A}}
+  &=\spherical{\generalmetrictensor}{\tensor{A}}+\deviatoric{\generalmetrictensor}{\tensor{A}}
 \end{align}
 
 The spherical and deviatoric operators may also be written without the
@@ -801,16 +936,18 @@ the spherical and deviatoric operators include:
   \trace{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
   \spherical{}{\pbrac{\deviatoric{}{\tensor{A}}}}&=0\\
   \doubledotprod{\deviatoric{}{\tensor{A}}}{\spherical{}{\tensor{B}}}&=0 \\
-  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\spherical{}{\tensor{A}}+\deviatoric{}{\tensor{A}}}}{\pbrac{\spherical{}{\tensor{B}}+\deviatoric{}{\tensor{B}}}}
+  \doubledotprod{\tensor{A}}{\tensor{B}}&=\doubledotprod{\pbrac{\spherical{}{\tensor{A}}+
+      \deviatoric{}{\tensor{A}}}}{\pbrac{\spherical{}{\tensor{B}}+\deviatoric{}{\tensor{B}}}}
   \notag \\
-  &=\doubledotprod{\spherical{}{\tensor{A}}}{\spherical{}{\tensor{B}}}+\doubledotprod{\deviatoric{}{\tensor{A}}}{\deviatoric{}{\tensor{B}}}
+  &=\doubledotprod{\spherical{}{\tensor{A}}}{\spherical{}{\tensor{B}}}+
+  \doubledotprod{\deviatoric{}{\tensor{A}}}{\deviatoric{}{\tensor{B}}}
 \end{align}
 as the double contraction of a spherical and deviatoric tensor is zero.
 
 \subsubsection{Special Orthogonal Tensors}
 \label{subsubsec:SpecialOrthogonalTensorTwo}
 
-A second order tensor, $\tensortwo{A}$ is a special orthogonal tensor if
+A second order tensor, $\tensortwo{A}$ is a special orthogonal tensor\index{Tensors!Second-order tensors!Orthogonal tensor} if
 \begin{equation}
   \transpose{\tensortwo{A}}\tensortwo{A}=\identitytensorfour
 \end{equation}
@@ -840,19 +977,81 @@ and its inverse, $\inverse{\tensortwo{A}}$, are given by
   \fnof{I_3}{\inverse{\tensortwo{A}}}=\dfrac{1}{\fnof{I_{3}}{\tensortwo{A}}}
 \end{equation}
 
+\subsection{Third Order Tensors}
+\label{sec:TensorAlgebraThirdOrder}
+
+\subsubsection{Levi-Civita Tensor}
+\label{subsubsec:Levi-CivitaTensorThirdOrder}
+
+There is a special third-order pseudo-tensor called the
+\emph{Levi-Civita tensor}\footnote{Named after
+\link{https://en.wikipedia.org/wiki/Tullio_Levi-Civita}{Tullio
+  Levi-Civita} (1873-1941), an Italian Mathematician.}\index{Special
+  tensors!Third-order tensors!Levi-Civita tensor} or \emph{permutation
+tensor}\index{Special tensors!Third-order tensors!Permutation tensor}
+which is antisymmetric in all its indices.
+
+As mentioned above the Levi-Civita tensor is an
+\emph{psuedo-tensor}\index{Pseudo-tensor} rather than a normal
+tensor. A pseduo-tensor is an object that transforms like a tensor
+when undergoing a orientation preserving transformation but reverses
+sign when underoing a transformation that does not preserve
+orientation.
+
+The Levi-Civita tensor, $\levicivitatensorthree$, is defined by
+\begin{equation}
+  \begin{aligned}
+    \levicivitatensorthree&=\sharplevicivitathree{i}{j}{k}\tensorprodthree{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}} \\
+    &=\flatlevicivitathree{i}{j}{k}\tensorprodthree{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}} \\
+    &=\mixedlevicivitathree{i..}{.jk}\tensorprodthree{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector^{k}} \\
+    &=\mixedlevicivitathree{ij.}{..k}\tensorprodthree{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector^{k}} \\
+    &=\mixedlevicivitathree{i.k}{.j.}\tensorprodthree{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}    
+  \end{aligned}
+  \label{eqn:DefinitionLeviCivitaTensorThirdOrder}
+\end{equation}
+\etc
+
+Where the components of the Levi-Civita tensor are defined by
+\begin{equation}
+  \flatlevicivitathree{i}{j}{k}=\begin{cases}
+  +1&\text{if $ijk$ is an even permutation \ie $\pbrac{1,2,3}$, $\pbrac{2,3,1}$, or $\pbrac{3,1,2}$}, \\
+  -1&\text{if $ijk$ is an odd permutation \ie $\pbrac{3,2,1}$, $\pbrac{1,3,2}$, or $\pbrac{2,3,1}$}, \\
+  0 &\text{otherwise \ie $i=j$, or $j=k$, or $k=i$.}
+  \end{cases}
+  \label{eqn:DefinitionLeviCivitaTensorComponentsThirdOrder}
+\end{equation}
+
+Note that the components of the Levi-Civita tensor are constant with respect to covariant differentiation MOVE? DON'T KNOW ABOUT COVARIANT DERIVATIVES HERE? \ie
+\begin{equation}
+  \covarderiv{\flatlevicivitathree{i}{j}{k}}{m}=\covarderiv{\sharplevicivitathree{i}{j}{k}}{m}=0
+\end{equation}
+and similarily for mixed Levi-Civita components.
+
+The Levi-Civita tensor is also defined for two indices \ie $\levicivitatensortwo$, is defined by
+\begin{equation}
+  \begin{aligned}
+    \levicivitatensortwo&=\sharplevicivitatwo{i}{j}\tensorprodtwo{\generalbasevector_{i}}{\generalbasevector_{j}} \\
+    &=\flatlevicivitatwo{i}{j}\tensorprodtwo{\generalbasevector^{i}}{\generalbasevector^{j}} \\
+    &=\mixedlevicivitatwo{i.}{.j}\tensorprodtwo{\generalbasevector_{i}}{\generalbasevector^{j}} \\
+    &=\mixedlevicivitatwo{.j}{i.}\tensorprodtwo{\generalbasevector_{i}}{\generalbasevector_{j}}    
+  \end{aligned}
+  \label{eqn:DefinitionLeviCivitaTensorTwoOrder}
+\end{equation}
+\etc
+
+
 \subsection{Fourth Order Tensors}
 \label{subsec:TensorAlgebraFourthOrder}
-
 
 \subsubsection{Tensor Product}
 \label{subsubsec:TensorProductFourthOrder}
 
-The tensor product of two second order tensors, $\tensortwo{A}=A^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}$, and,
-$\tensortwo{B}=B^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}$, will result in
+The tensor product of two second order tensors, $\tensortwo{A}=A^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}$, and,
+$\tensortwo{B}=B^{kl}\tensorprod{\generalbasevector_{k}}{\generalbasevector_{l}}$, will result in
 \begin{equation}
   \begin{aligned}
-    \tensorfour{C}&=\tensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    &=C^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+    \tensorfour{C}&=\tensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    &=C^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}
   \end{aligned}
 \end{equation}
 where $\tensorfour{C}$ is a fourth order tensor.
@@ -862,15 +1061,15 @@ Other tensor products can be defined
 such as the \emph{upper tensor product} \ie
 \begin{equation}
   \begin{aligned}
-    \tensorfour{C}&=\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}_{l}}{\vectr{g}_{j}}\\
-    &=C^{iklj}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+    \tensorfour{C}&=\uppertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{k}}{\generalbasevector_{l}}{\generalbasevector_{j}}\\
+    &=C^{iklj}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}
   \end{aligned}
 \end{equation}
 and the \emph{lower tensor product} \ie
 \begin{equation}
   \begin{aligned}
-    \tensorfour{C}&=\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}_{j}}{\vectr{g}_{l}}\\
-    &=C^{ikjl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+    \tensorfour{C}&=\lowertensorprod{\tensortwo{A}}{\tensortwo{B}}=A^{ij}B^{kl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{k}}{\generalbasevector_{j}}{\generalbasevector_{l}}\\
+    &=C^{ikjl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}
   \end{aligned}
 \end{equation}
 
@@ -920,9 +1119,9 @@ define the standard \emph{double contraction} \ie
   \begin{aligned}
     \tensorfour{C}
     &=\doubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
-    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
-    &=A^{ijkl}B_{klrs}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{r}}{\vectr{g}^{s}}\\
-    &=C^{ij}_{rs}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{r}}{\vectr{g}^{s}}
+    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector^{n}}{\generalbasevector^{r}}{\generalbasevector^{s}}}}\\
+    &=A^{ijkl}B_{klrs}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector^{r}}{\generalbasevector^{s}}\\
+    &=C^{ij}_{rs}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector^{r}}{\generalbasevector^{s}}
   \end{aligned}
 \end{equation}
   
@@ -931,9 +1130,9 @@ We can also define an \emph{over double contraction} \ie
   \begin{aligned}
     \tensorfour{C}
     &=\upperdoubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
-    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
-    &=A^{ijkl}B_{mils}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}\\
-    &=C^{jk}_{ms}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}
+    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector^{n}}{\generalbasevector^{r}}{\generalbasevector^{s}}}}\\
+    &=A^{ijkl}B_{mils}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector^{s}}\\
+    &=C^{jk}_{ms}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector^{s}}
   \end{aligned}
 \end{equation}
 and an \emph{under double contraction} \ie
@@ -941,9 +1140,9 @@ and an \emph{under double contraction} \ie
   \begin{aligned}
     \tensorfour{C}
     &=\lowerdoubledotprod{\tensorfour{A}}{\tensorfour{B}}\\
-    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
-    &=A^{ijkl}B_{jnrk}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}^{s}}\\
-    &=C^{il}_{nr}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}_{k}}
+    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector^{n}}{\generalbasevector^{r}}{\generalbasevector^{s}}}}\\
+    &=A^{ijkl}B_{jnrk}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector^{s}}\\
+    &=C^{il}_{nr}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{n}}{\generalbasevector^{r}}{\generalbasevector_{k}}
   \end{aligned}
 \end{equation}
 
@@ -953,50 +1152,50 @@ $\tensortwo{C}$. The different double contractions are given by
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\doubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
-    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
-    &=A^{ijkl}B_{kl}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}\\
-    &=C^{ij}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}              
+    &=\doubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{\generalbasevector^{n}}}}\\
+    &=A^{ijkl}B_{kl}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}\\
+    &=C^{ij}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}              
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\upperdoubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
-    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
-    &=A^{ijkl}B_{il}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}\\
-    &=C^{jk}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}              
+    &=\upperdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{\generalbasevector^{n}}}}\\
+    &=A^{ijkl}B_{il}\tensorprod{\generalbasevector_{j}}{\generalbasevector_{k}}\\
+    &=C^{jk}\tensorprod{\generalbasevector_{j}}{\generalbasevector_{k}}              
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\lowerdoubledotprod{\tensorfour{A}}{\tensortwo{B}}\\
-    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}\\
-    &=A^{ijkl}B_{jk}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
-    &=C^{il}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}              
+    &=\lowerdoubledotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{\generalbasevector^{n}}}}\\
+    &=A^{ijkl}B_{jk}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{l}}\\
+    &=C^{il}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{l}}              
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\doubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
-    &=\doubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{g^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
-    &=B_{ij}A^{ijkl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    &=C^{kl}\tensorprod{\vectr{g}_{k}}{\vectr{g}_{l}}              
+    &=\doubledotprod{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{g^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}\\
+    &=B_{ij}A^{ijkl}\tensorprod{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    &=C^{kl}\tensorprod{\generalbasevector_{k}}{\generalbasevector_{l}}              
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\upperdoubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
-    &=\upperdoubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
-    &=B_{jk}A^{ijkl}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
-    &=C^{il}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{l}}\\
+    &=\upperdoubledotprod{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{\generalbasevector^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}\\
+    &=B_{jk}A^{ijkl}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{l}}\\
+    &=C^{il}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{l}}\\
     &=\lowerdoubledotprod{\tensorfour{A}}{\tensortwo{B}}
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \tensortwo{C}&=\lowerdoubledotprod{\tensortwo{B}}{\tensorfour{A}}\\
-    &=\lowerdoubledotprod{\pbrac{B_{mn}\tensorprod{\vectr{g}^{m}}{\vectr{g}^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}\\
-    &=B_{il}A^{ijkl}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}}\\
-    &=C^{jk}\tensorprod{\vectr{g}_{j}}{\vectr{g}_{k}} \\        
+    &=\lowerdoubledotprod{\pbrac{B_{mn}\tensorprod{\generalbasevector^{m}}{\generalbasevector^{n}}}}{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}\\
+    &=B_{il}A^{ijkl}\tensorprod{\generalbasevector_{j}}{\generalbasevector_{k}}\\
+    &=C^{jk}\tensorprod{\generalbasevector_{j}}{\generalbasevector_{k}} \\        
     &=\upperdoubledotprod{\tensorfour{A}}{\tensortwo{B}}
   \end{aligned}
 \end{equation}
@@ -1021,7 +1220,7 @@ contraction can be defined i.e.,
 \begin{equation}
   \begin{aligned}
     c&=\quaddotprod{\tensorfour{A}}{\tensorfour{B}}\\
-    &=\quaddotprod{\pbrac{A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\vectr{g}^{m}}{\vectr{g}^{n}}{\vectr{g}^{r}}{\vectr{g}^{s}}}}\\
+    &=\quaddotprod{\pbrac{A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}}}{\pbrac{B_{mnrs}\tensorprodfour{\generalbasevector^{m}}{\generalbasevector^{n}}{\generalbasevector^{r}}{\generalbasevector^{s}}}}\\
     &=A^{ijkl}B_{ijkl}
   \end{aligned}
 \end{equation}
@@ -1038,32 +1237,32 @@ $\upperdoubledotprodop$ is denoted $\circ\bullet$ and $\lowerdoubledotprodop$ is
 \subsubsection{Identity Tensor}
 \label{subsubsec:IdentityTensorFourthOrder}
 
-A number of fourth order identity tensors can be defined using a tensor
+A number of \emph{fourth-order identity tensors}\index{Special tensors!Fourth-order tensors!Identity tensor} can be defined using a tensor
 product of two second order identity tensors. We have
 \begin{equation}
   \begin{aligned}
     \identitytensorfour&=\tensorprod{\identitytensortwo}{\identitytensortwo}\\
-    &=\tensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
-    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
-    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+    &=\tensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \upperidentitytensorfour&=\uppertensorprod{\identitytensortwo}{\identitytensortwo}\\
-    &=\uppertensorprod{\pbrac{\mixedkronecker{i}{j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
-    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}^{l}}{\vectr{g}^{j}}\\
-    &=\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
-    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+    &=\uppertensorprod{\pbrac{\mixedkronecker{i}{j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{k}}{\generalbasevector^{l}}{\generalbasevector^{j}}\\
+    &=\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \loweridentitytensorfour&=\lowertensorprod{\identitytensortwo}{\identitytensortwo}\\
-    &=\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}\\
-    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{k}}{\vectr{g}^{j}}{\vectr{g}^{l}}\\
-    &=\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
-    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+    &=\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}\\
+    &=\mixedkronecker{i}{.j}\mixedkronecker{k}{.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{k}}{\generalbasevector^{j}}{\generalbasevector^{l}}\\
+    &=\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 [FOR $\loweridentitytensorfour$ WHY IS THE MIXED KRONECKER SHARP (FLAT) WHEN WE HAVE
@@ -1076,40 +1275,40 @@ anti-symmetric tensor products \ie
 \begin{equation}
   \begin{aligned}
     \symidentitytensorfour&=\symtensorprod{\tensortwo{I}}{\tensortwo{I}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{I}}{\tensortwo{I}}+\uppertensorprod{\tensortwo{I}}{\tensortwo{I}}}=\dfrac{1}{2}\pbrac{\loweridentitytensorfour+\upperidentitytensorfour}\\
-    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}+\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}}\\
-    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{j}}}\\
-    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
-    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}+\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{j}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}+\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 \begin{equation}
   \begin{aligned}
     \antisymidentitytensorfour&=\antisymtensorprod{\tensortwo{I}}{\tensortwo{I}}=\dfrac{1}{2}\pbrac{\lowertensorprod{\tensortwo{I}}{\tensortwo{I}}-\uppertensorprod{\tensortwo{I}}{\tensortwo{I}}}=\dfrac{1}{2}\pbrac{\loweridentitytensorfour-\upperidentitytensorfour}\\
-    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}-\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\vectr{g}_{i}}{\vectr{g}^{i}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\vectr{g}_{k}}{\vectr{g}^{l}}}}}\\
-    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}}\\
-    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}\\
-    &=I^{i.k.}_{.j.l}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}^{j}}{\vectr{g}_{k}}{\vectr{g}^{l}}
+    &=\dfrac{1}{2}\pbrac{\lowertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{j}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}-\uppertensorprod{\pbrac{\mixedkronecker{i}{.j}\tensorprod{\generalbasevector_{i}}{\generalbasevector^{i}}}}{\pbrac{\mixedkronecker{k}{.l}\tensorprod{\generalbasevector_{k}}{\generalbasevector^{l}}}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}}\\
+    &=\dfrac{1}{2}\pbrac{\sharpkronecker{i}{k}\flatkronecker{j}{l}-\mixedkronecker{i}{.l}\mixedkronecker{.k}{j}}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}\\
+    &=I^{i.k.}_{.j.l}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector^{j}}{\generalbasevector_{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 
 We also the sharp fourth order identity tensors
 \begin{equation}
   \begin{aligned}
-    \sharptensor{\identitytensorfour}&=g^{ij}g^{kl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    \sharptensor{\upperidentitytensorfour}&=g^{il}g^{jk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    \sharptensor{\loweridentitytensorfour}&=g^{ik}g^{jl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    \sharptensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}+g^{il}g^{jk}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-    \sharptensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}-g^{il}g^{jk}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+    \sharptensor{\identitytensorfour}&=g^{ij}g^{kl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    \sharptensor{\upperidentitytensorfour}&=g^{il}g^{jk}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    \sharptensor{\loweridentitytensorfour}&=g^{ik}g^{jl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    \sharptensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}+g^{il}g^{jk}}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+    \sharptensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g^{ik}g^{jl}-g^{il}g^{jk}}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}
   \end{aligned}
 \end{equation}
 and the flat fourth order identity tensors
 \begin{equation}
   \begin{aligned}
-    \flattensor{\identitytensorfour}&=g_{ij}g_{kl}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
-    \flattensor{\upperidentitytensorfour}&=g_{il}g_{jk}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
-    \flattensor{\upperidentitytensorfour}&=g_{ik}g_{jl}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
-    \flattensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}+g_{il}g_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\
-    \flattensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}-g_{il}g_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+    \flattensor{\identitytensorfour}&=g_{ij}g_{kl}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}\\
+    \flattensor{\upperidentitytensorfour}&=g_{il}g_{jk}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}\\
+    \flattensor{\upperidentitytensorfour}&=g_{ik}g_{jl}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}\\
+    \flattensor{\symidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}+g_{il}g_{jk}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}\\
+    \flattensor{\antisymidentitytensorfour}&=\dfrac{1}{2}\pbrac{g_{ik}g_{jl}-g_{il}g_{jk}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}
   \end{aligned}
 \end{equation}
 
@@ -1167,17 +1366,17 @@ where $\tensortwo{A}$ and $\tensortwo{B}$ are two second order tensors.
 Depending on what indicies are transposed/swapped a number of different
 transpose operations can occur with fourth order tensors \ie consider a fourth
 order tensor
-$\tensorfour{A}=A^{ijkl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}$
+$\tensorfour{A}=A^{ijkl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}$
 then we have
 \begin{align}
-  \fulltranspose{\tensorfour{A}}&=A^{lkji}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \leftrighttranspose{\tensorfour{A}}&=A^{jilk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \swaptranspose{\tensorfour{A}}&=A^{klij}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \lefttranspose{\tensorfour{A}}&=A^{jikl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \righttranspose{\tensorfour{A}}&=A^{ijlk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \innertranspose{\tensorfour{A}}&=A^{ikjl}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \outertranspose{\tensorfour{A}}&=A^{ljki}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}\\
-  \xtranspose{\tensorfour{A}}&=A^{iljk}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}_{k}}{\vectr{g}_{l}}
+  \fulltranspose{\tensorfour{A}}&=A^{lkji}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \leftrighttranspose{\tensorfour{A}}&=A^{jilk}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \swaptranspose{\tensorfour{A}}&=A^{klij}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \lefttranspose{\tensorfour{A}}&=A^{jikl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \righttranspose{\tensorfour{A}}&=A^{ijlk}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \innertranspose{\tensorfour{A}}&=A^{ikjl}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \outertranspose{\tensorfour{A}}&=A^{ljki}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}\\
+  \xtranspose{\tensorfour{A}}&=A^{iljk}\tensorprodfour{\generalbasevector_{i}}{\generalbasevector_{j}}{\generalbasevector_{k}}{\generalbasevector_{l}}
 \end{align}
 
 Note that if $\tensorfour{A}=\swaptranspose{\tensorfour{A}}$ then
@@ -1607,24 +1806,24 @@ $\trace{}{\tensortwo{A}}$ with respect to the tensor $\tensortwo{A}$ \ie
   \begin{split}
     \delby{\pbrac{\trace{\tensortwo{g}}{\tensortwo{A}}}}{\tensortwo{A}}
     &=\delby{\pbrac{g_{ij}A^{ij}}}{\tensortwo{A}}\\
-    &=\delby{\pbrac{g_{11}A^{11}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{12}A^{12}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{13}A^{13}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
-    &\quad\delby{\pbrac{g_{21}A^{21}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{22}A^{22}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{23}A^{23}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
-    &\quad\delby{\pbrac{g_{31}A^{31}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{32}A^{32}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}}
-    +\delby{\pbrac{g_{33}A^{33}}}{A_{ij}}\tensorprod{\vectr{g}_{i}}{\vectr{g}_{j}} \\
-    &=g_{11}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{1}}
-    +g_{12}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{2}}
-    +g_{13}\tensorprod{\vectr{g}_{1}}{\vectr{g}_{3}}\\
-    &\quad g_{21}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{1}}
-    +g_{22}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{2}}
-    +g_{23}\tensorprod{\vectr{g}_{2}}{\vectr{g}_{3}}\\
-    &\quad g_{31}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{1}}
-    +g_{32}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{2}}
-    +g_{33}\tensorprod{\vectr{g}_{3}}{\vectr{g}_{3}}\\
+    &=\delby{\pbrac{g_{11}A^{11}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{12}A^{12}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{13}A^{13}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}} \\
+    &\quad\delby{\pbrac{g_{21}A^{21}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{22}A^{22}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{23}A^{23}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}} \\
+    &\quad\delby{\pbrac{g_{31}A^{31}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{32}A^{32}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}}
+    +\delby{\pbrac{g_{33}A^{33}}}{A_{ij}}\tensorprod{\generalbasevector_{i}}{\generalbasevector_{j}} \\
+    &=g_{11}\tensorprod{\generalbasevector_{1}}{\generalbasevector_{1}}
+    +g_{12}\tensorprod{\generalbasevector_{1}}{\generalbasevector_{2}}
+    +g_{13}\tensorprod{\generalbasevector_{1}}{\generalbasevector_{3}}\\
+    &\quad g_{21}\tensorprod{\generalbasevector_{2}}{\generalbasevector_{1}}
+    +g_{22}\tensorprod{\generalbasevector_{2}}{\generalbasevector_{2}}
+    +g_{23}\tensorprod{\generalbasevector_{2}}{\generalbasevector_{3}}\\
+    &\quad g_{31}\tensorprod{\generalbasevector_{3}}{\generalbasevector_{1}}
+    +g_{32}\tensorprod{\generalbasevector_{3}}{\generalbasevector_{2}}
+    +g_{33}\tensorprod{\generalbasevector_{3}}{\generalbasevector_{3}}\\
     &=\sharptensor{\tensortwo{g}}\\
     &=\sharptensor{\identitytensortwo}
   \end{split}
@@ -1641,7 +1840,7 @@ Thus we have
 \subsubsection{Derivatives of the Inverse}
 \label{subsubsec:InverseDerivativeSecondOrder}
 
-Consider two second order tensors, $\tensortwo{A}=A_{ij}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}$ and $\tensortwo{U}$. To
+Consider two second order tensors, $\tensortwo{A}=A_{ij}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}$ and $\tensortwo{U}$. To
 find the derivative of $\inverse{\tensortwo{A}}$ with respect to
 $\tensortwo{A}$ in the direction of $\tensortwo{U}$ consider
 \begin{equation}
@@ -1681,11 +1880,11 @@ We thus have
 
 In component form we have
 \begin{equation}
-  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ij}}}{A_{kl}}U_{kl}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=-\inverse{A_{ik}}U_{kl}\inverse{A_{lj}}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ij}}}{A_{kl}}U_{kl}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}=-\inverse{A_{ik}}U_{kl}\inverse{A_{lj}}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}
 \end{equation}
 or
 \begin{equation}
-  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=-\inverse{A_{ik}}\inverse{A_{lj}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}=-\inverse{A_{ik}}\inverse{A_{lj}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}
 \end{equation}
 
 We also have
@@ -1700,11 +1899,11 @@ that is
 
 In component form this is
 \begin{equation}
-  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ji}}}{A_{kl}}U_{kl}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}=-\inverse{A_{jk}}U_{lk}\inverse{A_{li}}\tensorprod{\vectr{g}^{i}}{\vectr{g}^{j}}
+  \doubledotprod{\delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}}{\tensortwo{U}}=\delby{\inverse{A_{ji}}}{A_{kl}}U_{kl}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}=-\inverse{A_{jk}}U_{lk}\inverse{A_{li}}\tensorprod{\generalbasevector^{i}}{\generalbasevector^{j}}
 \end{equation}
 or
 \begin{equation}
-  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ji}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=-\inverse{A_{li}}\inverse{A_{jk}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ji}}}{A_{kl}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}=-\inverse{A_{li}}\inverse{A_{jk}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}
 \end{equation}
 
 This implies that if $\tensortwo{A}$ is symmetric \ie
@@ -1715,7 +1914,7 @@ $\tensortwo{A}=\transpose{\tensortwo{A}}$ then
 \end{equation}
 or, in component form,
 \begin{equation}
-  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}=\dfrac{-1}{2}\pbrac{\inverse{A_{ik}}\inverse{A_{jl}}+\inverse{A_{il}}\inverse{A_{jk}}}\tensorprodfour{\vectr{g}^{i}}{\vectr{g}^{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+  \delby{\inverse{\tensortwo{A}}}{\tensortwo{A}}=\delby{\inverse{A_{ij}}}{A_{kl}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}=\dfrac{-1}{2}\pbrac{\inverse{A_{ik}}\inverse{A_{jl}}+\inverse{A_{il}}\inverse{A_{jk}}}\tensorprodfour{\generalbasevector^{i}}{\generalbasevector^{j}}{\generalbasevector^{k}}{\generalbasevector^{l}}
 \end{equation}
 
 
@@ -1734,20 +1933,24 @@ the parallelogram spanned by these two vectors.
 \subsection{Hodge Star}
 \label{subsec:HodgeStar}
 
-The Hodge star may be interpreted geometrically as follows. Consider a
-three-dimensional space. Imagine a bivector in this space, \ie two vectors
-$\vectr{a}$ and $\vectr{b}$ that start from the same base point. These two
-vectors will create an oriented parallelogram spanned by the vectors. This
-parallelogram may be interpreted as the two-form
-$\wedgeprod{\vectr{a}}{\vectr{b}}$. The operation of the Hodge star on a
-differential form produces a complementary differential form. For the case
-above we can think of the vector normal to the parallelogram as complementary
-to it. The direction of the normal vector will depend on the orientation of
-the two form. The normal to the bivector, however, only gives a direction. To
-complete the complementary nature we have that
-$\hodgestar{\pbrac{\wedgeprod{\vectr{a}}{\vectr{b}}}}$ will produce a vector
-normal to the paralleogram whose length is equal to the area of paralleogram
-which is given by $\crossprod{\vectr{a}}{\vectr{b}}$.
+The \emph{Hodge star}\footnote{named after
+\link{https://en.wikipedia.org/wiki/W._V._D._Hodge}{Sir William
+  Vallance Douglas Hodge} (1903-1975), a British
+mathematician.}\index{Hodge star} may be interpreted geometrically as
+follows. Consider a three-dimensional space. Imagine a bivector in
+this space, \ie two vectors $\vectr{a}$ and $\vectr{b}$ that start
+from the same base point. These two vectors will create an oriented
+parallelogram spanned by the vectors. This parallelogram may be
+interpreted as the two-form $\wedgeprod{\vectr{a}}{\vectr{b}}$. The
+operation of the Hodge star on a differential form produces a
+complementary differential form. For the case above we can think of
+the vector normal to the parallelogram as complementary to it. The
+direction of the normal vector will depend on the orientation of the
+two form. The normal to the bivector, however, only gives a
+direction. To complete the complementary nature we have that
+$\hodgestar{\pbrac{\wedgeprod{\vectr{a}}{\vectr{b}}}}$ will produce a
+vector normal to the paralleogram whose length is equal to the area of
+paralleogram which is given by $\crossprod{\vectr{a}}{\vectr{b}}$.
 
 The opposite of this example also holds. If we consider a vector $\vectr{a}$
 then $\hodgestar{\vectr{a}}$ will produce a bivector whose normal is in the
@@ -1761,4 +1964,14 @@ $\vectr{a}$.
 \label{sec:DiffGeomViewContinuum}
 
 
-\epstexfigure{DifferentialGeometry/svgs/meshembedding.eps_tex}{Embedding of a normalised mesh into a geometric manifold.}{A mesh on a normalised manifold $\manifold{N}$ without a metric and with $\vectr{\xi}$ coordinates is embedded into a geometric material Reimannian manifold $\manifold{M}$ with a metric $\tensortwo{G}$ and with $\vectr{X}$ coordinates. The same mesh may be embedded with differnt geometric fields/maps. Here the geometric field $\fnof{\vectr{f}}{\vectr{\xi}}$ embeds a small mesh and the geometric field $\fnof{\vectr{h}}{\vectr{\xi}}$ embeds a larger mesh. The process of embedding will induce a metric on the $\manifold{N}$ manifold.}{fig:MeshEmbedded}{0.5}
+\epstexfigure{DifferentialGeometry/svgs/meshembedding.eps_tex}{Embedding
+  of a normalised mesh into a geometric manifold.}{A mesh on a
+  normalised manifold $\manifold{N}$ without a metric and with
+  $\vectr{\xi}$ coordinates is embedded into a geometric material
+  Reimannian manifold $\manifold{M}$ with a metric $\tensortwo{G}$ and
+  with $\vectr{X}$ coordinates. The same mesh may be embedded with
+  differnt geometric fields/maps. Here the geometric field
+  $\fnof{\vectr{f}}{\vectr{\xi}}$ embeds a small mesh and the
+  geometric field $\fnof{\vectr{h}}{\vectr{\xi}}$ embeds a larger
+  mesh. The process of embedding will induce a metric on the
+  $\manifold{N}$ manifold.}{fig:MeshEmbedded}{0.5}

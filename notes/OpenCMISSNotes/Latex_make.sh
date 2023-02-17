@@ -8,9 +8,6 @@
 #
 # Usage:
 #   Latex_make.sh [makefile_options] 
-# Created:
-#   Martyn Nash, 22 March 1996
-# Updates:
 #
 # Changable options:
 #
@@ -29,11 +26,23 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "FiniteElementMethod/FiniteElementMethod.tex "\
 "DifferentialGeometry/DifferentialGeometry.tex "\
 "Theory/Theory.tex "\
+"Theory/SolutionMethods.tex "\
+"Theory/MaterialCoordinateTransformations.tex "\
 "Maths/Maths.tex "\
+"Maths/Space/Space.tex "\
+"Maths/Space/Sets/Sets.tex "\
+"Maths/Space/Sets/Numbers/Numbers.tex "\
+"Maths/Space/Topology/Topology.tex "\
+"Maths/Space/AbstractSpaces/AbstractSpaces.tex "\
+"Maths/Notation/Notation.tex "\
+"Maths/Algebra/Algebra.tex "\
+"Maths/Algebra/Groups/Groups.tex "\
+"Maths/Algebra/FieldsAndRings/FieldsAndRings.tex "\
+"Maths/Algebra/Modules/Modules.tex "\
+"Maths/Geometry/Geometry.tex "\
 "Maths/Notation/Notation.tex "\
 "Maths/VectorCalculus/VectorCalculus.tex "\
 "Maths/Operations/Operations.tex "\
-"EquationSets/EquationSets.tex "\
 "ClassicalField/ClassicalField.tex "\
 "ClassicalField/AdvectionDiffusionEquation.tex "\
 "ClassicalField/GeneralisedLaplaceEquation.tex "\
@@ -69,16 +78,13 @@ MY_TEX_SRC="TitlePage/TitlePage.tex "\
 "Fitting/Fitting.tex "\
 "Fitting/LinearFitting.tex "\
 "Fitting/NonlinearFitting.tex "\
-"AnalyticSolutions/AnalyticSolutions.tex "\
-"AnalyticSolutions/ClassicalFieldClass/GeneralisedLaplaceEquation.tex "\
-"AnalyticSolutions/ClassicalFieldClass/DiffusionEquation.tex "\
-"AnalyticSolutions/FluidMechanicsClass/BurgersEquation.tex "\
 "PortHamiltonian/PortHamiltonian.tex "\
 "ComputationAndNumerics/ComputationAndNumerics.tex "\
 "DevelopersDocument/DevelopersDoc.tex "\
 "Appendices/Appendices.tex "\
 "Appendices/CoordinateSystems.tex "\
 "Appendices/TensorComponents.tex "\
+"Appendices/ElementStiffnessMatrices.tex "\
 "References/References.tex "\
 "Index/Index.tex"
 

@@ -1,0 +1,36 @@
+\chapter{Tensor Components}
+\label{app:TensorComponents}
+
+\section{Second Order Tensors}
+\label{sec:TensorComponentsSecondOrder}
+
+\section{Fourth Order Tensors}
+\label{sec:TensorComponentsFourthOrder}
+
+\subsection{Identity Tensor}
+\label{subsec:TensorComponentsFourthOrderIdentity}
+
+The components of the symmetric identity tensor are given by
+\begin{align}
+  \symidentitytensorfour=\symtensorprod{\identitytensortwo}{\tensortwo{\identitytensortwo}}&=
+  \standardidentitytensorsymbol^{ij..}_{..kl}\,\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}\\ \nonumber
+  &=\dfrac{1}{2}\pbrac{\mixedkronecker{i}{k}\mixedkronecker{j}{l}+\mixedkronecker{i}{l}\mixedkronecker{j}{k}}\tensorprodfour{\vectr{g}_{i}}{\vectr{g}_{j}}{\vectr{g}^{k}}{\vectr{g}^{l}}
+\end{align}
+and are given in \tabref{tab:TensorComponentsFourthOrderSymmetricIdentity}.
+
+\begin{table}[htb] \centering
+  \begin{tabular}{|c|c|c|c|} \hline
+    $k/l$ & 1 & 2 & 3 \\ \hline \hline
+    1 & $\standardidentitytensorsymbol^{ij..}_{..11}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..12}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..13}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$ \\ \hline
+    2 & $\standardidentitytensorsymbol^{ij..}_{..21}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..22}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..23}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$ \\ \hline
+    3 & $\standardidentitytensorsymbol^{ij..}_{..31}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..32}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$
+    & $\standardidentitytensorsymbol^{ij..}_{..33}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}$ \\ \hline
+  \end{tabular}
+  \caption{Symmetric identity tensor components, $\standardidentitytensorsymbol^{ij..}_{..kl}$.}
+  \label{tab:TensorComponentsFourthOrderSymmetricIdentity}
+\end{table}

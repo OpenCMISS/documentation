@@ -1,76 +1,153 @@
 \section{Bidomain Equation}
 \label{sec:Bidomain}
 
-The bidomain model can be thought of as two co-existant intra and extrcelluar
-spaces. The potential in the intracellular space is denoted as
-$\phi_{i}$ and the potential in the extracellular space is denoted as
-$\phi_{e}$. The intra and extracellular potentials are related through the
-transmembrane voltage, $V_{m}$, i.e.,
-
+The bidomain model \citep{henriquez:1993} can be thought of as two
+co-existant intra and extracelluar spaces. The potential in the
+intracellular space is denoted as $\intracellularpotential$ and the
+potential in the extracellular space is denoted as
+$\extracellularpotential$. The intra- and extra-cellular potentials are
+related through the transmembrane voltage, $\transmembranevoltage$,
+\ie
 \begin{equation}
-  V_{m}=\phi_{i}-\phi_{e}
-  \label{eqn:transmembranevoltage}
+  \transmembranevoltage=\intracellularpotential-\extracellularpotential
+  \label{eqn:TransMembraneVoltageDefinition}
 \end{equation} 
 
-The bidomain equations are
-
+The intra- and extra- cellular current densities can be found from
 \begin{align}
-  A_{m}C_{m}\delby{V_{m}}{t}-\divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{V_{m}}}}&=\divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{\phi_{e}}}}-A_{m}\pbrac{I_{ion}-I_{m}}+i_{i} \label{eqn:bidomain1}
-  \\
-  \divergence{}{\pbrac{\pbrac{\tensor{\sigma}_{e}+\tensor{\sigma}_{i}}\grad{\phi_{e}}}}&=-\divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{V_{m}}}}-i_{i}+i_{e}
-  \label{eqn:bidomain2}
+  \intracellularcurrentdensityvector&=
+  -\sharptensor{\intracellularconductivitytensor}\gradient{}{\intracellularpotential}
+  \label{eqn:IntraCellularCurrentDensityVectorDefinition} \\
+  \extracellularcurrentdensityvector&=
+  -\sharptensor{\extracellularconductivitytensor}\gradient{}{\extracellularpotential}
+  \label{eqn:ExtraCellularCurrentDensityVectorDefinition}  
 \end{align}
+where $\intracellularcurrentdensityvector$ is the intracellular
+current density vector, $\extracellularcurrentdensityvector$ is the
+extracellular current density vector,
+$\intracellularconductivitytensor$ is the intracellular conductivity
+tensor, $\extracellularconductivitytensor$ is the extracellular
+conductivity tensor, and the negative signs are to ensure that current
+flows from areas of high potential to areas of low potential.
 
-where $A_{m}$ is the surface to volume ratio for the cell, $C_{m}$ is
-the specific membrance capacitance $\tensor{\sigma}_{i}$ is the intracellular
-conductivity tensor, $\tensor{\sigma}_{e}$ is the extracellular
-conductivity tensor, $I_{ion}$ is the ionic current, $I_{m}$ is the
-transmembrane current
-
-\subsection{Operator splitting}
-
-Consider the initial value problem
-\begin{align}
-  \dby{u}{t}&=\pbrac{L_{1}+L_{2}}u \\
-  \fnof{u}{0}&=u_{0}
-\end{align}
-where $L_{1}$ and $L_{2}$ are some operators.
-
-For Gudunov splitting we first solve
-\begin{align}
-  \dby{v}{t}&=L_{1}v \\
-  \fnof{v}{0}&=u_{0}
-\end{align}
-for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{v}{\Delta t}$. Next we solve
-\begin{align}
-  \dby{w}{t}&=L_{2}w \\
-  \fnof{w}{0}&=\fnof{v}{\Delta t}
-\end{align}
-for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{w}{\Delta t}$. We now set
+Now, any current which leaves one domain must cross the cell membrane
+and flow into the other domain. This means that the change in current
+density in one domain must be of equal but opposite magnitude to that
+of the other domain. This change in current density must also be
+equation to the current density across the membrane \ie
 \begin{equation}
-\fnof{\tilde{u}}{\Delta t}=\fnof{w}{\Delta t}
+  -\divergence{}{\intracellularcurrentdensityvector}=
+  \divergence{}{\extracellularcurrentdensityvector}=
+  \membraneareavolumeratio\transmembranecurrent
+  \label{eqn:BidomainConservationOfCurrent}
 \end{equation}
-where $\tilde{u}$ is a approximate solution to the orginal initial value
-problem.
+where $\membraneareavolumeratio$ is the surface area of the cell
+membrane to the cell volume ratio and $\transmembranecurrent$ is the
+transmembrane current per unit area.
 
-For Strang splitting we first solve
+\Eqnref{eqn:BidomainConservationOfCurrent} represents the conservation
+of current densities in the combined domains. Using
+\eqnrefs{eqn:IntraCellularCurrentDensityVectorDefinition}{eqn:ExtraCellularCurrentDensityVectorDefinition}
+we can rewrite \eqnref{eqn:BidomainConservationOfCurrent} as
 \begin{align}
-  \dby{v}{t}&=L_{1}v \\
-  \fnof{v}{0}&=u_{0}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}&=
+  \membraneareavolumeratio\transmembranecurrent \label{eqn:IntraCellularCurrentDensityConservation} \\
+  \divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}&=
+  -\membraneareavolumeratio\transmembranecurrent \label{eqn:ExtraCellularCurrentDensityConservation} 
 \end{align}
-for $t\in\sqbrac{0,\frac{\Delta t}{2}}$ to give $\fnof{v}{\frac{\Delta t}{2}}$. Next we solve
-\begin{align}
-  \dby{w}{t}&=L_{2}w \\
-  \fnof{w}{0}&=\fnof{v}{\frac{\Delta t}{2}}
-\end{align}
-for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{w}{\Delta t}$. Next we solve
-\begin{align}
-  \dby{v}{t}&=L_{1}v \\
-  \fnof{v}{\frac{\Delta t}{2}}&=\fnof{w}{\Delta t}
-\end{align}
-for $t\in\sqbrac{\frac{\Delta t}{2},\Delta t}$ to give $\fnof{v}{\Delta t}$.We now set
+or
 \begin{equation}
-\fnof{\tilde{u}}{\Delta t}=\fnof{v}{\Delta t}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}=
+  -\divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}  
 \end{equation}
-where $\tilde{u}$ is a approximate solution to the orginal initial value
-problem. 
+
+If we now subtract
+$\divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}$
+from both sides we obtain
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}-
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}=
+  -\divergence{}{\extracellularconductivitytensor\gradient{}{\extracellularpotential}}-
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}
+\end{equation}
+or, using \eqnref{eqn:TransMembraneVoltageDefinition}, we have
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}=
+  -\divergence{}{\pbrac{\intracellularconductivitytensor+\extracellularconductivitytensor}\gradient{}{\extracellularpotential}}
+  \label{eqn:FirstBidomainEquation}
+\end{equation}
+
+\Eqnref{eqn:FirstBidomainEquation} is known as the first, or elliptic, bidomain equation.
+
+Now, the current flow across the membrane, $\transmembranecurrent$,
+can be described by a time dependent capacitive current and an ionic
+current \ie
+\begin{equation}
+  \transmembranecurrent=\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent
+  \label{eqn:TransMembraneCurrentDefinition}
+\end{equation}
+where $\membranecapacitance$ is the membrane capacitance per unit
+area and $\ioniccurrent$ is the sum of all ionic currents across the
+cell membrane.
+
+If we now substitute \eqnref{eqn:TransMembraneCurrentDefinition} into
+\eqnref{eqn:IntraCellularCurrentDensityConservation} we obtain
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}}=
+  \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent}
+  \label{eqn:IntraCellularCurrentDensityConservationTransmembraneVoltage}
+\end{equation}
+
+Now, if we add
+$\divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}$
+to both sides of
+\eqnref{eqn:IntraCellularCurrentDensityConservationTransmembraneVoltage}
+we obtain
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}} +
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent} +
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}  
+\end{equation}
+or, rearranging, we obtain
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\intracellularpotential}} +
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} -
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent} 
+\end{equation}
+which, using \eqnref{eqn:TransMembraneVoltageDefinition}, we can rewrite as
+\begin{equation}
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} +
+  \divergence{}{\intracellularconductivitytensor\gradient{}{\extracellularpotential}} =
+  \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent} 
+  \label{eqn:SecondBidomainEquation}
+\end{equation}
+
+\Eqnref{eqn:SecondBidomainEquation} is known as the second, or
+parabolic, bidomain equation.
+
+Now we can combine
+\eqnrefs{eqn:FirstBidomainEquation}{eqn:SecondBidomainEquation},
+allow for stimulus currents in each domain, and rearrange to obtain the
+\emph{bidomain equations}. The two bidomain equations are
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \membraneareavolumeratio\membranecapacitance\delby{\transmembranevoltage}{t}-
+    \divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{\transmembranevoltage}}}=
+    \divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{\extracellularpotential}}}-
+    \membraneareavolumeratio\ioniccurrent+\intracellularstimuluscurrent
+  } \label{eqn:BidomainEquation1}
+\end{equation}
+and
+\begin{equation}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \divergence{}{\pbrac{\pbrac{\tensor{\sigma}_{e}+\tensor{\sigma}_{i}}\grad{\extracellularpotential}}}=
+    -\divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{\transmembranevoltage}}}+\extracellularstimuluscurrent
+  } \label{eqn:BidomainEquation2}
+\end{equation}
+where $\intracellularstimuluscurrent$ is the intracellular stimulus
+current and $\extracellularstimuluscurrent$ is the extracellular
+stimulus current.

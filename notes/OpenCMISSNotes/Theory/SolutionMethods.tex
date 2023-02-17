@@ -1,0 +1,1078 @@
+\section{Solution Methods}
+\label{sec:SolutionMethods}
+
+\subsection{Static Equations}
+\label{subsec:SolutionMethodsStaticEquations}
+
+The general form for static equations is
+
+
+\subsection{Dynamic Equations}
+\label{subsec:SolutionMethodsDynamicEquations}
+
+\subsubsection{Operator splitting}
+\label{subsubsec:DynamicOperatorSplitting}
+
+Consider the initial value problem
+\begin{align}
+  \dby{u}{t}&=\pbrac{L_{1}+L_{2}}u \\
+  \fnof{u}{0}&=u_{0}
+\end{align}
+where $L_{1}$ and $L_{2}$ are some operators.
+
+For Gudunov splitting we first solve
+\begin{align}
+  \dby{v}{t}&=L_{1}v \\
+  \fnof{v}{0}&=u_{0}
+\end{align}
+for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{v}{\Delta t}$. Next we solve
+\begin{align}
+  \dby{w}{t}&=L_{2}w \\
+  \fnof{w}{0}&=\fnof{v}{\Delta t}
+\end{align}
+for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{w}{\Delta t}$. We now set
+\begin{equation}
+\fnof{\tilde{u}}{\Delta t}=\fnof{w}{\Delta t}
+\end{equation}
+where $\tilde{u}$ is a approximate solution to the orginal initial value
+problem.
+
+For Strang splitting we first solve
+\begin{align}
+  \dby{v}{t}&=L_{1}v \\
+  \fnof{v}{0}&=u_{0}
+\end{align}
+for $t\in\sqbrac{0,\frac{\Delta t}{2}}$ to give $\fnof{v}{\frac{\Delta t}{2}}$. Next we solve
+\begin{align}
+  \dby{w}{t}&=L_{2}w \\
+  \fnof{w}{0}&=\fnof{v}{\frac{\Delta t}{2}}
+\end{align}
+for $t\in\sqbrac{0,\Delta t}$ to give $\fnof{w}{\Delta t}$. Next we solve
+\begin{align}
+  \dby{v}{t}&=L_{1}v \\
+  \fnof{v}{\frac{\Delta t}{2}}&=\fnof{w}{\Delta t}
+\end{align}
+for $t\in\sqbrac{\frac{\Delta t}{2},\Delta t}$ to give $\fnof{v}{\Delta t}$.We now set
+\begin{equation}
+\fnof{\tilde{u}}{\Delta t}=\fnof{v}{\Delta t}
+\end{equation}
+where $\tilde{u}$ is a approximate solution to the orginal initial value
+problem. 
+
+\subsubsection{Theta based methods}
+\label{subsubsec:DynamicThetaBasedMethods}
+
+The general form for dynamic equations is
+\begin{equation}
+  \matr{M}\fnof{\ddot{\vectr{u}}}{t}+\matr{C}\fnof{\dot{\vectr{u}}}{t}+\matr{K}\fnof{\vectr{u}}{t}+
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}+\fnof{\vectr{f}}{t}=\vectr{0}
+  \label{eqn:generaldynamicnonlinear}
+\end{equation}
+where $\fnof{\vectr{u}}{t}$ is the unknown ``displacement vector'', $\matr{M}$
+is the mass matrix, $\matr{C}$ is the damping matrix, $\matr{K}$ is the
+stiffness matrix, $\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ a non-linear vector
+function and $\fnof{\vectr{f}}{t}$ the forcing vector.
+
+From \citet{zienkiewicz:2006_1} we now expand the unknown vector $\fnof{\vectr{u}}{t}$ in terms of a polynomial of degree
+$p$. With the known values of $\vectr{u}_{n}$, $\dot{\vectr{u}}_{n}$,
+$\ddot{\vectr{u}}_{n}$ up to $\symover{p-1}{\vectr{u}}_{n}$ at the beginning of
+the time step $\Delta t$ we can write the polynomial expansion as
+\begin{equation}
+  \fnof{\vectr{u}}{t_{n}+\tau}\approx\fnof{\tilde{\vectr{u}}}{t_{n}+\tau}=\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+
+  \frac{1}{2!}\tau^{2}\ddot{\vectr{u}}_{n}+\cdots+\dfrac{1}{\factorial{p-1}}\tau^{p-1}\symover{p-1}{\vectr{u}}_{n}+
+  \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}
+  \label{eqn:timepolyexpansion}
+\end{equation}
+where the only unknown is the the vector $\vectr{\alpha}^{p}_{n}$,
+\begin{equation}
+  \vectr{\alpha}^{p}_{n}\approx\symover{p}{\vectr{u}}\equiv\dnby{p}{\vectr{u}}{t}
+\end{equation}
+
+A recurrance relationship can be established by substituting
+\eqnref{eqn:timepolyexpansion} into \eqnref{eqn:generaldynamicnonlinear} and
+taking a weighted residual approach \ie
+\begin{multline}
+  \dintl{0}{\Delta
+    t}\fnof{W}{\tau}\left[\matr{M}\pbrac{\ddot{\vectr{u}}_{n}+\tau\dddot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{\factorial{p-2}}\tau^{p-2}\vectr{\alpha}^{p}_{n}} \right.\\
+  +\matr{C}\pbrac{\dot{\vectr{u}}_{n}+\tau\ddot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{\factorial{p-1}}\tau^{p-1}\vectr{\alpha}^{p}_{n}} \\
+  +\matr{K}\pbrac{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}} \\
+  +\left.\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+    \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}+\fnof{\vectr{f}}{t_{n}+\tau}\right] d\tau = \vectr{0}
+\end{multline}
+where $\fnof{W}{\tau}$ is some weight function, $\tau=t-t_{n}$ and $\Delta
+t=t_{n+1}-t_{n}$. Dividing by $\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}$ we obtain
+\begin{multline}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{M}\pbrac{\ddot{\vectr{u}}_{n}+\tau\dddot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{\factorial{p-2}}\tau^{p-2}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{C}\pbrac{\dot{\vectr{u}}_{n}+\tau\ddot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{\factorial{p-1}}\tau^{p-1}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\matr{K}\pbrac{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}} \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}  
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{f}}{t_{n}+
+        \tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=\vectr{0}
+\end{multline}
+
+Now we define 
+\begin{equation}
+  \bar{\vectr{g}}=\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  \label{eqn:meanweightednonlinearvector}
+\end{equation}
+and
+\begin{equation}
+  \bar{\vectr{f}}=\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\fnof{\vectr{f}}{t_{n}+\tau}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  \label{eqn:meanweightedloadvector}
+\end{equation}
+and
+\begin{equation}
+  \theta_{k}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{k}}{\tau}}{{\Delta
+      t}^{k}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \text{  for  } k=0,1,\ldots,p
+  \label{eqn:thetakdefinition}
+\end{equation}
+
+We can now write
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}+
+  \matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}+
+  \matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}+ \\
+  + \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\vectr{u}_{n}+\tau\dot{\vectr{u}}_{n}+\cdots+
+        \dfrac{1}{p!}\tau^{p}\vectr{\alpha}^{p}_{n}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}+\bar{\vectr{f}}=\vectr{0}
+  \label{eqn:dynamic1}
+\end{multline}
+where
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \gsum{q=0}{p-1}{\dfrac{\theta_{q}{\Delta
+            t}^{q}}{q!}\symover{q}{\vectr{u}}_{n}} \\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \gsum{q=1}{p-1}{\dfrac{\theta_{q-1}{\Delta
+            t}^{q-1}}{\factorial{q-1}}\symover{q}{\vectr{u}}_{n}} \\
+    \ddot{\bar{\vectr{u}}}_{n+1} &= \gsum{q=2}{p-1}{\dfrac{\theta_{q-2}{\Delta
+            t}^{q-2}}{\factorial{q-2}}\symover{q}{\vectr{u}}_{n}} 
+  \end{split}
+\end{equation}
+
+We note that as $\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ is nonlinear we need to
+evaluate an integral of the form
+\begin{equation}
+  \gint{0}{\Delta
+    t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}
+  \label{eqn:nonlineartimeweightintegral}
+\end{equation}
+
+In order to ensure that the accuracy of the integration scheme is not
+compromised we need to evaluate \eqnref{eqn:nonlineartimeweightintegral} with
+$\nth{p}$ order accuracy in time. For a first order in time approximation we form Taylor's series expansions for
+$\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ about the point
+$\fnof{\vectr{u}}{t_{n}+\tau}$ \ie
+\begin{equation}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}-
+  \tau\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}+\orderof{\tau^{2}}
+  \label{eqn:firstordercurrentTaylorexpansion}
+\end{equation}
+and
+\begin{equation}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+
+  \pbrac{\Delta
+    t-\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}+\orderof{\pbrac{\Delta
+      t-\tau}^{2}}
+  \label{eqn:firstordernextTaylorexpansion}
+\end{equation}
+
+Now if we sum \eqnref{eqn:firstordercurrentTaylorexpansion} times
+$\dfrac{\Delta t -\tau}{\Delta t}$ and
+\eqnref{eqn:firstordernextTaylorexpansion} times 
+$\dfrac{\tau}{\Delta t}$ we obtain
+\begin{equation}
+  \dfrac{\Delta t-\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \dfrac{\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+\orderof{\tau^{2}}
+\end{equation}
+
+\Eqnref{eqn:nonlineartimeweightintegral} now becomes
+\begin{equation}
+  \gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}
+  =\gint{0}{\Delta t}{\fnof{W}{\tau}
+      \pbrac{\dfrac{\Delta t-\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+        \dfrac{\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\orderof{\tau^{2}}}}{\tau}
+\end{equation}
+or
+\begin{equation}
+  \gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}
+  =\gint{0}{\Delta t}{\fnof{W}{\tau}
+      \pbrac{\pbrac{1-\dfrac{\tau}{{\Delta t}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+        \dfrac{\tau}{\Delta t}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\orderof{\tau^{2}}}}{\tau}
+\end{equation}
+and so
+\begin{multline}
+\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}
+      \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}=\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}}
+-\dfrac{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\Delta
+  t\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}} \\
++\dfrac{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{\Delta
+  t\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}}- 
+  \dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\orderof{\tau^{2}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{multline}
+
+Now if we recall that $\theta_{0}=\dfrac{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=1$ and
+$\theta_{1}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau}{\tau}}{\Delta
+  t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$
+we can write
+\begin{equation}
+  \bar{\vect{g}}=\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \theta_{1}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\text{Error}
+\end{equation}
+where
+\begin{equation}
+  \text{Error}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\orderof{\tau^{2}}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+
+For a second order in time approximation we need to consider three points. We form Taylor's series expansions for
+$\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$ about the point $\fnof{\vectr{u}}{t_{n}+\tau}$ \ie
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  - \pbrac{\Delta t+\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  + \dfrac{\pbrac{\Delta t+\tau}^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\pbrac{\Delta t+\tau}^{3}}
+  \label{eqn:secondorderpreviousTaylorexpansion}
+\end{multline}
+and
+\begin{equation}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  - \tau\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \dfrac{\tau^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\tau^{3}}
+  \label{eqn:secondordercurrentTaylorexpansion}
+\end{equation}
+and
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \pbrac{\Delta t-\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  + \dfrac{\pbrac{\Delta t-\tau}^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\pbrac{\Delta t-\tau}^{3}}
+  \label{eqn:secondordernextTaylorexpansion}
+\end{multline}
+
+If we sum the equations \eqnref{eqn:secondorderpreviousTaylorexpansion} times
+$\dfrac{-\tau\pbrac{\Delta t - \tau}}{2{\Delta t}^{2}}$,
+\eqnref{eqn:secondordercurrentTaylorexpansion} times
+$\dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$, and
+\eqnref{eqn:secondordernextTaylorexpansion} times
+$\dfrac{\tau\pbrac{\Delta t + \tau}}{2{\Delta t}^{2}}$ we obtain
+\begin{multline}
+  \dfrac{-\tau\pbrac{\Delta t - \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}+
+  \dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \dfrac{\tau\pbrac{\Delta t + \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}\\
+  =\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+
+  \orderof{\tau^{3}}
+\end{multline}
+
+\Eqnref{eqn:nonlineartimeweightintegral} now becomes
+\begin{multline}
+  \gint{0}{\Delta
+    t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} = 
+  \dintl{0}{\Delta t}\,\fnof{W}{\tau}\left(\dfrac{-\tau\pbrac{\Delta t - \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}+\right. \\
+  \left.\dfrac{2\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \dfrac{\tau\pbrac{\Delta t + \tau}}{2\Delta
+    t^{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\orderof{\tau^{3}}\right)\exteriorderivop\tau
+\end{multline}
+or
+\begin{multline}
+  \gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} = 
+  \dintl{0}{\Delta t}\,\fnof{W}{\tau}\left(\pbrac{\dfrac{-\tau}{2\Delta t}+\dfrac{\tau^{2}}{2\Delta
+      t^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}\right. \\
+  \left.+\pbrac{1-\dfrac{\tau^{2}}{{\Delta t}^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}
+  +\pbrac{\dfrac{\tau}{2\Delta t}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
+    -\orderof{\tau^{3}}\right)\exteriorderivop\tau
+\end{multline}
+and so 
+\begin{multline}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}
+        {\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+        =\dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
+          t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \\ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}}{\tau}}- \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
+          t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}+
+        \\ \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2\Delta
+          t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}-
+        \dfrac{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{\gint{0}{\Delta
+            t}{\fnof{W}{\tau}}{\tau}}
+\end{multline}
+
+Now if we recall $\theta_{0}=\dfrac{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=1$,
+$\theta_{1}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau}{\tau}}{\Delta
+  t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$, and
+$\theta_{2}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{2}}{\tau}}{\Delta
+  t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$ we can write
+\begin{equation}
+  \bar{\vectr{g}}=
+  \dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}+
+  \pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}+
+  \dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\text{Error}
+\end{equation}
+where
+\begin{equation}
+  \text{Error}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\orderof{\tau^{3}}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+
+For a third order in time approximation we need to consider four points. We
+form Taylor's series expansions for $\fnof{\vectr{g}}{\fnof{\vectr{u}}{t}}$
+about the point $\fnof{\vectr{u}}{t_{n}+\tau}$ \ie
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  - \pbrac{2\Delta t+\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} 
+  + \dfrac{\pbrac{2\Delta t+\tau}^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  - \dfrac{\pbrac{2\Delta t+\tau}^{3}}{6}\fnof{\dddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\pbrac{2\Delta t+\tau}^{4}}
+  \label{eqn:thirdorderpreviouspreviousTaylorexpansion}
+\end{multline}
+and
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  - \pbrac{\Delta t+\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} 
+  + \dfrac{\pbrac{\Delta t+\tau}^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  - \dfrac{\pbrac{\Delta t+\tau}^{3}}{6}\fnof{\dddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\pbrac{\Delta t+\tau}^{4}}
+  \label{eqn:thirdorderpreviousTaylorexpansion}
+\end{multline}
+and
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  - \tau\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \dfrac{\tau^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  - \dfrac{\tau^{3}}{6}\fnof{\dddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\tau^{4}}
+  \label{eqn:thirdordercurrentTaylorexpansion}
+\end{multline}
+and
+\begin{multline}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}=\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \pbrac{\Delta t-\tau}\fnof{\dot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} 
+  + \dfrac{\pbrac{\Delta t-\tau}^{2}}{2}\fnof{\ddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}} \\
+  + \dfrac{\pbrac{\Delta t-\tau}^{3}}{6}\fnof{\dddot{\vectr{g}}}{\fnof{\vectr{u}}{t_{n}+\tau}}
+  + \orderof{\pbrac{\Delta t-\tau}^{4}}
+  \label{eqn:thirdordernextTaylorexpansion}
+\end{multline}
+
+If we sum \eqnref{eqn:thirdorderpreviouspreviousTaylorexpansion} times
+$\dfrac{\tau\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{6\Delta t^{3}}$,
+\eqnref{eqn:thirdorderpreviousTaylorexpansion} times
+$\dfrac{-3\tau\pbrac{\Delta t - \tau}\pbrac{2\Delta t + \tau}}{6\Delta
+  t^{3}}$, \eqnref{eqn:thirdordercurrentTaylorexpansion} times
+$\dfrac{3\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}\pbrac{2\Delta t +
+    \tau}}{6\Delta t^{3}}$, and \eqnref{eqn:thirdordernextTaylorexpansion}
+times $\dfrac{\tau\pbrac{\Delta t + \tau}\pbrac{2\Delta t + \tau}}{6\Delta
+  t^{3}}$ we obtain
+\begin{multline}
+  \dfrac{\tau\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}
+  -\dfrac{3\tau\pbrac{\Delta t - \tau}\pbrac{2\Delta t + \tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}} \\
+  +\dfrac{3\pbrac{\Delta t - \tau}\pbrac{\Delta t + \tau}\pbrac{2\Delta t + \tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}
+  +\dfrac{\tau\pbrac{\Delta t + \tau}\pbrac{2\Delta t + \tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}} \\
+  =\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}+
+  \orderof{\tau^{4}}
+\end{multline}
+
+\Eqnref{eqn:nonlineartimeweightintegral} now becomes
+\begin{multline}
+  \gint{0}{\Delta
+    t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} =
+  \dintl{0}{\Delta t}\,\fnof{W}{\tau}\left(\dfrac{\tau\pbrac{\Delta
+      t-\tau}\pbrac{\Delta t+\tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}\right. \\ \left.-\dfrac{3\tau\pbrac{\Delta
+      t-\tau}\pbrac{2\Delta t+\tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}} +\dfrac{3\pbrac{\Delta
+      t-\tau}\pbrac{\Delta t+\tau}\pbrac{2\Delta t+\tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}\right.\\ \left.+\dfrac{\tau\pbrac{\Delta
+      t+\tau}\pbrac{2\Delta t+\tau}}{6\Delta
+    t^{3}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}-\orderof{\tau^{4}}\right)\exteriorderivop\tau
+\end{multline}
+or
+\begin{multline}
+  \gint{0}{\Delta
+    t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau} =
+  \dintl{0}{\Delta t}\,\fnof{W}{\tau}
+  \left(\pbrac{\dfrac{\tau}{6{\Delta t}}-\dfrac{\tau^{3}}{6{\Delta t}^{3}}}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}\right. \\
+  \left.+\pbrac{\dfrac{-\tau}{{\Delta t}}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}+\dfrac{\tau^{3}}{2{\Delta t}^{3}}}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}
+  +\pbrac{1+\dfrac{\tau}{2{\Delta t}}-\dfrac{\tau^{2}}{{\Delta t}^{2}}-\dfrac{\tau^{3}}{2{\Delta t}^{3}}}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}\right.\\
+  \left.+\pbrac{\dfrac{\tau}{3{\Delta t}}+\dfrac{\tau^{2}}{2{\Delta t}^{2}}+\dfrac{\tau^{3}}{6{\Delta t}^{3}}}
+  \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
+  -\orderof{\tau^{4}}\right)\exteriorderivop\tau
+\end{multline}
+and so
+\begin{multline}
+  \dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}
+      \fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}+\tau}}}{\tau}}{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}}{\tau}}=\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}}{\tau}}{6\Delta
+    t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}-
+  \dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{3}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}}{\tau}}{6\Delta
+    t^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \\
+  -\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{{\Delta
+      t}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2{\Delta
+    t}^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{3}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}}{\tau}}{2{\Delta
+    t}^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \\
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{2{\Delta
+    t}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  -\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{{\Delta
+    t}^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \\
+  -\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{3}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}}}{\tau}}{2{\Delta
+      t}^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{3{\Delta
+    t}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{2{\Delta
+    t}^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}} \\
+  +\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\tau^{3}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}}{\tau}}{6\Delta
+    t^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+  -\dfrac{\gint{0}{\Delta
+      t}{\fnof{W}{\tau}\orderof{\tau^{4}}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{multline}
+
+If we recall that $\theta_{0}=\dfrac{\gint{0}{\Delta
+    t}{\fnof{W}{\tau}}{\tau}}{\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}=1$,
+$\theta_{1}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau}{\tau}}{\Delta
+  t\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$,
+$\theta_{2}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{2}}{\tau}}{\Delta
+  t^{2}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$, and
+$\theta_{3}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\tau^{3}}{\tau}}{{\Delta
+    t}^{3}\gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}$ we can write
+\begin{multline}
+  \bar{\vect{g}}=\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-2}}}
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n-1}}}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n}}} \\
+  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\fnof{\vectr{u}}{t_{n+1}}}
+  -\text{Error}
+\end{multline}
+where
+\begin{equation}
+  \text{Error}=\dfrac{\gint{0}{\Delta t}{\fnof{W}{\tau}\orderof{\tau^{4}}}{\tau}}{
+    \gint{0}{\Delta t}{\fnof{W}{\tau}}{\tau}}
+\end{equation}
+
+\Eqnref{eqn:dynamic1} now becomes
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}+
+  \matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}
+  +\matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}\\
+  +\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\theta_{1}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}+
+  \text{Error}=\vectr{0}
+  \label{eqn:firstorderdynamic2}
+\end{multline}
+with a first order approximation in time or 
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}+
+  \matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}
+  +\matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}\\
+  +\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}+
+  \pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}+
+  \dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}-
+  \text{Error}=\vectr{0}
+  \label{eqn:secondorderdynamic2}
+\end{multline}
+with a second order approximation in time or
+\begin{multline}
+  \matr{M}\pbrac{\ddot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\vectr{\alpha}^{p}_{n}}
+  +\matr{C}\pbrac{\dot{\bar{\vectr{u}}}_{n+1}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}}
+  +\matr{K}\pbrac{\bar{\vectr{u}}_{n+1}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}\\ +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}} \\
+  +\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n+1}}+\bar{\vectr{f}}-
+  \text{Error}=\vectr{0}
+  \label{eqn:thirdorderdynamic2}
+\end{multline}
+with a third order approximation in time as
+$\fnof{\vectr{u}}{t_{n-2}}=\vectr{u}_{n-2}$,
+$\fnof{\vectr{u}}{t_{n-1}}=\vectr{u}_{n-1}$,
+$\fnof{\vectr{u}}{t_{n}}=\vectr{u}_{n}$ and
+$\fnof{\vectr{u}}{t_{n+1}}=\vectr{u}_{n+1}=\hat{\vectr{u}}_{n+1}+
+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}$ where
+$\hat{\vectr{u}}_{n+1}$ is the \emph{predicted displacement} at the new time
+step and is given by
+\begin{equation}
+  \hat{\vectr{u}}_{n+1}=\gsum{q=0}{p-1}{\dfrac{{\Delta
+        t}^{q}}{q!}\symover{q}{\vectr{u}}_{n}}
+\end{equation}
+
+Rearranging gives
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\pbrac{\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\matr{M}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\matr{K}}\vectr{\alpha}^{p}_{n}
+  +\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ \dfrac{{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
+  +\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}
+  +\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}
+    +\bar{\vectr{f}}}= \vectr{0}
+  \label{eqn:firstorderdynamic}
+\end{multline}
+for a first order approximation or
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\pbrac{\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\matr{M}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\matr{K}}\vectr{\alpha}^{p}_{n}
+  +\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
+  +\pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}
+  +\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}
+    +\bar{\vectr{f}}}= \vectr{0}
+  \label{eqn:secondorderdynamic}
+\end{multline}
+for a second order approximation or
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\pbrac{\dfrac{\theta_{p-2}{\Delta
+        t}^{p-2}}{\factorial{p-2}}\matr{M}+\dfrac{\theta_{p-1}{\Delta
+        t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
+        t}^{p}}{p!}\matr{K}}\vectr{\alpha}^{p}_{n}+
+  \dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}} \\
+  +\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+
+    \bar{\vectr{f}}}= \vectr{0}
+  \label{eqn:thirdorderdynamic}
+\end{multline}
+for a third order approximation.
+
+If we now define the \emph{Amplification matrix} $\matr{A}$ as
+\begin{equation}
+  \matr{A}=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+  \dfrac{\theta_{p-1}{\Delta t}^{p-1}}{\factorial{p-1}}\matr{C}+
+  \dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}
+\end{equation}
+and the right hand side vector $\vectr{b}$ as
+\begin{equation}
+  \vectr{b}=\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+
+  \matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+We can now write \eqnref{eqn:firstorderdynamic} as
+\begin{equation}
+\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\matr{A}\vectr{\alpha}^{p}_{n}+
+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ \dfrac{{\Delta
+      t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}= \vectr{0}
+\end{equation}
+and \eqnref{eqn:secondorderdynamic} as
+\begin{multline}
+\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\matr{A}\vectr{\alpha}^{p}_{n}+
+\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}
+  +\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
++\pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}+
+\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}+\vectr{b}=\vectr{0}
+\end{multline}
+and \eqnref{eqn:thirdorderdynamic} as
+\begin{multline}
+\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n}}=\matr{A}\vectr{\alpha}^{p}_{n}+
+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}
+  +\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}} \\
++\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
++\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}} \\
++\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
++\vectr{b}=\vectr{0}
+\end{multline}
+
+If $\fnof{\vectr{g}}{\vectr{u}}\equiv\vectr{0}$ then
+\eqnref{eqn:firstorderdynamic} or \eqnref{eqn:secondorderdynamic} is linear in
+$\vectr{\alpha}^{p}_{n}$ and $\vectr{\alpha}^{p}_{n}$ can be found by solving
+the linear equation
+\begin{equation}
+  \vectr{\alpha}^{p}_{n} =-\inverse{\pbrac{\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+      \dfrac{\theta_{p-1}{\Delta t}^{p-1}}{\factorial{p-1}}\matr{C}+
+      \dfrac{\theta_{p}{\Delta
+          t}^{p}}{p!}\matr{K}}}\pbrac{\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+
+    \matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}}
+\end{equation}
+or 
+\begin{equation}
+  \vectr{\alpha}^{p}_{n} =-\inverse{\matr{A}}\vectr{b}
+\end{equation}
+
+If $\fnof{\vectr{g}}{\vectr{u}}$ is not $\equiv\vectr{0}$ then
+\eqnref{eqn:firstorderdynamic} or \eqnref{eqn:secondorderdynamic} is nonlinear in $\vectr{\alpha}^{p}_{n}$. To solve this
+equation we use Newton's method \ie
+\begin{equation}
+  \begin{split}
+    \text{1.  } & \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n(i)}}.\delta
+    \vectr{\alpha}^{p}_{n(i)} = 
+    -\fnof{\vectr{\psi}}{\vectr{\alpha}^{p}_{n(i)}} \\
+    \text{2.  } & \vectr{\alpha}^{p}_{n(i+1)}=\vectr{\alpha}^{p}_{n(i)}+\delta
+    \vectr{\alpha}^{p}_{n(i)}
+  \end{split}
+\end{equation}
+where $\fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}$ is the Jacobian and is given by
+  \begin{align}
+    \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}&=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \theta_{1}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}\\
+      &=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \theta_{1}\delby{\vectr{u}}{\vectr{\alpha}^{p}_{n}}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}\\
+      &=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+    \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \dfrac{\theta_{1}\Delta t^{p}}{p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}
+  \end{align}
+or
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\theta_{1}{\Delta
+      t}^{p}}{p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{u}}
+\end{equation}
+for a first order approximation or by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\dfrac{\theta_{p-2}{\Delta t}^{p-2}}{\factorial{p-2}}\matr{M}+
+  \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta t}^{p}}{p!}\matr{K}+
+  \dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{p}}{2p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{u}}
+\end{equation}
+or
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta
+      t}^{p}}{2p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{u}}
+\end{equation}
+for a second order approximation or by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\dfrac{\theta_{p-2}{\Delta
+      t}^{p-2}}{\factorial{p-2}}\matr{M}+ \dfrac{\theta_{p-1}{\Delta
+      t}^{p-1}}{\factorial{p-1}}\matr{C}+\dfrac{\theta_{p}{\Delta
+      t}^{p}}{p!}\matr{K}+
+  \dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}{\Delta t}^{p}}{6p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{p}}{p!}
+      \vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+\end{equation}
+or
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{p}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}{\Delta
+      t}^{p}}{6p!}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta
+          t}^{p}}{p!}\vectr{\alpha}^{p}_{n}}}{\vectr{\alpha}^{p}_{n}}
+\end{equation}
+for a third order approximation.
+
+Once $\vectr{\alpha}^{p}_{n}$ has been obtained the values at the next time step can be obtained from
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t
+    \dot{\vectr{u}}_{n}+\cdots+\dfrac{{\Delta
+        t}^{p}}{p!}\vectr{\alpha}^{p}_{n}=\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{p}}{p!}\vectr{\alpha}^{p}_{n}\\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t
+    \ddot{\vectr{u}}_{n}+\cdots+\dfrac{{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n}=\dot{\hat{\vectr{u}}}_{n+1}+\dfrac{{\Delta
+        t}^{p-1}}{\factorial{p-1}}\vectr{\alpha}^{p}_{n} \\
+    &\vdots \\
+    \symover{p-1}{\vectr{u}}_{n+1} &= \symover{p-1}{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{p}_{n}
+  \end{split}
+\end{equation}
+
+For algorithms in which the degree of the polynomial, $p$, is higher than the
+order we require the algorithm to be initialised so that the initial velocity
+or acceleration can be computed. The initial velocity or acceleration values
+can be obtained by substituting the initial displacement or initial
+displacement and velocity values into \eqnref{eqn:generaldynamicnonlinear},
+rearranging and solving. For example consider the case of a second degree
+polynomial and a first order system. Substituing the initial displacement
+$\vectr{u}_{0}$ into \eqnref{eqn:generaldynamicnonlinear} gives
+\begin{equation}
+  \matr{C}\dot{\vectr{u}}_{0}+\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}=\vectr{0}
+\end{equation}
+and therefore an approximation to the initial velocity can be found from
+\begin{equation}
+  \dot{\vectr{u}}_{0}=-\inverse{\matr{C}}\pbrac{\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+Similarily for a third degree polynomial and a second order system the initial
+acceleration can be found from
+\begin{equation}
+  \ddot{\vectr{u}}_{0}=-\inverse{\matr{M}}\pbrac{\matr{C}\dot{\vectr{u}}_{0}+\matr{K}\vectr{u}_{0}+
+    \fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+To evaluate the mean weighted load vector, $\bar{\vectr{f}}$, we need to
+evaluate the integral in \eqnref{eqn:meanweightedloadvector}. In a similar
+fashion to how \eqnref{eqn:meanweightednonlinearvector} is evaluated we can
+calculate
+\begin{equation}
+  \bar{\vectr{f}}=\theta_{1}\vectr{f}_{n+1}+\pbrac{1-\theta_{1}}\vectr{f}_{n}
+  \label{eqn:firstordermeanweightedloadvector}
+\end{equation}
+for a first order approximation or
+\begin{equation}
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\vectr{f}_{n+1}+\pbrac{1-\theta_{2}}\vectr{f}_{n}
+  +\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\vectr{f}_{n-1}
+  \label{eqn:secondordermeanweightedloadvector}
+\end{equation}
+for a second order approximation or
+\begin{multline}
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\vectr{f}_{n+1}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\vectr{f}_{n} \\
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\vectr{f}_{n-1}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\vectr{f}_{n-2}
+  \label{eqn:thirdordermeanweightedloadvector}
+\end{multline}
+for a third order approximation.
+
+\subsubsection{Special SN11 case, p=1}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+   \bar{\vectr{u}}_{n+1} = \vectr{u}_{n}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\matr{C}+\theta_{1}\Delta t \matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The load vector is given by
+\begin{equation}
+  \bar{\vectr{f}}=\theta_{1}\vectr{f}_{n+1}+\pbrac{1-\theta_{1}}\vectr{f}_{n}
+\end{equation}
+
+The nonlinear function is given by
+\begin{equation}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{1}_{n}}=\matr{A}\vectr{\alpha}^{1}_{n}+\theta_{1}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+ 
+    \Delta t\vectr{\alpha}^{1}_{n}}+\pbrac{1-\theta_{1}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\vectr{b}=\vectr{0}
+\end{equation}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{1}_{n}}=\matr{A}+\theta_{1}\Delta t
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\Delta t\vectr{\alpha}^{1}_{n}}}{\vectr{u}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+    \vectr{u}_{n+1} = \vectr{u}_{n}+\Delta t\vectr{\alpha}^{1}_{n}
+\end{equation}
+
+\subsubsection{Special SN21 case, p=2}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \vectr{u}_{n}+\theta_{1}\Delta t\dot{\vectr{u}}_{n}\\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \dot{\vectr{u}}_{n}
+  \end{split}
+\end{equation}
+where
+\begin{equation}
+  \dot{\vectr{u}}_{0}=-\inverse{\matr{C}}\pbrac{\matr{K}\vectr{u}_{0}+\fnof{\vectr{g}}{\vectr{u}_{0}}+\bar{\vectr{f}}_{0}}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\theta_{1}\Delta t\matr{C}+\dfrac{\theta_{2}{\Delta t}^{2}}{2}\matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The load vector is given by
+\begin{equation}
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\vectr{f}_{n+1}+\pbrac{1-\theta_{2}}\vectr{f}_{n}
+  +\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\vectr{f}_{n-1}
+\end{equation}
+
+The nonlinear function is given by
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{2}_{n}}=\matr{A}\vectr{\alpha}^{2}_{n}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}+\\
+  \pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}+\vectr{b}=\vectr{0}
+\end{multline}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{2}}{4}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{u}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n} +\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n} \\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{2}_{n}
+  \end{split}
+\end{equation}
+
+\subsubsection{Special SN22 case, p=2}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \vectr{u}_{n}+\theta_{1}\Delta t\dot{\vectr{u}}_{n}\\
+    \dot{\bar{\vectr{u}}}_{n+1} &= \dot{\vectr{u}}_{n}
+  \end{split}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\matr{M}+\theta_{1}\Delta t\matr{C}+\dfrac{\theta_{2}{\Delta t}^{2}}{2}\matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The load vector is given by
+\begin{equation}
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\vectr{f}_{n+1}+\pbrac{1-\theta_{2}}\vectr{f}_{n}
+  +\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\vectr{f}_{n-1}
+\end{equation}
+
+The nonlinear function is given by
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{2}_{n}}=\matr{A}\vectr{\alpha}^{2}_{n}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}}{2}\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+
+    \dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}+\\
+  \pbrac{1-\theta_{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}+\dfrac{\pbrac{\theta_{2}-\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}}+\vectr{b}=\vectr{0}
+\end{multline}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{2}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{2}+\theta_{1}}{\Delta t}^{2}}{4}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n}}}{\vectr{u}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n} +\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{2}_{n} \\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{2}_{n} 
+  \end{split}
+\end{equation}
+
+\subsubsection{Special SN32 case, p=3}
+
+For this special case, the mean predicited values are given by
+\begin{equation}
+  \begin{split}
+    \bar{\vectr{u}}_{n+1} &= \vectr{u}_{n}+\theta_{1}\Delta
+    t\dot{\vectr{u}}_{n}+\dfrac{\theta_{2}{\Delta
+        t}^{2}}{2}\ddot{\vectr{u}}_{n}\\
+    \dot{\bar{\vectr{u}}}_{n+1} &=
+    \dot{\vectr{u}}_{n}+\theta_{1}\Delta t\ddot{\vectr{u}}_{n}\\
+    \ddot{\bar{\vectr{u}}}_{n+1} &= \ddot{\vectr{u}}_{n}
+  \end{split}
+\end{equation}
+
+The predicted displacement values are given by
+\begin{equation}
+   \hat{\vectr{u}}_{n+1} = \vectr{u}_{n}+\Delta
+   t\dot{\vectr{u}}_{n}+\dfrac{{\Delta t}^{2}}{2}\ddot{\vectr{u}}_{n}
+\end{equation}
+
+The amplification matrix is given by
+\begin{equation}
+  \matr{A}=\theta_{1}{\Delta t}\matr{M}+\dfrac{\theta_{2}{\Delta t}^{2}}{2}\matr{C}+\dfrac{\theta_{3}{\Delta t}^{3}}{6}\matr{K}
+\end{equation}
+
+The right hand side vector is given by
+\begin{equation}
+  \vectr{b}=\matr{M}\ddot{\bar{\vectr{u}}}_{n+1}+\matr{C}\dot{\bar{\vectr{u}}}_{n+1}+\matr{K}\bar{\vectr{u}}_{n+1}+\bar{\vectr{f}}
+\end{equation}
+
+The load vector is given by
+\begin{multline}
+  \bar{\vectr{f}}=\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}\vectr{f}_{n+1}
+  +\pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\vectr{f}_{n} \\
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\vectr{f}_{n-1}
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\vectr{f}_{n-2}
+\end{multline}
+
+The nonlinear function is given by
+\begin{multline}
+  \fnof{\vectr{\psi}}{\vectr{\alpha}^{3}_{n}}=\matr{A}\vectr{\alpha}^{3}_{n}+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}}{6}
+  \fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n}}+\\
+  \pbrac{1-\dfrac{\pbrac{\theta_{3}+2\theta_{2}-\theta_{1}}}{2}}\fnof{\vectr{g}}{\vectr{u}_{n}}
+  +\dfrac{\pbrac{\theta_{3}+\theta_{2}-2\theta_{1}}}{2}\fnof{\vectr{g}}{\vectr{u}_{n-1}} \\
+  +\dfrac{\pbrac{\theta_{1}-\theta_{3}}}{6}\fnof{\vectr{g}}{\vectr{u}_{n-2}}
+  +\vectr{b}=\vectr{0}
+\end{multline}
+
+The Jacobian matrix is given by
+\begin{equation}
+  \fnof{\matr{J}}{\vectr{\alpha}^{3}_{n}}=\matr{A}+\dfrac{\pbrac{\theta_{3}+3\theta_{2}+2\theta_{1}}{\Delta t}^{3}}{36}
+  \delby{\fnof{\vectr{g}}{\hat{\vectr{u}}_{n+1}+\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n}}}{\vectr{u}}
+\end{equation}
+
+And the time step update is given by
+\begin{equation}
+  \begin{split}
+    \vectr{u}_{n+1} &= \vectr{u}_{n}+\Delta t\dot{\vectr{u}}_{n}
+    +\dfrac{{\Delta t}^{2}}{2}\ddot{\vectr{u}}_{n}
+    +\dfrac{{\Delta t}^{3}}{6}\vectr{\alpha}^{3}_{n} \\
+    \dot{\vectr{u}}_{n+1} &= \dot{\vectr{u}}_{n}+\Delta t\ddot{\vectr{u}}_{n}+\dfrac{{\Delta t}^{2}}{2}\vectr{\alpha}^{3}_{n} \\
+    \ddot{\vectr{u}}_{n+1} &= \ddot{\vectr{u}}_{n}+\Delta t\vectr{\alpha}^{3}_{n} \\
+  \end{split}
+\end{equation}
+
+\section{Interface Conditions}
+
+\subsection{Variational principles}
+
+The branch of mathematics concerned with the problem of finding a function for
+which a certain integral of that function is either at its largest or smallest
+value is called the \emph{calculus of variations}. When scientific laws are formulated in terms of the principles of the calculus
+of variations they are termed \emph{variational principles}. 
+
+\subsection{Lagrange Multipliers}
+
+\section{Optimisation Problems}
+
+\subsection{Unconstrained Optimisation}
+
+The general form of a unconstrained optimisation problem is
+\begin{equation}
+  \begin{aligned}
+    \min_{\vect{x}} & & & \fnof{f}{\vect{x}} \\
+    \text{subject to} & & & \vect{a}\le\vect{x}\le\vect{b}
+  \end{aligned}
+\end{equation}
+
+\subsection{Linear Program}
+
+The general form of a linear programming problem is
+\begin{equation}
+  \begin{aligned}
+    \min_{\vect{x}} & & & \transpose{\vect{c}}{\vect{x}} \\
+    \text{subject to} & & & \matr{A}\vect{x}=\vect{b} \\
+    & & & \vect{x}\ge\vect{0}
+  \end{aligned}
+\end{equation}
+
+\subsection{Constrained Optimisation}
+
+The general form of a PDE constrained optimisation problem is
+\begin{equation}
+  \begin{aligned}
+    \min_{\vect{x}} & & & \fnof{f}{\vect{x}} \\
+    \text{subject to} &&& \vect{a}\le\vect{x}\le\vect{b} \\
+    & & &\fnof{\vect{g}}{\vect{x}}=\vect{c} \\
+    &&& \fnof{\vect{h}}{\vect{x}}\ge\vect{d}
+  \end{aligned}
+\end{equation}
+
+\subsection{PDE Constrained Optimisation}
+
+The general form of a PDE constrained optimisation problem is
+\begin{equation}
+  \begin{aligned}
+    \min_{\vect{x},\vect{u}} & & & \fnof{f}{\vect{x},\vect{u}} \\
+    \text{subject to} & & &\fnof{\vect{p}}{\vect{x},\vect{u}}=\vect{0} \\
+    &&& \vect{a}\le\vect{x}\le\vect{b} \\
+    & & &\fnof{\vect{g}}{\vect{x}}=\vect{c} \\
+    &&& \fnof{\vect{h}}{\vect{x}}\ge\vect{d}
+  \end{aligned}
+\end{equation}

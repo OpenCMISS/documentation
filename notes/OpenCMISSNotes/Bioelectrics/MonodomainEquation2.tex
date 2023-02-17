@@ -1,25 +1,73 @@
 \section{Monodomain Equation}
 \label{sec:MonodomainEquation}
 
-Under certain conditions the Biodomain equations given in
-\eqnref{eqn:bidomain1} and \eqnref{eqn:bidomain2} can be simplified to 
-
+Under certain conditions the bidomain equations given in
+\eqnref{eqn:BidomainEquation1} and \eqnref{eqn:BidomainEquation2} can
+be simplified. If we assume that the intra- and extra-cellular
+conductivity tensors have equal anisotropy ratios \ie
 \begin{equation}
-  A_{m}C_{m}\delby{V_{m}}{t}-\divergence{}{\pbrac{\tensor{\sigma}_{m}\grad{V_{m}}}}=-A_{m}I_{ion}+i_{i}
-  \label{eqn:monodomain}
+  \extracellularconductivitytensor=\lambda\intracellularconductivitytensor
+  \label{eqn:MonodomainConductivityAssumption}
+\end{equation}
+where $\lambda$ is the conductivity scaling, we can substitute
+\eqnref{eqn:MonodomainConductivityAssumption} into
+\eqnref{eqn:FirstBidomainEquation} to obtain
+\begin{equation}
+  \begin{aligned}
+    \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}&=
+    -\divergence{}{\pbrac{\pbrac{\intracellularconductivitytensor+\extracellularconductivitytensor}
+      \gradient{}{\extracellularpotential}}}\\&=
+    -\divergence{}{\pbrac{\pbrac{\intracellularconductivitytensor+\lambda\intracellularconductivitytensor}
+      \gradient{}{\extracellularpotential}}}\\
+    &=-\divergence{}{\pbrac{\pbrac{1+\lambda}\intracellularconductivitytensor\gradient{}{\extracellularpotential}}}
+  \end{aligned}
+\end{equation}
+or
+\begin{equation}
+  \divergence{}{\pbrac{\intracellularconductivitytensor\gradient{}{\extracellularpotential}}}=
+  \dfrac{-1}{1+\lambda}\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}
+  \label{eqn:MonodomainFirstBidomainEquation}
 \end{equation}
 
-where $A_{m}$ is the surface to volume ratio for the cell, $C_{m}$ is
-the specific membrance capacitance, $I_{ion}$ is the ionic current, $i_{i}$ is the
-intracellular stimulus current and $\tensor{\sigma}_{m}$ is the
-conductivity tensor given by
-
+If we now substitute \eqnref{eqn:MonodomainFirstBidomainEquation} into \eqnref{eqn:SecondBidomainEquation} we obtain
 \begin{equation}
-  \tensor{\sigma}_{m}=\dfrac{\tensor{\sigma}_{i}\tensor{\sigma}_{e}}{\tensor{\sigma}_{i}+\tensor{\sigma}_{e}}
-  \label{eqn:monodomainconductivity}
+  \begin{aligned}
+    \membraneareavolumeratio\pbrac{\membranecapacitance\delby{\transmembranevoltage}{t}+\ioniccurrent}&=
+    \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} +
+    \dfrac{-1}{1+\lambda}\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} \\
+    &=\dfrac{\pbrac{1+\lambda}\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} -
+      \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}}{1+\lambda} \\
+    &=\dfrac{\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}+
+      \lambda\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}} -
+      \divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}}{1+\lambda} \\
+    &=\dfrac{\lambda}{1+\lambda}\divergence{}{\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}\\
+    &=\divergence{}{\pbrac{\dfrac{\lambda}{1+\lambda}\intracellularconductivitytensor\gradient{}{\transmembranevoltage}}}
+  \end{aligned}
+\end{equation}
+We can now define a \emph{monodomain conductivity tensor}\index{Monodomain conductivity tensor}, $\monodomainconductivitytensor$, as
+\begin{equation}
+  \monodomainconductivitytensor=\dfrac{\lambda\intracellularconductivitytensor}{1+\lambda}=
+  \dfrac{\intracellularconductivitytensor\extracellularconductivitytensor}{\intracellularconductivitytensor+
+    \extracellularconductivitytensor}
+  \label{eqn:MonodomainConductivityTensor}  
 \end{equation}
 
-Rearrangign \eqnref{eqn:monodomain} to give
+\Eqnref{eqn:MonodomainConductivityTensor} defines the monodomain
+conductivity tensor as the arithmetic mean of the intra- and
+extra-cellular conductivity tensors.
+
+Subsituting \eqnref{eqn:MonodomainConductivityTensor} into
+\eqnref{eqn:SecondBidomainEquation} and adding a stimulus current
+gives us
 \begin{equation}
-  A_{m}C_{m}\delby{V_{m}}{t}=\dfrac{\pbrac{\divergence{}{\pbrac{\tensor{\sigma}_{m}\grad{V_{m}}}}-I_{ion}+i_{i}}}{}
+  \addtolength{\fboxsep}{5pt}
+  \boxed{
+    \membraneareavolumeratio\membranecapacitance\delby{\transmembranevoltage}{t}-
+    \divergence{}{\pbrac{\tensor{\sigma}_{i}\grad{\transmembranevoltage}}}=
+    -\membraneareavolumeratio\ioniccurrent+\stimuluscurrent
+  }
+  \label{eqn:MonodomainEquation}
 \end{equation}
+where $\stimuluscurrent$ is the monodomain stimulus current.
+
+\Eqnref{eqn:MonodomainEquation} is known as the \emph{monodomain equation}\index{Monodomain equation}.

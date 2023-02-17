@@ -53,7 +53,9 @@ scheme is shown in \figref{fig:nodesandelements}.
 \subsection{Lagrangian Basis Functions}
 \label{sec:lagrangebasisfunctions}
 
-One important family of basis functions are the Lagrange basis functions. This
+One important family of basis functions are the Lagrange\footnote{named after
+\link{https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange}{Joseph-Louis Lagrange}
+(1736-1813), an Italian-born, French mathematician and physicist.} basis functions. This
 family has one basis function for each of the local element nodes and are
 defined such that, at a particular node, only one basis function is non-zero
 and has the value of one. In this sense a basis function can be thought of as
@@ -388,15 +390,19 @@ The sixteen \twodal bicubic Lagrange basis functions are shown in \figref{fig:bi
 \subsection{Hermitian Basis Functions}
 \label{sec:Hermitianbasisfunctions}
 
-Hermitian basis functions preserve continuity of the derivative of the
-interpolating variable \ie $C^{1}$ continuity, with respect to $\xi$ across
-element boundaries by defining additional nodal derivative parameters. Like
-Lagrange bases, Hermitian basis functions are also chosen so that, at a
-particular node, only one basis function is non-zero and equal to one. They
-also are chosen so that, at a particular node, the \emph{derivative} of only
-one of four basis functions is non-zero and is equal to one. Hermitian basis
-functions hence serve to weight the interpolated solution in terms of the
-field value and derivative of the field value at nodes.
+Hermitian\footnote{named after
+\link{https://en.wikipedia.org/wiki/Charles_Hermite}{Charles Hermite}
+(1822-1901), a French mathematician.} basis functions preserve
+continuity of the derivative of the interpolating variable \ie $C^{1}$
+continuity, with respect to $\xi$ across element boundaries by
+defining additional nodal derivative parameters. Like Lagrange bases,
+Hermitian basis functions are also chosen so that, at a particular
+node, only one basis function is non-zero and equal to one. They also
+are chosen so that, at a particular node, the \emph{derivative} of
+only one of four basis functions is non-zero and is equal to
+one. Hermitian basis functions hence serve to weight the interpolated
+solution in terms of the field value and derivative of the field value
+at nodes.
 
 \subsubsection{Cubic Hermite basis functions}
 
@@ -578,22 +584,22 @@ of two of the \onedal cubic Hermite basis functions defined in
 
 \begin{equation}
   \begin{split}
-    \chbfn{1}{0}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{1-3\xione^{2}+2\xione^{3}}\pbrac{1-3\xitwo^{2}+2\xitwo^{3}}\\
-    \chbfn{2}{0}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xione(\xione-1)^{2}}\pbrac{1-3\xitwo^{2}+2\xitwo^{3}}\\
-    \chbfn{3}{0}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{1-3\xione^{2}+2\xione^{3}}\pbrac{\xitwo^{2}\pbrac{3-2\xitwo}}\\
-    \chbfn{4}{0}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xione^{2}\pbrac{3-2\xione}}\pbrac{\xitwo^{2}\pbrac{3-2\xitwo}}\\
-    \chbfn{1}{1}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{1-3\xitwo^{2}+2\xitwo^{3}}\\
-    \chbfn{2}{1}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xione^{2}\pbrac{\xione-1}}\pbrac{1-3\xitwo^{2}+2\xitwo^{3}}\\
-    \chbfn{3}{1}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{\xitwo^{2}\pbrac{3-2\xitwo}}\\
-    \chbfn{4}{1}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xione^{2}\pbrac{\xione-1}}\pbrac{\xitwo^{2}\pbrac{3-2\xitwo}}\\
-    \chbfn{1}{2}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{1-3\xione^{2}+2\xione^{3}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
-    \chbfn{2}{2}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{\xione^{2}\pbrac{3-2\xione}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
-    \chbfn{3}{2}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{1-3\xione^{2}+2\xione^{3}}\pbrac{\xitwo^{2}\pbrac{\xitwo-1}}\\
-    \chbfn{4}{2}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xione^{2}\pbrac{3-2\xione}}\pbrac{\xitwo^{2}\pbrac{\xitwo-1}}\\
+    \chbfn{1}{0}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{1-3\xionesq+2\xionecube}\pbrac{1-3\xitwosq+2\xitwocube}\\
+    \chbfn{2}{0}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xione(\xione-1)^{2}}\pbrac{1-3\xitwosq+2\xitwocube}\\
+    \chbfn{3}{0}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{1-3\xionesq+2\xionecube}\pbrac{\xitwosq\pbrac{3-2\xitwo}}\\
+    \chbfn{4}{0}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xionesq\pbrac{3-2\xione}}\pbrac{\xitwosq\pbrac{3-2\xitwo}}\\
+    \chbfn{1}{1}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{1-3\xitwosq+2\xitwocube}\\
+    \chbfn{2}{1}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{1}{0}{\xitwo}=\pbrac{\xionesq\pbrac{\xione-1}}\pbrac{1-3\xitwosq+2\xitwocube}\\
+    \chbfn{3}{1}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{\xitwosq\pbrac{3-2\xitwo}}\\
+    \chbfn{4}{1}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{2}{0}{\xitwo}=\pbrac{\xionesq\pbrac{\xione-1}}\pbrac{\xitwosq\pbrac{3-2\xitwo}}\\
+    \chbfn{1}{2}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{1-3\xionesq+2\xionecube}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
+    \chbfn{2}{2}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{\xionesq\pbrac{3-2\xione}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
+    \chbfn{3}{2}{\xione,\xitwo}&=\chbfn{1}{0}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{1-3\xionesq+2\xionecube}\pbrac{\xitwosq\pbrac{\xitwo-1}}\\
+    \chbfn{4}{2}{\xione,\xitwo}&=\chbfn{2}{0}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xionesq\pbrac{3-2\xione}}\pbrac{\xitwosq\pbrac{\xitwo-1}}\\
     \chbfn{1}{3}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
-    \chbfn{2}{3}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{\xione^{2}\pbrac{\xione-1}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
-    \chbfn{3}{3}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{\xitwo^{2}\pbrac{\xitwo-1}}\\
-    \chbfn{4}{3}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xione^{2}\pbrac{\xione-1}}\pbrac{\xitwo^{2}\pbrac{\xitwo-1}}    
+    \chbfn{2}{3}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{1}{1}{\xitwo}=\pbrac{\xionesq\pbrac{\xione-1}}\pbrac{\xitwo\pbrac{\xitwo-1}^{2}}\\
+    \chbfn{3}{3}{\xione,\xitwo}&=\chbfn{1}{1}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xione\pbrac{\xione-1}^{2}}\pbrac{\xitwosq\pbrac{\xitwo-1}}\\
+    \chbfn{4}{3}{\xione,\xitwo}&=\chbfn{2}{1}{\xione}\chbfn{2}{1}{\xitwo}=\pbrac{\xionesq\pbrac{\xione-1}}\pbrac{\xitwosq\pbrac{\xitwo-1}}    
   \end{split}
   \label{eqn:BicubicHermBFuns}
 \end{equation}
@@ -1064,8 +1070,8 @@ $\xione$ along the line from node one to node three (\ie $\xione=1$) is
     \delby{\fnof{\vect{x}}{1,\xitwo}}{\xione} &= \hsonebfn{2}{\xitwo}\delby{
       \nodept{\vect{x}}{3}}{s_{1}}\nsftwo{3}{1}+\hsonebfn{3}{\xitwo}\deltwoby{
       \nodept{\vect{x}}{3}}{s_{1}}{s_{2}}\nsftwo{3}{1}\nsftwo{3}{2} \\
-    &= \nsftwo{3}{1}\pbrac{\pbrac{2\xitwo-\xitwo^{2}}\delby{\nodept{\vect{x}}{3}}
-      {s_{1}}+\pbrac{\xitwo^{2}-\xitwo}\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}
+    &= \nsftwo{3}{1}\pbrac{\pbrac{2\xitwo-\xitwosq}\delby{\nodept{\vect{x}}{3}}
+      {s_{1}}+\pbrac{\xitwosq-\xitwo}\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}
       \nsftwo{3}{2}}
   \end{split}
 \end{equation}
@@ -1075,8 +1081,8 @@ $\delby{\nodept{\vect{x}}{3}}{s_{1}}$ gives
 \begin{equation}
   \dotprod{\delby{\fnof{\vect{x}}{1,\xitwo}}{\xione}}{\delby{\nodept{\vect{x}}{3}}
     {s_{1}}} = \nsftwo{3}{1}
-  \pbrac{\pbrac{2\xitwo-\xitwo^{2}}\dotprod{\delby{\nodept{\vect{x}}{3}}{s_{1}}}
-    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}+\pbrac{\xitwo^{2}-\xitwo}\nsftwo{3}{2}
+  \pbrac{\pbrac{2\xitwo-\xitwosq}\dotprod{\delby{\nodept{\vect{x}}{3}}{s_{1}}}
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}}+\pbrac{\xitwosq-\xitwo}\nsftwo{3}{2}
     \dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
     {\delby{\nodept{\vect{x}}{3}}{s_{1}}}}
   \label{eqn:hsonedirectiondotprod}
@@ -1088,14 +1094,14 @@ $\dotprod{\delby{\nodept{\vect{x}}{3}}{s_{1}}}{\delby{\nodept{\vect{x}}{3}}
 \eqnref{eqn:hsonedirectiondotprod} divided by $\nsftwo{3}{1}$ (\ie normalised
 by $\nsftwo{3}{1}$) is the quadratic
 \begin{equation*}
-  \pbrac{2\xitwo-\xitwo^{2}}+\pbrac{\xitwo^{2}-\xitwo}\nsftwo{3}{2}
+  \pbrac{2\xitwo-\xitwosq}+\pbrac{\xitwosq-\xitwo}\nsftwo{3}{2}
   \dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}{\delby{\nodept{\vect{x}}
       {3}}{s_{1}}} 
 \end{equation*}
 or
 \begin{equation*}
   \pbrac{\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
-    {\delby{\nodept{\vect{x}}{3}}{s_{1}}} -1}\xitwo^{2}+
+    {\delby{\nodept{\vect{x}}{3}}{s_{1}}} -1}\xitwosq+
   \pbrac{2-\nsftwo{3}{2}\dotprod{\deltwoby{\nodept{\vect{x}}{3}}{s_{1}}{s_{2}}}
     {\delby{\nodept{\vect{x}}{3}}{s_{1}}}}\xitwo
   \label{eqn:hsonedirectionpolynomial}

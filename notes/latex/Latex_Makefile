@@ -55,7 +55,7 @@ PS2PDF		=	ps2pdf
 PS2PDF_OPTS	=	
 
 DVIPS           =       dvips
-DVIPS_OPTS      =        -Z -n 500 -t a4 -K0 -N0
+DVIPS_OPTS      =        -Z -t a4 -K0 -N0
 
 # latex2html98.1 uses undef as a list operator which is not perl5.6
 LATEX2HTML      =       perl -S latex2html
@@ -86,17 +86,18 @@ LATEX_PSQ	=	latex --shell-escape \\batchmode \
 			'\def\inputfigure\#1{\psfig{figure=\#1.ps}}' \
 			\\input
 
-OPENCMISS_MACROS =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_macros.tex
-OPENCMISS_ABBREV =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_abbreviations.tex
-OPENCMISS_ACRONY =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_acronyms.tex
-OPENCMISS_DEFNS  =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_defns.tex
+OPENCMISS_MACROS  =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_macros.tex
+OPENCMISS_ABBREV  =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_abbreviations.tex
+OPENCMISS_ACRONY  =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_acronyms.tex
+OPENCMISS_DEFNS   =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_defns.tex
+OPENCMISS_SYMBOLS =	${OPENCMISS_ROOT}/documentation/notes/latex/opencmiss_symbols.tex
 
 IS_FIGS = $(findstring .fig,$(FIG_SRC))
 IS_SVGS = $(findstring .svg,$(SVG_SRC))
 IS_PLOTS = $(findstring .gnu,$(PLOT_SRC))
 
 $(MAINFILE).dvi	:	$(MAINFILE).tex $(TEX_SRC) $(BIBS) $(EPS_SRC) $(FIG_SRC) $(SVG_SRC) $(PLOT_SRC) $(GNUPLOT_SRC) \
-			$(OPENCMISS_MACROS)  $(OPENCMISS_ABBREV) $(OPENCMISS_ACRONY) $(OPENCMISS_DEFNS)
+			$(OPENCMISS_MACROS) $(OPENCMISS_ABBREV) $(OPENCMISS_ACRONY) $(OPENCMISS_DEFNS) $(OPENCMISS_SYMBOLS)
 	@if test -z $(IS_FIGS) ; \
 		then : ; \
 		else $(MAKE) -f ${OPENCMISS_ROOT}/documentation/notes/latex/Latex_Makefile figsmake ; \

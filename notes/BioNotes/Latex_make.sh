@@ -13,42 +13,32 @@
 #
 # This is the overall name of the document
 
-MY_MAINFILE=fembemnotes
+MY_MAINFILE=bionotes
 
 #
 # These are the names of the tex sources for the document. If there is
 # more than one source quotation (") marks must be used around the
 # individual sources seperated by spaces
 
-MY_TEX_SRC="titlepage.tex "\
-"fem_basis_fns/fem_basis_fns.tex "\
-"heat_conduction/heat_conduction.tex "\
-"bem/bem.tex "\
-"lin_elasticity/lin_elasticity.tex "\
-"heat_conduction/heat_conduction.tex "\
-"transient_heat_condn/transient_heat_condn.tex "\
-"modal_analysis/modal_analysis.tex "\
-"con_mechanics/con_mechanics.tex "\
-"datafitting/datafitting.tex "\
-"domints_in_bem/domints_in_bem.tex "\
-"timedep_bem/timedep_bem.tex  "\
-"derivative_bie/derivative_bie.tex  "\
+MY_TEX_SRC="bionotes.tex "\
+"titlepage.tex "\
+"biophysics/biophysics.tex "\
+"cardiac_electrophysiology/cardiac_electrophysiology.tex "\
+"electrocardiology/electrocardiology.tex "\
+"tissue_mechanics/tissue_mechanics.tex "\
+"instrumentation/instrumentation.tex "\
 "references.tex"
-
-#	chapter8/FEM8.tex = datafitting
-#	chapter9/FEM9.tex = derivative_bie
 #
 # The names of the eps/figs/(gnu)plot files that go into the document. 
 # if there are none then leave after the ='s sign blank.
 
-MY_EPS_SRC=
-MY_FIG_SRC="fem_basis_fns/figs/*.fig "\
-	  "bem/figs/*.fig "\
-	  "datafitting/figs/*.fig "\
-	  "heat_conduction/figs/*.fig "\
-	  "lin_elasticity/figs/*.fig "\
-	  "transient_heat_condn/figs/*.fig "\
-	  "derivative_bie/figs/*.fig"
+MY_EPS_SRC="biophysics/epsfiles/*.eps "\
+"cardiac_electrophysiology/epsfiles/*.eps "\
+"electrocardiology/epsfiles/*.eps"
+MY_FIG_SRC="biophysics/figs/*.fig "\
+"cardiac_electrophysiology/figs/*.fig "\
+"electrocardiology/figs/*.fig "\
+"figs/*.fig"
 MY_PLOT_SRC=
 MY_GNUPLOT_SRC=
 

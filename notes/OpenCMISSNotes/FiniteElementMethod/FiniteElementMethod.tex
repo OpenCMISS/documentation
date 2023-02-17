@@ -33,26 +33,26 @@
 \section{Two-dimensional Laplace Equation}
 \label{sec:FEMTwoDLaplaceEquation}
 
-We can now extend the finite element method by looking at a problem in two dimensions. Consider Laplace's equation in two dimensions
+We can now extend the finite element method by looking at a problem in two dimensions. Consider the Laplace\footnote{named after \link{https://en.wikipedia.org/wiki/Pierre-Simon_Laplace}{Pierre-Simon Laplace} (1749-1827), a French polymath.} equation\index{Laplace equation}
 \begin{equation}
   \laplacian{}{\fnof{u}{\vectr{x}}}=0
-  \label{eqn:FEMTwoDLaplaceEquation}
+  \label{eqn:FEMLaplaceEquation}
 \end{equation}
-where $\vectr{x}\in\Omega\subset\rntopology{2}$ and $\Gamma=\boundary{\Omega}$.
+where $\vectr{x}\in\Omega\subset\rntopology{n}$ and $\Gamma=\boundary{\Omega}$. For two dimensions $n=2$.
 
 \subsection{Integral equation}
 \label{subsec:FEMTwoDLaplaceIntegralEquation}
 
-The weighted residual integral equation corresponding to \eqnref{eqn:FEMTwoDLaplaceEquation} is
+The weighted residual integral equation corresponding to \eqnref{eqn:FEMLaplaceEquation} is
 \begin{equation}
   \gint{\Omega}{}{\laplacian{}{\fnof{u}{\vectr{x}}}\fnof{w}{\vectr{x}}}{\Omega}=0
-  \label{eqn:FEMTwoDLaplaceWeightedResidual}
+  \label{eqn:FEMLaplaceWeightedResidual}
 \end{equation}
 
 \subsection{Integration by parts}
 \label{subsec:FEMTwoDLaplaceIntegrationByParts}
 
-The multi-dimensional equivalent of integration by parts is the Green-Gauss theorem TODO REF GG. Applying this theorem to \eqnref{eqn:FEMTwoDLaplaceWeightedResidual} gives
+The multi-dimensional equivalent of integration by parts is the Green-Gauss theorem TODO REF GG. Applying this theorem to \eqnref{eqn:FEMLaplaceWeightedResidual} gives
 \begin{equation}
   \gint{\Omega}{}{\laplacian{}{\fnof{u}{\vectr{x}}}\fnof{w}{\vectr{x}}}{\Omega}=
     \gint{\Omega}{}{\dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}-
@@ -62,7 +62,7 @@ where $\vectr{n}$ is the normal to $\Gamma$. Rearranging gives
 \begin{equation}
   \gint{\Omega}{}{\dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}}{\Omega}=
   \gint{\Gamma}{}{\delby{\fnof{u}{\vectr{x}}}{\vectr{n}}\fnof{w}{\vectr{x}}}{\Gamma}
-  \label{eqn:FEMTwoDLaplaceStartingIntegralEquation}
+  \label{eqn:FEMLaplaceStartingIntegralEquation}
 \end{equation}
 
 \subsection{Finite element approximation}
@@ -71,7 +71,7 @@ where $\vectr{n}$ is the normal to $\Gamma$. Rearranging gives
 Let us know discretise the domain into a union of a number of finite
 elements, $\Omega = \gunion{i=1}{N}{\Omega_{i}}$. As shown in
 \figref{fig:FEMTwoDDomain} we can map each element, $\Omega_{i}$, onto
-a normalised element in the $\xi_{1},\xi_{2}$ plane. In each
+a normalised element in the $\xione,\xitwo$ plane. In each
 normalised elements we can interpolate the geometry of the problem
 using basis functions \ie
 \begin{equation}
@@ -86,31 +86,31 @@ and, also, then dependent variable, $u$ \ie
   element mesh for a two-dimensional problem.}{An example of a finite
   element mesh for a two-dimensional problem. Each element
   $\Omega_{i}$ is mapped onto a normalised element in the
-  $\xi_{1},\xi_{2}$ plane.}{fig:FEMTwoDDomain}{0.6}
+  $\xione,\xitwo$ plane.}{fig:FEMTwoDDomain}{0.6}
 
-Now, the integrand on the left hand side of \eqnref{eqn:FEMTwoDLaplaceStartingIntegralEquation} can be now be evaluated using
+Now, the integrand on the left hand side of \eqnref{eqn:FEMLaplaceStartingIntegralEquation} can be now be evaluated using
 \begin{equation}
   \dotprod{\gradient{}{\fnof{u}{\vectr{x}}}}{\gradient{}{\fnof{w}{\vectr{x}}}}=
-  \delby{\fnof{u}{\vectr{x}}}{x_{k}}\delby{\fnof{w}{\vectr{x}}}{x_{k}}=
-  \delby{\fnof{u}{\vectr{\xi}}}{\xi_{i}}\delby{\xi_{i}}{x_{k}}\delby{\fnof{w}{\vectr{\xi}}}{\xi_{j}}\delby{\xi_{j}}{x_{k}}
+  \delby{\fnof{u}{\vectr{x}}}{x^{k}}\delby{\fnof{w}{\vectr{x}}}{x^{k}}=
+  \delby{\fnof{u}{\vectr{\xi}}}{\xi^{i}}\delby{\xi^{i}}{x^{k}}\delby{\fnof{w}{\vectr{\xi}}}{\xi^{j}}\delby{\xi^{j}}{x^{k}}
 \end{equation}
-where the geometric terms $\delby{\xi_{i}}{x_{k}}$ can be found from
+where the geometric terms $\delby{\xi^{i}}{x^{k}}$ can be found from
 the inverse matrix
 \begin{equation}
-  \sqbrac{\delby{\xi_{i}}{x_{k}}}=\inverse{\sqbrac{\delby{x_{k}}{\xi_{i}}}}
+  \sqbrac{\delby{\xi^{i}}{x^{k}}}=\inverse{\sqbrac{\delby{x^{k}}{\xi^{i}}}}
 \end{equation}
 which, for a \twodal element, is given by
 \begin{equation}
   \begin{bmatrix}
-    \delby{\xi_{1}}{x} & \delby{\xi_{1}}{x} \\
-    \delby{\xi_{2}}{y} & \delby{\xi_{2}}{y}
+    \delby{\xione}{x} & \delby{\xione}{x} \\
+    \delby{\xitwo}{y} & \delby{\xitwo}{y}
   \end{bmatrix} = \inverse{ \begin{bmatrix}
-    \delby{x}{\xi_{1}} & \delby{x}{\xi_{2}} \\
-    \delby{y}{\xi_{1}} & \delby{y}{\xi_{2}}
-  \end{bmatrix}}=\dfrac{1}{\abs{\delby{x}{\xi_{1}}\delby{y}{\xi_{2}}-\delby{x}{\xi_{2}}\delby{y}{\xi_{1}}}}
+    \delby{x}{\xione} & \delby{x}{\xitwo} \\
+    \delby{y}{\xione} & \delby{y}{\xitwo}
+  \end{bmatrix}}=\dfrac{1}{\abs{\delby{x}{\xione}\delby{y}{\xitwo}-\delby{x}{\xitwo}\delby{y}{\xione}}}
   \begin{bmatrix}
-    \delby{y}{\xi_{2}} & -\delby{x}{\xi_{2}} \\
-    -\delby{y}{\xi_{1}} & \delby{x}{\xi_{1}}    
+    \delby{y}{\xitwo} & -\delby{x}{\xitwo} \\
+    -\delby{y}{\xione} & \delby{x}{\xione}    
   \end{bmatrix}
 \end{equation}
 
@@ -141,18 +141,18 @@ example as shown in \figref{fig:FEMTwoDLaplaceDomain}.
 For the geometric coordinates we have for each element $\Omega_{i}$
 \begin{equation}
   \begin{bmatrix}
-    \fnof{x}{\xi_{1},\xi_{2}} \\
-    \fnof{y}{\xi_{1},\xi_{2}}
+    \fnof{x}{\xione,\xitwo} \\
+    \fnof{y}{\xione,\xitwo}
   \end{bmatrix}= \begin{bmatrix}
-    x_{i}+\dfrac{\xi_{1}L}{N_{x}} \\
-    y_{i}+\dfrac{\xi_{2}H}{N_{y}}  
+    x_{i}+\dfrac{\xione L}{N_{x}} \\
+    y_{i}+\dfrac{\xitwo H}{N_{y}}  
   \end{bmatrix}
 \end{equation}
 where $\pbrac{x_{i},y_{i}}$ is the coordinate of the bottom left of element $i$. We thus have
 \begin{equation}
   \begin{bmatrix}
-    \delby{x}{\xi_{1}} & \delby{x}{\xi_{2}} \\
-    \delby{y}{\xi_{1}} & \delby{y}{\xi_{2}}     
+    \delby{x}{\xione} & \delby{x}{\xitwo} \\
+    \delby{y}{\xione} & \delby{y}{\xitwo}     
   \end{bmatrix} = \begin{bmatrix}
     \dfrac{L}{N_{x}} & 0 \\
     0 & \dfrac{H}{N_{y}}
@@ -162,8 +162,8 @@ where $\pbrac{x_{i},y_{i}}$ is the coordinate of the bottom left of element $i$.
 Inverting we have
 \begin{equation}
   \begin{bmatrix}
-    \fnof{\xi_{1}}{x,y} \\
-    \fnof{\xi_{2}}{x,y}
+    \fnof{\xione}{x,y} \\
+    \fnof{\xitwo}{x,y}
   \end{bmatrix} = \begin{bmatrix}
     \dfrac{\pbrac{x-x_{i}}N_{x}}{L} \\
     \dfrac{\pbrac{y-y_{i}}N_{y}}{H} 
@@ -172,8 +172,8 @@ Inverting we have
 and
 \begin{equation}
   \begin{bmatrix}
-    \delby{\xi_{1}}{x} & \delby{\xi_{1}}{x} \\
-    \delby{\xi_{2}}{x} & \delby{\xi_{2}}{y}         
+    \delby{\xione}{x} & \delby{\xione}{x} \\
+    \delby{\xitwo}{x} & \delby{\xitwo}{y}         
   \end{bmatrix} = \dfrac{1}{\frac{L}{N_{x}}\frac{H}{N_{y}}-0.0} \begin{bmatrix}
     \dfrac{H}{N_{y}} & 0 \\
     0 & \dfrac{L}{N_{x}}
@@ -183,7 +183,7 @@ and
   \end{bmatrix}
 \end{equation}
 
-The Jacobian between $\pbrac{x,y}$ and $\pbrac{\xi_{1},\xi_{2}}$ is given by
+The Jacobian between $\pbrac{x,y}$ and $\pbrac{\xione,\xitwo}$ is given by
 \begin{equation}
   \abs{\fnof{J}{\vectr{\xi}}}=\dfrac{LH}{N_{x}N_{y}}
 \end{equation}
@@ -195,229 +195,76 @@ Now, if we consider the LHS of \eqnref{eqn:FEMTwoDLaplaceStartingIntegralEquatio
     \giint{0}{H}{0}{L}{\gradient{}{\fnof{u}{x,y}}\transpose{\pbrac{\gradient{}{\fnof{w}{x,y}}}}}{x}{y}\\
     &=\giint{0}{H}{0}{L}{\begin{bmatrix}\delby{u}{x}&\delby{u}{y}\end{bmatrix}
       \transpose{\begin{bmatrix}\delby{w}{x}&\delby{w}{x}\end{bmatrix}}}{x}{y} \\
-    &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}\delby{u}{\xi_{1}}&\delby{u}{\xi_{2}}\end{bmatrix}\begin{bmatrix}
-      \delby{\xi_{1}}{x} & \delby{\xi_{1}}{y} \\
-      \delby{\xi_{2}}{x} & \delby{\xi_{2}}{y}
+    &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}\delby{u}{\xione}&\delby{u}{\xitwo}\end{bmatrix}\begin{bmatrix}
+      \delby{\xione}{x} & \delby{\xione}{y} \\
+      \delby{\xitwo}{x} & \delby{\xitwo}{y}
     \end{bmatrix} \\
-    &\qquad\qquad\qquad\transpose{\pbrac{\begin{bmatrix}\delby{w}{\xi_{1}}&\delby{w}{\xi_{2}}\end{bmatrix}\begin{bmatrix}
-      \delby{\xi_{1}}{x} & \delby{\xi_{1}}{y} \\
-      \delby{\xi_{2}}{x} & \delby{\xi_{2}}{y}
-    \end{bmatrix}}}\abs{\fnof{J}{\xi_{1},\xi_{2}}}\,\exteriorderivop\xi_{1}\wedge\exteriorderivop\xi_{2} \\ 
-    &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}\delby{u}{\xi_{1}}&\delby{u}{\xi_{2}}\end{bmatrix}\begin{bmatrix}
+    &\qquad\qquad\qquad\transpose{\pbrac{\begin{bmatrix}\delby{w}{\xione}&\delby{w}{\xitwo}\end{bmatrix}\begin{bmatrix}
+      \delby{\xione}{x} & \delby{\xione}{y} \\
+      \delby{\xitwo}{x} & \delby{\xitwo}{y}
+    \end{bmatrix}}}\abs{\fnof{J}{\xione,\xitwo}}\,\exteriorderivop\xione\wedge\exteriorderivop\xitwo \\ 
+    &=\dintl{0}{1}\dintl{0}{1}\begin{bmatrix}\delby{u}{\xione}&\delby{u}{\xitwo}\end{bmatrix}\begin{bmatrix}
       \dfrac{N_{x}}{L} & 0 \\
       0 & \dfrac{N_{y}}{H}
     \end{bmatrix} \\
-    &\qquad\qquad\qquad\transpose{\pbrac{\begin{bmatrix}\delby{w}{\xi_{1}}&\delby{w}{\xi_{2}}\end{bmatrix}\begin{bmatrix}
+    &\qquad\qquad\qquad\transpose{\pbrac{\begin{bmatrix}\delby{w}{\xione}&\delby{w}{\xitwo}\end{bmatrix}\begin{bmatrix}
       \dfrac{N_{x}}{L} & 0 \\
       0 & \dfrac{N_{y}}{H}
-    \end{bmatrix}}}\dfrac{LH}{N_{x}N_{y}}\,\exteriorderivop\xi_{1}\wedge\exteriorderivop\xi_{2} \\
-    &=\giint{0}{1}{0}{1}{\begin{bmatrix}\delby{u}{\xi_{1}}\dfrac{N_{x}}{L}&\delby{u}{\xi_{2}}\dfrac{N_{y}}{H}\end{bmatrix}
-      \transpose{\begin{bmatrix}\delby{w}{\xi_{1}}\dfrac{N_{x}}{L}&\delby{w}{\xi_{2}}\dfrac{N_{y}}{H}\end{bmatrix}}
-      \dfrac{LH}{N_{x}N_{y}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\delby{u}{\xi_{1}}\delby{w}{\xi_{1}}\dfrac{N_{x}^{2}}{L^{2}}+
-        \delby{u}{\xi_{2}}\delby{w}{\xi_{2}}\dfrac{N_{y}^{2}}{H^{2}}}\dfrac{LH}{N_{x}N_{y}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\delby{u}{\xi_{1}}\delby{w}{\xi_{1}}\dfrac{H N_{x}}{L N_{y}}+
-        \delby{u}{\xi_{2}}\delby{w}{\xi_{2}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}
+    \end{bmatrix}}}\dfrac{LH}{N_{x}N_{y}}\,\exteriorderivop\xione\wedge\exteriorderivop\xitwo \\
+    &=\giint{0}{1}{0}{1}{\begin{bmatrix}\delby{u}{\xione}\dfrac{N_{x}}{L}&\delby{u}{\xitwo}\dfrac{N_{y}}{H}\end{bmatrix}
+      \transpose{\begin{bmatrix}\delby{w}{\xione}\dfrac{N_{x}}{L}&\delby{w}{\xitwo}\dfrac{N_{y}}{H}\end{bmatrix}}
+      \dfrac{LH}{N_{x}N_{y}}}{\xione}{\xitwo}\\
+    &=\giint{0}{1}{0}{1}{\pbrac{\delby{u}{\xione}\delby{w}{\xione}\dfrac{N_{x}^{2}}{L^{2}}+
+        \delby{u}{\xitwo}\delby{w}{\xitwo}\dfrac{N_{y}^{2}}{H^{2}}}\dfrac{LH}{N_{x}N_{y}}}{\xione}{\xitwo}\\
+    &=\giint{0}{1}{0}{1}{\pbrac{\delby{u}{\xione}\delby{w}{\xione}\dfrac{H N_{x}}{L N_{y}}+
+        \delby{u}{\xitwo}\delby{w}{\xitwo}\dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo}
   \end{aligned}
 \end{equation}
 
 We can now introduce basis functions to interpolate
-$\fnof{u}{\xi_{1},\xi_{2}}=\lbfn{n}{\xi_{1},\xi_{2}}\nodept{u}{n}$ and
-$\fnof{w}{\xi_{1},\xi_{2}}=\lbfn{m}{\xi_{1},\xi_{2}}$. The elemental
+$\fnof{u}{\xione,\xitwo}=\lbfn{n}{\xione,\xitwo}\nodept{u}{n}$ and
+$\fnof{w}{\xione,\xitwo}=\lbfn{m}{\xione,\xitwo}$. The elemental
 stiffness matrix for element $i$ thus becomes
 \begin{equation}
-  K_{mn}=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{m}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{n}{\xi_{1},\xi_{2}}}{\xi_{1}}
-      \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{m}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{n}{\xi_{1},\xi_{2}}}{\xi_{2}}
-      \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}
+  K_{mn}=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{m}{\xione,\xitwo}}{\xione}\delby{\lbfn{n}{\xione,\xitwo}}{\xione}
+      \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{m}{\xione,\xitwo}}{\xitwo}\delby{\lbfn{n}{\xione,\xitwo}}{\xitwo}
+      \dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo}
 \end{equation}
 
-Consider using bilinear Lagrange basis functions \ie TODO FIX
-ALIGNMENT
-\begin{equation}
-  \begin{aligned}
-    \lbfn{1}{\xi_{1},\xi_{2}}=\pbrac{1-\xi_{1}}\pbrac{1-\xi_{2}}&\quad&\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}=-\pbrac{1-\xi_{2}}\\ &&\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}=-\pbrac{1-\xi_{1}}
-    \\ \lbfn{2}{\xi_{1},\xi_{2}}=\xi_{1}\pbrac{1-\xi_{2}}&\qquad&\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}=\pbrac{1-\xi_{2}}
-    \\ &&\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}=-\xi_{1}
-    \\ \lbfn{3}{\xi_{1},\xi_{2}}=\pbrac{1-\xi_{1}}\xi_{2}&\qquad&\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}=-\xi_{2}
-    \\ &&\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}=1-\xi_{1}
-    \\ \lbfn{4}{\xi_{1},\xi_{2}}=\xi_{1}\xi_{2}&\qquad&\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}=\xi_{2}
-    \\ &&\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}=\xi_{1}
-  \end{aligned}
-\end{equation}
+Consider using bilinear Lagrange basis functions \ie 
+\begin{alignat*}{3}
+  \lbfn{1}{\xione,\xitwo}&=\pbrac{1-\xione}\pbrac{1-\xitwo}&\quad&&\delby{\lbfn{1}{\xione,\xitwo}}{\xione}&=-\pbrac{1-\xitwo}\\
+  &&&&\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}&=-\pbrac{1-\xione} \\
+  \lbfn{2}{\xione,\xitwo}&=\xione\pbrac{1-\xitwo}&\qquad&&\delby{\lbfn{2}{\xione,\xitwo}}{\xione}&=\pbrac{1-\xitwo}\\
+  &&&&\delby{\lbfn{2}{\xione,\xitwo}}{\xitwo}&=-\xione\\
+  \lbfn{3}{\xione,\xitwo}&=\pbrac{1-\xione}\xitwo&\qquad&&\delby{\lbfn{3}{\xione,\xitwo}}{\xione}&=-\xitwo\\
+  &&&&\delby{\lbfn{3}{\xione,\xitwo}}{\xitwo}&=\pbrac{1-\xione}\\
+  \lbfn{4}{\xione,\xitwo}&=\xione\xitwo&\qquad&&\delby{\lbfn{4}{\xione,\xitwo}}{\xione}&=\xitwo\\
+  &&&&\delby{\lbfn{4}{\xione,\xitwo}}{\xitwo}&=\xione
+\end{alignat*}
 
 The integrals for the elemental stiffness matrix are thus
 
 \begin{equation}
   \begin{aligned}
-    K_{11}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\pbrac{1-\xi_{2}}.-\pbrac{1-\xi_{2}}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\pbrac{1-\xi_{1}}.-\pbrac{1-\xi_{1}}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{1-2\xi_{2}+\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{1-2\xi_{1}+\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{\xi_{2}-\xi_{2}^{2}+\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{\xi_{1}-\xi_{1}^{2}+\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{3 H N_{x}}}{\xi_{2}} \\
+    K_{11}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{1}{\xione,\xitwo}}{\xione}\delby{\lbfn{1}{\xione,\xitwo}}{\xione}
+        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}\delby{\lbfn{1}{\xione,\xitwo}}{\xitwo}
+        \dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo}\\
+    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\pbrac{1-\xitwo}.-\pbrac{1-\xitwo}}\dfrac{H N_{x}}{L N_{y}}+
+    \pbrac{-\pbrac{1-\xione}.-\pbrac{1-\xione}}\dfrac{L N_{y}}{H N_{x}}}}{\xione}{\xitwo} \\
+    &=\dfrac{H N_{x}}{L N_{y}}\giint{0}{1}{0}{1}{\pbrac{1-2\xitwo+\xitwosq}}{\xione}{\xitwo}+
+    \dfrac{L N_{y}}{H N_{x}}\giint{0}{1}{0}{1}{\pbrac{1-2\xione+\xionesq}}{\xione}{\xitwo} \\
+    &=\dfrac{H N_{x}}{L N_{y}}\gint{0}{1}{\sqbrac{\pbrac{\xitwo-\xitwosq+\dfrac{\xitwocube}{3}}}_{0}^{1}}{\xione}+
+    \dfrac{L N_{y}}{H N_{x}}\gint{0}{1}{\sqbrac{\pbrac{\xione-\xionesq+\dfrac{\xionecube}{3}}}_{0}^{1}}{\xitwo} \\
+    &=\dfrac{H N_{x}}{L N_{y}}\gint{0}{1}{\dfrac{1}{3}}{\xione}+\dfrac{L N_{y}}{H N_{x}}\gint{0}{1}{\dfrac{1}{3}}{\xitwo} \\
     &=\dfrac{H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}}
+    &=\dfrac{2 H^{2}N_{x}^{2}+2 L^{2}N_{y}^{2}}{6 L H N_{x} N_{y}}
   \end{aligned}
 \end{equation}
 
-\begin{equation}
-  \begin{aligned}
-    K_{12}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\pbrac{1-\xi_{2}}.\pbrac{1-\xi_{2}}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\pbrac{1-\xi_{1}}.-\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{-1+2\xi_{2}-\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{\xi_{1}-\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{-\xi_{2}+\xi_{2}^{2}-\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{\dfrac{\xi_{1}^{2}}{2}-\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{-H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{6 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{-H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-2 L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
+where the remaining terms for the elment stiffness matrix are given in \subsecref{subsec:ElementStiffnessMatrixLaplace2D}
 
-\begin{equation}
-  \begin{aligned}
-    K_{13}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\pbrac{1-\xi_{2}}.-\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\pbrac{1-\xi_{1}}.\pbrac{1-\xi_{1}}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{\xi_{2}-\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{-1+2\xi_{1}-\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{\dfrac{\xi_{2}^{2}}{2}-\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{-\xi_{1}+\xi_{1}^{2}-\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{-H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{6 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{H N_{x}}{6 L N_{y}}+\dfrac{-L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}-2 H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{14}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{1}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\pbrac{1-\xi_{2}}.\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\pbrac{1-\xi_{1}}.\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{-\xi_{2}+\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{-\xi_{1}+\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{-\dfrac{\xi_{2}^{2}}{2}+\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{-\dfrac{\xi_{1}^{2}}{2}+\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{-H N_{x}}{6 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{-L N_{y}}{6 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{-H N_{x}}{6 L N_{y}}+\dfrac{-L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-L^{2}N_{y}^{2}-H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{22}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{\pbrac{1-\xi_{2}}.\pbrac{1-\xi_{2}}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\xi_{1}.-\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{1-\xi_{2}+\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\xi_{1}^{2}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{\xi_{2}-\xi_{2}^{2}+\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\dfrac{\xi_{1}^{3}}{3}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{3 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{23}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{\pbrac{1-\xi_{2}}.-\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\xi_{1}.\pbrac{1-\xi_{1}}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{-\xi_{2}+\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{-\xi_{1}+\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{-\dfrac{\xi_{2}^{2}}{2}+\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{-\dfrac{\xi_{2}^{2}}{2}+\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{-H N_{x}}{6 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{-L N_{y}}{6 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{-H N_{x}}{6 L N_{y}}+\dfrac{-L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-L^{2}N_{y}^{2}-H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{24}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{2}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{\pbrac{1-\xi_{2}}.\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{-\xi_{1}.\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\pbrac{\xi_{2}-\xi_{2}^{2}}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{-\xi_{1}^{2}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\pbrac{\dfrac{\xi_{2}^{2}}{2}-\dfrac{\xi_{2}^{3}}{3}}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{-\dfrac{\xi_{1}^{3}}{3}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{H N_{x}}{6 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{-L N_{y}}{3 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{H N_{x}}{6 L N_{y}}+\dfrac{-L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}-2 H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{33}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\xi_{2}.-\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{\pbrac{1-\xi_{1}}.\pbrac{1-\xi_{1}}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\xi_{2}^{2}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{1-2\xi_{1}+\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\dfrac{\xi_{2}^{3}}{3}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{\xi_{1}-\xi_{1}^{2}+\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{3 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{34}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{3}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{-\xi_{2}.\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{\pbrac{1-\xi_{1}}.\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{-\xi_{2}^{2}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\pbrac{\xi_{1}-\xi_{1}^{2}}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{-\dfrac{\xi_{2}^{3}}{3}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\pbrac{\dfrac{\xi_{1}^{2}}{2}-\dfrac{\xi_{1}^{3}}{3}}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{-H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{6 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{-H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{6 H N_{x}} \\
-    &=\dfrac{-2 L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-\begin{equation}
-  \begin{aligned}
-    K_{44}&=\giint{0}{1}{0}{1}{\pbrac{\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{1}}
-        \dfrac{H N_{x}}{L N_{y}}+\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}\delby{\lbfn{4}{\xi_{1},\xi_{2}}}{\xi_{2}}
-        \dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}}\\
-    &=\giint{0}{1}{0}{1}{\pbrac{\pbrac{\xi_{2}.\xi_{2}}\dfrac{H N_{x}}{L N_{y}}+
-    \pbrac{\xi_{1}.\xi_{1}}\dfrac{L N_{y}}{H N_{x}}}}{\xi_{1}}{\xi_{2}} \\
-    &=\giint{0}{1}{0}{1}{\xi_{2}^{2}\dfrac{H N_{x}}{L N_{y}}}{\xi_{1}}{\xi_{2}}+
-    \giint{0}{1}{0}{1}{\xi_{1}^{2}\dfrac{L N_{y}}{H N_{x}}}{\xi_{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\sqbrac{\dfrac{\xi_{2}^{3}}{3}\dfrac{H N_{x}}{L N_{y}}}_{0}^{1}}{\xi_{1}}+
-    \gint{0}{1}{\sqbrac{\dfrac{\xi_{1}^{3}}{3}\dfrac{L N_{y}}{H N_{x}}}_{0}^{1}}{\xi_{2}} \\
-    &=\gint{0}{1}{\dfrac{H N_{x}}{3 L N_{y}}}{\xi_{1}}+\gint{0}{1}{\dfrac{L N_{y}}{3 H N_{x}}}{\xi_{2}} \\
-    &=\dfrac{H N_{x}}{3 L N_{y}}+\dfrac{L N_{y}}{3 H N_{x}} \\
-    &=\dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}}
-  \end{aligned}
-\end{equation}
-
-The element stiffness matrix is thus
+The element stiffness matrix is thus given by \eqnref{eqn:FEMTwoDLaplaceElementStiffnessMatrix} \ie
 \begin{equation}
   K_{mn}=\begin{bmatrix}
   \dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}} & \dfrac{-2 L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}} &
@@ -429,10 +276,12 @@ The element stiffness matrix is thus
   \dfrac{-L^{2}N_{y}^{2}-H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}} & \dfrac{L^{2}N_{y}^{2}-2 H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}} &
   \dfrac{-2 L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{6 L H N_{x} N_{y}} & \dfrac{L^{2}N_{y}^{2}+H^{2}N_{x}^{2}}{3 L H N_{x} N_{y}}
   \end{bmatrix}
-  \label{eqn:FEMTwoDLaplaceElementStiffnessMatrix}
 \end{equation}
 
-For the case where $L=H$ and $N_{x}=N_{y}$ we have
+For the case where we have square elements \ie
+$\dfrac{L}{N_{x}}=\dfrac{H}{N_{y}}$, the element stiffness matrix is
+given by \eqnref{eqn:FEMTwoDLaplaceSquareElementStiffnessMatrix}, that
+is
 \begin{equation}
   K_{mn}=\begin{bmatrix}
   +\frac{2}{3} & -\frac{1}{6} & -\frac{1}{6} & -\frac{1}{3} \\
@@ -440,7 +289,6 @@ For the case where $L=H$ and $N_{x}=N_{y}$ we have
   -\frac{1}{6} & -\frac{1}{3} & +\frac{2}{3} & -\frac{1}{6} \\
   -\frac{1}{3} & -\frac{1}{6} & -\frac{1}{6} & +\frac{2}{3}
   \end{bmatrix}
-  \label{eqn:FEMTwoDLaplaceRegularElementStiffnessMatrix}  
 \end{equation}
  
 \subsection{Assembly}
@@ -449,26 +297,28 @@ For the case where $L=H$ and $N_{x}=N_{y}$ we have
 The next stage of the finite element method is to assemble the
 individual elemental stiffness matrices into a global stiffness
 matrix. For the example show in \figref{fig:FEMTwoDLaplaceDomain}
-where $L=H$ and $N=N_{x}=N_{y}$ and so the elemental stiffness matrix is
-given by \eqnref{eqn:FEMTwoDLaplaceElementStiffnessMatrix} we have
+where $L=H$ and $N=N_{x}=N_{y}$ and so the elements are square and the
+elemental stiffness matrix is given by
+\eqnref{eqn:FEMTwoDLaplaceSquareElementStiffnessMatrix} and thus we
+have
 \begin{equation}
   \matr{K}=\tiny\begin{bmatrix}
-  \frac{2}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  -\frac{1}{6} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & -\frac{1}{6} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & -\frac{1}{6} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & -\frac{1}{6} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0 & -\frac{1}{6} & \frac{2}{3} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 \\
-  -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}+\frac{2}{3}\\+\frac{2}{3}+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 \\
-  0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}+\frac{2}{3}\\+\frac{2}{3}+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & 0 & 0 & 0 \\
-  0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 \\
-  0 & 0 & 0 & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}+\frac{2}{3}\\+\frac{2}{3}+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 \\
-  0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}+\frac{2}{3}\\+\frac{2}{3}+\frac{2}{3}\end{matrix} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} \\
-  0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \frac{2}{3} & -\frac{1}{6} & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & -\frac{1}{6} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & -\frac{1}{6} & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & \begin{matrix}-\frac{1}{6}\\ \hfil{ }-\frac{1}{6}\end{matrix} & -\frac{1}{3} & 0 & -\frac{1}{6} & \begin{matrix}\frac{2}{3}\\+\frac{2}{3}\end{matrix} & -\frac{1}{6} \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & \frac{2}{3}
+  \fracc{Red}{2}{3} & \mathcolor{Red}-\fracc{Red}{1}{6} & 0 & 0 & \mathcolor{Red}-\fracc{Red}{1}{6} & \mathcolor{Red}-\fracc{Red}{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  \mathcolor{Red}-\fracc{Red}{1}{6} & \begin{matrix}\fracc{Red}{2}{3}\\\mathcolor{Green}+\fracc{Green}{2}{3}\end{matrix} & \mathcolor{Green}-\fracc{Green}{1}{6} & 0 & \mathcolor{Red}-\fracc{Red}{1}{3} & \begin{matrix}\mathcolor{Red}-\fracc{Red}{1}{6}\\ \hfil{ }\mathcolor{Green}-\fracc{Green}{1}{6}\end{matrix} & \mathcolor{Green}-\fracc{Green}{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & \mathcolor{Green}-\fracc{Green}{1}{6} & \begin{matrix}\fracc{Green}{2}{3}\\\mathcolor{Blue}+\fracc{Blue}{2}{3}\end{matrix} & \mathcolor{Blue}-\fracc{Blue}{1}{6} & 0 & \mathcolor{Green}-\fracc{Green}{1}{3} & \begin{matrix}\mathcolor{Green}-\fracc{Green}{1}{6}\\ \hfil{ }\mathcolor{Blue}-\fracc{Blue}{1}{6}\end{matrix} &\mathcolor{Blue}-\fracc{Blue}{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & \mathcolor{Blue}-\fracc{Blue}{1}{6} & \fracc{Blue}{2}{3} & 0 & 0 & \mathcolor{Blue}-\fracc{Blue}{1}{3} & \mathcolor{Blue}-\fracc{Blue}{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  \mathcolor{Red}-\fracc{Red}{1}{6} & \mathcolor{Red}-\fracc{Red}{1}{3} & 0 & 0 & \begin{matrix}\fracc{Red}{2}{3}\\ \mathcolor{Cyan}+\fracc{Cyan}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Red}-\fracc{Red}{1}{6}\\ \hfil{ }\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\end{matrix} & 0 & 0 & \mathcolor{Cyan}-\fracc{Cyan}{1}{6} & \mathcolor{Cyan}-\fracc{Cyan}{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 \\
+  \mathcolor{Red}-\fracc{Red}{1}{3} & \begin{matrix}\mathcolor{Red}-\fracc{Red}{1}{6}\\ \hfil{ }\mathcolor{Green}-\fracc{Green}{1}{6}\end{matrix} & \mathcolor{Green}-\fracc{Green}{1}{3} & 0 & \begin{matrix}\mathcolor{Red}-\fracc{Red}{1}{6}\\ \hfil{ }\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\end{matrix} & \begin{matrix}\fracc{Red}{2}{3}\mathcolor{Green}+\fracc{Green}{2}{3}\\ \mathcolor{Cyan}+\fracc{Cyan}{2}{3}\mathcolor{Magenta}+\fracc{Magenta}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Green}-\fracc{Green}{1}{6}\\ \hfil{ }\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\end{matrix} & 0 & \mathcolor{Cyan}-\fracc{Cyan}{1}{3} & \begin{matrix}\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\\ \hfil{ }\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\end{matrix} & \mathcolor{Magenta}-\fracc{Magenta}{1}{3} & 0 & 0 & 0 & 0 & 0 \\
+  0 & \mathcolor{Green}-\fracc{Green}{1}{3} & \begin{matrix}\mathcolor{Green}-\fracc{Green}{1}{6}\\ \hfil{ }\mathcolor{Blue}-\fracc{Blue}{1}{6}\end{matrix} & \mathcolor{Blue}-\fracc{Blue}{1}{3} & 0 & \begin{matrix}\mathcolor{Green}-\fracc{Green}{1}{6}\\ \hfil{ }\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\end{matrix} & \begin{matrix}\fracc{Green}{2}{3}\mathcolor{Blue}+\fracc{Blue}{2}{3}\\ \mathcolor{Magenta}+\fracc{Magenta}{2}{3}\mathcolor{Gold}+\fracc{Gold}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Blue}-\fracc{Blue}{1}{6}\\ \hfil{ }\mathcolor{Gold}-\fracc{Gold}{1}{6}\end{matrix} & 0 & \mathcolor{Magenta}-\fracc{Magenta}{1}{3} & \begin{matrix}\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\\ \hfil{ }\mathcolor{Gold}-\fracc{Gold}{1}{6}\end{matrix} & \mathcolor{Gold}-\fracc{Gold}{1}{3} & 0 & 0 & 0 & 0 \\
+  0 & 0 & \mathcolor{Blue}-\fracc{Blue}{1}{3} & \mathcolor{Blue}-\fracc{Blue}{1}{6} & 0 & 0 & \begin{matrix}\mathcolor{Blue}-\fracc{Blue}{1}{6}\\ \hfil{ }\mathcolor{Gold}-\fracc{Gold}{1}{6}\end{matrix} & \begin{matrix}\fracc{Blue}{2}{3}\\ \mathcolor{Gold}+\fracc{Gold}{2}{3}\end{matrix} & 0 & 0 & \mathcolor{Gold}-\fracc{Gold}{1}{3} & \mathcolor{Gold}-\fracc{Gold}{1}{6} & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & \mathcolor{Cyan}-\fracc{Cyan}{1}{6} & \mathcolor{Cyan}-\fracc{Cyan}{1}{3} & 0 & 0 & \begin{matrix}\fracc{Cyan}{2}{3}\\ \mathcolor{Purple}+\fracc{Purple}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\\ \hfil{ }\mathcolor{Purple}-\fracc{Purple}{1}{6}\end{matrix} & 0 & 0 & \mathcolor{Purple}-\fracc{Purple}{1}{6} & \mathcolor{Purple}-\fracc{Purple}{1}{3} & 0 & 0 \\
+  0 & 0 & 0 & 0 & \mathcolor{Cyan}-\fracc{Cyan}{1}{3} & \begin{matrix}\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\\ \hfil{ }\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\end{matrix} & \mathcolor{Magenta}-\fracc{Magenta}{1}{3} & 0 & \begin{matrix}\mathcolor{Cyan}-\fracc{Cyan}{1}{6}\\ \hfil{ }\mathcolor{Purple}-\fracc{Purple}{1}{6}\end{matrix} & \begin{matrix}\fracc{Cyan}{2}{3}\mathcolor{Magenta}+\fracc{Magenta}{2}{3}\\\mathcolor{Purple}+\fracc{Purple}{2}{3}\mathcolor{Orange}+\fracc{Orange}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\\ \hfil{ }\mathcolor{Orange}-\fracc{Orange}{1}{6}\end{matrix} & 0 & \mathcolor{Purple}-\fracc{Purple}{1}{3} & \begin{matrix}\mathcolor{Purple}-\fracc{Purple}{1}{6}\\ \hfil{ }\mathcolor{Orange}-\fracc{Orange}{1}{6}\end{matrix} & \mathcolor{Orange}-\fracc{Orange}{1}{3} & 0 \\
+  0 & 0 & 0 & 0 & 0 & \mathcolor{Magenta}-\fracc{Magenta}{1}{3} & \begin{matrix}\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\\ \hfil{ }\mathcolor{Gold}-\fracc{Gold}{1}{6}\end{matrix} & \mathcolor{Gold}-\fracc{Gold}{1}{3} & 0 & \begin{matrix}\mathcolor{Magenta}-\fracc{Magenta}{1}{6}\\ \hfil{ }\mathcolor{Orange}-\fracc{Orange}{1}{6}\end{matrix} & \begin{matrix}\fracc{Magenta}{2}{3}\mathcolor{Gold}+\fracc{Gold}{2}{3}\\ \mathcolor{Orange}+\fracc{Orange}{2}{3}\mathcolor{Lime}+\fracc{Lime}{2}{3}\end{matrix} & \begin{matrix}\mathcolor{Gold}-\fracc{Gold}{1}{6}\\ \hfil{ }\mathcolor{Lime}-\fracc{Lime}{1}{6}\end{matrix} & 0 & \mathcolor{Orange}-\fracc{Orange}{1}{3} & \begin{matrix}\mathcolor{Orange}-\fracc{Orange}{1}{6}\\ \hfil{ }\mathcolor{Lime}-\fracc{Lime}{1}{6}\end{matrix} & \mathcolor{Lime}-\fracc{Lime}{1}{3} \\
+  0 & 0 & 0 & 0 & 0 & 0 & \mathcolor{Gold}-\fracc{Gold}{1}{3} & \mathcolor{Gold}-\fracc{Gold}{1}{6} & 0 & 0 & \begin{matrix}\mathcolor{Gold}-\fracc{Gold}{1}{6}\\ \hfil{ }\mathcolor{Lime}-\fracc{Lime}{1}{6}\end{matrix} & \begin{matrix}\fracc{Gold}{2}{3}\\ \mathcolor{Lime}+\fracc{Lime}{2}{3}\end{matrix} & 0 & 0 & \mathcolor{Lime}-\fracc{Lime}{1}{3} & \mathcolor{Lime}-\fracc{Lime}{1}{6} \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mathcolor{Purple}-\fracc{Purple}{1}{6} & \mathcolor{Purple}-\fracc{Purple}{1}{3} & 0 & 0 & \fracc{Purple}{2}{3} & \mathcolor{Purple}-\fracc{Purple}{1}{6} & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mathcolor{Purple}-\fracc{Purple}{1}{3} & \begin{matrix}\mathcolor{Purple}-\fracc{Purple}{1}{6}\\ \hfil{ }\mathcolor{Orange}-\fracc{Orange}{1}{6}\end{matrix} & \mathcolor{Orange}-\fracc{Orange}{1}{3} & 0 & \mathcolor{Purple}-\fracc{Purple}{1}{6} & \begin{matrix}\fracc{Purple}{2}{3}\\ \mathcolor{Orange}+\fracc{Orange}{2}{3}\end{matrix} & \mathcolor{Orange}-\fracc{Orange}{1}{6} & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mathcolor{Orange}-\fracc{Orange}{1}{3} & \begin{matrix}\mathcolor{Orange}-\fracc{Orange}{1}{6}\\ \hfil{ }\mathcolor{Lime}-\fracc{Lime}{1}{6}\end{matrix} & \mathcolor{Lime}-\fracc{Lime}{1}{3} & 0 & \mathcolor{Orange}-\fracc{Orange}{1}{6} & \begin{matrix}\fracc{Orange}{2}{3}\\ \mathcolor{Lime}+\fracc{Lime}{2}{3}\end{matrix} & \mathcolor{Lime}-\fracc{Lime}{1}{6} \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \mathcolor{Lime}-\fracc{Lime}{1}{3} & \mathcolor{Lime}-\fracc{Lime}{1}{6} & 0 & 0 & \mathcolor{Lime}-\fracc{Lime}{1}{6} & \fracc{Lime}{2}{3}
   \end{bmatrix}
   \normalsize
 \end{equation}
@@ -493,7 +343,7 @@ This leads to a global system of equations
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} \\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & \frac{2}{3}
   \end{bmatrix}\begin{bmatrix}
-    u_{1} \\ u_{2} \\ u_{3} \\ u_{4} \\ u_{5} \\ u_{6} \\ u_{7} \\ u_{8} \\ u_{9} \\ u_{10} \\ u_{11} \\ u_{12} \\ u_{13} \\ u_{14} \\ u_{15} \\ u_{16}
+    \nodept{u}{1} \\ \nodept{u}{2} \\ \nodept{u}{3} \\ \nodept{u}{4} \\ \nodept{u}{5} \\ \nodept{u}{6} \\ \nodept{u}{7} \\ \nodept{u}{8} \\ \nodept{u}{9} \\ \nodept{u}{10} \\ \nodept{u}{11} \\ \nodept{u}{12} \\ \nodept{u}{13} \\ \nodept{u}{14} \\ \nodept{u}{15} \\ \nodept{u}{16}
   \end{bmatrix}=\begin{bmatrix}
     f_{1} \\ f_{2} \\ f_{3} \\ f_{4} \\ f_{5} \\ f_{6} \\ f_{7} \\ f_{8} \\ f_{9} \\ f_{10} \\ f_{11} \\ f_{12} \\ f_{13} \\ f_{14} \\ f_{15} \\ f_{16}
   \end{bmatrix}
@@ -527,7 +377,7 @@ With these boundary conditions our system of equations becomes
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} \\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & \frac{2}{3}
   \end{bmatrix}\begin{bmatrix}
-    0 \\ \frac{L^{2}}{N^{2}} \\ \frac{4L^{2}}{N^{2}} \\ L^{2} \\ -\frac{L^{2}}{N^{2}} \\ u_{6} \\ u_{7} \\ \frac{L^{2}\pbrac{N^{2}-1}}{N^{2}} \\ -\frac{4L^{2}}{N^{2}} \\ u_{10} \\ u_{11} \\ \frac{L^{2}\pbrac{N^{2}-4}}{N^{2}} \\ -L^{2} \\ \frac{L^{2}\pbrac{1-N^{2}}}{N^{2}} \\ \frac{L^{2}\pbrac{4-N^{2}}}{N^{2}} \\ 0
+    0 \\ \frac{L^{2}}{N^{2}} \\ \frac{4L^{2}}{N^{2}} \\ \frac{9L^{2}}{N^{2}} \\ -\frac{L^{2}}{N^{2}} \\ \nodept{u}{6} \\ \nodept{u}{7} \\ \frac{8L^{2}}{N^{2}} \\ -\frac{4L^{2}}{N^{2}} \\ \nodept{u}{10} \\ \nodept{u}{11} \\ \frac{5L^{2}}{N^{2}} \\ \frac{-9L^{2}}{N^{2}} \\ \frac{-8L^{2}}{N^{2}} \\ \frac{-5L^{2}}{N^{2}} \\ 0
   \end{bmatrix}=\begin{bmatrix}
     f_{1} \\ f_{2} \\ f_{3} \\ f_{4} \\ f_{5} \\ 0 \\ 0 \\ f_{8} \\ f_{9} \\ 0 \\ 0 \\ f_{12} \\ f_{13} \\ f_{14} \\ f_{15} \\ f_{16}
   \end{bmatrix}
@@ -536,7 +386,7 @@ With these boundary conditions our system of equations becomes
 Application of the boundary conditions allow for the global system of
 equations to be reduced in size. If the value at node $i$ is known
 then the \nth{i} equation row can be removed and replaced with the
-value for $u_{i}$. The \nth{i} row can be removed despite the RHS
+value for $\nodept{u}{i}$. The \nth{i} row can be removed despite the RHS
 value $f_{i}$ being unknown because it is decoupled from the other
 equations. Note that the RHS value for the internal (not on the
 boundary) nodes will be $0$ because the boundary, $\Gamma$ does not
@@ -552,17 +402,17 @@ The reduced system of equations is thus
   -\frac{1}{3} & -\frac{1}{3} & \frac{8}{3} & -\frac{1}{3} \\
   -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & \frac{8}{3}
   \end{bmatrix}\begin{bmatrix}
-    u_{6} \\ u_{7} \\ u_{10} \\ u_{11} 
+    \nodept{u}{6} \\ \nodept{u}{7} \\ \nodept{u}{10} \\ \nodept{u}{11} 
   \end{bmatrix}=\begin{bmatrix}
-  \frac{1}{3}\frac{L^{2}}{N^{2}}+\frac{1}{3}\frac{4L^{2}}{N^{2}}-\frac{1}{3}\frac{L^{2}}{N^{2}}-\frac{1}{3}\frac{4L^{2}}{N^{2}}\\
-  \frac{1}{3}\frac{L^{2}}{N^{2}}+\frac{1}{3}\frac{4L^{2}}{N^{2}}+\frac{1}{3}L^{2}+\frac{1}{3}\frac{L^{2}\pbrac{N^{2}-1}}{N^{2}}+\frac{1}{3}\frac{L^{2}\pbrac{N^{2}-4}}{N^{2}}\\
-  -\frac{1}{3}\frac{L^{2}}{N^{2}}-\frac{1}{3}\frac{4L^{2}}{N^{2}}-\frac{1}{3}L^{2}+\frac{1}{3}\frac{L^{2}\pbrac{1-N^{2}}}{N^{2}}+\frac{1}{3}\frac{L^{2}\pbrac{4-N^{2}}}{N^{2}}\\
-  \frac{1}{3}\frac{L^{2}\pbrac{N^{2}-1}}{N^{2}}+\frac{1}{3}\frac{L^{2}\pbrac{1-N^{2}}}{N^{2}}+\frac{1}{3}\frac{L^{2}\pbrac{4-N^{2}}}{N^{2}}    
+  \frac{1}{3}.0+\frac{1}{3}\frac{L^{2}}{N^{2}}+\frac{1}{3}\frac{4L^{2}}{N^{2}}-\frac{1}{3}\frac{L^{2}}{N^{2}}-\frac{1}{3}\frac{4L^{2}}{N^{2}}\\
+  \frac{1}{3}\frac{L^{2}}{N^{2}}+\frac{1}{3}\frac{4L^{2}}{N^{2}}+\frac{1}{3}\frac{9L^{2}}{N^{2}}+\frac{1}{3}\frac{8L^{2}}{N^{2}}+\frac{1}{3}\frac{5L^{2}}{N^{2}}\\
+  \frac{1}{3}\frac{-L^{2}}{N^{2}}+\frac{1}{3}\frac{-4L^{2}}{N^{2}}+\frac{1}{3}\frac{-9L^{2}}{N^{2}}+\frac{1}{3}\frac{-8L^{2}}{N^{2}}+\frac{1}{3}\frac{-5L^{2}}{N^{2}}\\
+  \frac{1}{3}\frac{8L^{2}}{N^{2}}+\frac{1}{3}\frac{5L^{2}}{N^{2}}+\frac{1}{3}\frac{-8L^{2}}{N^{2}}+\frac{1}{3}\frac{-5L^{2}}{N^{2}}+\frac{1}{3}.0
   \end{bmatrix}=\begin{bmatrix}
-  \frac{L^{2}}{N^{2}} \\
-  L^{2} \\
-  -L^{2} \\
-  \frac{L^{2}\pbrac{4-N^{2}}}{3N^{2}}
+  0 \\
+  \frac{9L^{2}}{N^{2}} \\
+  \frac{-9L^{2}}{N^{2}} \\
+  0
   \end{bmatrix}
   \label{eqn:FEMTwoDLaplaceReducedSystem}
 \end{equation}
@@ -570,7 +420,52 @@ The reduced system of equations is thus
 \subsection{Solution}
 \label{subsec:FEMTwoDLaplaceSolution}
 
-The unknown values of the internal nodes can be found by solving \eqnref{eqn:FEMTwoDLaplaceReducedSystem}
+The unknown values of the internal nodes can be found by solving \eqnref{eqn:FEMTwoDLaplaceReducedSystem} to give
+\begin{equation}
+  \begin{bmatrix}
+    \nodept{u}{6} \\
+    \nodept{u}{7} \\
+    \nodept{u}{10} \\
+    \nodept{u}{11}    
+  \end{bmatrix} = \begin{bmatrix}
+    0 \\
+    \frac{3L^{2}}{N^{2}} \\
+    \frac{-3L^{2}}{N^{2}} \\
+    0
+  \end{bmatrix}
+  \label{eqn:FEMTwoDLaplaceSolution}  
+\end{equation}
 
 \subsection{Fluxes}
 \label{subsec:FEMTwoDLaplaceFluxes}
+
+We can now find the fluxes by back-substituting the known solution \ie
+\begin{equation}
+  \footnotesize\begin{bmatrix}
+  f_{1} \\ f_{2} \\ f_{3} \\ f_{4} \\ f_{5} \\ f_{6} \\ f_{7} \\ f_{8} \\ f_{9} \\ f_{10} \\ f_{11} \\ f_{12} \\ f_{13} \\ f_{14} \\ f_{15} \\ f_{16}
+  \end{bmatrix}=\begin{bmatrix}
+  \frac{2}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & -\frac{1}{6} & \frac{2}{3} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \frac{4}{3} & -\frac{1}{3} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 \\
+  -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & \frac{8}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & 0 & 0 & 0 & 0 \\
+  0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & \frac{8}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & 0 & 0 & 0 \\
+  0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{3} & \frac{4}{3} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \frac{4}{3} & -\frac{1}{3} & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 \\
+  0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & \frac{8}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 \\
+  0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & \frac{8}{3} & -\frac{1}{3} & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} \\
+  0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{3} & \frac{4}{3} & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{6} & -\frac{1}{3} & 0 & 0 & \frac{2}{3} & -\frac{1}{6} & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{3} & -\frac{1}{3} & 0 & -\frac{1}{6} & \frac{4}{3} & -\frac{1}{6} \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -\frac{1}{3} & -\frac{1}{6} & 0 & 0 & -\frac{1}{6} & \frac{2}{3}
+  \end{bmatrix}\begin{bmatrix}
+    0 \\ \frac{L^{2}}{N^{2}} \\ \frac{4L^{2}}{N^{2}} \\ \frac{9L^{2}}{N^{2}} \\ -\frac{L^{2}}{N^{2}} \\ 0 \\ \frac{3L^{2}}{N^{2}} \\ \frac{8L^{2}}{N^{2}} \\ -\frac{4L^{2}}{N^{2}} \\ \frac{-3L^{2}}{N^{2}} \\ 0 \\ \frac{5L^{2}}{N^{2}} \\ \frac{-9L^{2}}{N^{2}} \\ \frac{-8L^{2}}{N^{2}} \\ \frac{-5L^{2}}{N^{2}} \\ 0
+  \end{bmatrix} \\
+  =\begin{bmatrix}
+  0 \\ 0 \\ 0 \\ \frac{3L^{2}}{N^{2}} \\ 0 \\ 0 \\ 0 \\ \frac{6L^{2}}{N^{2}} \\ 0 \\ 0 \\ 0 \\ \frac{6L^{2}}{N^{2}} \\ \frac{-3L^{2}}{N^{2}} \\ \frac{-6L^{2}}{N^{2}} \\ \frac{-6L^{2}}{N^{2}} \\ 0
+  \end{bmatrix}
+\end{equation}
+
+We note that the sum of the components of the flux vector is zero as expected (flux in must equal flux out).

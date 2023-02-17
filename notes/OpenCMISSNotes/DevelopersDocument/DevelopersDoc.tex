@@ -274,6 +274,86 @@ Finally, if we now discard the local rows that correspond to ghost \DoFs we can 
 
 \epstexfigure{DevelopersDocument/svgs/matrixdistributionfinal.eps_tex}{Final distributed matrix system.}{Final distributed Matrix population for each domain of a standard finite element $\matr{K}\vectr{u}=\vectr{f}$ system. The entries from the ghost \DoFs are indicated by darker colours and the entries for local \DoFs are indicated by lighter colours.}{fig:MatrixDistributionFinal}{0.66}
 
+
+\section{Boundary Conditions}
+\label{sec:DevelopersBoundaryConditions}
+
+The different types of boundary conditions implemented in \OpenCMISS are illustrated in \figref{fig:BoundaryConditionsImplementation}. The types of boundary conditions currently implemented include Dirichlet conditions, Neumman conditions, Point Neumann conditions, and Robin conditions. In addition a DOF equality constraint is also implemented. 
+
+\epstexfigure{DevelopersDocument/svgs/boundaryconditions.eps_tex}{Boundary conditions implementation.}{Implementation of different types of boundary conditions in \OpenCMISS. The different types of boundary conditions indicated include Dirichlet Conditions, $D_{i}$, Neumann Conditions, $N_{i}$, Point Neumann (integrated) Conditions, $P_{i}$, Robin Conditions, $R_{i}$, and DOF Equality Constraints, $C_{i}$. Horizontal and vertical lines indicate rows and columns that are eliminated and a $\times$ indicates the additional contribution to the matrix from the value part of a Robin boundary condition.}{fig:BoundaryConditionsImplementation}{0.6}
+
+For the following sub-sections consider a domain, $\fnof{\Omega}{\vectr{x},t}$, with a boundary, $\fnof{\Gamma}{\vectr{x},t}=\boundary{\fnof{\Omega}{\vectr{x},t}}$, which has a normal, $\fnof{\vectr{n}}{\vectr{x},t}$. The portion of the boundary on which Dirichlet conditions are imposed is denoted $\fnof{\Gamma_{D}}{\vectr{x},t}\subset\fnof{\Gamma}{\vectr{x},t}$, the portion of the boundary on which Neumann conditions are imposed is denoted $\fnof{\Gamma_{N}}{\vectr{x},t}\subset\fnof{\Gamma}{\vectr{x},t}$, the portion of the boundary on which Point Neumann conditions are imposed is denoted $\fnof{\Gamma_{P}}{\vectr{x},t}\subset\fnof{\Gamma}{\vectr{x},t}$, the portion of the boundary on which Robin conditions are imposed is denoted $\fnof{\Gamma_{R}}{\vectr{x},t}\subset\fnof{\Gamma}{\vectr{x},t}$, and $\intersectionfour{\fnof{\Gamma_{D}}{\vectr{x},t}}{\fnof{\Gamma_{N}}{\vectr{x},t}}{\fnof{\Gamma_{P}}{\vectr{x},t}}{\fnof{\Gamma_{R}}{\vectr{x},t}}=\emptyset$.
+
+\subsection{Dirichlet Conditions}
+\label{subsec:DevelopersDirichletConditions}
+
+A \emph{Dirichlet}\footnote{named after Johann Peter Gustave Lejeune
+Dirichlet (1805-1859), a German mathematician.}\index{Boundary
+condition!Dirichlet} condition, or a boundary condition of the first
+type, is a condition that specifies the value of the dependent
+variable on the boundary, or part boundary, of the
+domain. Mathematically it can be written as
+\begin{equation}
+ \fnof{\vectr{u}}{\vectr{x},t}=\fnof{\vectr{D}}{\vectr{x},t}\qquad\forall\vectr{x}\in\fnof{\Gamma_{D}}{t},t\geq 0
+ \label{eqn:DevelopersDirichletCondition}
+\end{equation}
+
+A Dirichlet boundary condition is also known as an essential or fixed boundary condition.
+
+Dirichlet boundary conditions are implemented in \OpenCMISS by
+specifing the, possibly time-varying, value of a \DoF. Numerically
+this can be implemented by changing the row corresponding to the
+weight or basis function of the \DoF in one of two ways. The first way
+is replacing the corresponding row with a row containing all zeros
+except for a one in the column corresponding to the \DoF. This method
+is easy to implement but has the downside that the size of the
+solution matrix is not reduced. The second way is to multiply the
+column corresponding to the \DoF by the value of the boundary
+condition and subtract this vector of the \RHS vector and then
+eliminate the corresponding row from the solution matrix. This method
+is harder to implement but does have the advantage of reducing the
+size, and thus the solution time, of the solution matrix. The second
+method is implemented in \OpenCMISS.
+
+\subsection{Neummann Conditions}
+\label{subsec:DevelopersNeumannConditions}
+
+A \emph{Neumann}\footnote{named after Carl Gottfried Neumann (1832-1925), a German mathematician.}\index{Boundary
+condition!Neumann} condition, or a boundary condition of the second
+type, is a condition that specifies the value of the derivtive of the dependent
+variable on the boundary, or part boundary, of the
+domain. Mathematically it can be written as
+\begin{equation}
+ \delby{\fnof{\vectr{u}}{\vectr{x},t}}{\vectr{n}}=\dotprod{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}{\fnof{\vectr{n}}{\vectr{x},t}}=\fnof{\vectr{N}}{\vectr{x},t}\qquad\forall\vectr{x}\in\fnof{\Gamma_{N}}{t},t\geq 0
+ \label{eqn:DevelopersNeumannCondition}
+\end{equation}
+
+A Neumann boundary condition is also known as a natural boundary condition.
+
+\subsection{Point Neummann Conditions}
+\label{subsec:DevelopersPointNeumannConditions}
+
+\subsection{Robin Conditions}
+\label{subsec:DevelopersRobinConditions}
+
+A \emph{Robin}\footnote{named after \link{https://en.wikipedia.org/wiki/Victor_Gustave_Robin}{Victor Gustave Robin} (1855-1897), a French mathematician.}\index{Boundary condition!Robin} condition, or a boundary condition of the third
+type, is a condition that specifies the value of a linear combination of the value and the derivtive of the dependent
+variable on the boundary, or part boundary, of the
+domain. Mathematically it can be written as
+\begin{equation}
+ \alpha\fnof{\vectr{u}}{\vectr{x},t}+\beta\delby{\fnof{\vectr{u}}{\vectr{x},t}}{\vectr{n}}=\alpha\fnof{\vectr{u}}{\vectr{x},t}+\beta\dotprod{\gradient{}{\fnof{\vectr{u}}{\vectr{x},t}}}{\fnof{\vectr{n}}{\vectr{x},t}}=\fnof{\vectr{R}}{\vectr{x},t}\qquad\forall\vectr{x}\in\fnof{\Gamma_{R}}{t},t\geq
+ 0 \label{eqn:DevelopersRobinCondition}
+\end{equation}
+
+A Robin boundary condition is also known as a Fourier-type or
+radiation condition. When $\alpha=\beta=1$ a Robin boundary condition
+is also knon as a \emph{mixed} boundary condition\index{Boundary
+condition!mixed}.
+
+\subsection{DOF Equality Constraints}
+\label{subsec:DevelopersDOFEqualityConstraints}
+
+
 \section{Dependencies}
 \label{sec:DevelopersDependencies}
 
