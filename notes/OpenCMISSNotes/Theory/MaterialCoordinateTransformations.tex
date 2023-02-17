@@ -24,7 +24,30 @@ using interpolation \ie
   \gsf{n}{\beta}\gbfn{n}{\beta}{\vectr{\xi}}\nodedof{\vectr{x}}{n}{\beta}
 \end{equation}
 
-We can now differentiate the geometric interpolation to find the tangent direction with respect to $\xione$. We define the normalisation of this direction as the vector, $\vectr{a}$, \ie
+The transformation matrix between geometric coordinates, $\vectr{x}$, and element coordinates, $\vectr{\xi}$, is thus given by
+\begin{equation}
+  \delby{x^{i}}{\xi^{r}}=\begin{bmatrix}
+  \delby{x^{1}}{\xione} & \delby{x^{2}}{\xione} \\
+  \delby{x^{1}}{\xitwo} & \delby{x^{2}}{\xitwo}
+  \end{bmatrix}
+  \label{eqn:GeometricToElementTransformationTwoD}
+\end{equation}
+and the inverse transformation between element coordinates, $\vectr{\xi}$, and geometric coordinates, $\vectr{x}$, is thus given by
+\begin{equation}
+  \delby{\xi^{r}}{x^{i}}=\inverse{\sqbrac{\delby{x^{i}}{\xi^{r}}}}=
+  \dfrac{1}{\delby{x^{1}}{\xione}\delby{x^{2}}{\xitwo}-\delby{x^{2}}{\xione}\delby{x^{1}}{\xitwo}}\begin{bmatrix}
+  \delby{x^{2}}{\xitwo} & -\delby{x^{2}}{\xione} \\
+  -\delby{x^{1}}{\xitwo} & \delby{x^{1}}{\xione}    
+  \end{bmatrix}=\begin{bmatrix}
+  \delby{\xi^{1}}{x^{1}} & \delby{\xi^{2}}{x^{1}} \\
+  \delby{\xi^{1}}{x^{2}} & \delby{\xi^{2}}{x^{2}}
+  \end{bmatrix}
+  \label{eqn:ElementToGeometricTransformationTwoD}
+\end{equation}
+
+The derivative of the geometric interpolation also gives the tangent
+direction with respect to $\xione$. We define the normalisation of
+this direction as the vector, $\vectr{a}$, \ie
 \begin{equation}
   \fnof{\vectr{a}}{\vectr{\xi}}=\fnof{a^{i}}{\vectr{\xi}}\generalbasevector_{i}=\norm{\delby{\fnof{\vectr{x}}{\vectr{\xi}}}{\xione}}
 \end{equation}
@@ -61,7 +84,27 @@ and
   \fnof{\vectr{s}}{\vectr{\xi}}=\fnof{s^{i}}{\vectr{\xi}}\generalbasevector_{i}=\fnof{\matr{R}}{\fnof{\theta}{\vectr{\xi}}}\fnof{\vectr{b}}{\vectr{\xi}}
 \end{equation}
   
- 
+The rotation matrix thus gives the transformation between element coordinates, $\vectr{\xi}$, and material/fibre coordinates, $\vectr{\nu}$, \ie
+\begin{equation}
+  \delby{\nu^{a}}{\xi^{r}}=\fnof{\matr{R}}{\fnof{\theta}{\vectr{\xi}}}\begin{bmatrix}
+  \cosine{\fnof{\theta}{\vectr{\xi}}} & \sine{\fnof{\theta}{\vectr{\xi}}} \\
+  -\sine{\fnof{\theta}{\vectr{\xi}}} & \cosine{\fnof{\theta}{\vectr{\xi}}}
+  \end{bmatrix}  
+  \label{eqn:ElementToMaterialTransformationTwoD}
+\end{equation}
+
+The transformation between material/fibre coordinates, $\vectr{\nu}$,
+and element coordinates, $\vectr{\xi}$, can thus be found from
+\begin{equation}
+  \delby{\xi^{r}}{\nu^{a}}=\inverse{\sqbrac{\delby{\nu^{a}}{\xi^{r}}}}=\inverse{\fnof{\matr{R}}{\fnof{\theta}{\vectr{\xi}}}}=
+  \transpose{\fnof{\matr{R}}{\fnof{\theta}{\vectr{\xi}}}}=\begin{bmatrix}
+  \cosine{\fnof{\theta}{\vectr{\xi}}} & -\sine{\fnof{\theta}{\vectr{\xi}}} \\
+  \sine{\fnof{\theta}{\vectr{\xi}}} & \cosine{\fnof{\theta}{\vectr{\xi}}}
+  \end{bmatrix}  
+  \label{eqn:MaterialToElementTransformationTwoD}
+\end{equation}
+as the rotation matrix is orthogonal.
+
 \subsection{Three dimensions}
 \label{subsec:MaterialCoordinateTransformationsThreeD}
 
@@ -75,9 +118,69 @@ the coordinate transformations.
 \subsubsection{Quaternions}
 \label{subsubsec:MaterialCoordinateTransformationsThreeDQuaternions}
 
-\emph{Quaterions}\index{quaterions} are an extension of complex
-numbers that can be used to provide a way of rotating
-vectors. Quaterions were first described by
-Hamilton\footnote{\link{https://en.wikipedia.org/wiki/William_Rowan_Hamilton}{Sir
-  William Rown Hamilton} (1805-1865), an Irish mathematician.} in
-1843.
+
+\subsection{Material tensor transformations}
+\label{subsec:MaterialCoordinateTransformationsTensor}
+
+Having defined the relationships between the various material, element
+and geometric coordinate systems we can transform material tensors to
+geometric tensors via the element coordinate system.
+
+For example consider transforming a material vector, $\vectr{a}$, to a
+geometric vector, $\vectr{b}$. The transformations are
+\begin{equation}
+  b^{i}=\delby{x^{i}}{\xi^{r}}\delby{\xi^{r}}{\nu^{a}}a^{a}
+\end{equation}
+for rank(1,0) vectors, and,
+\begin{equation}
+  b_{i}=\delby{\xi^{r}}{x^{i}}\delby{\nu^{a}}{\xi^{r}}a_{a}
+\end{equation}
+for rank(0,1) vectors.
+
+For a second order material tensors, $\tensortwo{A}$, to geometric
+tensors, $\tensortwo{B}$, the transformations are
+\begin{equation}
+  B^{ij}=\delby{x^{i}}{\xi^{r}}\delby{x^{j}}{\xi^{s}}\delby{\xi^{r}}{\nu^{a}}\delby{\xi^{s}}{\nu^{b}}A^{ab}
+\end{equation}
+for rank(2,0) tensors, and,
+\begin{equation}
+  B_{ij}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{j}}\delby{\nu^{a}}{\xi^{r}}\delby{\nu^{b}}{\xi^{s}}A_{ab}
+\end{equation}
+for rank(0,2) tensors, and,
+\begin{equation}
+  B^{i.}_{.j}=\delby{x^{i}}{\xi^{r}}\delby{\xi^{s}}{x^{j}}\delby{\xi^{r}}{\nu^{a}}\delby{\nu^{b}}{\xi^{s}}A^{a.}_{.b}
+\end{equation}
+and
+\begin{equation}
+  B^{.j}_{i.}=\delby{\xi^{r}}{x^{i}}\delby{x^{j}}{\xi^{s}}\delby{\nu^{a}}{\xi^{r}}\delby{\xi^{s}}{\nu^{b}}A^{.b}_{a.}
+\end{equation}
+for rank(1,1) tensors.
+
+For fourth order material tensors, $\tensorfour{A}$, to geometric
+tensors, $\tensorfour{B}$, the transformations are
+\begin{equation}
+  B^{ijkl}=\delby{x^{i}}{\xi^{r}}\delby{x^{j}}{\xi^{s}}\delby{x^{k}}{\xi^{t}}\delby{x^{l}}{\xi^{u}}
+  \delby{\xi^{r}}{\nu^{a}}\delby{\xi^{s}}{\nu^{b}}\delby{\xi^{t}}{\nu^{c}}\delby{\xi^{u}}{\nu^{d}}A^{abcd}
+\end{equation}
+for rank(4,0) tensors, and,
+\begin{equation}
+  B_{ijkl}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{j}}\delby{\xi^{t}}{x^{k}}\delby{\xi^{u}}{x^{l}}
+  \delby{\nu^{a}}{\xi^{r}}\delby{\nu^{b}}{\xi^{s}}\delby{\nu^{c}}{\xi^{t}}\delby{\nu^{d}}{\xi^{u}}A_{abcd}
+\end{equation}
+for rank(0,4) tensors, and,
+\begin{equation}
+  B^{ij..}_{..kl}=\delby{x^{i}}{\xi^{r}}\delby{x^{j}}{\xi^{s}}\delby{\xi^{t}}{x^{k}}\delby{\xi^{u}}{x^{l}}
+  \delby{\xi^{r}}{\nu^{a}}\delby{\xi^{s}}{\nu^{b}}\delby{\nu^{c}}{\xi^{t}}\delby{\nu^{d}}{\xi^{u}}A^{ab..}_{..cd}
+\end{equation}
+and
+\begin{equation}
+  B^{..kl}_{ij..}=\delby{\xi^{r}}{x^{i}}\delby{\xi^{s}}{x^{j}}\delby{x^{k}}{\xi^{t}}\delby{x^{l}}{\xi^{u}}
+  \delby{\nu^{a}}{\xi^{r}}\delby{\nu^{b}}{\xi^{s}}\delby{\xi^{t}}{\nu^{c}}\delby{\xi^{u}}{\nu^{d}}A^{..cd}_{ab..}
+\end{equation}
+\etc, for rank(2,2) tensors.
+
+Here,
+\eqnrefsfour{eqn:GeometricToElementTransformationTwoD}{eqn:ElementToGeometricTransformationTwoD}{eqn:ElementToMaterialTransformationTwoD}{eqn:MaterialToElementTransformationTwoD}
+define the transformations in two-dimensions, and
+\eqnrefsfour{eqn:GeometricToElementTransformationThreeD}{eqn:ElementToGeometricTransformationThreeD}{eqn:ElementToMaterialTransformationThreeD}{eqn:MaterialToElementTransformationThreeD}
+define the transformations in three-dimensions. The transformations in one-dimension are trivial.

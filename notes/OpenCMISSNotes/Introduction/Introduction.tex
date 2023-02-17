@@ -176,6 +176,92 @@ be considered the first index and $j$ the second index.
 \subsection{Building these notes}
 \label{subsec:IntroBuildingOpenCMISSNotes}
 
+These notes are written in \LaTeX\xspace
+(\url{https://www.latex-project.org/}) and your will need to install
+an appropriate \LaTeX\xspace environment on your system via your package
+manager.
+
+In order to create and/or edit the Scalable Vector Graphics (SVG)
+diagrams in these notes it is recommeded that you install \Inkscape from either your
+package manager or from \url{https://inkscape.org/}. In order to allow
+for \Inkscape to use \LaTeX\xspace it is recommended that you also install
+the TexText plugin for \Inkscape - see
+\url{https://textext.github.io/textext/}.
+
+In order to create and/or edit the graphs and plots in these notes it
+is recommeded that you install \Gnuplot from either your package
+manager of from \url{http://www.gnuplot.info/}.
+
+The main \LaTeX\xspace source for these notes can be found in the \OpenCMISS
+\GitHub (\url{https://github.com/}) documentation repository at
+\url{https://github.com/OpenCMISS/documentation}.
+
+In order to make changes to the notes and compile the \LaTeX\xspace source
+you should set yourself up as an \OpenCMISS developer. The main
+instructions to do this are at
+\url{http://opencmiss.org/documentation/contribute/dev_setup.html}
+but, in brief, the steps to do this for a Linux/UNIX operating system
+are as follows:
+\begin{enumerate}
+\item Create an \OpenCMISS main directory \ie
+  \begin{code}
+    mkdir OpenCMISS
+  \end{code}
+\item Change directory into this directory \ie
+  \begin{code}
+    cd OpenCMISS
+  \end{code}
+\item Fork the \OpenCMISS \GitHub utilites repository at \url{https://github.com/OpenCMISS/utilities}.
+\item Clone the \OpenCMISS utilities repository \ie
+  \begin{code}
+    git clone git@github.com:GITHUBUSERNAME/documentation.git
+  \end{code} where \oscommand{GITHUBUSERNAME} is your \GitHub username.
+\item Set up to use the developer scripts. The main instructions are
+  at
+  \url{http://opencmiss.org/documentation/contribute/dev_login_scripts.html}
+  but, in brief, edit your \file{\midtilde/.bashrc} (if you have a bash shell or
+  similar) or \file{\midtilde/.cshrc} file (if you have a csh shell or
+  similar). If you are unsure which shell you have use the command
+  \oscommand{echo \$SHELL}. Add the lines
+  \begin{code}
+    export OPENCMISS_ROOT=<path-to-where-you-put-your-OpenCMISS-files>
+    if [ -r "$OPENCMISS_ROOT/utilities/scripts/opencmiss_developer.sh" ]; then
+      . $OPENCMISS_ROOT/utilities/scripts/opencmiss_developer.sh
+    fi
+  \end{code} if you have a bash shell or
+  \begin{code}
+    setenv OPENCMISS_ROOT <path-to-where-you-put-your-OpenCMISS-files>
+    if ( -r "$\{OPENCMISS_ROOT\}/utilities/scripts/opencmiss_developer.csh" ) then
+      source $\{OPENCMISS_ROOT\}/utilities/scripts/opencmiss_developer.csh
+    endif
+  \end{code} if you have a csh shell. Note that
+  \file{<path-to-where-you-put-your-OpenCMISS-files>} is the path to
+  the main directory created in step 1.
+\item Fork the \OpenCMISS \GitHub utilites repository at \url{https://github.com/OpenCMISS/documentation}.
+\item Clone the OpenCMISS documentation repository \ie
+  \begin{code}
+    git clone git@github.com:GITHUBUSERNAME/documentation.git
+  \end{code} where \oscommand{GITHUBUSERNAME} is your \GitHub username.
+\item Log out and back in again to start using the developer scripts.
+\end{enumerate}
+
+The developer setup scripts should ensure that all necessary paths and
+links are set to ensure that you will be able to compile the
+\OpenCMISS notes document.
+
+Once you have cloned a copy of the notes to disk the notes are in the
+\directory{notes} under the \directory{OpenCMISS/documentation}
+directory.
+
+To compile the notes use the \oscommand{latexmake} command \ie
+\begin{code}
+  cd $OPENCMISS_ROOT/documentation/notes/OpenCMISSNotes
+  latexmake pdf
+\end{code}
+to compile the \LaTeX\xspace and generate a PDF file.
+
+You can use the \oscommand{latexmake help} for other options.
+
 \subsection{Acknowledgements}
 \label{subsec:IntroAcknowledgements}
 

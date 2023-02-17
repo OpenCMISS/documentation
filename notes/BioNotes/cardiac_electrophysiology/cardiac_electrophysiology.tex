@@ -12,11 +12,11 @@ contraction of a muscle is directly dependent on the amount of calcium in the
 cell. The more the calcium the more the contraction.
 
 \pstexfigure{cardiac_electrophysiology/figs/cardiacmembrane.pstex}{}
-{Idealised cardiac cell.}{fig:cardiacmembrane}
+{Idealised cardiac cell.}{fig:cardiacmembrane}{}
 
 We will now consider each of the currents and ion pumps in turn. In particular
 we will interpret the currents in the same manner as
-\citeasnoun{difrancesco:1985}.
+\citet{difrancesco:1985}.
 
 %===================================================================
 \section{Units}
@@ -96,7 +96,7 @@ electrical activity. These currents are shown graphically in
 
 \pstexfigure{cardiac_electrophysiology/figs/diFNcurrents.pstex}{}
 {diFrancesco-Noble currents making up the cardiac action potential. Note all
-  conductances are \tento{-4}\units{S/cm^2}.}{fig:diFNcurrents}
+  conductances are \tento{-4}\units{S/cm^2}.}{fig:diFNcurrents}{}
 
 \section{Ion Pumps and Exchanges}
 
@@ -126,7 +126,7 @@ The diFrancesco-Nobel model of the cardiac action potential is summarised
 by \figref{fig:diFNactionpot}.
 
 \pstexfigure{cardiac_electrophysiology/figs/diFNactionpot.pstex}{}{diFrancesco-Noble action potential
-  currents for cardiac cells.}{fig:diFNactionpot}
+  currents for cardiac cells.}{fig:diFNactionpot}{}
 
 \section{Changes in the action potential}
 
@@ -156,7 +156,7 @@ Consider the following changes in the action potential
 \end{enumerate}
 
 \pstexfigure{cardiac_electrophysiology/figs/caffeineeffect.pstex}{}{Effect of
-  caffeine on the cardiac action potential.}{fig:caffeineeffect}
+  caffeine on the cardiac action potential.}{fig:caffeineeffect}{}
 
 \section{Other membrane models}
 \label{sec:biophysical_models_of_cardiac_cells}
@@ -400,7 +400,7 @@ values have not yet been specified are given in \tabref{tab:BR_Model_Params}.
 %===================================================================
 The original Beeler-Reuter model was modified by Drouhard and Roberge
 to improve the fast sodium current kinetics. This model was then further
-modified by \citeasnoun{skouibine:1999} to handle voltages outside the range of normal
+modified by \citet{skouibine:1999} to handle voltages outside the range of normal
 physiological activity for use with defibrillation studies. The action
 potential for the defibrillation Beeler-Reuter model is shown in
 \figref{fig:BRDR_ap}.
@@ -1223,7 +1223,7 @@ just one variable.
 \label{sec:The_polynomial_model}
 %===================================================================
 The most common polynomial model used to describe activation processes is a
-cubic polynomial model developed by \citeasnoun{hunter:1975} as shown in
+cubic polynomial model developed by \citet{hunter:1975} as shown in
 \eqnref{eqn:cubic_ionic_current_model}. Because there is only a single
 variable the model is very fast to compute so may be used on large geometries.
 The cubic model generates cellular depolarisation but it does not attempt to
@@ -1286,7 +1286,7 @@ move to the plateau potential $V_p$.
 %===================================================================
 The FitzHugh-Nagumo model is based on the cubic excitation model but also includes a recovery
 variable so both depolarisation and repolarisation may be modelled. The form
-of the model used was adapted from \citeasnoun{rogers:1994a}. The model
+of the model used was adapted from \citet{rogers:1994a}. The model
 normalises potential values to be between zero and one. The transmembrane
 potential has been denoted by $u$ and is calculated as
 \begin{equation}
@@ -1362,7 +1362,7 @@ FitzHugh-Nagumo model over time are shown in \figref{fig:FHN_1_cell_traces}.
 \subsection{The modified FitzHugh-Nagumo model}
 \label{The_modified_FitzHugh-Nagumo_Model}
 %===================================================================
-In the same paper as the original model was described \citeasnoun{rogers:1994a} described
+In the same paper as the original model was described \citet{rogers:1994a} described
 some modifications to the model designed to generate a more realistic action
 potential increasing the velocity of the upstroke and removing the large
 hyperpolarization at the end of the action potential. The equation for the
@@ -1562,7 +1562,7 @@ to couple the various components together in a total model is only
 beginning to be looked at.  Even given the availability of this vast
 amount of information, there would still be one requirement lacking.
 Existing computational resources are barely adequate to solve a small
-region of tissue.  \citeasnoun{spach:pilkington:1993} have developed a
+region of tissue.  \citet{spach:pilkington:1993} have developed a
 model solving activation equations for individual cells for a
 two-dimensional sheet model containing between 25,000 and 85,000
 cells.  Even though there is only a small number of cells in a 2D
@@ -1595,7 +1595,7 @@ explicit microscopic model then the averaged model may be justified.
 
 The physical arrangement of cardiac cells has led to the belief that the heart
 has electrical properties that are the same as a syncytium.  Experimental work
-by \citeasnoun{weidmann:1970} and \citeasnoun{clerc:1976} on mammalian cardiac
+by \citet{weidmann:1970} and \citet{clerc:1976} on mammalian cardiac
 tissue confirmed that propagation either along the fibre axis or transverse to
 it produced results like a one-dimensional cable.  Cable theory defines
 propagation along a membrane between two distinct spaces.  By extending
@@ -1603,19 +1603,19 @@ standard one-dimensional cable theory to two or three dimensions gives rise to
 the bidomain model.
 
 The concepts behind the bidomain model were first proposed by
-\citeasnoun{schmitt:1969} who suggested that two interpenetrating domains could
+\citet{schmitt:1969} who suggested that two interpenetrating domains could
 be used to describe cardiac tissue, one representing volume-averaged
 quantities in the intracellular space and one for those of the extracellular
 space.  A mathematical formulation of this proposal was constructed in several
-theses and papers by \citeasnoun{tung:1978}, \citeasnoun{plonsey:1984},
-\citeasnoun{miller:1978a} and others.  The bidomain model has been adopted by
+theses and papers by \citet{tung:1978}, \citet{plonsey:1984},
+\citet{miller:1978a} and others.  The bidomain model has been adopted by
 many other researchers in one form or another due to its convenience and
 simplicity.  The model is discussed more fully in review papers by
-\citeasnoun{henriquez:1993} and \citeasnoun{plonsey:1987}.  
+\citet{henriquez:1993} and \citet{plonsey:1987}.  
 
 Different papers give different names to the various regions that are part of
 the bidomain model.  The names that we have chosen reflect the generally
-accepted definitions (as given by \citeasnoun{krassowska:1994}) which tie in
+accepted definitions (as given by \citet{krassowska:1994}) which tie in
 with those that physiologists would use to describe cellular structure.  When
 developing an activation model which is designed to be coupled with other
 models, it is necessary to maintain consistent definitions and distinctly
@@ -1639,7 +1639,7 @@ little loss of information.  Additionally, a third domain may be defined
 consisting of all regions outside of the cardiac muscle, such as the bath that
 the tissue is in, or the tissues within the torso cavity.  This domain is
 referred to as the \emph{extramyocardial (outside) region} and given the
-subscript ``$o$''.  \possessivecite{krassowska:1994} paper simply refers to
+subscript ``$o$''.  \citeauthor{krassowska:1994}'s paper simply refers to
 this region as ``outside'', but in a coupled problem it is unsure whether this
 should refer to a region outside the heart or outside the body.  This naming
 convention is illustrated in \figref{fig:bidomain-diagram}.
@@ -1652,8 +1652,8 @@ convention is illustrated in \figref{fig:bidomain-diagram}.
   \end{center}
 \end{figure}
 
-Some authors (including \citeasnoun{pollard:pilkington:1993},
-\citeasnoun{henriquez:1993}, \citeasnoun{plonsey:1987} and others), define the
+Some authors (including \citet{pollard:pilkington:1993},
+\citet{henriquez:1993}, \citet{plonsey:1987} and others), define the
 regions differently.  In particular, what we term the extramyocardial region
 is defined as the extracellular space, and what we call the extracellular
 domain is called the \emph{interstitial domain}, often with ``extracellular''
@@ -1665,9 +1665,9 @@ seems best not to use the term ``interstitial'' at all, but to reserve the
 word ``extracellular'' for use in describing structure that is part of the
 extracellular matrix, and use another term for the medium surrounding the
 tissue, which in this case we have chosen to call ``extramyocardial''.  This
-agrees also with the tissue definitions of \citeasnoun{clerc:1976} in his
+agrees also with the tissue definitions of \citet{clerc:1976} in his
 study of tissue conductivities which is cited as a definition for these terms
-by \citeasnoun{pollard:pilkington:1993}.  It is true that the extramyocardial
+by \citet{pollard:pilkington:1993}.  It is true that the extramyocardial
 space is also technically extracellular, but it is not (by definition) part of
 the cardiac tissue structure, and because it is often not used in many
 bidomain simulations, it is sensible to use another name for this region.
@@ -1683,7 +1683,7 @@ which is governed by continuous partial differential equations.
 \subsection{Mathematical Derivation of the Bidomain Model}
 
 The most substantial mathematical description of the bidomain model is found
-in the review paper by \citeasnoun{henriquez:1993}, which presents a formal
+in the review paper by \citet{henriquez:1993}, which presents a formal
 definition of the model from its origins in the core conductor model, and
 outlines many of the approximations that can be made under certain
 assumptions.
@@ -1842,9 +1842,9 @@ to be modelled.
 %\label{sec:bidomain_Boundary_conditions}
 %===================================================================
 There has been some differences in the literature in the boundary conditions
-which have been applied to the bidomain model \citeasnoun{krassowska:1994}. The boundary
+which have been applied to the bidomain model \citet{krassowska:1994}. The boundary
 conditions used here are the original boundary conditions specified
-by \citeasnoun{tung:1978} and confirmed by \citeasnoun{krassowska:1994}. There is assumed to be no
+by \citet{tung:1978} and confirmed by \citet{krassowska:1994}. There is assumed to be no
 current flow between the intracellular and extramyocardial domains so the
 boundary condition applied to the boundaries on intracellular space may be
 written as
@@ -1884,7 +1884,7 @@ potentials must also match the boundary extramyocardial potentials.
 If the tissue is not
 surrounded by a medium combinations of flux and potential boundary conditions
 may be used to represent the desired setup. For a bidomain simulation with
-equal anisotropy ratios an analytic potential boundary condition \citeasnoun{henriquez:1993}
+equal anisotropy ratios an analytic potential boundary condition \citet{henriquez:1993}
 may be set which is equal to
 \begin{equation}
   \phi_e=-\dfrac{\sigma_{if}\sigma_{ef}}{\sigma_{if}+\sigma_{ef}}

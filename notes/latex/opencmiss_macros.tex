@@ -64,13 +64,41 @@
 \makeatother
 
 %
+%Define midtilde
+%
+
+\makeatletter
+\newcommand\midtilde@raisedtilde[1][.5]{\raisebox{#1ex}{\texttildelow}}
+\def\midtilde@normaltilde{\texttildelow}
+\newcommand\midtilde%
+{%
+  \expandafter\in@\expandafter{\f@family}%
+    {cmr,cmss,cmtt,cmm,cmsy,cmx,%
+    lmr,lmss,lmtt,lmm,lmsy,lmx,%
+    pxr,pxss,pxm,pxsy,pxx,%
+    txr,txss,txm,txsy,txx}%
+  \ifin@%
+    \midtilde@raisedtilde%
+  \else%
+    \expandafter\in@\expandafter{\f@family}%
+    {pxtt,txtt}%
+    \ifin@%
+      \midtilde@raisedtilde[.35]%
+    \else%
+      \midtilde@normaltilde%
+    \fi%
+  \fi%
+}
+\makeatother
+
+%
 % URL commands
 %
 \newcommand{\directory}[1]{ %
-  \textsf{#1} %
+  \texttt{#1} %
 } %
 \newcommand{\file}[1]{ %
-  \textsf{#1} %
+  \texttt{#1} %
 } %
 \newcommand{\link}[2]{ %
   \ifthenelse{\equal{#2}{}}{ %
@@ -88,10 +116,15 @@
 \newcommand{\urllink}[1]{ %
   \link{#1}{#1} %
 } %
+
+\newcommand{\oscommand}[1]{ %
+  \texttt{#1} %
+} %
   
 %
 % Software and systmes
 %
+
 \newcommand{\OpenCMISS}{\textsf{OpenCMISS}\xspace}
 \newcommand{\CMISS}{\textsf{CMISS}\xspace}
 \newcommand{\CM}{\textsf{CM}\xspace}       %note upper case to distinguish from centimeters
@@ -99,9 +132,12 @@
 \newcommand{\UNEMAP}{\textsf{UnEmap}\xspace}
 \newcommand{\FieldML}{\textsf{FieldML}\xspace}
 \newcommand{\CellML}{\textsf{CellML}\xspace}
-\newcommand{\FAROARM}{\textsf{FARO ARM\xspace}}
-\newcommand{\OpenMP}{\textsf{OpenMP\xspace}}
-\newcommand{\OpenACC}{\textsf{OpenACC\xspace}}
+\newcommand{\FAROARM}{\textsf{FARO ARM}\xspace}
+\newcommand{\OpenMP}{\textsf{OpenMP}\xspace}
+\newcommand{\OpenACC}{\textsf{OpenACC}\xspace}
+\newcommand{\GitHub}{\textsf{GitHub}\xspace}
+\newcommand{\Inkscape}{\textsf{Inkscape}\xspace}
+\newcommand{\Gnuplot}{\textsf{Gnuplot}\xspace}
 
 %
 % New commands
@@ -244,28 +280,52 @@
 %
 \newcommand{\appendref}[1]{Appendix~\ref{#1}} % Appendix reference
 \newcommand{\Appendref}[1]{Appendix~\ref{#1}} % Appendix reference
-\newcommand{\appendrefs}[2]{Appendices~\ref{#1} and~\ref{#2}} % Appendices ref.
-\newcommand{\Appendrefs}[2]{Appendices~\ref{#1} and~\ref{#2}} % Appendices ref.
-\newcommand{\appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
-\newcommand{\Appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices--
+\newcommand{\appendrefstwo}[2]{Appendices~\ref{#1} and~\ref{#2}} % Appendices ref. two
+\newcommand{\Appendrefstwo}[2]{Appendices~\ref{#1} and~\ref{#2}} % Appendices ref. two
+\newcommand{\appendrefsthree}[3]{Appendices~\ref{#1}, \ref{#2}, and~\ref{#3}} % Appendices ref. three
+\newcommand{\Appendrefsthree}[3]{Appendices~\ref{#1}, \ref{#2}, and~\ref{#3}} % Appendices ref. three
+\newcommand{\appendrefsfour}[4]{Appendices~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Appendices ref. four
+\newcommand{\Appendrefsfour}[4]{Appendices~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Appendices ref. four
+\newcommand{\appendrefs}[2]{\appendrefstwo{#1}{#2}} % Appendices ref.
+\newcommand{\Appendrefs}[2]{\Appendrefstwo{#1}{#2}} % Appendices ref.
+\newcommand{\appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices-- ref.
+\newcommand{\Appendthrurefs}[2]{Appendices~\ref{#1}--\ref{#2}} % Appendices-- ref.
 \newcommand{\bref}[1]{(\ref{#1})} % bracketed () reference
 \newcommand{\baubref}[1]{(\subref{#1})} % bracketed () subreference
 \newcommand{\chapref}[1]{Chapter~\ref{#1}} % Chapter reference
 \newcommand{\Chapref}[1]{Chapter~\ref{#1}} % Chapter reference
-\newcommand{\chaprefs}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference
-\newcommand{\Chaprefs}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference
+\newcommand{\chaprefstwo}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference two
+\newcommand{\Chaprefstwo}[2]{Chapters~\ref{#1} and~\ref{#2}} % Chapters reference two
+\newcommand{\chaprefsthree}[3]{Chapters~\ref{#1}, \ref{#2}, and~\ref{#3}} % Chapters reference three
+\newcommand{\Chaprefsthree}[3]{Chapters~\ref{#1}, \ref{#2}, and~\ref{#3}} % Chapters reference three
+\newcommand{\chaprefsfour}[4]{Chapters~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Chapters reference four
+\newcommand{\Chaprefsfour}[4]{Chapters~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Chapters reference four
+\newcommand{\chaprefs}[2]{\chaprefstwo{#1}{#2}} % Chapters reference
+\newcommand{\Chaprefs}[2]{\Chaprefstwo{#1}{#2}} % Chapters reference
 \newcommand{\chathrurefs}[2]{Chapters~\bref{#1}--\bref{#2}} % Chapters-- ref.
 \newcommand{\Chathrurefs}[2]{Chapters~\bref{#1}--\bref{#2}} % Chapters-- ref.
 \newcommand{\eqnref}[1]{Equation~\bref{#1}} % Equation reference
 \newcommand{\Eqnref}[1]{Equation~\bref{#1}} % Equation reference
-\newcommand{\eqnrefs}[2]{Equations~\bref{#1} and~\bref{#2}} % Equations ref.
-\newcommand{\Eqnrefs}[2]{Equations~\bref{#1} and~\bref{#2}} % Equations ref.
+\newcommand{\eqnrefstwo}[2]{Equations~\bref{#1} and~\bref{#2}} % Equations ref. two
+\newcommand{\Eqnrefstwo}[2]{Equations~\bref{#1} and~\bref{#2}} % Equations ref. two
+\newcommand{\eqnrefsthree}[3]{Equations~\bref{#1}, \bref{#2}, and~\bref{#3}} % Equations ref. three
+\newcommand{\Eqnrefsthree}[3]{Equations~\bref{#1}, \bref{#2}, and~\bref{#3}} % Equations ref. three
+\newcommand{\eqnrefsfour}[4]{Equations~\bref{#1}, \bref{#2}, \bref{#3}, and~\bref{#4}} % Equations ref. four
+\newcommand{\Eqnrefsfour}[4]{Equations~\bref{#1}, \bref{#2}, \bref{#3}, and~\bref{#4}} % Equations ref. four
+\newcommand{\eqnrefs}[2]{\eqnrefstwo{#1}{#2}} % Equations ref.
+\newcommand{\Eqnrefs}[2]{\Eqnrefstwo{#1}{#2}} % Equations ref.
 \newcommand{\eqnthrurefs}[2]{Equations~\bref{#1}--\bref{#2}} % Equations-- ref.
 \newcommand{\Eqnthrurefs}[2]{Equations~\bref{#1}--\bref{#2}} % Equations-- ref.
 \newcommand{\figref}[1]{Figure~\ref{#1}} % Figure reference
 \newcommand{\Figref}[1]{Figure~\ref{#1}} % Figure reference
-\newcommand{\figrefs}[2]{Figures~\ref{#1} and~\ref{#2}} % Figures reference
-\newcommand{\Figrefs}[2]{Figures~\ref{#1} and~\ref{#2}} % Figures reference
+\newcommand{\figrefstwo}[2]{Figures~\ref{#1} and~\ref{#2}} % Figures reference two
+\newcommand{\Figrefstwo}[2]{Figures~\ref{#1} and~\ref{#2}} % Figures reference two
+\newcommand{\figrefsthree}[3]{Figures~\ref{#1}, \ref{#2}, and~\ref{#3}} % Figures reference three
+\newcommand{\Figrefsthree}[3]{Figures~\ref{#1}, \ref{#2}, and~\ref{#3}} % Figures reference three
+\newcommand{\figrefsfour}[4]{Figures~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Figures reference four
+\newcommand{\Figrefsfour}[4]{Figures~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Figures reference four
+\newcommand{\figrefs}[2]{\figrefstwo{#1}{#2}} % Figures reference
+\newcommand{\Figrefs}[2]{\Figrefstwo{#1}{#2}} % Figures reference
 \newcommand{\figthrurefs}[2]{Figures~\bref{#1}--\bref{#2}} % Figures-- ref.
 \newcommand{\Figthrurefs}[2]{Figures~\bref{#1}--\bref{#2}} % Figures-- ref.
 \newcommand{\subfigref}[1]{Figure~\subref{#1}} % Subfigure reference
@@ -300,8 +360,14 @@
 \newcommand{\Subsubsecthrurefs}[2]{Subsubsections~\bref{#1}--\bref{#2}} % Subsubsections-- ref.
 \newcommand{\tabref}[1]{Table~\ref{#1}} % Table reference
 \newcommand{\Tabref}[1]{Table~\ref{#1}} % Table reference
-\newcommand{\tabrefs}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference
-\newcommand{\Tabrefs}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference
+\newcommand{\tabrefstwo}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference two
+\newcommand{\Tabrefstwo}[2]{Tables~\ref{#1} and~\ref{#2}} % Tables reference two
+\newcommand{\tabrefsthree}[3]{Tables~\ref{#1}, \ref{#2}, and~\ref{#3}} % Tables reference three
+\newcommand{\Tabrefsthree}[3]{Tables~\ref{#1}, \ref{#2}, and~\ref{#3}} % Tables reference three
+\newcommand{\tabrefsfour}[4]{Tables~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Tables reference four
+\newcommand{\Tabrefsfour}[4]{Tables~\ref{#1}, \ref{#2}, \ref{#3}, and~\ref{#4}} % Tables reference four
+\newcommand{\tabrefs}[2]{\tabrefstwo{#1}{#2}} % Tables reference
+\newcommand{\Tabrefs}[2]{\Tabrefstwo{#1}{#2}} % Tables reference
 \newcommand{\tabthrurefs}[2]{Tables~\bref{#1}--\bref{#2}} % Tables-- ref.
 \newcommand{\Tabthrurefs}[2]{Tables~\bref{#1}--\bref{#2}} % Tables-- ref.
 
@@ -345,48 +411,69 @@
     #1\text{--}#2~#3 %
     }} % number range + unit e.g. \nrunit{10}{20}{\m} => 10--20 m
 
+% Length
+\newcommand{\m}{\units{m}} % metres
+\newcommand{\cm}{\units{cm}} % centimetres
+\newcommand{\mm}{\units{mm}} % millimetres
+\newcommand{\um}{\units{\mu m}} % micrometres
+\newcommand{\nm}{\units{nm}} % nanometres
+% Area
+% Volume
+%\newcommand{\L}{\units{L}} % litres
+\newcommand{\ml}{\units{ml}} % millilitres
+% Mass
+\newcommand{\kg}{\units{kg}} % kilograms
+\newcommand{\g}{\units{g}} % grams
 \newcommand{\ug}{\units{\mu g}} % micrograms
 \newcommand{\mg}{\units{mg}} % milligrams
-\newcommand{\g}{\units{g}} % grams
-\newcommand{\kg}{\units{kg}} % kilograms
-\newcommand{\dB}{\units{dB}} % decibels
-\newcommand{\degC}{\units{\degree C}} % degrees Celcius
-\newcommand{\kPa}{\units{kPa}} % kilopascals
-\newcommand{\MPa}{\units{MPa}} % Megapascals
-\newcommand{\GPa}{\units{GPa}} % Gigapascals
-\newcommand{\N}{\units{N}} % Newtons
-\newcommand{\kN}{\units{kN}} % kilonewtons
-\newcommand{\ml}{\units{ml}} % millilitres
-%\newcommand{\L}{\units{L}} % litres
-\newcommand{\J}{\units{J}} % Joule
-\newcommand{\Hz}{\units{Hz}} % Hertz
-\newcommand{\kHz}{\units{kHz}} % kilohertz
-\newcommand{\MHz}{\units{MHz}} % megahertz
-\newcommand{\GHz}{\units{GHz}} % gigahertz
-\newcommand{\nm}{\units{nm}} % nanometres
-\newcommand{\um}{\units{\mu m}} % micrometres
-\newcommand{\mm}{\units{mm}} % millimetres
-\newcommand{\cm}{\units{cm}} % centimetres
-\newcommand{\m}{\units{m}} % metres
+% Time
+\newcommand{\s}{\units{s}} % seconds
+\newcommand{\ms}{\units{ms}} % milliseconds
+\newcommand{\us}{\units{\mu s}} % microseconds
+% Charge
+\newcommand{\nC}{\units{nC}} % nanocoulombs
+% Current
 \newcommand{\A}{\units{A}} % amps
 \newcommand{\mA}{\units{mA}} % milliamps
 \newcommand{\uA}{\units{\mu A}} % microamps
 \newcommand{\nA}{\units{nA}} % nanoamps
+% Temperature
+\newcommand{\degC}{\units{\degree C}} % degrees Celcius
+\newcommand{\degK}{\units{K}} % "degrees" Kelvin
+% Concentration
 \newcommand{\mM}{\units{mM}} % milliMolar
+\newcommand{\nM}{\units{nM}} % nanoMolar
 \newcommand{\mmol}{\units{mmol}} % millimolar
-\newcommand{\us}{\units{\mu s}} % microseconds
-\newcommand{\ms}{\units{ms}} % milliseconds
-\newcommand{\s}{\units{s}} % seconds
-\newcommand{\uS}{\units{\mu S}} % microSiemens
-\newcommand{\mS}{\units{mS}} % milliSiemens
+% Force
+\newcommand{\kN}{\units{kN}} % kilonewtons
+\newcommand{\N}{\units{N}} % Newtons
+% Stress
+\newcommand{\kPa}{\units{kPa}} % kilopascals
+\newcommand{\MPa}{\units{MPa}} % Megapascals
+\newcommand{\GPa}{\units{GPa}} % Gigapascals
+% Energy
+\newcommand{\J}{\units{J}} % Joule
+\newcommand{\pJ}{\units{pJ}} % picoJoules
+% Frequency
+\newcommand{\GHz}{\units{GHz}} % gigahertz
+\newcommand{\MHz}{\units{MHz}} % megahertz
+\newcommand{\kHz}{\units{kHz}} % kilohertz
+\newcommand{\Hz}{\units{Hz}} % Hertz
+% Voltage
 \newcommand{\V}{\units{V}} % volts
 \newcommand{\mV}{\units{mV}} % millivolts
 \newcommand{\uV}{\units{\mu V}} % micro volts
+% Capacitance
+\newcommand{\uF}{\units{\mu F}} %micro-Farads
+% Inductance
+\newcommand{\Henrys}{\units{H}} % Henrys
+% Resistance
 \newcommand{\ohm}{\units{\Omega}} % Ohms
 \newcommand{\mohm}{\units{m\Omega}} % milli Ohms
-\newcommand{\percent}{\units{\%}} % percent
-\newcommand{\Henrys}{\units{H}} % Henrys
-\newcommand{\uF}{\units{\mu F}} %micro-Farads
+% Conductivity
+\newcommand{\mS}{\units{mS}} % milliSiemens
+\newcommand{\uS}{\units{\mu S}} % microSiemens
+% Computer
 \newcommand{\bit}{\units{b}} % bit
 \newcommand{\Byte}{\units{B}} % byte
 \newcommand{\kB}{\units{kB}} % kilobyte
@@ -394,6 +481,9 @@
 \newcommand{\GB}{\units{GB}} % gigabyte
 \newcommand{\TB}{\units{TB}} % terabyte
 \newcommand{\PB}{\units{PB}} % petabyte
+% Miscellaneou
+\newcommand{\dB}{\units{dB}} % decibels
+\newcommand{\percent}{\units{\%}} % percent
 
 % Derived units
 %\newcommand{\unitseparator}{\cdot}
@@ -570,6 +660,9 @@
 \newcommand{\quaternionnums}{\ensuremath{ %
     \mathbb{H} %
   }} % Quaternion numbers
+\newcommand{\octonionnums}{\ensuremath{ %
+    \mathbb{O} %
+  }} % Octonion numbers
 \newcommand{\rationalnums}{\ensuremath{ %
     \mathbb{Q} %
   }} % Rational numbers
@@ -1014,6 +1107,9 @@
 \newcommand{\poissonbracket}[2]{\ensuremath{ %
     \bbrac{#1,#2} %
 }} % Poisson bracket e.g.,\poissonbracket{X}{Y} => {X,Y}
+\newcommand{\quaternion}[1]{\ensuremath{ %
+  \boldsymbol{\textrm{#1}} %
+}} %% quaternion number format e.g. \quaternion{i} => i
 \newcommand{\sign}[1]{\ensuremath{
     \fnof{\signop}{#1} %
 }} % sign function
